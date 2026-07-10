@@ -1,10 +1,4 @@
-Absolutely. The main issues were:
-
-Missing } after the currentYear block.
-The text CHEK THIS CODE OUT SEE WHATS WRONG WITH IT inside the script.
-HTML entities (&gt;, &lt;, &amp;&amp;, =&gt;) that need to be normal JavaScript operators.
-
-Here's a cleaned and fixed version:
+Copy this and replace your entire JavaScript file with it:
 
 const siteHeader = document.getElementById("siteHeader");
 const menuToggle = document.getElementById("menuToggle");
@@ -12,32 +6,31 @@ const mainNavigation = document.getElementById("mainNavigation");
 const currentYear = document.getElementById("currentYear");
 const heroParticles = document.getElementById("heroParticles");
 
-// Current Year
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
 }
 
-// Header Scroll Effect
 function updateHeaderOnScroll() {
   if (!siteHeader) return;
-
   siteHeader.classList.toggle("scrolled", window.scrollY > 24);
 }
 
 updateHeaderOnScroll();
 
 window.addEventListener("scroll", updateHeaderOnScroll, {
-  passive: true,
+  passive: true
 });
 
-// Mobile Menu
 if (menuToggle && mainNavigation) {
   menuToggle.addEventListener("click", () => {
     const menuIsOpen = mainNavigation.classList.toggle("is-open");
 
     document.body.classList.toggle("menu-open", menuIsOpen);
 
-    menuToggle.setAttribute("aria-expanded", String(menuIsOpen));
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(menuIsOpen)
+    );
   });
 
   mainNavigation.querySelectorAll("a").forEach((link) => {
@@ -49,7 +42,6 @@ if (menuToggle && mainNavigation) {
   });
 }
 
-// Reveal Elements
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
@@ -62,7 +54,7 @@ const revealObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.16,
+    threshold: 0.16
   }
 );
 
@@ -70,16 +62,17 @@ revealElements.forEach((element) => {
   revealObserver.observe(element);
 });
 
-// Active Navigation Links
 const navigationLinks = [
-  ...document.querySelectorAll(".main-navigation a"),
+  ...document.querySelectorAll(".main-navigation a")
 ];
 
 const pageSections = navigationLinks
   .map((link) => {
     const selector = link.getAttribute("href");
 
-    if (!selector || !selector.startsWith("#")) return null;
+    if (!selector || !selector.startsWith("#")) {
+      return null;
+    }
 
     return document.querySelector(selector);
   })
@@ -102,7 +95,7 @@ const activeSectionObserver = new IntersectionObserver(
   },
   {
     rootMargin: "-42% 0px -48% 0px",
-    threshold: 0,
+    threshold: 0
   }
 );
 
@@ -110,7 +103,6 @@ pageSections.forEach((section) => {
   activeSectionObserver.observe(section);
 });
 
-// Hero Particles
 if (heroParticles) {
   const particleCount = window.innerWidth < 700 ? 20 : 40;
 
@@ -127,7 +119,6 @@ if (heroParticles) {
   }
 }
 
-// Counter Animation
 const statisticCounters = document.querySelectorAll("[data-count]");
 
 const counterObserver = new IntersectionObserver(
@@ -143,6 +134,7 @@ const counterObserver = new IntersectionObserver(
 
       function animateCounter(currentTime) {
         const elapsedTime = currentTime - startTime;
+
         const progress = Math.min(
           elapsedTime / animationDuration,
           1
@@ -165,7 +157,7 @@ const counterObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.65,
+    threshold: 0.65
   }
 );
 
@@ -173,39 +165,43 @@ statisticCounters.forEach((counter) => {
   counterObserver.observe(counter);
 });
 
-// Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const targetSelector = link.getAttribute("href");
 
-    if (!targetSelector || targetSelector === "#") return;
+    if (!targetSelector || targetSelector === "#") {
+      return;
+    }
 
     const targetElement = document.querySelector(targetSelector);
 
-    if (!targetElement) return;
+    if (!targetElement) {
+      return;
+    }
 
     event.preventDefault();
 
     targetElement.scrollIntoView({
       behavior: "smooth",
-      block: "start",
+      block: "start"
     });
   });
 });
 
-// Window Resize
 window.addEventListener("resize", () => {
   if (window.innerWidth > 860 && mainNavigation) {
     mainNavigation.classList.remove("is-open");
     document.body.classList.remove("menu-open");
 
     if (menuToggle) {
-      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
     }
   }
 });
 
-// Escape Key Closes Menu
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
 
@@ -216,9 +212,9 @@ document.addEventListener("keydown", (event) => {
   document.body.classList.remove("menu-open");
 
   if (menuToggle) {
-    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
   }
 });
-
-
-This version is valid JavaScript and should run correctly as long as your HTML contains the required IDs and classes (siteHeader, menuToggle, mainNavigation, heroParticles, etc.).
