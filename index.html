@@ -6,22 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="BSS1815 Digital Heritage Center — Hall of Leaders"
+    content="BSS1815 PRO-MAX DMP — Platfòm Jesyon Dijital Ofisyèl Briyant Solèy Signo 1815"
   />
+  <meta name="theme-color" content="#050505" />
 
-  <title>Hall of Leaders | BSS1815 PRO-MAX DMP</title>
+  <title>BSS1815 PRO-MAX DMP</title>
 
   <style>
     :root {
       --orange: #ff7300;
       --orange-light: #ff9b22;
+      --orange-soft: #ffb45e;
       --orange-dark: #8f2f00;
+      --orange-deep: #4d1800;
+
       --black: #030303;
-      --black-soft: #0b0b0b;
-      --text: #ffd2a3;
-      --muted: #c88952;
-      --border: rgba(255, 115, 0, 0.45);
-      --shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+      --black-soft: #090909;
+      --black-card: #111111;
+      --black-card-2: #17100b;
+
+      --text: #ffcf9b;
+      --text-strong: #ff9b22;
+      --muted: #c47a3a;
+
+      --border: rgba(255, 115, 0, 0.34);
+      --border-strong: rgba(255, 115, 0, 0.78);
+
+      --glass: rgba(7, 7, 7, 0.84);
+      --glass-soft: rgba(17, 10, 5, 0.8);
+
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+      --orange-shadow: 0 20px 65px rgba(255, 115, 0, 0.18);
+
+      --header-height: 84px;
+      --radius: 26px;
+      --radius-small: 18px;
     }
 
     * {
@@ -41,16 +60,21 @@
       background:
         radial-gradient(
           circle at top center,
-          rgba(255, 115, 0, 0.16),
-          transparent 32%
+          rgba(255, 115, 0, 0.14),
+          transparent 30%
         ),
         linear-gradient(
           135deg,
           #000000 0%,
-          #0a0705 52%,
-          #361100 100%
+          #080604 48%,
+          #341000 100%
         );
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    body.menu-open {
+      overflow: hidden;
     }
 
     a {
@@ -63,30 +87,43 @@
       max-width: 100%;
     }
 
-    .page-glow {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-      background:
-        radial-gradient(
-          circle at 12% 20%,
-          rgba(255, 115, 0, 0.12),
-          transparent 26%
-        ),
-        radial-gradient(
-          circle at 88% 80%,
-          rgba(143, 47, 0, 0.18),
-          transparent 28%
-        );
+    button {
+      font: inherit;
     }
 
-    .page-grid {
+    .page-background {
       position: fixed;
       inset: 0;
-      z-index: -3;
+      z-index: -20;
+      overflow: hidden;
       pointer-events: none;
-      opacity: 0.04;
+    }
+
+    .background-glow {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      filter: blur(95px);
+      opacity: 0.2;
+    }
+
+    .glow-left {
+      top: 6%;
+      left: -240px;
+      background: var(--orange);
+    }
+
+    .glow-right {
+      right: -250px;
+      bottom: 5%;
+      background: var(--orange-dark);
+    }
+
+    .background-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.045;
       background-image:
         linear-gradient(
           rgba(255, 115, 0, 0.25) 1px,
@@ -98,84 +135,232 @@
           transparent 1px
         );
       background-size: 70px 70px;
+      mask-image:
+        radial-gradient(
+          circle at center,
+          black,
+          transparent 80%
+        );
     }
 
     .site-header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
       z-index: 1000;
-      min-height: 84px;
+
+      width: 100%;
+      min-height: var(--header-height);
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 24px;
-      padding: 14px clamp(18px, 5vw, 72px);
-      border-bottom: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.9);
+
+      padding: 13px clamp(18px, 5vw, 72px);
+
+      border-bottom: 1px solid transparent;
+
+      transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(0, 0, 0, 0.92);
+      border-color: var(--border);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.46);
       backdrop-filter: blur(18px);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
+      min-width: 0;
     }
 
-    .brand img {
+    .brand-logo {
       width: 58px;
       height: 58px;
       object-fit: contain;
-      filter: drop-shadow(
-        0 0 18px rgba(255, 115, 0, 0.48)
-      );
+      filter:
+        drop-shadow(
+          0 0 20px rgba(255, 115, 0, 0.54)
+        );
     }
 
     .brand-text {
       display: grid;
       line-height: 1.2;
+      min-width: 0;
     }
 
     .brand-text strong {
       color: var(--orange);
-      letter-spacing: 0.05em;
+      font-size: 0.95rem;
+      letter-spacing: 0.055em;
+      white-space: nowrap;
     }
 
     .brand-text span {
-      margin-top: 5px;
+      margin-top: 4px;
       color: var(--muted);
-      font-size: 0.78rem;
+      font-size: 0.74rem;
     }
 
-    .back-home {
-      padding: 12px 19px;
+    .main-navigation {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .main-navigation a {
+      position: relative;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .main-navigation a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      transition: width 0.25s ease;
+    }
+
+    .main-navigation a:hover::after,
+    .main-navigation a.active::after {
+      width: 100%;
+    }
+
+    .login-link {
+      padding: 10px 17px;
       border: 1px solid var(--orange);
       border-radius: 999px;
-      color: var(--orange-light);
-      font-size: 0.82rem;
-      font-weight: 900;
-      transition: 0.25s ease;
+      color: var(--orange-light) !important;
+      background: rgba(255, 115, 0, 0.05);
     }
 
-    .back-home:hover {
-      color: #000000;
+    .login-link::after {
+      display: none;
+    }
+
+    .login-link:hover {
+      color: #000000 !important;
       background: var(--orange);
-      box-shadow:
-        0 0 28px rgba(255, 115, 0, 0.35);
+      box-shadow: 0 0 28px rgba(255, 115, 0, 0.32);
     }
 
-    .hall-page {
-      min-height: calc(100vh - 84px);
-      padding: 75px clamp(18px, 5vw, 80px) 90px;
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 115, 0, 0.08);
+      cursor: pointer;
     }
 
-    .hall-heading {
-      max-width: 920px;
-      margin: 0 auto 40px;
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin: 5px auto;
+      background: var(--orange);
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 130px 22px 88px;
       text-align: center;
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.42),
+          rgba(0, 0, 0, 0.94)
+        ),
+        radial-gradient(
+          circle at center,
+          rgba(255, 115, 0, 0.26),
+          transparent 56%
+        );
+    }
+
+    .hero-section::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      z-index: -2;
+      height: 46%;
+      background:
+        linear-gradient(
+          to top,
+          #000000 8%,
+          transparent
+        );
+    }
+
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      z-index: -5;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(
+          rgba(255, 115, 0, 0.12) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 115, 0, 0.12) 1px,
+          transparent 1px
+        );
+      background-size: 72px 72px;
+      mask-image:
+        radial-gradient(
+          circle at center,
+          black,
+          transparent 74%
+        );
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--orange-light);
+      box-shadow: 0 0 15px var(--orange);
+      animation: particleRise linear infinite;
+    }
+
+    .hero-content {
+      width: min(100%, 980px);
     }
 
     .eyebrow {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       color: var(--orange-light);
       font-size: 0.82rem;
       font-weight: 900;
@@ -183,90 +368,90 @@
       text-transform: uppercase;
     }
 
-    .hall-heading h1 {
-      color: var(--orange);
-      font-size: clamp(2.5rem, 7vw, 6rem);
-      line-height: 0.96;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-      text-shadow:
-        0 0 30px rgba(255, 115, 0, 0.28);
-    }
-
-    .hall-heading p:last-child {
-      max-width: 740px;
-      margin: 20px auto 0;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .hall-frame {
+    .hero-logo-container {
       position: relative;
-      width: min(1500px, 100%);
-      margin: 0 auto;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 115, 0, 0.08),
-          transparent 45%
-        ),
-        rgba(5, 5, 5, 0.9);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      width: min(360px, 76vw);
+      margin: 0 auto 22px;
     }
 
-    .hall-frame::before {
-      content: "";
+    .hero-logo-glow {
       position: absolute;
-      inset: -40%;
-      z-index: 0;
+      inset: 12%;
+      border-radius: 50%;
       background:
-        conic-gradient(
-          from 0deg,
-          transparent,
-          rgba(255, 115, 0, 0.12),
-          transparent 30%
+        radial-gradient(
+          circle,
+          rgba(255, 115, 0, 0.5),
+          transparent 68%
         );
-      animation: rotateGlow 12s linear infinite;
+      filter: blur(25px);
+      animation: haloPulse 3.8s ease-in-out infinite;
     }
 
-    .hall-image-wrapper {
+    .hero-logo {
       position: relative;
       z-index: 1;
-      overflow: hidden;
-      border-radius: 20px;
-      background: #000000;
-    }
-
-    .hall-main-image {
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      filter:
+        drop-shadow(
+          0 0 42px rgba(255, 115, 0, 0.58)
+        );
+      animation: logoFloat 4s ease-in-out infinite;
     }
 
-    .hall-actions {
+    .hero-title {
+      font-size: clamp(2.65rem, 7.5vw, 6.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero-title span {
+      display: block;
+      color: var(--text);
+    }
+
+    .hero-title strong {
+      display: block;
+      color: var(--orange);
+      text-shadow:
+        0 0 36px rgba(255, 115, 0, 0.38);
+    }
+
+    .hero-description {
+      max-width: 780px;
+      margin: 25px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .hero-buttons,
+    .section-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 14px;
-      margin-top: 36px;
+      gap: 15px;
+      margin-top: 32px;
     }
 
-    .hall-button {
-      min-width: 210px;
+    .button {
+      min-width: 205px;
       padding: 14px 22px;
       border: 1px solid var(--orange);
       border-radius: 999px;
       text-align: center;
       font-weight: 900;
-      transition: 0.25s ease;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
     }
 
-    .hall-button.primary {
+    .button:hover {
+      transform: translateY(-4px);
+    }
+
+    .button-primary {
       color: #000000;
       background:
         linear-gradient(
@@ -274,79 +459,823 @@
           var(--orange-light),
           var(--orange)
         );
-    }
-
-    .hall-button.secondary {
-      color: var(--orange-light);
-      background: rgba(0, 0, 0, 0.55);
-    }
-
-    .hall-button:hover {
-      transform: translateY(-4px);
       box-shadow:
-        0 14px 38px rgba(255, 115, 0, 0.22);
+        0 15px 40px rgba(255, 115, 0, 0.3);
     }
 
-    .site-footer {
-      padding: 34px 20px;
-      border-top: 1px solid var(--border);
+    .button-primary:hover {
+      box-shadow:
+        0 18px 52px rgba(255, 115, 0, 0.42);
+    }
+
+    .button-secondary {
+      color: var(--orange-light);
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 115, 0, 0.1);
+    }
+
+    .hero-status {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .hero-status span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.46);
+      font-size: 0.8rem;
+    }
+
+    .hero-status i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      width: 34px;
+      height: 54px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transform: translateX(-50%);
+    }
+
+    .scroll-indicator span {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 5px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--orange);
+      transform: translateX(-50%);
+      animation: scrollDrop 1.8s infinite;
+    }
+
+    .content-section {
+      position: relative;
+      padding: 105px clamp(20px, 6vw, 92px);
+    }
+
+    .section-heading {
+      max-width: 820px;
+      margin: 0 auto 50px;
       text-align: center;
+    }
+
+    .section-heading h2,
+    .feature-copy h2,
+    .mission-card h2 {
+      color: var(--orange);
+      font-size: clamp(2.15rem, 5vw, 4.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p:last-child,
+    .feature-copy > p,
+    .mission-card > p {
+      margin-top: 16px;
+      color: var(--muted);
+    }
+
+    .ecosystem-section {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 115, 0, 0.08),
+          transparent 60%
+        ),
+        #050505;
+    }
+
+    .ecosystem-grid {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .ecosystem-card,
+    .module-card,
+    .feature-panel,
+    .statistic-card,
+    .mission-card {
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 115, 0, 0.09),
+          transparent 46%
+        ),
+        var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .ecosystem-card {
+      min-height: 250px;
+      padding: 28px;
+      border-radius: var(--radius);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .ecosystem-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--orange);
+      box-shadow: var(--orange-shadow);
+    }
+
+    .featured-card {
+      box-shadow:
+        0 22px 70px rgba(255, 115, 0, 0.2);
+    }
+
+    .card-icon,
+    .module-icon {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      margin-bottom: 20px;
+      border-radius: 18px;
+      color: var(--orange);
+      background: rgba(255, 115, 0, 0.12);
+      font-size: 1.85rem;
+    }
+
+    .ecosystem-card h3,
+    .module-card h3 {
+      color: var(--orange-light);
+      font-size: 1.3rem;
+    }
+
+    .ecosystem-card p,
+    .module-card p {
+      margin-top: 10px;
+      color: var(--muted);
+    }
+
+    .modules-section {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 115, 0, 0.04),
+          transparent 32%
+        ),
+        #020202;
+    }
+
+    .modules-grid {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .module-card {
+      min-height: 315px;
+      display: flex;
+      flex-direction: column;
+      padding: 27px;
+      border-radius: var(--radius);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-9px);
+      border-color: var(--orange);
+      box-shadow: var(--orange-shadow);
+    }
+
+    .module-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .module-badge {
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--orange-light);
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .module-card a {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--orange-light);
+      font-size: 0.84rem;
+      font-weight: 900;
+    }
+
+    .feature-section {
+      background:
+        radial-gradient(
+          circle at 18% 50%,
+          rgba(255, 115, 0, 0.13),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #050505,
+          #1b0b02
+        );
+    }
+
+    .feature-panel {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 44px;
+      padding: clamp(30px, 6vw, 70px);
+      border-radius: 34px;
+    }
+
+    .feature-copy .eyebrow {
+      text-align: left;
+    }
+
+    .feature-copy h2 {
+      text-align: left;
+    }
+
+    .feature-copy > p {
+      max-width: 650px;
+    }
+
+    .feature-visual {
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 115, 0, 0.2),
+          transparent 60%
+        ),
+        #050505;
+    }
+
+    .feature-visual::before,
+    .feature-visual::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255, 115, 0, 0.2);
+      border-radius: 50%;
+    }
+
+    .feature-visual::before {
+      width: 270px;
+      height: 270px;
+      animation: slowSpin 16s linear infinite;
+    }
+
+    .feature-visual::after {
+      width: 200px;
+      height: 200px;
+      border-style: dashed;
+      animation: reverseSpin 12s linear infinite;
+    }
+
+    .feature-symbol {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 145px;
+      height: 145px;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      color: var(--orange);
+      background: rgba(0, 0, 0, 0.74);
+      box-shadow:
+        0 0 55px rgba(255, 115, 0, 0.28);
+      font-size: 4rem;
+    }
+
+    .hall-preview {
+      position: relative;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: #000000;
+      box-shadow: var(--shadow);
+    }
+
+    .hall-preview img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+
+    .hall-preview-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: clamp(24px, 5vw, 60px);
+      background:
+        linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.95),
+          rgba(0, 0, 0, 0.12) 70%
+        );
+    }
+
+    .hall-preview-copy {
+      max-width: 650px;
+    }
+
+    .hall-preview-copy h3 {
+      color: var(--orange);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+    }
+
+    .hall-preview-copy p {
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
+    .radio-section {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 115, 0, 0.05),
+          transparent 32%
+        ),
+        #030303;
+    }
+
+    .radio-panel {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .radio-card {
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(28px, 5vw, 58px);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 115, 0, 0.1),
+          transparent 50%
+        ),
+        var(--glass);
+      box-shadow: var(--shadow);
+    }
+
+    .radio-card h3 {
+      color: var(--orange);
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
+    }
+
+    .radio-card p {
+      margin-top: 16px;
+      color: var(--muted);
+    }
+
+    .radio-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      margin-bottom: 18px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--orange-light);
+      background: rgba(255, 115, 0, 0.07);
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    .radio-status i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow:
+        0 0 12px var(--orange);
+      animation: pulseDot 1.5s infinite;
+    }
+
+    .radio-art {
+      position: relative;
+      min-height: 330px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 115, 0, 0.2),
+          transparent 60%
+        ),
+        #050505;
+      box-shadow: var(--shadow);
+    }
+
+    .radio-wave {
+      position: absolute;
+      width: 76%;
+      height: 76%;
+      border: 2px solid rgba(255, 115, 0, 0.16);
+      border-radius: 50%;
+      animation: wavePulse 3s infinite;
+    }
+
+    .radio-wave:nth-child(2) {
+      width: 58%;
+      height: 58%;
+      animation-delay: 0.6s;
+    }
+
+    .radio-wave:nth-child(3) {
+      width: 40%;
+      height: 40%;
+      animation-delay: 1.2s;
+    }
+
+    .radio-icon {
+      position: relative;
+      z-index: 2;
+      color: var(--orange);
+      font-size: 5rem;
+      filter:
+        drop-shadow(
+          0 0 28px rgba(255, 115, 0, 0.5)
+        );
+    }
+
+    .statistics-section {
+      padding-top: 70px;
+      padding-bottom: 70px;
       background: #000000;
     }
 
-    .site-footer strong {
-      display: block;
-      color: var(--orange);
-      letter-spacing: 0.05em;
+    .statistics-grid {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
     }
 
-    .site-footer span {
+    .statistic-card {
+      padding: 28px;
+      border-radius: 22px;
+      text-align: center;
+    }
+
+    .statistic-card strong {
       display: block;
-      margin-top: 7px;
+      color: var(--orange);
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 1;
+    }
+
+    .statistic-card span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .mission-section {
+      min-height: 580px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.94)
+        ),
+        radial-gradient(
+          circle at center,
+          rgba(255, 115, 0, 0.24),
+          transparent 60%
+        );
+    }
+
+    .mission-card {
+      width: min(920px, 100%);
+      padding: clamp(34px, 7vw, 82px);
+      border-radius: 34px;
+      text-align: center;
+    }
+
+    .mission-card blockquote {
+      margin-top: 28px;
+      color: var(--orange-light);
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 900;
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 38px clamp(20px, 6vw, 92px);
+      border-top: 1px solid var(--border);
+      background: #000000;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer-brand img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+    }
+
+    .footer-brand div {
+      display: grid;
+    }
+
+    .footer-brand strong {
+      color: var(--orange);
+    }
+
+    .footer-brand span,
+    .site-footer > p {
       color: var(--muted);
       font-size: 0.82rem;
     }
 
-    @keyframes rotateGlow {
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 0.75s ease,
+        transform 0.75s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes logoFloat {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-11px);
+      }
+    }
+
+    @keyframes haloPulse {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.45;
+      }
+
+      50% {
+        transform: scale(1.08);
+        opacity: 0.72;
+      }
+    }
+
+    @keyframes particleRise {
+      from {
+        transform: translateY(100vh) scale(0.7);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-20vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes scrollDrop {
+      0% {
+        transform: translate(-50%, 0);
+        opacity: 0;
+      }
+
+      35% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, 20px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes slowSpin {
       to {
         transform: rotate(360deg);
       }
     }
 
-    @media (max-width: 760px) {
-      .site-header {
-        align-items: flex-start;
+    @keyframes reverseSpin {
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
+    @keyframes pulseDot {
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    @keyframes wavePulse {
+      0%,
+      100% {
+        transform: scale(0.9);
+        opacity: 0.25;
       }
 
+      50% {
+        transform: scale(1.06);
+        opacity: 0.8;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .ecosystem-grid,
+      .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-panel,
+      .radio-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .main-navigation {
+        position: fixed;
+        top: var(--header-height);
+        right: 18px;
+        left: 18px;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 12px;
+
+        border: 1px solid var(--border);
+        border-radius: 20px;
+
+        background: rgba(0, 0, 0, 0.98);
+        box-shadow: var(--shadow);
+      }
+
+      .main-navigation.is-open {
+        display: flex;
+      }
+
+      .main-navigation a {
+        padding: 14px;
+      }
+
+      .login-link {
+        margin-top: 6px;
+        text-align: center;
+      }
+
+      .statistics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .site-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 680px) {
       .brand-text span {
         display: none;
       }
 
-      .back-home {
-        padding: 10px 13px;
-        font-size: 0.72rem;
+      .brand-text strong {
+        font-size: 0.8rem;
       }
 
-      .hall-page {
-        padding-top: 55px;
+      .brand-logo {
+        width: 50px;
+        height: 50px;
       }
 
-      .hall-frame {
-        padding: 7px;
-        border-radius: 18px;
+      .hero-section {
+        padding-top: 120px;
       }
 
-      .hall-image-wrapper {
-        border-radius: 13px;
-      }
-
-      .hall-actions {
+      .hero-buttons,
+      .section-buttons {
         flex-direction: column;
         align-items: center;
       }
 
-      .hall-button {
+      .button {
         width: min(100%, 320px);
+      }
+
+      .ecosystem-grid,
+      .modules-grid,
+      .statistics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-panel {
+        gap: 28px;
+      }
+
+      .feature-copy .eyebrow,
+      .feature-copy h2 {
+        text-align: center;
+      }
+
+      .feature-copy > p {
+        text-align: center;
+      }
+
+      .hall-preview {
+        min-height: 420px;
+      }
+
+      .hall-preview img {
+        min-height: 420px;
+        object-fit: cover;
+      }
+
+      .footer-brand {
+        flex-direction: column;
       }
     }
   </style>
@@ -354,79 +1283,620 @@
 
 <body>
 
-  <div class="page-glow"></div>
-  <div class="page-grid"></div>
+  <div class="page-background" aria-hidden="true">
+    <div class="background-glow glow-left"></div>
+    <div class="background-glow glow-right"></div>
+    <div class="background-grid"></div>
+  </div>
 
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
 
-    <a href="../index.html" class="brand">
+    <a href="#home" class="brand" aria-label="BSS1815 PRO-MAX DMP">
 
       <img
-        src="../assets/logos/pro-max-dmp-logo.png"
+        src="assets/pro-max-fm-dmp.png"
         alt="BSS1815 PRO-MAX DMP Logo"
+        class="brand-logo"
       />
 
       <div class="brand-text">
         <strong>BSS1815 PRO-MAX DMP</strong>
-        <span>Digital Heritage Center</span>
+        <span>Digital Management Platform</span>
       </div>
 
     </a>
 
-    <a href="../index.html" class="back-home">
-      RETOUNEN SOU HOMEPAGE
-    </a>
+    <button
+      type="button"
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Louvri meni an"
+      aria-controls="mainNavigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      class="main-navigation"
+      id="mainNavigation"
+      aria-label="Navigasyon prensipal"
+    >
+      <a href="#home">Home</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#modules">Modules</a>
+      <a href="#ai-center">AI Center</a>
+      <a href="#hall-of-leaders">Hall of Leaders</a>
+      <a href="#pro-max-fm">PRO-MAX FM</a>
+      <a href="login.html" class="login-link">Login</a>
+    </nav>
 
   </header>
 
-  <main class="hall-page">
+  <main>
 
-    <section class="hall-heading">
+    <section class="hero-section" id="home">
 
-      <p class="eyebrow">
-        BSS1815 DIGITAL HERITAGE CENTER
-      </p>
+      <div class="hero-lines"></div>
 
-      <h1>
-        Hall of Leaders
-      </h1>
+      <div
+        class="hero-particles"
+        id="heroParticles"
+        aria-hidden="true"
+      ></div>
 
-      <p>
-        Yon galri dijital ki prezève istwa, lidèchip,
-        kontribisyon ak eritaj dirijan Briyant Solèy Signo 1815 yo.
-      </p>
+      <div class="hero-content reveal">
+
+        <p class="eyebrow">
+          BRIYANT SOLÈY SIGNO 1815
+        </p>
+
+        <div class="hero-logo-container">
+
+          <div
+            class="hero-logo-glow"
+            aria-hidden="true"
+          ></div>
+
+          <img
+            src="assets/pro-max-fm-dmp.png"
+            alt="Logo Ofisyèl BSS1815 PRO-MAX DMP"
+            class="hero-logo"
+          />
+
+        </div>
+
+        <h1 class="hero-title">
+          <span>POWERING THE FUTURE OF</span>
+          <strong>DIGITAL MANAGEMENT</strong>
+        </h1>
+
+        <p class="hero-description">
+          Yon platfòm dijital konplè ki konekte teknoloji,
+          jesyon, medya, kominikasyon, eritaj ak inovasyon
+          Briyant Solèy Signo 1815 nan yon sèl ekosistèm.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#modules"
+            class="button button-primary"
+          >
+            EXPLORE PLATFORM
+          </a>
+
+          <a
+            href="#pro-max-fm"
+            class="button button-secondary"
+          >
+            ENTER PRO-MAX FM
+          </a>
+
+        </div>
+
+        <div class="hero-status">
+
+          <span>
+            <i></i>
+            Secure Platform
+          </span>
+
+          <span>
+            <i></i>
+            Firebase Ready
+          </span>
+
+          <span>
+            <i></i>
+            Mobile Ready
+          </span>
+
+          <span>
+            <i></i>
+            Powered by PRO-MAX
+          </span>
+
+        </div>
+
+      </div>
+
+      <a
+        href="#ecosystem"
+        class="scroll-indicator"
+        aria-label="Desann"
+      >
+        <span></span>
+      </a>
 
     </section>
 
-    <section class="hall-frame">
+    <section
+      class="content-section ecosystem-section"
+      id="ecosystem"
+    >
 
-      <div class="hall-image-wrapper">
+      <div class="section-heading reveal">
 
-        <img
-          src="../assets/images/hall-of-leaders.webp"
-          alt="BSS1815 Hall of Leaders"
-          class="hall-main-image"
-        />
+        <p class="eyebrow">
+          ONE DIGITAL ECOSYSTEM
+        </p>
+
+        <h2>
+          Kat Pwojè. Yon Sèl Vizyon.
+        </h2>
+
+        <p>
+          Tout pwojè yo konekte ansanm pandan chak pwojè
+          kenbe pwòp idantite, misyon ak fonksyon pa li.
+        </p>
+
+      </div>
+
+      <div class="ecosystem-grid">
+
+        <article class="ecosystem-card reveal">
+
+          <div class="card-icon">
+            🏛️
+          </div>
+
+          <h3>
+            Briyant Solèy Signo 1815
+          </h3>
+
+          <p>
+            Òganizasyon, kilti, kominote, lidèchip,
+            mizisyen, fanatik ak eritaj.
+          </p>
+
+        </article>
+
+        <article class="ecosystem-card reveal">
+
+          <div class="card-icon">
+            💼
+          </div>
+
+          <h3>
+            Maximax Multi Services
+          </h3>
+
+          <p>
+            Sèvis pwofesyonèl, asistans administratif,
+            tradiksyon ak sipò kominotè.
+          </p>
+
+        </article>
+
+        <article class="ecosystem-card featured-card reveal">
+
+          <div class="card-icon">
+            📻
+          </div>
+
+          <h3>
+            PRO-MAX FM DMP
+          </h3>
+
+          <p>
+            Vwa ofisyèl pwomosyon, radyo, nouvèl,
+            podcast, entèvyou ak kominikasyon.
+          </p>
+
+        </article>
+
+        <article class="ecosystem-card reveal">
+
+          <div class="card-icon">
+            🖥️
+          </div>
+
+          <h3>
+            BSS1815 PRO-MAX DMP
+          </h3>
+
+          <p>
+            Jesyon dijital, Firebase, pèmisyon,
+            administrasyon, dokiman ak done.
+          </p>
+
+        </article>
 
       </div>
 
     </section>
 
-    <section class="hall-actions">
+    <section
+      class="content-section modules-section"
+      id="modules"
+    >
 
-      <a
-        href="../index.html"
-        class="hall-button secondary"
-      >
-        RETOUNEN SOU HOMEPAGE
-      </a>
+      <div class="section-heading reveal">
 
-      <a
-        href="#"
-        class="hall-button primary"
-      >
-        OPEN DIGITAL HERITAGE CENTER
-      </a>
+        <p class="eyebrow">
+          PLATFORM MODULES
+        </p>
+
+        <h2>
+          Zouti ki Bay Platfòm nan Pouvwa
+        </h2>
+
+        <p>
+          Chak modil fèt pou reponn ak yon bezwen espesifik
+          pandan tout sistèm nan rete konekte.
+        </p>
+
+      </div>
+
+      <div class="modules-grid">
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">🤖</span>
+            <span class="module-badge">AI</span>
+          </div>
+          <h3>AI Center</h3>
+          <p>
+            Jenerasyon kontni, rechèch, analiz,
+            asistans administratif ak automatisation.
+          </p>
+          <a href="#ai-center">EXPLORE</a>
+        </article>
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">👥</span>
+            <span class="module-badge">CRM</span>
+          </div>
+          <h3>CRM System</h3>
+          <p>
+            Jesyon manm, relasyon, kontak,
+            kominikasyon ak rechèch avanse.
+          </p>
+          <a href="#">EXPLORE</a>
+        </article>
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">📢</span>
+            <span class="module-badge">Communication</span>
+          </div>
+          <h3>Communication Center</h3>
+          <p>
+            Anons, notifikasyon, mesaj ofisyèl,
+            SMS, WhatsApp ak kanpay.
+          </p>
+          <a href="#">EXPLORE</a>
+        </article>
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">🎨</span>
+            <span class="module-badge">Studio</span>
+          </div>
+          <h3>Flyer Studio</h3>
+          <p>
+            Kreye ak jere flyer, afich,
+            anons ak vizyèl pwomosyonèl.
+          </p>
+          <a href="#">EXPLORE</a>
+        </article>
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">📄</span>
+            <span class="module-badge">Documents</span>
+          </div>
+          <h3>Document Center</h3>
+          <p>
+            Rapò, lèt, kontra, sètifika,
+            fichye ofisyèl ak achiv.
+          </p>
+          <a href="#">EXPLORE</a>
+        </article>
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">🏛️</span>
+            <span class="module-badge">Heritage</span>
+          </div>
+          <h3>Digital Heritage Center</h3>
+          <p>
+            Istwa, testaman, galri dirijan,
+            liv dijital ak achiv istorik.
+          </p>
+          <a href="#hall-of-leaders">EXPLORE</a>
+        </article>
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">🎓</span>
+            <span class="module-badge">Academy</span>
+          </div>
+          <h3>PRO-MAX Akademi</h3>
+          <p>
+            Fòmasyon, kou lidèchip,
+            evalyasyon, bibliyotèk ak sètifika.
+          </p>
+          <a href="#">EXPLORE</a>
+        </article>
+
+        <article class="module-card reveal">
+          <div class="module-header">
+            <span class="module-icon">🔐</span>
+            <span class="module-badge">Secure</span>
+          </div>
+          <h3>Admin Dashboard</h3>
+          <p>
+            Wòl, pèmisyon, itilizatè,
+            sekirite ak kontwòl sistèm.
+          </p>
+          <a href="login.html">LOGIN</a>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section
+      class="content-section feature-section"
+      id="ai-center"
+    >
+
+      <div class="feature-panel reveal">
+
+        <div class="feature-copy">
+
+          <p class="eyebrow">
+            AI CENTER
+          </p>
+
+          <h2>
+            Entèlijans ki Travay pou Platfòm nan
+          </h2>
+
+          <p>
+            AI Center ede administratè yo kreye kontni,
+            analize enfòmasyon, jwenn dokiman, prepare mesaj,
+            òganize achiv epi akselere operasyon platfòm nan.
+          </p>
+
+          <div class="section-buttons">
+
+            <a href="#" class="button button-primary">
+              ENTER AI CENTER
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="feature-visual">
+
+          <div class="feature-symbol">
+            🤖
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section
+      class="content-section modules-section"
+      id="hall-of-leaders"
+    >
+
+      <div class="section-heading reveal">
+
+        <p class="eyebrow">
+          DIGITAL HERITAGE CENTER
+        </p>
+
+        <h2>
+          Hall of Leaders
+        </h2>
+
+        <p>
+          Yon espas dijital ki prezève istwa,
+          kontribisyon ak eritaj dirijan BSS1815 yo.
+        </p>
+
+      </div>
+
+      <div class="hall-preview reveal">
+
+        <img
+          src="assets/hall-of-leaders.webp"
+          alt="BSS1815 Hall of Leaders"
+          onerror="this.style.display='none'"
+        />
+
+        <div class="hall-preview-overlay">
+
+          <div class="hall-preview-copy">
+
+            <h3>
+              CHAK DIRIJAN GEN YON ISTWA
+            </h3>
+
+            <p>
+              Antre nan galri dijital la pou dekouvri
+              biyografi, testaman, foto, videyo ak eritaj yo.
+            </p>
+
+            <div class="section-buttons">
+
+              <a
+                href="hall-of-leaders.html"
+                class="button button-primary"
+              >
+                VIEW COMPLETE HALL OF LEADERS
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section
+      class="content-section radio-section"
+      id="pro-max-fm"
+    >
+
+      <div class="section-heading reveal">
+
+        <p class="eyebrow">
+          PRO-MAX FM DMP
+        </p>
+
+        <h2>
+          Vwa Ofisyèl Tout Pwojè yo
+        </h2>
+
+        <p>
+          Radyo, nouvèl, podcast, entèvyou,
+          pwomosyon ak pwodiksyon medya nan yon sèl sant.
+        </p>
+
+      </div>
+
+      <div class="radio-panel">
+
+        <article class="radio-card reveal">
+
+          <span class="radio-status">
+            <i></i>
+            LIVE PLATFORM
+          </span>
+
+          <h3>
+            PRO-MAX FM DMP
+          </h3>
+
+          <p>
+            Koute emisyon, nouvèl, entèvyou,
+            podcast ak tout pwomosyon ofisyèl yo.
+          </p>
+
+          <div class="section-buttons">
+
+            <a
+              href="#"
+              class="button button-primary"
+            >
+              LISTEN LIVE
+            </a>
+
+            <a
+              href="#"
+              class="button button-secondary"
+            >
+              ENTER RADIO
+            </a>
+
+          </div>
+
+        </article>
+
+        <div class="radio-art reveal">
+
+          <div class="radio-wave"></div>
+          <div class="radio-wave"></div>
+          <div class="radio-wave"></div>
+
+          <div class="radio-icon">
+            📻
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="content-section statistics-section">
+
+      <div class="statistics-grid">
+
+        <article class="statistic-card reveal">
+          <strong data-count="4">0</strong>
+          <span>Connected Platforms</span>
+        </article>
+
+        <article class="statistic-card reveal">
+          <strong data-count="8">0</strong>
+          <span>Core Modules</span>
+        </article>
+
+        <article class="statistic-card reveal">
+          <strong data-count="100">0</strong>
+          <span>Digital Vision</span>
+        </article>
+
+        <article class="statistic-card reveal">
+          <strong>24/7</strong>
+          <span>Platform Access</span>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section
+      class="content-section mission-section"
+      id="mission"
+    >
+
+      <div class="mission-card reveal">
+
+        <p class="eyebrow">
+          OUR MISSION
+        </p>
+
+        <h2>
+          DEVAN DEVAN NÈT.
+        </h2>
+
+        <p>
+          BATI POU JODI A. PARE POU DEMEN.
+        </p>
+
+        <blockquote>
+          “Yon sèl platfòm. Yon sèl kominote.
+          Posiblite san limit.”
+        </blockquote>
+
+      </div>
 
     </section>
 
@@ -434,15 +1904,436 @@
 
   <footer class="site-footer">
 
-    <strong>
-      BSS1815 PRO-MAX DMP
-    </strong>
+    <div class="footer-brand">
 
-    <span>
-      Powered by PRO-MAX Digital Management Platform
-    </span>
+      <img
+        src="assets/pro-max-fm-dmp.png"
+        alt="BSS1815 PRO-MAX DMP Logo"
+      />
+
+      <div>
+        <strong>BSS1815 PRO-MAX DMP</strong>
+        <span>
+          Powered by PRO-MAX Digital Management Platform
+        </span>
+      </div>
+
+    </div>
+
+    <p>
+      © <span id="currentYear"></span>
+      BSS1815 PRO-MAX DMP. Tout dwa rezève.
+    </p>
 
   </footer>
+
+  <script>
+    const siteHeader =
+      document.getElementById("siteHeader");
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const mainNavigation =
+      document.getElementById("mainNavigation");
+
+    const currentYear =
+      document.getElementById("currentYear");
+
+    const heroParticles =
+      document.getElementById("heroParticles");
+
+    if (currentYear) {
+      currentYear.textContent =
+        new Date().getFullYear();
+    }
+
+    function updateHeaderOnScroll() {
+      if (!siteHeader) return;
+
+      siteHeader.classList.toggle(
+        "scrolled",
+        window.scrollY > 24
+      );
+    }
+
+    updateHeaderOnScroll();
+
+    window.addEventListener(
+      "scroll",
+      updateHeaderOnScroll,
+      { passive: true }
+    );
+
+    if (menuToggle && mainNavigation) {
+
+      menuToggle.addEventListener(
+        "click",
+        () => {
+
+          const menuIsOpen =
+            mainNavigation.classList.toggle(
+              "is-open"
+            );
+
+          document.body.classList.toggle(
+            "menu-open",
+            menuIsOpen
+          );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            String(menuIsOpen)
+          );
+
+        }
+      );
+
+      mainNavigation
+        .querySelectorAll("a")
+        .forEach((link) => {
+
+          link.addEventListener(
+            "click",
+            () => {
+
+              mainNavigation
+                .classList
+                .remove("is-open");
+
+              document.body
+                .classList
+                .remove("menu-open");
+
+              menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+          );
+
+        });
+
+    }
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target
+              .classList
+              .add("is-visible");
+
+            revealObserver
+              .unobserve(entry.target);
+
+          });
+
+        },
+        {
+          threshold: 0.14
+        }
+      );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    const navigationLinks = [
+      ...document.querySelectorAll(
+        ".main-navigation a[href^='#']"
+      )
+    ];
+
+    const pageSections =
+      navigationLinks
+        .map((link) => {
+
+          const selector =
+            link.getAttribute("href");
+
+          if (
+            !selector ||
+            !selector.startsWith("#")
+          ) {
+            return null;
+          }
+
+          return document.querySelector(
+            selector
+          );
+
+        })
+        .filter(Boolean);
+
+    const activeSectionObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            navigationLinks.forEach(
+              (link) => {
+
+                const sectionId =
+                  `#${entry.target.id}`;
+
+                link.classList.toggle(
+                  "active",
+                  link.getAttribute("href") ===
+                    sectionId
+                );
+
+              }
+            );
+
+          });
+
+        },
+        {
+          rootMargin:
+            "-42% 0px -48% 0px",
+          threshold: 0
+        }
+      );
+
+    pageSections.forEach((section) => {
+      activeSectionObserver.observe(section);
+    });
+
+    if (heroParticles) {
+
+      const particleCount =
+        window.innerWidth < 700
+          ? 18
+          : 38;
+
+      for (
+        let index = 0;
+        index < particleCount;
+        index += 1
+      ) {
+
+        const particle =
+          document.createElement("span");
+
+        particle.className = "particle";
+
+        particle.style.left =
+          `${Math.random() * 100}%`;
+
+        particle.style.animationDuration =
+          `${6 + Math.random() * 9}s`;
+
+        particle.style.animationDelay =
+          `${Math.random() * -14}s`;
+
+        particle.style.opacity =
+          `${0.25 + Math.random() * 0.75}`;
+
+        heroParticles.appendChild(
+          particle
+        );
+
+      }
+
+    }
+
+    const statisticCounters =
+      document.querySelectorAll(
+        "[data-count]"
+      );
+
+    const counterObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            const counter =
+              entry.target;
+
+            const targetValue =
+              Number(
+                counter.dataset.count || 0
+              );
+
+            const animationDuration =
+              1200;
+
+            const startTime =
+              performance.now();
+
+            function animateCounter(
+              currentTime
+            ) {
+
+              const elapsedTime =
+                currentTime - startTime;
+
+              const progress =
+                Math.min(
+                  elapsedTime /
+                    animationDuration,
+                  1
+                );
+
+              const easedProgress =
+                1 -
+                Math.pow(
+                  1 - progress,
+                  3
+                );
+
+              counter.textContent =
+                Math.round(
+                  targetValue *
+                    easedProgress
+                );
+
+              if (progress < 1) {
+                requestAnimationFrame(
+                  animateCounter
+                );
+              }
+
+            }
+
+            requestAnimationFrame(
+              animateCounter
+            );
+
+            counterObserver
+              .unobserve(counter);
+
+          });
+
+        },
+        {
+          threshold: 0.6
+        }
+      );
+
+    statisticCounters.forEach(
+      (counter) => {
+        counterObserver.observe(counter);
+      }
+    );
+
+    document
+      .querySelectorAll('a[href^="#"]')
+      .forEach((link) => {
+
+        link.addEventListener(
+          "click",
+          (event) => {
+
+            const targetSelector =
+              link.getAttribute("href");
+
+            if (
+              !targetSelector ||
+              targetSelector === "#"
+            ) {
+              return;
+            }
+
+            const targetElement =
+              document.querySelector(
+                targetSelector
+              );
+
+            if (!targetElement) {
+              return;
+            }
+
+            event.preventDefault();
+
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+        );
+
+      });
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        if (
+          window.innerWidth > 900 &&
+          mainNavigation
+        ) {
+
+          mainNavigation
+            .classList
+            .remove("is-open");
+
+          document.body
+            .classList
+            .remove("menu-open");
+
+          if (menuToggle) {
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+          }
+
+        }
+
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (event.key !== "Escape") {
+          return;
+        }
+
+        if (mainNavigation) {
+          mainNavigation
+            .classList
+            .remove("is-open");
+        }
+
+        document.body
+          .classList
+          .remove("menu-open");
+
+        if (menuToggle) {
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        }
+
+      }
+    );
+  </script>
 
 </body>
 </html>
