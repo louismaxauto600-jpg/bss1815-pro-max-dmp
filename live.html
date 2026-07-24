@@ -1,0 +1,2887 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP Live Radio — Koute emisyon an dirèk, wè pwogramasyon, animatè ak enfòmasyon estasyon an."
+  >
+
+  <title>Live Radio | PRO-MAX FM DMP</title>
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange-2: #ff8c00;
+      --orange-light: #ffb35c;
+      --orange-dark: #9b3300;
+      --orange-deep: #481500;
+
+      --black: #000000;
+      --black-2: #080300;
+      --black-3: #120600;
+      --black-4: #1c0900;
+
+      --border: rgba(255, 106, 0, 0.38);
+      --border-strong: rgba(255, 106, 0, 0.8);
+
+      --shadow:
+        0 18px 50px rgba(0, 0, 0, 0.72);
+
+      --glow:
+        0 0 28px rgba(255, 106, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      min-height: 100vh;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--orange-light);
+
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 8% 5%,
+          rgba(255, 106, 0, 0.24),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 92% 16%,
+          rgba(255, 106, 0, 0.16),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 50% 90%,
+          rgba(112, 35, 0, 0.25),
+          transparent 40%
+        ),
+        linear-gradient(
+          135deg,
+          #000000 0%,
+          #080300 30%,
+          #391000 52%,
+          #080300 74%,
+          #000000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+
+    .top-bar {
+      padding: 10px 20px;
+
+      text-align: center;
+
+      color: var(--black);
+
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--orange-dark),
+          var(--orange),
+          var(--orange-light),
+          var(--orange),
+          var(--orange-dark)
+        );
+
+      border-bottom: 2px solid var(--black);
+    }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.98),
+          rgba(43, 12, 0, 0.96),
+          rgba(0, 0, 0, 0.98)
+        );
+
+      border-bottom:
+        1px solid var(--border);
+
+      backdrop-filter: blur(14px);
+
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+    }
+
+    .brand-logo {
+      width: 60px;
+      height: 60px;
+
+      object-fit: contain;
+
+      border-radius: 14px;
+
+      border:
+        1px solid var(--border-strong);
+
+      background:
+        var(--black);
+
+      box-shadow:
+        0 0 20px rgba(255, 106, 0, 0.28);
+    }
+
+    .logo-fallback {
+      width: 60px;
+      height: 60px;
+
+      display: none;
+      place-items: center;
+
+      color: var(--black);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      border-radius: 14px;
+
+      font-weight: 900;
+    }
+
+    .brand-text strong {
+      display: block;
+
+      color: var(--orange-light);
+
+      font-size: 1rem;
+
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--orange);
+
+      font-size: 0.72rem;
+
+      font-weight: 900;
+
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+
+      list-style: none;
+    }
+
+    .nav-links a {
+      padding: 10px 13px;
+
+      color: var(--orange-light);
+
+      border:
+        1px solid transparent;
+
+      border-radius: 9px;
+
+      font-size: 0.86rem;
+
+      font-weight: 800;
+
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--black);
+
+      border-color:
+        var(--orange);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+    }
+
+    .menu-toggle {
+      display: none;
+
+      width: 46px;
+      height: 42px;
+
+      color: var(--orange);
+
+      border:
+        1px solid var(--orange);
+
+      border-radius: 9px;
+
+      background:
+        var(--black);
+
+      font-size: 1.4rem;
+    }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .live-hero {
+      position: relative;
+
+      min-height: 430px;
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 78% 42%,
+          rgba(255, 106, 0, 0.36),
+          transparent 28%
+        ),
+        linear-gradient(
+          110deg,
+          rgba(0, 0, 0, 0.98),
+          rgba(42, 12, 0, 0.94),
+          rgba(0, 0, 0, 0.84)
+        );
+    }
+
+    .live-hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 400px;
+      height: 400px;
+
+      right: -120px;
+      top: 15px;
+
+      border-radius: 50%;
+
+      border:
+        2px solid rgba(255, 106, 0, 0.18);
+
+      box-shadow:
+        0 0 70px rgba(255, 106, 0, 0.14);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 850px;
+
+      padding:
+        75px 0;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      padding:
+        9px 15px;
+
+      color:
+        var(--orange-light);
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(255, 106, 0, 0.1);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.5px;
+    }
+
+    .live-badge-dot {
+      width: 10px;
+      height: 10px;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--orange);
+
+      box-shadow:
+        0 0 0 7px
+        rgba(255, 106, 0, 0.11);
+
+      animation:
+        livePulse 1.3s infinite;
+    }
+
+    @keyframes livePulse {
+      50% {
+        transform:
+          scale(1.3);
+
+        opacity:
+          0.55;
+      }
+    }
+
+    .live-hero h1 {
+      margin-top:
+        23px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          2.8rem,
+          7vw,
+          6.2rem
+        );
+
+      line-height:
+        0.95;
+
+      text-transform:
+        uppercase;
+
+      text-shadow:
+        0 3px 0
+        var(--black),
+        0 0 28px
+        rgba(255, 106, 0, 0.22);
+    }
+
+    .live-hero h1 span {
+      color:
+        var(--orange);
+    }
+
+    .live-hero p {
+      max-width:
+        720px;
+
+      margin-top:
+        23px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1.06rem;
+
+      line-height:
+        1.75;
+    }
+
+    .back-link {
+      display:
+        inline-flex;
+
+      margin-top:
+        28px;
+
+      padding:
+        12px 18px;
+
+      color:
+        var(--black);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        10px;
+
+      font-weight:
+        900;
+
+      transition:
+        0.25s ease;
+    }
+
+    .back-link:hover {
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        var(--glow);
+    }
+
+    /* =====================================================
+       MAIN LIVE AREA
+    ===================================================== */
+
+    .live-section {
+      padding:
+        75px 0;
+    }
+
+    .live-layout {
+      display:
+        grid;
+
+      grid-template-columns:
+        minmax(0, 1.4fr)
+        minmax(320px, 0.6fr);
+
+      gap:
+        28px;
+
+      align-items:
+        start;
+    }
+
+    .radio-player {
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      padding:
+        38px;
+
+      border:
+        1px solid
+        var(--border-strong);
+
+      border-radius:
+        26px;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(255, 106, 0, 0.28),
+          transparent 38%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(61, 18, 0, 0.84),
+          rgba(0, 0, 0, 0.98)
+        );
+
+      box-shadow:
+        var(--shadow),
+        var(--glow);
+    }
+
+    .radio-player::before {
+      content: "";
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      pointer-events:
+        none;
+
+      background:
+        linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 106, 0, 0.06),
+          transparent
+        );
+    }
+
+    .player-logo-wrap {
+      position:
+        relative;
+
+      width:
+        180px;
+
+      height:
+        180px;
+
+      margin:
+        0 auto;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        2px solid
+        var(--orange);
+
+      border-radius:
+        50%;
+
+      background:
+        var(--black);
+
+      box-shadow:
+        0 0 30px
+        rgba(255, 106, 0, 0.32),
+        inset 0 0 30px
+        rgba(255, 106, 0, 0.08);
+    }
+
+    .player-logo {
+      width:
+        145px;
+
+      height:
+        145px;
+
+      object-fit:
+        contain;
+    }
+
+    .player-logo-fallback {
+      display:
+        none;
+
+      color:
+        var(--orange);
+
+      font-size:
+        2rem;
+
+      font-weight:
+        900;
+    }
+
+    .player-live-status {
+      margin-top:
+        25px;
+
+      text-align:
+        center;
+    }
+
+    .player-live-status strong {
+      display:
+        block;
+
+      color:
+        var(--orange);
+
+      font-size:
+        0.78rem;
+
+      letter-spacing:
+        2px;
+    }
+
+    .player-live-status h2 {
+      margin-top:
+        9px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          1.7rem,
+          4vw,
+          2.8rem
+        );
+    }
+
+    .player-live-status p {
+      margin-top:
+        8px;
+
+      color:
+        var(--orange);
+
+      font-weight:
+        700;
+    }
+
+    /* =====================================================
+       WAVEFORM
+    ===================================================== */
+
+    .wave {
+      height:
+        74px;
+
+      margin:
+        28px auto;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        6px;
+    }
+
+    .wave span {
+      width:
+        6px;
+
+      height:
+        18px;
+
+      border-radius:
+        999px;
+
+      background:
+        linear-gradient(
+          180deg,
+          var(--orange-light),
+          var(--orange)
+        );
+
+      transform-origin:
+        center;
+
+      animation:
+        waveIdle 1s ease-in-out infinite;
+
+      animation-play-state:
+        paused;
+    }
+
+    .wave.playing span {
+      animation-play-state:
+        running;
+    }
+
+    .wave span:nth-child(2) {
+      animation-delay:
+        0.1s;
+    }
+
+    .wave span:nth-child(3) {
+      animation-delay:
+        0.2s;
+    }
+
+    .wave span:nth-child(4) {
+      animation-delay:
+        0.3s;
+    }
+
+    .wave span:nth-child(5) {
+      animation-delay:
+        0.4s;
+    }
+
+    .wave span:nth-child(6) {
+      animation-delay:
+        0.2s;
+    }
+
+    .wave span:nth-child(7) {
+      animation-delay:
+        0.35s;
+    }
+
+    .wave span:nth-child(8) {
+      animation-delay:
+        0.05s;
+    }
+
+    .wave span:nth-child(9) {
+      animation-delay:
+        0.25s;
+    }
+
+    .wave span:nth-child(10) {
+      animation-delay:
+        0.4s;
+    }
+
+    .wave span:nth-child(11) {
+      animation-delay:
+        0.15s;
+    }
+
+    .wave span:nth-child(12) {
+      animation-delay:
+        0.3s;
+    }
+
+    @keyframes waveIdle {
+      0%,
+      100% {
+        height:
+          16px;
+      }
+
+      50% {
+        height:
+          64px;
+      }
+    }
+
+    /* =====================================================
+       CONTROLS
+    ===================================================== */
+
+    .player-controls {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        18px;
+
+      flex-wrap:
+        wrap;
+    }
+
+    .play-button {
+      width:
+        78px;
+
+      height:
+        78px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      color:
+        var(--black);
+
+      border:
+        2px solid
+        var(--orange-light);
+
+      border-radius:
+        50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      font-size:
+        1.8rem;
+
+      font-weight:
+        900;
+
+      box-shadow:
+        0 0 25px
+        rgba(255, 106, 0, 0.32);
+
+      transition:
+        0.25s ease;
+    }
+
+    .play-button:hover {
+      transform:
+        scale(1.07);
+
+      box-shadow:
+        0 0 40px
+        rgba(255, 106, 0, 0.48);
+    }
+
+    .volume-control {
+      min-width:
+        210px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        11px;
+
+      padding:
+        11px 15px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(0, 0, 0, 0.68);
+    }
+
+    .volume-control span {
+      color:
+        var(--orange);
+    }
+
+    .volume-control input {
+      width:
+        100%;
+
+      accent-color:
+        var(--orange);
+    }
+
+    .connection-message {
+      margin-top:
+        24px;
+
+      padding:
+        14px 16px;
+
+      text-align:
+        center;
+
+      color:
+        var(--orange-light);
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        12px;
+
+      background:
+        rgba(0, 0, 0, 0.68);
+
+      font-size:
+        0.9rem;
+
+      line-height:
+        1.5;
+    }
+
+    .connection-message.error {
+      border-color:
+        var(--orange);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(83, 24, 0, 0.82),
+          rgba(0, 0, 0, 0.9)
+        );
+    }
+
+    /* =====================================================
+       NOW PLAYING SIDE PANEL
+    ===================================================== */
+
+    .side-column {
+      display:
+        grid;
+
+      gap:
+        20px;
+    }
+
+    .info-card {
+      padding:
+        25px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        19px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 106, 0, 0.12),
+          rgba(0, 0, 0, 0.94)
+        );
+
+      box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.38);
+    }
+
+    .info-label {
+      color:
+        var(--orange);
+
+      font-size:
+        0.72rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.5px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .info-card h3 {
+      margin-top:
+        11px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1.35rem;
+    }
+
+    .info-card p {
+      margin-top:
+        9px;
+
+      color:
+        var(--orange);
+
+      line-height:
+        1.6;
+    }
+
+    .status-row {
+      margin-top:
+        18px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+      padding-top:
+        15px;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+    .status-row span {
+      color:
+        var(--orange);
+
+      font-size:
+        0.85rem;
+
+      font-weight:
+        700;
+    }
+
+    .status-value {
+      color:
+        var(--orange-light) !important;
+
+      font-weight:
+        900 !important;
+    }
+
+    /* =====================================================
+       SECTION
+    ===================================================== */
+
+    .content-section {
+      padding:
+        85px 0;
+
+      border-top:
+        1px solid
+        rgba(255, 106, 0, 0.14);
+    }
+
+    .section-heading {
+      max-width:
+        760px;
+
+      margin-bottom:
+        34px;
+    }
+
+    .section-heading span {
+      color:
+        var(--orange);
+
+      font-size:
+        0.78rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        2px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .section-heading h2 {
+      margin-top:
+        9px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          2rem,
+          5vw,
+          3.5rem
+        );
+
+      text-transform:
+        uppercase;
+    }
+
+    .section-heading p {
+      margin-top:
+        13px;
+
+      color:
+        var(--orange);
+
+      line-height:
+        1.7;
+    }
+
+    /* =====================================================
+       SCHEDULE
+    ===================================================== */
+
+    .schedule-grid {
+      display:
+        grid;
+
+      gap:
+        14px;
+    }
+
+    .schedule-row {
+      display:
+        grid;
+
+      grid-template-columns:
+        125px 1fr auto;
+
+      align-items:
+        center;
+
+      gap:
+        20px;
+
+      padding:
+        22px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        15px;
+
+      background:
+        linear-gradient(
+          100deg,
+          rgba(255, 106, 0, 0.11),
+          rgba(0, 0, 0, 0.93)
+        );
+
+      transition:
+        0.25s ease;
+    }
+
+    .schedule-row:hover {
+      transform:
+        translateX(5px);
+
+      border-color:
+        var(--orange);
+    }
+
+    .schedule-time {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    .schedule-show strong {
+      color:
+        var(--orange-light);
+
+      font-size:
+        1rem;
+    }
+
+    .schedule-show p {
+      margin-top:
+        5px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        0.88rem;
+    }
+
+    .schedule-tag {
+      padding:
+        7px 11px;
+
+      color:
+        var(--black);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      border-radius:
+        999px;
+
+      font-size:
+        0.7rem;
+
+      font-weight:
+        900;
+    }
+
+    /* =====================================================
+       QUICK LINKS
+    ===================================================== */
+
+    .quick-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap:
+        17px;
+    }
+
+    .quick-card {
+      min-height:
+        150px;
+
+      padding:
+        23px;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        center;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 106, 0, 0.12),
+          rgba(0, 0, 0, 0.95)
+        );
+
+      transition:
+        0.25s ease;
+    }
+
+    .quick-card:hover {
+      transform:
+        translateY(-6px);
+
+      border-color:
+        var(--orange);
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .quick-icon {
+      font-size:
+        1.8rem;
+    }
+
+    .quick-card strong {
+      margin-top:
+        12px;
+
+      color:
+        var(--orange-light);
+    }
+
+    .quick-card span {
+      margin-top:
+        7px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        0.84rem;
+
+      line-height:
+        1.5;
+    }
+
+    /* =====================================================
+       CONTACT
+    ===================================================== */
+
+    .contact-box {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        18px;
+    }
+
+    .contact-card {
+      padding:
+        25px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 106, 0, 0.13),
+          rgba(0, 0, 0, 0.96)
+        );
+    }
+
+    .contact-card strong {
+      display:
+        block;
+
+      margin-bottom:
+        8px;
+
+      color:
+        var(--orange);
+    }
+
+    .contact-card a {
+      color:
+        var(--orange-light);
+
+      overflow-wrap:
+        anywhere;
+    }
+
+    .contact-card a:hover {
+      color:
+        var(--orange);
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .site-footer {
+      padding:
+        52px 0 25px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #120500,
+          #000000
+        );
+
+      border-top:
+        2px solid
+        var(--orange-dark);
+    }
+
+    .footer-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        1.3fr 1fr 1fr;
+
+      gap:
+        38px;
+    }
+
+    .footer-grid h3 {
+      color:
+        var(--orange-light);
+    }
+
+    .footer-grid h4 {
+      color:
+        var(--orange);
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      color:
+        var(--orange);
+
+      line-height:
+        1.8;
+
+      font-size:
+        0.9rem;
+    }
+
+    .footer-grid ul {
+      margin-top:
+        12px;
+
+      list-style:
+        none;
+    }
+
+    .footer-grid a:hover {
+      color:
+        var(--orange-light);
+    }
+
+    .copyright {
+      margin-top:
+        38px;
+
+      padding-top:
+        20px;
+
+      text-align:
+        center;
+
+      color:
+        var(--orange-dark);
+
+      border-top:
+        1px solid
+        var(--border);
+
+      font-size:
+        0.82rem;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 1000px) {
+      .live-layout {
+        grid-template-columns:
+          1fr;
+      }
+
+      .side-column {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .quick-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 850px) {
+      .menu-toggle {
+        display:
+          block;
+      }
+
+      .nav-links {
+        position:
+          absolute;
+
+        top:
+          82px;
+
+        left:
+          4%;
+
+        right:
+          4%;
+
+        display:
+          none;
+
+        flex-direction:
+          column;
+
+        align-items:
+          stretch;
+
+        padding:
+          15px;
+
+        background:
+          linear-gradient(
+            180deg,
+            #000000,
+            #2b0c00
+          );
+
+        border:
+          1px solid
+          var(--orange);
+
+        border-radius:
+          12px;
+
+        box-shadow:
+          var(--shadow);
+      }
+
+      .nav-links.open {
+        display:
+          flex;
+      }
+
+      .nav-links a {
+        text-align:
+          center;
+      }
+
+      .contact-box {
+        grid-template-columns:
+          1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns:
+          1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .brand-text span {
+        display:
+          none;
+      }
+
+      .live-hero {
+        min-height:
+          auto;
+      }
+
+      .hero-content {
+        padding:
+          60px 0;
+      }
+
+      .radio-player {
+        padding:
+          27px 18px;
+      }
+
+      .player-logo-wrap {
+        width:
+          145px;
+
+        height:
+          145px;
+      }
+
+      .player-logo {
+        width:
+          115px;
+
+        height:
+          115px;
+      }
+
+      .side-column {
+        grid-template-columns:
+          1fr;
+      }
+
+      .schedule-row {
+        grid-template-columns:
+          1fr;
+
+        gap:
+          9px;
+      }
+
+      .schedule-tag {
+        width:
+          fit-content;
+      }
+
+      .quick-grid {
+        grid-template-columns:
+          1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .brand-text strong {
+        font-size:
+          0.78rem;
+      }
+
+      .brand-logo,
+      .logo-fallback {
+        width:
+          49px;
+
+        height:
+          49px;
+      }
+
+      .play-button {
+        width:
+          68px;
+
+        height:
+          68px;
+      }
+
+      .volume-control {
+        width:
+          100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================================================
+       AUDIO STREAM
+       Stream URL la ap konekte isit la lè URL ofisyèl
+       PRO-MAX FM lan disponib.
+  ==================================================== -->
+
+  <audio
+    id="radioStream"
+    preload="none"
+  ></audio>
+
+  <!-- ===================================================
+       TOP BAR
+  ==================================================== -->
+
+  <div class="top-bar">
+    🔥 PRO-MAX FM DMP — POWERING THE FUTURE OF DIGITAL RADIO 🔥
+  </div>
+
+  <!-- ===================================================
+       HEADER
+  ==================================================== -->
+
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a
+        href="index.html"
+        class="brand"
+        aria-label="PRO-MAX FM DMP Homepage"
+      >
+
+        <img
+          src="assets/pro-max-fm-dmp.png"
+          alt="PRO-MAX FM DMP Logo"
+          class="brand-logo"
+          onerror="handleLogoError(this)"
+        >
+
+        <div class="logo-fallback">
+          PM
+        </div>
+
+        <div class="brand-text">
+          <strong>
+            PRO-MAX FM DMP
+          </strong>
+
+          <span>
+            LIVE RADIO CENTER
+          </span>
+        </div>
+
+      </a>
+
+      <button
+        type="button"
+        id="menuToggle"
+        class="menu-toggle"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <ul
+        class="nav-links"
+        id="navLinks"
+      >
+        <li>
+          <a href="index.html">
+            Akèy
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="live.html"
+            class="active"
+          >
+            Live
+          </a>
+        </li>
+
+        <li>
+          <a href="news.html">
+            Nouvèl
+          </a>
+        </li>
+
+        <li>
+          <a href="shows.html">
+            Emisyon
+          </a>
+        </li>
+
+        <li>
+          <a href="podcasts.html">
+            Podcast
+          </a>
+        </li>
+
+        <li>
+          <a href="musics.html">
+            Mizik
+          </a>
+        </li>
+
+        <li>
+          <a href="login.html">
+            Admin
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </header>
+
+  <!-- ===================================================
+       HERO
+  ==================================================== -->
+
+  <section class="live-hero">
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="live-badge">
+          <span class="live-badge-dot"></span>
+          LIVE RADIO CENTER
+        </div>
+
+        <h1>
+          PRO-MAX FM
+          <span>LIVE</span>
+        </h1>
+
+        <p>
+          Koute PRO-MAX FM DMP an dirèk.
+          Mizik, nouvèl, entèvyou, emisyon,
+          espò, kilti ak enfòmasyon kominotè
+          sou yon sèl platfòm dijital.
+        </p>
+
+        <a
+          href="index.html"
+          class="back-link"
+        >
+          ← Retounen sou Homepage
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================
+       LIVE PLAYER
+  ==================================================== -->
+
+  <section class="live-section">
+
+    <div class="container live-layout">
+
+      <article class="radio-player">
+
+        <div class="player-logo-wrap">
+
+          <img
+            src="assets/pro-max-fm-dmp.png"
+            alt="PRO-MAX FM DMP"
+            class="player-logo"
+            onerror="handlePlayerLogoError(this)"
+          >
+
+          <div
+            class="player-logo-fallback"
+            id="playerLogoFallback"
+          >
+            PRO-MAX
+          </div>
+
+        </div>
+
+        <div class="player-live-status">
+
+          <strong>
+            ● ON AIR
+          </strong>
+
+          <h2>
+            PRO-MAX FM DMP
+          </h2>
+
+          <p id="playerStatus">
+            Pare pou koute
+          </p>
+
+        </div>
+
+        <div
+          class="wave"
+          id="wave"
+          aria-hidden="true"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="player-controls">
+
+          <button
+            type="button"
+            id="playButton"
+            class="play-button"
+            aria-label="Koute PRO-MAX FM"
+          >
+            ▶
+          </button>
+
+          <div class="volume-control">
+
+            <span>
+              🔊
+            </span>
+
+            <input
+              type="range"
+              id="volumeControl"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.8"
+              aria-label="Volim"
+            >
+
+          </div>
+
+        </div>
+
+        <div
+          id="connectionMessage"
+          class="connection-message"
+        >
+          PRO-MAX FM Live Radio Player
+        </div>
+
+      </article>
+
+      <!-- ===============================================
+           SIDE INFO
+      ================================================ -->
+
+      <aside class="side-column">
+
+        <article class="info-card">
+
+          <span class="info-label">
+            Kounye a
+          </span>
+
+          <h3 id="currentShow">
+            PRO-MAX FM LIVE
+          </h3>
+
+          <p id="currentHost">
+            Radyo dijital PRO-MAX FM DMP
+          </p>
+
+          <div class="status-row">
+            <span>
+              Estati
+            </span>
+
+            <span
+              class="status-value"
+              id="streamStatus"
+            >
+              LIVE
+            </span>
+          </div>
+
+        </article>
+
+        <article class="info-card">
+
+          <span class="info-label">
+            Apre sa
+          </span>
+
+          <h3>
+            Pwogram Espesyal
+          </h3>
+
+          <p>
+            Nouvèl, mizik, entèvyou
+            ak kontni kominotè.
+          </p>
+
+          <div class="status-row">
+            <span>
+              Estasyon
+            </span>
+
+            <span class="status-value">
+              PRO-MAX FM
+            </span>
+          </div>
+
+        </article>
+
+        <article class="info-card">
+
+          <span class="info-label">
+            Digital Radio
+          </span>
+
+          <h3>
+            24/7 Platform
+          </h3>
+
+          <p>
+            PRO-MAX FM DMP fèt pou
+            konekte odyans lan ak
+            kontni dijital nenpòt kote.
+          </p>
+
+          <div class="status-row">
+            <span>
+              Mode
+            </span>
+
+            <span class="status-value">
+              ONLINE
+            </span>
+          </div>
+
+        </article>
+
+      </aside>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================
+       SCHEDULE
+  ==================================================== -->
+
+  <section class="content-section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <span>
+          PROGRAMASYON
+        </span>
+
+        <h2>
+          Orè Emisyon
+        </h2>
+
+        <p>
+          Pwogram prensipal PRO-MAX FM DMP.
+          Orè yo kapab mete ajou pandan
+          estasyon an ap devlope nouvo emisyon.
+        </p>
+
+      </div>
+
+      <div class="schedule-grid">
+
+        <div class="schedule-row">
+
+          <div class="schedule-time">
+            6:00 AM
+          </div>
+
+          <div class="schedule-show">
+
+            <strong>
+              Bonjou PRO-MAX
+            </strong>
+
+            <p>
+              Nouvèl, mizik ak enfòmasyon
+              pou kòmanse jounen an.
+            </p>
+
+          </div>
+
+          <span class="schedule-tag">
+            MATEN
+          </span>
+
+        </div>
+
+        <div class="schedule-row">
+
+          <div class="schedule-time">
+            12:00 PM
+          </div>
+
+          <div class="schedule-show">
+
+            <strong>
+              Midi Live
+            </strong>
+
+            <p>
+              Deba, entèvyou ak
+              aktyalite kominotè.
+            </p>
+
+          </div>
+
+          <span class="schedule-tag">
+            LIVE
+          </span>
+
+        </div>
+
+        <div class="schedule-row">
+
+          <div class="schedule-time">
+            4:00 PM
+          </div>
+
+          <div class="schedule-show">
+
+            <strong>
+              PRO-MAX Drive
+            </strong>
+
+            <p>
+              Mizik, enfòmasyon ak
+              divètisman aprèmidi.
+            </p>
+
+          </div>
+
+          <span class="schedule-tag">
+            PM
+          </span>
+
+        </div>
+
+        <div class="schedule-row">
+
+          <div class="schedule-time">
+            7:00 PM
+          </div>
+
+          <div class="schedule-show">
+
+            <strong>
+              PRO-MAX Night Show
+            </strong>
+
+            <p>
+              Mizik, envite,
+              konvèsasyon ak divètisman.
+            </p>
+
+          </div>
+
+          <span class="schedule-tag">
+            ASWÈ
+          </span>
+
+        </div>
+
+        <div class="schedule-row">
+
+          <div class="schedule-time">
+            10:00 PM
+          </div>
+
+          <div class="schedule-show">
+
+            <strong>
+              Late Night PRO-MAX
+            </strong>
+
+            <p>
+              Mizik ak kontni espesyal
+              pou fen jounen an.
+            </p>
+
+          </div>
+
+          <span class="schedule-tag">
+            NIGHT
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================
+       QUICK ACCESS
+  ==================================================== -->
+
+  <section class="content-section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <span>
+          PRO-MAX FM DMP
+        </span>
+
+        <h2>
+          Kontinye Eksplore
+        </h2>
+
+        <p>
+          Aksede lòt pati nan
+          platfòm PRO-MAX FM DMP.
+        </p>
+
+      </div>
+
+      <div class="quick-grid">
+
+        <a
+          href="shows.html"
+          class="quick-card"
+        >
+          <span class="quick-icon">
+            🎙️
+          </span>
+
+          <strong>
+            Emisyon
+          </strong>
+
+          <span>
+            Dekouvri tout emisyon
+            ak animatè yo.
+          </span>
+        </a>
+
+        <a
+          href="podcasts.html"
+          class="quick-card"
+        >
+          <span class="quick-icon">
+            🎧
+          </span>
+
+          <strong>
+            Podcasts
+          </strong>
+
+          <span>
+            Koute epizòd
+            ak kontni odyo.
+          </span>
+        </a>
+
+        <a
+          href="news.html"
+          class="quick-card"
+        >
+          <span class="quick-icon">
+            📰
+          </span>
+
+          <strong>
+            Nouvèl
+          </strong>
+
+          <span>
+            Swiv dènye nouvèl
+            ak aktyalite yo.
+          </span>
+        </a>
+
+        <a
+          href="video.html"
+          class="quick-card"
+        >
+          <span class="quick-icon">
+            📺
+          </span>
+
+          <strong>
+            Videyo
+          </strong>
+
+          <span>
+            Gade entèvyou,
+            emisyon ak videyo.
+          </span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================
+       CONTACT
+  ==================================================== -->
+
+  <section class="content-section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <span>
+          KONTAK
+        </span>
+
+        <h2>
+          Kontakte PRO-MAX FM
+        </h2>
+
+      </div>
+
+      <div class="contact-box">
+
+        <article class="contact-card">
+
+          <strong>
+            📧 EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+        <article class="contact-card">
+
+          <strong>
+            🌐 WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+        <article class="contact-card">
+
+          <strong>
+            📞 TELEFÒN
+          </strong>
+
+          <a
+            href="tel:+50943437488"
+          >
+            +509 4343-7488
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================================================
+       FOOTER
+  ==================================================== -->
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <h3>
+            PRO-MAX FM DMP
+          </h3>
+
+          <p>
+            Powering the Future
+            of Digital Radio.
+          </p>
+
+        </div>
+
+        <div>
+
+          <h4>
+            Radyo
+          </h4>
+
+          <ul>
+            <li>
+              <a href="live.html">
+                Live Radio
+              </a>
+            </li>
+
+            <li>
+              <a href="shows.html">
+                Emisyon
+              </a>
+            </li>
+
+            <li>
+              <a href="podcasts.html">
+                Podcast
+              </a>
+            </li>
+
+            <li>
+              <a href="musics.html">
+                Mizik
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+        <div>
+
+          <h4>
+            Kontak
+          </h4>
+
+          <ul>
+
+            <li>
+              <a
+                href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+              >
+                Email
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="tel:+50943437488"
+              >
+                +509 4343-7488
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://briyantsoleysigno1815.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Website
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        ©
+        <span id="currentYear"></span>
+        PRO-MAX FM DMP.
+        Tout dwa rezève.
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script>
+    "use strict";
+
+    /*
+      =====================================================
+      PRO-MAX FM DMP LIVE STREAM
+
+      Pa gen URL stream ofisyèl ki te bay nan konvèsasyon
+      sa a ankò. Se poutèt sa nou PA mete yon URL fo.
+
+      Lè URL ofisyèl la disponib, STREAM_URL sèlman
+      bezwen resevwa adrès stream la.
+      =====================================================
+    */
+
+    const STREAM_URL = "";
+
+    const radioStream =
+      document.getElementById("radioStream");
+
+    const playButton =
+      document.getElementById("playButton");
+
+    const volumeControl =
+      document.getElementById("volumeControl");
+
+    const playerStatus =
+      document.getElementById("playerStatus");
+
+    const streamStatus =
+      document.getElementById("streamStatus");
+
+    const connectionMessage =
+      document.getElementById("connectionMessage");
+
+    const wave =
+      document.getElementById("wave");
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    let isPlaying = false;
+
+    /*
+      =====================================================
+      INITIAL PLAYER SETUP
+      =====================================================
+    */
+
+    radioStream.volume =
+      Number(volumeControl.value);
+
+    if (STREAM_URL.trim()) {
+      radioStream.src =
+        STREAM_URL;
+
+      connectionMessage.textContent =
+        "PRO-MAX FM Live Stream pare.";
+
+      streamStatus.textContent =
+        "READY";
+    } else {
+      connectionMessage.textContent =
+        "Live Radio Center pare. Stream odyo ofisyèl la poko konekte.";
+
+      streamStatus.textContent =
+        "STANDBY";
+    }
+
+    /*
+      =====================================================
+      PLAY / PAUSE
+      =====================================================
+    */
+
+    async function toggleRadio() {
+
+      if (!STREAM_URL.trim()) {
+
+        connectionMessage.textContent =
+          "URL stream PRO-MAX FM lan poko konekte. Player la pap itilize okenn fo stream.";
+
+        connectionMessage.classList.add(
+          "error"
+        );
+
+        playerStatus.textContent =
+          "Stream poko konekte";
+
+        streamStatus.textContent =
+          "STANDBY";
+
+        return;
+      }
+
+      try {
+
+        connectionMessage.classList.remove(
+          "error"
+        );
+
+        if (!isPlaying) {
+
+          await radioStream.play();
+
+          isPlaying = true;
+
+          playButton.textContent =
+            "❚❚";
+
+          playButton.setAttribute(
+            "aria-label",
+            "Poz radyo"
+          );
+
+          playerStatus.textContent =
+            "W ap koute PRO-MAX FM LIVE";
+
+          streamStatus.textContent =
+            "ON AIR";
+
+          connectionMessage.textContent =
+            "Konekte ak PRO-MAX FM Live Stream.";
+
+          wave.classList.add(
+            "playing"
+          );
+
+        } else {
+
+          radioStream.pause();
+
+          isPlaying = false;
+
+          playButton.textContent =
+            "▶";
+
+          playButton.setAttribute(
+            "aria-label",
+            "Koute PRO-MAX FM"
+          );
+
+          playerStatus.textContent =
+            "Radyo an poz";
+
+          streamStatus.textContent =
+            "PAUSED";
+
+          connectionMessage.textContent =
+            "Radyo an poz. Peze Play pou kontinye.";
+
+          wave.classList.remove(
+            "playing"
+          );
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "PRO-MAX FM stream error:",
+          error
+        );
+
+        isPlaying = false;
+
+        playButton.textContent =
+          "▶";
+
+        playerStatus.textContent =
+          "Stream pa disponib";
+
+        streamStatus.textContent =
+          "OFFLINE";
+
+        connectionMessage.textContent =
+          "Nou pa t kapab konekte ak stream radyo a.";
+
+        connectionMessage.classList.add(
+          "error"
+        );
+
+        wave.classList.remove(
+          "playing"
+        );
+
+      }
+
+    }
+
+    playButton.addEventListener(
+      "click",
+      toggleRadio
+    );
+
+    /*
+      =====================================================
+      VOLUME
+      =====================================================
+    */
+
+    volumeControl.addEventListener(
+      "input",
+      function () {
+
+        radioStream.volume =
+          Number(this.value);
+
+      }
+    );
+
+    /*
+      =====================================================
+      STREAM EVENTS
+      =====================================================
+    */
+
+    radioStream.addEventListener(
+      "playing",
+      function () {
+
+        playerStatus.textContent =
+          "W ap koute PRO-MAX FM LIVE";
+
+        streamStatus.textContent =
+          "ON AIR";
+
+        connectionMessage.classList.remove(
+          "error"
+        );
+
+        wave.classList.add(
+          "playing"
+        );
+
+      }
+    );
+
+    radioStream.addEventListener(
+      "waiting",
+      function () {
+
+        playerStatus.textContent =
+          "Ap konekte...";
+
+        streamStatus.textContent =
+          "CONNECTING";
+
+      }
+    );
+
+    radioStream.addEventListener(
+      "error",
+      function () {
+
+        isPlaying = false;
+
+        playButton.textContent =
+          "▶";
+
+        playerStatus.textContent =
+          "Stream pa disponib";
+
+        streamStatus.textContent =
+          "OFFLINE";
+
+        connectionMessage.textContent =
+          "Gen yon pwoblèm ak koneksyon Live Radio a.";
+
+        connectionMessage.classList.add(
+          "error"
+        );
+
+        wave.classList.remove(
+          "playing"
+        );
+
+      }
+    );
+
+    /*
+      =====================================================
+      MOBILE MENU
+      =====================================================
+    */
+
+    function toggleMenu() {
+
+      const open =
+        navLinks.classList.toggle(
+          "open"
+        );
+
+      menuToggle.textContent =
+        open
+          ? "✕"
+          : "☰";
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+    }
+
+    function closeMenu() {
+
+      navLinks.classList.remove(
+        "open"
+      );
+
+      menuToggle.textContent =
+        "☰";
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    }
+
+    menuToggle.addEventListener(
+      "click",
+      toggleMenu
+    );
+
+    navLinks
+      .querySelectorAll("a")
+      .forEach(function (link) {
+
+        link.addEventListener(
+          "click",
+          closeMenu
+        );
+
+      });
+
+    /*
+      =====================================================
+      LOGO FALLBACK
+      =====================================================
+    */
+
+    function handleLogoError(image) {
+
+      image.style.display =
+        "none";
+
+      const fallback =
+        image.nextElementSibling;
+
+      if (fallback) {
+
+        fallback.style.display =
+          "grid";
+
+      }
+
+    }
+
+    function handlePlayerLogoError(image) {
+
+      image.style.display =
+        "none";
+
+      document
+        .getElementById(
+          "playerLogoFallback"
+        )
+        .style.display =
+          "block";
+
+    }
+
+    /*
+      =====================================================
+      YEAR
+      =====================================================
+    */
+
+    document
+      .getElementById(
+        "currentYear"
+      )
+      .textContent =
+        new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
