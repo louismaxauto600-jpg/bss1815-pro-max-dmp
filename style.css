@@ -1,25 +1,23 @@
 /* =========================================================
    BSS1815 OFFICIAL COLOR LOCK
    ORANGE + BLACK FADE ONLY
-========================================================= */
-
 :root {
   --orange: #ff7a00;
   --orange-light: #ff9d00;
-  --orange-dark: #c94d00;
+  --orange-dark: #b94700;
 
   --black: #000000;
   --black-soft: #080300;
+
   --panel: rgba(10, 4, 0, 0.92);
   --panel-strong: rgba(0, 0, 0, 0.97);
 
-  --text: #ff8a00;
-  --text-soft: #d85b00;
+  --text: #ff7a00;
+  --text-soft: #c94d00;
 
   --border: rgba(255, 122, 0, 0.42);
   --border-strong: rgba(255, 122, 0, 0.9);
 }
-
 /* GLOBAL TEXT — NO WHITE */
 body,
 h1,
