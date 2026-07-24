@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
-  >
+  />
 
   <meta
     name="description"
-    content="BSS1815-PRO-MAX-DMP — Yon platfòm dijital ki rasanble administrasyon, kominikasyon, radyo, sèvis ak inovasyon."
-  >
-
-  <meta
-    name="theme-color"
-    content="#ff7a00"
-  >
+    content="BSS1815-PRO-MAX-DMP — Yon platfòm dijital ki reyini BSS1815, PRO-MAX FM, Maximax Multi Services ak PRO-MAX Academy."
+  />
 
   <title>BSS1815-PRO-MAX-DMP</title>
 
-  <link
-    rel="icon"
-    type="image/png"
-    href="assets/bss1815-pro-max-dmp-logo.png"
-  >
-
   <style>
+    /* =========================================================
+       BSS1815-PRO-MAX-DMP
+       GLOBAL DESIGN SYSTEM
+    ========================================================= */
+
     :root {
+      --orange: #ff7a00;
+      --orange-light: #ffb000;
+      --orange-dark: #b63800;
+
       --black: #050505;
-      --deep-black: #0b0702;
-      --orange-dark: #7a2900;
-      --orange: #ff6a00;
-      --orange-bright: #ff9500;
-      --orange-light: #ffc266;
-      --orange-soft: #ffd7a3;
-      --border: rgba(255, 122, 0, 0.36);
-      --shadow: 0 18px 55px rgba(255, 106, 0, 0.24);
-      --radius: 24px;
-      --header-height: 88px;
+      --black-soft: #0b0b0b;
+      --panel: rgba(18, 18, 18, 0.86);
+      --panel-strong: rgba(10, 10, 10, 0.96);
+
+      --text: #fff6e9;
+      --text-soft: #d9c3aa;
+
+      --border: rgba(255, 122, 0, 0.38);
+      --border-strong: rgba(255, 122, 0, 0.8);
+
+      --shadow:
+        0 0 15px rgba(255, 122, 0, 0.22),
+        0 0 45px rgba(255, 90, 0, 0.12);
+
+      --header-height: 86px;
+      --radius: 22px;
+      --transition: 0.3s ease;
     }
 
     * {
@@ -49,83 +54,60 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 105px;
     }
 
     body {
       min-height: 100vh;
       overflow-x: hidden;
+
+      color: var(--text);
+
       font-family:
         Inter,
         Arial,
         Helvetica,
         sans-serif;
-      color: var(--orange-soft);
+
       background:
         radial-gradient(
-          circle at 18% 10%,
-          rgba(255, 119, 0, 0.28),
-          transparent 32%
+          circle at 15% 20%,
+          rgba(255, 122, 0, 0.17),
+          transparent 30%
         ),
         radial-gradient(
-          circle at 86% 22%,
-          rgba(255, 72, 0, 0.22),
-          transparent 34%
+          circle at 90% 10%,
+          rgba(255, 70, 0, 0.14),
+          transparent 27%
+        ),
+        radial-gradient(
+          circle at 50% 95%,
+          rgba(255, 122, 0, 0.12),
+          transparent 38%
         ),
         linear-gradient(
           135deg,
-          #000000 0%,
-          #120700 30%,
-          #2d0d00 58%,
-          #080300 78%,
-          #000000 100%
+          #020202 0%,
+          #090400 40%,
+          #160700 70%,
+          #020202 100%
         );
+
       background-attachment: fixed;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-      opacity: 0.44;
-      background-image:
-        linear-gradient(
-          rgba(255, 115, 0, 0.04) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255, 115, 0, 0.04) 1px,
-          transparent 1px
-        );
-      background-size: 42px 42px;
-      mask-image:
-        linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.95),
-          transparent 94%
-        );
+    body.menu-open {
+      overflow: hidden;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: -30%;
-      z-index: -3;
-      pointer-events: none;
-      background:
-        conic-gradient(
-          from 0deg,
-          transparent,
-          rgba(255, 106, 0, 0.13),
-          transparent 22%,
-          rgba(255, 149, 0, 0.08),
-          transparent 48%,
-          rgba(255, 83, 0, 0.11),
-          transparent 74%
-        );
-      animation: backgroundSpin 28s linear infinite;
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button,
+    a {
+      font: inherit;
     }
 
     a {
@@ -133,65 +115,185 @@
       text-decoration: none;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
+    button {
+      border: 0;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
+    ul {
+      list-style: none;
     }
 
-    section {
-      scroll-margin-top: 105px;
+    ::selection {
+      color: #000;
+      background: var(--orange);
     }
 
     .container {
-      width: min(1180px, calc(100% - 34px));
+      width: min(1180px, calc(100% - 36px));
       margin-inline: auto;
     }
 
-    .skip-link {
-      position: fixed;
-      top: -100px;
-      left: 18px;
-      z-index: 9999;
-      padding: 12px 18px;
-      border-radius: 10px;
-      color: #160700;
-      background: var(--orange-bright);
+    .section {
+      position: relative;
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-bottom: 16px;
+      padding: 9px 15px;
+
+      color: var(--orange-light);
+      background: rgba(255, 122, 0, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      font-size: 0.78rem;
       font-weight: 900;
-      transition: top 0.25s ease;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
-    .skip-link:focus {
-      top: 18px;
+    .section-label::before {
+      width: 8px;
+      height: 8px;
+
+      content: "";
+
+      background: var(--orange);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--orange);
     }
 
-    /* ================================
-       HEADER
-    ================================= */
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.65rem);
+      line-height: 1.05;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+    }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      min-height: var(--header-height);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(18px);
-      background:
+    .section-description {
+      max-width: 700px;
+      margin: 20px auto 0;
+
+      color: var(--text-soft);
+
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .orange-text {
+      color: var(--orange);
+      text-shadow: 0 0 20px rgba(255, 122, 0, 0.42);
+    }
+
+    /* =========================================================
+       PAGE BACKGROUND EFFECTS
+    ========================================================= */
+
+    .page-effects {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .page-effects::before,
+    .page-effects::after {
+      position: absolute;
+
+      width: 520px;
+      height: 520px;
+
+      content: "";
+
+      opacity: 0.15;
+      filter: blur(110px);
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .page-effects::before {
+      top: -260px;
+      left: -260px;
+    }
+
+    .page-effects::after {
+      right: -300px;
+      bottom: -260px;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+
+      pointer-events: none;
+
+      opacity: 0.06;
+
+      background-image:
+        linear-gradient(
+          rgba(255, 122, 0, 0.45) 1px,
+          transparent 1px
+        ),
         linear-gradient(
           90deg,
-          rgba(0, 0, 0, 0.94),
-          rgba(45, 13, 0, 0.92),
-          rgba(0, 0, 0, 0.94)
+          rgba(255, 122, 0, 0.45) 1px,
+          transparent 1px
         );
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.42);
+
+      background-size: 60px 60px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 78%
+        );
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+
+      width: 100%;
+      min-height: var(--header-height);
+
+      border-bottom: 1px solid rgba(255, 122, 0, 0.18);
+      background: rgba(5, 5, 5, 0.75);
+      backdrop-filter: blur(18px);
+
+      transition: var(--transition);
+    }
+
+    .site-header.scrolled {
+      background: rgba(3, 3, 3, 0.95);
+      box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(255, 122, 0, 0.08);
     }
 
     .header-inner {
       min-height: var(--header-height);
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -199,23 +301,56 @@
     }
 
     .brand {
+      min-width: 0;
+
       display: flex;
       align-items: center;
-      gap: 13px;
-      min-width: 0;
+      gap: 12px;
+    }
+
+    .brand-logo-shell {
+      position: relative;
+
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+
+      display: grid;
+      place-items: center;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      background: #000;
+
+      box-shadow:
+        0 0 15px rgba(255, 122, 0, 0.35),
+        inset 0 0 15px rgba(255, 122, 0, 0.08);
+    }
+
+    .brand-logo-shell::after {
+      position: absolute;
+      inset: -100%;
+
+      content: "";
+
+      background:
+        linear-gradient(
+          120deg,
+          transparent 40%,
+          rgba(255, 180, 80, 0.48) 50%,
+          transparent 60%
+        );
+
+      animation: logoShine 5s linear infinite;
     }
 
     .brand-logo {
-      width: 58px;
-      height: 58px;
-      flex: 0 0 auto;
+      width: 100%;
+      height: 100%;
+
       object-fit: contain;
-      border-radius: 50%;
-      border: 2px solid var(--orange);
-      background: #000;
-      box-shadow:
-        0 0 0 4px rgba(255, 106, 0, 0.10),
-        0 0 24px rgba(255, 106, 0, 0.38);
     }
 
     .brand-copy {
@@ -223,1447 +358,1742 @@
     }
 
     .brand-title {
-      display: block;
-      color: var(--orange-bright);
-      font-size: clamp(0.84rem, 1.8vw, 1.02rem);
-      font-weight: 950;
-      letter-spacing: 0.04em;
+      overflow: hidden;
+
+      color: #fff;
       white-space: nowrap;
+      text-overflow: ellipsis;
+
+      font-size: clamp(0.86rem, 1.6vw, 1.08rem);
+      font-weight: 950;
+      letter-spacing: 0.035em;
     }
 
-    .brand-mini-slogan {
-      display: block;
-      margin-top: 4px;
+    .brand-subtitle {
+      margin-top: 5px;
+
       color: var(--orange-light);
-      font-size: 0.67rem;
-      font-weight: 750;
-      letter-spacing: 0.065em;
+
+      font-size: 0.63rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .desktop-nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 4px;
+      gap: 5px;
     }
 
-    .desktop-nav a {
-      padding: 11px 12px;
-      border-radius: 12px;
-      color: var(--orange-light);
+    .nav-link {
+      position: relative;
+
+      padding: 10px 11px;
+
+      color: var(--text-soft);
+
       font-size: 0.83rem;
-      font-weight: 850;
-      transition:
-        background 0.22s ease,
-        color 0.22s ease,
-        transform 0.22s ease;
+      font-weight: 800;
+
+      transition: var(--transition);
     }
 
-    .desktop-nav a:hover,
-    .desktop-nav a:focus-visible {
-      color: #160700;
-      background: linear-gradient(
-        135deg,
-        var(--orange),
-        var(--orange-bright)
-      );
-      transform: translateY(-2px);
-      outline: none;
+    .nav-link::after {
+      position: absolute;
+      right: 10px;
+      bottom: 3px;
+      left: 10px;
+
+      height: 2px;
+
+      content: "";
+
+      transform: scaleX(0);
+      transform-origin: center;
+
+      border-radius: 999px;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange);
+
+      transition: var(--transition);
     }
 
-    .header-actions {
+    .nav-link:hover,
+    .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+
+    .header-tools {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
     }
 
     .language-switcher {
       display: flex;
+      align-items: center;
+
       padding: 4px;
+
       border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(0, 0, 0, 0.62);
+      border-radius: 999px;
+      background: rgba(255, 122, 0, 0.06);
     }
 
-    .language-switcher button {
-      border: 0;
+    .language-button {
+      min-width: 44px;
       padding: 8px 9px;
-      border-radius: 9px;
+
       cursor: pointer;
-      color: var(--orange-light);
+
+      color: var(--text-soft);
       background: transparent;
+      border-radius: 999px;
+
       font-size: 0.72rem;
-      font-weight: 900;
-      transition: 0.2s ease;
+      font-weight: 950;
+
+      transition: var(--transition);
     }
 
-    .language-switcher button:hover,
-    .language-switcher button.active {
-      color: #190800;
-      background: var(--orange-bright);
+    .language-button:hover {
+      color: #fff;
     }
 
-    .menu-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      cursor: pointer;
-      color: var(--orange-bright);
-      background: rgba(0, 0, 0, 0.72);
-      font-size: 1.35rem;
-    }
-
-    .mobile-nav {
-      display: none;
-      border-top: 1px solid var(--border);
+    .language-button.active {
+      color: #080808;
       background:
         linear-gradient(
-          180deg,
-          rgba(20, 7, 0, 0.98),
-          rgba(0, 0, 0, 0.98)
+          135deg,
+          var(--orange-light),
+          var(--orange)
         );
+
+      box-shadow: 0 0 16px rgba(255, 122, 0, 0.42);
     }
 
-    .mobile-nav.open {
+    .menu-button {
+      width: 46px;
+      height: 46px;
+
+      display: none;
+      place-items: center;
+
+      cursor: pointer;
+
+      color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255, 122, 0, 0.08);
+    }
+
+    .menu-icon {
+      position: relative;
+
+      width: 21px;
+      height: 15px;
+    }
+
+    .menu-icon span {
+      position: absolute;
+      left: 0;
+
+      width: 100%;
+      height: 2px;
+
+      border-radius: 999px;
+      background: var(--orange);
+
+      transition: var(--transition);
+    }
+
+    .menu-icon span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-icon span:nth-child(2) {
+      top: 6px;
+    }
+
+    .menu-icon span:nth-child(3) {
+      top: 12px;
+    }
+
+    .menu-button.active .menu-icon span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active .menu-icon span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.active .menu-icon span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+
+      padding: 0 18px 20px;
+
+      border-bottom: 1px solid rgba(255, 122, 0, 0.2);
+      background: rgba(3, 3, 3, 0.98);
+    }
+
+    .mobile-menu.open {
       display: block;
     }
 
-    .mobile-nav-inner {
+    .mobile-nav {
       display: grid;
       gap: 8px;
-      padding: 15px 0 20px;
+
+      margin-bottom: 18px;
     }
 
-    .mobile-nav a {
-      padding: 13px 15px;
-      border: 1px solid rgba(255, 106, 0, 0.18);
-      border-radius: 12px;
-      color: var(--orange-light);
-      background: rgba(255, 106, 0, 0.04);
+    .mobile-nav-link {
+      padding: 14px 16px;
+
+      color: var(--text-soft);
+      border: 1px solid rgba(255, 122, 0, 0.14);
+      border-radius: 13px;
+      background: rgba(255, 122, 0, 0.04);
+
       font-weight: 850;
     }
 
-    /* ================================
+    .mobile-nav-link:hover {
+      color: #fff;
+      border-color: var(--border-strong);
+    }
+
+    /* =========================================================
        HERO
-    ================================= */
+    ========================================================= */
 
     .hero {
       position: relative;
-      min-height: calc(100vh - var(--header-height));
+
+      min-height: 100vh;
+      padding: calc(var(--header-height) + 70px) 0 70px;
+
       display: flex;
       align-items: center;
-      padding: 70px 0 78px;
+
       overflow: hidden;
     }
 
     .hero::before {
-      content: "";
       position: absolute;
-      width: 560px;
-      height: 560px;
-      top: 4%;
-      left: -260px;
+      top: 16%;
+      left: -15%;
+
+      width: 600px;
+      height: 600px;
+
+      content: "";
+
+      opacity: 0.1;
+      filter: blur(100px);
       border-radius: 50%;
-      pointer-events: none;
-      background:
-        radial-gradient(
-          circle,
-          rgba(255, 106, 0, 0.22),
-          transparent 68%
-        );
-      filter: blur(5px);
+      background: var(--orange);
     }
 
     .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.92fr);
-      align-items: center;
-      gap: 54px;
-    }
-
-    .hero-content {
       position: relative;
       z-index: 2;
+
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      align-items: center;
+      gap: 65px;
     }
 
-    .eyebrow {
+    .hero-badge {
+      width: fit-content;
+
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      margin-bottom: 19px;
-      padding: 9px 14px;
+      gap: 10px;
+
+      margin-bottom: 24px;
+      padding: 10px 15px;
+
+      color: var(--orange-light);
       border: 1px solid var(--border);
       border-radius: 999px;
-      color: var(--orange-light);
-      background:
-        linear-gradient(
-          90deg,
-          rgba(255, 106, 0, 0.13),
-          rgba(0, 0, 0, 0.54)
-        );
-      box-shadow: 0 0 24px rgba(255, 106, 0, 0.09);
-      font-size: 0.78rem;
-      font-weight: 900;
-      letter-spacing: 0.1em;
+      background: rgba(255, 122, 0, 0.08);
+
+      font-size: 0.76rem;
+      font-weight: 950;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    .eyebrow-dot {
+    .hero-badge-dot {
       width: 9px;
       height: 9px;
+
       border-radius: 50%;
-      background: var(--orange-bright);
-      box-shadow: 0 0 15px var(--orange);
-      animation: pulseDot 1.8s ease-in-out infinite;
+      background: var(--orange);
+      box-shadow:
+        0 0 0 5px rgba(255, 122, 0, 0.1),
+        0 0 14px var(--orange);
+
+      animation: pulseDot 1.8s infinite;
     }
 
     .hero-title {
       max-width: 810px;
-      color: var(--orange-bright);
-      font-size: clamp(2.4rem, 6.4vw, 5.8rem);
-      line-height: 0.95;
+
+      font-size: clamp(3rem, 7.6vw, 6.5rem);
+      line-height: 0.92;
       font-weight: 1000;
-      letter-spacing: -0.055em;
-      text-shadow:
-        0 4px 0 rgba(92, 29, 0, 0.7),
-        0 0 38px rgba(255, 106, 0, 0.22);
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
     }
 
-    .hero-title span {
+    .hero-title .orange-line {
       display: block;
-      margin-top: 13px;
-      color: var(--orange-light);
-      font-size: clamp(1.18rem, 2.5vw, 2.2rem);
-      line-height: 1.12;
-      letter-spacing: 0.045em;
+
+      color: transparent;
+
+      background:
+        linear-gradient(
+          100deg,
+          #ffb000,
+          #ff7100 48%,
+          #ff3d00
+        );
+
+      background-clip: text;
+      -webkit-background-clip: text;
+
+      filter:
+        drop-shadow(
+          0 0 18px rgba(255, 122, 0, 0.22)
+        );
+    }
+
+    .hero-slogan {
+      max-width: 730px;
+
+      margin-top: 25px;
+
+      color: #fff0db;
+
+      font-size: clamp(1rem, 2.1vw, 1.33rem);
+      line-height: 1.65;
+      font-weight: 900;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
     }
 
     .hero-description {
       max-width: 690px;
-      margin-top: 24px;
-      color: var(--orange-soft);
-      font-size: clamp(1rem, 1.7vw, 1.18rem);
-      line-height: 1.78;
-      font-weight: 570;
-    }
 
-    .official-slogan {
-      margin-top: 27px;
-      padding: 18px 20px;
-      border-left: 5px solid var(--orange-bright);
-      border-radius: 0 18px 18px 0;
-      color: var(--orange-light);
-      background:
-        linear-gradient(
-          90deg,
-          rgba(255, 106, 0, 0.17),
-          rgba(255, 106, 0, 0.025)
-        );
-      font-size: clamp(1rem, 2vw, 1.33rem);
-      font-weight: 950;
-      line-height: 1.5;
-      letter-spacing: 0.055em;
-      text-transform: uppercase;
+      margin-top: 22px;
+
+      color: var(--text-soft);
+
+      font-size: 1.03rem;
+      line-height: 1.85;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 30px;
-    }
+      gap: 14px;
 
-    .btn {
-      min-height: 52px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 13px 21px;
-      border: 1px solid transparent;
-      border-radius: 15px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 950;
-      letter-spacing: 0.025em;
-      transition:
-        transform 0.23s ease,
-        box-shadow 0.23s ease,
-        background 0.23s ease;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-3px);
-      outline: none;
-    }
-
-    .btn-primary {
-      color: #170700;
-      background:
-        linear-gradient(
-          135deg,
-          var(--orange),
-          var(--orange-bright)
-        );
-      box-shadow:
-        0 10px 28px rgba(255, 106, 0, 0.27),
-        inset 0 1px 0 rgba(255, 200, 120, 0.55);
-    }
-
-    .btn-primary:hover {
-      box-shadow:
-        0 17px 40px rgba(255, 106, 0, 0.40),
-        inset 0 1px 0 rgba(255, 200, 120, 0.55);
-    }
-
-    .btn-secondary {
-      color: var(--orange-light);
-      border-color: var(--border);
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 106, 0, 0.10),
-          rgba(0, 0, 0, 0.72)
-        );
-    }
-
-    .btn-secondary:hover {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 106, 0, 0.22),
-          rgba(0, 0, 0, 0.78)
-        );
-      box-shadow: 0 12px 32px rgba(255, 106, 0, 0.19);
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      max-width: 650px;
       margin-top: 35px;
     }
 
-    .stat {
-      padding: 16px 14px;
-      border: 1px solid rgba(255, 106, 0, 0.19);
-      border-radius: 16px;
+    .button {
+      min-height: 52px;
+      padding: 14px 22px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      cursor: pointer;
+
+      border-radius: 14px;
+
+      font-size: 0.9rem;
+      font-weight: 950;
+      letter-spacing: 0.025em;
+
+      transition: var(--transition);
+    }
+
+    .button-primary {
+      color: #080808;
+
       background:
         linear-gradient(
-          145deg,
-          rgba(255, 106, 0, 0.08),
-          rgba(0, 0, 0, 0.62)
+          135deg,
+          var(--orange-light),
+          var(--orange)
         );
+
+      box-shadow:
+        0 10px 30px rgba(255, 122, 0, 0.24),
+        0 0 20px rgba(255, 122, 0, 0.22);
     }
 
-    .stat strong {
-      display: block;
-      color: var(--orange-bright);
-      font-size: 1.35rem;
+    .button-primary:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow:
+        0 15px 38px rgba(255, 122, 0, 0.33),
+        0 0 28px rgba(255, 122, 0, 0.34);
+    }
+
+    .button-secondary {
+      color: #fff;
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 122, 0, 0.06);
+    }
+
+    .button-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 122, 0, 0.14);
+      box-shadow: 0 0 22px rgba(255, 122, 0, 0.19);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      margin-top: 43px;
+    }
+
+    .hero-stat {
+      min-width: 145px;
+      padding: 16px 18px;
+
+      border: 1px solid rgba(255, 122, 0, 0.18);
+      border-radius: 16px;
+      background: rgba(8, 8, 8, 0.55);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-stat-number {
+      color: var(--orange);
+
+      font-size: 1.5rem;
       font-weight: 1000;
     }
 
-    .stat span {
-      display: block;
-      margin-top: 4px;
-      color: var(--orange-light);
+    .hero-stat-label {
+      margin-top: 5px;
+
+      color: var(--text-soft);
+
       font-size: 0.74rem;
       font-weight: 800;
-      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    /* ================================
-       COMPASS
-    ================================= */
+    /* =========================================================
+       DIGITAL GLOBE
+    ========================================================= */
 
-    .compass-stage {
+    .globe-zone {
       position: relative;
-      min-height: 530px;
+
+      min-height: 520px;
+
       display: grid;
       place-items: center;
     }
 
-    .compass-glow {
+    .globe-zone::before {
       position: absolute;
-      width: 450px;
-      height: 450px;
-      border-radius: 50%;
-      background:
-        radial-gradient(
-          circle,
-          rgba(255, 122, 0, 0.31) 0%,
-          rgba(255, 71, 0, 0.10) 43%,
-          transparent 70%
-        );
-      filter: blur(12px);
-      animation: glowPulse 3.2s ease-in-out infinite;
-    }
 
-    .compass {
-      position: relative;
-      width: min(430px, 88vw);
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      border: 3px solid var(--orange);
-      background:
-        radial-gradient(
-          circle at center,
-          #2f0c00 0 18%,
-          #100500 19% 38%,
-          #351000 39% 40%,
-          #070200 41% 62%,
-          #2f0d00 63% 64%,
-          #080200 65% 100%
-        );
-      box-shadow:
-        inset 0 0 0 10px rgba(255, 106, 0, 0.07),
-        inset 0 0 55px rgba(255, 106, 0, 0.23),
-        0 0 0 9px rgba(255, 106, 0, 0.08),
-        0 0 80px rgba(255, 106, 0, 0.32);
-    }
+      width: 470px;
+      height: 470px;
 
-    .compass::before,
-    .compass::after {
       content: "";
-      position: absolute;
-      inset: 7%;
+
+      opacity: 0.18;
+      filter: blur(70px);
       border-radius: 50%;
-      pointer-events: none;
+      background: var(--orange);
     }
 
-    .compass::before {
-      border: 1px dashed rgba(255, 173, 77, 0.48);
-      animation: compassRotate 24s linear infinite;
+    .globe-platform {
+      position: relative;
+
+      width: min(440px, 90vw);
+      aspect-ratio: 1;
+
+      display: grid;
+      place-items: center;
     }
 
-    .compass::after {
-      inset: 15%;
-      border: 2px solid rgba(255, 106, 0, 0.22);
+    .globe-orbit {
+      position: absolute;
+      inset: 2%;
+
+      border: 1px solid rgba(255, 122, 0, 0.28);
+      border-radius: 50%;
+
+      animation: orbitRotate 18s linear infinite;
+    }
+
+    .globe-orbit::before,
+    .globe-orbit::after {
+      position: absolute;
+
+      width: 11px;
+      height: 11px;
+
+      content: "";
+
+      border-radius: 50%;
+      background: var(--orange);
       box-shadow:
-        inset 0 0 28px rgba(255, 106, 0, 0.12),
-        0 0 18px rgba(255, 106, 0, 0.12);
+        0 0 10px var(--orange),
+        0 0 25px var(--orange);
     }
 
-    .compass-ring {
+    .globe-orbit::before {
+      top: 17%;
+      right: 5%;
+    }
+
+    .globe-orbit::after {
+      bottom: 12%;
+      left: 9%;
+    }
+
+    .globe-orbit-two {
       position: absolute;
-      inset: 2.5%;
+      inset: 9%;
+
+      transform: rotate(63deg);
+
+      border: 1px dashed rgba(255, 160, 55, 0.2);
       border-radius: 50%;
-      animation: compassRotate 34s linear infinite;
+
+      animation: orbitReverse 15s linear infinite;
     }
 
-    .compass-ring span {
+    .digital-globe {
+      position: relative;
+
+      width: 345px;
+      max-width: 78vw;
+      aspect-ratio: 1;
+
+      overflow: hidden;
+
+      border: 2px solid rgba(255, 142, 20, 0.92);
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          rgba(255, 183, 74, 0.2),
+          transparent 23%
+        ),
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(255, 122, 0, 0.11),
+          rgba(10, 4, 0, 0.86) 58%,
+          #020202 78%
+        );
+
+      box-shadow:
+        inset -35px -20px 70px rgba(0, 0, 0, 0.9),
+        inset 25px 5px 50px rgba(255, 122, 0, 0.08),
+        0 0 25px rgba(255, 122, 0, 0.45),
+        0 0 80px rgba(255, 90, 0, 0.2);
+
+      animation: globeFloat 5s ease-in-out infinite;
+    }
+
+    .digital-globe::before {
       position: absolute;
-      color: var(--orange-bright);
-      font-weight: 1000;
-      text-shadow: 0 0 14px rgba(255, 106, 0, 0.82);
+      inset: 0;
+      z-index: 6;
+
+      content: "";
+
+      pointer-events: none;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          115deg,
+          rgba(255, 255, 255, 0.1),
+          transparent 28%,
+          transparent 70%,
+          rgba(255, 122, 0, 0.06)
+        );
     }
 
-    .north {
+    .digital-globe::after {
+      position: absolute;
+      inset: 6%;
+      z-index: 5;
+
+      content: "";
+
+      pointer-events: none;
+
+      border: 1px solid rgba(255, 122, 0, 0.16);
+      border-radius: 50%;
+      box-shadow: inset 0 0 36px rgba(255, 122, 0, 0.12);
+    }
+
+    .globe-grid {
+      position: absolute;
+      inset: 0;
+
+      overflow: hidden;
+
+      border-radius: 50%;
+
+      animation: globeGridRotate 16s linear infinite;
+    }
+
+    .longitude,
+    .latitude {
+      position: absolute;
+      z-index: 2;
+
+      pointer-events: none;
+
+      border: 1px solid rgba(255, 135, 24, 0.38);
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 5px rgba(255, 122, 0, 0.18),
+        inset 0 0 5px rgba(255, 122, 0, 0.12);
+    }
+
+    .longitude {
       top: 2%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .south {
       bottom: 2%;
       left: 50%;
+
+      width: 42%;
+
       transform: translateX(-50%);
     }
 
-    .east {
+    .longitude-1 {
+      width: 90%;
+    }
+
+    .longitude-2 {
+      width: 62%;
+    }
+
+    .longitude-3 {
+      width: 34%;
+    }
+
+    .longitude-4 {
+      width: 17%;
+    }
+
+    .latitude {
+      left: 3%;
       right: 3%;
       top: 50%;
+
+      height: 30%;
+
       transform: translateY(-50%);
     }
 
-    .west {
-      left: 3%;
-      top: 50%;
-      transform: translateY(-50%);
+    .latitude-1 {
+      top: 22%;
+      height: 19%;
     }
 
-    .compass-lines {
-      position: absolute;
-      inset: 10%;
-      border-radius: 50%;
-      animation: reverseCompassRotate 19s linear infinite;
+    .latitude-2 {
+      top: 36%;
+      height: 27%;
     }
 
-    .compass-lines::before,
-    .compass-lines::after {
-      content: "";
+    .latitude-3 {
+      top: 50%;
+      height: 9%;
+    }
+
+    .latitude-4 {
+      top: 64%;
+      height: 27%;
+    }
+
+    .latitude-5 {
+      top: 78%;
+      height: 19%;
+    }
+
+    .globe-equator {
       position: absolute;
       top: 50%;
-      left: 50%;
-      width: 87%;
+      left: -10%;
+      z-index: 3;
+
+      width: 120%;
       height: 2px;
+
+      transform: translateY(-50%) rotate(-5deg);
+
       background:
         linear-gradient(
           90deg,
           transparent,
-          var(--orange),
+          rgba(255, 122, 0, 0.95),
           transparent
         );
-      transform-origin: center;
+
+      box-shadow: 0 0 14px var(--orange);
     }
 
-    .compass-lines::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    .compass-lines::after {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-
-    .compass-needle {
+    .globe-axis {
       position: absolute;
-      width: 32%;
-      height: 32%;
-      clip-path:
-        polygon(
-          50% 0%,
-          64% 42%,
-          100% 50%,
-          64% 58%,
-          50% 100%,
-          36% 58%,
-          0% 50%,
-          36% 42%
-        );
+      top: -10%;
+      left: 50%;
+      z-index: 0;
+
+      width: 1px;
+      height: 120%;
+
+      transform: translateX(-50%) rotate(17deg);
+
       background:
-        conic-gradient(
-          from 0deg,
-          var(--orange-bright),
-          #6f2100,
-          var(--orange),
-          #180700,
-          var(--orange-bright)
+        linear-gradient(
+          transparent,
+          rgba(255, 122, 0, 0.46),
+          transparent
         );
-      filter:
-        drop-shadow(0 0 16px rgba(255, 106, 0, 0.72));
-      animation: needleMove 5.6s ease-in-out infinite;
     }
 
-    .compass-center {
-      position: relative;
-      z-index: 12;
-      width: 57%;
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      padding: 25px;
-      border: 2px solid var(--orange);
-      border-radius: 50%;
+    .globe-content {
+      position: absolute;
+      inset: 15%;
+      z-index: 10;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       text-align: center;
+
+      border: 1px solid rgba(255, 122, 0, 0.23);
+      border-radius: 50%;
       background:
         radial-gradient(
-          circle at 50% 30%,
-          #4a1600,
-          #150600 48%,
-          #030100 100%
+          circle,
+          rgba(3, 3, 3, 0.88),
+          rgba(3, 3, 3, 0.36) 62%,
+          transparent 72%
         );
-      box-shadow:
-        inset 0 0 34px rgba(255, 106, 0, 0.22),
-        0 0 36px rgba(255, 106, 0, 0.33);
+
+      backdrop-filter: blur(2px);
     }
 
-    .compass-center::before {
-      content: "";
+    .project-slide {
       position: absolute;
-      inset: 9px;
-      border-radius: 50%;
-      border: 1px dashed rgba(255, 167, 64, 0.38);
-      animation: compassRotate 14s linear infinite;
+
+      width: 82%;
+
+      opacity: 0;
+      transform: translateY(16px) scale(0.94);
+
+      pointer-events: none;
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
     }
 
-    .project-display {
-      position: relative;
-      z-index: 2;
-      min-height: 102px;
+    .project-slide.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .project-slide-icon {
+      width: 52px;
+      height: 52px;
+
+      margin: 0 auto 15px;
+
       display: grid;
       place-items: center;
+
+      color: #080808;
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange-light),
+          var(--orange)
+        );
+
+      box-shadow: 0 0 22px rgba(255, 122, 0, 0.4);
+
+      font-size: 1.45rem;
     }
 
-    .project-label {
-      display: block;
-      color: var(--orange-bright);
-      font-size: clamp(1rem, 2.3vw, 1.45rem);
-      line-height: 1.25;
-      font-weight: 1000;
-      letter-spacing: 0.025em;
-      text-transform: uppercase;
-      text-shadow: 0 0 17px rgba(255, 106, 0, 0.48);
-      animation: projectChange 0.48s ease;
-    }
-
-    .project-number {
-      display: block;
-      margin-bottom: 8px;
+    .project-slide-small {
       color: var(--orange-light);
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.18em;
-    }
 
-    .compass-caption {
-      position: absolute;
-      bottom: 4px;
-      padding: 10px 17px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--orange-light);
-      background: rgba(0, 0, 0, 0.74);
-      font-size: 0.78rem;
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      box-shadow: 0 0 24px rgba(255, 106, 0, 0.11);
-    }
-
-    /* ================================
-       SECTION COMMON
-    ================================= */
-
-    .section {
-      position: relative;
-      padding: 88px 0;
-    }
-
-    .section-header {
-      max-width: 760px;
-      margin: 0 auto 44px;
-      text-align: center;
-    }
-
-    .section-kicker {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: var(--orange-bright);
-      font-size: 0.75rem;
-      font-weight: 1000;
+      font-size: 0.64rem;
+      font-weight: 950;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
-    .section-title {
-      color: var(--orange-light);
-      font-size: clamp(2rem, 4vw, 3.35rem);
-      line-height: 1.05;
+    .project-slide-title {
+      margin-top: 9px;
+
+      color: #fff;
+
+      font-size: clamp(1.05rem, 2.4vw, 1.42rem);
+      line-height: 1.16;
       font-weight: 1000;
-      letter-spacing: -0.03em;
+      text-transform: uppercase;
     }
 
-    .section-description {
-      margin-top: 15px;
-      color: var(--orange-soft);
-      font-size: 1rem;
-      line-height: 1.72;
+    .project-slide-counter {
+      margin-top: 12px;
+
+      color: var(--text-soft);
+
+      font-size: 0.7rem;
+      font-weight: 800;
     }
 
-    /* ================================
-       FOUR PROJECTS
-    ================================= */
+    .globe-status {
+      position: absolute;
+      right: 3%;
+      bottom: 4%;
+      z-index: 20;
+
+      padding: 8px 12px;
+
+      color: var(--orange-light);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.82);
+
+      font-size: 0.63rem;
+      font-weight: 950;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+
+      box-shadow: var(--shadow);
+    }
+
+    .globe-status::before {
+      display: inline-block;
+
+      width: 7px;
+      height: 7px;
+
+      margin-right: 7px;
+
+      content: "";
+
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 9px var(--orange);
+
+      animation: pulseDot 1.5s infinite;
+    }
+
+    /* =========================================================
+       PROJECTS
+    ========================================================= */
 
     .projects-section {
-      border-top: 1px solid rgba(255, 106, 0, 0.13);
-      border-bottom: 1px solid rgba(255, 106, 0, 0.13);
       background:
         linear-gradient(
-          180deg,
-          rgba(255, 106, 0, 0.035),
-          rgba(0, 0, 0, 0.32),
-          rgba(255, 106, 0, 0.035)
+          to bottom,
+          transparent,
+          rgba(255, 122, 0, 0.035),
+          transparent
         );
     }
 
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 17px;
+      gap: 19px;
     }
 
     .project-card {
       position: relative;
-      min-height: 255px;
+
+      min-height: 330px;
+      padding: 28px 23px;
+
       display: flex;
       flex-direction: column;
-      padding: 23px;
+
       overflow: hidden;
-      border: 1px solid var(--border);
+
+      border: 1px solid rgba(255, 122, 0, 0.2);
       border-radius: var(--radius);
       background:
         linear-gradient(
           145deg,
-          rgba(255, 106, 0, 0.14),
-          rgba(18, 5, 0, 0.90) 48%,
-          rgba(0, 0, 0, 0.96)
+          rgba(255, 122, 0, 0.1),
+          rgba(5, 5, 5, 0.9) 45%
         );
-      box-shadow: 0 17px 45px rgba(0, 0, 0, 0.24);
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
+
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+
+      transition: var(--transition);
     }
 
     .project-card::before {
-      content: "";
       position: absolute;
-      width: 160px;
-      height: 160px;
-      top: -85px;
-      right: -75px;
+      top: -60px;
+      right: -60px;
+
+      width: 145px;
+      height: 145px;
+
+      content: "";
+
+      opacity: 0.14;
+      filter: blur(20px);
       border-radius: 50%;
-      background: rgba(255, 106, 0, 0.18);
-      filter: blur(1px);
+      background: var(--orange);
+
+      transition: var(--transition);
+    }
+
+    .project-card::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      width: 100%;
+      height: 3px;
+
+      content: "";
+
+      transform: scaleX(0);
+      transform-origin: left;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      box-shadow: 0 0 12px var(--orange);
+
+      transition: var(--transition);
     }
 
     .project-card:hover {
       transform: translateY(-8px);
-      border-color: var(--orange);
-      box-shadow: var(--shadow);
+
+      border-color: var(--border-strong);
+
+      box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.4),
+        0 0 28px rgba(255, 122, 0, 0.12);
     }
 
-    .project-icon {
-      position: relative;
-      z-index: 2;
-      width: 55px;
-      height: 55px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 155, 46, 0.55);
-      border-radius: 16px;
-      color: var(--orange-bright);
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 106, 0, 0.23),
-          rgba(0, 0, 0, 0.66)
-        );
-      font-size: 1.6rem;
-      box-shadow: 0 0 25px rgba(255, 106, 0, 0.14);
+    .project-card:hover::before {
+      opacity: 0.25;
+      transform: scale(1.25);
     }
 
-    .project-card h3 {
-      position: relative;
-      z-index: 2;
-      color: var(--orange-bright);
-      font-size: 1.05rem;
-      line-height: 1.35;
+    .project-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .project-number {
+      color: rgba(255, 122, 0, 0.36);
+
+      font-size: 3.25rem;
+      line-height: 1;
       font-weight: 1000;
     }
 
-    .project-card p {
-      position: relative;
-      z-index: 2;
-      margin-top: 11px;
-      color: var(--orange-soft);
-      font-size: 0.88rem;
-      line-height: 1.64;
+    .project-card-icon {
+      width: 53px;
+      height: 53px;
+
+      margin: 17px 0;
+
+      display: grid;
+      place-items: center;
+
+      color: #080808;
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange-light),
+          var(--orange)
+        );
+
+      box-shadow: 0 0 18px rgba(255, 122, 0, 0.28);
+
+      font-size: 1.45rem;
     }
 
-    .project-link {
-      position: relative;
-      z-index: 2;
-      align-self: flex-start;
-      margin-top: auto;
-      padding-top: 18px;
+    .project-card-title {
+      min-height: 51px;
+
+      font-size: 1.12rem;
+      line-height: 1.35;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .project-card-description {
+      margin-top: 14px;
+
+      flex-grow: 1;
+
+      color: var(--text-soft);
+
+      font-size: 0.88rem;
+      line-height: 1.72;
+    }
+
+    .project-card-button {
+      width: fit-content;
+
+      margin-top: 20px;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      cursor: pointer;
+
       color: var(--orange-light);
-      font-size: 0.81rem;
+      background: transparent;
+
+      font-size: 0.8rem;
       font-weight: 950;
     }
 
-    /* ================================
+    .project-card-button span:last-child {
+      transition: var(--transition);
+    }
+
+    .project-card-button:hover span:last-child {
+      transform: translateX(5px);
+    }
+
+    /* =========================================================
        MODULES
-    ================================= */
+    ========================================================= */
 
     .modules-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .module-card {
       position: relative;
-      min-height: 183px;
-      display: flex;
-      flex-direction: column;
-      padding: 21px;
-      border: 1px solid rgba(255, 106, 0, 0.25);
-      border-radius: 20px;
+
+      min-height: 210px;
+      padding: 24px;
+
+      overflow: hidden;
+
+      cursor: pointer;
+
+      color: var(--text);
+      text-align: left;
+
+      border: 1px solid rgba(255, 122, 0, 0.17);
+      border-radius: 19px;
+
       background:
         linear-gradient(
-          140deg,
-          rgba(255, 106, 0, 0.10),
-          rgba(0, 0, 0, 0.76)
+          145deg,
+          rgba(18, 18, 18, 0.9),
+          rgba(6, 6, 6, 0.96)
         );
-      transition:
-        transform 0.23s ease,
-        background 0.23s ease,
-        box-shadow 0.23s ease;
+
+      transition: var(--transition);
+    }
+
+    .module-card::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 4px;
+      height: 100%;
+
+      content: "";
+
+      transform: scaleY(0);
+      transform-origin: bottom;
+
+      background: var(--orange);
+      box-shadow: 0 0 13px var(--orange);
+
+      transition: var(--transition);
     }
 
     .module-card:hover {
       transform: translateY(-6px);
-      background:
-        linear-gradient(
-          140deg,
-          rgba(255, 106, 0, 0.21),
-          rgba(0, 0, 0, 0.81)
-        );
-      box-shadow: 0 16px 38px rgba(255, 106, 0, 0.16);
-    }
 
-    .module-number {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      color: rgba(255, 152, 43, 0.47);
-      font-size: 0.76rem;
-      font-weight: 1000;
-    }
+      border-color: rgba(255, 122, 0, 0.64);
 
-    .module-icon {
-      width: 45px;
-      height: 45px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 15px;
-      border-radius: 13px;
-      color: #1a0700;
-      background:
-        linear-gradient(
-          135deg,
-          var(--orange),
-          var(--orange-bright)
-        );
-      font-size: 1.25rem;
-      box-shadow: 0 8px 20px rgba(255, 106, 0, 0.23);
-    }
-
-    .module-card h3 {
-      color: var(--orange-light);
-      font-size: 0.98rem;
-      font-weight: 950;
-    }
-
-    .module-card p {
-      margin-top: 8px;
-      color: var(--orange-soft);
-      font-size: 0.82rem;
-      line-height: 1.55;
-    }
-
-    /* ================================
-       SOCIAL
-    ================================= */
-
-    .social-section {
-      border-top: 1px solid rgba(255, 106, 0, 0.13);
-      border-bottom: 1px solid rgba(255, 106, 0, 0.13);
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255, 106, 0, 0.10),
-          rgba(0, 0, 0, 0.42) 64%
-        );
-    }
-
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 15px;
-    }
-
-    .social-card {
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 106, 0, 0.12),
-          rgba(0, 0, 0, 0.80)
-        );
-      transition:
-        transform 0.22s ease,
-        background 0.22s ease,
-        box-shadow 0.22s ease;
-    }
-
-    .social-card:hover,
-    .social-card:focus-visible {
-      transform: translateY(-5px);
-      outline: none;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 106, 0, 0.24),
-          rgba(0, 0, 0, 0.83)
-        );
-      box-shadow: 0 14px 34px rgba(255, 106, 0, 0.16);
-    }
-
-    .social-icon {
-      width: 54px;
-      height: 54px;
-      flex: 0 0 auto;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      color: #190700;
-      background:
-        linear-gradient(
-          135deg,
-          var(--orange),
-          var(--orange-bright)
-        );
-      font-size: 1.25rem;
-      font-weight: 1000;
-    }
-
-    .social-card strong {
-      display: block;
-      color: var(--orange-light);
-      font-size: 0.97rem;
-      font-weight: 950;
-    }
-
-    .social-card small {
-      display: block;
-      margin-top: 4px;
-      color: var(--orange-soft);
-      font-size: 0.75rem;
-      line-height: 1.35;
-    }
-
-    /* ================================
-       CONTACT
-    ================================= */
-
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 0.88fr 1.12fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .contact-brand {
-      position: relative;
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 34px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
       background:
         linear-gradient(
           145deg,
-          rgba(255, 106, 0, 0.24),
-          rgba(37, 10, 0, 0.87) 45%,
-          rgba(0, 0, 0, 0.96)
+          rgba(255, 122, 0, 0.11),
+          rgba(6, 6, 6, 0.96)
         );
-      box-shadow: var(--shadow);
-    }
 
-    .contact-brand::after {
-      content: "";
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      right: -115px;
-      bottom: -115px;
-      border: 2px solid rgba(255, 106, 0, 0.24);
-      border-radius: 50%;
       box-shadow:
-        0 0 0 25px rgba(255, 106, 0, 0.045),
-        0 0 0 52px rgba(255, 106, 0, 0.035);
+        0 18px 36px rgba(0, 0, 0, 0.28),
+        0 0 25px rgba(255, 122, 0, 0.08);
     }
 
-    .contact-logo {
-      position: relative;
-      z-index: 2;
-      width: 96px;
-      height: 96px;
-      margin-bottom: 20px;
-      border: 2px solid var(--orange);
-      border-radius: 50%;
-      object-fit: contain;
-      background: #000;
-      box-shadow: 0 0 35px rgba(255, 106, 0, 0.32);
+    .module-card:hover::before {
+      transform: scaleY(1);
     }
 
-    .contact-brand h2 {
-      position: relative;
-      z-index: 2;
-      color: var(--orange-bright);
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      line-height: 1.05;
-      font-weight: 1000;
-    }
+    .module-icon {
+      width: 48px;
+      height: 48px;
 
-    .contact-brand p {
-      position: relative;
-      z-index: 2;
-      margin-top: 17px;
-      color: var(--orange-light);
-      line-height: 1.7;
-      font-weight: 780;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 15px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 17px;
-      padding: 21px;
-      border: 1px solid rgba(255, 106, 0, 0.28);
-      border-radius: 19px;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 106, 0, 0.10),
-          rgba(0, 0, 0, 0.78)
-        );
-      transition:
-        transform 0.22s ease,
-        border-color 0.22s ease;
-    }
-
-    .contact-item:hover {
-      transform: translateX(5px);
-      border-color: var(--orange);
-    }
-
-    .contact-icon {
-      width: 53px;
-      height: 53px;
-      flex: 0 0 auto;
       display: grid;
       place-items: center;
-      border-radius: 15px;
-      color: #170700;
-      background:
-        linear-gradient(
-          135deg,
-          var(--orange),
-          var(--orange-bright)
-        );
-      font-size: 1.25rem;
-      font-weight: 1000;
-    }
 
-    .contact-item span {
-      display: block;
       color: var(--orange-light);
-      font-size: 0.76rem;
-      font-weight: 900;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 122, 0, 0.08);
+
+      font-size: 1.28rem;
     }
 
-    .contact-item a,
-    .contact-item strong {
-      display: block;
-      margin-top: 5px;
-      overflow-wrap: anywhere;
-      color: var(--orange-soft);
-      font-size: 0.96rem;
-      line-height: 1.4;
-      font-weight: 850;
+    .module-title {
+      margin-top: 20px;
+
+      font-size: 1.03rem;
+      font-weight: 950;
     }
 
-    /* ================================
-       FOOTER
-    ================================= */
+    .module-description {
+      margin-top: 11px;
 
-    .site-footer {
-      position: relative;
-      padding: 44px 0 24px;
-      border-top: 1px solid var(--border);
-      background:
-        linear-gradient(
-          180deg,
-          rgba(31, 8, 0, 0.88),
-          #000000 88%
-        );
-    }
+      color: var(--text-soft);
 
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr 0.9fr;
-      gap: 38px;
-      padding-bottom: 34px;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .footer-logo {
-      width: 72px;
-      height: 72px;
-      flex: 0 0 auto;
-      border: 2px solid var(--orange);
-      border-radius: 50%;
-      object-fit: contain;
-      background: #000;
-      box-shadow: 0 0 25px rgba(255, 106, 0, 0.23);
-    }
-
-    .footer-brand h3 {
-      color: var(--orange-bright);
-      font-size: 1.04rem;
-      line-height: 1.35;
-      font-weight: 1000;
-    }
-
-    .footer-brand p {
-      max-width: 470px;
-      margin-top: 10px;
-      color: var(--orange-light);
       font-size: 0.84rem;
-      line-height: 1.6;
-      font-weight: 760;
+      line-height: 1.65;
     }
 
-    .footer-column h4 {
-      margin-bottom: 14px;
-      color: var(--orange-bright);
-      font-size: 0.88rem;
-      font-weight: 1000;
+    .module-status {
+      margin-top: 17px;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      color: var(--orange-light);
+
+      font-size: 0.68rem;
+      font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .footer-links {
+    .module-status::before {
+      width: 6px;
+      height: 6px;
+
+      content: "";
+
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 8px var(--orange);
+    }
+
+    /* =========================================================
+       SOCIAL MEDIA
+    ========================================================= */
+
+    .social-grid {
       display: grid;
-      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
-    .footer-links a {
-      color: var(--orange-soft);
-      font-size: 0.83rem;
-      font-weight: 750;
-      transition:
-        color 0.2s ease,
-        transform 0.2s ease;
-    }
+    .social-card {
+      min-height: 105px;
+      padding: 18px 20px;
 
-    .footer-links a:hover {
-      color: var(--orange-bright);
-      transform: translateX(4px);
-    }
-
-    .footer-bottom {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding-top: 21px;
-      border-top: 1px solid rgba(255, 106, 0, 0.18);
-      color: var(--orange-light);
-      font-size: 0.76rem;
-      line-height: 1.5;
+      gap: 16px;
+
+      cursor: pointer;
+
+      border: 1px solid rgba(255, 122, 0, 0.17);
+      border-radius: 17px;
+      background: rgba(8, 8, 8, 0.78);
+
+      transition: var(--transition);
     }
 
-    .footer-slogan {
-      color: var(--orange-bright);
-      font-weight: 950;
-      letter-spacing: 0.04em;
-      text-align: right;
+    .social-card:hover {
+      transform: translateY(-5px);
+
+      border-color: var(--border-strong);
+      background: rgba(255, 122, 0, 0.09);
+
+      box-shadow: 0 0 25px rgba(255, 122, 0, 0.1);
     }
 
-    .back-to-top {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 900;
-      width: 48px;
-      height: 48px;
+    .social-icon {
+      width: 49px;
+      height: 49px;
+      flex: 0 0 49px;
+
       display: grid;
       place-items: center;
-      border: 1px solid var(--orange);
-      border-radius: 14px;
-      opacity: 0;
-      visibility: hidden;
-      cursor: pointer;
-      color: #160700;
+
+      color: #080808;
+      border-radius: 15px;
+
       background:
         linear-gradient(
           135deg,
-          var(--orange),
-          var(--orange-bright)
+          var(--orange-light),
+          var(--orange)
         );
-      box-shadow: 0 10px 26px rgba(255, 106, 0, 0.31);
-      font-size: 1.2rem;
+
+      font-size: 1.25rem;
       font-weight: 1000;
-      transform: translateY(15px);
-      transition: 0.24s ease;
     }
 
-    .back-to-top.visible {
+    .social-name {
+      font-weight: 950;
+    }
+
+    .social-action {
+      margin-top: 5px;
+
+      color: var(--text-soft);
+
+      font-size: 0.75rem;
+    }
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact-shell {
+      position: relative;
+
+      padding: 42px;
+
+      overflow: hidden;
+
+      border: 1px solid rgba(255, 122, 0, 0.26);
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 122, 0, 0.13),
+          rgba(5, 5, 5, 0.94) 45%,
+          rgba(14, 6, 0, 0.95)
+        );
+
+      box-shadow: var(--shadow);
+    }
+
+    .contact-shell::after {
+      position: absolute;
+      top: -120px;
+      right: -100px;
+
+      width: 300px;
+      height: 300px;
+
+      content: "";
+
+      opacity: 0.13;
+      filter: blur(48px);
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .contact-grid {
+      position: relative;
+      z-index: 2;
+
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .contact-logo {
+      width: 120px;
+      height: 120px;
+
+      padding: 8px;
+
+      object-fit: contain;
+
+      border: 1px solid var(--border-strong);
+      border-radius: 24px;
+      background: #000;
+
+      box-shadow:
+        0 0 25px rgba(255, 122, 0, 0.32),
+        inset 0 0 18px rgba(255, 122, 0, 0.1);
+    }
+
+    .contact-title {
+      margin-top: 23px;
+
+      font-size: clamp(1.6rem, 4vw, 2.55rem);
+      line-height: 1.12;
+      font-weight: 1000;
+    }
+
+    .contact-copy {
+      margin-top: 15px;
+
+      color: var(--text-soft);
+
+      line-height: 1.75;
+    }
+
+    .contact-items {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      min-height: 83px;
+      padding: 16px 18px;
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      border: 1px solid rgba(255, 122, 0, 0.18);
+      border-radius: 16px;
+      background: rgba(4, 4, 4, 0.58);
+
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      transform: translateX(5px);
+      border-color: var(--border-strong);
+      background: rgba(255, 122, 0, 0.08);
+    }
+
+    .contact-item-icon {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--orange-light);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 122, 0, 0.08);
+
+      font-size: 1.2rem;
+    }
+
+    .contact-item-label {
+      color: var(--text-soft);
+
+      font-size: 0.71rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-item-value {
+      margin-top: 5px;
+
+      overflow-wrap: anywhere;
+
+      color: #fff;
+
+      font-size: 0.91rem;
+      font-weight: 900;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .site-footer {
+      padding: 38px 0 24px;
+
+      border-top: 1px solid rgba(255, 122, 0, 0.2);
+      background: rgba(2, 2, 2, 0.87);
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-logo {
+      width: 66px;
+      height: 66px;
+
+      object-fit: contain;
+
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      background: #000;
+
+      box-shadow: 0 0 18px rgba(255, 122, 0, 0.22);
+    }
+
+    .footer-name {
+      font-weight: 1000;
+    }
+
+    .footer-slogan {
+      margin-top: 7px;
+
+      color: var(--orange-light);
+
+      font-size: 0.73rem;
+      line-height: 1.55;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 9px 18px;
+    }
+
+    .footer-link {
+      color: var(--text-soft);
+
+      font-size: 0.78rem;
+      font-weight: 800;
+
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--orange-light);
+    }
+
+    .footer-bottom {
+      margin-top: 28px;
+      padding-top: 21px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      color: #9c8974;
+      border-top: 1px solid rgba(255, 122, 0, 0.1);
+
+      font-size: 0.74rem;
+    }
+
+    /* =========================================================
+       TOAST / MODAL
+    ========================================================= */
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 3000;
+
+      width: min(390px, calc(100% - 40px));
+      padding: 17px 19px;
+
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
+
+      color: #fff;
+      border: 1px solid var(--border-strong);
+      border-radius: 15px;
+      background: rgba(4, 4, 4, 0.96);
+
+      box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.5),
+        0 0 23px rgba(255, 122, 0, 0.18);
+
+      transition: 0.35s ease;
+    }
+
+    .toast.show {
       opacity: 1;
-      visibility: visible;
       transform: translateY(0);
     }
 
-    /* ================================
+    .toast-title {
+      color: var(--orange-light);
+
+      font-size: 0.82rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .toast-message {
+      margin-top: 6px;
+
+      color: var(--text-soft);
+
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    /* =========================================================
        ANIMATIONS
-    ================================= */
+    ========================================================= */
 
-    @keyframes backgroundSpin {
-      to {
-        transform: rotate(360deg);
+    @keyframes logoShine {
+      0% {
+        transform: translateX(-65%) rotate(15deg);
       }
-    }
 
-    @keyframes compassRotate {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes reverseCompassRotate {
-      to {
-        transform: rotate(-360deg);
-      }
-    }
-
-    @keyframes needleMove {
-      0%,
+      55%,
       100% {
-        transform: rotate(-12deg) scale(1);
-      }
-
-      50% {
-        transform: rotate(22deg) scale(1.05);
-      }
-    }
-
-    @keyframes glowPulse {
-      0%,
-      100% {
-        transform: scale(0.95);
-        opacity: 0.65;
-      }
-
-      50% {
-        transform: scale(1.08);
-        opacity: 1;
+        transform: translateX(65%) rotate(15deg);
       }
     }
 
     @keyframes pulseDot {
       0%,
       100% {
-        transform: scale(0.9);
-        opacity: 0.72;
+        opacity: 1;
+        transform: scale(1);
       }
 
       50% {
-        transform: scale(1.35);
-        opacity: 1;
+        opacity: 0.55;
+        transform: scale(0.72);
       }
     }
 
-    @keyframes projectChange {
+    @keyframes orbitRotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes orbitReverse {
       from {
-        opacity: 0;
-        transform: translateY(13px) scale(0.95);
-        filter: blur(4px);
+        transform: rotate(63deg);
       }
 
       to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
+        transform: rotate(-297deg);
       }
     }
 
-    /* ================================
+    @keyframes globeFloat {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes globeGridRotate {
+      from {
+        transform: rotateY(0deg) rotateZ(-4deg);
+      }
+
+      to {
+        transform: rotateY(360deg) rotateZ(-4deg);
+      }
+    }
+
+    /* =========================================================
        RESPONSIVE
-    ================================= */
+    ========================================================= */
 
     @media (max-width: 1080px) {
       .desktop-nav {
         display: none;
       }
 
-      .menu-toggle {
+      .menu-button {
         display: grid;
-        place-items: center;
       }
 
       .hero-grid {
-        grid-template-columns: 1fr 420px;
-        gap: 28px;
+        grid-template-columns: 1fr 0.9fr;
+        gap: 35px;
       }
 
-      .projects-grid,
-      .modules-grid {
+      .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 860px) {
-      :root {
-        --header-height: 78px;
-      }
-
-      .brand-mini-slogan {
-        display: none;
-      }
-
+    @media (max-width: 850px) {
       .hero {
-        min-height: auto;
-        padding-top: 58px;
+        padding-top: calc(var(--header-height) + 48px);
       }
 
       .hero-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero-content {
+      .hero-copy {
         text-align: center;
+      }
+
+      .hero-badge {
+        margin-inline: auto;
       }
 
       .hero-description {
         margin-inline: auto;
       }
 
-      .official-slogan {
-        border-left: 0;
-        border-top: 4px solid var(--orange-bright);
-        border-radius: 17px;
-      }
-
-      .hero-actions {
+      .hero-actions,
+      .hero-stats {
         justify-content: center;
       }
 
-      .hero-stats {
-        margin-inline: auto;
+      .globe-zone {
+        min-height: 475px;
       }
 
-      .compass-stage {
-        min-height: 500px;
-      }
-
-      .contact-wrap {
-        grid-template-columns: 1fr;
-      }
-
+      .modules-grid,
       .social-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
+      .contact-grid {
+        grid-template-columns: 1fr;
       }
 
-      .footer-brand {
-        grid-column: 1 / -1;
+      .contact-intro {
+        text-align: center;
+      }
+
+      .contact-logo {
+        margin-inline: auto;
       }
     }
 
-    @media (max-width: 620px) {
+    @media (max-width: 650px) {
+      :root {
+        --header-height: 76px;
+      }
+
       .container {
-        width: min(100% - 22px, 1180px);
+        width: min(100% - 24px, 1180px);
       }
 
-      .site-header {
-        min-height: 72px;
+      .section {
+        padding: 76px 0;
       }
 
-      .header-inner {
-        min-height: 72px;
+      .brand-logo-shell {
+        width: 51px;
+        height: 51px;
+        flex-basis: 51px;
       }
 
-      .brand-logo {
-        width: 47px;
-        height: 47px;
-      }
-
-      .brand-title {
-        max-width: 190px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      .brand-subtitle {
+        display: none;
       }
 
       .language-switcher {
         display: none;
       }
 
-      .hero {
-        padding: 45px 0 60px;
+      .mobile-menu .language-switcher {
+        width: fit-content;
+
+        display: flex;
       }
 
       .hero-title {
-        font-size: clamp(2.15rem, 13vw, 3.65rem);
-      }
-
-      .hero-title span {
-        font-size: 1.05rem;
+        font-size: clamp(2.65rem, 15vw, 4.5rem);
       }
 
       .hero-actions {
-        display: grid;
-        grid-template-columns: 1fr;
+        flex-direction: column;
       }
 
-      .btn {
+      .button {
         width: 100%;
       }
 
       .hero-stats {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .compass-stage {
-        min-height: 395px;
+      .hero-stat {
+        min-width: 0;
       }
 
-      .compass {
-        width: min(355px, 92vw);
+      .globe-zone {
+        min-height: 410px;
       }
 
-      .compass-center {
-        width: 61%;
-        padding: 18px;
+      .globe-platform {
+        width: 355px;
       }
 
-      .project-label {
-        font-size: 0.98rem;
-      }
-
-      .compass-caption {
-        bottom: -2px;
-        max-width: 90%;
-        text-align: center;
-        font-size: 0.67rem;
-      }
-
-      .section {
-        padding: 68px 0;
+      .digital-globe {
+        width: 285px;
       }
 
       .projects-grid,
@@ -1673,35 +2103,46 @@
       }
 
       .project-card {
-        min-height: 230px;
+        min-height: 0;
       }
 
-      .contact-brand {
-        padding: 26px;
+      .contact-shell {
+        padding: 29px 20px;
       }
 
-      .contact-item {
-        align-items: flex-start;
-        padding: 17px;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-      .footer-brand {
-        grid-column: auto;
-        flex-direction: column;
-      }
-
+      .footer-top,
       .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .footer-slogan {
-        text-align: left;
+      .footer-nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .brand-title {
+        max-width: 175px;
+      }
+
+      .globe-platform {
+        width: 315px;
+      }
+
+      .digital-globe {
+        width: 255px;
+      }
+
+      .project-slide-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 1.2rem;
+      }
+
+      .project-slide-title {
+        font-size: 0.96rem;
       }
     }
 
@@ -1719,939 +2160,2059 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main-content">
-    Ale dirèk nan kontni an
-  </a>
+  <div class="page-effects"></div>
+  <div class="grid-overlay"></div>
 
-  <!-- ==================================
-       GLOBAL HEADER
-  =================================== -->
-  <header class="site-header">
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+
+  <header class="site-header" id="siteHeader">
     <div class="container header-inner">
-
-      <a
-        class="brand"
-        href="#home"
-        aria-label="Retounen sou paj prensipal la"
-      >
-        <img
-          class="brand-logo"
-          src="assets/bss1815-pro-max-dmp-logo.png"
-          alt="Logo BSS1815-PRO-MAX-DMP"
-          onerror="this.src='assets/logo.png'"
-        >
+      <a class="brand" href="#home" aria-label="BSS1815-PRO-MAX-DMP">
+        <span class="brand-logo-shell">
+          <img
+            class="brand-logo"
+            src="assets/bss1815-pro-max-dmp.jpeg"
+            alt="Logo BSS1815-PRO-MAX-DMP"
+            onerror="this.src='assets/bss1815-pro-max-dmp.jpg';"
+          />
+        </span>
 
         <span class="brand-copy">
-          <span class="brand-title">
-            BSS1815-PRO-MAX-DMP
-          </span>
+          <span class="brand-title">BSS1815-PRO-MAX-DMP</span>
 
-          <span class="brand-mini-slogan">
-            DEVAN DEVAN NÈT · BATI POU JODI A · PARE POU DEMEN
+          <span
+            class="brand-subtitle"
+            data-i18n="brandSubtitle"
+          >
+            Digital Management Platform
           </span>
         </span>
       </a>
 
       <nav
         class="desktop-nav"
-        aria-label="Navigasyon prensipal"
+        aria-label="Main navigation"
       >
-        <a href="#home">Akèy</a>
-        <a href="#projects">4 Pwojè yo</a>
-        <a href="#modules">Modil yo</a>
-        <a href="#social">Rezo Sosyal</a>
-        <a href="#contact">Kontak</a>
+        <a
+          class="nav-link active"
+          href="#home"
+          data-i18n="navHome"
+        >
+          Akèy
+        </a>
+
+        <a
+          class="nav-link"
+          href="#projects"
+          data-i18n="navProjects"
+        >
+          Pwojè
+        </a>
+
+        <a
+          class="nav-link"
+          href="#modules"
+          data-i18n="navModules"
+        >
+          Modil
+        </a>
+
+        <a
+          class="nav-link"
+          href="#social"
+          data-i18n="navSocial"
+        >
+          Rezo Sosyal
+        </a>
+
+        <a
+          class="nav-link"
+          href="#contact"
+          data-i18n="navContact"
+        >
+          Kontakte
+        </a>
       </nav>
 
-      <div class="header-actions">
+      <div class="header-tools">
         <div
           class="language-switcher"
-          aria-label="Chwazi lang"
+          aria-label="Language selector"
         >
           <button
-            type="button"
             class="language-button active"
-            data-language="ht"
+            type="button"
+            data-lang="ht"
+            aria-label="Kreyòl"
           >
             KRE
           </button>
 
           <button
-            type="button"
             class="language-button"
-            data-language="en"
+            type="button"
+            data-lang="en"
+            aria-label="English"
           >
             ENG
           </button>
 
           <button
-            type="button"
             class="language-button"
-            data-language="fr"
+            type="button"
+            data-lang="fr"
+            aria-label="Français"
           >
             FRA
           </button>
         </div>
 
         <button
-          class="menu-toggle"
-          id="menuToggle"
+          class="menu-button"
+          id="menuButton"
           type="button"
-          aria-label="Ouvri meni an"
-          aria-controls="mobileNav"
+          aria-label="Open menu"
           aria-expanded="false"
+          aria-controls="mobileMenu"
         >
-          ☰
+          <span class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
         </button>
       </div>
     </div>
 
-    <nav
-      class="mobile-nav"
-      id="mobileNav"
-      aria-label="Navigasyon mobil"
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
     >
-      <div class="container mobile-nav-inner">
-        <a href="#home">Akèy</a>
-        <a href="#projects">4 Pwojè yo</a>
-        <a href="#modules">Modil yo</a>
-        <a href="#social">Rezo Sosyal</a>
-        <a href="#contact">Kontak</a>
+      <nav class="mobile-nav">
+        <a
+          class="mobile-nav-link"
+          href="#home"
+          data-i18n="navHome"
+        >
+          Akèy
+        </a>
+
+        <a
+          class="mobile-nav-link"
+          href="#projects"
+          data-i18n="navProjects"
+        >
+          Pwojè
+        </a>
+
+        <a
+          class="mobile-nav-link"
+          href="#modules"
+          data-i18n="navModules"
+        >
+          Modil
+        </a>
+
+        <a
+          class="mobile-nav-link"
+          href="#social"
+          data-i18n="navSocial"
+        >
+          Rezo Sosyal
+        </a>
+
+        <a
+          class="mobile-nav-link"
+          href="#contact"
+          data-i18n="navContact"
+        >
+          Kontakte
+        </a>
+      </nav>
+
+      <div class="language-switcher">
+        <button
+          class="language-button active"
+          type="button"
+          data-lang="ht"
+        >
+          KRE
+        </button>
+
+        <button
+          class="language-button"
+          type="button"
+          data-lang="en"
+        >
+          ENG
+        </button>
+
+        <button
+          class="language-button"
+          type="button"
+          data-lang="fr"
+        >
+          FRA
+        </button>
       </div>
-    </nav>
+    </div>
   </header>
 
-  <main id="main-content">
-
-    <!-- ==================================
+  <main>
+    <!-- =====================================================
          HERO
-    =================================== -->
-    <section class="hero" id="home">
-      <div class="container hero-grid">
+    ====================================================== -->
 
-        <div class="hero-content">
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Platfòm Dijital Santral
+    <section
+      class="hero"
+      id="home"
+    >
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+
+            <span data-i18n="heroBadge">
+              Platfòm dijital santral
+            </span>
           </div>
 
           <h1 class="hero-title">
-            BSS1815
-            <span>PRO-MAX-DMP</span>
+            <span>BSS1815</span>
+
+            <span class="orange-line">
+              PRO-MAX DMP
+            </span>
           </h1>
 
-          <p class="hero-description">
-            Yon platfòm dijital modèn ki rasanble administrasyon,
-            kominikasyon, sèvis, medya, teknoloji, radyo ak devlopman
-            kominotè sou yon sèl sistèm.
+          <p
+            class="hero-slogan"
+            data-i18n="slogan"
+          >
+            DEVAN DEVAN NÈT. BATI POU JODI A. PARE POU DEMEN.
           </p>
 
-          <div class="official-slogan">
-            DEVAN DEVAN NÈT.<br>
-            BATI POU JODI A. PARE POU DEMEN.
-          </div>
+          <p
+            class="hero-description"
+            data-i18n="heroDescription"
+          >
+            Yon sèl platfòm pwofesyonèl ki reyini jesyon dijital,
+            kominikasyon, radyo, sèvis miltip ak fòmasyon sou yon
+            fondasyon modèn, sekirize ak evolitif.
+          </p>
 
           <div class="hero-actions">
             <a
-              class="btn btn-primary"
+              class="button button-primary"
               href="#projects"
             >
-              🧭 Dekouvri 4 Pwojè yo
+              <span data-i18n="exploreProjects">
+                Dekouvri 4 pwojè yo
+              </span>
+
+              <span aria-hidden="true">➜</span>
             </a>
 
             <a
-              class="btn btn-secondary"
+              class="button button-secondary"
               href="#modules"
             >
-              ◉ Gade Tout Modil yo
+              <span data-i18n="viewModules">
+                Gade modil yo
+              </span>
+
+              <span aria-hidden="true">▦</span>
             </a>
           </div>
 
           <div class="hero-stats">
-            <div class="stat">
-              <strong>4</strong>
-              <span>Pwojè ofisyèl konekte ansanm</span>
+            <div class="hero-stat">
+              <div class="hero-stat-number">4</div>
+
+              <div
+                class="hero-stat-label"
+                data-i18n="statProjects"
+              >
+                Gwo pwojè
+              </div>
             </div>
 
-            <div class="stat">
-              <strong>38+</strong>
-              <span>Modil dijital pou operasyon yo</span>
+            <div class="hero-stat">
+              <div class="hero-stat-number">38+</div>
+
+              <div
+                class="hero-stat-label"
+                data-i18n="statModules"
+              >
+                Modil dijital
+              </div>
             </div>
 
-            <div class="stat">
-              <strong>3</strong>
-              <span>Lang: Kreyòl, Anglè ak Fransè</span>
+            <div class="hero-stat">
+              <div class="hero-stat-number">3</div>
+
+              <div
+                class="hero-stat-label"
+                data-i18n="statLanguages"
+              >
+                Lang
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- ANIMATED COMPASS -->
-        <div
-          class="compass-stage"
-          aria-label="Bousòl anime kat pwojè yo"
-        >
-          <div class="compass-glow"></div>
+        <!-- DIGITAL COMMAND GLOBE -->
 
-          <div class="compass">
-            <div class="compass-ring">
-              <span class="north">N</span>
-              <span class="east">E</span>
-              <span class="south">S</span>
-              <span class="west">W</span>
-            </div>
+        <div class="globe-zone">
+          <div
+            class="globe-platform"
+            aria-label="Digital globe showing four projects"
+          >
+            <div class="globe-orbit"></div>
+            <div class="globe-orbit-two"></div>
 
-            <div class="compass-lines"></div>
-            <div class="compass-needle"></div>
+            <div class="digital-globe">
+              <div class="globe-axis"></div>
 
-            <div class="compass-center">
-              <div class="project-display">
-                <span
-                  class="project-number"
-                  id="projectNumber"
-                >
-                  PWOJÈ 01 / 04
-                </span>
+              <div class="globe-grid">
+                <!-- Longitudes -->
 
-                <span
-                  class="project-label"
-                  id="rotatingProject"
-                >
-                  BSS1815-PRO-MAX-DMP
-                </span>
+                <span class="longitude longitude-1"></span>
+                <span class="longitude longitude-2"></span>
+                <span class="longitude longitude-3"></span>
+                <span class="longitude longitude-4"></span>
+
+                <!-- Latitudes -->
+
+                <span class="latitude latitude-1"></span>
+                <span class="latitude latitude-2"></span>
+                <span class="latitude latitude-3"></span>
+                <span class="latitude latitude-4"></span>
+                <span class="latitude latitude-5"></span>
+
+                <span class="globe-equator"></span>
+              </div>
+
+              <div class="globe-content">
+                <article class="project-slide active">
+                  <div class="project-slide-icon">◆</div>
+
+                  <div
+                    class="project-slide-small"
+                    data-i18n="globeProjectLabel"
+                  >
+                    Pwojè santral
+                  </div>
+
+                  <h2 class="project-slide-title">
+                    BSS1815-PRO-MAX-DMP
+                  </h2>
+
+                  <div class="project-slide-counter">
+                    01 / 04
+                  </div>
+                </article>
+
+                <article class="project-slide">
+                  <div class="project-slide-icon">☀</div>
+
+                  <div
+                    class="project-slide-small"
+                    data-i18n="globeCommunityLabel"
+                  >
+                    Òganizasyon kominotè
+                  </div>
+
+                  <h2 class="project-slide-title">
+                    BRIYANT SOLEY 1815
+                  </h2>
+
+                  <div class="project-slide-counter">
+                    02 / 04
+                  </div>
+                </article>
+
+                <article class="project-slide">
+                  <div class="project-slide-icon">♫</div>
+
+                  <div
+                    class="project-slide-small"
+                    data-i18n="globeRadioLabel"
+                  >
+                    Radyo dijital
+                  </div>
+
+                  <h2 class="project-slide-title">
+                    PRO-MAX FM
+                  </h2>
+
+                  <div class="project-slide-counter">
+                    03 / 04
+                  </div>
+                </article>
+
+                <article class="project-slide">
+                  <div class="project-slide-icon">✦</div>
+
+                  <div
+                    class="project-slide-small"
+                    data-i18n="globeServicesLabel"
+                  >
+                    Sèvis pwofesyonèl
+                  </div>
+
+                  <h2 class="project-slide-title">
+                    MAXIMAX MULTI SERVICES
+                  </h2>
+
+                  <div class="project-slide-counter">
+                    04 / 04
+                  </div>
+                </article>
               </div>
             </div>
-          </div>
 
-          <div class="compass-caption">
-            Kat pwojè · Yon sèl vizyon · Yon sèl platfòm
+            <div
+              class="globe-status"
+              data-i18n="systemOnline"
+            >
+              Sistèm aktif
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================================
-         FOUR PROJECTS
-    =================================== -->
+    <!-- =====================================================
+         PROJECTS
+    ====================================================== -->
+
     <section
       class="section projects-section"
       id="projects"
     >
       <div class="container">
-        <header class="section-header">
-          <span class="section-kicker">
-            Ekosistèm PRO-MAX
+        <div class="section-heading">
+          <span
+            class="section-label"
+            data-i18n="projectsLabel"
+          >
+            Ekosistèm nou an
           </span>
 
           <h2 class="section-title">
-            Kat pwojè ofisyèl yo
+            <span data-i18n="projectsTitleStart">
+              Kat pwojè.
+            </span>
+
+            <span
+              class="orange-text"
+              data-i18n="projectsTitleEnd"
+            >
+              Yon sèl vizyon.
+            </span>
           </h2>
 
-          <p class="section-description">
-            Chak pwojè gen pwòp misyon pa li, men yo tout konekte
-            anba menm vizyon dijital BSS1815-PRO-MAX-DMP.
+          <p
+            class="section-description"
+            data-i18n="projectsDescription"
+          >
+            Chak pwojè gen pwòp misyon li, men yo tout konekte anba
+            menm sistèm BSS1815-PRO-MAX-DMP la.
           </p>
-        </header>
+        </div>
 
         <div class="projects-grid">
-
           <article class="project-card">
-            <div class="project-icon">◆</div>
+            <div class="project-number">01</div>
+            <div class="project-card-icon">◆</div>
 
-            <h3>BSS1815-PRO-MAX-DMP</h3>
+            <h3 class="project-card-title">
+              BSS1815-PRO-MAX-DMP
+            </h3>
 
-            <p>
-              Sant jesyon dijital pou administrasyon, manm,
-              kominikasyon, dokiman, evènman, done ak operasyon.
+            <p
+              class="project-card-description"
+              data-i18n="projectOneDescription"
+            >
+              Sant jesyon dijital pou administre manm, dokiman,
+              kominikasyon, evènman, rapò, sekirite ak operasyon.
             </p>
 
-            <a
-              class="project-link"
-              href="#modules"
+            <button
+              class="project-card-button open-project"
+              type="button"
+              data-project="BSS1815-PRO-MAX-DMP"
             >
-              Gade modil platfòm la →
-            </a>
+              <span data-i18n="openProject">
+                Louvri pwojè
+              </span>
+
+              <span>➜</span>
+            </button>
           </article>
 
           <article class="project-card">
-            <div class="project-icon">☀</div>
+            <div class="project-number">02</div>
+            <div class="project-card-icon">☀</div>
 
-            <h3>BRIYANT SOLEY 1815</h3>
+            <h3 class="project-card-title">
+              BRIYANT SOLEY 1815
+            </h3>
 
-            <p>
-              Espas ofisyèl pou prezève istwa, kilti, mizik,
-              lidèchip, memwa ak eritaj kominote Signo a.
+            <p
+              class="project-card-description"
+              data-i18n="projectTwoDescription"
+            >
+              Espas ofisyèl òganizasyon an pou istwa, lidèchip,
+              manm, mizisyen, evènman, temwayaj ak kominote a.
             </p>
 
-            <a
-              class="project-link"
-              href="https://briyantsoleysigno1815.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              class="project-card-button open-project"
+              type="button"
+              data-project="BRIYANT SOLEY 1815"
             >
-              Vizite sit entènèt la →
-            </a>
+              <span data-i18n="openProject">
+                Louvri pwojè
+              </span>
+
+              <span>➜</span>
+            </button>
           </article>
 
           <article class="project-card">
-            <div class="project-icon">◉</div>
+            <div class="project-number">03</div>
+            <div class="project-card-icon">♫</div>
 
-            <h3>PRO-MAXFM</h3>
+            <h3 class="project-card-title">
+              PRO-MAX FM
+            </h3>
 
-            <p>
-              Radyo dijital pou emisyon an dirèk, mizik,
-              podcasts, nouvèl, entèvyou ak pwogram kominotè.
+            <p
+              class="project-card-description"
+              data-i18n="projectThreeDescription"
+            >
+              Radyo dijital pou emisyon an dirèk, podcast, nouvèl,
+              mizik, videyo, entèvyou ak pwogram kominotè.
             </p>
 
-            <a
-              class="project-link"
-              href="#social"
+            <button
+              class="project-card-button open-project"
+              type="button"
+              data-project="PRO-MAX FM"
             >
-              Dekouvri medya yo →
-            </a>
+              <span data-i18n="openProject">
+                Louvri pwojè
+              </span>
+
+              <span>➜</span>
+            </button>
           </article>
 
           <article class="project-card">
-            <div class="project-icon">▣</div>
+            <div class="project-number">04</div>
+            <div class="project-card-icon">✦</div>
 
-            <h3>MAXIMAX MULTI SERVICES</h3>
+            <h3 class="project-card-title">
+              MAXIMAX MULTI SERVICES
+            </h3>
 
-            <p>
-              Yon sant sèvis miltip pou ede moun, fanmi,
-              biznis ak kominote a jwenn solisyon pratik.
+            <p
+              class="project-card-description"
+              data-i18n="projectFourDescription"
+            >
+              Yon sant sèvis miltip pou sipò dijital, medya,
+              dokiman, pwomosyon, antreprenarya ak sèvis kominotè.
             </p>
 
-            <a
-              class="project-link"
-              href="#contact"
+            <button
+              class="project-card-button open-project"
+              type="button"
+              data-project="MAXIMAX MULTI SERVICES"
             >
-              Kontakte sèvis yo →
-            </a>
-          </article>
+              <span data-i18n="openProject">
+                Louvri pwojè
+              </span>
 
+              <span>➜</span>
+            </button>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ==================================
+    <!-- =====================================================
          MODULES
-    =================================== -->
+    ====================================================== -->
+
     <section
       class="section"
       id="modules"
     >
       <div class="container">
-        <header class="section-header">
-          <span class="section-kicker">
-            Sistèm Santral
+        <div class="section-heading">
+          <span
+            class="section-label"
+            data-i18n="modulesLabel"
+          >
+            Sant operasyon
           </span>
 
           <h2 class="section-title">
-            Modil prensipal yo
+            <span data-i18n="modulesTitleStart">
+              Modil ki fèt pou
+            </span>
+
+            <span
+              class="orange-text"
+              data-i18n="modulesTitleEnd"
+            >
+              travay reyèl.
+            </span>
           </h2>
 
-          <p class="section-description">
-            Tout zouti yo fèt pou travay ansanm pandan yo respekte
-            menm logo, menm slogan ak menm idantite Orange + Black Fade.
+          <p
+            class="section-description"
+            data-i18n="modulesDescription"
+          >
+            Zouti pwofesyonèl pou jere, kominike, òganize,
+            kontwole ak devlope tout aktivite platfòm la.
           </p>
-        </header>
+        </div>
 
         <div class="modules-grid">
-
-          <a class="module-card" href="#contact">
-            <span class="module-number">01</span>
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="AI Center"
+          >
             <span class="module-icon">AI</span>
-            <h3>AI Center</h3>
-            <p>
-              Asistan AI, ekriti, vwa, analiz ak otomatik dijital.
-            </p>
-          </a>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">02</span>
-            <span class="module-icon">CRM</span>
-            <h3>CRM System</h3>
-            <p>
-              Jesyon manm, kontak, relasyon ak enfòmasyon itilizatè.
-            </p>
-          </a>
+            <h3
+              class="module-title"
+              data-i18n="moduleAiTitle"
+            >
+              AI Center
+            </h3>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">03</span>
+            <p
+              class="module-description"
+              data-i18n="moduleAiDescription"
+            >
+              Asistan AI, ekriti, vwa, kontni ak otomatik entelijan.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
+
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="Communication Center"
+          >
             <span class="module-icon">✉</span>
-            <h3>Communication Center</h3>
-            <p>
-              Anons, avi, kondoleyans, fèt, evènman ak mesaj ofisyèl.
-            </p>
-          </a>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">04</span>
+            <h3
+              class="module-title"
+              data-i18n="moduleCommunicationTitle"
+            >
+              Communication Center
+            </h3>
+
+            <p
+              class="module-description"
+              data-i18n="moduleCommunicationDescription"
+            >
+              Anons, kondoleyans, anivèsè, ijans ak mesaj ofisyèl.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
+
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="CRM System"
+          >
+            <span class="module-icon">◎</span>
+
+            <h3
+              class="module-title"
+              data-i18n="moduleCrmTitle"
+            >
+              CRM System
+            </h3>
+
+            <p
+              class="module-description"
+              data-i18n="moduleCrmDescription"
+            >
+              Jesyon manm, kontak, relasyon ak dosye kominotè.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
+
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="Digital Registry"
+          >
             <span class="module-icon">▤</span>
-            <h3>Digital Registry</h3>
-            <p>
-              Rejis dijital pou manm, mizisyen, fanatik ak patnè.
-            </p>
-          </a>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">05</span>
-            <span class="module-icon">▱</span>
-            <h3>Document Center</h3>
-            <p>
-              Kreye, òganize, konsève ak pibliye dokiman ofisyèl.
-            </p>
-          </a>
+            <h3
+              class="module-title"
+              data-i18n="moduleRegistryTitle"
+            >
+              Digital Registry
+            </h3>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">06</span>
+            <p
+              class="module-description"
+              data-i18n="moduleRegistryDescription"
+            >
+              Rejis dijital pou manm, mizisyen, fanatik ak machann.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
+
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="Document Center"
+          >
+            <span class="module-icon">▧</span>
+
+            <h3
+              class="module-title"
+              data-i18n="moduleDocumentsTitle"
+            >
+              Document Center
+            </h3>
+
+            <p
+              class="module-description"
+              data-i18n="moduleDocumentsDescription"
+            >
+              Kreye, sere, modifye, pibliye ak ekspòte dokiman.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
+
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="Reports & Analytics"
+          >
+            <span class="module-icon">⌁</span>
+
+            <h3
+              class="module-title"
+              data-i18n="moduleReportsTitle"
+            >
+              Reports & Analytics
+            </h3>
+
+            <p
+              class="module-description"
+              data-i18n="moduleReportsDescription"
+            >
+              Estatistik, rapò, kontwòl pèfòmans ak analiz aktivite.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
+
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="Event Management"
+          >
             <span class="module-icon">◫</span>
-            <h3>Event Management</h3>
-            <p>
-              Planifikasyon, kalandriye, rapèl ak jesyon evènman.
-            </p>
-          </a>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">07</span>
-            <span class="module-icon">▥</span>
-            <h3>Reports & Analytics</h3>
-            <p>
-              Estatistik, rapò aktivite ak vizyon operasyon an tan reyèl.
-            </p>
-          </a>
+            <h3
+              class="module-title"
+              data-i18n="moduleEventsTitle"
+            >
+              Event Management
+            </h3>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">08</span>
-            <span class="module-icon">▶</span>
-            <h3>Live Radio</h3>
-            <p>
-              PRO-MAX FM an dirèk, pwogram, mizik ak kontni odyo.
+            <p
+              class="module-description"
+              data-i18n="moduleEventsDescription"
+            >
+              Planifikasyon evènman, kalandriye, prezans ak rapèl.
             </p>
-          </a>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">09</span>
-            <span class="module-icon">▸</span>
-            <h3>Media Center</h3>
-            <p>
-              Foto, videyo, galri, livestream ak kontni dijital.
-            </p>
-          </a>
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
 
-          <a class="module-card" href="#contact">
-            <span class="module-number">10</span>
-            <span class="module-icon">A</span>
-            <h3>PRO-MAX Academy</h3>
-            <p>
-              Fòmasyon, leson, prezantasyon ak devlopman kapasite.
-            </p>
-          </a>
-
-          <a class="module-card" href="#contact">
-            <span class="module-number">11</span>
-            <span class="module-icon">◆</span>
-            <h3>Admin Dashboard</h3>
-            <p>
-              Kontwòl sistèm, itilizatè, wòl, pèmisyon ak aktivite.
-            </p>
-          </a>
-
-          <a class="module-card" href="#contact">
-            <span class="module-number">12</span>
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="Admin Dashboard"
+          >
             <span class="module-icon">⚙</span>
-            <h3>Settings Center</h3>
-            <p>
-              Paramèt platfòm, lang, sekirite ak entegrasyon.
-            </p>
-          </a>
 
+            <h3
+              class="module-title"
+              data-i18n="moduleAdminTitle"
+            >
+              Admin Dashboard
+            </h3>
+
+            <p
+              class="module-description"
+              data-i18n="moduleAdminDescription"
+            >
+              Wòl, pèmisyon, sekirite, aktivite ak kontwòl sistèm.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
+
+          <button
+            class="module-card module-action"
+            type="button"
+            data-module="PRO-MAX Academy"
+          >
+            <span class="module-icon">✦</span>
+
+            <h3
+              class="module-title"
+              data-i18n="moduleAcademyTitle"
+            >
+              PRO-MAX Academy
+            </h3>
+
+            <p
+              class="module-description"
+              data-i18n="moduleAcademyDescription"
+            >
+              Fòmasyon, kou, videyo, resous ak devlopman kapasite.
+            </p>
+
+            <span
+              class="module-status"
+              data-i18n="moduleStatus"
+            >
+              Pare pou konekte
+            </span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- ==================================
+    <!-- =====================================================
          SOCIAL MEDIA
-    =================================== -->
+    ====================================================== -->
+
     <section
-      class="section social-section"
+      class="section"
       id="social"
     >
       <div class="container">
-        <header class="section-header">
-          <span class="section-kicker">
-            Konekte avèk nou
+        <div class="section-heading">
+          <span
+            class="section-label"
+            data-i18n="socialLabel"
+          >
+            Rete konekte
           </span>
 
           <h2 class="section-title">
-            Tout rezo sosyal yo
+            <span data-i18n="socialTitleStart">
+              Swiv mouvman an
+            </span>
+
+            <span
+              class="orange-text"
+              data-i18n="socialTitleEnd"
+            >
+              tout kote.
+            </span>
           </h2>
 
-          <p class="section-description">
-            Swiv BSS1815-PRO-MAX-DMP sou tout gwo platfòm sosyal ak medya yo.
+          <p
+            class="section-description"
+            data-i18n="socialDescription"
+          >
+            Jwenn BSS1815-PRO-MAX-DMP sou prensipal rezo sosyal ak
+            platfòm dijital yo.
           </p>
-        </header>
+        </div>
 
         <div class="social-grid">
-
-          <a
-            class="social-card"
-            href="https://www.youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="YouTube"
           >
-            <span class="social-icon">YT</span>
-            <span>
-              <strong>YouTube</strong>
-              <small>Videyo, prezantasyon ak emisyon</small>
-            </span>
-          </a>
+            <span class="social-icon">▶</span>
 
-          <a
-            class="social-card"
-            href="https://open.spotify.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">YouTube</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="Spotify"
           >
-            <span class="social-icon">SP</span>
-            <span>
-              <strong>Spotify</strong>
-              <small>Mizik, podcast ak pwogram odyo</small>
-            </span>
-          </a>
+            <span class="social-icon">♫</span>
 
-          <a
-            class="social-card"
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">Spotify</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="Facebook"
           >
-            <span class="social-icon">FB</span>
-            <span>
-              <strong>Facebook</strong>
-              <small>Nouvèl, kominote ak piblikasyon</small>
-            </span>
-          </a>
+            <span class="social-icon">f</span>
 
-          <a
-            class="social-card"
-            href="https://wa.me/14076405166"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">Facebook</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="WhatsApp"
           >
-            <span class="social-icon">WA</span>
-            <span>
-              <strong>WhatsApp</strong>
-              <small>Mesaj dirèk ak kominikasyon rapid</small>
-            </span>
-          </a>
+            <span class="social-icon">W</span>
 
-          <a
-            class="social-card"
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">WhatsApp</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="Instagram"
           >
-            <span class="social-icon">IG</span>
-            <span>
-              <strong>Instagram</strong>
-              <small>Foto, videyo ak istwa vizyèl</small>
-            </span>
-          </a>
+            <span class="social-icon">◎</span>
 
-          <a
-            class="social-card"
-            href="https://www.tiktok.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">Instagram</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="TikTok"
           >
-            <span class="social-icon">TK</span>
-            <span>
-              <strong>TikTok</strong>
-              <small>Videyo kout ak kontni espesyal</small>
-            </span>
-          </a>
+            <span class="social-icon">♪</span>
 
-          <a
-            class="social-card"
-            href="https://truthsocial.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">TikTok</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="Truth Social"
           >
-            <span class="social-icon">TS</span>
-            <span>
-              <strong>Truth Social</strong>
-              <small>Dènye piblikasyon ak enfòmasyon</small>
-            </span>
-          </a>
+            <span class="social-icon">T</span>
 
-          <a
-            class="social-card"
-            href="https://x.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">Truth Social</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="X / Twitter"
           >
             <span class="social-icon">X</span>
-            <span>
-              <strong>X / Twitter</strong>
-              <small>Nouvèl rapid ak mizajou ofisyèl</small>
-            </span>
-          </a>
 
-          <a
-            class="social-card"
-            href="https://telegram.org"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span>
+              <span class="social-name">X / Twitter</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
+
+          <button
+            class="social-card social-action-button"
+            type="button"
+            data-social="Telegram"
           >
-            <span class="social-icon">TG</span>
-            <span>
-              <strong>Telegram</strong>
-              <small>Chanèl, mesaj ak kominote dijital</small>
-            </span>
-          </a>
+            <span class="social-icon">➤</span>
 
+            <span>
+              <span class="social-name">Telegram</span>
+
+              <span
+                class="social-action"
+                data-i18n="socialAction"
+              >
+                Vizite platfòm la
+              </span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- ==================================
+    <!-- =====================================================
          CONTACT
-    =================================== -->
+    ====================================================== -->
+
     <section
       class="section"
       id="contact"
     >
       <div class="container">
-        <header class="section-header">
-          <span class="section-kicker">
-            Enfòmasyon Ofisyèl
-          </span>
+        <div class="contact-shell">
+          <div class="contact-grid">
+            <div class="contact-intro">
+              <img
+                class="contact-logo"
+                src="assets/bss1815-pro-max-dmp.jpeg"
+                alt="Logo BSS1815-PRO-MAX-DMP"
+                onerror="this.src='assets/bss1815-pro-max-dmp.jpg';"
+              />
 
-          <h2 class="section-title">
-            Kontakte BSS1815-PRO-MAX-DMP
-          </h2>
+              <h2 class="contact-title">
+                <span data-i18n="contactTitleStart">
+                  Ann bati
+                </span>
 
-          <p class="section-description">
-            Sèvi ak youn nan opsyon ofisyèl sa yo pou kontakte ekip platfòm la.
-          </p>
-        </header>
-
-        <div class="contact-wrap">
-
-          <div class="contact-brand">
-            <img
-              class="contact-logo"
-              src="assets/bss1815-pro-max-dmp-logo.png"
-              alt="Logo BSS1815-PRO-MAX-DMP"
-              onerror="this.src='assets/logo.png'"
-            >
-
-            <h2>
-              Yon vizyon.<br>
-              Kat pwojè.<br>
-              Yon sèl platfòm.
-            </h2>
-
-            <p>
-              DEVAN DEVAN NÈT.<br>
-              BATI POU JODI A. PARE POU DEMEN.
-            </p>
-          </div>
-
-          <div class="contact-list">
-
-            <div class="contact-item">
-              <div class="contact-icon">@</div>
-
-              <div>
-                <span>Email</span>
-
-                <a
-                  href="mailto:BSS1815-PRO-MAX-DMP@gmail.com"
+                <span
+                  class="orange-text"
+                  data-i18n="contactTitleEnd"
                 >
-                  BSS1815-PRO-MAX-DMP@gmail.com
-                </a>
-              </div>
+                  lavni dijital la.
+                </span>
+              </h2>
+
+              <p
+                class="contact-copy"
+                data-i18n="contactDescription"
+              >
+                Kontakte ekip BSS1815-PRO-MAX-DMP pou enfòmasyon,
+                kolaborasyon oswa sipò.
+              </p>
             </div>
 
-            <div class="contact-item">
-              <div class="contact-icon">WWW</div>
+            <div class="contact-items">
+              <a
+                class="contact-item"
+                href="mailto:BSS1815-PRO-MAX-DMP@gmail.com"
+              >
+                <span class="contact-item-icon">✉</span>
 
-              <div>
-                <span>Website</span>
+                <span>
+                  <span
+                    class="contact-item-label"
+                    data-i18n="emailLabel"
+                  >
+                    Imèl
+                  </span>
 
-                <a
-                  href="https://briyantsoleysigno1815.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  briyantsoleysigno1815.com
-                </a>
-              </div>
+                  <span class="contact-item-value">
+                    BSS1815-PRO-MAX-DMP@gmail.com
+                  </span>
+                </span>
+              </a>
+
+              <a
+                class="contact-item"
+                href="https://briyantsoleysigno1815.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="contact-item-icon">⌂</span>
+
+                <span>
+                  <span
+                    class="contact-item-label"
+                    data-i18n="websiteLabel"
+                  >
+                    Sit entènèt
+                  </span>
+
+                  <span class="contact-item-value">
+                    briyantsoleysigno1815.com
+                  </span>
+                </span>
+              </a>
+
+              <a
+                class="contact-item"
+                href="tel:+14076405166"
+              >
+                <span class="contact-item-icon">☎</span>
+
+                <span>
+                  <span
+                    class="contact-item-label"
+                    data-i18n="phoneLabel"
+                  >
+                    Telefòn
+                  </span>
+
+                  <span class="contact-item-value">
+                    (407) 640-5166
+                  </span>
+                </span>
+              </a>
+
+              <a
+                class="contact-item"
+                href="https://wa.me/14076405166"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="contact-item-icon">W</span>
+
+                <span>
+                  <span class="contact-item-label">
+                    WhatsApp
+                  </span>
+
+                  <span class="contact-item-value">
+                    +1 (407) 640-5166
+                  </span>
+                </span>
+              </a>
             </div>
-
-            <div class="contact-item">
-              <div class="contact-icon">TEL</div>
-
-              <div>
-                <span>Telefòn</span>
-
-                <a href="tel:+14076405166">
-                  (407) 640-5166
-                </a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon">WA</div>
-
-              <div>
-                <span>WhatsApp</span>
-
-                <a
-                  href="https://wa.me/14076405166"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Ekri nou sou WhatsApp
-                </a>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ==================================
-       GLOBAL FOOTER
-  =================================== -->
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
   <footer class="site-footer">
     <div class="container">
-
       <div class="footer-top">
-
         <div class="footer-brand">
           <img
             class="footer-logo"
-            src="assets/bss1815-pro-max-dmp-logo.png"
+            src="assets/bss1815-pro-max-dmp.jpeg"
             alt="Logo BSS1815-PRO-MAX-DMP"
-            onerror="this.src='assets/logo.png'"
-          >
+            onerror="this.src='assets/bss1815-pro-max-dmp.jpg';"
+          />
 
           <div>
-            <h3>
+            <div class="footer-name">
               BSS1815-PRO-MAX-DMP
-            </h3>
+            </div>
 
-            <p>
-              Platfòm dijital santral pou administrasyon,
-              kominikasyon, teknoloji, medya ak devlopman kominotè.
-            </p>
-          </div>
-        </div>
-
-        <div class="footer-column">
-          <h4>Navigasyon</h4>
-
-          <div class="footer-links">
-            <a href="#home">Akèy</a>
-            <a href="#projects">4 Pwojè yo</a>
-            <a href="#modules">Modil yo</a>
-            <a href="#social">Rezo Sosyal</a>
-            <a href="#contact">Kontak</a>
-          </div>
-        </div>
-
-        <div class="footer-column">
-          <h4>Kontak</h4>
-
-          <div class="footer-links">
-            <a href="mailto:BSS1815-PRO-MAX-DMP@gmail.com">
-              Email Ofisyèl
-            </a>
-
-            <a href="tel:+14076405166">
-              (407) 640-5166
-            </a>
-
-            <a
-              href="https://briyantsoleysigno1815.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <div
+              class="footer-slogan"
+              data-i18n="slogan"
             >
-              Sit Entènèt
-            </a>
+              DEVAN DEVAN NÈT. BATI POU JODI A. PARE POU DEMEN.
+            </div>
           </div>
         </div>
 
+        <nav class="footer-nav">
+          <a
+            class="footer-link"
+            href="#home"
+            data-i18n="navHome"
+          >
+            Akèy
+          </a>
+
+          <a
+            class="footer-link"
+            href="#projects"
+            data-i18n="navProjects"
+          >
+            Pwojè
+          </a>
+
+          <a
+            class="footer-link"
+            href="#modules"
+            data-i18n="navModules"
+          >
+            Modil
+          </a>
+
+          <a
+            class="footer-link"
+            href="#social"
+            data-i18n="navSocial"
+          >
+            Rezo Sosyal
+          </a>
+
+          <a
+            class="footer-link"
+            href="#contact"
+            data-i18n="navContact"
+          >
+            Kontakte
+          </a>
+        </nav>
       </div>
 
       <div class="footer-bottom">
-        <p>
+        <span>
           © <span id="currentYear"></span>
-          BSS1815-PRO-MAX-DMP. Tout dwa rezève.
-        </p>
+          BSS1815-PRO-MAX-DMP.
+          <span data-i18n="rightsReserved">
+            Tout dwa rezève.
+          </span>
+        </span>
 
-        <p class="footer-slogan">
-          DEVAN DEVAN NÈT. BATI POU JODI A. PARE POU DEMEN.
-        </p>
+        <span data-i18n="footerBuilt">
+          Konstwi pou jodi a. Pare pou demen.
+        </span>
       </div>
-
     </div>
   </footer>
 
-  <button
-    class="back-to-top"
-    id="backToTop"
-    type="button"
-    aria-label="Retounen anlè paj la"
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
   >
-    ↑
-  </button>
+    <div
+      class="toast-title"
+      id="toastTitle"
+    >
+      BSS1815-PRO-MAX-DMP
+    </div>
+
+    <div
+      class="toast-message"
+      id="toastMessage"
+    ></div>
+  </div>
 
   <script>
     "use strict";
 
-    /* ==================================
-       FOUR PROJECTS ROTATION
-    =================================== */
+    /* =========================================================
+       TRANSLATIONS
+    ========================================================= */
 
-    const projects = [
-      "BSS1815-PRO-MAX-DMP",
-      "BRIYANT SOLEY 1815",
-      "PRO-MAXFM",
-      "MAXIMAX MULTI SERVICES"
-    ];
+    const translations = {
+      ht: {
+        pageTitle: "BSS1815-PRO-MAX-DMP",
 
-    const rotatingProject =
-      document.getElementById("rotatingProject");
+        brandSubtitle: "Platfòm Jesyon Dijital",
 
-    const projectNumber =
-      document.getElementById("projectNumber");
+        navHome: "Akèy",
+        navProjects: "Pwojè",
+        navModules: "Modil",
+        navSocial: "Rezo Sosyal",
+        navContact: "Kontakte",
 
-    let currentProjectIndex = 0;
+        heroBadge: "Platfòm dijital santral",
 
-    function showNextProject() {
-      currentProjectIndex =
-        (currentProjectIndex + 1) % projects.length;
+        slogan:
+          "DEVAN DEVAN NÈT. BATI POU JODI A. PARE POU DEMEN.",
 
-      rotatingProject.style.animation = "none";
+        heroDescription:
+          "Yon sèl platfòm pwofesyonèl ki reyini jesyon dijital, kominikasyon, radyo, sèvis miltip ak fòmasyon sou yon fondasyon modèn, sekirize ak evolitif.",
 
-      void rotatingProject.offsetWidth;
+        exploreProjects: "Dekouvri 4 pwojè yo",
+        viewModules: "Gade modil yo",
 
-      rotatingProject.textContent =
-        projects[currentProjectIndex];
+        statProjects: "Gwo pwojè",
+        statModules: "Modil dijital",
+        statLanguages: "Lang",
 
-      projectNumber.textContent =
-        `PWOJÈ ${String(currentProjectIndex + 1).padStart(2, "0")} / 04`;
+        globeProjectLabel: "Pwojè santral",
+        globeCommunityLabel: "Òganizasyon kominotè",
+        globeRadioLabel: "Radyo dijital",
+        globeServicesLabel: "Sèvis pwofesyonèl",
+        systemOnline: "Sistèm aktif",
 
-      rotatingProject.style.animation =
-        "projectChange 0.48s ease";
-    }
+        projectsLabel: "Ekosistèm nou an",
+        projectsTitleStart: "Kat pwojè.",
+        projectsTitleEnd: "Yon sèl vizyon.",
 
-    setInterval(showNextProject, 2800);
+        projectsDescription:
+          "Chak pwojè gen pwòp misyon li, men yo tout konekte anba menm sistèm BSS1815-PRO-MAX-DMP la.",
 
-    /* ==================================
-       MOBILE MENU
-    =================================== */
+        projectOneDescription:
+          "Sant jesyon dijital pou administre manm, dokiman, kominikasyon, evènman, rapò, sekirite ak operasyon.",
 
-    const menuToggle =
-      document.getElementById("menuToggle");
+        projectTwoDescription:
+          "Espas ofisyèl òganizasyon an pou istwa, lidèchip, manm, mizisyen, evènman, temwayaj ak kominote a.",
 
-    const mobileNav =
-      document.getElementById("mobileNav");
+        projectThreeDescription:
+          "Radyo dijital pou emisyon an dirèk, podcast, nouvèl, mizik, videyo, entèvyou ak pwogram kominotè.",
 
-    function closeMobileMenu() {
-      mobileNav.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.textContent = "☰";
-    }
+        projectFourDescription:
+          "Yon sant sèvis miltip pou sipò dijital, medya, dokiman, pwomosyon, antreprenarya ak sèvis kominotè.",
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen =
-        mobileNav.classList.toggle("open");
+        openProject: "Louvri pwojè",
 
-      menuToggle.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
+        modulesLabel: "Sant operasyon",
+        modulesTitleStart: "Modil ki fèt pou",
+        modulesTitleEnd: "travay reyèl.",
 
-      menuToggle.textContent =
-        isOpen ? "✕" : "☰";
-    });
+        modulesDescription:
+          "Zouti pwofesyonèl pou jere, kominike, òganize, kontwole ak devlope tout aktivite platfòm la.",
 
-    mobileNav
-      .querySelectorAll("a")
-      .forEach((link) => {
-        link.addEventListener(
-          "click",
-          closeMobileMenu
-        );
-      });
+        moduleAiTitle: "AI Center",
+        moduleAiDescription:
+          "Asistan AI, ekriti, vwa, kontni ak otomatik entelijan.",
 
-    /* ==================================
-       LANGUAGE BUTTONS
-    =================================== */
+        moduleCommunicationTitle: "Communication Center",
+        moduleCommunicationDescription:
+          "Anons, kondoleyans, anivèsè, ijans ak mesaj ofisyèl.",
+
+        moduleCrmTitle: "CRM System",
+        moduleCrmDescription:
+          "Jesyon manm, kontak, relasyon ak dosye kominotè.",
+
+        moduleRegistryTitle: "Digital Registry",
+        moduleRegistryDescription:
+          "Rejis dijital pou manm, mizisyen, fanatik ak machann.",
+
+        moduleDocumentsTitle: "Document Center",
+        moduleDocumentsDescription:
+          "Kreye, sere, modifye, pibliye ak ekspòte dokiman.",
+
+        moduleReportsTitle: "Reports & Analytics",
+        moduleReportsDescription:
+          "Estatistik, rapò, kontwòl pèfòmans ak analiz aktivite.",
+
+        moduleEventsTitle: "Event Management",
+        moduleEventsDescription:
+          "Planifikasyon evènman, kalandriye, prezans ak rapèl.",
+
+        moduleAdminTitle: "Admin Dashboard",
+        moduleAdminDescription:
+          "Wòl, pèmisyon, sekirite, aktivite ak kontwòl sistèm.",
+
+        moduleAcademyTitle: "PRO-MAX Academy",
+        moduleAcademyDescription:
+          "Fòmasyon, kou, videyo, resous ak devlopman kapasite.",
+
+        moduleStatus: "Pare pou konekte",
+
+        socialLabel: "Rete konekte",
+        socialTitleStart: "Swiv mouvman an",
+        socialTitleEnd: "tout kote.",
+
+        socialDescription:
+          "Jwenn BSS1815-PRO-MAX-DMP sou prensipal rezo sosyal ak platfòm dijital yo.",
+
+        socialAction: "Vizite platfòm la",
+
+        contactTitleStart: "Ann bati",
+        contactTitleEnd: "lavni dijital la.",
+
+        contactDescription:
+          "Kontakte ekip BSS1815-PRO-MAX-DMP pou enfòmasyon, kolaborasyon oswa sipò.",
+
+        emailLabel: "Imèl",
+        websiteLabel: "Sit entènèt",
+        phoneLabel: "Telefòn",
+
+        rightsReserved: "Tout dwa rezève.",
+        footerBuilt: "Konstwi pou jodi a. Pare pou demen.",
+
+        toastProjectTitle: "Pwojè an preparasyon",
+        toastProjectMessage:
+          "Bouton sa a fonksyone. Nou pral konekte paj pwojè sa a nan pwochen etap la.",
+
+        toastModuleTitle: "Modil an preparasyon",
+        toastModuleMessage:
+          "Modil sa a pare nan homepage la. Nou pral konekte fonksyon li ak sistèm ki egziste a.",
+
+        toastSocialTitle: "Lyen rezo sosyal",
+        toastSocialMessage:
+          "Bouton an fonksyone. Mete lyen ofisyèl kont sa a nan JavaScript la lè li disponib."
+      },
+
+      en: {
+        pageTitle: "BSS1815-PRO-MAX-DMP",
+
+        brandSubtitle: "Digital Management Platform",
+
+        navHome: "Home",
+        navProjects: "Projects",
+        navModules: "Modules",
+        navSocial: "Social Media",
+        navContact: "Contact",
+
+        heroBadge: "Central digital platform",
+
+        slogan:
+          "STRAIGHT FORWARD. BUILT FOR TODAY. READY FOR TOMORROW.",
+
+        heroDescription:
+          "One professional platform bringing together digital management, communication, radio, multi-services and education on a modern, secure and scalable foundation.",
+
+        exploreProjects: "Explore the 4 projects",
+        viewModules: "View the modules",
+
+        statProjects: "Major projects",
+        statModules: "Digital modules",
+        statLanguages: "Languages",
+
+        globeProjectLabel: "Central project",
+        globeCommunityLabel: "Community organization",
+        globeRadioLabel: "Digital radio",
+        globeServicesLabel: "Professional services",
+        systemOnline: "System online",
+
+        projectsLabel: "Our ecosystem",
+        projectsTitleStart: "Four projects.",
+        projectsTitleEnd: "One vision.",
+
+        projectsDescription:
+          "Each project has its own mission, but they are all connected through the BSS1815-PRO-MAX-DMP system.",
+
+        projectOneDescription:
+          "A digital management center for members, documents, communication, events, reports, security and operations.",
+
+        projectTwoDescription:
+          "The official organization space for history, leadership, members, musicians, events, testimonials and community.",
+
+        projectThreeDescription:
+          "Digital radio for live broadcasts, podcasts, news, music, videos, interviews and community programs.",
+
+        projectFourDescription:
+          "A multi-service center for digital support, media, documents, promotion, entrepreneurship and community services.",
+
+        openProject: "Open project",
+
+        modulesLabel: "Operations center",
+        modulesTitleStart: "Modules designed for",
+        modulesTitleEnd: "real work.",
+
+        modulesDescription:
+          "Professional tools to manage, communicate, organize, control and develop every platform activity.",
+
+        moduleAiTitle: "AI Center",
+        moduleAiDescription:
+          "AI assistant, writing, voice, content and intelligent automation.",
+
+        moduleCommunicationTitle: "Communication Center",
+        moduleCommunicationDescription:
+          "Announcements, condolences, birthdays, emergencies and official messages.",
+
+        moduleCrmTitle: "CRM System",
+        moduleCrmDescription:
+          "Management of members, contacts, relationships and community records.",
+
+        moduleRegistryTitle: "Digital Registry",
+        moduleRegistryDescription:
+          "Digital registry for members, musicians, supporters and vendors.",
+
+        moduleDocumentsTitle: "Document Center",
+        moduleDocumentsDescription:
+          "Create, store, edit, publish and export documents.",
+
+        moduleReportsTitle: "Reports & Analytics",
+        moduleReportsDescription:
+          "Statistics, reports, performance monitoring and activity analysis.",
+
+        moduleEventsTitle: "Event Management",
+        moduleEventsDescription:
+          "Event planning, calendars, attendance and reminders.",
+
+        moduleAdminTitle: "Admin Dashboard",
+        moduleAdminDescription:
+          "Roles, permissions, security, activity and system control.",
+
+        moduleAcademyTitle: "PRO-MAX Academy",
+        moduleAcademyDescription:
+          "Training, courses, videos, resources and capacity development.",
+
+        moduleStatus: "Ready to connect",
+
+        socialLabel: "Stay connected",
+        socialTitleStart: "Follow the movement",
+        socialTitleEnd: "everywhere.",
+
+        socialDescription:
+          "Find BSS1815-PRO-MAX-DMP across major social networks and digital platforms.",
+
+        socialAction: "Visit platform",
+
+        contactTitleStart: "Let us build",
+        contactTitleEnd: "the digital future.",
+
+        contactDescription:
+          "Contact the BSS1815-PRO-MAX-DMP team for information, collaboration or support.",
+
+        emailLabel: "Email",
+        websiteLabel: "Website",
+        phoneLabel: "Phone",
+
+        rightsReserved: "All rights reserved.",
+        footerBuilt: "Built for today. Ready for tomorrow.",
+
+        toastProjectTitle: "Project in preparation",
+        toastProjectMessage:
+          "This button works. We will connect this project page during the next step.",
+
+        toastModuleTitle: "Module in preparation",
+        toastModuleMessage:
+          "This module is ready on the homepage. We will connect it to the existing system.",
+
+        toastSocialTitle: "Social media link",
+        toastSocialMessage:
+          "The button works. Add the official account link in the JavaScript when it is available."
+      },
+
+      fr: {
+        pageTitle: "BSS1815-PRO-MAX-DMP",
+
+        brandSubtitle: "Plateforme de gestion numérique",
+
+        navHome: "Accueil",
+        navProjects: "Projets",
+        navModules: "Modules",
+        navSocial: "Réseaux sociaux",
+        navContact: "Contact",
+
+        heroBadge: "Plateforme numérique centrale",
+
+        slogan:
+          "TOUJOURS DE L’AVANT. CONÇUE POUR AUJOURD’HUI. PRÊTE POUR DEMAIN.",
+
+        heroDescription:
+          "Une plateforme professionnelle unique réunissant la gestion numérique, la communication, la radio, les services multiples et la formation sur une base moderne, sécurisée et évolutive.",
+
+        exploreProjects: "Découvrir les 4 projets",
+        viewModules: "Voir les modules",
+
+        statProjects: "Grands projets",
+        statModules: "Modules numériques",
+        statLanguages: "Langues",
+
+        globeProjectLabel: "Projet central",
+        globeCommunityLabel: "Organisation communautaire",
+        globeRadioLabel: "Radio numérique",
+        globeServicesLabel: "Services professionnels",
+        systemOnline: "Système actif",
+
+        projectsLabel: "Notre écosystème",
+        projectsTitleStart: "Quatre projets.",
+        projectsTitleEnd: "Une seule vision.",
+
+        projectsDescription:
+          "Chaque projet possède sa propre mission, mais tous sont connectés au système BSS1815-PRO-MAX-DMP.",
+
+        projectOneDescription:
+          "Centre de gestion numérique pour les membres, les documents, la communication, les événements, les rapports, la sécurité et les opérations.",
+
+        projectTwoDescription:
+          "Espace officiel de l’organisation pour son histoire, ses dirigeants, ses membres, ses musiciens, ses événements, ses témoignages et sa communauté.",
+
+        projectThreeDescription:
+          "Radio numérique pour les émissions en direct, les podcasts, les actualités, la musique, les vidéos, les interviews et les programmes communautaires.",
+
+        projectFourDescription:
+          "Centre multiservices pour l’assistance numérique, les médias, les documents, la promotion, l’entrepreneuriat et les services communautaires.",
+
+        openProject: "Ouvrir le projet",
+
+        modulesLabel: "Centre des opérations",
+        modulesTitleStart: "Des modules conçus pour",
+        modulesTitleEnd: "le travail réel.",
+
+        modulesDescription:
+          "Des outils professionnels pour gérer, communiquer, organiser, contrôler et développer toutes les activités de la plateforme.",
+
+        moduleAiTitle: "Centre IA",
+        moduleAiDescription:
+          "Assistant IA, rédaction, voix, contenu et automatisation intelligente.",
+
+        moduleCommunicationTitle: "Centre de communication",
+        moduleCommunicationDescription:
+          "Annonces, condoléances, anniversaires, urgences et messages officiels.",
+
+        moduleCrmTitle: "Système CRM",
+        moduleCrmDescription:
+          "Gestion des membres, des contacts, des relations et des dossiers communautaires.",
+
+        moduleRegistryTitle: "Registre numérique",
+        moduleRegistryDescription:
+          "Registre numérique des membres, musiciens, sympathisants et vendeurs.",
+
+        moduleDocumentsTitle: "Centre de documents",
+        moduleDocumentsDescription:
+          "Créer, stocker, modifier, publier et exporter des documents.",
+
+        moduleReportsTitle: "Rapports et analyses",
+        moduleReportsDescription:
+          "Statistiques, rapports, suivi des performances et analyse des activités.",
+
+        moduleEventsTitle: "Gestion des événements",
+        moduleEventsDescription:
+          "Planification, calendrier, présence et rappels d’événements.",
+
+        moduleAdminTitle: "Tableau de bord administratif",
+        moduleAdminDescription:
+          "Rôles, autorisations, sécurité, activités et contrôle du système.",
+
+        moduleAcademyTitle: "Académie PRO-MAX",
+        moduleAcademyDescription:
+          "Formations, cours, vidéos, ressources et développement des compétences.",
+
+        moduleStatus: "Prêt à connecter",
+
+        socialLabel: "Restez connectés",
+        socialTitleStart: "Suivez le mouvement",
+        socialTitleEnd: "partout.",
+
+        socialDescription:
+          "Retrouvez BSS1815-PRO-MAX-DMP sur les principaux réseaux sociaux et plateformes numériques.",
+
+        socialAction: "Visiter la plateforme",
+
+        contactTitleStart: "Construisons",
+        contactTitleEnd: "l’avenir numérique.",
+
+        contactDescription:
+          "Contactez l’équipe BSS1815-PRO-MAX-DMP pour toute information, collaboration ou assistance.",
+
+        emailLabel: "Courriel",
+        websiteLabel: "Site internet",
+        phoneLabel: "Téléphone",
+
+        rightsReserved: "Tous droits réservés.",
+        footerBuilt: "Conçue pour aujourd’hui. Prête pour demain.",
+
+        toastProjectTitle: "Projet en préparation",
+        toastProjectMessage:
+          "Ce bouton fonctionne. Nous connecterons cette page de projet lors de la prochaine étape.",
+
+        toastModuleTitle: "Module en préparation",
+        toastModuleMessage:
+          "Ce module est prêt sur la page d’accueil. Nous le connecterons au système existant.",
+
+        toastSocialTitle: "Lien de réseau social",
+        toastSocialMessage:
+          "Le bouton fonctionne. Ajoutez le lien officiel du compte dans le JavaScript lorsqu’il sera disponible."
+      }
+    };
+
+    /* =========================================================
+       GLOBAL ELEMENTS
+    ========================================================= */
+
+    const siteHeader = document.getElementById("siteHeader");
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
 
     const languageButtons =
       document.querySelectorAll(".language-button");
 
+    const translationElements =
+      document.querySelectorAll("[data-i18n]");
+
+    const projectSlides =
+      document.querySelectorAll(".project-slide");
+
+    const toast = document.getElementById("toast");
+    const toastTitle = document.getElementById("toastTitle");
+    const toastMessage = document.getElementById("toastMessage");
+
+    let currentSlide = 0;
+    let toastTimer = null;
+
+    /* =========================================================
+       SAFE LANGUAGE STORAGE
+    ========================================================= */
+
+    function getSavedLanguage() {
+      try {
+        return localStorage.getItem("bss1815-language") || "ht";
+      } catch (error) {
+        return "ht";
+      }
+    }
+
+    function saveLanguage(language) {
+      try {
+        localStorage.setItem("bss1815-language", language);
+      } catch (error) {
+        console.warn("Language could not be saved.", error);
+      }
+    }
+
+    /* =========================================================
+       LANGUAGE ENGINE
+    ========================================================= */
+
+    function setLanguage(language) {
+      const dictionary =
+        translations[language] || translations.ht;
+
+      document.documentElement.lang = language;
+      document.title = dictionary.pageTitle;
+
+      translationElements.forEach((element) => {
+        const key = element.dataset.i18n;
+
+        if (dictionary[key]) {
+          element.textContent = dictionary[key];
+        }
+      });
+
+      languageButtons.forEach((button) => {
+        const isActive =
+          button.dataset.lang === language;
+
+        button.classList.toggle("active", isActive);
+        button.setAttribute(
+          "aria-pressed",
+          String(isActive)
+        );
+      });
+
+      saveLanguage(language);
+    }
+
     languageButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        languageButtons.forEach((item) => {
-          item.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        const selectedLanguage =
-          button.dataset.language;
-
-        document.documentElement.lang =
-          selectedLanguage;
+        setLanguage(button.dataset.lang);
       });
     });
 
-    /* ==================================
-       FOOTER YEAR
-    =================================== */
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
 
-    document.getElementById("currentYear").textContent =
-      new Date().getFullYear();
+    function closeMobileMenu() {
+      menuButton.classList.remove("active");
+      mobileMenu.classList.remove("open");
 
-    /* ==================================
-       BACK TO TOP
-    =================================== */
+      menuButton.setAttribute("aria-expanded", "false");
 
-    const backToTop =
-      document.getElementById("backToTop");
+      document.body.classList.remove("menu-open");
+    }
 
-    window.addEventListener("scroll", () => {
-      backToTop.classList.toggle(
-        "visible",
-        window.scrollY > 600
+    menuButton.addEventListener("click", () => {
+      const isOpen =
+        mobileMenu.classList.toggle("open");
+
+      menuButton.classList.toggle("active", isOpen);
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+      document.body.classList.toggle(
+        "menu-open",
+        isOpen
       );
     });
 
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    document
+      .querySelectorAll(".mobile-nav-link")
+      .forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
       });
-    });
-
-    /* ==================================
-       CLOSE MOBILE MENU ON RESIZE
-    =================================== */
 
     window.addEventListener("resize", () => {
       if (window.innerWidth > 1080) {
         closeMobileMenu();
       }
     });
+
+    /* =========================================================
+       STICKY HEADER
+    ========================================================= */
+
+    function updateHeader() {
+      siteHeader.classList.toggle(
+        "scrolled",
+        window.scrollY > 20
+      );
+    }
+
+    window.addEventListener("scroll", updateHeader);
+    updateHeader();
+
+    /* =========================================================
+       ACTIVE NAVIGATION
+    ========================================================= */
+
+    const sections =
+      document.querySelectorAll("main section[id]");
+
+    const desktopNavLinks =
+      document.querySelectorAll(".desktop-nav .nav-link");
+
+    function updateActiveNavigation() {
+      let activeSection = "home";
+
+      sections.forEach((section) => {
+        const sectionTop =
+          section.offsetTop - 150;
+
+        if (window.scrollY >= sectionTop) {
+          activeSection = section.id;
+        }
+      });
+
+      desktopNavLinks.forEach((link) => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") ===
+            `#${activeSection}`
+        );
+      });
+    }
+
+    window.addEventListener(
+      "scroll",
+      updateActiveNavigation
+    );
+
+    updateActiveNavigation();
+
+    /* =========================================================
+       GLOBE PROJECT SLIDESHOW
+    ========================================================= */
+
+    function showNextProject() {
+      projectSlides[currentSlide].classList.remove("active");
+
+      currentSlide =
+        (currentSlide + 1) % projectSlides.length;
+
+      projectSlides[currentSlide].classList.add("active");
+    }
+
+    window.setInterval(showNextProject, 3200);
+
+    /* =========================================================
+       TOAST SYSTEM
+    ========================================================= */
+
+    function showToast(title, message) {
+      window.clearTimeout(toastTimer);
+
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
+
+      toast.classList.add("show");
+
+      toastTimer = window.setTimeout(() => {
+        toast.classList.remove("show");
+      }, 4200);
+    }
+
+    function getCurrentDictionary() {
+      const language =
+        document.documentElement.lang || "ht";
+
+      return translations[language] || translations.ht;
+    }
+
+    /* =========================================================
+       PROJECT BUTTONS
+    ========================================================= */
+
+    document
+      .querySelectorAll(".open-project")
+      .forEach((button) => {
+        button.addEventListener("click", () => {
+          const dictionary = getCurrentDictionary();
+          const projectName = button.dataset.project;
+
+          showToast(
+            dictionary.toastProjectTitle,
+            `${projectName}: ${dictionary.toastProjectMessage}`
+          );
+        });
+      });
+
+    /* =========================================================
+       MODULE BUTTONS
+    ========================================================= */
+
+    document
+      .querySelectorAll(".module-action")
+      .forEach((button) => {
+        button.addEventListener("click", () => {
+          const dictionary = getCurrentDictionary();
+          const moduleName = button.dataset.module;
+
+          showToast(
+            dictionary.toastModuleTitle,
+            `${moduleName}: ${dictionary.toastModuleMessage}`
+          );
+        });
+      });
+
+    /* =========================================================
+       SOCIAL MEDIA LINKS
+       Mete lyen ofisyèl yo isit la pita.
+    ========================================================= */
+
+    const socialLinks = {
+      YouTube: "",
+      Spotify: "",
+      Facebook: "",
+      WhatsApp: "https://wa.me/14076405166",
+      Instagram: "",
+      TikTok: "",
+      "Truth Social": "",
+      "X / Twitter": "",
+      Telegram: ""
+    };
+
+    document
+      .querySelectorAll(".social-action-button")
+      .forEach((button) => {
+        button.addEventListener("click", () => {
+          const socialName = button.dataset.social;
+          const socialUrl = socialLinks[socialName];
+
+          if (socialUrl) {
+            window.open(
+              socialUrl,
+              "_blank",
+              "noopener,noreferrer"
+            );
+
+            return;
+          }
+
+          const dictionary = getCurrentDictionary();
+
+          showToast(
+            dictionary.toastSocialTitle,
+            `${socialName}: ${dictionary.toastSocialMessage}`
+          );
+        });
+      });
+
+    /* =========================================================
+       CURRENT YEAR
+    ========================================================= */
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    /* =========================================================
+       INITIALIZATION
+    ========================================================= */
+
+    setLanguage(getSavedLanguage());
   </script>
 </body>
 </html>
