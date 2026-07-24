@@ -1,510 +1,224 @@
-/* ======================================================
-   SHARED SECTION STYLES
-======================================================= */
+/* =========================================================
+   BSS1815 OFFICIAL COLOR LOCK
+   ORANGE + BLACK FADE ONLY
+========================================================= */
 
-.projects-section,
-.benefits-section,
-.modules-section {
-  position: relative;
-  padding: 110px 6%;
-  overflow: hidden;
+:root {
+  --orange: #ff7a00;
+  --orange-light: #ff9d00;
+  --orange-dark: #c94d00;
+
+  --black: #000000;
+  --black-soft: #080300;
+  --panel: rgba(10, 4, 0, 0.92);
+  --panel-strong: rgba(0, 0, 0, 0.97);
+
+  --text: #ff8a00;
+  --text-soft: #d85b00;
+
+  --border: rgba(255, 122, 0, 0.42);
+  --border-strong: rgba(255, 122, 0, 0.9);
 }
 
-.projects-section,
-.modules-section {
+/* GLOBAL TEXT — NO WHITE */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+button,
+div,
+label,
+li {
+  color: var(--orange);
+}
+
+/* BODY BACKGROUND */
+body {
   background:
     radial-gradient(
       circle at 15% 20%,
-      rgba(255, 106, 0, 0.13),
-      transparent 27%
+      rgba(255, 122, 0, 0.22),
+      transparent 32%
     ),
-    linear-gradient(
-      135deg,
-      #050505,
-      #120a05 50%,
-      #050505
-    );
-}
-
-.benefits-section {
-  background:
-    linear-gradient(
-      180deg,
-      #080808,
-      #111111,
-      #070707
-    );
-}
-
-.section-heading {
-  width: min(850px, 100%);
-  margin: 0 auto 60px;
-  text-align: center;
-}
-
-.section-label {
-  display: inline-block;
-  margin-bottom: 15px;
-  color: var(--orange-light);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 2.5px;
-}
-
-.section-heading h2 {
-  margin-bottom: 18px;
-  color: white;
-  font-size: clamp(34px, 5vw, 62px);
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: -2px;
-}
-
-.section-heading h2 span {
-  color: var(--orange);
-}
-
-.section-heading p {
-  max-width: 760px;
-  margin: 0 auto;
-  color: var(--text-soft);
-  font-size: 17px;
-  line-height: 1.75;
-}
-
-
-/* ======================================================
-   ETAP 2 — PROJECTS
-======================================================= */
-
-.projects-grid {
-  width: min(1250px, 100%);
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.project-card {
-  position: relative;
-  min-height: 500px;
-  padding: 38px;
-
-  display: flex;
-  flex-direction: column;
-
-  border: 1px solid rgba(255, 106, 0, 0.25);
-  border-radius: 25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 106, 0, 0.025)
-    );
-
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(16px);
-
-  transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(255, 106, 0, 0.75);
-  box-shadow:
-    0 30px 75px rgba(0, 0, 0, 0.5),
-    0 0 35px rgba(255, 106, 0, 0.12);
-}
-
-.project-number {
-  position: absolute;
-  top: 25px;
-  right: 28px;
-
-  color: rgba(255, 106, 0, 0.16);
-  font-size: 58px;
-  font-weight: 900;
-}
-
-.project-card-icon {
-  width: 75px;
-  height: 75px;
-  margin-bottom: 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(255, 106, 0, 0.35);
-  border-radius: 20px;
-
-  background: rgba(255, 106, 0, 0.1);
-
-  font-size: 38px;
-
-  box-shadow: 0 15px 35px rgba(255, 106, 0, 0.12);
-}
-
-.project-card h3 {
-  max-width: 85%;
-  margin-bottom: 16px;
-
-  color: white;
-  font-size: clamp(24px, 3vw, 35px);
-  font-weight: 900;
-  line-height: 1.15;
-}
-
-.project-mission {
-  margin-bottom: 23px;
-  color: #bdbdbd;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.project-features {
-  margin-bottom: 30px;
-  list-style: none;
-}
-
-.project-features li {
-  position: relative;
-  margin-bottom: 12px;
-  padding-left: 25px;
-
-  color: #e0e0e0;
-  font-size: 15px;
-}
-
-.project-features li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--orange);
-  font-weight: 900;
-}
-
-.card-button {
-  width: fit-content;
-  min-height: 48px;
-  margin-top: auto;
-  padding: 0 20px;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 13px;
-
-  border: 1px solid rgba(255, 106, 0, 0.5);
-  border-radius: 11px;
-
-  background: rgba(255, 106, 0, 0.08);
-  color: white;
-
-  font-size: 14px;
-  font-weight: 800;
-
-  transition: 0.3s ease;
-}
-
-.card-button:hover {
-  background: var(--orange);
-  border-color: var(--orange);
-  transform: translateX(4px);
-}
-
-
-/* ======================================================
-   DIVIDER
-======================================================= */
-
-.platform-divider {
-  position: relative;
-  padding: 85px 6%;
-
-  text-align: center;
-
-  background:
     radial-gradient(
-      circle at center,
-      rgba(255, 106, 0, 0.24),
-      transparent 42%
+      circle at 88% 12%,
+      rgba(255, 90, 0, 0.16),
+      transparent 28%
     ),
-    #050505;
-
-  border-top: 1px solid rgba(255, 106, 0, 0.14);
-  border-bottom: 1px solid rgba(255, 106, 0, 0.14);
+    radial-gradient(
+      circle at 50% 95%,
+      rgba(255, 122, 0, 0.14),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #000000 0%,
+      #070200 35%,
+      #1d0800 68%,
+      #000000 100%
+    );
 }
 
-.platform-divider p {
-  margin-bottom: 10px;
-  color: var(--orange-light);
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+/* HEADER */
+.site-header,
+.site-header.scrolled,
+.mobile-menu {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.98),
+      rgba(28, 8, 0, 0.96)
+    );
 }
 
-.platform-divider h2 {
-  margin-bottom: 15px;
-  color: white;
-  font-size: clamp(34px, 5vw, 64px);
-  font-weight: 900;
-  letter-spacing: -2px;
+/* MAIN TITLES */
+.brand-title,
+.hero-title,
+.hero-title span,
+.section-title,
+.project-card-title,
+.module-title,
+.contact-title,
+.footer-name,
+.project-slide-title {
+  color: var(--orange) !important;
+  text-shadow:
+    0 0 8px rgba(255, 122, 0, 0.55),
+    0 0 20px rgba(255, 82, 0, 0.25);
 }
 
-.platform-divider span {
-  color: #b8b8b8;
-  font-size: 17px;
-  line-height: 1.7;
+/* REMOVE WHITE GRADIENT TEXT */
+.hero-title .orange-line {
+  color: var(--orange) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--orange) !important;
 }
 
-
-/* ======================================================
-   ETAP 3 — BENEFITS
-======================================================= */
-
-.benefits-grid {
-  width: min(1200px, 100%);
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+/* PARAGRAPHS AND SECONDARY TEXT */
+.hero-description,
+.hero-slogan,
+.section-description,
+.project-card-description,
+.module-description,
+.contact-copy,
+.contact-item-label,
+.contact-item-value,
+.hero-stat-label,
+.social-action,
+.footer-link,
+.footer-bottom,
+.project-slide-counter,
+.brand-subtitle {
+  color: var(--orange-dark) !important;
 }
 
-.benefit-card {
-  min-height: 270px;
-  padding: 32px;
+/* STRONG SECONDARY TEXT */
+.hero-slogan,
+.contact-item-value,
+.footer-slogan,
+.section-label,
+.hero-badge,
+.module-status,
+.project-slide-small,
+.globe-status {
+  color: var(--orange-light) !important;
+}
 
-  border: 1px solid rgba(255, 106, 0, 0.2);
-  border-radius: 21px;
+/* NAVIGATION */
+.nav-link,
+.mobile-nav-link {
+  color: var(--orange-dark) !important;
+}
 
+.nav-link:hover,
+.nav-link.active,
+.mobile-nav-link:hover {
+  color: var(--orange-light) !important;
+}
+
+/* BUTTONS */
+.button-primary,
+.language-button.active,
+.project-slide-icon,
+.project-card-icon,
+.social-icon {
+  color: #000000 !important;
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange-light),
+      var(--orange)
+    ) !important;
+}
+
+.button-secondary,
+.project-card-button,
+.language-button,
+.menu-button {
+  color: var(--orange) !important;
+}
+
+/* CARDS AND PANELS */
+.project-card,
+.module-card,
+.social-card,
+.contact-shell,
+.contact-item,
+.hero-stat {
   background:
     linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.055),
-      rgba(255, 106, 0, 0.02)
-    );
+      rgba(255, 122, 0, 0.11),
+      rgba(0, 0, 0, 0.96) 48%,
+      rgba(20, 6, 0, 0.98)
+    ) !important;
 
-  transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
+  border-color: rgba(255, 122, 0, 0.32) !important;
 }
 
-.benefit-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--orange);
-  box-shadow: 0 22px 50px rgba(255, 106, 0, 0.13);
-}
-
-.benefit-icon {
-  width: 63px;
-  height: 63px;
-  margin-bottom: 23px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 18px;
-  background: rgba(255, 106, 0, 0.11);
-
-  font-size: 31px;
-}
-
-.benefit-card h3 {
-  margin-bottom: 13px;
-  color: white;
-  font-size: 22px;
-  font-weight: 900;
-}
-
-.benefit-card p {
-  color: #b6b6b6;
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-
-/* ======================================================
-   ETAP 4 — MODULES
-======================================================= */
-
-.modules-grid {
-  width: min(1250px, 100%);
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 17px;
-}
-
-.module-card {
-  min-height: 145px;
-  padding: 24px;
-
-  display: flex;
-  align-items: center;
-  gap: 19px;
-
-  border: 1px solid rgba(255, 106, 0, 0.2);
-  border-radius: 19px;
-
+/* FOOTER */
+.site-footer {
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.055),
-      rgba(255, 106, 0, 0.025)
-    );
-
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
+      #000000,
+      #120500
+    ) !important;
 }
 
-.module-card:hover {
-  transform: translateX(7px);
-  border-color: var(--orange);
+/* LOGO BACKGROUNDS */
+.brand-logo-shell,
+.contact-logo,
+.footer-logo {
+  background: #000000 !important;
+}
 
+/* FORM / TOAST */
+.toast {
+  color: var(--orange) !important;
   background:
     linear-gradient(
       135deg,
-      rgba(255, 106, 0, 0.13),
-      rgba(255, 106, 0, 0.035)
-    );
+      #000000,
+      #170600
+    ) !important;
 }
 
-.module-icon {
-  width: 65px;
-  height: 65px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  border: 1px solid rgba(255, 106, 0, 0.3);
-  border-radius: 18px;
-  background: rgba(255, 106, 0, 0.1);
-
-  font-size: 31px;
+.toast-title,
+.toast-message {
+  color: var(--orange) !important;
 }
 
-.module-content {
-  flex: 1;
-}
-
-.module-content h3 {
-  margin-bottom: 8px;
-  color: white;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.module-content p {
-  color: #adadad;
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.module-arrow {
-  color: var(--orange);
-  font-size: 25px;
-  transition: transform 0.3s ease;
-}
-
-.module-card:hover .module-arrow {
-  transform: translateX(5px);
-}
-
-.modules-action {
-  margin-top: 42px;
-  text-align: center;
-}
-
-
-/* ======================================================
-   RESPONSIVE
-======================================================= */
-
-@media (max-width: 950px) {
-  .benefits-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .projects-section,
-  .benefits-section,
-  .modules-section {
-    padding: 90px 5%;
-  }
-}
-
-@media (max-width: 760px) {
-  .projects-grid,
-  .modules-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card {
-    min-height: auto;
-  }
-}
-
-@media (max-width: 620px) {
-  .projects-section,
-  .benefits-section,
-  .modules-section {
-    padding: 75px 5%;
-  }
-
-  .section-heading {
-    margin-bottom: 42px;
-  }
-
-  .section-heading h2 {
-    letter-spacing: -1px;
-  }
-
-  .benefits-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card {
-    padding: 28px 23px;
-  }
-
-  .project-number {
-    font-size: 45px;
-  }
-
-  .module-card {
-    min-height: auto;
-    padding: 20px;
-    align-items: flex-start;
-  }
-
-  .module-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 26px;
-  }
-
-  .module-content h3 {
-    font-size: 18px;
-  }
-
-  .module-arrow {
-    display: none;
-  }
-
-  .platform-divider {
-    padding: 70px 5%;
-  }
+/* REMOVE ANY REMAINING WHITE */
+[style*="color: #fff"],
+[style*="color:#fff"],
+[style*="color: white"],
+[style*="color:white"] {
+  color: var(--orange) !important;
 }
