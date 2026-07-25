@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Gallery | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="Galri ofisyèl PRO-MAX FM DMP pou foto emisyon, evènman, atis, entèvyou, kominote ak aktivite espesyal."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, Gallery, Foto, Radio, BSS1815, Events, Shows, Artists, Interviews"
+  >
+
+  <meta
+    name="author"
+    content="PRO-MAX FM DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/gallery.html"
+  >
+
+  <meta
+    property="og:title"
+    content="PRO-MAX FM DMP Gallery"
+  >
+
+  <meta
+    property="og:description"
+    content="Dekouvri galri foto PRO-MAX FM DMP."
+  >
+
+  <meta
+    property="og:url"
+    content="https://bss1815-pro-max-dmp.netlify.app/gallery.html"
+  >
+
+  <meta
+    property="og:image"
+    content="https://bss1815-pro-max-dmp.netlify.app/assets/pro-max-fm-dmp.png"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange-2: #ff8c00;
+      --orange-light: #ffc078;
+      --orange-dark: #9b3500;
+
+      --black: #000000;
+      --black-soft: #090300;
+      --black-panel: #160700;
+
+      --border: rgba(255, 106, 0, 0.55);
+
+      --shadow:
+        0 18px 45px rgba(0, 0, 0, 0.72);
+
+      --glow:
+        0 0 25px rgba(255, 106, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 90% 8%,
+          rgba(255, 106, 0, 0.26),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255, 106, 0, 0.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000000 0%,
+          #090300 35%,
+          #351000 55%,
+          #090300 75%,
+          #000000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* =============================
+       HEADER
+    ============================== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.98),
+          rgba(48, 14, 0, 0.96),
+          rgba(0, 0, 0, 0.98)
+        );
+
+      backdrop-filter: blur(14px);
+
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-logo {
+      width: 60px;
+      height: 60px;
+
+      object-fit: contain;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        14px;
+
+      background:
+        var(--black);
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .brand-text strong {
+      display: block;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1rem;
+    }
+
+    .brand-text span {
+      display: block;
+
+      margin-top:
+        4px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        0.72rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+
+      list-style: none;
+    }
+
+    .nav-links a {
+      padding:
+        10px 12px;
+
+      color:
+        var(--orange-light);
+
+      border:
+        1px solid transparent;
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.86rem;
+
+      font-weight:
+        800;
+
+      transition:
+        0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color:
+        var(--black);
+
+      border-color:
+        var(--orange);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+    }
+
+    .menu-button {
+      display:
+        none;
+
+      width:
+        46px;
+
+      height:
+        42px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        9px;
+
+      color:
+        var(--orange);
+
+      background:
+        var(--black);
+
+      font-size:
+        1.4rem;
+    }
+
+    /* =============================
+       HERO
+    ============================== */
+
+    .hero {
+      min-height:
+        430px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 80% 35%,
+          rgba(255, 106, 0, 0.34),
+          transparent 30%
+        );
+    }
+
+    .hero-content {
+      padding:
+        75px 0;
+
+      max-width:
+        850px;
+    }
+
+    .badge {
+      display:
+        inline-block;
+
+      padding:
+        8px 14px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        999px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.5px;
+    }
+
+    .hero h1 {
+      margin-top:
+        20px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          2.8rem,
+          7vw,
+          6rem
+        );
+
+      line-height:
+        0.98;
+
+      text-transform:
+        uppercase;
+    }
+
+    .hero h1 span {
+      color:
+        var(--orange);
+    }
+
+    .hero p {
+      max-width:
+        760px;
+
+      margin-top:
+        22px;
+
+      color:
+        var(--orange-2);
+
+      font-size:
+        1.05rem;
+
+      line-height:
+        1.8;
+    }
+
+    /* =============================
+       SECTION
+    ============================== */
+
+    .section {
+      padding:
+        75px 0;
+    }
+
+    .section-heading {
+      margin-bottom:
+        32px;
+    }
+
+    .section-heading small {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        2px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .section-heading h2 {
+      margin-top:
+        9px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          2rem,
+          5vw,
+          3.5rem
+        );
+
+      text-transform:
+        uppercase;
+    }
+
+    .section-heading p {
+      max-width:
+        740px;
+
+      margin-top:
+        12px;
+
+      color:
+        var(--orange-2);
+
+      line-height:
+        1.7;
+    }
+
+    /* =============================
+       FILTERS
+    ============================== */
+
+    .filter-bar {
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        10px;
+
+      margin-bottom:
+        30px;
+    }
+
+    .filter-button {
+      padding:
+        10px 15px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        999px;
+
+      color:
+        var(--orange-light);
+
+      background:
+        var(--black);
+
+      font-weight:
+        800;
+
+      transition:
+        0.25s ease;
+    }
+
+    .filter-button:hover,
+    .filter-button.active {
+      color:
+        var(--black);
+
+      background:
+        var(--orange);
+    }
+
+    /* =============================
+       GALLERY GRID
+    ============================== */
+
+    .gallery-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap:
+        20px;
+    }
+
+    .gallery-card {
+      overflow:
+        hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 106, 0, 0.13),
+          rgba(0, 0, 0, 0.97)
+        );
+
+      box-shadow:
+        var(--shadow);
+
+      transition:
+        0.25s ease;
+    }
+
+    .gallery-card:hover {
+      transform:
+        translateY(-6px);
+
+      border-color:
+        var(--orange);
+
+      box-shadow:
+        var(--shadow),
+        var(--glow);
+    }
+
+    .gallery-image {
+      position:
+        relative;
+
+      height:
+        250px;
+
+      overflow:
+        hidden;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 106, 0, 0.30),
+          transparent 58%
+        ),
+        linear-gradient(
+          135deg,
+          #1a0800,
+          #000000
+        );
+    }
+
+    .gallery-image img {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
+    }
+
+    .placeholder-icon {
+      font-size:
+        4.5rem;
+    }
+
+    .gallery-content {
+      padding:
+        21px;
+    }
+
+    .gallery-category {
+      display:
+        inline-block;
+
+      padding:
+        6px 10px;
+
+      border-radius:
+        999px;
+
+      color:
+        var(--black);
+
+      background:
+        var(--orange);
+
+      font-size:
+        0.7rem;
+
+      font-weight:
+        900;
+    }
+
+    .gallery-content h3 {
+      margin-top:
+        13px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1.25rem;
+    }
+
+    .gallery-content p {
+      margin-top:
+        9px;
+
+      color:
+        var(--orange-2);
+
+      line-height:
+        1.6;
+
+      font-size:
+        0.9rem;
+    }
+
+    .view-button {
+      display:
+        inline-flex;
+
+      margin-top:
+        17px;
+
+      padding:
+        10px 15px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        9px;
+
+      color:
+        var(--black);
+
+      background:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    /* =============================
+       FEATURED SECTION
+    ============================== */
+
+    .featured-box {
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        25px;
+
+      padding:
+        30px;
+
+      border:
+        2px solid var(--orange);
+
+      border-radius:
+        22px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 106, 0, 0.25),
+          transparent 45%
+        ),
+        var(--black);
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .featured-visual {
+      min-height:
+        320px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        16px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 106, 0, 0.35),
+          transparent 60%
+        ),
+        #090300;
+
+      font-size:
+        5rem;
+    }
+
+    .featured-content {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        center;
+    }
+
+    .featured-content h3 {
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          1.8rem,
+          4vw,
+          3rem
+        );
+    }
+
+    .featured-content p {
+      margin-top:
+        15px;
+
+      color:
+        var(--orange-2);
+
+      line-height:
+        1.75;
+    }
+
+    .featured-content a {
+      width:
+        fit-content;
+
+      margin-top:
+        20px;
+
+      padding:
+        12px 18px;
+
+      border-radius:
+        10px;
+
+      color:
+        var(--black);
+
+      background:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    /* =============================
+       CONTACT
+    ============================== */
+
+    .contact-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        16px;
+    }
+
+    .contact-card {
+      padding:
+        23px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        15px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #170700,
+          #000000
+        );
+    }
+
+    .contact-card strong {
+      display:
+        block;
+
+      margin-bottom:
+        9px;
+
+      color:
+        var(--orange);
+    }
+
+    .contact-card a {
+      color:
+        var(--orange-light);
+
+      overflow-wrap:
+        anywhere;
+    }
+
+    /* =============================
+       LIGHTBOX
+    ============================== */
+
+    .lightbox {
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        3000;
+
+      display:
+        none;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        20px;
+
+      background:
+        rgba(0, 0, 0, 0.92);
+    }
+
+    .lightbox.open {
+      display:
+        flex;
+    }
+
+    .lightbox-box {
+      position:
+        relative;
+
+      width:
+        min(850px, 96%);
+
+      padding:
+        30px;
+
+      border:
+        2px solid var(--orange);
+
+      border-radius:
+        20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #251000,
+          #000000
+        );
+    }
+
+    .lightbox-close {
+      position:
+        absolute;
+
+      top:
+        12px;
+
+      right:
+        12px;
+
+      width:
+        42px;
+
+      height:
+        42px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        50%;
+
+      color:
+        var(--orange);
+
+      background:
+        var(--black);
+
+      font-size:
+        1.3rem;
+    }
+
+    .lightbox-visual {
+      min-height:
+        350px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        15px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 106, 0, 0.30),
+          transparent 60%
+        ),
+        #090300;
+
+      font-size:
+        6rem;
+    }
+
+    .lightbox-title {
+      margin-top:
+        20px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1.5rem;
+    }
+
+    .lightbox-description {
+      margin-top:
+        10px;
+
+      color:
+        var(--orange-2);
+
+      line-height:
+        1.6;
+    }
+
+    /* =============================
+       FOOTER
+    ============================== */
+
+    footer {
+      padding:
+        35px 0;
+
+      text-align:
+        center;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        var(--orange-2);
+
+      background:
+        var(--black);
+    }
+
+    /* =============================
+       RESPONSIVE
+    ============================== */
+
+    @media (max-width: 950px) {
+
+      .gallery-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .featured-box {
+        grid-template-columns:
+          1fr;
+      }
+
+      .menu-button {
+        display:
+          block;
+      }
+
+      .nav-links {
+        position:
+          absolute;
+
+        top:
+          82px;
+
+        left:
+          4%;
+
+        right:
+          4%;
+
+        display:
+          none;
+
+        flex-direction:
+          column;
+
+        padding:
+          15px;
+
+        border:
+          1px solid var(--orange);
+
+        border-radius:
+          12px;
+
+        background:
+          var(--black);
+      }
+
+      .nav-links.open {
+        display:
+          flex;
+      }
+
+      .nav-links a {
+        text-align:
+          center;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .brand-text span {
+        display:
+          none;
+      }
+
+      .gallery-grid,
+      .contact-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .gallery-image {
+        height:
+          280px;
+      }
+
+      .featured-box {
+        padding:
+          20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <div class="container header-inner">
+
+      <a
+        href="index.html"
+        class="brand"
+      >
+
+        <img
+          src="assets/pro-max-fm-dmp.png"
+          alt="Logo PRO-MAX FM DMP"
+          class="brand-logo"
+        >
+
+        <div class="brand-text">
+
+          <strong>
+            PRO-MAX FM DMP
+          </strong>
+
+          <span>
+            GALLERY CENTER
+          </span>
+
+        </div>
+
+      </a>
+
+      <button
+        type="button"
+        class="menu-button"
+        id="menuButton"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <ul
+        class="nav-links"
+        id="navLinks"
+      >
+
+        <li>
+          <a href="index.html">
+            Akèy
+          </a>
+        </li>
+
+        <li>
+          <a href="live.html">
+            Live
+          </a>
+        </li>
+
+        <li>
+          <a href="news.html">
+            News
+          </a>
+        </li>
+
+        <li>
+          <a href="shows.html">
+            Shows
+          </a>
+        </li>
+
+        <li>
+          <a href="podcasts.html">
+            Podcast
+          </a>
+        </li>
+
+        <li>
+          <a href="video.html">
+            Video
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="gallery.html"
+            class="active"
+          >
+            Gallery
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="container hero-content">
+
+        <span class="badge">
+          PRO-MAX GALLERY CENTER
+        </span>
+
+        <h1>
+          Photo
+          <span>Gallery</span>
+        </h1>
+
+        <p>
+          Galri ofisyèl PRO-MAX FM DMP pou
+          foto emisyon, evènman, atis,
+          entèvyou, kominote ak moman espesyal.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- GALLERY -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <small>
+            PHOTO COLLECTION
+          </small>
+
+          <h2>
+            Galri PRO-MAX
+          </h2>
+
+          <p>
+            Chwazi yon kategori pou filtre
+            koleksyon foto yo.
+          </p>
+
+        </div>
+
+        <div
+          class="filter-bar"
+          aria-label="Filtè galri"
+        >
+
+          <button
+            type="button"
+            class="filter-button active"
+            data-filter="all"
+          >
+            Tout
+          </button>
+
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="radio"
+          >
+            Radio
+          </button>
+
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="shows"
+          >
+            Shows
+          </button>
+
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="events"
+          >
+            Events
+          </button>
+
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="artists"
+          >
+            Artists
+          </button>
+
+          <button
+            type="button"
+            class="filter-button"
+            data-filter="community"
+          >
+            Community
+          </button>
+
+        </div>
+
+        <div
+          class="gallery-grid"
+          id="galleryGrid"
+        >
+
+          <!-- RADIO -->
+
+          <article
+            class="gallery-card"
+            data-category="radio"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                📻
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                RADIO
+              </span>
+
+              <h3>
+                PRO-MAX FM Studio
+              </h3>
+
+              <p>
+                Galri pou foto estasyon,
+                studio ak ekip radyo a.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="PRO-MAX FM Studio"
+                data-description="Foto estasyon, studio ak ekip PRO-MAX FM DMP."
+                data-icon="📻"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- SHOWS -->
+
+          <article
+            class="gallery-card"
+            data-category="shows"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                🎙️
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                SHOWS
+              </span>
+
+              <h3>
+                Emisyon PRO-MAX
+              </h3>
+
+              <p>
+                Foto animatè, envite
+                ak pwogram espesyal yo.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Emisyon PRO-MAX"
+                data-description="Foto animatè, envite ak pwogram PRO-MAX FM DMP."
+                data-icon="🎙️"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- EVENTS -->
+
+          <article
+            class="gallery-card"
+            data-category="events"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                📅
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                EVENTS
+              </span>
+
+              <h3>
+                Evènman PRO-MAX
+              </h3>
+
+              <p>
+                Foto aktivite, evènman
+                ak pwogram kominotè yo.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Evènman PRO-MAX"
+                data-description="Foto aktivite, evènman ak pwogram espesyal PRO-MAX."
+                data-icon="📅"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- ARTISTS -->
+
+          <article
+            class="gallery-card"
+            data-category="artists"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                🎤
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                ARTISTS
+              </span>
+
+              <h3>
+                Atis & Mizisyen
+              </h3>
+
+              <p>
+                Foto atis, mizisyen
+                ak pèsonalite envite yo.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Atis & Mizisyen"
+                data-description="Foto atis, mizisyen ak talan prezante sou PRO-MAX."
+                data-icon="🎤"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- COMMUNITY -->
+
+          <article
+            class="gallery-card"
+            data-category="community"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                🌍
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                COMMUNITY
+              </span>
+
+              <h3>
+                Kominote
+              </h3>
+
+              <p>
+                Foto manm, aktivite sosyal
+                ak patisipasyon kominotè.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Kominote PRO-MAX"
+                data-description="Foto kominote, aktivite sosyal ak patisipasyon piblik."
+                data-icon="🌍"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- INTERVIEWS -->
+
+          <article
+            class="gallery-card"
+            data-category="shows"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                🎬
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                INTERVIEWS
+              </span>
+
+              <h3>
+                Entèvyou
+              </h3>
+
+              <p>
+                Foto entèvyou ak
+                envite espesyal PRO-MAX.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Entèvyou PRO-MAX"
+                data-description="Foto entèvyou, envite ak pèsonalite espesyal."
+                data-icon="🎬"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- SPORTS -->
+
+          <article
+            class="gallery-card"
+            data-category="events"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                ⚽
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                SPORTS
+              </span>
+
+              <h3>
+                Sports Moments
+              </h3>
+
+              <p>
+                Foto espò, match
+                ak aktivite espesyal.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Sports Moments"
+                data-description="Foto espò ak moman espesyal PRO-MAX."
+                data-icon="⚽"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- SPECIAL -->
+
+          <article
+            class="gallery-card"
+            data-category="community"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                🏆
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                SPECIAL
+              </span>
+
+              <h3>
+                Special Moments
+              </h3>
+
+              <p>
+                Selebrasyon, omaj
+                ak gwo moman PRO-MAX.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Special Moments"
+                data-description="Selebrasyon, omaj ak gwo moman PRO-MAX FM DMP."
+                data-icon="🏆"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+          <!-- BEHIND THE SCENES -->
+
+          <article
+            class="gallery-card"
+            data-category="radio"
+          >
+
+            <div class="gallery-image">
+              <span class="placeholder-icon">
+                🎧
+              </span>
+            </div>
+
+            <div class="gallery-content">
+
+              <span class="gallery-category">
+                BEHIND THE SCENES
+              </span>
+
+              <h3>
+                Dèyè Sèn Nan
+              </h3>
+
+              <p>
+                Foto ekip la pandan
+                preparasyon ak pwodiksyon.
+              </p>
+
+              <button
+                type="button"
+                class="view-button"
+                data-title="Dèyè Sèn Nan"
+                data-description="Foto ekip PRO-MAX pandan preparasyon ak pwodiksyon."
+                data-icon="🎧"
+              >
+                VIEW
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FEATURED -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <small>
+            FEATURED
+          </small>
+
+          <h2>
+            YouTube Visual Center
+          </h2>
+
+        </div>
+
+        <div class="featured-box">
+
+          <div class="featured-visual">
+            ▶️
+          </div>
+
+          <div class="featured-content">
+
+            <h3>
+              PRO-MAX FM DMP YouTube
+            </h3>
+
+            <p>
+              Pou videyo, Live, replay
+              ak entèvyou PRO-MAX,
+              vizite chanèl YouTube ofisyèl la.
+            </p>
+
+            <a
+              href="https://www.youtube.com/@BSS1815PROMAXDMP"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              OPEN YOUTUBE
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <small>
+            CONTACT
+          </small>
+
+          <h2>
+            Kontakte PRO-MAX
+          </h2>
+
+        </div>
+
+        <div class="contact-grid">
+
+          <article class="contact-card">
+
+            <strong>
+              EMAIL
+            </strong>
+
+            <a
+              href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+            >
+              BSS1815-PROMAXFMDMP@GMAIL.COM
+            </a>
+
+          </article>
+
+          <article class="contact-card">
+
+            <strong>
+              WEBSITE
+            </strong>
+
+            <a
+              href="https://briyantsoleysigno1815.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BRIYANTSOLEYSIGNO1815.COM
+            </a>
+
+          </article>
+
+          <article class="contact-card">
+
+            <strong>
+              TELEFÒN
+            </strong>
+
+            <a
+              href="tel:+50943437488"
+            >
+              +509 4343-7488
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+
+  <div
+    class="lightbox"
+    id="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lightboxTitle"
+  >
+
+    <div class="lightbox-box">
+
+      <button
+        type="button"
+        class="lightbox-close"
+        id="lightboxClose"
+        aria-label="Fèmen"
+      >
+        ✕
+      </button>
+
+      <div
+        class="lightbox-visual"
+        id="lightboxVisual"
+      >
+        📻
+      </div>
+
+      <h2
+        class="lightbox-title"
+        id="lightboxTitle"
+      >
+        PRO-MAX Gallery
+      </h2>
+
+      <p
+        class="lightbox-description"
+        id="lightboxDescription"
+      >
+        PRO-MAX FM DMP Gallery.
+      </p>
+
+    </div>
+
+  </div>
+
+  <footer>
+
+    <div class="container">
+
+      ©
+      <span id="currentYear"></span>
+      PRO-MAX FM DMP —
+      Powering the Future of Digital Radio.
+
+    </div>
+
+  </footer>
+
+  <script>
+    "use strict";
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    const filterButtons =
+      document.querySelectorAll(".filter-button");
+
+    const galleryCards =
+      document.querySelectorAll(".gallery-card");
+
+    const viewButtons =
+      document.querySelectorAll(".view-button");
+
+    const lightbox =
+      document.getElementById("lightbox");
+
+    const lightboxClose =
+      document.getElementById("lightboxClose");
+
+    const lightboxVisual =
+      document.getElementById("lightboxVisual");
+
+    const lightboxTitle =
+      document.getElementById("lightboxTitle");
+
+    const lightboxDescription =
+      document.getElementById(
+        "lightboxDescription"
+      );
+
+    function toggleMenu() {
+
+      const open =
+        navLinks.classList.toggle("open");
+
+      menuButton.textContent =
+        open ? "✕" : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+    }
+
+    menuButton.addEventListener(
+      "click",
+      toggleMenu
+    );
+
+    navLinks
+      .querySelectorAll("a")
+      .forEach(function(link) {
+
+        link.addEventListener(
+          "click",
+          function() {
+
+            navLinks.classList.remove(
+              "open"
+            );
+
+            menuButton.textContent =
+              "☰";
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+          }
+        );
+      });
+
+    /* FILTER GALLERY */
+
+    filterButtons.forEach(
+      function(button) {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            filterButtons.forEach(
+              function(item) {
+                item.classList.remove(
+                  "active"
+                );
+              }
+            );
+
+            button.classList.add(
+              "active"
+            );
+
+            const filter =
+              button.dataset.filter;
+
+            galleryCards.forEach(
+              function(card) {
+
+                const category =
+                  card.dataset.category;
+
+                const visible =
+                  filter === "all" ||
+                  filter === category;
+
+                card.style.display =
+                  visible
+                    ? "block"
+                    : "none";
+              }
+            );
+          }
+        );
+      }
+    );
+
+    /* LIGHTBOX */
+
+    viewButtons.forEach(
+      function(button) {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            lightboxTitle.textContent =
+              button.dataset.title;
+
+            lightboxDescription.textContent =
+              button.dataset.description;
+
+            lightboxVisual.textContent =
+              button.dataset.icon;
+
+            lightbox.classList.add(
+              "open"
+            );
+
+            lightboxClose.focus();
+          }
+        );
+      }
+    );
+
+    function closeLightbox() {
+
+      lightbox.classList.remove(
+        "open"
+      );
+    }
+
+    lightboxClose.addEventListener(
+      "click",
+      closeLightbox
+    );
+
+    lightbox.addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape" &&
+          lightbox.classList.contains("open")
+        ) {
+          closeLightbox();
+        }
+      }
+    );
+
+    document
+      .getElementById("currentYear")
+      .textContent =
+        new Date().getFullYear();
+  </script>
+
+</body>
+</html>
