@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>News | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="Dènye nouvèl, enfòmasyon kominotè, Ayiti, entènasyonal, espò ak biznis sou PRO-MAX FM DMP."
+  >
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/news.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange-light: #ffc078;
+      --orange-bright: #ff8c00;
+      --orange-dark: #9d3500;
+
+      --black: #000000;
+      --black-soft: #090300;
+      --black-panel: #170700;
+
+      --border: rgba(255, 106, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 90% 8%,
+          rgba(255, 106, 0, 0.25),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #000000,
+          #090300 35%,
+          #351000 55%,
+          #000000
+        );
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(55,15,0,.96),
+          rgba(0,0,0,.98)
+        );
+    }
+
+    .header-inner {
+      min-height: 80px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 58px;
+      height: 58px;
+
+      object-fit: contain;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      background: #000000;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--orange-light);
+    }
+
+    .brand span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--orange);
+
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav a {
+      padding: 10px 13px;
+
+      border-radius: 9px;
+
+      color: var(--orange-light);
+
+      font-size: .88rem;
+      font-weight: 800;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #000000;
+      background: var(--orange);
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 44px;
+      height: 42px;
+
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+
+      color: var(--orange);
+      background: #000000;
+
+      font-size: 1.35rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 90px 0 70px;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 75% 30%,
+          rgba(255,106,0,.28),
+          transparent 30%
+        );
+    }
+
+    .hero-badge {
+      display: inline-block;
+
+      padding: 8px 14px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange);
+
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+
+      color: var(--orange-light);
+
+      font-size: clamp(2.7rem, 7vw, 5.8rem);
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero p {
+      max-width: 760px;
+
+      margin-top: 20px;
+
+      color: var(--orange-bright);
+
+      line-height: 1.8;
+    }
+
+    /* SEARCH */
+
+    .tools {
+      padding: 35px 0;
+    }
+
+    .tools-inner {
+      display: grid;
+
+      grid-template-columns: 1fr 230px;
+
+      gap: 14px;
+    }
+
+    .tools input,
+    .tools select {
+      width: 100%;
+
+      padding: 14px 16px;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      color: var(--orange-light);
+      background: #000000;
+    }
+
+    /* FEATURED */
+
+    .section {
+      padding: 65px 0;
+    }
+
+    .section-title {
+      margin-bottom: 30px;
+
+      color: var(--orange-light);
+
+      font-size: clamp(2rem, 4vw, 3rem);
+
+      text-transform: uppercase;
+    }
+
+    .featured {
+      display: grid;
+
+      grid-template-columns: 1.1fr .9fr;
+
+      gap: 25px;
+
+      padding: 28px;
+
+      border: 1px solid var(--orange);
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.17),
+          rgba(0,0,0,.96)
+        );
+    }
+
+    .featured-image {
+      min-height: 330px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.35),
+          transparent 60%
+        ),
+        #120500;
+
+      font-size: 5rem;
+    }
+
+    .category {
+      display: inline-block;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      color: #000000;
+      background: var(--orange);
+
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .featured-content h2 {
+      margin-top: 17px;
+
+      color: var(--orange-light);
+
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .featured-content p {
+      margin-top: 16px;
+
+      color: var(--orange-bright);
+
+      line-height: 1.75;
+    }
+
+    .read-button {
+      display: inline-flex;
+
+      margin-top: 22px;
+
+      padding: 12px 18px;
+
+      border-radius: 10px;
+
+      color: #000000;
+      background: var(--orange);
+
+      font-weight: 900;
+    }
+
+    /* NEWS GRID */
+
+    .news-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+    .news-card {
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.12),
+          rgba(0,0,0,.96)
+        );
+    }
+
+    .news-image {
+      height: 190px;
+
+      display: grid;
+      place-items: center;
+
+      border-bottom: 1px solid var(--border);
+
+      font-size: 3.5rem;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.25),
+          transparent 60%
+        );
+    }
+
+    .news-content {
+      padding: 21px;
+    }
+
+    .news-content h3 {
+      margin-top: 12px;
+
+      color: var(--orange-light);
+
+      line-height: 1.4;
+    }
+
+    .news-content p {
+      margin-top: 10px;
+
+      color: var(--orange-bright);
+
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    .news-meta {
+      margin-top: 15px;
+
+      color: var(--orange-dark);
+
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 22px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      background: #090300;
+    }
+
+    .contact-card strong {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: var(--orange);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+
+      text-align: center;
+
+      border-top: 1px solid var(--border);
+
+      color: var(--orange-bright);
+      background: #000000;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+
+      .featured {
+        grid-template-columns: 1fr;
+      }
+
+      .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+
+        top: 80px;
+        left: 4%;
+        right: 4%;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 14px;
+
+        border: 1px solid var(--orange);
+        border-radius: 12px;
+
+        background: #000000;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      nav a {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .brand span {
+        display: none;
+      }
+
+      .tools-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .news-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="container header-inner">
+
+      <a
+        href="index.html"
+        class="brand"
+      >
+
+        <img
+          src="assets/pro-max-fm-dmp.png"
+          alt="PRO-MAX FM DMP"
+          class="brand-logo"
+        >
+
+        <div>
+          <strong>PRO-MAX FM DMP</strong>
+          <span>NEWS CENTER</span>
+        </div>
+
+      </a>
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <nav id="mainNav">
+
+        <a href="index.html">
+          Akèy
+        </a>
+
+        <a href="live.html">
+          Live
+        </a>
+
+        <a
+          href="news.html"
+          class="active"
+        >
+          Nouvèl
+        </a>
+
+        <a href="shows.html">
+          Emisyon
+        </a>
+
+        <a href="podcasts.html">
+          Podcast
+        </a>
+
+        <a href="video.html">
+          Videyo
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <section class="hero">
+
+      <div class="container">
+
+        <span class="hero-badge">
+          PRO-MAX NEWS CENTER
+        </span>
+
+        <h1>
+          Latest
+          <span>News</span>
+        </h1>
+
+        <p>
+          Sant nouvèl PRO-MAX FM DMP pou enfòmasyon
+          kominotè, Ayiti, entènasyonal, espò,
+          biznis, kilti ak teknoloji.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="tools">
+
+      <div class="container tools-inner">
+
+        <input
+          type="search"
+          id="newsSearch"
+          placeholder="Chèche yon nouvèl..."
+          aria-label="Chèche nouvèl"
+        >
+
+        <select
+          id="categoryFilter"
+          aria-label="Filtre nouvèl"
+        >
+          <option value="all">
+            Tout kategori
+          </option>
+
+          <option value="community">
+            Kominote
+          </option>
+
+          <option value="haiti">
+            Ayiti
+          </option>
+
+          <option value="world">
+            Entènasyonal
+          </option>
+
+          <option value="sports">
+            Espò
+          </option>
+
+          <option value="business">
+            Biznis
+          </option>
+        </select>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Nouvèl prensipal
+        </h2>
+
+        <article class="featured">
+
+          <div class="featured-image">
+            📰
+          </div>
+
+          <div class="featured-content">
+
+            <span class="category">
+              PRO-MAX FM
+            </span>
+
+            <h2>
+              Byenveni nan PRO-MAX News Center
+            </h2>
+
+            <p>
+              Paj nouvèl la kounye a egziste sou platfòm lan.
+              Li prepare pou resevwa nouvèl PRO-MAX FM DMP,
+              kominote a, Ayiti, espò, biznis ak lòt kategori.
+            </p>
+
+            <a
+              href="index.html"
+              class="read-button"
+            >
+              Retounen sou Akèy
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Dènye nouvèl
+        </h2>
+
+        <div
+          class="news-grid"
+          id="newsGrid"
+        >
+
+          <article
+            class="news-card"
+            data-category="community"
+            data-search="kominote pro-max radio"
+          >
+
+            <div class="news-image">
+              📻
+            </div>
+
+            <div class="news-content">
+
+              <span class="category">
+                KOMINOTE
+              </span>
+
+              <h3>
+                PRO-MAX FM DMP konekte kominote a
+              </h3>
+
+              <p>
+                Radyo dijital, nouvèl, emisyon,
+                mizik ak sèvis medya sou yon sèl platfòm.
+              </p>
+
+              <div class="news-meta">
+                PRO-MAX News
+              </div>
+
+            </div>
+
+          </article>
+
+          <article
+            class="news-card"
+            data-category="haiti"
+            data-search="ayiti haiti nouvèl"
+          >
+
+            <div class="news-image">
+              🇭🇹
+            </div>
+
+            <div class="news-content">
+
+              <span class="category">
+                AYITI
+              </span>
+
+              <h3>
+                Espas espesyal pou nouvèl Ayiti
+              </h3>
+
+              <p>
+                Seksyon sa a prepare pou resevwa
+                dènye enfòmasyon ak aktyalite Ayiti.
+              </p>
+
+              <div class="news-meta">
+                Haiti Desk
+              </div>
+
+            </div>
+
+          </article>
+
+          <article
+            class="news-card"
+            data-category="world"
+            data-search="international entènasyonal mond"
+          >
+
+            <div class="news-image">
+              🌍
+            </div>
+
+            <div class="news-content">
+
+              <span class="category">
+                MOND
+              </span>
+
+              <h3>
+                Nouvèl entènasyonal
+              </h3>
+
+              <p>
+                Devlopman entènasyonal ak nouvèl
+                enpòtan ki enterese odyans PRO-MAX la.
+              </p>
+
+              <div class="news-meta">
+                World Desk
+              </div>
+
+            </div>
+
+          </article>
+
+          <article
+            class="news-card"
+            data-category="sports"
+            data-search="sports espò football soccer"
+          >
+
+            <div class="news-image">
+              ⚽
+            </div>
+
+            <div class="news-content">
+
+              <span class="category">
+                ESPÒ
+              </span>
+
+              <h3>
+                Sports Center
+              </h3>
+
+              <p>
+                Rezilta, analiz, foutbòl
+                ak dènye nouvèl espòtif yo.
+              </p>
+
+              <div class="news-meta">
+                Sports Desk
+              </div>
+
+            </div>
+
+          </article>
+
+          <article
+            class="news-card"
+            data-category="business"
+            data-search="business biznis antreprenarya"
+          >
+
+            <div class="news-image">
+              💼
+            </div>
+
+            <div class="news-content">
+
+              <span class="category">
+                BIZNIS
+              </span>
+
+              <h3>
+                Biznis ak antreprenarya
+              </h3>
+
+              <p>
+                Opòtinite, sèvis ak nouvèl
+                pou antreprenè ak kominote biznis la.
+              </p>
+
+              <div class="news-meta">
+                Business Desk
+              </div>
+
+            </div>
+
+          </article>
+
+          <article
+            class="news-card"
+            data-category="community"
+            data-search="events events kominote aktivite"
+          >
+
+            <div class="news-image">
+              📅
+            </div>
+
+            <div class="news-content">
+
+              <span class="category">
+                EVÈNMAN
+              </span>
+
+              <h3>
+                Aktivite ak evènman kominotè
+              </h3>
+
+              <p>
+                Anons, dat enpòtan ak aktivite
+                ki gen rapò ak kominote PRO-MAX.
+              </p>
+
+              <div class="news-meta">
+                Community Desk
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Kontakte PRO-MAX
+        </h2>
+
+        <div class="contact-grid">
+
+          <div class="contact-card">
+
+            <strong>
+              EMAIL
+            </strong>
+
+            <a
+              href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+            >
+              BSS1815-PROMAXFMDMP@GMAIL.COM
+            </a>
+
+          </div>
+
+          <div class="contact-card">
+
+            <strong>
+              WEBSITE
+            </strong>
+
+            <a
+              href="https://briyantsoleysigno1815.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BRIYANTSOLEYSIGNO1815.COM
+            </a>
+
+          </div>
+
+          <div class="contact-card">
+
+            <strong>
+              TELEFÒN
+            </strong>
+
+            <a href="tel:+50943437488">
+              +509 4343-7488
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <div class="container">
+
+      ©
+      <span id="year"></span>
+      PRO-MAX FM DMP
+
+    </div>
+
+  </footer>
+
+  <script>
+    "use strict";
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const mainNav =
+      document.getElementById("mainNav");
+
+    const searchInput =
+      document.getElementById("newsSearch");
+
+    const categoryFilter =
+      document.getElementById("categoryFilter");
+
+    const newsCards =
+      Array.from(
+        document.querySelectorAll(".news-card")
+      );
+
+    function toggleMenu() {
+      const open =
+        mainNav.classList.toggle("open");
+
+      menuButton.textContent =
+        open ? "✕" : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+    }
+
+    function filterNews() {
+
+      const query =
+        searchInput.value
+          .trim()
+          .toLowerCase();
+
+      const category =
+        categoryFilter.value;
+
+      newsCards.forEach(function(card) {
+
+        const searchText =
+          (
+            card.dataset.search +
+            " " +
+            card.textContent
+          ).toLowerCase();
+
+        const cardCategory =
+          card.dataset.category;
+
+        const matchesSearch =
+          !query ||
+          searchText.includes(query);
+
+        const matchesCategory =
+          category === "all" ||
+          cardCategory === category;
+
+        card.classList.toggle(
+          "hidden",
+          !(matchesSearch && matchesCategory)
+        );
+
+      });
+    }
+
+    menuButton.addEventListener(
+      "click",
+      toggleMenu
+    );
+
+    mainNav
+      .querySelectorAll("a")
+      .forEach(function(link) {
+
+        link.addEventListener(
+          "click",
+          function() {
+
+            mainNav.classList.remove("open");
+
+            menuButton.textContent = "☰";
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          }
+        );
+
+      });
+
+    searchInput.addEventListener(
+      "input",
+      filterNews
+    );
+
+    categoryFilter.addEventListener(
+      "change",
+      filterNews
+    );
+
+    document
+      .getElementById("year")
+      .textContent =
+        new Date().getFullYear();
+  </script>
+
+</body>
+</html>
