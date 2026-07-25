@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Podcasts | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP Podcast Center — podcast, entèvyou, replay, mizik ak pwogram espesyal."
+  >
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange: #ff6a00;
+      --orange-light: #ffc078;
+      --orange-soft: #ff963f;
+      --black: #000000;
+      --black-soft: #120500;
+      --border: rgba(255, 106, 0, 0.55);
+    }
+
+    html {
+      background: #000;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(255,106,0,.28),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #160700 45%,
+          #351000 65%,
+          #000 100%
+        );
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,.96);
+    }
+
+    .header-inner {
+      min-height: 80px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 20px;
+    }
+
+    .brand {
+      color: var(--orange);
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    nav a {
+      padding: 10px 12px;
+
+      border-radius: 9px;
+
+      font-size: .88rem;
+      font-weight: 800;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 95px 0 75px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 8px 14px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange);
+
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    h1 {
+      margin-top: 20px;
+
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1;
+
+      text-transform: uppercase;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .hero p {
+      max-width: 760px;
+
+      margin-top: 22px;
+
+      color: var(--orange-soft);
+
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* PODCAST */
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      margin-bottom: 30px;
+
+      font-size: clamp(2rem, 5vw, 3.3rem);
+
+      text-transform: uppercase;
+    }
+
+    .section-title span {
+      color: var(--orange);
+    }
+
+    .podcast-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+    .podcast-card {
+      padding: 26px;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.15),
+          rgba(0,0,0,.96)
+        );
+    }
+
+    .icon {
+      width: 65px;
+      height: 65px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 50%;
+
+      font-size: 2rem;
+
+      background: #000;
+    }
+
+    .podcast-card h2 {
+      margin-top: 18px;
+
+      color: var(--orange-light);
+
+      font-size: 1.4rem;
+    }
+
+    .podcast-card p {
+      margin-top: 12px;
+
+      color: var(--orange-soft);
+
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 20px;
+
+      padding: 12px 18px;
+
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-weight: 900;
+    }
+
+    .button:hover {
+      color: var(--orange-light);
+      background: #000;
+    }
+
+    /* STREAMING */
+
+    .streaming {
+      padding: 38px;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255,106,0,.25),
+          transparent 45%
+        ),
+        #000;
+    }
+
+    .streaming h2 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+    }
+
+    .streaming p {
+      max-width: 700px;
+
+      margin: 15px auto;
+
+      color: var(--orange-soft);
+
+      line-height: 1.7;
+    }
+
+    .stream-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 20px;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+    }
+
+    .contact-card {
+      padding: 22px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      background: #090300;
+    }
+
+    .contact-card strong {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: var(--orange);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 32px 0;
+
+      border-top: 1px solid var(--border);
+
+      text-align: center;
+
+      color: var(--orange-soft);
+      background: #000;
+    }
+
+    @media (max-width: 800px) {
+
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 15px 0;
+      }
+
+      .podcast-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .streaming {
+        padding: 28px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a href="index.html" class="brand">
+      PRO-MAX FM DMP
+    </a>
+
+    <nav>
+      <a href="index.html">AKÈY</a>
+      <a href="live.html">LIVE</a>
+      <a href="news.html">NEWS</a>
+      <a href="shows.html">SHOWS</a>
+
+      <a href="podcasts.html" class="active">
+        PODCAST
+      </a>
+
+      <a href="video.html">VIDEO</a>
+      <a href="gallery.html">GALLERY</a>
+    </nav>
+
+  </div>
+
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <span class="badge">
+        PRO-MAX PODCAST CENTER
+      </span>
+
+      <h1>
+        PRO-MAX
+        <span>PODCASTS</span>
+      </h1>
+
+      <p>
+        Koute podcast, entèvyou, replay,
+        konvèsasyon kominotè ak pwogram espesyal
+        PRO-MAX FM DMP.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- PODCAST PROGRAMS -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Podcast <span>Programs</span>
+      </h2>
+
+      <div class="podcast-grid">
+
+        <article class="podcast-card">
+
+          <div class="icon">🎙️</div>
+
+          <h2>
+            PRO-MAX Conversations
+          </h2>
+
+          <p>
+            Entèvyou ak konvèsasyon avèk
+            envite, lidè, atis ak manm kominote a.
+          </p>
+
+          <a
+            href="https://www.youtube.com/@BSS1815PROMAXDMP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >
+            ▶ YOUTUBE
+          </a>
+
+        </article>
+
+
+        <article class="podcast-card">
+
+          <div class="icon">🎧</div>
+
+          <h2>
+            PRO-MAX Replay
+          </h2>
+
+          <p>
+            Reprann emisyon, entèvyou ak
+            pwogram espesyal PRO-MAX FM DMP.
+          </p>
+
+          <a
+            href="shows.html"
+            class="button"
+          >
+            OPEN SHOWS
+          </a>
+
+        </article>
+
+
+        <article class="podcast-card">
+
+          <div class="icon">📻</div>
+
+          <h2>
+            Community Voice
+          </h2>
+
+          <p>
+            Yon espas pou kominote a pale,
+            pataje lide ak diskite sijè enpòtan.
+          </p>
+
+          <a
+            href="live.html"
+            class="button"
+          >
+            LIVE RADIO
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- STREAMING -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="streaming">
+
+        <h2>
+          PODCAST & STREAMING
+        </h2>
+
+        <p>
+          PRO-MAX FM DMP konekte Podcast Center
+          ak YouTube ak Spotify pou odyans lan
+          jwenn kontni dijital la fasil.
+        </p>
+
+        <div class="stream-buttons">
+
+          <a
+            href="https://www.youtube.com/@BSS1815PROMAXDMP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >
+            ▶ OPEN YOUTUBE
+          </a>
+
+          <a
+            href="https://open.spotify.com/search"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >
+            ♫ OPEN SPOTIFY
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Kontakte <span>PRO-MAX</span>
+      </h2>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+
+          <strong>EMAIL</strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </div>
+
+
+        <div class="contact-card">
+
+          <strong>WEBSITE</strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </div>
+
+
+        <div class="contact-card">
+
+          <strong>TELEFÒN</strong>
+
+          <a href="tel:+50943437488">
+            +509 4343-7488
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    © <span id="year"></span>
+    PRO-MAX FM DMP —
+    Powering the Future of Digital Radio.
+
+  </div>
+
+</footer>
+
+
+<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
