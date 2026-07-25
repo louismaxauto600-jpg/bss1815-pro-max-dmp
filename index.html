@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ht">
 <head>
   <meta charset="UTF-8" />
@@ -10,10 +10,10 @@
 
   <meta
     name="description"
-    content="PRO-MAX FM DMP — Radyo dijital, nouvèl, mizik, emisyon ak sèvis medya."
+    content="BSS1815-PRO-MAX-FM-DMP — Radyo dijital, nouvèl, mizik, emisyon ak sèvis medya."
   />
 
-  <title>PRO-MAX FM DMP</title>
+  <title>BSS1815-PRO-MAX-FM-DMP</title>
 
   <style>
     :root {
@@ -135,6 +135,73 @@
       margin-top: 4px;
       color: var(--orange-muted);
       font-size: 0.8rem;
+    }
+
+    /* ===== Animated globe with slideshow (right of logo) ===== */
+    .globe-wrap {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 6px;
+    }
+
+    .globe-sphere {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background-color: #0d4f8b;
+      background-image:
+        radial-gradient(circle at 12% 32%, #2e7d32 0 8px, transparent 9px),
+        radial-gradient(circle at 30% 60%, #388e3c 0 11px, transparent 12px),
+        radial-gradient(circle at 52% 22%, #33691e 0 7px, transparent 8px),
+        radial-gradient(circle at 70% 55%, #2e7d32 0 10px, transparent 11px),
+        radial-gradient(circle at 90% 30%, #388e3c 0 8px, transparent 9px),
+        radial-gradient(circle at 108% 62%, #33691e 0 9px, transparent 10px);
+      background-repeat: repeat-x;
+      background-size: 220% 100%;
+      box-shadow:
+        inset -10px -10px 22px rgba(0, 0, 0, 0.65),
+        inset 6px 6px 14px rgba(255, 255, 255, 0.18),
+        0 0 20px rgba(255, 106, 0, 0.45);
+      animation: globeRotate 7s linear infinite;
+    }
+
+    @keyframes globeRotate {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: -220% 0;
+      }
+    }
+
+    .globe-slide {
+      position: relative;
+      z-index: 2;
+      max-width: 66px;
+      text-align: center;
+      font-size: 0.5rem;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      color: #ffa15c;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 3px 5px;
+      border-radius: 7px;
+      line-height: 1.15;
+      word-break: break-word;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      transition: opacity 0.4s ease;
+    }
+
+    .globe-slide.fade {
+      opacity: 0;
     }
 
     nav {
@@ -541,6 +608,53 @@
       line-height: 1.65;
     }
 
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      padding: 18px 12px;
+      text-align: center;
+      color: var(--orange-light);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 106, 0, 0.14),
+          rgba(0, 0, 0, 0.94)
+        );
+      font-weight: 900;
+      transition: 0.25s ease;
+    }
+
+    .social-link:hover {
+      color: #000000;
+      border-color: var(--orange);
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+      transform: translateY(-4px);
+    }
+
+    @media (max-width: 780px) {
+      .social-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .schedule-list {
       display: grid;
       gap: 14px;
@@ -769,6 +883,16 @@
         height: 52px;
       }
 
+      .globe-wrap {
+        width: 58px;
+        height: 58px;
+      }
+
+      .globe-slide {
+        max-width: 48px;
+        font-size: 0.42rem;
+      }
+
       .header-inner {
         min-height: 72px;
       }
@@ -804,8 +928,8 @@
       <a href="index.html" class="brand">
 
         <img
-          src="assets/pro-max-fm-dmp.png"
-          alt="Logo PRO-MAX FM DMP"
+          src="assets/pro-max-fm-dmp.jpeg"
+          alt="Logo BSS1815-PRO-MAX-FM-DMP"
           class="brand-logo"
           onerror="handleLogoError(this)"
         />
@@ -813,8 +937,13 @@
         <div class="logo-fallback">PM</div>
 
         <div class="brand-text">
-          <h1>PRO-MAX FM DMP</h1>
+          <h1>BSS1815-PRO-MAX-FM-DMP</h1>
           <p>Powering the Future of Digital Radio</p>
+        </div>
+
+        <div class="globe-wrap" aria-hidden="true">
+          <div class="globe-sphere"></div>
+          <div class="globe-slide" id="globeSlide">PRO-MAX</div>
         </div>
 
       </a>
@@ -844,7 +973,7 @@
 
   <div class="ticker">
     <div class="ticker-track">
-      🔥 BYENVENI SOU PRO-MAX FM DMP — RADYO DIJITAL, NOUVÈL,
+      🔥 BYENVENI SOU BSS1815-PRO-MAX-FM-DMP — RADYO DIJITAL, NOUVÈL,
       MIZIK, PODCAST, ESPÒ, BIZNIS, AKADEMI AK LIVE STREAMING 🔥
     </div>
   </div>
@@ -884,8 +1013,8 @@
         <div class="hero-card">
 
           <img
-            src="assets/pro-max-fm-dmp.png"
-            alt="PRO-MAX FM DMP"
+            src="assets/pro-max-fm-dmp.jpeg"
+            alt="BSS1815-PRO-MAX-FM-DMP"
             class="hero-card-logo"
             onerror="this.style.display='none'"
           />
@@ -899,7 +1028,7 @@
             Klike sou bouton an pou antre sou paj radyo an dirèk la.
           </p>
 
-          <a
+          
             href="live.html"
             class="btn btn-primary"
             style="width:100%; margin-top:22px;"
@@ -944,7 +1073,7 @@
             <div class="news-image">📻</div>
 
             <div class="news-content">
-              <small>PRO-MAX FM</small>
+              <small>BSS1815-PRO-MAX-FM-DMP</small>
 
               <h4>
                 Radyo dijital la pare pou konekte kominote a
@@ -952,7 +1081,7 @@
 
               <p>
                 Suiv emisyon, entèvyou, mizik ak pwogram espesyal sou
-                platfòm PRO-MAX FM DMP.
+                platfòm BSS1815-PRO-MAX-FM-DMP.
               </p>
             </div>
           </article>
@@ -1010,7 +1139,7 @@
             <h4>📺 YouTube</h4>
 
             <p>
-              Aksede chanèl YouTube PRO-MAX FM la pou videyo,
+              Aksede chanèl YouTube BSS1815-PRO-MAX-FM-DMP la pou videyo,
               entèvyou, emisyon ak live streaming.
             </p>
 
@@ -1024,13 +1153,53 @@
 
             <p>
               Jwenn podcast, mizik, epizòd espesyal ak lòt kontni
-              odyo PRO-MAX FM.
+              odyo BSS1815-PRO-MAX-FM-DMP.
             </p>
 
             <a href="podcasts.html" class="btn btn-primary">
               Louvri Spotify Center
             </a>
           </article>
+
+        </div>
+
+        <div class="social-grid">
+
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link">
+            ▶ YouTube
+          </a>
+
+          <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="social-link">
+            🎵 Spotify
+          </a>
+
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-link">
+            Facebook
+          </a>
+
+          <a href="https://wa.me/50943437488" target="_blank" rel="noopener noreferrer" class="social-link">
+            💬 WhatsApp
+          </a>
+
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link">
+            Instagram
+          </a>
+
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" class="social-link">
+            TikTok
+          </a>
+
+          <a href="https://truthsocial.com/" target="_blank" rel="noopener noreferrer" class="social-link">
+            Truth Social
+          </a>
+
+          <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer" class="social-link">
+            Telegram
+          </a>
+
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link">
+            𝕏 / Twitter
+          </a>
 
         </div>
 
@@ -1103,13 +1272,13 @@
 
         <div>
           <img
-            src="assets/pro-max-fm-dmp.png"
-            alt="PRO-MAX FM DMP"
+            src="assets/pro-max-fm-dmp.jpeg"
+            alt="BSS1815-PRO-MAX-FM-DMP"
             class="footer-logo"
             onerror="this.style.display='none'"
           />
 
-          <h4>PRO-MAX FM DMP</h4>
+          <h4>BSS1815-PRO-MAX-FM-DMP</h4>
 
           <p>
             Powering the Future of Digital Radio.
@@ -1167,7 +1336,7 @@
       </div>
 
       <div class="copyright">
-        © <span id="currentYear"></span> PRO-MAX FM DMP.
+        © <span id="currentYear"></span> BSS1815-PRO-MAX-FM-DMP.
         Tout dwa rezève.
       </div>
 
@@ -1178,227 +1347,87 @@
     "use strict";
 
     const modules = [
-      {
-        icon: "📻",
-        name: "Live Radio",
-        description: "Koute radyo PRO-MAX FM an dirèk.",
-        page: "live.html"
-      },
-      {
-        icon: "📰",
-        name: "Latest News",
-        description: "Nouvèl lokal, entènasyonal ak kominotè.",
-        page: "news.html"
-      },
-      {
-        icon: "🎙️",
-        name: "Shows",
-        description: "Emisyon, animatè ak pwogram espesyal.",
-        page: "shows.html"
-      },
-      {
-        icon: "🎧",
-        name: "Podcasts",
-        description: "Koute tout podcast ak epizòd yo.",
-        page: "podcasts.html"
-      },
-      {
-        icon: "📺",
-        name: "YouTube",
-        description: "Chanèl, videyo ak live streaming.",
-        page: "video.html"
-      },
-      {
-        icon: "🎵",
-        name: "Spotify",
-        description: "Podcast ak mizik PRO-MAX FM.",
-        page: "podcasts.html"
-      },
-      {
-        icon: "🎼",
-        name: "Music",
-        description: "Dekouvri mizik ak playlist yo.",
-        page: "musics.html"
-      },
-      {
-        icon: "🎤",
-        name: "Artists",
-        description: "Atis, mizisyen ak talan yo.",
-        page: "artists.html"
-      },
-      {
-        icon: "🎬",
-        name: "Videos",
-        description: "Videyo, repòtaj ak pwodiksyon espesyal.",
-        page: "video.html"
-      },
-      {
-        icon: "🖼️",
-        name: "Gallery",
-        description: "Foto evènman, emisyon ak aktivite yo.",
-        page: "gallery.html"
-      },
-      {
-        icon: "🏫",
-        name: "PRO-MAX Academy",
-        description: "Fòmasyon, edikasyon ak seri dijital.",
-        page: "academy.html"
-      },
-      {
-        icon: "⚽",
-        name: "Sports",
-        description: "Nouvèl espò, rezilta ak analiz.",
-        page: "sports.html"
-      },
-      {
-        icon: "💼",
-        name: "Business",
-        description: "Biznis, antreprenarya ak opòtinite.",
-        page: "business.html"
-      },
-      {
-        icon: "🌦️",
-        name: "Weather",
-        description: "Enfòmasyon sou kondisyon meteyo.",
-        page: "weather.html"
-      },
-      {
-        icon: "📅",
-        name: "Events",
-        description: "Evènman, pwogram ak aktivite espesyal.",
-        page: "events.html"
-      },
-      {
-        icon: "🗣️",
-        name: "Interviews",
-        description: "Entèvyou ak pèsonalite espesyal.",
-        page: "interviews.html"
-      },
-      {
-        icon: "🕯️",
-        name: "An Memwa",
-        description: "Memorial Hall pou moun nou onore yo.",
-        page: "an-memwa.html"
-      },
-      {
-        icon: "📢",
-        name: "Advertise",
-        description: "Piblisite ak patenarya komèsyal.",
-        page: "advertise.html"
-      },
-      {
-        icon: "❓",
-        name: "FAQ",
-        description: "Repons pou kesyon moun poze souvan.",
-        page: "faq.html"
-      },
-      {
-        icon: "🔐",
-        name: "Admin Login",
-        description: "Aksè sekirize pou ekip administrasyon an.",
-        page: "login.html"
-      }
+      { icon: "📻", name: "Live Radio", description: "Koute radyo PRO-MAX FM an dirèk.", page: "live.html" },
+      { icon: "📰", name: "Latest News", description: "Nouvèl lokal, entènasyonal ak kominotè.", page: "news.html" },
+      { icon: "🎙️", name: "Shows", description: "Emisyon, animatè ak pwogram espesyal.", page: "shows.html" },
+      { icon: "🎧", name: "Podcasts", description: "Koute tout podcast ak epizòd yo.", page: "podcasts.html" },
+      { icon: "📺", name: "YouTube", description: "Chanèl, videyo ak live streaming.", page: "video.html" },
+      { icon: "🎵", name: "Spotify", description: "Podcast ak mizik PRO-MAX FM.", page: "podcasts.html" },
+      { icon: "🎼", name: "Music", description: "Dekouvri mizik ak playlist yo.", page: "musics.html" },
+      { icon: "🎤", name: "Artists", description: "Atis, mizisyen ak talan yo.", page: "artists.html" },
+      { icon: "🎬", name: "Videos", description: "Videyo, repòtaj ak pwodiksyon espesyal.", page: "video.html" },
+      { icon: "🖼️", name: "Gallery", description: "Foto evènman, emisyon ak aktivite yo.", page: "gallery.html" },
+      { icon: "🏫", name: "PRO-MAX Academy", description: "Fòmasyon, edikasyon ak seri dijital.", page: "academy.html" },
+      { icon: "⚽", name: "Sports", description: "Nouvèl espò, rezilta ak analiz.", page: "sports.html" },
+      { icon: "💼", name: "Business", description: "Biznis, antreprenarya ak opòtinite.", page: "business.html" },
+      { icon: "🌦️", name: "Weather", description: "Enfòmasyon sou kondisyon meteyo.", page: "weather.html" },
+      { icon: "📅", name: "Events", description: "Evènman, pwogram ak aktivite espesyal.", page: "events.html" },
+      { icon: "🗣️", name: "Interviews", description: "Entèvyou ak pèsonalite espesyal.", page: "interviews.html" },
+      { icon: "🕯️", name: "An Memwa", description: "Memorial Hall pou moun nou onore yo.", page: "an-memwa.html" },
+      { icon: "📢", name: "Advertise", description: "Piblisite ak patenarya komèsyal.", page: "advertise.html" },
+      { icon: "❓", name: "FAQ", description: "Repons pou kesyon moun poze souvan.", page: "faq.html" },
+      { icon: "🔐", name: "Admin Login", description: "Aksè sekirize pou ekip administrasyon an.", page: "login.html" }
     ];
 
-    const moduleGrid =
-      document.getElementById("moduleGrid");
-
-    const menuButton =
-      document.getElementById("menuButton");
-
-    const mainNav =
-      document.getElementById("mainNav");
+    const moduleGrid = document.getElementById("moduleGrid");
+    const menuButton = document.getElementById("menuButton");
+    const mainNav = document.getElementById("mainNav");
 
     function renderModules() {
-      if (!moduleGrid) {
-        return;
-      }
-
-      moduleGrid.innerHTML = modules
-        .map((module) => {
-          return `
-            <a
-              class="module-card"
-              href="${module.page}"
-              aria-label="Louvri ${module.name}"
-            >
-              <div class="module-icon">
-                ${module.icon}
-              </div>
-
-              <h4>
-                ${module.name}
-              </h4>
-
-              <p>
-                ${module.description}
-              </p>
-
-              <span class="module-status">
-                Aktif
-              </span>
+      if (!moduleGrid) return;
+      moduleGrid.innerHTML = modules.map((module) => `
+            <a class="module-card" href="${module.page}" aria-label="Louvri ${module.name}">
+              <div class="module-icon">${module.icon}</div>
+              <h4>${module.name}</h4>
+              <p>${module.description}</p>
+              <span class="module-status">Aktif</span>
             </a>
-          `;
-        })
-        .join("");
+          `).join("");
     }
 
     function toggleMenu() {
-      const isOpen =
-        mainNav.classList.toggle("open");
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-
-      menuButton.textContent =
-        isOpen ? "✕" : "☰";
+      const isOpen = mainNav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.textContent = isOpen ? "✕" : "☰";
     }
 
     function closeMenu() {
       mainNav.classList.remove("open");
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
+      menuButton.setAttribute("aria-expanded", "false");
       menuButton.textContent = "☰";
     }
 
     function handleLogoError(image) {
       image.style.display = "none";
-
-      const fallback =
-        image.nextElementSibling;
-
-      if (fallback) {
-        fallback.style.display = "grid";
-      }
+      const fallback = image.nextElementSibling;
+      if (fallback) fallback.style.display = "grid";
     }
 
-    menuButton.addEventListener(
-      "click",
-      toggleMenu
-    );
+    menuButton.addEventListener("click", toggleMenu);
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
 
-    mainNav
-      .querySelectorAll("a")
-      .forEach((link) => {
-        link.addEventListener(
-          "click",
-          closeMenu
-        );
-      });
-
-    document
-      .getElementById("currentYear")
-      .textContent =
-        new Date().getFullYear();
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 
     renderModules();
+
+    const globeItems = ["PRO-MAX", "MAXIMAX MULTI SERVICES", "BRIYANT SOLÈY SIGNO 1815", "PRO-MAX-DMP"];
+    const globeSlide = document.getElementById("globeSlide");
+    let globeIndex = 0;
+
+    function rotateGlobeSlide() {
+      if (!globeSlide) return;
+      globeSlide.classList.add("fade");
+      setTimeout(() => {
+        globeIndex = (globeIndex + 1) % globeItems.length;
+        globeSlide.textContent = globeItems[globeIndex];
+        globeSlide.classList.remove("fade");
+      }, 400);
+    }
+
+    if (globeSlide) setInterval(rotateGlobeSlide, 2600);
   </script>
 
 </body>
-  </html>
+</html>
