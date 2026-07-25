@@ -1,131 +1,172 @@
-.main-header {
-  width: 100%;
+.stream-center {
+  width: min(1200px, 92%);
+  margin: 60px auto;
+  padding: 45px 30px;
+
+  border: 2px solid #ff6a00;
+  border-radius: 24px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255, 106, 0, 0.25),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #2b0d00,
+      #000000 65%
+    );
+
+  box-shadow:
+    0 0 30px rgba(255, 106, 0, 0.25),
+    0 25px 60px rgba(0, 0, 0, 0.75);
+}
+
+.stream-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.live-indicator {
+  display: inline-block;
+
+  padding: 8px 15px;
+
+  border: 1px solid #ff6a00;
+  border-radius: 999px;
+
+  color: #ff9d00;
+  background: #000000;
+
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.stream-header h2 {
+  margin-top: 18px;
+
+  color: #ff9d00;
+
+  font-size: clamp(2rem, 5vw, 3.8rem);
+
+  text-transform: uppercase;
+}
+
+.stream-header p {
+  margin-top: 12px;
+
+  color: #ff8a00;
+
+  line-height: 1.7;
+}
+
+.stream-platforms {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+.stream-card {
+  padding: 35px 25px;
+
+  text-align: center;
+
+  border: 1px solid rgba(255, 106, 0, 0.65);
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 106, 0, 0.16),
+      #000000 65%
+    );
+}
+
+.platform-icon {
+  width: 70px;
+  height: 70px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  color: #000000;
+
   background:
     linear-gradient(
       135deg,
-      #000000 0%,
-      #180b00 35%,
-      #ff6a00 100%
+      #ff6a00,
+      #ff9d00
     );
-  border-bottom: 2px solid #ff7a00;
-  box-shadow: 0 5px 22px rgba(255, 106, 0, 0.35);
-  padding: 14px 20px;
-}
 
-.brand-area {
-  max-width: 1400px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.brand-logo {
-  width: 82px;
-  height: 82px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.brand-title {
-  flex: 1;
-  min-width: 0;
-}
-
-.brand-title h1 {
-  margin: 0;
-  color: #ff8a00;
-  font-size: clamp(1.3rem, 3vw, 2.3rem);
+  font-size: 2rem;
   font-weight: 900;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 8px #000;
 }
 
-.brand-slider {
-  margin-top: 7px;
-  color: #ffb35c;
-  font-size: clamp(0.8rem, 2vw, 1.05rem);
-  font-weight: 800;
-  letter-spacing: 0.5px;
+.stream-card h3 {
+  color: #ff9d00;
 
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
+  font-size: 1.35rem;
 }
 
-.brand-slider.hide {
-  opacity: 0;
-  transform: translateY(7px);
+.stream-card p {
+  min-height: 75px;
+
+  margin: 14px 0 25px;
+
+  color: #ff8a00;
+
+  line-height: 1.65;
 }
 
-.animated-globe {
-  width: 58px;
-  height: 58px;
-
-  display: flex;
+.stream-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 42px;
-  flex-shrink: 0;
+  min-height: 50px;
 
-  filter:
-    drop-shadow(0 0 7px #ff6a00)
-    drop-shadow(0 0 15px rgba(255, 106, 0, 0.65));
+  padding: 13px 22px;
 
-  animation:
-    globeSpin 5s linear infinite,
-    globePulse 2s ease-in-out infinite;
+  border: 2px solid #ff6a00;
+  border-radius: 10px;
+
+  color: #000000;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff6a00,
+      #ff9d00
+    );
+
+  font-weight: 900;
+
+  transition: 0.25s ease;
 }
 
-@keyframes globeSpin {
-  from {
-    transform: rotateY(0deg);
-  }
+.stream-btn:hover {
+  transform: translateY(-3px);
 
-  to {
-    transform: rotateY(360deg);
-  }
+  box-shadow:
+    0 12px 30px rgba(255, 106, 0, 0.35);
 }
 
-@keyframes globePulse {
-  0%,
-  100% {
-    filter:
-      drop-shadow(0 0 5px #ff6a00)
-      drop-shadow(0 0 10px rgba(255, 106, 0, 0.45));
+@media (max-width: 700px) {
+
+  .stream-platforms {
+    grid-template-columns: 1fr;
   }
 
-  50% {
-    filter:
-      drop-shadow(0 0 12px #ff8a00)
-      drop-shadow(0 0 24px rgba(255, 106, 0, 0.85));
-  }
-}
-
-@media (max-width: 650px) {
-  .main-header {
-    padding: 10px 12px;
+  .stream-center {
+    padding: 35px 18px;
   }
 
-  .brand-area {
-    gap: 10px;
-  }
-
-  .brand-logo {
-    width: 62px;
-    height: 62px;
-  }
-
-  .animated-globe {
-    width: 44px;
-    height: 44px;
-    font-size: 34px;
-  }
-
-  .brand-title h1 {
-    letter-spacing: 0;
-  }
 }
