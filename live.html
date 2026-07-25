@@ -3,69 +3,93 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>PRO-MAX FM DMP Live Radio | Koute Radyo an Dirèk</title>
+  <title>PRO-MAX FM DMP | Live Radio</title>
 
   <meta
     name="description"
-    content="Koute PRO-MAX FM DMP Live Radio. Mizik, nouvèl, entèvyou, espò, kilti, biznis ak emisyon dijital."
+    content="Koute epi suiv PRO-MAX FM DMP Live Radio. Emisyon, mizik, nouvèl, entèvyou, espò ak kontni dijital."
   >
 
   <meta
     name="keywords"
-    content="PRO-MAX FM, PRO-MAX FM DMP, Live Radio Haiti, Haitian Radio, BSS1815, Briyant Soley Signo 1815, Radio Dijital"
+    content="PRO-MAX FM DMP, Live Radio, BSS1815, Haitian Radio, Haiti Radio, YouTube Live, Digital Radio"
   >
 
-  <meta name="author" content="PRO-MAX FM DMP">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#000000">
+  <meta
+    name="author"
+    content="PRO-MAX FM DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
 
   <link
     rel="canonical"
-    href="https://briyantsoleysigno1815.com/live.html"
+    href="https://bss1815-pro-max-dmp.netlify.app/live.html"
   >
 
   <!-- OPEN GRAPH -->
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ht_HT">
+  <meta
+    property="og:type"
+    content="website"
+  >
 
   <meta
     property="og:title"
-    content="PRO-MAX FM DMP — Live Radio"
+    content="PRO-MAX FM DMP | Live Radio"
   >
 
   <meta
     property="og:description"
-    content="Koute PRO-MAX FM DMP Live Radio sou entènèt."
+    content="Swiv PRO-MAX FM DMP Live Radio atravè YouTube."
   >
 
   <meta
     property="og:url"
-    content="https://briyantsoleysigno1815.com/live.html"
+    content="https://bss1815-pro-max-dmp.netlify.app/live.html"
   >
 
   <meta
     property="og:image"
-    content="https://briyantsoleysigno1815.com/assets/pro-max-fm-dmp.png"
+    content="https://bss1815-pro-max-dmp.netlify.app/assets/pro-max-fm-dmp.png"
+  >
+
+  <meta
+    property="og:locale"
+    content="ht_HT"
   >
 
   <!-- X / TWITTER -->
-  <meta name="twitter:card" content="summary_large_image">
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
 
   <meta
     name="twitter:title"
-    content="PRO-MAX FM DMP — Live Radio"
+    content="PRO-MAX FM DMP | Live Radio"
   >
 
   <meta
     name="twitter:description"
-    content="Koute PRO-MAX FM DMP Live Radio."
+    content="Swiv PRO-MAX FM DMP Live Radio atravè YouTube."
   >
 
   <meta
     name="twitter:image"
-    content="https://briyantsoleysigno1815.com/assets/pro-max-fm-dmp.png"
+    content="https://bss1815-pro-max-dmp.netlify.app/assets/pro-max-fm-dmp.png"
   >
 
   <!-- STRUCTURED DATA -->
@@ -74,9 +98,13 @@
     "@context": "https://schema.org",
     "@type": "RadioStation",
     "name": "PRO-MAX FM DMP",
-    "url": "https://briyantsoleysigno1815.com/",
+    "url": "https://bss1815-pro-max-dmp.netlify.app/",
     "email": "BSS1815-PROMAXFMDMP@GMAIL.COM",
     "telephone": "+50943437488",
+    "sameAs": [
+      "https://www.youtube.com/@BSS1815PROMAXDMP",
+      "https://open.spotify.com/search"
+    ],
     "description": "PRO-MAX FM DMP digital radio platform."
   }
   </script>
@@ -84,18 +112,19 @@
   <style>
     :root {
       --orange: #ff6a00;
-      --orange-bright: #ff8c00;
+      --orange-2: #ff8c00;
       --orange-light: #ffc078;
-      --orange-dark: #a53c00;
+      --orange-dark: #a83d00;
+      --orange-deep: #451400;
 
       --black: #000000;
-      --black-soft: #090300;
+      --black-soft: #080300;
       --black-panel: #140600;
 
       --border: rgba(255, 106, 0, 0.55);
-      --border-strong: rgba(255, 140, 0, 0.95);
+      --border-strong: rgba(255, 140, 0, 0.9);
 
-      --shadow: 0 18px 48px rgba(0, 0, 0, 0.75);
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.72);
       --glow: 0 0 28px rgba(255, 106, 0, 0.28);
     }
 
@@ -126,17 +155,19 @@
         ),
         radial-gradient(
           circle at 92% 10%,
-          rgba(255, 106, 0, 0.16),
+          rgba(255, 106, 0, 0.18),
           transparent 30%
         ),
         linear-gradient(
           135deg,
           #000000 0%,
-          #090300 32%,
-          #341000 52%,
-          #090300 72%,
+          #080300 30%,
+          #351000 52%,
+          #080300 72%,
           #000000 100%
         );
+
+      background-attachment: fixed;
     }
 
     a {
@@ -149,18 +180,13 @@
       max-width: 100%;
     }
 
-    button,
-    input {
-      font: inherit;
-    }
-
     button {
+      font: inherit;
       cursor: pointer;
     }
 
     a:focus-visible,
-    button:focus-visible,
-    input:focus-visible {
+    button:focus-visible {
       outline: 3px solid var(--orange-light);
       outline-offset: 4px;
     }
@@ -216,7 +242,7 @@
 
     /* HEADER */
 
-    header {
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -225,7 +251,7 @@
         linear-gradient(
           135deg,
           rgba(0, 0, 0, 0.98),
-          rgba(45, 13, 0, 0.96),
+          rgba(48, 14, 0, 0.96),
           rgba(0, 0, 0, 0.98)
         );
 
@@ -233,7 +259,8 @@
 
       backdrop-filter: blur(14px);
 
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.72);
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.72);
     }
 
     .header-inner {
@@ -259,16 +286,15 @@
 
       object-fit: contain;
 
-      border-radius: 14px;
-
       border: 1px solid var(--orange);
+      border-radius: 14px;
 
       background: var(--black);
 
       box-shadow: var(--glow);
     }
 
-    .brand strong {
+    .brand-text strong {
       display: block;
 
       color: var(--orange-light);
@@ -276,26 +302,28 @@
       font-size: 1rem;
     }
 
-    .brand span {
+    .brand-text span {
       display: block;
 
       margin-top: 4px;
 
-      color: var(--orange-bright);
+      color: var(--orange-2);
 
       font-size: 0.72rem;
       font-weight: 900;
       letter-spacing: 1px;
     }
 
-    nav {
+    .nav-links {
       display: flex;
       align-items: center;
 
       gap: 7px;
+
+      list-style: none;
     }
 
-    nav a {
+    .nav-links a {
       padding: 10px 13px;
 
       color: var(--orange-light);
@@ -309,8 +337,8 @@
       transition: 0.25s ease;
     }
 
-    nav a:hover,
-    nav a.active {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--black);
 
       border-color: var(--orange);
@@ -341,29 +369,30 @@
     /* HERO */
 
     .hero {
-      min-height: 440px;
+      min-height: 430px;
 
       display: flex;
       align-items: center;
 
+      border-bottom: 1px solid var(--border);
+
       background:
         radial-gradient(
           circle at 80% 35%,
-          rgba(255, 106, 0, 0.34),
+          rgba(255, 106, 0, 0.36),
           transparent 30%
         ),
         linear-gradient(
           110deg,
           #000000,
-          #301000,
+          #311000,
           #000000
         );
-
-      border-bottom: 1px solid var(--border);
     }
 
     .hero-content {
-      max-width: 820px;
+      max-width: 850px;
+
       padding: 75px 0;
     }
 
@@ -393,9 +422,10 @@
 
       border-radius: 50%;
 
-      background: var(--orange-bright);
+      background: var(--orange-2);
 
-      box-shadow: 0 0 0 7px rgba(255, 106, 0, 0.15);
+      box-shadow:
+        0 0 0 7px rgba(255, 106, 0, 0.14);
 
       animation: pulse 1.3s infinite;
     }
@@ -419,7 +449,7 @@
 
       text-shadow:
         0 3px 0 var(--black),
-        0 0 30px rgba(255, 106, 0, 0.25);
+        0 0 30px rgba(255, 106, 0, 0.28);
     }
 
     .hero h1 span {
@@ -437,13 +467,13 @@
       line-height: 1.8;
     }
 
-    /* LIVE PLAYER */
+    /* MAIN LIVE CENTER */
 
-    .live-section {
-      padding: 75px 0;
+    .live-center {
+      padding: 78px 0;
     }
 
-    .live-layout {
+    .live-grid {
       display: grid;
 
       grid-template-columns:
@@ -455,8 +485,10 @@
       align-items: start;
     }
 
-    .player-panel {
+    .youtube-panel {
       padding: 38px;
+
+      text-align: center;
 
       border: 2px solid var(--orange);
       border-radius: 26px;
@@ -465,7 +497,7 @@
         radial-gradient(
           circle at top,
           rgba(255, 106, 0, 0.28),
-          transparent 36%
+          transparent 37%
         ),
         linear-gradient(
           145deg,
@@ -496,89 +528,66 @@
       box-shadow: var(--glow);
     }
 
-    .player-info {
+    .youtube-panel small {
+      display: block;
+
       margin-top: 25px;
 
-      text-align: center;
-    }
+      color: var(--orange);
 
-    .player-info small {
-      color: var(--orange-bright);
-
+      font-size: 0.78rem;
       font-weight: 900;
       letter-spacing: 2px;
     }
 
-    .player-info h2 {
-      margin-top: 9px;
+    .youtube-panel h2 {
+      margin-top: 10px;
 
       color: var(--orange-light);
 
-      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
     }
 
-    .player-info p {
-      margin-top: 8px;
+    .youtube-panel p {
+      max-width: 630px;
 
-      color: var(--orange-bright);
+      margin: 15px auto 0;
 
-      font-weight: 700;
+      color: var(--orange-2);
+
+      line-height: 1.7;
     }
 
-    .test-notice {
-      margin-top: 22px;
-
-      padding: 14px 16px;
-
-      text-align: center;
-
-      color: var(--orange-light);
-
-      border: 1px solid var(--orange-dark);
-      border-radius: 11px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1d0800,
-          #000000
-        );
-
-      font-size: 0.88rem;
-      line-height: 1.55;
-    }
-
-    audio {
-      width: 100%;
-
-      margin-top: 26px;
-
-      accent-color: var(--orange);
-    }
-
-    .controls {
-      margin-top: 25px;
+    .live-actions {
+      margin-top: 28px;
 
       display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: 14px;
+    }
+
+    .btn {
+      min-height: 52px;
+
+      display: inline-flex;
       align-items: center;
       justify-content: center;
 
-      flex-wrap: wrap;
+      padding: 13px 22px;
 
-      gap: 16px;
+      border-radius: 11px;
+
+      font-weight: 900;
+
+      transition: 0.25s ease;
     }
 
-    .play-button {
-      width: 78px;
-      height: 78px;
-
-      display: grid;
-      place-items: center;
+    .btn-primary {
+      color: var(--black);
 
       border: 2px solid var(--orange-light);
-      border-radius: 50%;
-
-      color: var(--black);
 
       background:
         linear-gradient(
@@ -586,112 +595,46 @@
           var(--orange),
           var(--orange-light)
         );
-
-      font-size: 1.8rem;
-      font-weight: 900;
-
-      box-shadow: var(--glow);
-
-      transition: 0.25s ease;
     }
 
-    .play-button:hover {
-      transform: scale(1.06);
-    }
+    .btn-secondary {
+      color: var(--orange-light);
 
-    .volume-control {
-      min-width: 220px;
-
-      display: flex;
-      align-items: center;
-
-      gap: 11px;
-
-      padding: 11px 15px;
-
-      border: 1px solid var(--orange);
-      border-radius: 999px;
-
-      background: var(--black);
-    }
-
-    .volume-control input {
-      width: 100%;
-
-      accent-color: var(--orange);
-    }
-
-    .wave {
-      height: 65px;
-
-      margin-top: 25px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      gap: 6px;
-    }
-
-    .wave span {
-      width: 6px;
-      height: 15px;
-
-      border-radius: 999px;
+      border: 2px solid var(--orange);
 
       background:
         linear-gradient(
-          180deg,
-          var(--orange-light),
-          var(--orange)
+          135deg,
+          #000000,
+          #201000
+        );
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+
+      box-shadow: var(--glow);
+    }
+
+    .live-message {
+      margin-top: 25px;
+
+      padding: 14px 16px;
+
+      color: var(--orange-light);
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #180700,
+          #000000
         );
 
-      animation: wave 0.85s ease-in-out infinite;
-
-      animation-play-state: paused;
-    }
-
-    .wave.playing span {
-      animation-play-state: running;
-    }
-
-    .wave span:nth-child(2) {
-      animation-delay: 0.12s;
-    }
-
-    .wave span:nth-child(3) {
-      animation-delay: 0.24s;
-    }
-
-    .wave span:nth-child(4) {
-      animation-delay: 0.36s;
-    }
-
-    .wave span:nth-child(5) {
-      animation-delay: 0.18s;
-    }
-
-    .wave span:nth-child(6) {
-      animation-delay: 0.3s;
-    }
-
-    .wave span:nth-child(7) {
-      animation-delay: 0.08s;
-    }
-
-    .wave span:nth-child(8) {
-      animation-delay: 0.22s;
-    }
-
-    @keyframes wave {
-      0%,
-      100% {
-        height: 15px;
-      }
-
-      50% {
-        height: 60px;
-      }
+      font-size: 0.88rem;
+      line-height: 1.55;
     }
 
     /* SIDE CARDS */
@@ -703,7 +646,7 @@
     }
 
     .info-card {
-      padding: 24px;
+      padding: 25px;
 
       border: 1px solid var(--border-strong);
       border-radius: 18px;
@@ -721,7 +664,7 @@
     .info-card small {
       color: var(--orange);
 
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 900;
       letter-spacing: 1.4px;
     }
@@ -735,17 +678,39 @@
     .info-card p {
       margin-top: 8px;
 
-      color: var(--orange-bright);
+      color: var(--orange-2);
 
       line-height: 1.65;
     }
 
-    /* PROGRAMMING */
+    .info-card a {
+      display: inline-flex;
+
+      margin-top: 16px;
+
+      padding: 10px 14px;
+
+      color: var(--black);
+
+      border-radius: 9px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      font-weight: 900;
+    }
+
+    /* CONTENT SECTIONS */
 
     .content-section {
       padding: 80px 0;
 
-      border-top: 1px solid rgba(255, 106, 0, 0.2);
+      border-top:
+        1px solid rgba(255, 106, 0, 0.2);
     }
 
     .section-heading {
@@ -775,10 +740,75 @@
     .section-heading p {
       margin-top: 13px;
 
-      color: var(--orange-bright);
+      color: var(--orange-2);
 
       line-height: 1.7;
     }
+
+    /* YOUTUBE + SPOTIFY */
+
+    .platform-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 22px;
+    }
+
+    .platform-card {
+      padding: 34px 28px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 19px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 106, 0, 0.14),
+          #000000 68%
+        );
+    }
+
+    .platform-icon {
+      width: 70px;
+      height: 70px;
+
+      display: grid;
+      place-items: center;
+
+      margin: 0 auto 18px;
+
+      border-radius: 50%;
+
+      color: var(--black);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+
+    .platform-card h3 {
+      color: var(--orange-light);
+    }
+
+    .platform-card p {
+      margin: 12px 0 22px;
+
+      color: var(--orange-2);
+
+      line-height: 1.65;
+    }
+
+    /* SCHEDULE */
 
     .schedule {
       display: grid;
@@ -822,7 +852,7 @@
     .schedule-row p {
       margin-top: 5px;
 
-      color: var(--orange-bright);
+      color: var(--orange-2);
 
       font-size: 0.88rem;
     }
@@ -892,7 +922,7 @@
       display: grid;
 
       grid-template-columns:
-        repeat(4, 1fr);
+        repeat(2, 1fr);
 
       gap: 15px;
 
@@ -943,7 +973,7 @@
 
       text-align: center;
 
-      color: var(--orange-bright);
+      color: var(--orange-2);
 
       border-top: 1px solid var(--orange-dark);
 
@@ -953,7 +983,12 @@
     /* RESPONSIVE */
 
     @media (max-width: 900px) {
-      .live-layout {
+
+      .live-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .platform-grid {
         grid-template-columns: 1fr;
       }
 
@@ -961,15 +996,11 @@
         grid-template-columns: 1fr;
       }
 
-      .social-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .menu-toggle {
         display: block;
       }
 
-      nav {
+      .nav-links {
         position: absolute;
 
         top: 82px;
@@ -988,31 +1019,28 @@
         background: var(--black);
       }
 
-      nav.open {
+      .nav-links.open {
         display: flex;
       }
 
-      nav a {
+      .nav-links a {
         text-align: center;
       }
     }
 
     @media (max-width: 600px) {
-      .brand span {
+
+      .brand-text span {
         display: none;
       }
 
-      .player-panel {
-        padding: 27px 18px;
+      .youtube-panel {
+        padding: 28px 18px;
       }
 
       .station-logo {
-        width: 140px;
-        height: 140px;
-      }
-
-      .volume-control {
-        width: 100%;
+        width: 145px;
+        height: 145px;
       }
 
       .schedule-row {
@@ -1028,14 +1056,22 @@
       .social-grid {
         grid-template-columns: 1fr;
       }
+
+      .live-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       *,
       *::before,
       *::after {
         scroll-behavior: auto !important;
-
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
       }
@@ -1045,7 +1081,10 @@
 
 <body>
 
-  <a href="#main-content" class="skip-link">
+  <a
+    href="#main-content"
+    class="skip-link"
+  >
     Ale dirèk nan kontni
   </a>
 
@@ -1053,11 +1092,14 @@
     🔥 PRO-MAX FM DMP — POWERING THE FUTURE OF DIGITAL RADIO 🔥
   </div>
 
-  <header>
+  <header class="site-header">
 
     <div class="container header-inner">
 
-      <a href="index.html" class="brand">
+      <a
+        href="index.html"
+        class="brand"
+      >
 
         <img
           src="assets/pro-max-fm-dmp.png"
@@ -1065,50 +1107,75 @@
           class="brand-logo"
         >
 
-        <div>
-          <strong>PRO-MAX FM DMP</strong>
-          <span>LIVE RADIO CENTER</span>
+        <div class="brand-text">
+
+          <strong>
+            PRO-MAX FM DMP
+          </strong>
+
+          <span>
+            LIVE RADIO CENTER
+          </span>
+
         </div>
 
       </a>
 
       <button
         type="button"
-        class="menu-toggle"
         id="menuToggle"
+        class="menu-toggle"
         aria-label="Louvri meni"
         aria-expanded="false"
       >
         ☰
       </button>
 
-      <nav id="mainNav" aria-label="Navigasyon prensipal">
+      <ul
+        id="navLinks"
+        class="nav-links"
+      >
 
-        <a href="index.html">
-          Akèy
-        </a>
+        <li>
+          <a href="index.html">
+            Akèy
+          </a>
+        </li>
 
-        <a href="live.html" class="active">
-          Live
-        </a>
+        <li>
+          <a
+            href="live.html"
+            class="active"
+          >
+            Live
+          </a>
+        </li>
 
-        <a href="news.html">
-          Nouvèl
-        </a>
+        <li>
+          <a href="news.html">
+            Nouvèl
+          </a>
+        </li>
 
-        <a href="shows.html">
-          Emisyon
-        </a>
+        <li>
+          <a href="shows.html">
+            Emisyon
+          </a>
+        </li>
 
-        <a href="podcasts.html">
-          Podcast
-        </a>
+        <li>
+          <a href="podcasts.html">
+            Podcast
+          </a>
+        </li>
 
-        <a href="musics.html">
-          Mizik
-        </a>
+        <li>
+          <a href="musics.html">
+            Mizik
+          </a>
+        </li>
 
-      </nav>
+      </ul>
 
     </div>
 
@@ -1116,13 +1183,18 @@
 
   <main id="main-content">
 
+    <!-- HERO -->
+
     <section class="hero">
 
       <div class="container hero-content">
 
         <div class="live-badge">
+
           <span class="live-dot"></span>
+
           LIVE RADIO CENTER
+
         </div>
 
         <h1>
@@ -1131,21 +1203,23 @@
         </h1>
 
         <p>
-          Koute PRO-MAX FM DMP sou entènèt.
-          Mizik, nouvèl, entèvyou, espò, kilti,
-          biznis ak pwogram espesyal sou yon
-          sèl platfòm dijital.
+          PRO-MAX FM DMP konekte ak YouTube kòm
+          sous prensipal transmisyon Live la.
+          Swiv emisyon, mizik, nouvèl, entèvyou,
+          espò ak kontni dijital nou yo.
         </p>
 
       </div>
 
     </section>
 
-    <section class="live-section">
+    <!-- LIVE CENTER -->
 
-      <div class="container live-layout">
+    <section class="live-center">
 
-        <article class="player-panel">
+      <div class="container live-grid">
+
+        <article class="youtube-panel">
 
           <img
             src="assets/pro-max-fm-dmp.png"
@@ -1153,85 +1227,45 @@
             class="station-logo"
           >
 
-          <div class="player-info">
+          <small>
+            ● OFFICIAL YOUTUBE LIVE
+          </small>
 
-            <small id="onAirLabel">
-              ● AUDIO ONLINE
-            </small>
+          <h2>
+            PRO-MAX FM LIVE RADIO
+          </h2>
 
-            <h2>
-              PRO-MAX FM DMP
-            </h2>
+          <p>
+            YouTube se sous prensipal Live Radio PRO-MAX FM DMP.
+            Lè estasyon an gen yon transmisyon Live aktif,
+            bouton anba a ap mennen sou paj Live chanèl la.
+          </p>
 
-            <p id="playerStatus">
-              Pare pou koute
-            </p>
+          <div class="live-actions">
 
-          </div>
-
-          <div class="test-notice">
-            ⚠️ Player la gen yon sous odyo reyèl pou teste
-            Play, Pause ak Volume. Li poko stream ofisyèl
-            PRO-MAX FM.
-          </div>
-
-          <audio
-            id="radioAudio"
-            preload="metadata"
-            controls
-          >
-            <source
-              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-              type="audio/mpeg"
+            <a
+              href="https://www.youtube.com/@BSS1815PROMAXDMP/live"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
             >
+              ▶ WATCH LIVE
+            </a>
 
-            Navigatè ou pa sipòte HTML5 audio.
-          </audio>
+            <a
+              href="https://www.youtube.com/@BSS1815PROMAXDMP"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              YOUTUBE CHANNEL
+            </a>
 
-          <div
-            class="wave"
-            id="wave"
-            aria-hidden="true"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
           </div>
 
-          <div class="controls">
-
-            <button
-              type="button"
-              class="play-button"
-              id="playButton"
-              aria-label="Jwe odyo"
-            >
-              ▶
-            </button>
-
-            <label class="volume-control">
-
-              <span aria-hidden="true">
-                🔊
-              </span>
-
-              <input
-                id="volumeControl"
-                type="range"
-                min="0"
-                max="1"
-                step="0.05"
-                value="0.8"
-                aria-label="Volim"
-              >
-
-            </label>
-
+          <div class="live-message">
+            Demo MP3 la retire. Live Radio a itilize
+            chanèl YouTube PRO-MAX DMP kòm sous prensipal.
           </div>
 
         </article>
@@ -1241,33 +1275,16 @@
           <article class="info-card">
 
             <small>
-              NOW PLAYING
-            </small>
-
-            <h3 id="nowPlaying">
-              PRO-MAX FM Audio
-            </h3>
-
-            <p>
-              Player dijital la aktif
-              epi pare pou stream ofisyèl la.
-            </p>
-
-          </article>
-
-          <article class="info-card">
-
-            <small>
-              CURRENT SHOW
+              LIVE SOURCE
             </small>
 
             <h3>
-              PRO-MAX FM LIVE
+              YouTube
             </h3>
 
             <p>
-              Mizik, nouvèl, kominote,
-              entèvyou ak divètisman.
+              Sous prensipal pou Live Radio,
+              emisyon, videyo ak replay.
             </p>
 
           </article>
@@ -1275,16 +1292,49 @@
           <article class="info-card">
 
             <small>
-              STREAM STATUS
+              OFFICIAL CHANNEL
             </small>
 
-            <h3 id="streamStatus">
-              READY
+            <h3>
+              @BSS1815PROMAXDMP
             </h3>
 
             <p>
-              Sistèm odyo a pare pou itilize.
+              Chanèl YouTube ofisyèl PRO-MAX DMP.
             </p>
+
+            <a
+              href="https://www.youtube.com/@BSS1815PROMAXDMP"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Channel
+            </a>
+
+          </article>
+
+          <article class="info-card">
+
+            <small>
+              SECONDARY AUDIO
+            </small>
+
+            <h3>
+              Spotify
+            </h3>
+
+            <p>
+              Spotify rete disponib pou
+              mizik, podcast ak lòt kontni odyo.
+            </p>
+
+            <a
+              href="https://open.spotify.com/search"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Spotify
+            </a>
 
           </article>
 
@@ -1293,6 +1343,92 @@
       </div>
 
     </section>
+
+    <!-- STREAMING PLATFORMS -->
+
+    <section class="content-section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span>
+            DIGITAL STREAMING
+          </span>
+
+          <h2>
+            YouTube + Spotify
+          </h2>
+
+          <p>
+            YouTube sèvi kòm platfòm prensipal Live.
+            Spotify rete kòm aksè segondè pou mizik
+            ak lòt kontni odyo.
+          </p>
+
+        </div>
+
+        <div class="platform-grid">
+
+          <article class="platform-card">
+
+            <div class="platform-icon">
+              ▶
+            </div>
+
+            <h3>
+              YouTube Live
+            </h3>
+
+            <p>
+              Live Radio, emisyon, videyo,
+              entèvyou ak replay.
+            </p>
+
+            <a
+              href="https://www.youtube.com/@BSS1815PROMAXDMP/live"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              WATCH LIVE
+            </a>
+
+          </article>
+
+          <article class="platform-card">
+
+            <div class="platform-icon">
+              ♫
+            </div>
+
+            <h3>
+              Spotify
+            </h3>
+
+            <p>
+              Mizik, podcast ak rechèch
+              kontni odyo sou Spotify.
+            </p>
+
+            <a
+              href="https://open.spotify.com/search"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              OPEN SPOTIFY
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PROGRAMMING -->
 
     <section class="content-section">
 
@@ -1309,7 +1445,8 @@
           </h2>
 
           <p>
-            Pwogram prensipal PRO-MAX FM DMP.
+            Espas sa a prepare pou pwogramasyon
+            ofisyèl PRO-MAX FM DMP.
           </p>
 
         </div>
@@ -1401,7 +1538,7 @@
               </strong>
 
               <p>
-                Envite, mizik ak konvèsasyon.
+                Mizik, envite ak konvèsasyon.
               </p>
 
             </div>
@@ -1417,6 +1554,8 @@
       </div>
 
     </section>
+
+    <!-- CONTACT -->
 
     <section class="content-section">
 
@@ -1442,7 +1581,9 @@
               📧 EMAIL
             </strong>
 
-            <a href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM">
+            <a
+              href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+            >
               BSS1815-PROMAXFMDMP@GMAIL.COM
             </a>
 
@@ -1481,7 +1622,7 @@
         <div class="social-grid">
 
           <a
-            href="https://www.youtube.com/"
+            href="https://www.youtube.com/@BSS1815PROMAXDMP"
             target="_blank"
             rel="noopener noreferrer"
             class="social-link"
@@ -1490,66 +1631,12 @@
           </a>
 
           <a
-            href="https://open.spotify.com/"
+            href="https://open.spotify.com/search"
             target="_blank"
             rel="noopener noreferrer"
             class="social-link"
           >
-            🎵 Spotify
-          </a>
-
-          <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            Facebook
-          </a>
-
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            Instagram
-          </a>
-
-          <a
-            href="https://www.tiktok.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            TikTok
-          </a>
-
-          <a
-            href="https://truthsocial.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            Truth Social
-          </a>
-
-          <a
-            href="https://telegram.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            Telegram
-          </a>
-
-          <a
-            href="https://x.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            𝕏 / Twitter
+            ♫ Spotify
           </a>
 
         </div>
@@ -1576,198 +1663,52 @@
   <script>
     "use strict";
 
-    const audio =
-      document.getElementById("radioAudio");
-
-    const playButton =
-      document.getElementById("playButton");
-
-    const volumeControl =
-      document.getElementById("volumeControl");
-
-    const playerStatus =
-      document.getElementById("playerStatus");
-
-    const streamStatus =
-      document.getElementById("streamStatus");
-
-    const wave =
-      document.getElementById("wave");
-
     const menuToggle =
       document.getElementById("menuToggle");
 
-    const mainNav =
-      document.getElementById("mainNav");
+    const navLinks =
+      document.getElementById("navLinks");
 
-    audio.volume =
-      Number(volumeControl.value);
+    function toggleMenu() {
 
-    async function toggleAudio() {
+      const open =
+        navLinks.classList.toggle("open");
 
-      try {
+      menuToggle.textContent =
+        open ? "✕" : "☰";
 
-        if (audio.paused) {
-
-          await audio.play();
-
-        } else {
-
-          audio.pause();
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "PRO-MAX FM audio error:",
-          error
-        );
-
-        playerStatus.textContent =
-          "Odyo pa disponib";
-
-        streamStatus.textContent =
-          "ERROR";
-
-      }
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
 
     }
 
-    playButton.addEventListener(
-      "click",
-      toggleAudio
-    );
+    function closeMenu() {
 
-    audio.addEventListener(
-      "play",
-      function () {
+      navLinks.classList.remove("open");
 
-        playButton.textContent =
-          "❚❚";
+      menuToggle.textContent = "☰";
 
-        playButton.setAttribute(
-          "aria-label",
-          "Poz odyo"
-        );
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
-        playerStatus.textContent =
-          "W ap koute PRO-MAX FM";
-
-        streamStatus.textContent =
-          "PLAYING";
-
-        wave.classList.add(
-          "playing"
-        );
-
-      }
-    );
-
-    audio.addEventListener(
-      "pause",
-      function () {
-
-        playButton.textContent =
-          "▶";
-
-        playButton.setAttribute(
-          "aria-label",
-          "Jwe odyo"
-        );
-
-        playerStatus.textContent =
-          "Odyo an poz";
-
-        streamStatus.textContent =
-          "PAUSED";
-
-        wave.classList.remove(
-          "playing"
-        );
-
-      }
-    );
-
-    audio.addEventListener(
-      "waiting",
-      function () {
-
-        playerStatus.textContent =
-          "Ap chaje odyo...";
-
-        streamStatus.textContent =
-          "LOADING";
-
-      }
-    );
-
-    audio.addEventListener(
-      "error",
-      function () {
-
-        playerStatus.textContent =
-          "Sous odyo a pa disponib";
-
-        streamStatus.textContent =
-          "OFFLINE";
-
-        wave.classList.remove(
-          "playing"
-        );
-
-      }
-    );
-
-    volumeControl.addEventListener(
-      "input",
-      function () {
-
-        audio.volume =
-          Number(this.value);
-
-      }
-    );
+    }
 
     menuToggle.addEventListener(
       "click",
-      function () {
-
-        const open =
-          mainNav.classList.toggle("open");
-
-        menuToggle.textContent =
-          open ? "✕" : "☰";
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          String(open)
-        );
-
-      }
+      toggleMenu
     );
 
-    mainNav
+    navLinks
       .querySelectorAll("a")
       .forEach(function (link) {
 
         link.addEventListener(
           "click",
-          function () {
-
-            mainNav.classList.remove(
-              "open"
-            );
-
-            menuToggle.textContent =
-              "☰";
-
-            menuToggle.setAttribute(
-              "aria-expanded",
-              "false"
-            );
-
-          }
+          closeMenu
         );
 
       });
@@ -1776,7 +1717,6 @@
       .getElementById("currentYear")
       .textContent =
         new Date().getFullYear();
-
   </script>
 
 </body>
