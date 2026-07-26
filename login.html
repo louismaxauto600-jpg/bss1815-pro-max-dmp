@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Admin Login | BSS1815 PRO-MAX DMP</title>
+
+  <meta
+    name="description"
+    content="Admin Login portal for BSS1815 PRO-MAX DMP."
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/login.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8c00;
+      --orange-light: #ffc078;
+      --black: #000000;
+      --black2: #090300;
+      --panel: #160700;
+      --border: rgba(255, 106, 0, 0.58);
+      --shadow: 0 20px 55px rgba(0, 0, 0, 0.78);
+      --glow: 0 0 32px rgba(255, 106, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(255, 106, 0, 0.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 12% 85%,
+          rgba(255, 106, 0, 0.13),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    input:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      border-bottom: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(50,14,0,.97),
+          rgba(0,0,0,.98)
+        );
+
+      box-shadow:
+        0 8px 30px rgba(0,0,0,.65);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 1.8rem;
+      font-weight: 900;
+
+      box-shadow: var(--glow);
+    }
+
+    .brand-text strong {
+      display: block;
+
+      color: var(--orange-light);
+
+      font-size: 1rem;
+    }
+
+    .brand-text span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--orange);
+
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+    }
+
+    .home-link {
+      padding: 10px 14px;
+
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+
+      color: var(--orange-light);
+
+      font-size: .82rem;
+      font-weight: 900;
+    }
+
+    .home-link:hover {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .languages {
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      padding: 7px 9px;
+
+      border: 1px solid var(--orange);
+      border-radius: 7px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .lang-btn.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    /* MAIN */
+
+    main {
+      flex: 1;
+
+      display: grid;
+      place-items: center;
+
+      padding: 70px 0;
+    }
+
+    .login-layout {
+      width: min(1050px, 94%);
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      overflow: hidden;
+
+      border: 2px solid var(--orange);
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.11),
+          rgba(0,0,0,.98)
+        );
+
+      box-shadow:
+        var(--shadow),
+        var(--glow);
+    }
+
+    /* LEFT PANEL */
+
+    .login-intro {
+      min-height: 650px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 55px;
+
+      border-right:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255,106,0,.24),
+          transparent 55%
+        ),
+        #050100;
+    }
+
+    .security-icon {
+      width: 95px;
+      height: 95px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 2.8rem;
+
+      box-shadow: var(--glow);
+    }
+
+    .badge {
+      width: fit-content;
+
+      margin-top: 30px;
+
+      padding: 8px 13px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange);
+
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .login-intro h1 {
+      margin-top: 18px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2.5rem, 5vw, 4.5rem);
+
+      line-height: 1;
+
+      text-transform: uppercase;
+    }
+
+    .login-intro h1 span {
+      display: block;
+
+      color: var(--orange);
+    }
+
+    .login-intro p {
+      max-width: 470px;
+
+      margin-top: 20px;
+
+      color: var(--orange2);
+
+      line-height: 1.8;
+    }
+
+    .security-list {
+      display: grid;
+
+      gap: 12px;
+
+      margin-top: 30px;
+    }
+
+    .security-item {
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+
+      color: var(--orange-light);
+
+      font-size: .9rem;
+    }
+
+    .security-item span {
+      width: 30px;
+      height: 30px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: .8rem;
+      font-weight: 900;
+    }
+
+    /* LOGIN FORM */
+
+    .login-panel {
+      min-height: 650px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 55px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(0,0,0,.98),
+          rgba(28,8,0,.96)
+        );
+    }
+
+    .login-panel small {
+      color: var(--orange);
+
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .login-panel h2 {
+      margin-top: 8px;
+
+      color: var(--orange-light);
+
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .login-panel > p {
+      margin-top: 10px;
+
+      color: var(--orange2);
+
+      line-height: 1.6;
+    }
+
+    .login-form {
+      display: grid;
+
+      gap: 18px;
+
+      margin-top: 32px;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-group label {
+      color: var(--orange);
+
+      font-size: .82rem;
+      font-weight: 900;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
+      width: 100%;
+
+      padding: 15px 48px 15px 15px;
+
+      border: 1px solid var(--orange);
+      border-radius: 11px;
+
+      color: var(--orange-light);
+      background: #000;
+    }
+
+    .input-wrap input::placeholder {
+      color: #b85a25;
+    }
+
+    .input-icon {
+      position: absolute;
+
+      top: 50%;
+      right: 15px;
+
+      transform: translateY(-50%);
+
+      color: var(--orange);
+
+      pointer-events: none;
+    }
+
+    .password-button {
+      position: absolute;
+
+      top: 50%;
+      right: 8px;
+
+      width: 40px;
+      height: 40px;
+
+      transform: translateY(-50%);
+
+      border: 0;
+
+      color: var(--orange);
+
+      background: transparent;
+
+      font-size: 1rem;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+
+      color: var(--orange-light);
+
+      font-size: .85rem;
+    }
+
+    .remember input {
+      accent-color: var(--orange);
+    }
+
+    .forgot-link {
+      color: var(--orange);
+
+      font-size: .85rem;
+      font-weight: 900;
+    }
+
+    .login-button {
+      min-height: 51px;
+
+      border: 1px solid var(--orange);
+      border-radius: 11px;
+
+      color: #000;
+      background:
+        linear-gradient(
+          135deg,
+          var(--orange),
+          var(--orange-light)
+        );
+
+      font-weight: 900;
+      letter-spacing: .5px;
+
+      transition: .25s ease;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+
+      box-shadow: var(--glow);
+    }
+
+    .login-button:disabled {
+      cursor: not-allowed;
+
+      opacity: .6;
+
+      transform: none;
+    }
+
+    .status-box {
+      min-height: 24px;
+
+      color: var(--orange2);
+
+      font-size: .88rem;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .status-box.success {
+      color: var(--orange-light);
+    }
+
+    .status-box.error {
+      color: var(--orange-light);
+
+      padding: 10px 12px;
+
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+
+      background:
+        rgba(255,106,0,.08);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      margin: 8px 0;
+
+      color: var(--orange2);
+
+      font-size: .75rem;
+      font-weight: 900;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: var(--border);
+    }
+
+    .admin-note {
+      padding: 15px;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      color: var(--orange2);
+
+      background: #090300;
+
+      font-size: .82rem;
+      line-height: 1.6;
+    }
+
+    .admin-note strong {
+      color: var(--orange);
+    }
+
+    /* QUICK LINKS */
+
+    .quick-links {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 10px;
+
+      margin-top: 18px;
+    }
+
+    .quick-link {
+      padding: 11px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      color: var(--orange-light);
+
+      background: #000;
+
+      font-size: .75rem;
+      font-weight: 900;
+    }
+
+    .quick-link:hover {
+      border-color: var(--orange);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 28px 0;
+
+      text-align: center;
+
+      border-top: 1px solid var(--border);
+
+      color: var(--orange2);
+
+      background: #000;
+
+      font-size: .85rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px) {
+
+      .login-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .login-intro {
+        min-height: auto;
+
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .login-panel {
+        min-height: auto;
+      }
+    }
+
+    @media(max-width:650px) {
+
+      .languages {
+        display: none;
+      }
+
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .brand-mark {
+        width: 50px;
+        height: 50px;
+      }
+
+      .brand-text span {
+        display: none;
+      }
+
+      .home-link {
+        padding: 9px 11px;
+
+        font-size: .72rem;
+      }
+
+      main {
+        padding: 35px 0;
+      }
+
+      .login-layout {
+        width: 94%;
+
+        border-radius: 18px;
+      }
+
+      .login-intro,
+      .login-panel {
+        padding: 32px 22px;
+      }
+
+      .security-icon {
+        width: 75px;
+        height: 75px;
+
+        font-size: 2.2rem;
+      }
+
+      .form-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .quick-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        🔐
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          BSS1815 PRO-MAX DMP
+        </strong>
+
+        <span>
+          SECURE ADMIN ACCESS
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-actions">
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+      <a
+        href="index.html"
+        class="home-link"
+        data-kre="← AKÈY"
+        data-eng="← HOME"
+        data-fra="← ACCUEIL"
+      >
+        ← AKÈY
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <section class="login-layout">
+
+    <!-- LEFT SIDE -->
+
+    <div class="login-intro">
+
+      <div class="security-icon">
+        🔐
+      </div>
+
+      <span
+        class="badge"
+        data-kre="ZÒN ADMINISTRASYON"
+        data-eng="ADMINISTRATION AREA"
+        data-fra="ZONE D'ADMINISTRATION"
+      >
+        ZÒN ADMINISTRASYON
+      </span>
+
+      <h1>
+        ADMIN
+        <span>LOGIN</span>
+      </h1>
+
+      <p
+        data-kre="Aksè sa a rezève pou itilizatè ki gen otorizasyon sou BSS1815 PRO-MAX DMP."
+        data-eng="This access is reserved for authorized users of BSS1815 PRO-MAX DMP."
+        data-fra="Cet accès est réservé aux utilisateurs autorisés de BSS1815 PRO-MAX DMP."
+      >
+        Aksè sa a rezève pou itilizatè
+        ki gen otorizasyon sou
+        BSS1815 PRO-MAX DMP.
+      </p>
+
+
+      <div class="security-list">
+
+        <div class="security-item">
+
+          <span>
+            ✓
+          </span>
+
+          <p
+            data-kre="Aksè sekirize pou administrasyon"
+            data-eng="Secure administration access"
+            data-fra="Accès sécurisé à l'administration"
+          >
+            Aksè sekirize pou administrasyon
+          </p>
+
+        </div>
+
+
+        <div class="security-item">
+
+          <span>
+            ✓
+          </span>
+
+          <p
+            data-kre="Kontwòl aksè dapre wòl ak pèmisyon"
+            data-eng="Role and permission based access"
+            data-fra="Accès basé sur les rôles et permissions"
+          >
+            Kontwòl aksè dapre
+            wòl ak pèmisyon
+          </p>
+
+        </div>
+
+
+        <div class="security-item">
+
+          <span>
+            ✓
+          </span>
+
+          <p
+            data-kre="Koneksyon ak sistèm otantifikasyon platfòm lan"
+            data-eng="Connection to the platform authentication system"
+            data-fra="Connexion au système d'authentification de la plateforme"
+          >
+            Koneksyon ak sistèm
+            otantifikasyon platfòm lan
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- LOGIN FORM -->
+
+    <div class="login-panel">
+
+      <small>
+        BSS1815 PRO-MAX DMP
+      </small>
+
+      <h2
+        data-kre="Konekte nan kont ou"
+        data-eng="Sign in to your account"
+        data-fra="Connectez-vous à votre compte"
+      >
+        Konekte nan kont ou
+      </h2>
+
+      <p
+        data-kre="Antre email ak modpas administrasyon ou."
+        data-eng="Enter your administration email and password."
+        data-fra="Entrez votre adresse e-mail et votre mot de passe administrateur."
+      >
+        Antre email ak modpas
+        administrasyon ou.
+      </p>
+
+
+      <form
+        class="login-form"
+        id="loginForm"
+        novalidate
+      >
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label
+            for="email"
+            data-kre="EMAIL"
+            data-eng="EMAIL"
+            data-fra="E-MAIL"
+          >
+            EMAIL
+          </label>
+
+          <div class="input-wrap">
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              placeholder="admin@example.com"
+              required
+            >
+
+            <span class="input-icon">
+              ✉
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+          <label
+            for="password"
+            data-kre="MODPAS"
+            data-eng="PASSWORD"
+            data-fra="MOT DE PASSE"
+          >
+            MODPAS
+          </label>
+
+          <div class="input-wrap">
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              required
+            >
+
+            <button
+              type="button"
+              id="togglePassword"
+              class="password-button"
+              aria-label="Montre modpas"
+            >
+              👁
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div class="form-row">
+
+          <label class="remember">
+
+            <input
+              type="checkbox"
+              id="rememberMe"
+            >
+
+            <span
+              data-kre="Sonje mwen"
+              data-eng="Remember me"
+              data-fra="Se souvenir de moi"
+            >
+              Sonje mwen
+            </span>
+
+          </label>
+
+
+          <a
+            href="forgot-password.html"
+            class="forgot-link"
+            data-kre="Bliye modpas?"
+            data-eng="Forgot password?"
+            data-fra="Mot de passe oublié ?"
+          >
+            Bliye modpas?
+          </a>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div
+          id="loginStatus"
+          class="status-box"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- LOGIN -->
+
+        <button
+          type="submit"
+          id="loginButton"
+          class="login-button"
+          data-kre="KONEKTE"
+          data-eng="SIGN IN"
+          data-fra="SE CONNECTER"
+        >
+          KONEKTE
+        </button>
+
+      </form>
+
+
+      <div class="divider">
+        SECURE ACCESS
+      </div>
+
+
+      <div class="admin-note">
+
+        <strong>
+          SECURITY:
+        </strong>
+
+        <span
+          data-kre=" Paj sa a pa estoke modpas nan HTML. Otantifikasyon an dwe pase atravè Firebase Authentication platfòm lan."
+          data-eng=" This page does not store passwords in HTML. Authentication must be handled through the platform's Firebase Authentication."
+          data-fra=" Cette page ne stocke aucun mot de passe dans le HTML. L'authentification doit passer par Firebase Authentication de la plateforme."
+        >
+          Paj sa a pa estoke modpas nan HTML.
+          Otantifikasyon an dwe pase atravè
+          Firebase Authentication platfòm lan.
+        </span>
+
+      </div>
+
+
+      <div class="quick-links">
+
+        <a
+          href="index.html"
+          class="quick-link"
+        >
+          🏠 HOME
+        </a>
+
+        <a
+          href="faq.html"
+          class="quick-link"
+        >
+          ❓ FAQ
+        </a>
+
+        <a
+          href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          class="quick-link"
+        >
+          ✉ SUPPORT
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    BSS1815 PRO-MAX DMP —
+    Secure Admin Access
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+
+  /* ==========================
+     ELEMENTS
+  ========================== */
+
+  const loginForm =
+    document.getElementById(
+      "loginForm"
+    );
+
+  const emailInput =
+    document.getElementById(
+      "email"
+    );
+
+  const passwordInput =
+    document.getElementById(
+      "password"
+    );
+
+  const rememberMe =
+    document.getElementById(
+      "rememberMe"
+    );
+
+  const togglePassword =
+    document.getElementById(
+      "togglePassword"
+    );
+
+  const loginButton =
+    document.getElementById(
+      "loginButton"
+    );
+
+  const loginStatus =
+    document.getElementById(
+      "loginStatus"
+    );
+
+
+  /* ==========================
+     SHOW / HIDE PASSWORD
+  ========================== */
+
+  togglePassword.addEventListener(
+    "click",
+    function () {
+
+      const hidden =
+        passwordInput.type ===
+        "password";
+
+
+      passwordInput.type =
+        hidden
+          ? "text"
+          : "password";
+
+
+      togglePassword.textContent =
+        hidden
+          ? "🙈"
+          : "👁";
+
+
+      togglePassword.setAttribute(
+        "aria-label",
+        hidden
+          ? "Kache modpas"
+          : "Montre modpas"
+      );
+
+    }
+  );
+
+
+  /* ==========================
+     REMEMBER EMAIL
+  ========================== */
+
+  try {
+
+    const savedEmail =
+      localStorage.getItem(
+        "promaxAdminEmail"
+      );
+
+
+    if (savedEmail) {
+
+      emailInput.value =
+        savedEmail;
+
+      rememberMe.checked =
+        true;
+
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "Local storage unavailable.",
+      error
+    );
+
+  }
+
+
+  /* ==========================
+     LOGIN FORM
+  ========================== */
+
+  loginForm.addEventListener(
+    "submit",
+    async function (event) {
+
+      event.preventDefault();
+
+
+      const email =
+        emailInput.value
+          .trim();
+
+      const password =
+        passwordInput.value;
+
+
+      loginStatus.className =
+        "status-box";
+
+      loginStatus.textContent =
+        "";
+
+
+      if (!email) {
+
+        loginStatus.classList.add(
+          "error"
+        );
+
+        loginStatus.textContent =
+          "Tanpri antre email ou.";
+
+        emailInput.focus();
+
+        return;
+      }
+
+
+      if (!password) {
+
+        loginStatus.classList.add(
+          "error"
+        );
+
+        loginStatus.textContent =
+          "Tanpri antre modpas ou.";
+
+        passwordInput.focus();
+
+        return;
+      }
+
+
+      if (
+        rememberMe.checked
+      ) {
+
+        try {
+
+          localStorage.setItem(
+            "promaxAdminEmail",
+            email
+          );
+
+        } catch (error) {
+
+          console.warn(
+            "Could not save email.",
+            error
+          );
+
+        }
+
+      } else {
+
+        try {
+
+          localStorage.removeItem(
+            "promaxAdminEmail"
+          );
+
+        } catch (error) {
+
+          console.warn(
+            "Could not remove saved email.",
+            error
+          );
+
+        }
+
+      }
+
+
+      loginButton.disabled =
+        true;
+
+      loginButton.textContent =
+        "AP KONEKTE...";
+
+
+      loginStatus.textContent =
+        "Ap prepare koneksyon sekirize...";
+
+
+      /*
+        ==================================================
+        FIREBASE AUTHENTICATION CONNECTION POINT
+        ==================================================
+
+        Firebase platfòm lan deja egziste.
+        Pa mete firebaseConfig ankò isit la.
+
+        Lè firebase-config.js ak auth logic
+        deja chaje sou pwojè a, koneksyon reyèl
+        dwe rele signInWithEmailAndPassword()
+        soti nan Firebase Authentication.
+
+        Pa janm mete modpas admin oswa sekrè
+        dirèkteman nan HTML sa a.
+      */
+
+
+      if (
+        typeof window.PRO_MAX_ADMIN_LOGIN ===
+        "function"
+      ) {
+
+        try {
+
+          await window.PRO_MAX_ADMIN_LOGIN(
+            email,
+            password
+          );
+
+
+          loginStatus.classList.add(
+            "success"
+          );
+
+          loginStatus.textContent =
+            "Koneksyon reyisi. Ap louvri Dashboard...";
+
+
+          window.location.href =
+            "admin-dashboard.html";
+
+          return;
+
+        } catch (error) {
+
+          console.error(
+            "Login error:",
+            error
+          );
+
+
+          loginStatus.classList.add(
+            "error"
+          );
+
+          loginStatus.textContent =
+            "Email oswa modpas la pa valab.";
+
+        } finally {
+
+          loginButton.disabled =
+            false;
+
+          loginButton.textContent =
+            "KONEKTE";
+
+        }
+
+        return;
+      }
+
+
+      /*
+        Si Firebase login handler la poko
+        ekspoze sou paj la, nou PA fè
+        fo login oswa bypass sekirite.
+      */
+
+      loginStatus.classList.add(
+        "error"
+      );
+
+      loginStatus.textContent =
+        "Paj Admin Login la pare, men Firebase Auth handler la poko konekte ak login.html.";
+
+
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "KONEKTE";
+
+    }
+  );
+
+
+  /* ==========================
+     LANGUAGE SYSTEM
+  ========================== */
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-btn"
+    );
+
+  const translatable =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  function changeLanguage(lang) {
+
+    translatable.forEach(
+      function (element) {
+
+        const translation =
+          element.dataset[lang];
+
+
+        if (translation) {
+
+          element.textContent =
+            translation;
+
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function (button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === lang
+        );
+
+      }
+    );
+
+
+    document.documentElement.lang =
+      lang === "eng"
+        ? "en"
+        : lang === "fra"
+          ? "fr"
+          : "ht";
+
+  }
+
+
+  languageButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
