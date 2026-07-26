@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Business Center | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP Business Center — biznis, antreprenarya, sèvis, piblisite, opòtinite ak devlopman ekonomik."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, Business, Entrepreneurship, Advertising, Services, Opportunities, Haiti, BSS1815"
+  >
+
+  <meta
+    name="author"
+    content="BSS1815 PRO-MAX DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/business.html"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:title"
+    content="PRO-MAX FM DMP Business Center"
+  >
+
+  <meta
+    property="og:description"
+    content="Biznis, antreprenarya, sèvis ak opòtinite sou PRO-MAX FM DMP."
+  >
+
+  <meta
+    property="og:url"
+    content="https://bss1815-pro-max-dmp.netlify.app/business.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange-2: #ff8c00;
+      --orange-light: #ffc078;
+      --orange-dark: #963300;
+
+      --black: #000000;
+      --black-soft: #090300;
+      --black-panel: #160700;
+
+      --border: rgba(255, 106, 0, 0.58);
+
+      --shadow:
+        0 20px 50px rgba(0, 0, 0, 0.72);
+
+      --glow:
+        0 0 30px rgba(255, 106, 0, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 88% 8%,
+          rgba(255, 106, 0, 0.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255, 106, 0, 0.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.98),
+          rgba(50, 14, 0, 0.97),
+          rgba(0, 0, 0, 0.98)
+        );
+
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 1.8rem;
+
+      box-shadow: var(--glow);
+    }
+
+    .brand-text strong {
+      display: block;
+
+      color: var(--orange-light);
+
+      font-size: 1rem;
+    }
+
+    .brand-text span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--orange);
+
+      font-size: 0.72rem;
+      font-weight: 900;
+
+      letter-spacing: 1px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+
+      gap: 15px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+    }
+
+    nav a {
+      padding: 10px 12px;
+
+      border-radius: 9px;
+
+      color: var(--orange-light);
+
+      font-size: 0.84rem;
+      font-weight: 800;
+
+      transition: 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .languages {
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      padding: 7px 9px;
+
+      border: 1px solid var(--orange);
+      border-radius: 7px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: 0.7rem;
+      font-weight: 900;
+    }
+
+    .lang-btn.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 45px;
+      height: 42px;
+
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: 1.3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 520px;
+
+      display: flex;
+      align-items: center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 80% 45%,
+          rgba(255, 106, 0, 0.35),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr 0.8fr;
+
+      align-items: center;
+
+      gap: 45px;
+
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 8px 14px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange);
+
+      font-size: 0.8rem;
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(3rem, 7vw, 6rem);
+
+      line-height: 0.98;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      max-width: 760px;
+
+      margin-top: 22px;
+
+      color: var(--orange-2);
+
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-weight: 900;
+
+      transition: 0.25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button.secondary {
+      color: var(--orange-light);
+      background: #000;
+    }
+
+    .business-visual {
+      min-height: 350px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 106, 0, 0.42),
+          rgba(30, 8, 0, 0.95) 52%,
+          #000 75%
+        );
+
+      box-shadow:
+        0 0 70px rgba(255, 106, 0, 0.28);
+    }
+
+    .business-visual span {
+      display: block;
+
+      font-size: 6rem;
+    }
+
+    .business-visual strong {
+      display: block;
+
+      margin-top: 14px;
+
+      color: var(--orange);
+
+      letter-spacing: 1px;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .section-heading small {
+      color: var(--orange);
+
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      margin-top: 8px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem, 5vw, 3.5rem);
+
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+
+      margin-top: 12px;
+
+      color: var(--orange-2);
+
+      line-height: 1.7;
+    }
+
+    /* BUSINESS SERVICES */
+
+    .business-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+    .business-card {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 106, 0, 0.14),
+          rgba(0, 0, 0, 0.97)
+        );
+
+      box-shadow: var(--shadow);
+
+      transition: 0.25s ease;
+    }
+
+    .business-card:hover {
+      transform: translateY(-6px);
+
+      border-color: var(--orange);
+    }
+
+    .business-icon {
+      width: 65px;
+      height: 65px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      background: #000;
+
+      font-size: 2.2rem;
+    }
+
+    .business-label {
+      display: inline-block;
+
+      margin-top: 18px;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 0.68rem;
+      font-weight: 900;
+    }
+
+    .business-card h3 {
+      margin-top: 13px;
+
+      color: var(--orange-light);
+
+      font-size: 1.3rem;
+    }
+
+    .business-card p {
+      margin-top: 10px;
+
+      color: var(--orange-2);
+
+      line-height: 1.65;
+    }
+
+    /* OPPORTUNITIES */
+
+    .opportunity-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .opportunity-card {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background: #090300;
+    }
+
+    .opportunity-card span {
+      font-size: 2.4rem;
+    }
+
+    .opportunity-card h3 {
+      margin-top: 14px;
+
+      color: var(--orange-light);
+    }
+
+    .opportunity-card p {
+      margin-top: 9px;
+
+      color: var(--orange-2);
+
+      line-height: 1.6;
+    }
+
+    /* ADVERTISE CTA */
+
+    .advertise-box {
+      padding: 42px;
+
+      text-align: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 106, 0, 0.27),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow: var(--glow);
+    }
+
+    .advertise-box span {
+      font-size: 4rem;
+    }
+
+    .advertise-box h2 {
+      margin-top: 14px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .advertise-box p {
+      max-width: 720px;
+
+      margin: 15px auto;
+
+      color: var(--orange-2);
+
+      line-height: 1.7;
+    }
+
+    /* BUSINESS DIRECTORY */
+
+    .directory-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+    }
+
+    .directory-card {
+      display: flex;
+      align-items: flex-start;
+
+      gap: 16px;
+
+      padding: 24px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #170700,
+          #000
+        );
+    }
+
+    .directory-icon {
+      flex: 0 0 auto;
+
+      width: 55px;
+      height: 55px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 12px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 1.7rem;
+    }
+
+    .directory-card h3 {
+      color: var(--orange-light);
+    }
+
+    .directory-card p {
+      margin-top: 8px;
+
+      color: var(--orange-2);
+
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 23px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background: #090300;
+    }
+
+    .contact-card strong {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: var(--orange);
+    }
+
+    .contact-card a {
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 35px 0;
+
+      text-align: center;
+
+      border-top:
+        1px solid var(--border);
+
+      color: var(--orange-2);
+
+      background: #000;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .business-visual {
+        width: min(420px, 90%);
+        min-height: 350px;
+
+        margin: auto;
+      }
+
+      .business-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .opportunity-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+
+        top: 82px;
+        left: 4%;
+        right: 4%;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 15px;
+
+        border: 1px solid var(--orange);
+        border-radius: 12px;
+
+        background: #000;
+      }
+
+      nav.open {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 700px) {
+
+      .languages {
+        display: none;
+      }
+
+      .business-grid,
+      .opportunity-grid,
+      .directory-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .business-visual {
+        min-height: 300px;
+      }
+
+      .advertise-box {
+        padding: 30px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        💼
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PRO-MAX BUSINESS
+        </strong>
+
+        <span>
+          FM DMP BUSINESS CENTER
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <nav id="mainNav">
+
+        <a
+          href="index.html"
+          data-kre="Akèy"
+          data-eng="Home"
+          data-fra="Accueil"
+        >
+          Akèy
+        </a>
+
+        <a
+          href="news.html"
+          data-kre="Nouvèl"
+          data-eng="News"
+          data-fra="Actualités"
+        >
+          Nouvèl
+        </a>
+
+        <a
+          href="academy.html"
+          data-kre="Akademi"
+          data-eng="Academy"
+          data-fra="Académie"
+        >
+          Akademi
+        </a>
+
+        <a
+          href="advertise.html"
+          data-kre="Piblisite"
+          data-eng="Advertise"
+          data-fra="Publicité"
+        >
+          Piblisite
+        </a>
+
+        <a
+          href="business.html"
+          class="active"
+        >
+          Business
+        </a>
+
+      </nav>
+
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <span
+          class="badge"
+          data-kre="PRO-MAX BUSINESS CENTER"
+          data-eng="PRO-MAX BUSINESS CENTER"
+          data-fra="CENTRE D'AFFAIRES PRO-MAX"
+        >
+          PRO-MAX BUSINESS CENTER
+        </span>
+
+        <h1>
+          BUSINESS
+          <span>CENTER</span>
+        </h1>
+
+        <p
+          class="hero-description"
+          data-kre="Sant biznis PRO-MAX FM DMP pou antreprenarya, sèvis, piblisite, patenarya, opòtinite ak devlopman ekonomik."
+          data-eng="The PRO-MAX FM DMP business center for entrepreneurship, services, advertising, partnerships, opportunities and economic development."
+          data-fra="Le centre d'affaires PRO-MAX FM DMP pour l'entrepreneuriat, les services, la publicité, les partenariats, les opportunités et le développement économique."
+        >
+          Sant biznis PRO-MAX FM DMP pou
+          antreprenarya, sèvis, piblisite,
+          patenarya, opòtinite
+          ak devlopman ekonomik.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#services"
+            class="button"
+            data-kre="EKSPORE BIZNIS"
+            data-eng="EXPLORE BUSINESS"
+            data-fra="EXPLORER LES AFFAIRES"
+          >
+            EKSPORE BIZNIS
+          </a>
+
+          <a
+            href="advertise.html"
+            class="button secondary"
+            data-kre="FÈ PIBLISITE"
+            data-eng="ADVERTISE"
+            data-fra="FAIRE DE LA PUBLICITÉ"
+          >
+            FÈ PIBLISITE
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="business-visual">
+
+        <div>
+
+          <span>
+            📈
+          </span>
+
+          <strong>
+            BUILD • CONNECT • GROW
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BUSINESS SERVICES -->
+
+  <section
+    class="section"
+    id="services"
+  >
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          BUSINESS SERVICES
+        </small>
+
+        <h2
+          data-kre="SÈVIS BIZNIS"
+          data-eng="BUSINESS SERVICES"
+          data-fra="SERVICES AUX ENTREPRISES"
+        >
+          SÈVIS BIZNIS
+        </h2>
+
+        <p
+          data-kre="PRO-MAX Business Center kreye yon espas pou biznis, antreprenè ak sèvis kominotè."
+          data-eng="PRO-MAX Business Center creates a space for businesses, entrepreneurs and community services."
+          data-fra="PRO-MAX Business Center crée un espace pour les entreprises, les entrepreneurs et les services communautaires."
+        >
+          PRO-MAX Business Center kreye
+          yon espas pou biznis,
+          antreprenè ak sèvis kominotè.
+        </p>
+
+      </div>
+
+
+      <div class="business-grid">
+
+        <article class="business-card">
+
+          <div class="business-icon">
+            🚀
+          </div>
+
+          <span class="business-label">
+            STARTUP
+          </span>
+
+          <h3
+            data-kre="Antreprenarya"
+            data-eng="Entrepreneurship"
+            data-fra="Entrepreneuriat"
+          >
+            Antreprenarya
+          </h3>
+
+          <p
+            data-kre="Espas pou lide biznis, antreprenè ak nouvo opòtinite."
+            data-eng="A space for business ideas, entrepreneurs and new opportunities."
+            data-fra="Un espace pour les idées d'affaires, les entrepreneurs et les nouvelles opportunités."
+          >
+            Espas pou lide biznis,
+            antreprenè ak nouvo opòtinite.
+          </p>
+
+        </article>
+
+
+        <article class="business-card">
+
+          <div class="business-icon">
+            📢
+          </div>
+
+          <span class="business-label">
+            ADVERTISING
+          </span>
+
+          <h3
+            data-kre="Piblisite"
+            data-eng="Advertising"
+            data-fra="Publicité"
+          >
+            Piblisite
+          </h3>
+
+          <p
+            data-kre="Pwomote biznis, sèvis, pwodwi ak evènman sou PRO-MAX."
+            data-eng="Promote businesses, services, products and events through PRO-MAX."
+            data-fra="Faites la promotion des entreprises, services, produits et événements via PRO-MAX."
+          >
+            Pwomote biznis, sèvis,
+            pwodwi ak evènman
+            sou PRO-MAX.
+          </p>
+
+          <a
+            href="advertise.html"
+            class="button"
+          >
+            ADVERTISE
+          </a>
+
+        </article>
+
+
+        <article class="business-card">
+
+          <div class="business-icon">
+            🤝
+          </div>
+
+          <span class="business-label">
+            PARTNERSHIPS
+          </span>
+
+          <h3
+            data-kre="Patenarya"
+            data-eng="Partnerships"
+            data-fra="Partenariats"
+          >
+            Patenarya
+          </h3>
+
+          <p
+            data-kre="Konekte òganizasyon, pwofesyonèl ak biznis pou kolaborasyon."
+            data-eng="Connect organizations, professionals and businesses for collaboration."
+            data-fra="Connectez les organisations, les professionnels et les entreprises pour collaborer."
+          >
+            Konekte òganizasyon,
+            pwofesyonèl ak biznis
+            pou kolaborasyon.
+          </p>
+
+        </article>
+
+
+        <article class="business-card">
+
+          <div class="business-icon">
+            🌐
+          </div>
+
+          <span class="business-label">
+            DIGITAL
+          </span>
+
+          <h3
+            data-kre="Sèvis Dijital"
+            data-eng="Digital Services"
+            data-fra="Services Numériques"
+          >
+            Sèvis Dijital
+          </h3>
+
+          <p
+            data-kre="Vizibilite sou entènèt, medya, maketing ak prezans dijital."
+            data-eng="Online visibility, media, marketing and digital presence."
+            data-fra="Visibilité en ligne, médias, marketing et présence numérique."
+          >
+            Vizibilite sou entènèt,
+            medya, maketing
+            ak prezans dijital.
+          </p>
+
+        </article>
+
+
+        <article class="business-card">
+
+          <div class="business-icon">
+            🏪
+          </div>
+
+          <span class="business-label">
+            LOCAL BUSINESS
+          </span>
+
+          <h3
+            data-kre="Biznis Lokal"
+            data-eng="Local Business"
+            data-fra="Entreprises Locales"
+          >
+            Biznis Lokal
+          </h3>
+
+          <p
+            data-kre="Sipòte sèvis, machann ak antrepriz nan kominote a."
+            data-eng="Support services, merchants and businesses in the community."
+            data-fra="Soutenez les services, commerçants et entreprises de la communauté."
+          >
+            Sipòte sèvis, machann
+            ak antrepriz nan kominote a.
+          </p>
+
+        </article>
+
+
+        <article class="business-card">
+
+          <div class="business-icon">
+            🎓
+          </div>
+
+          <span class="business-label">
+            LEARNING
+          </span>
+
+          <h3
+            data-kre="Fòmasyon Biznis"
+            data-eng="Business Training"
+            data-fra="Formation Commerciale"
+          >
+            Fòmasyon Biznis
+          </h3>
+
+          <p
+            data-kre="Aprann antreprenarya ak konpetans biznis atravè PRO-MAX Academy."
+            data-eng="Learn entrepreneurship and business skills through PRO-MAX Academy."
+            data-fra="Apprenez l'entrepreneuriat et les compétences commerciales avec PRO-MAX Academy."
+          >
+            Aprann antreprenarya
+            ak konpetans biznis
+            atravè PRO-MAX Academy.
+          </p>
+
+          <a
+            href="academy.html"
+            class="button"
+          >
+            ACADEMY
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OPPORTUNITIES -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          OPPORTUNITIES
+        </small>
+
+        <h2
+          data-kre="OPÒTINITE"
+          data-eng="OPPORTUNITIES"
+          data-fra="OPPORTUNITÉS"
+        >
+          OPÒTINITE
+        </h2>
+
+      </div>
+
+
+      <div class="opportunity-grid">
+
+        <article class="opportunity-card">
+
+          <span>💡</span>
+
+          <h3
+            data-kre="Lide Biznis"
+            data-eng="Business Ideas"
+            data-fra="Idées d'Affaires"
+          >
+            Lide Biznis
+          </h3>
+
+          <p
+            data-kre="Mete limyè sou lide, inovasyon ak nouvo pwojè."
+            data-eng="Highlight ideas, innovation and new projects."
+            data-fra="Mettez en valeur les idées, l'innovation et les nouveaux projets."
+          >
+            Mete limyè sou lide,
+            inovasyon ak nouvo pwojè.
+          </p>
+
+        </article>
+
+
+        <article class="opportunity-card">
+
+          <span>📣</span>
+
+          <h3
+            data-kre="Pwomosyon"
+            data-eng="Promotion"
+            data-fra="Promotion"
+          >
+            Pwomosyon
+          </h3>
+
+          <p
+            data-kre="Bay biznis yo plis vizibilite atravè medya PRO-MAX."
+            data-eng="Give businesses more visibility through PRO-MAX media."
+            data-fra="Donnez aux entreprises plus de visibilité grâce aux médias PRO-MAX."
+          >
+            Bay biznis yo plis
+            vizibilite atravè medya PRO-MAX.
+          </p>
+
+        </article>
+
+
+        <article class="opportunity-card">
+
+          <span>🌍</span>
+
+          <h3
+            data-kre="Rezo"
+            data-eng="Networking"
+            data-fra="Réseautage"
+          >
+            Rezo
+          </h3>
+
+          <p
+            data-kre="Konekte antreprenè, pwofesyonèl ak kominote a."
+            data-eng="Connect entrepreneurs, professionals and the community."
+            data-fra="Connectez les entrepreneurs, les professionnels et la communauté."
+          >
+            Konekte antreprenè,
+            pwofesyonèl ak kominote a.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DIRECTORY -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          BUSINESS DIRECTORY
+        </small>
+
+        <h2
+          data-kre="ANYÈ BIZNIS"
+          data-eng="BUSINESS DIRECTORY"
+          data-fra="ANNUAIRE D'ENTREPRISES"
+        >
+          ANYÈ BIZNIS
+        </h2>
+
+        <p
+          data-kre="Estrikti sa a pare pou lis biznis ak sèvis kominotè yo."
+          data-eng="This structure is ready for community businesses and services."
+          data-fra="Cette structure est prête pour répertorier les entreprises et services communautaires."
+        >
+          Estrikti sa a pare pou
+          lis biznis ak sèvis kominotè yo.
+        </p>
+
+      </div>
+
+
+      <div class="directory-grid">
+
+        <article class="directory-card">
+
+          <div class="directory-icon">
+            🛍️
+          </div>
+
+          <div>
+
+            <h3>
+              Retail & Services
+            </h3>
+
+            <p
+              data-kre="Boutik, sèvis ak antrepriz lokal."
+              data-eng="Shops, services and local businesses."
+              data-fra="Boutiques, services et entreprises locales."
+            >
+              Boutik, sèvis ak antrepriz lokal.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="directory-card">
+
+          <div class="directory-icon">
+            🍽️
+          </div>
+
+          <div>
+
+            <h3>
+              Food & Hospitality
+            </h3>
+
+            <p
+              data-kre="Restoran, manje, catering ak sèvis resepsyon."
+              data-eng="Restaurants, food, catering and hospitality services."
+              data-fra="Restaurants, restauration, traiteur et services d'accueil."
+            >
+              Restoran, manje,
+              catering ak sèvis resepsyon.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="directory-card">
+
+          <div class="directory-icon">
+            🧰
+          </div>
+
+          <div>
+
+            <h3>
+              Professional Services
+            </h3>
+
+            <p
+              data-kre="Pwofesyonèl, teknisyen ak sèvis espesyalize."
+              data-eng="Professionals, technicians and specialized services."
+              data-fra="Professionnels, techniciens et services spécialisés."
+            >
+              Pwofesyonèl, teknisyen
+              ak sèvis espesyalize.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="directory-card">
+
+          <div class="directory-icon">
+            💻
+          </div>
+
+          <div>
+
+            <h3>
+              Digital Business
+            </h3>
+
+            <p
+              data-kre="Biznis sou entènèt, teknoloji ak sèvis dijital."
+              data-eng="Online businesses, technology and digital services."
+              data-fra="Entreprises en ligne, technologie et services numériques."
+            >
+              Biznis sou entènèt,
+              teknoloji ak sèvis dijital.
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ADVERTISE -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="advertise-box">
+
+        <span>
+          📢
+        </span>
+
+        <h2
+          data-kre="PWOMOTE BIZNIS OU"
+          data-eng="PROMOTE YOUR BUSINESS"
+          data-fra="PROMOUVEZ VOTRE ENTREPRISE"
+        >
+          PWOMOTE BIZNIS OU
+        </h2>
+
+        <p
+          data-kre="PRO-MAX FM DMP kapab bay biznis, sèvis ak evènman yon espas pou jwenn plis vizibilite."
+          data-eng="PRO-MAX FM DMP can give businesses, services and events a space to gain more visibility."
+          data-fra="PRO-MAX FM DMP peut offrir aux entreprises, services et événements un espace pour gagner en visibilité."
+        >
+          PRO-MAX FM DMP kapab bay
+          biznis, sèvis ak evènman
+          yon espas pou jwenn plis vizibilite.
+        </p>
+
+        <a
+          href="advertise.html"
+          class="button"
+          data-kre="ALE NAN ADVERTISE"
+          data-eng="GO TO ADVERTISE"
+          data-fra="ALLER À LA PUBLICITÉ"
+        >
+          ALE NAN ADVERTISE
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CONTACT
+        </small>
+
+        <h2
+          data-kre="KONTAKTE PRO-MAX"
+          data-eng="CONTACT PRO-MAX"
+          data-fra="CONTACTER PRO-MAX"
+        >
+          KONTAKTE PRO-MAX
+        </h2>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <article class="contact-card">
+
+          <strong>
+            EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            TELEFÒN
+          </strong>
+
+          <a href="tel:+50943437488">
+            +509 4343-7488
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    PRO-MAX FM DMP Business Center —
+    Powering the Future of Digital Radio.
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mainNav =
+    document.getElementById("mainNav");
+
+  const languageButtons =
+    document.querySelectorAll(".lang-btn");
+
+  const translatableElements =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  /* MOBILE MENU */
+
+  menuButton.addEventListener(
+    "click",
+    function () {
+
+      const isOpen =
+        mainNav.classList.toggle("open");
+
+      menuButton.textContent =
+        isOpen ? "✕" : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+    }
+  );
+
+
+  mainNav
+    .querySelectorAll("a")
+    .forEach(function (link) {
+
+      link.addEventListener(
+        "click",
+        function () {
+
+          mainNav.classList.remove("open");
+
+          menuButton.textContent = "☰";
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    });
+
+
+  /* LANGUAGE */
+
+  function changeLanguage(language) {
+
+    translatableElements.forEach(
+      function (element) {
+
+        const translation =
+          element.dataset[language];
+
+        if (translation) {
+          element.textContent = translation;
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function (button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === language
+        );
+
+      }
+    );
+
+
+    if (language === "kre") {
+      document.documentElement.lang = "ht";
+    }
+
+    if (language === "eng") {
+      document.documentElement.lang = "en";
+    }
+
+    if (language === "fra") {
+      document.documentElement.lang = "fr";
+    }
+
+  }
+
+
+  languageButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    });
+
+
+  /* YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+</script>
+
+</body>
+</html>
