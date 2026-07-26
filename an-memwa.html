@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>An Memwa | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP An Memwa — omaj, temwayaj, memorial ak souvni pou moun nou onore yo."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, An Memwa, Memorial, Tribute, BSS1815, Omaj, Temwayaj"
+  >
+
+  <meta
+    name="author"
+    content="BSS1815 PRO-MAX DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/an-memwa.html"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:title"
+    content="PRO-MAX FM DMP — An Memwa"
+  >
+
+  <meta
+    property="og:description"
+    content="Omaj, temwayaj ak souvni pou moun nou onore yo."
+  >
+
+  <meta
+    property="og:url"
+    content="https://bss1815-pro-max-dmp.netlify.app/an-memwa.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8c00;
+      --orange-light: #ffc078;
+      --black: #000000;
+      --black2: #090300;
+      --panel: #160700;
+      --border: rgba(255, 106, 0, 0.58);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.72);
+      --glow: 0 0 30px rgba(255, 106, 0, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 87% 8%,
+          rgba(255, 106, 0, 0.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255, 106, 0, 0.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(50,14,0,.97),
+          rgba(0,0,0,.98)
+        );
+
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 1.8rem;
+
+      box-shadow: var(--glow);
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--orange-light);
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+      color: var(--orange);
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    nav a {
+      padding: 10px 12px;
+      border-radius: 9px;
+      color: var(--orange-light);
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .languages {
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      padding: 7px 9px;
+      border: 1px solid var(--orange);
+      border-radius: 7px;
+      color: var(--orange);
+      background: #000;
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .lang-btn.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .menu-button {
+      display: none;
+      width: 45px;
+      height: 42px;
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+      color: var(--orange);
+      background: #000;
+      font-size: 1.3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 500px;
+
+      display: flex;
+      align-items: center;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 80% 45%,
+          rgba(255,106,0,.32),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 45px;
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+      color: var(--orange);
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+      color: var(--orange-light);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: .98;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin-top: 22px;
+      color: var(--orange2);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .memorial-visual {
+      min-height: 350px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.35),
+          rgba(30,8,0,.95) 52%,
+          #000 75%
+        );
+
+      box-shadow: 0 0 70px rgba(255,106,0,.28);
+    }
+
+    .memorial-visual span {
+      display: block;
+      font-size: 5.5rem;
+    }
+
+    .memorial-visual strong {
+      display: block;
+      margin-top: 14px;
+      color: var(--orange);
+    }
+
+    /* SECTION */
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .section-heading small {
+      color: var(--orange);
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      margin-top: 8px;
+      color: var(--orange-light);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+      margin-top: 12px;
+      color: var(--orange2);
+      line-height: 1.7;
+    }
+
+    /* FEATURED MEMORIAL */
+
+    .featured-memorial {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 28px;
+      padding: 32px;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(255,106,0,.30),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow: var(--glow);
+    }
+
+    .featured-portrait {
+      min-height: 310px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.30),
+          transparent 62%
+        );
+
+      font-size: 6rem;
+    }
+
+    .featured-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-content small {
+      color: var(--orange);
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .featured-content h3 {
+      margin-top: 10px;
+      color: var(--orange-light);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .featured-content p {
+      margin-top: 15px;
+      color: var(--orange2);
+      line-height: 1.75;
+    }
+
+    /* SEARCH */
+
+    .memorial-tools {
+      display: grid;
+      grid-template-columns: 1fr 230px;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .memorial-tools input,
+    .memorial-tools select {
+      width: 100%;
+      padding: 14px 15px;
+
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+
+      color: var(--orange-light);
+      background: #000;
+    }
+
+    /* MEMORIAL GRID */
+
+    .memorial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .memorial-card {
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.14),
+          rgba(0,0,0,.97)
+        );
+
+      box-shadow: var(--shadow);
+
+      transition: .25s ease;
+    }
+
+    .memorial-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+    }
+
+    .portrait {
+      height: 210px;
+
+      display: grid;
+      place-items: center;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.30),
+          transparent 60%
+        ),
+        #090300;
+
+      font-size: 4.5rem;
+    }
+
+    .memorial-content {
+      padding: 22px;
+    }
+
+    .memorial-category {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #000;
+      background: var(--orange);
+      font-size: .68rem;
+      font-weight: 900;
+    }
+
+    .memorial-content h3 {
+      margin-top: 13px;
+      color: var(--orange-light);
+      font-size: 1.3rem;
+    }
+
+    .memorial-content p {
+      margin-top: 10px;
+      color: var(--orange2);
+      line-height: 1.65;
+    }
+
+    .memorial-meta {
+      margin-top: 17px;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+      color: var(--orange-light);
+      font-size: .85rem;
+    }
+
+    .view-button {
+      display: inline-flex;
+      margin-top: 16px;
+      padding: 11px 16px;
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+      color: #000;
+      background: var(--orange);
+      font-weight: 900;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* PURPOSE CARDS */
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .purpose-card {
+      padding: 25px;
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background: #090300;
+    }
+
+    .purpose-card span {
+      font-size: 2.7rem;
+    }
+
+    .purpose-card h3 {
+      margin-top: 14px;
+      color: var(--orange-light);
+    }
+
+    .purpose-card p {
+      margin-top: 9px;
+      color: var(--orange2);
+      line-height: 1.6;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 23px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #090300;
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--orange);
+    }
+
+    .contact-card a {
+      overflow-wrap: anywhere;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      background: rgba(0,0,0,.92);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-box {
+      position: relative;
+      width: min(760px, 96%);
+      padding: 30px;
+
+      border: 2px solid var(--orange);
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #251000,
+          #000
+        );
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+
+      width: 42px;
+      height: 42px;
+
+      border: 1px solid var(--orange);
+      border-radius: 50%;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: 1.2rem;
+    }
+
+    .modal-icon {
+      font-size: 5rem;
+      text-align: center;
+    }
+
+    .modal-title {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--orange-light);
+      font-size: 2rem;
+    }
+
+    .modal-text {
+      margin-top: 15px;
+      color: var(--orange2);
+      line-height: 1.75;
+    }
+
+    footer {
+      padding: 35px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--orange2);
+      background: #000;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .memorial-visual {
+        width: min(420px,90%);
+        min-height: 350px;
+        margin: auto;
+      }
+
+      .memorial-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .featured-memorial {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        top: 82px;
+        left: 4%;
+        right: 4%;
+
+        display: none;
+        flex-direction: column;
+
+        padding: 15px;
+
+        border: 1px solid var(--orange);
+        border-radius: 12px;
+
+        background: #000;
+      }
+
+      nav.open {
+        display: flex;
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .languages {
+        display: none;
+      }
+
+      .memorial-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .memorial-grid,
+      .purpose-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .memorial-visual {
+        min-height: 300px;
+      }
+
+      .featured-memorial {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        🕯️
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PRO-MAX AN MEMWA
+        </strong>
+
+        <span>
+          MEMORIAL CENTER
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <nav id="mainNav">
+
+        <a
+          href="index.html"
+          data-kre="Akèy"
+          data-eng="Home"
+          data-fra="Accueil"
+        >
+          Akèy
+        </a>
+
+        <a
+          href="gallery.html"
+          data-kre="Galri"
+          data-eng="Gallery"
+          data-fra="Galerie"
+        >
+          Galri
+        </a>
+
+        <a
+          href="video.html"
+          data-kre="Videyo"
+          data-eng="Video"
+          data-fra="Vidéo"
+        >
+          Videyo
+        </a>
+
+        <a
+          href="an-memwa.html"
+          class="active"
+        >
+          An Memwa
+        </a>
+
+      </nav>
+
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <span
+          class="badge"
+          data-kre="PRO-MAX MEMORIAL CENTER"
+          data-eng="PRO-MAX MEMORIAL CENTER"
+          data-fra="CENTRE COMMÉMORATIF PRO-MAX"
+        >
+          PRO-MAX MEMORIAL CENTER
+        </span>
+
+        <h1>
+          AN
+          <span>MEMWA</span>
+        </h1>
+
+        <p
+          class="hero-description"
+          data-kre="Yon espas pou onore lavi, kontribisyon, istwa ak memwa moun ki kite yon mak nan BSS1815 ak kominote a."
+          data-eng="A space to honor the lives, contributions, stories and memories of people who left a mark on BSS1815 and the community."
+          data-fra="Un espace pour honorer la vie, les contributions, les histoires et la mémoire de ceux qui ont marqué BSS1815 et la communauté."
+        >
+          Yon espas pou onore lavi,
+          kontribisyon, istwa ak memwa
+          moun ki kite yon mak nan
+          BSS1815 ak kominote a.
+        </p>
+
+      </div>
+
+
+      <div class="memorial-visual">
+
+        <div>
+
+          <span>
+            🕯️
+          </span>
+
+          <strong>
+            NOU SONJE • NOU ONORE • NOU PAP BLIYE
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURED MEMORIAL -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="featured-memorial">
+
+        <div class="featured-portrait">
+          🕊️
+        </div>
+
+        <div class="featured-content">
+
+          <small>
+            IN MEMORIAM
+          </small>
+
+          <h3
+            data-kre="Yon Espas Pou Sonje"
+            data-eng="A Place to Remember"
+            data-fra="Un Lieu de Mémoire"
+          >
+            Yon Espas Pou Sonje
+          </h3>
+
+          <p
+            data-kre="An Memwa se yon espas espesyal pou konsève temwayaj, omaj, foto, videyo ak istwa moun nou vle kontinye onore atravè jenerasyon yo."
+            data-eng="An Memwa is a special space to preserve testimonials, tributes, photos, videos and stories of people we want to continue honoring across generations."
+            data-fra="An Memwa est un espace spécial pour préserver les témoignages, hommages, photos, vidéos et histoires des personnes que nous souhaitons continuer à honorer à travers les générations."
+          >
+            An Memwa se yon espas espesyal pou
+            konsève temwayaj, omaj, foto,
+            videyo ak istwa moun nou vle
+            kontinye onore atravè jenerasyon yo.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MEMORIAL LIST -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          MEMORIAL COLLECTION
+        </small>
+
+        <h2
+          data-kre="OMAJ & TEMWAYAJ"
+          data-eng="TRIBUTES & TESTIMONIALS"
+          data-fra="HOMMAGES & TÉMOIGNAGES"
+        >
+          OMAJ & TEMWAYAJ
+        </h2>
+
+        <p
+          data-kre="Chèche oswa filtre koleksyon memorial la."
+          data-eng="Search or filter the memorial collection."
+          data-fra="Recherchez ou filtrez la collection commémorative."
+        >
+          Chèche oswa filtre
+          koleksyon memorial la.
+        </p>
+
+      </div>
+
+
+      <div class="memorial-tools">
+
+        <input
+          type="search"
+          id="memorialSearch"
+          placeholder="Chèche yon non oswa temwayaj..."
+          aria-label="Chèche memorial"
+        >
+
+        <select
+          id="memorialFilter"
+          aria-label="Filtre memorial"
+        >
+
+          <option value="all">
+            Tout kategori
+          </option>
+
+          <option value="leaders">
+            Leaders
+          </option>
+
+          <option value="members">
+            Members
+          </option>
+
+          <option value="musicians">
+            Musicians
+          </option>
+
+          <option value="community">
+            Community
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div
+        class="memorial-grid"
+        id="memorialGrid"
+      >
+
+        <article
+          class="memorial-card"
+          data-category="leaders"
+          data-search="leadership leader bss1815 heritage"
+        >
+
+          <div class="portrait">
+            👤
+          </div>
+
+          <div class="memorial-content">
+
+            <span class="memorial-category">
+              LEADERS
+            </span>
+
+            <h3
+              data-kre="Lidè Nou Sonje"
+              data-eng="Leaders We Remember"
+              data-fra="Dirigeants que Nous Honorons"
+            >
+              Lidè Nou Sonje
+            </h3>
+
+            <p
+              data-kre="Omaj pou lidè ki te pote vizyon, direksyon ak sèvis nan òganizasyon an."
+              data-eng="Tributes to leaders who brought vision, direction and service to the organization."
+              data-fra="Hommages aux dirigeants qui ont apporté vision, direction et service à l'organisation."
+            >
+              Omaj pou lidè ki te pote
+              vizyon, direksyon ak sèvis
+              nan òganizasyon an.
+            </p>
+
+            <div class="memorial-meta">
+              🕯️ Heritage & Leadership
+            </div>
+
+            <button
+              type="button"
+              class="view-button"
+              data-title="Lidè Nou Sonje"
+              data-icon="👤"
+              data-text="Espas sa a prepare pou temwayaj, foto ak omaj lidè BSS1815 yo."
+            >
+              LI OMAJ LA
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="memorial-card"
+          data-category="members"
+          data-search="members member bss1815 family"
+        >
+
+          <div class="portrait">
+            🤝
+          </div>
+
+          <div class="memorial-content">
+
+            <span class="memorial-category">
+              MEMBERS
+            </span>
+
+            <h3
+              data-kre="Manm Nou Sonje"
+              data-eng="Members We Remember"
+              data-fra="Membres que Nous Honorons"
+            >
+              Manm Nou Sonje
+            </h3>
+
+            <p
+              data-kre="Yon espas pou onore manm ki te bay tan, fòs ak lanmou pou BSS1815."
+              data-eng="A space to honor members who gave their time, strength and love to BSS1815."
+              data-fra="Un espace pour honorer les membres qui ont donné leur temps, leur force et leur amour à BSS1815."
+            >
+              Yon espas pou onore manm
+              ki te bay tan, fòs ak lanmou
+              pou BSS1815.
+            </p>
+
+            <div class="memorial-meta">
+              🕯️ BSS1815 Family
+            </div>
+
+            <button
+              type="button"
+              class="view-button"
+              data-title="Manm Nou Sonje"
+              data-icon="🤝"
+              data-text="Espas sa a prepare pou konsève istwa ak souvni manm BSS1815 yo."
+            >
+              LI OMAJ LA
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="memorial-card"
+          data-category="musicians"
+          data-search="musicians music musician artist heritage"
+        >
+
+          <div class="portrait">
+            🎺
+          </div>
+
+          <div class="memorial-content">
+
+            <span class="memorial-category">
+              MUSICIANS
+            </span>
+
+            <h3
+              data-kre="Mizisyen Nou Sonje"
+              data-eng="Musicians We Remember"
+              data-fra="Musiciens que Nous Honorons"
+            >
+              Mizisyen Nou Sonje
+            </h3>
+
+            <p
+              data-kre="Omaj pou mizisyen ak atis ki te kontribye nan kilti, mizik ak istwa òganizasyon an."
+              data-eng="Tributes to musicians and artists who contributed to the culture, music and history of the organization."
+              data-fra="Hommages aux musiciens et artistes qui ont contribué à la culture, à la musique et à l'histoire de l'organisation."
+            >
+              Omaj pou mizisyen ak atis
+              ki te kontribye nan kilti,
+              mizik ak istwa òganizasyon an.
+            </p>
+
+            <div class="memorial-meta">
+              🎵 Music Legacy
+            </div>
+
+            <button
+              type="button"
+              class="view-button"
+              data-title="Mizisyen Nou Sonje"
+              data-icon="🎺"
+              data-text="Espas sa a prepare pou onore eritaj mizikal ak kontribisyon mizisyen yo."
+            >
+              LI OMAJ LA
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="memorial-card"
+          data-category="community"
+          data-search="community kominote people family remembrance"
+        >
+
+          <div class="portrait">
+            🌍
+          </div>
+
+          <div class="memorial-content">
+
+            <span class="memorial-category">
+              COMMUNITY
+            </span>
+
+            <h3
+              data-kre="Kominote Nou Sonje"
+              data-eng="Community We Remember"
+              data-fra="Communauté que Nous Honorons"
+            >
+              Kominote Nou Sonje
+            </h3>
+
+            <p
+              data-kre="Memwa ak temwayaj pou moun ki te gen enpak sou kominote a."
+              data-eng="Memories and testimonials for people who had an impact on the community."
+              data-fra="Souvenirs et témoignages pour ceux qui ont eu un impact sur la communauté."
+            >
+              Memwa ak temwayaj
+              pou moun ki te gen
+              enpak sou kominote a.
+            </p>
+
+            <div class="memorial-meta">
+              🕊️ Community Legacy
+            </div>
+
+            <button
+              type="button"
+              class="view-button"
+              data-title="Kominote Nou Sonje"
+              data-icon="🌍"
+              data-text="Espas sa a prepare pou omaj kominotè ak souvni fanmi yo."
+            >
+              LI OMAJ LA
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="memorial-card"
+          data-category="leaders"
+          data-search="history legacy testimony testimonial"
+        >
+
+          <div class="portrait">
+            📜
+          </div>
+
+          <div class="memorial-content">
+
+            <span class="memorial-category">
+              TESTIMONIALS
+            </span>
+
+            <h3
+              data-kre="Testaman & Temwayaj"
+              data-eng="Legacy Testimonials"
+              data-fra="Témoignages d'Héritage"
+            >
+              Testaman & Temwayaj
+            </h3>
+
+            <p
+              data-kre="Konsève pawòl, temwayaj ak refleksyon sou moun ki te fè pati istwa BSS1815."
+              data-eng="Preserve words, testimonials and reflections about people who were part of BSS1815 history."
+              data-fra="Préservez les paroles, témoignages et réflexions sur ceux qui ont fait partie de l'histoire de BSS1815."
+            >
+              Konsève pawòl, temwayaj
+              ak refleksyon sou moun
+              ki te fè pati istwa BSS1815.
+            </p>
+
+            <div class="memorial-meta">
+              📖 Historical Record
+            </div>
+
+            <button
+              type="button"
+              class="view-button"
+              data-title="Testaman & Temwayaj"
+              data-icon="📜"
+              data-text="Espas sa a prepare pou temwayaj ofisyèl ak dokiman memorial."
+            >
+              LI OMAJ LA
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="memorial-card"
+          data-category="community"
+          data-search="photos video gallery memory"
+        >
+
+          <div class="portrait">
+            🖼️
+          </div>
+
+          <div class="memorial-content">
+
+            <span class="memorial-category">
+              MEMORIES
+            </span>
+
+            <h3
+              data-kre="Foto & Souvni"
+              data-eng="Photos & Memories"
+              data-fra="Photos & Souvenirs"
+            >
+              Foto & Souvni
+            </h3>
+
+            <p
+              data-kre="Konekte memorial yo ak foto, videyo ak galri sou platfòm lan."
+              data-eng="Connect memorials with photos, videos and galleries on the platform."
+              data-fra="Reliez les mémoriaux aux photos, vidéos et galeries de la plateforme."
+            >
+              Konekte memorial yo
+              ak foto, videyo
+              ak galri sou platfòm lan.
+            </p>
+
+            <div class="memorial-meta">
+              🎞️ Photo & Video Archive
+            </div>
+
+            <a
+              href="gallery.html"
+              class="view-button"
+            >
+              OPEN GALLERY
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PURPOSE -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          OUR PURPOSE
+        </small>
+
+        <h2
+          data-kre="POUKISA AN MEMWA ENPÒTAN"
+          data-eng="WHY AN MEMWA MATTERS"
+          data-fra="POURQUOI AN MEMWA EST IMPORTANT"
+        >
+          POUKISA AN MEMWA ENPÒTAN
+        </h2>
+
+      </div>
+
+
+      <div class="purpose-grid">
+
+        <article class="purpose-card">
+
+          <span>
+            🕯️
+          </span>
+
+          <h3
+            data-kre="Onore"
+            data-eng="Honor"
+            data-fra="Honorer"
+          >
+            Onore
+          </h3>
+
+          <p
+            data-kre="Onore lavi ak kontribisyon moun ki te fè diferans."
+            data-eng="Honor the lives and contributions of people who made a difference."
+            data-fra="Honorer la vie et les contributions de ceux qui ont fait une différence."
+          >
+            Onore lavi ak kontribisyon
+            moun ki te fè diferans.
+          </p>
+
+        </article>
+
+
+        <article class="purpose-card">
+
+          <span>
+            📖
+          </span>
+
+          <h3
+            data-kre="Konsève Istwa"
+            data-eng="Preserve History"
+            data-fra="Préserver l'Histoire"
+          >
+            Konsève Istwa
+          </h3>
+
+          <p
+            data-kre="Kenbe temwayaj ak souvni disponib pou jenerasyon kap vini yo."
+            data-eng="Keep testimonials and memories available for future generations."
+            data-fra="Conserver les témoignages et souvenirs pour les générations futures."
+          >
+            Kenbe temwayaj ak souvni
+            disponib pou jenerasyon kap vini yo.
+          </p>
+
+        </article>
+
+
+        <article class="purpose-card">
+
+          <span>
+            ❤️
+          </span>
+
+          <h3
+            data-kre="Sonje"
+            data-eng="Remember"
+            data-fra="Se Souvenir"
+          >
+            Sonje
+          </h3>
+
+          <p
+            data-kre="Fè memwa yo kontinye viv atravè pawòl, foto ak eritaj yo."
+            data-eng="Keep memories alive through words, photos and legacy."
+            data-fra="Faire vivre les souvenirs à travers les paroles, les photos et l'héritage."
+          >
+            Fè memwa yo kontinye viv
+            atravè pawòl, foto
+            ak eritaj yo.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CONTACT
+        </small>
+
+        <h2
+          data-kre="KONTAKTE PRO-MAX"
+          data-eng="CONTACT PRO-MAX"
+          data-fra="CONTACTER PRO-MAX"
+        >
+          KONTAKTE PRO-MAX
+        </h2>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <article class="contact-card">
+
+          <strong>
+            EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            TELEFÒN
+          </strong>
+
+          <a href="tel:+50943437488">
+            +509 4343-7488
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- MEMORIAL MODAL -->
+
+<div
+  class="modal"
+  id="memorialModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+>
+
+  <div class="modal-box">
+
+    <button
+      type="button"
+      class="modal-close"
+      id="modalClose"
+      aria-label="Fèmen"
+    >
+      ✕
+    </button>
+
+    <div
+      class="modal-icon"
+      id="modalIcon"
+    >
+      🕯️
+    </div>
+
+    <h2
+      class="modal-title"
+      id="modalTitle"
+    >
+      An Memwa
+    </h2>
+
+    <p
+      class="modal-text"
+      id="modalText"
+    >
+      Omaj PRO-MAX FM DMP.
+    </p>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    PRO-MAX FM DMP — An Memwa
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+
+  /* MOBILE MENU */
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mainNav =
+    document.getElementById("mainNav");
+
+
+  menuButton.addEventListener(
+    "click",
+    function () {
+
+      const open =
+        mainNav.classList.toggle("open");
+
+      menuButton.textContent =
+        open ? "✕" : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+    }
+  );
+
+
+  /* SEARCH + FILTER */
+
+  const memorialSearch =
+    document.getElementById(
+      "memorialSearch"
+    );
+
+  const memorialFilter =
+    document.getElementById(
+      "memorialFilter"
+    );
+
+  const memorialCards =
+    Array.from(
+      document.querySelectorAll(
+        ".memorial-card"
+      )
+    );
+
+
+  function filterMemorials() {
+
+    const search =
+      memorialSearch.value
+        .trim()
+        .toLowerCase();
+
+    const category =
+      memorialFilter.value;
+
+
+    memorialCards.forEach(
+      function (card) {
+
+        const text =
+          (
+            card.dataset.search +
+            " " +
+            card.textContent
+          ).toLowerCase();
+
+        const matchesSearch =
+          !search ||
+          text.includes(search);
+
+        const matchesCategory =
+          category === "all" ||
+          card.dataset.category ===
+          category;
+
+        card.classList.toggle(
+          "hidden",
+          !(
+            matchesSearch &&
+            matchesCategory
+          )
+        );
+
+      }
+    );
+  }
+
+
+  memorialSearch.addEventListener(
+    "input",
+    filterMemorials
+  );
+
+
+  memorialFilter.addEventListener(
+    "change",
+    filterMemorials
+  );
+
+
+  /* MODAL */
+
+  const memorialModal =
+    document.getElementById(
+      "memorialModal"
+    );
+
+  const modalClose =
+    document.getElementById(
+      "modalClose"
+    );
+
+  const modalIcon =
+    document.getElementById(
+      "modalIcon"
+    );
+
+  const modalTitle =
+    document.getElementById(
+      "modalTitle"
+    );
+
+  const modalText =
+    document.getElementById(
+      "modalText"
+    );
+
+
+  document
+    .querySelectorAll(
+      ".view-button[data-title]"
+    )
+    .forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          modalIcon.textContent =
+            button.dataset.icon;
+
+          modalTitle.textContent =
+            button.dataset.title;
+
+          modalText.textContent =
+            button.dataset.text;
+
+          memorialModal.classList.add(
+            "open"
+          );
+
+          modalClose.focus();
+
+        }
+      );
+
+    });
+
+
+  function closeModal() {
+    memorialModal.classList.remove(
+      "open"
+    );
+  }
+
+
+  modalClose.addEventListener(
+    "click",
+    closeModal
+  );
+
+
+  memorialModal.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        event.target ===
+        memorialModal
+      ) {
+        closeModal();
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape" &&
+        memorialModal.classList.contains(
+          "open"
+        )
+      ) {
+        closeModal();
+      }
+
+    }
+  );
+
+
+  /* LANGUAGE */
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-btn"
+    );
+
+  const translatable =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  function changeLanguage(lang) {
+
+    translatable.forEach(
+      function (element) {
+
+        const translation =
+          element.dataset[lang];
+
+        if (translation) {
+          element.textContent =
+            translation;
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function (button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === lang
+        );
+
+      }
+    );
+
+
+    document.documentElement.lang =
+      lang === "eng"
+        ? "en"
+        : lang === "fra"
+          ? "fr"
+          : "ht";
+  }
+
+
+  languageButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+</script>
+
+</body>
+</html>
