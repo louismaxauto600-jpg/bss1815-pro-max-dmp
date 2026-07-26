@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Podcasts | BSS1815 PRO-MAX-DMP</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#000,#151515,#000);
+  color:#fff;
+  min-height:100vh;
+}
+
+header{
+  background:#000;
+  padding:45px 20px;
+  text-align:center;
+  border-bottom:3px solid #ff7a00;
+}
+
+header h1{
+  color:#ff7a00;
+  font-size:42px;
+}
+
+header p{
+  color:#ffb366;
+  margin-top:10px;
+}
+
+.container{
+  width:min(1200px,94%);
+  margin:35px auto;
+}
+
+.hero{
+  background:#111;
+  border:2px solid #ff7a00;
+  border-radius:18px;
+  padding:35px;
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.hero h2{
+  color:#ff7a00;
+  margin-bottom:12px;
+}
+
+.hero p{
+  color:#ddd;
+  line-height:1.6;
+}
+
+.section-title{
+  color:#ff7a00;
+  font-size:28px;
+  margin:30px 0 18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:20px;
+}
+
+.podcast-card{
+  background:#111;
+  border:1px solid #ff7a00;
+  border-radius:16px;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.podcast-card:hover{
+  transform:translateY(-5px);
+}
+
+.podcast-cover{
+  height:190px;
+  background:#050505;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:60px;
+  color:#ff7a00;
+  border-bottom:1px solid #ff7a00;
+}
+
+.podcast-content{
+  padding:20px;
+}
+
+.podcast-content h3{
+  color:#ff7a00;
+  margin-bottom:10px;
+}
+
+.podcast-content p{
+  color:#ccc;
+  line-height:1.5;
+}
+
+.meta{
+  margin-top:12px;
+  color:#ffb366;
+  font-size:14px;
+}
+
+audio{
+  width:100%;
+  margin-top:16px;
+}
+
+.btn{
+  display:inline-block;
+  background:#ff7a00;
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+  padding:11px 16px;
+  border-radius:10px;
+  margin-top:15px;
+}
+
+.categories{
+  background:#111;
+  border:2px solid #ff7a00;
+  border-radius:16px;
+  padding:25px;
+  margin-top:35px;
+}
+
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:12px;
+}
+
+.category{
+  background:#000;
+  border:1px solid #ff7a00;
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+  color:#ffb366;
+}
+
+.latest{
+  margin-top:35px;
+  padding:25px;
+  background:#111;
+  border:2px solid #ff7a00;
+  border-radius:16px;
+}
+
+.episode{
+  padding:18px 0;
+  border-bottom:1px solid #333;
+}
+
+.episode:last-child{
+  border-bottom:none;
+}
+
+.episode h3{
+  color:#ff7a00;
+  margin-bottom:8px;
+}
+
+.episode p{
+  color:#ccc;
+  line-height:1.5;
+}
+
+footer{
+  background:#000;
+  border-top:3px solid #ff7a00;
+  text-align:center;
+  padding:25px;
+  margin-top:50px;
+  color:#aaa;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:32px;
+  }
+
+  .hero{
+    padding:25px 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>PODCASTS</h1>
+  <p>BSS1815 PRO-MAX-DMP</p>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <h2>PRO-MAX Podcast Network</h2>
+
+  <p>
+    Koute emisyon, entèvyou, nouvèl, biznis,
+    kilti, edikasyon ak konvèsasyon espesyal
+    BSS1815 PRO-MAX-DMP.
+  </p>
+
+  <a href="live.html" class="btn">Listen Live Radio</a>
+</section>
+
+<h2 class="section-title">Featured Podcasts</h2>
+
+<section class="grid">
+
+  <article class="podcast-card">
+    <div class="podcast-cover">🎙️</div>
+
+    <div class="podcast-content">
+      <h3>PRO-MAX Talk</h3>
+
+      <p>
+        Konvèsasyon sou sijè aktyèl,
+        kominote, kilti ak lavi chak jou.
+      </p>
+
+      <div class="meta">
+        PRO-MAX Original Podcast
+      </div>
+    </div>
+  </article>
+
+
+  <article class="podcast-card">
+    <div class="podcast-cover">📰</div>
+
+    <div class="podcast-content">
+      <h3>PRO-MAX News Podcast</h3>
+
+      <p>
+        Nouvèl, analiz, kominote ak
+        enfòmasyon enpòtan.
+      </p>
+
+      <div class="meta">
+        News & Information
+      </div>
+    </div>
+  </article>
+
+
+  <article class="podcast-card">
+    <div class="podcast-cover">💼</div>
+
+    <div class="podcast-content">
+      <h3>Business Conversations</h3>
+
+      <p>
+        Antreprenè, pwofesyonèl ak
+        istwa moun k ap bati biznis.
+      </p>
+
+      <div class="meta">
+        Business & Entrepreneurship
+      </div>
+
+      <a href="business.html" class="btn">
+        Business Center
+      </a>
+    </div>
+  </article>
+
+
+  <article class="podcast-card">
+    <div class="podcast-cover">🎓</div>
+
+    <div class="podcast-content">
+      <h3>PRO-MAX Academy Podcast</h3>
+
+      <p>
+        Edikasyon, fòmasyon, teknoloji,
+        karyè ak devlopman pèsonèl.
+      </p>
+
+      <div class="meta">
+        Education
+      </div>
+
+      <a href="academy.html" class="btn">
+        Visit Academy
+      </a>
+    </div>
+  </article>
+
+
+  <article class="podcast-card">
+    <div class="podcast-cover">🎵</div>
+
+    <div class="podcast-content">
+      <h3>Music & Culture</h3>
+
+      <p>
+        Mizik, atis, istwa ak kilti
+        Ayiti ak dyaspora a.
+      </p>
+
+      <div class="meta">
+        Music & Culture
+      </div>
+    </div>
+  </article>
+
+
+  <article class="podcast-card">
+    <div class="podcast-cover">🎤</div>
+
+    <div class="podcast-content">
+      <h3>Special Interviews</h3>
+
+      <p>
+        Entèvyou ak lidè, atis,
+        antreprenè ak envite espesyal.
+      </p>
+
+      <div class="meta">
+        Interviews
+      </div>
+
+      <a href="interviews.html" class="btn">
+        View Interviews
+      </a>
+    </div>
+  </article>
+
+</section>
+
+
+<section class="categories">
+
+<h2 class="section-title">Podcast Categories</h2>
+
+<div class="category-grid">
+  <div class="category">News</div>
+  <div class="category">Community</div>
+  <div class="category">Business</div>
+  <div class="category">Education</div>
+  <div class="category">Music</div>
+  <div class="category">Culture</div>
+  <div class="category">Interviews</div>
+  <div class="category">Special Programs</div>
+</div>
+
+</section>
+
+
+<section class="latest">
+
+<h2 class="section-title">Latest Episodes</h2>
+
+<div class="episode">
+  <h3>Latest PRO-MAX Podcast</h3>
+  <p>
+    Nouvo epizòd podcast yo ap parèt isit la.
+  </p>
+</div>
+
+<div class="episode">
+  <h3>Community Conversation</h3>
+  <p>
+    Konvèsasyon ak vwa kominote a.
+  </p>
+</div>
+
+<div class="episode">
+  <h3>Special Guest Interview</h3>
+  <p>
+    Entèvyou ak envite espesyal PRO-MAX.
+  </p>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+  © 2026 BSS1815 PRO-MAX-DMP | Podcasts
+</footer>
+
+</body>
+</html>
