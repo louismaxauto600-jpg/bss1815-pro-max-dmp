@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Sports Center | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP Sports Center — nouvèl espò, foutbòl, basketball, rezilta, analiz, match ak pwogram espòtif."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, Sports, Football, Soccer, Basketball, Haiti, World Cup, Sports News"
+  >
+
+  <meta name="author" content="BSS1815 PRO-MAX DMP">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#000000">
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/sports.html"
+  >
+
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    content="PRO-MAX FM DMP Sports Center"
+  >
+
+  <meta
+    property="og:description"
+    content="Espò, match, rezilta, analiz ak pwogram espòtif sou PRO-MAX FM DMP."
+  >
+
+  <meta
+    property="og:url"
+    content="https://bss1815-pro-max-dmp.netlify.app/sports.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8c00;
+      --orange-light: #ffc078;
+
+      --black: #000000;
+      --black2: #090300;
+      --panel: #160700;
+
+      --border: rgba(255, 106, 0, 0.58);
+
+      --shadow:
+        0 20px 50px rgba(0,0,0,.72);
+
+      --glow:
+        0 0 30px rgba(255,106,0,.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 85% 8%,
+          rgba(255,106,0,.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255,106,0,.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* ==========================
+       HEADER
+    ========================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(50,14,0,.97),
+          rgba(0,0,0,.98)
+        );
+
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 1.8rem;
+
+      box-shadow: var(--glow);
+    }
+
+    .brand-text strong {
+      display: block;
+
+      color: var(--orange-light);
+
+      font-size: 1rem;
+    }
+
+    .brand-text span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--orange);
+
+      font-size: .72rem;
+      font-weight: 900;
+
+      letter-spacing: 1px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+
+      gap: 15px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+    }
+
+    nav a {
+      padding: 10px 12px;
+
+      border-radius: 9px;
+
+      color: var(--orange-light);
+
+      font-size: .84rem;
+      font-weight: 800;
+
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .languages {
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      padding: 7px 9px;
+
+      border: 1px solid var(--orange);
+      border-radius: 7px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .lang-btn.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 45px;
+      height: 42px;
+
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: 1.3rem;
+    }
+
+    /* ==========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 520px;
+
+      display: flex;
+      align-items: center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 80% 45%,
+          rgba(255,106,0,.35),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr .8fr;
+
+      align-items: center;
+
+      gap: 45px;
+
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 8px 14px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange);
+
+      font-size: .8rem;
+      font-weight: 900;
+
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(3rem, 7vw, 6rem);
+
+      line-height: .98;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      max-width: 760px;
+
+      margin-top: 22px;
+
+      color: var(--orange2);
+
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-weight: 900;
+
+      transition: .25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button.secondary {
+      color: var(--orange-light);
+      background: #000;
+    }
+
+    .sports-ball {
+      min-height: 350px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.42),
+          rgba(30,8,0,.95) 52%,
+          #000 75%
+        );
+
+      box-shadow:
+        0 0 70px rgba(255,106,0,.28);
+    }
+
+    .sports-ball span {
+      display: block;
+
+      font-size: 6rem;
+    }
+
+    .sports-ball strong {
+      display: block;
+
+      margin-top: 14px;
+
+      color: var(--orange);
+
+      letter-spacing: 1px;
+    }
+
+    /* ==========================
+       SECTION
+    ========================== */
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .section-heading small {
+      color: var(--orange);
+
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      margin-top: 8px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem,5vw,3.5rem);
+
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+
+      margin-top: 12px;
+
+      color: var(--orange2);
+
+      line-height: 1.7;
+    }
+
+    /* ==========================
+       SPORTS CATEGORIES
+    ========================== */
+
+    .sports-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+      gap: 20px;
+    }
+
+    .sports-card {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.14),
+          rgba(0,0,0,.97)
+        );
+
+      box-shadow: var(--shadow);
+
+      transition: .25s ease;
+    }
+
+    .sports-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+    }
+
+    .sports-icon {
+      width: 65px;
+      height: 65px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      background: #000;
+
+      font-size: 2.2rem;
+    }
+
+    .sports-label {
+      display: inline-block;
+
+      margin-top: 18px;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: .68rem;
+      font-weight: 900;
+    }
+
+    .sports-card h3 {
+      margin-top: 13px;
+
+      color: var(--orange-light);
+
+      font-size: 1.3rem;
+    }
+
+    .sports-card p {
+      margin-top: 10px;
+
+      color: var(--orange2);
+
+      line-height: 1.65;
+    }
+
+    /* ==========================
+       MATCH CENTER
+    ========================== */
+
+    .match-center {
+      padding: 35px;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255,106,0,.25),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow: var(--glow);
+    }
+
+    .match-header {
+      text-align: center;
+
+      margin-bottom: 28px;
+    }
+
+    .match-header span {
+      color: var(--orange);
+
+      font-size: .8rem;
+      font-weight: 900;
+
+      letter-spacing: 2px;
+    }
+
+    .match-header h3 {
+      margin-top: 8px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(1.8rem,4vw,3rem);
+    }
+
+    .match-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 16px;
+    }
+
+    .match-card {
+      padding: 23px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #180700,
+          #000
+        );
+    }
+
+    .match-card .match-icon {
+      font-size: 2.5rem;
+    }
+
+    .match-card h4 {
+      margin-top: 12px;
+
+      color: var(--orange-light);
+    }
+
+    .match-card p {
+      margin-top: 8px;
+
+      color: var(--orange2);
+
+      line-height: 1.6;
+    }
+
+    /* ==========================
+       SPORTS PROGRAMS
+    ========================== */
+
+    .program-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 18px;
+    }
+
+    .program-card {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background: #090300;
+    }
+
+    .program-card span {
+      font-size: 2.3rem;
+    }
+
+    .program-card h3 {
+      margin-top: 14px;
+
+      color: var(--orange-light);
+    }
+
+    .program-card p {
+      margin-top: 9px;
+
+      color: var(--orange2);
+
+      line-height: 1.6;
+    }
+
+    /* ==========================
+       YOUTUBE
+    ========================== */
+
+    .youtube-box {
+      padding: 42px;
+
+      text-align: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255,106,0,.27),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow: var(--glow);
+    }
+
+    .youtube-box .yt-icon {
+      font-size: 4rem;
+    }
+
+    .youtube-box h2 {
+      margin-top: 15px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem,5vw,3.4rem);
+    }
+
+    .youtube-box p {
+      max-width: 720px;
+
+      margin: 15px auto;
+
+      color: var(--orange2);
+
+      line-height: 1.7;
+    }
+
+    /* ==========================
+       CONTACT
+    ========================== */
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 23px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background: #090300;
+    }
+
+    .contact-card strong {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: var(--orange);
+    }
+
+    .contact-card a {
+      overflow-wrap: anywhere;
+    }
+
+    /* ==========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 35px 0;
+
+      text-align: center;
+
+      border-top:
+        1px solid var(--border);
+
+      color: var(--orange2);
+
+      background: #000;
+    }
+
+    /* ==========================
+       RESPONSIVE
+    ========================== */
+
+    @media(max-width:1000px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sports-ball {
+        width: min(420px,90%);
+        min-height: 350px;
+
+        margin: auto;
+      }
+
+      .sports-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .match-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+
+        top: 82px;
+        left: 4%;
+        right: 4%;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 15px;
+
+        border: 1px solid var(--orange);
+        border-radius: 12px;
+
+        background: #000;
+      }
+
+      nav.open {
+        display: flex;
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .languages {
+        display: none;
+      }
+
+      .sports-grid,
+      .program-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sports-ball {
+        min-height: 300px;
+      }
+
+      .match-center,
+      .youtube-box {
+        padding: 28px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        ⚽
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PRO-MAX SPORTS
+        </strong>
+
+        <span>
+          FM DMP SPORTS CENTER
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <nav id="mainNav">
+
+        <a
+          href="index.html"
+          data-kre="Akèy"
+          data-eng="Home"
+          data-fra="Accueil"
+        >
+          Akèy
+        </a>
+
+        <a
+          href="live.html"
+          data-kre="Live"
+          data-eng="Live"
+          data-fra="Direct"
+        >
+          Live
+        </a>
+
+        <a
+          href="news.html"
+          data-kre="Nouvèl"
+          data-eng="News"
+          data-fra="Actualités"
+        >
+          Nouvèl
+        </a>
+
+        <a
+          href="video.html"
+          data-kre="Videyo"
+          data-eng="Video"
+          data-fra="Vidéo"
+        >
+          Videyo
+        </a>
+
+        <a
+          href="sports.html"
+          class="active"
+        >
+          Sports
+        </a>
+
+      </nav>
+
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <span
+          class="badge"
+          data-kre="PRO-MAX SPORTS CENTER"
+          data-eng="PRO-MAX SPORTS CENTER"
+          data-fra="CENTRE SPORTIF PRO-MAX"
+        >
+          PRO-MAX SPORTS CENTER
+        </span>
+
+        <h1>
+          SPORTS
+          <span>CENTER</span>
+        </h1>
+
+        <p
+          class="hero-description"
+          data-kre="Sant espò PRO-MAX FM DMP pou foutbòl, basketball, rezilta, analiz, gwo match, nouvèl ak pwogram espòtif."
+          data-eng="The PRO-MAX FM DMP sports center for football, basketball, results, analysis, major matches, news and sports programming."
+          data-fra="Le centre sportif PRO-MAX FM DMP pour le football, le basketball, les résultats, les analyses, les grands matchs, les nouvelles et les émissions sportives."
+        >
+          Sant espò PRO-MAX FM DMP pou
+          foutbòl, basketball, rezilta,
+          analiz, gwo match, nouvèl
+          ak pwogram espòtif.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#sports"
+            class="button"
+            data-kre="EKSPORE SPORTS"
+            data-eng="EXPLORE SPORTS"
+            data-fra="EXPLORER LES SPORTS"
+          >
+            EKSPORE SPORTS
+          </a>
+
+          <a
+            href="live.html"
+            class="button secondary"
+            data-kre="LIVE RADIO"
+            data-eng="LIVE RADIO"
+            data-fra="RADIO EN DIRECT"
+          >
+            LIVE RADIO
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="sports-ball">
+
+        <div>
+
+          <span>
+            ⚽
+          </span>
+
+          <strong>
+            PRO-MAX SPORTS
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SPORTS CATEGORIES -->
+
+  <section
+    class="section"
+    id="sports"
+  >
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          SPORTS COVERAGE
+        </small>
+
+        <h2
+          data-kre="ESPÒ NOU KOUVRI"
+          data-eng="SPORTS WE COVER"
+          data-fra="SPORTS COUVERTS"
+        >
+          ESPÒ NOU KOUVRI
+        </h2>
+
+        <p
+          data-kre="PRO-MAX Sports Center rasanble plizyè kategori espò nan yon sèl espas."
+          data-eng="PRO-MAX Sports Center brings multiple sports categories together in one place."
+          data-fra="PRO-MAX Sports Center rassemble plusieurs catégories sportives en un seul endroit."
+        >
+          PRO-MAX Sports Center rasanble
+          plizyè kategori espò
+          nan yon sèl espas.
+        </p>
+
+      </div>
+
+
+      <div class="sports-grid">
+
+        <article class="sports-card">
+
+          <div class="sports-icon">
+            ⚽
+          </div>
+
+          <span class="sports-label">
+            FOOTBALL
+          </span>
+
+          <h3
+            data-kre="Foutbòl"
+            data-eng="Football / Soccer"
+            data-fra="Football"
+          >
+            Foutbòl
+          </h3>
+
+          <p
+            data-kre="Match, ekip, konpetisyon, analiz ak gwo nouvèl foutbòl."
+            data-eng="Matches, teams, competitions, analysis and major football news."
+            data-fra="Matchs, équipes, compétitions, analyses et grandes nouvelles du football."
+          >
+            Match, ekip, konpetisyon,
+            analiz ak gwo nouvèl foutbòl.
+          </p>
+
+        </article>
+
+
+        <article class="sports-card">
+
+          <div class="sports-icon">
+            🏀
+          </div>
+
+          <span class="sports-label">
+            BASKETBALL
+          </span>
+
+          <h3>
+            Basketball
+          </h3>
+
+          <p
+            data-kre="Rezilta, ekip, jwè ak nouvèl basketball."
+            data-eng="Results, teams, players and basketball news."
+            data-fra="Résultats, équipes, joueurs et actualités du basketball."
+          >
+            Rezilta, ekip, jwè
+            ak nouvèl basketball.
+          </p>
+
+        </article>
+
+
+        <article class="sports-card">
+
+          <div class="sports-icon">
+            🏆
+          </div>
+
+          <span class="sports-label">
+            TOURNAMENTS
+          </span>
+
+          <h3
+            data-kre="Gwo Konpetisyon"
+            data-eng="Major Tournaments"
+            data-fra="Grandes Compétitions"
+          >
+            Gwo Konpetisyon
+          </h3>
+
+          <p
+            data-kre="Koup di Mond, tounwa entènasyonal ak gwo final."
+            data-eng="World Cup, international tournaments and major finals."
+            data-fra="Coupe du Monde, tournois internationaux et grandes finales."
+          >
+            Koup di Mond,
+            tounwa entènasyonal
+            ak gwo final.
+          </p>
+
+        </article>
+
+
+        <article class="sports-card">
+
+          <div class="sports-icon">
+            🇭🇹
+          </div>
+
+          <span class="sports-label">
+            HAITI
+          </span>
+
+          <h3
+            data-kre="Espò Ayisyen"
+            data-eng="Haitian Sports"
+            data-fra="Sports Haïtiens"
+          >
+            Espò Ayisyen
+          </h3>
+
+          <p
+            data-kre="Ekip nasyonal, atlèt ayisyen ak nouvèl espòtif Ayiti."
+            data-eng="National teams, Haitian athletes and sports news from Haiti."
+            data-fra="Équipes nationales, athlètes haïtiens et actualités sportives d'Haïti."
+          >
+            Ekip nasyonal,
+            atlèt ayisyen
+            ak nouvèl espòtif Ayiti.
+          </p>
+
+        </article>
+
+
+        <article class="sports-card">
+
+          <div class="sports-icon">
+            🎙️
+          </div>
+
+          <span class="sports-label">
+            ANALYSIS
+          </span>
+
+          <h3
+            data-kre="Analiz Espòtif"
+            data-eng="Sports Analysis"
+            data-fra="Analyse Sportive"
+          >
+            Analiz Espòtif
+          </h3>
+
+          <p
+            data-kre="Opinyon, deba ak analiz sou gwo evènman espòtif."
+            data-eng="Opinions, debates and analysis of major sporting events."
+            data-fra="Opinions, débats et analyses des grands événements sportifs."
+          >
+            Opinyon, deba ak analiz
+            sou gwo evènman espòtif.
+          </p>
+
+        </article>
+
+
+        <article class="sports-card">
+
+          <div class="sports-icon">
+            📺
+          </div>
+
+          <span class="sports-label">
+            VIDEO
+          </span>
+
+          <h3
+            data-kre="Sports Video"
+            data-eng="Sports Video"
+            data-fra="Vidéos Sportives"
+          >
+            Sports Video
+          </h3>
+
+          <p
+            data-kre="Kontni videyo ak pwogram espò PRO-MAX."
+            data-eng="PRO-MAX sports video content and programming."
+            data-fra="Contenu vidéo et émissions sportives PRO-MAX."
+          >
+            Kontni videyo
+            ak pwogram espò PRO-MAX.
+          </p>
+
+          <a
+            href="video.html"
+            class="button"
+          >
+            VIDEO CENTER
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MATCH CENTER -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          MATCH CENTER
+        </small>
+
+        <h2
+          data-kre="SANT MATCH"
+          data-eng="MATCH CENTER"
+          data-fra="CENTRE DES MATCHS"
+        >
+          SANT MATCH
+        </h2>
+
+      </div>
+
+
+      <div class="match-center">
+
+        <div class="match-header">
+
+          <span>
+            PRO-MAX SPORTS
+          </span>
+
+          <h3
+            data-kre="Swiv Aksyon Espòtif La"
+            data-eng="Follow the Sports Action"
+            data-fra="Suivez l'Action Sportive"
+          >
+            Swiv Aksyon Espòtif La
+          </h3>
+
+        </div>
+
+
+        <div class="match-grid">
+
+          <article class="match-card">
+
+            <div class="match-icon">
+              📅
+            </div>
+
+            <h4
+              data-kre="Match K ap Vini"
+              data-eng="Upcoming Matches"
+              data-fra="Matchs à Venir"
+            >
+              Match K ap Vini
+            </h4>
+
+            <p
+              data-kre="Orè ak enfòmasyon sou pwochen match yo."
+              data-eng="Schedules and information about upcoming matches."
+              data-fra="Horaires et informations sur les prochains matchs."
+            >
+              Orè ak enfòmasyon
+              sou pwochen match yo.
+            </p>
+
+          </article>
+
+
+          <article class="match-card">
+
+            <div class="match-icon">
+              📊
+            </div>
+
+            <h4
+              data-kre="Rezilta"
+              data-eng="Results"
+              data-fra="Résultats"
+            >
+              Rezilta
+            </h4>
+
+            <p
+              data-kre="Rezilta ak enfòmasyon apre match yo."
+              data-eng="Results and information after the matches."
+              data-fra="Résultats et informations après les matchs."
+            >
+              Rezilta ak enfòmasyon
+              apre match yo.
+            </p>
+
+          </article>
+
+
+          <article class="match-card">
+
+            <div class="match-icon">
+              📰
+            </div>
+
+            <h4
+              data-kre="Sports News"
+              data-eng="Sports News"
+              data-fra="Actualités Sportives"
+            >
+              Sports News
+            </h4>
+
+            <p
+              data-kre="Nouvèl ak gwo istwa nan mond espò a."
+              data-eng="News and major stories from the sports world."
+              data-fra="Nouvelles et grandes histoires du monde sportif."
+            >
+              Nouvèl ak gwo istwa
+              nan mond espò a.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROGRAMS -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          SPORTS PROGRAMMING
+        </small>
+
+        <h2
+          data-kre="PWOGRAM ESPÒ"
+          data-eng="SPORTS PROGRAMS"
+          data-fra="ÉMISSIONS SPORTIVES"
+        >
+          PWOGRAM ESPÒ
+        </h2>
+
+      </div>
+
+
+      <div class="program-grid">
+
+        <article class="program-card">
+
+          <span>
+            🎙️
+          </span>
+
+          <h3>
+            PRO-MAX Sports Talk
+          </h3>
+
+          <p
+            data-kre="Diskisyon, deba ak analiz sou espò."
+            data-eng="Discussion, debate and sports analysis."
+            data-fra="Discussions, débats et analyses sportives."
+          >
+            Diskisyon, deba
+            ak analiz sou espò.
+          </p>
+
+        </article>
+
+
+        <article class="program-card">
+
+          <span>
+            ⚽
+          </span>
+
+          <h3>
+            Football Center
+          </h3>
+
+          <p
+            data-kre="Foutbòl lokal ak entènasyonal."
+            data-eng="Local and international football."
+            data-fra="Football local et international."
+          >
+            Foutbòl lokal
+            ak entènasyonal.
+          </p>
+
+        </article>
+
+
+        <article class="program-card">
+
+          <span>
+            🏆
+          </span>
+
+          <h3>
+            Championship Zone
+          </h3>
+
+          <p
+            data-kre="Kouvèti espesyal pou gwo chanpyona ak final."
+            data-eng="Special coverage for major championships and finals."
+            data-fra="Couverture spéciale des grands championnats et finales."
+          >
+            Kouvèti espesyal pou
+            gwo chanpyona ak final.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- YOUTUBE -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="youtube-box">
+
+        <div class="yt-icon">
+          ▶️
+        </div>
+
+        <h2>
+          PRO-MAX SPORTS VIDEO
+        </h2>
+
+        <p
+          data-kre="Pou videyo, Live, analiz ak lòt kontni PRO-MAX, vizite chanèl YouTube ofisyèl la."
+          data-eng="For videos, live streams, analysis and other PRO-MAX content, visit the official YouTube channel."
+          data-fra="Pour les vidéos, directs, analyses et autres contenus PRO-MAX, visitez la chaîne YouTube officielle."
+        >
+          Pou videyo, Live, analiz
+          ak lòt kontni PRO-MAX,
+          vizite chanèl YouTube ofisyèl la.
+        </p>
+
+        <a
+          href="https://www.youtube.com/@BSS1815PROMAXDMP"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button"
+        >
+          ▶ OPEN YOUTUBE
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CONTACT
+        </small>
+
+        <h2
+          data-kre="KONTAKTE PRO-MAX"
+          data-eng="CONTACT PRO-MAX"
+          data-fra="CONTACTER PRO-MAX"
+        >
+          KONTAKTE PRO-MAX
+        </h2>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <article class="contact-card">
+
+          <strong>
+            EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            TELEFÒN
+          </strong>
+
+          <a href="tel:+50943437488">
+            +509 4343-7488
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    PRO-MAX FM DMP Sports Center —
+    Powering the Future of Digital Radio.
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mainNav =
+    document.getElementById("mainNav");
+
+  const languageButtons =
+    document.querySelectorAll(".lang-btn");
+
+  const translatableElements =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  /* MOBILE MENU */
+
+  menuButton.addEventListener(
+    "click",
+    function() {
+
+      const isOpen =
+        mainNav.classList.toggle("open");
+
+      menuButton.textContent =
+        isOpen ? "✕" : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+    }
+  );
+
+
+  mainNav
+    .querySelectorAll("a")
+    .forEach(function(link) {
+
+      link.addEventListener(
+        "click",
+        function() {
+
+          mainNav.classList.remove("open");
+
+          menuButton.textContent = "☰";
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    });
+
+
+  /* LANGUAGE SYSTEM */
+
+  function changeLanguage(language) {
+
+    translatableElements.forEach(
+      function(element) {
+
+        const translation =
+          element.dataset[language];
+
+        if (translation) {
+          element.textContent = translation;
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function(button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === language
+        );
+
+      }
+    );
+
+
+    if (language === "kre") {
+      document.documentElement.lang = "ht";
+    }
+
+    if (language === "eng") {
+      document.documentElement.lang = "en";
+    }
+
+    if (language === "fra") {
+      document.documentElement.lang = "fr";
+    }
+
+  }
+
+
+  languageButtons.forEach(
+    function(button) {
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    });
+
+
+  /* CURRENT YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+</script>
+
+</body>
+</html>
