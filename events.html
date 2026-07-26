@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Events Center | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP Events Center — evènman, aktivite kominotè, radyo live, mizik, espò, academy ak pwogram espesyal."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, Events, BSS1815, Radio Events, Community Events, Haiti, PRO-MAX Academy"
+  >
+
+  <meta
+    name="author"
+    content="BSS1815 PRO-MAX DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/events.html"
+  >
+
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    content="PRO-MAX FM DMP Events Center"
+  >
+
+  <meta
+    property="og:description"
+    content="Evènman, aktivite ak pwogram espesyal PRO-MAX FM DMP."
+  >
+
+  <meta
+    property="og:url"
+    content="https://bss1815-pro-max-dmp.netlify.app/events.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8c00;
+      --orange-light: #ffc078;
+
+      --black: #000000;
+      --black2: #090300;
+      --panel: #160700;
+
+      --border: rgba(255, 106, 0, 0.58);
+
+      --shadow:
+        0 20px 50px rgba(0,0,0,.72);
+
+      --glow:
+        0 0 30px rgba(255,106,0,.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color:
+        var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 87% 8%,
+          rgba(255,106,0,.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255,106,0,.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000 100%
+        );
+
+      background-attachment:
+        fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline:
+        3px solid
+        var(--orange-light);
+
+      outline-offset:
+        4px;
+    }
+
+    .container {
+      width:
+        min(1200px, 92%);
+
+      margin-inline:
+        auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        1000;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(50,14,0,.97),
+          rgba(0,0,0,.98)
+        );
+
+      backdrop-filter:
+        blur(14px);
+    }
+
+    .header-inner {
+      min-height:
+        82px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+    .brand {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        13px;
+    }
+
+    .brand-mark {
+      width:
+        58px;
+
+      height:
+        58px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        14px;
+
+      color:
+        #000;
+
+      background:
+        var(--orange);
+
+      font-size:
+        1.8rem;
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .brand-text strong {
+      display:
+        block;
+
+      color:
+        var(--orange-light);
+    }
+
+    .brand-text span {
+      display:
+        block;
+
+      margin-top:
+        4px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        .72rem;
+
+      font-weight:
+        900;
+    }
+
+    .header-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        15px;
+    }
+
+    nav {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+    }
+
+    nav a {
+      padding:
+        10px 12px;
+
+      border-radius:
+        9px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        .84rem;
+
+      font-weight:
+        800;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color:
+        #000;
+
+      background:
+        var(--orange);
+    }
+
+    .languages {
+      display:
+        flex;
+
+      gap:
+        5px;
+    }
+
+    .lang-btn {
+      padding:
+        7px 9px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        7px;
+
+      color:
+        var(--orange);
+
+      background:
+        #000;
+
+      font-size:
+        .7rem;
+
+      font-weight:
+        900;
+    }
+
+    .lang-btn.active {
+      color:
+        #000;
+
+      background:
+        var(--orange);
+    }
+
+    .menu-button {
+      display:
+        none;
+
+      width:
+        45px;
+
+      height:
+        42px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        9px;
+
+      color:
+        var(--orange);
+
+      background:
+        #000;
+
+      font-size:
+        1.3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height:
+        500px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 80% 45%,
+          rgba(255,106,0,.35),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        1.2fr .8fr;
+
+      align-items:
+        center;
+
+      gap:
+        45px;
+
+      padding:
+        80px 0;
+    }
+
+    .badge {
+      display:
+        inline-block;
+
+      padding:
+        8px 14px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        999px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        .8rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.5px;
+    }
+
+    .hero h1 {
+      margin-top:
+        20px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          3rem,
+          7vw,
+          6rem
+        );
+
+      line-height:
+        .98;
+
+      text-transform:
+        uppercase;
+    }
+
+    .hero h1 span {
+      color:
+        var(--orange);
+    }
+
+    .hero-description {
+      max-width:
+        760px;
+
+      margin-top:
+        22px;
+
+      color:
+        var(--orange2);
+
+      font-size:
+        1.05rem;
+
+      line-height:
+        1.8;
+    }
+
+    .hero-buttons {
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        12px;
+
+      margin-top:
+        28px;
+    }
+
+    .button {
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        13px 20px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        10px;
+
+      color:
+        #000;
+
+      background:
+        var(--orange);
+
+      font-weight:
+        900;
+
+      transition:
+        .25s ease;
+    }
+
+    .button:hover {
+      transform:
+        translateY(-3px);
+    }
+
+    .button.secondary {
+      color:
+        var(--orange-light);
+
+      background:
+        #000;
+    }
+
+    .event-visual {
+      min-height:
+        350px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        2px solid var(--orange);
+
+      border-radius:
+        50%;
+
+      text-align:
+        center;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.42),
+          rgba(30,8,0,.95) 52%,
+          #000 75%
+        );
+
+      box-shadow:
+        0 0 70px
+        rgba(255,106,0,.28);
+    }
+
+    .event-visual span {
+      display:
+        block;
+
+      font-size:
+        6rem;
+    }
+
+    .event-visual strong {
+      display:
+        block;
+
+      margin-top:
+        14px;
+
+      color:
+        var(--orange);
+    }
+
+    /* SECTIONS */
+
+    .section {
+      padding:
+        75px 0;
+    }
+
+    .section-heading {
+      margin-bottom:
+        32px;
+    }
+
+    .section-heading small {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        2px;
+    }
+
+    .section-heading h2 {
+      margin-top:
+        8px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          2rem,
+          5vw,
+          3.5rem
+        );
+
+      text-transform:
+        uppercase;
+    }
+
+    .section-heading p {
+      max-width:
+        760px;
+
+      margin-top:
+        12px;
+
+      color:
+        var(--orange2);
+
+      line-height:
+        1.7;
+    }
+
+    /* FILTER */
+
+    .event-tools {
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 230px;
+
+      gap:
+        12px;
+
+      margin-bottom:
+        28px;
+    }
+
+    .event-tools input,
+    .event-tools select {
+      width:
+        100%;
+
+      padding:
+        14px 15px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        10px;
+
+      color:
+        var(--orange-light);
+
+      background:
+        #000;
+    }
+
+    /* EVENTS */
+
+    .events-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+      gap:
+        20px;
+    }
+
+    .event-card {
+      overflow:
+        hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.14),
+          rgba(0,0,0,.97)
+        );
+
+      box-shadow:
+        var(--shadow);
+
+      transition:
+        .25s ease;
+    }
+
+    .event-card:hover {
+      transform:
+        translateY(-6px);
+
+      border-color:
+        var(--orange);
+    }
+
+    .event-top {
+      position:
+        relative;
+
+      height:
+        190px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.30),
+          transparent 60%
+        ),
+        #090300;
+
+      font-size:
+        4rem;
+    }
+
+    .event-date {
+      position:
+        absolute;
+
+      left:
+        15px;
+
+      bottom:
+        15px;
+
+      min-width:
+        68px;
+
+      padding:
+        10px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        12px;
+
+      color:
+        #000;
+
+      background:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    .event-date strong {
+      display:
+        block;
+
+      font-size:
+        1.45rem;
+    }
+
+    .event-date small {
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      font-size:
+        .68rem;
+    }
+
+    .event-content {
+      padding:
+        22px;
+    }
+
+    .event-category {
+      display:
+        inline-block;
+
+      padding:
+        6px 10px;
+
+      border-radius:
+        999px;
+
+      color:
+        #000;
+
+      background:
+        var(--orange);
+
+      font-size:
+        .68rem;
+
+      font-weight:
+        900;
+    }
+
+    .event-content h3 {
+      margin-top:
+        13px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1.28rem;
+    }
+
+    .event-content p {
+      margin-top:
+        9px;
+
+      color:
+        var(--orange2);
+
+      line-height:
+        1.65;
+    }
+
+    .event-meta {
+      display:
+        grid;
+
+      gap:
+        7px;
+
+      margin-top:
+        17px;
+
+      padding-top:
+        15px;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        .85rem;
+    }
+
+    .hidden {
+      display:
+        none !important;
+    }
+
+    /* FEATURED */
+
+    .featured-event {
+      display:
+        grid;
+
+      grid-template-columns:
+        .8fr 1.2fr;
+
+      gap:
+        28px;
+
+      padding:
+        32px;
+
+      border:
+        2px solid var(--orange);
+
+      border-radius:
+        22px;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(255,106,0,.30),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .featured-icon {
+      min-height:
+        280px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        17px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.35),
+          transparent 62%
+        );
+
+      font-size:
+        6rem;
+    }
+
+    .featured-content {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        center;
+    }
+
+    .featured-content small {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        2px;
+    }
+
+    .featured-content h3 {
+      margin-top:
+        10px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          1.8rem,
+          4vw,
+          3rem
+        );
+    }
+
+    .featured-content p {
+      margin-top:
+        15px;
+
+      color:
+        var(--orange2);
+
+      line-height:
+        1.7;
+    }
+
+    /* EVENT SERVICES */
+
+    .service-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:
+        18px;
+    }
+
+    .service-card {
+      padding:
+        25px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        16px;
+
+      background:
+        #090300;
+    }
+
+    .service-card span {
+      font-size:
+        2.6rem;
+    }
+
+    .service-card h3 {
+      margin-top:
+        14px;
+
+      color:
+        var(--orange-light);
+    }
+
+    .service-card p {
+      margin-top:
+        9px;
+
+      color:
+        var(--orange2);
+
+      line-height:
+        1.6;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:
+        16px;
+    }
+
+    .contact-card {
+      padding:
+        23px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        15px;
+
+      background:
+        #090300;
+    }
+
+    .contact-card strong {
+      display:
+        block;
+
+      margin-bottom:
+        9px;
+
+      color:
+        var(--orange);
+    }
+
+    .contact-card a {
+      overflow-wrap:
+        anywhere;
+    }
+
+    footer {
+      padding:
+        35px 0;
+
+      text-align:
+        center;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        var(--orange2);
+
+      background:
+        #000;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px) {
+
+      .hero-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .event-visual {
+        width:
+          min(420px,90%);
+
+        min-height:
+          350px;
+
+        margin:
+          auto;
+      }
+
+      .events-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .featured-event {
+        grid-template-columns:
+          1fr;
+      }
+
+      .menu-button {
+        display:
+          block;
+      }
+
+      nav {
+        position:
+          absolute;
+
+        top:
+          82px;
+
+        left:
+          4%;
+
+        right:
+          4%;
+
+        display:
+          none;
+
+        flex-direction:
+          column;
+
+        padding:
+          15px;
+
+        border:
+          1px solid var(--orange);
+
+        border-radius:
+          12px;
+
+        background:
+          #000;
+      }
+
+      nav.open {
+        display:
+          flex;
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .languages {
+        display:
+          none;
+      }
+
+      .event-tools {
+        grid-template-columns:
+          1fr;
+      }
+
+      .events-grid,
+      .service-grid,
+      .contact-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .event-visual {
+        min-height:
+          300px;
+      }
+
+      .featured-event {
+        padding:
+          22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        📅
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PRO-MAX EVENTS
+        </strong>
+
+        <span>
+          FM DMP EVENTS CENTER
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <nav id="mainNav">
+
+        <a
+          href="index.html"
+          data-kre="Akèy"
+          data-eng="Home"
+          data-fra="Accueil"
+        >
+          Akèy
+        </a>
+
+        <a
+          href="live.html"
+          data-kre="Live"
+          data-eng="Live"
+          data-fra="Direct"
+        >
+          Live
+        </a>
+
+        <a
+          href="news.html"
+          data-kre="Nouvèl"
+          data-eng="News"
+          data-fra="Actualités"
+        >
+          Nouvèl
+        </a>
+
+        <a
+          href="events.html"
+          class="active"
+        >
+          Events
+        </a>
+
+      </nav>
+
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <span
+          class="badge"
+          data-kre="PRO-MAX EVENTS CENTER"
+          data-eng="PRO-MAX EVENTS CENTER"
+          data-fra="CENTRE D'ÉVÉNEMENTS PRO-MAX"
+        >
+          PRO-MAX EVENTS CENTER
+        </span>
+
+        <h1>
+          EVENTS
+          <span>CENTER</span>
+        </h1>
+
+        <p
+          class="hero-description"
+          data-kre="Dekouvri evènman, aktivite kominotè, emisyon espesyal, espò, akademi ak gwo moman PRO-MAX FM DMP."
+          data-eng="Discover events, community activities, special shows, sports, academy programs and major PRO-MAX FM DMP moments."
+          data-fra="Découvrez les événements, activités communautaires, émissions spéciales, sports, programmes de l'académie et grands moments de PRO-MAX FM DMP."
+        >
+          Dekouvri evènman, aktivite kominotè,
+          emisyon espesyal, espò, akademi
+          ak gwo moman PRO-MAX FM DMP.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#events"
+            class="button"
+            data-kre="WÈ EVÈNMAN YO"
+            data-eng="VIEW EVENTS"
+            data-fra="VOIR LES ÉVÉNEMENTS"
+          >
+            WÈ EVÈNMAN YO
+          </a>
+
+          <a
+            href="live.html"
+            class="button secondary"
+          >
+            LIVE RADIO
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="event-visual">
+
+        <div>
+
+          <span>
+            🎉
+          </span>
+
+          <strong>
+            CONNECT • CELEBRATE • PARTICIPATE
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURED EVENT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="featured-event">
+
+        <div class="featured-icon">
+          📻
+        </div>
+
+        <div class="featured-content">
+
+          <small>
+            FEATURED EVENT
+          </small>
+
+          <h3>
+            PRO-MAX FM LIVE EXPERIENCE
+          </h3>
+
+          <p
+            data-kre="Espas sa a prepare pou gwo evènman PRO-MAX FM, transmisyon Live, emisyon espesyal ak aktivite kominotè."
+            data-eng="This space is ready for major PRO-MAX FM events, live broadcasts, special shows and community activities."
+            data-fra="Cet espace est prêt pour les grands événements PRO-MAX FM, les diffusions en direct, les émissions spéciales et les activités communautaires."
+          >
+            Espas sa a prepare pou gwo evènman
+            PRO-MAX FM, transmisyon Live,
+            emisyon espesyal ak aktivite kominotè.
+          </p>
+
+          <a
+            href="live.html"
+            class="button"
+          >
+            ▶ LIVE CENTER
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- EVENT LIST -->
+
+  <section
+    class="section"
+    id="events"
+  >
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          EVENT CALENDAR
+        </small>
+
+        <h2
+          data-kre="EVÈNMAN & AKTIVITE"
+          data-eng="EVENTS & ACTIVITIES"
+          data-fra="ÉVÉNEMENTS & ACTIVITÉS"
+        >
+          EVÈNMAN & AKTIVITE
+        </h2>
+
+        <p
+          data-kre="Chèche oswa filtre kategori evènman PRO-MAX yo."
+          data-eng="Search or filter PRO-MAX event categories."
+          data-fra="Recherchez ou filtrez les catégories d'événements PRO-MAX."
+        >
+          Chèche oswa filtre kategori
+          evènman PRO-MAX yo.
+        </p>
+
+      </div>
+
+
+      <div class="event-tools">
+
+        <input
+          type="search"
+          id="eventSearch"
+          placeholder="Chèche evènman..."
+          aria-label="Chèche evènman"
+        >
+
+        <select
+          id="eventFilter"
+          aria-label="Filtre kategori"
+        >
+
+          <option value="all">
+            Tout kategori
+          </option>
+
+          <option value="radio">
+            Radio
+          </option>
+
+          <option value="community">
+            Community
+          </option>
+
+          <option value="sports">
+            Sports
+          </option>
+
+          <option value="academy">
+            Academy
+          </option>
+
+          <option value="business">
+            Business
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div
+        class="events-grid"
+        id="eventsGrid"
+      >
+
+        <!-- RADIO -->
+
+        <article
+          class="event-card"
+          data-category="radio"
+          data-search="radio live pro-max fm"
+        >
+
+          <div class="event-top">
+
+            📻
+
+            <div class="event-date">
+
+              <strong>
+                LIVE
+              </strong>
+
+              <small>
+                RADIO
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="event-content">
+
+            <span class="event-category">
+              RADIO
+            </span>
+
+            <h3>
+              PRO-MAX FM Live
+            </h3>
+
+            <p
+              data-kre="Transmisyon Live, mizik, emisyon ak pwogram espesyal."
+              data-eng="Live broadcasts, music, shows and special programming."
+              data-fra="Diffusions en direct, musique, émissions et programmes spéciaux."
+            >
+              Transmisyon Live, mizik,
+              emisyon ak pwogram espesyal.
+            </p>
+
+            <div class="event-meta">
+
+              <span>
+                📍 PRO-MAX Digital Platform
+              </span>
+
+              <span>
+                ▶ YouTube Live
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- COMMUNITY -->
+
+        <article
+          class="event-card"
+          data-category="community"
+          data-search="community kominote meeting activity"
+        >
+
+          <div class="event-top">
+
+            🌍
+
+            <div class="event-date">
+
+              <strong>
+                BSS
+              </strong>
+
+              <small>
+                COMMUNITY
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="event-content">
+
+            <span class="event-category">
+              COMMUNITY
+            </span>
+
+            <h3
+              data-kre="Aktivite Kominotè"
+              data-eng="Community Activities"
+              data-fra="Activités Communautaires"
+            >
+              Aktivite Kominotè
+            </h3>
+
+            <p
+              data-kre="Reyinyon, aktivite sosyal ak pwogram kominotè BSS1815."
+              data-eng="Meetings, social activities and BSS1815 community programs."
+              data-fra="Réunions, activités sociales et programmes communautaires BSS1815."
+            >
+              Reyinyon, aktivite sosyal
+              ak pwogram kominotè BSS1815.
+            </p>
+
+            <div class="event-meta">
+
+              <span>
+                🤝 Community
+              </span>
+
+              <span>
+                📅 Events Center
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- SPORTS -->
+
+        <article
+          class="event-card"
+          data-category="sports"
+          data-search="sports football soccer match"
+        >
+
+          <div class="event-top">
+
+            ⚽
+
+            <div class="event-date">
+
+              <strong>
+                ⚽
+              </strong>
+
+              <small>
+                SPORTS
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="event-content">
+
+            <span class="event-category">
+              SPORTS
+            </span>
+
+            <h3>
+              PRO-MAX Sports Events
+            </h3>
+
+            <p
+              data-kre="Match, gwo konpetisyon, analiz ak evènman espòtif."
+              data-eng="Matches, major competitions, analysis and sporting events."
+              data-fra="Matchs, grandes compétitions, analyses et événements sportifs."
+            >
+              Match, gwo konpetisyon,
+              analiz ak evènman espòtif.
+            </p>
+
+            <div class="event-meta">
+
+              <span>
+                🏆 Sports Center
+              </span>
+
+              <span>
+                ⚽ Football & More
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- ACADEMY -->
+
+        <article
+          class="event-card"
+          data-category="academy"
+          data-search="academy training education formation"
+        >
+
+          <div class="event-top">
+
+            🎓
+
+            <div class="event-date">
+
+              <strong>
+                EDU
+              </strong>
+
+              <small>
+                ACADEMY
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="event-content">
+
+            <span class="event-category">
+              ACADEMY
+            </span>
+
+            <h3>
+              PRO-MAX Academy Sessions
+            </h3>
+
+            <p
+              data-kre="Fòmasyon, prezantasyon ak sesyon edikatif."
+              data-eng="Training, presentations and educational sessions."
+              data-fra="Formations, présentations et sessions éducatives."
+            >
+              Fòmasyon, prezantasyon
+              ak sesyon edikatif.
+            </p>
+
+            <div class="event-meta">
+
+              <span>
+                🎓 Academy
+              </span>
+
+              <span>
+                💻 Digital Learning
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- BUSINESS -->
+
+        <article
+          class="event-card"
+          data-category="business"
+          data-search="business networking entrepreneur biznis"
+        >
+
+          <div class="event-top">
+
+            💼
+
+            <div class="event-date">
+
+              <strong>
+                BIZ
+              </strong>
+
+              <small>
+                BUSINESS
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="event-content">
+
+            <span class="event-category">
+              BUSINESS
+            </span>
+
+            <h3>
+              Business Networking
+            </h3>
+
+            <p
+              data-kre="Aktivite pou antreprenè, biznis, patnè ak pwofesyonèl."
+              data-eng="Activities for entrepreneurs, businesses, partners and professionals."
+              data-fra="Activités pour entrepreneurs, entreprises, partenaires et professionnels."
+            >
+              Aktivite pou antreprenè,
+              biznis, patnè ak pwofesyonèl.
+            </p>
+
+            <div class="event-meta">
+
+              <span>
+                🤝 Networking
+              </span>
+
+              <span>
+                📈 Business Center
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- MUSIC -->
+
+        <article
+          class="event-card"
+          data-category="radio"
+          data-search="music concert artist radio"
+        >
+
+          <div class="event-top">
+
+            🎤
+
+            <div class="event-date">
+
+              <strong>
+                ♫
+              </strong>
+
+              <small>
+                MUSIC
+              </small>
+
+            </div>
+
+          </div>
+
+          <div class="event-content">
+
+            <span class="event-category">
+              MUSIC
+            </span>
+
+            <h3>
+              Music & Artist Showcase
+            </h3>
+
+            <p
+              data-kre="Mizik, atis, entèvyou ak prezantasyon espesyal."
+              data-eng="Music, artists, interviews and special showcases."
+              data-fra="Musique, artistes, interviews et présentations spéciales."
+            >
+              Mizik, atis, entèvyou
+              ak prezantasyon espesyal.
+            </p>
+
+            <div class="event-meta">
+
+              <span>
+                🎤 Artists
+              </span>
+
+              <span>
+                📻 PRO-MAX FM
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          EVENT SERVICES
+        </small>
+
+        <h2
+          data-kre="SÈVIS EVÈNMAN"
+          data-eng="EVENT SERVICES"
+          data-fra="SERVICES ÉVÉNEMENTIELS"
+        >
+          SÈVIS EVÈNMAN
+        </h2>
+
+      </div>
+
+
+      <div class="service-grid">
+
+        <article class="service-card">
+
+          <span>
+            📻
+          </span>
+
+          <h3>
+            Live Coverage
+          </h3>
+
+          <p
+            data-kre="Pwomosyon ak kouvèti evènman atravè medya PRO-MAX."
+            data-eng="Event promotion and coverage through PRO-MAX media."
+            data-fra="Promotion et couverture d'événements via les médias PRO-MAX."
+          >
+            Pwomosyon ak kouvèti
+            evènman atravè medya PRO-MAX.
+          </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+          <span>
+            📢
+          </span>
+
+          <h3>
+            Event Promotion
+          </h3>
+
+          <p
+            data-kre="Piblisite ak vizibilite pou aktivite ak evènman."
+            data-eng="Advertising and visibility for activities and events."
+            data-fra="Publicité et visibilité pour les activités et événements."
+          >
+            Piblisite ak vizibilite
+            pou aktivite ak evènman.
+          </p>
+
+          <a
+            href="advertise.html"
+            class="button"
+          >
+            ADVERTISE
+          </a>
+
+        </article>
+
+
+        <article class="service-card">
+
+          <span>
+            🎥
+          </span>
+
+          <h3>
+            Video & Replay
+          </h3>
+
+          <p
+            data-kre="Videyo, Live ak replay pou kontni evènman yo."
+            data-eng="Video, live streaming and replays for event content."
+            data-fra="Vidéos, directs et rediffusions pour le contenu événementiel."
+          >
+            Videyo, Live ak replay
+            pou kontni evènman yo.
+          </p>
+
+          <a
+            href="video.html"
+            class="button"
+          >
+            VIDEO CENTER
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CONTACT
+        </small>
+
+        <h2
+          data-kre="KONTAKTE PRO-MAX"
+          data-eng="CONTACT PRO-MAX"
+          data-fra="CONTACTER PRO-MAX"
+        >
+          KONTAKTE PRO-MAX
+        </h2>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <article class="contact-card">
+
+          <strong>
+            EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            TELEFÒN
+          </strong>
+
+          <a href="tel:+50943437488">
+            +509 4343-7488
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    PRO-MAX FM DMP Events Center
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+
+  /* MOBILE MENU */
+
+  const menuButton =
+    document.getElementById(
+      "menuButton"
+    );
+
+  const mainNav =
+    document.getElementById(
+      "mainNav"
+    );
+
+
+  menuButton.addEventListener(
+    "click",
+    function () {
+
+      const open =
+        mainNav.classList.toggle(
+          "open"
+        );
+
+      menuButton.textContent =
+        open
+          ? "✕"
+          : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+    }
+  );
+
+
+  /* FILTER EVENTS */
+
+  const eventSearch =
+    document.getElementById(
+      "eventSearch"
+    );
+
+  const eventFilter =
+    document.getElementById(
+      "eventFilter"
+    );
+
+  const eventCards =
+    Array.from(
+      document.querySelectorAll(
+        ".event-card"
+      )
+    );
+
+
+  function filterEvents() {
+
+    const search =
+      eventSearch.value
+        .trim()
+        .toLowerCase();
+
+    const category =
+      eventFilter.value;
+
+
+    eventCards.forEach(
+      function (card) {
+
+        const text =
+          (
+            card.dataset.search +
+            " " +
+            card.textContent
+          ).toLowerCase();
+
+        const matchesSearch =
+          !search ||
+          text.includes(search);
+
+        const matchesCategory =
+          category === "all" ||
+          card.dataset.category ===
+          category;
+
+        card.classList.toggle(
+          "hidden",
+          !(
+            matchesSearch &&
+            matchesCategory
+          )
+        );
+
+      }
+    );
+  }
+
+
+  eventSearch.addEventListener(
+    "input",
+    filterEvents
+  );
+
+
+  eventFilter.addEventListener(
+    "change",
+    filterEvents
+  );
+
+
+  /* LANGUAGE */
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-btn"
+    );
+
+  const translatable =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  function changeLanguage(lang) {
+
+    translatable.forEach(
+      function (element) {
+
+        const translation =
+          element.dataset[lang];
+
+        if (translation) {
+          element.textContent =
+            translation;
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function (button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === lang
+        );
+
+      }
+    );
+
+
+    document.documentElement.lang =
+      lang === "eng"
+        ? "en"
+        : lang === "fra"
+          ? "fr"
+          : "ht";
+  }
+
+
+  languageButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+</script>
+
+</body>
+</html>
