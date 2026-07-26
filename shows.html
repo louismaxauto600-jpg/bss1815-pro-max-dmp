@@ -1,1211 +1,377 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Shows | PRO-MAX FM DMP</title>
-
-  <meta
-    name="description"
-    content="Dekouvri emisyon, animatè ak pwogram PRO-MAX FM DMP."
-  >
-
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#000000">
-
-  <link
-    rel="canonical"
-    href="https://bss1815-pro-max-dmp.netlify.app/shows.html"
-  >
-
-  <style>
-    :root {
-      --orange: #ff6a00;
-      --orange2: #ff8c00;
-      --orange-light: #ffc078;
-      --orange-dark: #8f3100;
-
-      --black: #000000;
-      --black2: #090300;
-      --panel: #160700;
-
-      --border: rgba(255, 106, 0, 0.55);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--black);
-    }
-
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      color: var(--orange-light);
-
-      background:
-        radial-gradient(
-          circle at 90% 8%,
-          rgba(255, 106, 0, 0.26),
-          transparent 30%
-        ),
-        linear-gradient(
-          135deg,
-          #000000 0%,
-          #090300 35%,
-          #351000 55%,
-          #000000 100%
-        );
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(1200px, 92%);
-      margin-inline: auto;
-    }
-
-    /* HEADER */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-
-      border-bottom: 1px solid var(--border);
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(0,0,0,.98),
-          rgba(50,14,0,.97),
-          rgba(0,0,0,.98)
-        );
-    }
-
-    .header-inner {
-      min-height: 82px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo {
-      width: 58px;
-      height: 58px;
-
-      object-fit: contain;
-
-      border: 1px solid var(--orange);
-      border-radius: 14px;
-
-      background: #000000;
-    }
-
-    .brand strong {
-      display: block;
-      color: var(--orange-light);
-    }
-
-    .brand span {
-      display: block;
-
-      margin-top: 4px;
-
-      color: var(--orange);
-
-      font-size: .72rem;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    nav a {
-      padding: 10px 12px;
-
-      border-radius: 9px;
-
-      color: var(--orange-light);
-
-      font-size: .86rem;
-      font-weight: 800;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: #000000;
-      background: var(--orange);
-    }
-
-    .menu-button {
-      display: none;
-
-      width: 45px;
-      height: 42px;
-
-      border: 1px solid var(--orange);
-      border-radius: 9px;
-
-      color: var(--orange);
-      background: #000000;
-
-      font-size: 1.3rem;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 430px;
-
-      display: flex;
-      align-items: center;
-
-      border-bottom: 1px solid var(--border);
-
-      background:
-        radial-gradient(
-          circle at 80% 40%,
-          rgba(255,106,0,.32),
-          transparent 32%
-        );
-    }
-
-    .hero-content {
-      padding: 75px 0;
-    }
-
-    .badge {
-      display: inline-block;
-
-      padding: 8px 14px;
-
-      border: 1px solid var(--orange);
-      border-radius: 999px;
-
-      color: var(--orange);
-
-      font-size: .8rem;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-    }
-
-    .hero h1 {
-      margin-top: 20px;
-
-      color: var(--orange-light);
-
-      font-size: clamp(2.8rem, 7vw, 6rem);
-
-      text-transform: uppercase;
-    }
-
-    .hero h1 span {
-      color: var(--orange);
-    }
-
-    .hero p {
-      max-width: 760px;
-
-      margin-top: 20px;
-
-      color: var(--orange2);
-
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    /* SECTION */
-
-    .section {
-      padding: 75px 0;
-    }
-
-    .section-heading {
-      margin-bottom: 32px;
-    }
-
-    .section-heading small {
-      color: var(--orange);
-
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    .section-heading h2 {
-      margin-top: 8px;
-
-      color: var(--orange-light);
-
-      font-size: clamp(2rem, 5vw, 3.5rem);
-
-      text-transform: uppercase;
-    }
-
-    .section-heading p {
-      max-width: 720px;
-
-      margin-top: 12px;
-
-      color: var(--orange2);
-
-      line-height: 1.7;
-    }
-
-    /* SHOW GRID */
-
-    .shows-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-      gap: 22px;
-    }
-
-    .show-card {
-      overflow: hidden;
-
-      border: 1px solid var(--border);
-      border-radius: 18px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,106,0,.13),
-          rgba(0,0,0,.97)
-        );
-
-      transition: .25s ease;
-    }
-
-    .show-card:hover {
-      transform: translateY(-5px);
-
-      border-color: var(--orange);
-    }
-
-    .show-image {
-      height: 200px;
-
-      display: grid;
-      place-items: center;
-
-      border-bottom: 1px solid var(--border);
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(255,106,0,.32),
-          transparent 62%
-        ),
-        #090300;
-
-      font-size: 4rem;
-    }
-
-    .show-content {
-      padding: 23px;
-    }
-
-    .show-category {
-      display: inline-block;
-
-      padding: 6px 10px;
-
-      border-radius: 999px;
-
-      color: #000000;
-      background: var(--orange);
-
-      font-size: .7rem;
-      font-weight: 900;
-    }
-
-    .show-content h3 {
-      margin-top: 14px;
-
-      color: var(--orange-light);
-
-      font-size: 1.3rem;
-    }
-
-    .show-content p {
-      margin-top: 10px;
-
-      color: var(--orange2);
-
-      line-height: 1.65;
-    }
-
-    .show-meta {
-      margin-top: 17px;
-
-      padding-top: 15px;
-
-      border-top: 1px solid var(--border);
-
-      color: var(--orange-light);
-
-      font-size: .85rem;
-    }
-
-    /* SCHEDULE */
-
-    .schedule {
-      display: grid;
-      gap: 14px;
-    }
-
-    .schedule-row {
-      display: grid;
-
-      grid-template-columns:
-        130px 1fr auto;
-
-      align-items: center;
-
-      gap: 20px;
-
-      padding: 21px;
-
-      border: 1px solid var(--border);
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(255,106,0,.13),
-          rgba(0,0,0,.96)
-        );
-    }
-
-    .time {
-      color: var(--orange);
-
-      font-weight: 900;
-    }
-
-    .schedule-row strong {
-      color: var(--orange-light);
-    }
-
-    .schedule-row p {
-      margin-top: 5px;
-
-      color: var(--orange2);
-
-      font-size: .88rem;
-    }
-
-    .schedule-tag {
-      padding: 7px 11px;
-
-      border-radius: 999px;
-
-      color: #000000;
-      background: var(--orange);
-
-      font-size: .7rem;
-      font-weight: 900;
-    }
-
-    /* LIVE CTA */
-
-    .live-box {
-      padding: 40px;
-
-      text-align: center;
-
-      border: 2px solid var(--orange);
-      border-radius: 22px;
-
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(255,106,0,.28),
-          transparent 45%
-        ),
-        #000000;
-    }
-
-    .live-box h2 {
-      color: var(--orange-light);
-
-      font-size: clamp(2rem, 5vw, 3.4rem);
-    }
-
-    .live-box p {
-      max-width: 650px;
-
-      margin: 15px auto;
-
-      color: var(--orange2);
-
-      line-height: 1.7;
-    }
-
-    .button {
-      display: inline-flex;
-
-      margin-top: 15px;
-
-      padding: 13px 22px;
-
-      border-radius: 10px;
-
-      color: #000000;
-      background: var(--orange);
-
-      font-weight: 900;
-    }
-
-    /* CONTACT */
-
-    .contact-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 16px;
-    }
-
-    .contact-card {
-      padding: 23px;
-
-      text-align: center;
-
-      border: 1px solid var(--border);
-      border-radius: 15px;
-
-      background: #090300;
-    }
-
-    .contact-card strong {
-      display: block;
-
-      margin-bottom: 9px;
-
-      color: var(--orange);
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 35px 0;
-
-      text-align: center;
-
-      border-top: 1px solid var(--border);
-
-      color: var(--orange2);
-      background: #000000;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 900px) {
-
-      .shows-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .menu-button {
-        display: block;
-      }
-
-      nav {
-        position: absolute;
-
-        top: 82px;
-        left: 4%;
-        right: 4%;
-
-        display: none;
-
-        flex-direction: column;
-
-        padding: 15px;
-
-        border: 1px solid var(--orange);
-        border-radius: 12px;
-
-        background: #000000;
-      }
-
-      nav.open {
-        display: flex;
-      }
-
-      nav a {
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 650px) {
-
-      .brand span {
-        display: none;
-      }
-
-      .shows-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .schedule-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .schedule-tag {
-        width: fit-content;
-      }
-
-      .live-box {
-        padding: 30px 18px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shows | BSS1815 PRO-MAX-DMP</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#000,#151515,#000);
+  color:#fff;
+  min-height:100vh;
+}
+
+header{
+  text-align:center;
+  padding:45px 20px;
+  background:#000;
+  border-bottom:3px solid #ff7a00;
+}
+
+header h1{
+  color:#ff7a00;
+  font-size:42px;
+}
+
+header p{
+  color:#ffb366;
+  margin-top:10px;
+}
+
+.container{
+  width:min(1200px,94%);
+  margin:35px auto;
+}
+
+.hero{
+  padding:35px;
+  border:2px solid #ff7a00;
+  border-radius:18px;
+  background:#111;
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.hero h2{
+  color:#ff7a00;
+  margin-bottom:12px;
+}
+
+.hero p{
+  line-height:1.6;
+  color:#ddd;
+}
+
+.section-title{
+  color:#ff7a00;
+  margin:30px 0 18px;
+  font-size:28px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.show-card{
+  background:#111;
+  border:1px solid #ff7a00;
+  border-radius:16px;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.show-card:hover{
+  transform:translateY(-5px);
+}
+
+.show-image{
+  height:170px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#050505;
+  color:#ff7a00;
+  font-size:50px;
+}
+
+.show-content{
+  padding:20px;
+}
+
+.show-content h3{
+  color:#ff7a00;
+  margin-bottom:10px;
+}
+
+.show-content p{
+  color:#ccc;
+  line-height:1.5;
+}
+
+.meta{
+  margin-top:12px;
+  font-size:14px;
+  color:#ffb366;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:16px;
+  padding:11px 16px;
+  border-radius:10px;
+  background:#ff7a00;
+  color:#000;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.schedule{
+  margin-top:35px;
+  background:#111;
+  border:2px solid #ff7a00;
+  border-radius:16px;
+  padding:25px;
+}
+
+.schedule-row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 5px;
+  border-bottom:1px solid #333;
+}
+
+.schedule-row:last-child{
+  border-bottom:none;
+}
+
+.day{
+  color:#ff7a00;
+  font-weight:bold;
+}
+
+.empty{
+  padding:30px;
+  text-align:center;
+  border:1px dashed #ff7a00;
+  border-radius:15px;
+  color:#bbb;
+}
+
+footer{
+  margin-top:50px;
+  padding:25px;
+  text-align:center;
+  background:#000;
+  border-top:3px solid #ff7a00;
+  color:#aaa;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:32px;
+  }
+
+  .schedule-row{
+    flex-direction:column;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
+<header>
+  <h1>SHOWS</h1>
+  <p>BSS1815 PRO-MAX-DMP</p>
+</header>
 
-    <div class="container header-inner">
+<main class="container">
 
-      <a
-        href="index.html"
-        class="brand"
-      >
+<section class="hero">
+  <h2>PRO-MAX Shows</h2>
+  <p>
+    Dekouvri emisyon, pwogram espesyal, kominote,
+    kilti, mizik, biznis, edikasyon ak konvèsasyon
+    BSS1815 PRO-MAX-DMP.
+  </p>
+</section>
 
-        <img
-          src="assets/pro-max-fm-dmp.png"
-          alt="PRO-MAX FM DMP"
-          class="logo"
-        >
+<h2 class="section-title">Featured Shows</h2>
 
-        <div>
+<section class="grid" id="showsGrid">
 
-          <strong>
-            PRO-MAX FM DMP
-          </strong>
+  <article class="show-card">
+    <div class="show-image">🎙️</div>
 
-          <span>
-            SHOWS CENTER
-          </span>
+    <div class="show-content">
+      <h3>PRO-MAX Morning Show</h3>
 
-        </div>
+      <p>
+        Mizik, nouvèl, enfòmasyon kominotè ak
+        konvèsasyon pou kòmanse jounen an.
+      </p>
 
+      <div class="meta">
+        Morning Program
+      </div>
+
+      <a class="btn" href="live.html">
+        Listen Live
       </a>
-
-      <button
-        type="button"
-        class="menu-button"
-        id="menuButton"
-        aria-label="Louvri meni"
-        aria-expanded="false"
-      >
-        ☰
-      </button>
-
-      <nav id="mainNav">
-
-        <a href="index.html">
-          Akèy
-        </a>
-
-        <a href="live.html">
-          Live
-        </a>
-
-        <a href="news.html">
-          News
-        </a>
-
-        <a
-          href="shows.html"
-          class="active"
-        >
-          Shows
-        </a>
-
-        <a href="podcasts.html">
-          Podcasts
-        </a>
-
-        <a href="video.html">
-          Video
-        </a>
-
-        <a href="gallery.html">
-          Gallery
-        </a>
-
-      </nav>
-
     </div>
+  </article>
 
-  </header>
 
-  <main>
+  <article class="show-card">
+    <div class="show-image">🌎</div>
 
-    <!-- HERO -->
+    <div class="show-content">
+      <h3>Community Voice</h3>
 
-    <section class="hero">
+      <p>
+        Yon espas pou kominote a pale sou kestyon
+        sosyal, sèvis, opòtinite ak lavi kominotè.
+      </p>
 
-      <div class="container hero-content">
-
-        <span class="badge">
-          PRO-MAX SHOWS
-        </span>
-
-        <h1>
-          Our
-          <span>Shows</span>
-        </h1>
-
-        <p>
-          Dekouvri emisyon PRO-MAX FM DMP yo,
-          animatè yo, orè pwogram yo ak emisyon
-          espesyal ki disponib sou platfòm lan.
-        </p>
-
+      <div class="meta">
+        Community Program
       </div>
 
-    </section>
-
-    <!-- SHOWS -->
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <small>
-            PROGRAMMING
-          </small>
-
-          <h2>
-            Emisyon PRO-MAX
-          </h2>
-
-          <p>
-            Sant pwogramasyon PRO-MAX FM DMP.
-          </p>
-
-        </div>
-
-        <div class="shows-grid">
-
-          <article class="show-card">
-
-            <div class="show-image">
-              ☀
-            </div>
-
-            <div class="show-content">
-
-              <span class="show-category">
-                MATEN
-              </span>
-
-              <h3>
-                Bonjou PRO-MAX
-              </h3>
-
-              <p>
-                Mizik, nouvèl, enfòmasyon
-                ak bon enèji pou kòmanse jounen an.
-              </p>
-
-              <div class="show-meta">
-                6:00 AM
-              </div>
-
-            </div>
-
-          </article>
-
-          <article class="show-card">
-
-            <div class="show-image">
-              🎙
-            </div>
-
-            <div class="show-content">
-
-              <span class="show-category">
-                LIVE
-              </span>
-
-              <h3>
-                Midi Live
-              </h3>
-
-              <p>
-                Deba, aktyalite, envite
-                ak konvèsasyon an dirèk.
-              </p>
-
-              <div class="show-meta">
-                12:00 PM
-              </div>
-
-            </div>
-
-          </article>
-
-          <article class="show-card">
-
-            <div class="show-image">
-              ♫
-            </div>
-
-            <div class="show-content">
-
-              <span class="show-category">
-                MUSIC
-              </span>
-
-              <h3>
-                PRO-MAX Drive
-              </h3>
-
-              <p>
-                Mizik ak divètisman
-                pou akonpaye aprèmidi a.
-              </p>
-
-              <div class="show-meta">
-                4:00 PM
-              </div>
-
-            </div>
-
-          </article>
-
-          <article class="show-card">
-
-            <div class="show-image">
-              🌙
-            </div>
-
-            <div class="show-content">
-
-              <span class="show-category">
-                NIGHT
-              </span>
-
-              <h3>
-                PRO-MAX Night Show
-              </h3>
-
-              <p>
-                Mizik, envite espesyal
-                ak konvèsasyon aswè.
-              </p>
-
-              <div class="show-meta">
-                7:00 PM
-              </div>
-
-            </div>
-
-          </article>
-
-          <article class="show-card">
-
-            <div class="show-image">
-              ⚽
-            </div>
-
-            <div class="show-content">
-
-              <span class="show-category">
-                SPORTS
-              </span>
-
-              <h3>
-                PRO-MAX Sports
-              </h3>
-
-              <p>
-                Foutbòl, analiz,
-                rezilta ak aktyalite espòtif.
-              </p>
-
-              <div class="show-meta">
-                Sports Programming
-              </div>
-
-            </div>
-
-          </article>
-
-          <article class="show-card">
-
-            <div class="show-image">
-              🌍
-            </div>
-
-            <div class="show-content">
-
-              <span class="show-category">
-                COMMUNITY
-              </span>
-
-              <h3>
-                Community Voice
-              </h3>
-
-              <p>
-                Espas pou kominote a,
-                envite ak sijè enpòtan.
-              </p>
-
-              <div class="show-meta">
-                Community Programming
-              </div>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SCHEDULE -->
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <small>
-            SCHEDULE
-          </small>
-
-          <h2>
-            Orè Emisyon
-          </h2>
-
-        </div>
-
-        <div class="schedule">
-
-          <div class="schedule-row">
-
-            <div class="time">
-              6:00 AM
-            </div>
-
-            <div>
-
-              <strong>
-                Bonjou PRO-MAX
-              </strong>
-
-              <p>
-                Morning Show
-              </p>
-
-            </div>
-
-            <span class="schedule-tag">
-              MATEN
-            </span>
-
-          </div>
-
-          <div class="schedule-row">
-
-            <div class="time">
-              12:00 PM
-            </div>
-
-            <div>
-
-              <strong>
-                Midi Live
-              </strong>
-
-              <p>
-                News & Talk
-              </p>
-
-            </div>
-
-            <span class="schedule-tag">
-              LIVE
-            </span>
-
-          </div>
-
-          <div class="schedule-row">
-
-            <div class="time">
-              4:00 PM
-            </div>
-
-            <div>
-
-              <strong>
-                PRO-MAX Drive
-              </strong>
-
-              <p>
-                Music & Entertainment
-              </p>
-
-            </div>
-
-            <span class="schedule-tag">
-              MUSIC
-            </span>
-
-          </div>
-
-          <div class="schedule-row">
-
-            <div class="time">
-              7:00 PM
-            </div>
-
-            <div>
-
-              <strong>
-                PRO-MAX Night Show
-              </strong>
-
-              <p>
-                Evening Programming
-              </p>
-
-            </div>
-
-            <span class="schedule-tag">
-              NIGHT
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- LIVE -->
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="live-box">
-
-          <h2>
-            Koute PRO-MAX Live
-          </h2>
-
-          <p>
-            Ale dirèk nan Live Radio Center
-            pou jwenn transmisyon PRO-MAX FM DMP.
-          </p>
-
-          <a
-            href="live.html"
-            class="button"
-          >
-            ▶ LIVE RADIO
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- CONTACT -->
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <small>
-            CONTACT
-          </small>
-
-          <h2>
-            Kontakte Nou
-          </h2>
-
-        </div>
-
-        <div class="contact-grid">
-
-          <div class="contact-card">
-
-            <strong>
-              EMAIL
-            </strong>
-
-            <a
-              href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
-            >
-              BSS1815-PROMAXFMDMP@GMAIL.COM
-            </a>
-
-          </div>
-
-          <div class="contact-card">
-
-            <strong>
-              WEBSITE
-            </strong>
-
-            <a
-              href="https://briyantsoleysigno1815.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              BRIYANTSOLEYSIGNO1815.COM
-            </a>
-
-          </div>
-
-          <div class="contact-card">
-
-            <strong>
-              TELEFÒN
-            </strong>
-
-            <a href="tel:+50943437488">
-              +509 4343-7488
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <footer>
-
-    <div class="container">
-
-      ©
-      <span id="year"></span>
-      PRO-MAX FM DMP —
-      Powering the Future of Digital Radio.
-
+      <a class="btn" href="interviews.html">
+        Explore
+      </a>
     </div>
+  </article>
 
-  </footer>
 
-  <script>
-    "use strict";
+  <article class="show-card">
+    <div class="show-image">🎵</div>
 
-    const menuButton =
-      document.getElementById("menuButton");
+    <div class="show-content">
+      <h3>Music & Culture</h3>
 
-    const mainNav =
-      document.getElementById("mainNav");
+      <p>
+        Mizik, atis, kilti ayisyen ak talan
+        entènasyonal sou PRO-MAX.
+      </p>
 
-    menuButton.addEventListener(
-      "click",
-      function () {
+      <div class="meta">
+        Music & Entertainment
+      </div>
 
-        const open =
-          mainNav.classList.toggle("open");
+      <a class="btn" href="video.html">
+        Watch
+      </a>
+    </div>
+  </article>
 
-        menuButton.textContent =
-          open ? "✕" : "☰";
 
-        menuButton.setAttribute(
-          "aria-expanded",
-          String(open)
-        );
+  <article class="show-card">
+    <div class="show-image">💼</div>
 
-      }
-    );
+    <div class="show-content">
+      <h3>Business Spotlight</h3>
 
-    mainNav
-      .querySelectorAll("a")
-      .forEach(function (link) {
+      <p>
+        Antreprenè, ti biznis, pwofesyonèl ak
+        opòtinite ekonomik nan kominote a.
+      </p>
 
-        link.addEventListener(
-          "click",
-          function () {
+      <div class="meta">
+        Business Program
+      </div>
 
-            mainNav.classList.remove("open");
+      <a class="btn" href="business.html">
+        View Business
+      </a>
+    </div>
+  </article>
 
-            menuButton.textContent = "☰";
 
-            menuButton.setAttribute(
-              "aria-expanded",
-              "false"
-            );
+  <article class="show-card">
+    <div class="show-image">🎓</div>
 
-          }
-        );
+    <div class="show-content">
+      <h3>PRO-MAX Academy</h3>
 
-      });
+      <p>
+        Edikasyon, fòmasyon, teknoloji ak
+        devlopman pèsonèl.
+      </p>
 
-    document
-      .getElementById("year")
-      .textContent =
-        new Date().getFullYear();
-  </script>
+      <div class="meta">
+        Education Program
+      </div>
+
+      <a class="btn" href="academy.html">
+        Open Academy
+      </a>
+    </div>
+  </article>
+
+
+  <article class="show-card">
+    <div class="show-image">⭐</div>
+
+    <div class="show-content">
+      <h3>Special Interviews</h3>
+
+      <p>
+        Entèvyou espesyal ak envite, lidè,
+        antreprenè, atis ak manm kominote a.
+      </p>
+
+      <div class="meta">
+        Interviews
+      </div>
+
+      <a class="btn" href="interviews.html">
+        View Interviews
+      </a>
+    </div>
+  </article>
+
+</section>
+
+
+<section class="schedule">
+
+<h2 class="section-title">Show Schedule</h2>
+
+<div class="schedule-row">
+  <span class="day">Monday – Friday</span>
+  <span>PRO-MAX Morning Show</span>
+</div>
+
+<div class="schedule-row">
+  <span class="day">Tuesday</span>
+  <span>Community Voice</span>
+</div>
+
+<div class="schedule-row">
+  <span class="day">Wednesday</span>
+  <span>Business Spotlight</span>
+</div>
+
+<div class="schedule-row">
+  <span class="day">Thursday</span>
+  <span>Music & Culture</span>
+</div>
+
+<div class="schedule-row">
+  <span class="day">Weekend</span>
+  <span>Special Interviews & Programs</span>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+© 2026 BSS1815 PRO-MAX-DMP | Shows
+</footer>
 
 </body>
 </html>
