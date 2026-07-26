@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Interviews Center | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP Interviews Center — entèvyou ak lidè, atis, pwofesyonèl, antreprenè, manm kominote ak envite espesyal."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, Interviews, BSS1815, Radio Interviews, Artists, Community, Business, Haiti"
+  >
+
+  <meta
+    name="author"
+    content="BSS1815 PRO-MAX DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/interviews.html"
+  >
+
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    content="PRO-MAX FM DMP Interviews Center"
+  >
+
+  <meta
+    property="og:description"
+    content="Entèvyou, konvèsasyon ak envite espesyal sou PRO-MAX FM DMP."
+  >
+
+  <meta
+    property="og:url"
+    content="https://bss1815-pro-max-dmp.netlify.app/interviews.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8c00;
+      --orange-light: #ffc078;
+
+      --black: #000000;
+      --black2: #090300;
+      --panel: #160700;
+
+      --border: rgba(255, 106, 0, 0.58);
+
+      --shadow:
+        0 20px 50px rgba(0,0,0,.72);
+
+      --glow:
+        0 0 30px rgba(255,106,0,.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 87% 8%,
+          rgba(255,106,0,.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255,106,0,.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(50,14,0,.97),
+          rgba(0,0,0,.98)
+        );
+
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 1.8rem;
+
+      box-shadow: var(--glow);
+    }
+
+    .brand-text strong {
+      display: block;
+
+      color: var(--orange-light);
+    }
+
+    .brand-text span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--orange);
+
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+
+      gap: 15px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+    }
+
+    nav a {
+      padding: 10px 12px;
+
+      border-radius: 9px;
+
+      color: var(--orange-light);
+
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .languages {
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      padding: 7px 9px;
+
+      border: 1px solid var(--orange);
+      border-radius: 7px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .lang-btn.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 45px;
+      height: 42px;
+
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: 1.3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 500px;
+
+      display: flex;
+      align-items: center;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 80% 45%,
+          rgba(255,106,0,.35),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr .8fr;
+
+      align-items: center;
+
+      gap: 45px;
+
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 8px 14px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange);
+
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(3rem, 7vw, 6rem);
+
+      line-height: .98;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      max-width: 760px;
+
+      margin-top: 22px;
+
+      color: var(--orange2);
+
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-weight: 900;
+
+      transition: .25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button.secondary {
+      color: var(--orange-light);
+      background: #000;
+    }
+
+    .interview-visual {
+      min-height: 350px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.42),
+          rgba(30,8,0,.95) 52%,
+          #000 75%
+        );
+
+      box-shadow:
+        0 0 70px rgba(255,106,0,.28);
+    }
+
+    .interview-visual span {
+      display: block;
+
+      font-size: 6rem;
+    }
+
+    .interview-visual strong {
+      display: block;
+
+      margin-top: 14px;
+
+      color: var(--orange);
+    }
+
+    /* SECTIONS */
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .section-heading small {
+      color: var(--orange);
+
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      margin-top: 8px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem, 5vw, 3.5rem);
+
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+
+      margin-top: 12px;
+
+      color: var(--orange2);
+
+      line-height: 1.7;
+    }
+
+    /* FEATURED */
+
+    .featured-interview {
+      display: grid;
+
+      grid-template-columns:
+        .8fr 1.2fr;
+
+      gap: 28px;
+
+      padding: 32px;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(255,106,0,.30),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow: var(--glow);
+    }
+
+    .featured-visual {
+      min-height: 300px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.35),
+          transparent 62%
+        );
+
+      font-size: 6rem;
+    }
+
+    .featured-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-content small {
+      color: var(--orange);
+
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .featured-content h3 {
+      margin-top: 10px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .featured-content p {
+      margin-top: 15px;
+
+      color: var(--orange2);
+
+      line-height: 1.7;
+    }
+
+    /* FILTER */
+
+    .interview-tools {
+      display: grid;
+
+      grid-template-columns:
+        1fr 230px;
+
+      gap: 12px;
+
+      margin-bottom: 28px;
+    }
+
+    .interview-tools input,
+    .interview-tools select {
+      width: 100%;
+
+      padding: 14px 15px;
+
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+
+      color: var(--orange-light);
+      background: #000;
+    }
+
+    /* INTERVIEW GRID */
+
+    .interview-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+    .interview-card {
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.14),
+          rgba(0,0,0,.97)
+        );
+
+      box-shadow: var(--shadow);
+
+      transition: .25s ease;
+    }
+
+    .interview-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+    }
+
+    .interview-top {
+      height: 190px;
+
+      display: grid;
+      place-items: center;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.30),
+          transparent 60%
+        ),
+        #090300;
+
+      font-size: 4rem;
+    }
+
+    .interview-content {
+      padding: 22px;
+    }
+
+    .category {
+      display: inline-block;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: .68rem;
+      font-weight: 900;
+    }
+
+    .interview-content h3 {
+      margin-top: 13px;
+
+      color: var(--orange-light);
+
+      font-size: 1.28rem;
+    }
+
+    .interview-content p {
+      margin-top: 9px;
+
+      color: var(--orange2);
+
+      line-height: 1.65;
+    }
+
+    .interview-meta {
+      display: grid;
+      gap: 7px;
+
+      margin-top: 17px;
+      padding-top: 15px;
+
+      border-top:
+        1px solid var(--border);
+
+      color: var(--orange-light);
+
+      font-size: .85rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* INTERVIEW TYPES */
+
+    .type-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .type-card {
+      padding: 25px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background: #090300;
+    }
+
+    .type-card span {
+      font-size: 2.7rem;
+    }
+
+    .type-card h3 {
+      margin-top: 14px;
+
+      color: var(--orange-light);
+    }
+
+    .type-card p {
+      margin-top: 9px;
+
+      color: var(--orange2);
+
+      line-height: 1.6;
+    }
+
+    /* YOUTUBE */
+
+    .youtube-box {
+      padding: 42px;
+
+      text-align: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255,106,0,.27),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow: var(--glow);
+    }
+
+    .youtube-box span {
+      font-size: 4rem;
+    }
+
+    .youtube-box h2 {
+      margin-top: 14px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .youtube-box p {
+      max-width: 720px;
+
+      margin: 15px auto;
+
+      color: var(--orange2);
+
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 23px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background: #090300;
+    }
+
+    .contact-card strong {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: var(--orange);
+    }
+
+    .contact-card a {
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 35px 0;
+
+      text-align: center;
+
+      border-top:
+        1px solid var(--border);
+
+      color: var(--orange2);
+
+      background: #000;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interview-visual {
+        width: min(420px,90%);
+        min-height: 350px;
+
+        margin: auto;
+      }
+
+      .interview-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .featured-interview {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+
+        top: 82px;
+        left: 4%;
+        right: 4%;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 15px;
+
+        border: 1px solid var(--orange);
+        border-radius: 12px;
+
+        background: #000;
+      }
+
+      nav.open {
+        display: flex;
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .languages {
+        display: none;
+      }
+
+      .interview-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .interview-grid,
+      .type-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interview-visual {
+        min-height: 300px;
+      }
+
+      .featured-interview,
+      .youtube-box {
+        padding: 28px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        🎙️
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PRO-MAX INTERVIEWS
+        </strong>
+
+        <span>
+          FM DMP INTERVIEWS CENTER
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <nav id="mainNav">
+
+        <a
+          href="index.html"
+          data-kre="Akèy"
+          data-eng="Home"
+          data-fra="Accueil"
+        >
+          Akèy
+        </a>
+
+        <a
+          href="live.html"
+          data-kre="Live"
+          data-eng="Live"
+          data-fra="Direct"
+        >
+          Live
+        </a>
+
+        <a
+          href="shows.html"
+          data-kre="Emisyon"
+          data-eng="Shows"
+          data-fra="Émissions"
+        >
+          Emisyon
+        </a>
+
+        <a
+          href="video.html"
+          data-kre="Videyo"
+          data-eng="Video"
+          data-fra="Vidéo"
+        >
+          Videyo
+        </a>
+
+        <a
+          href="interviews.html"
+          class="active"
+        >
+          Interviews
+        </a>
+
+      </nav>
+
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <span
+          class="badge"
+          data-kre="PRO-MAX INTERVIEWS CENTER"
+          data-eng="PRO-MAX INTERVIEWS CENTER"
+          data-fra="CENTRE D'INTERVIEWS PRO-MAX"
+        >
+          PRO-MAX INTERVIEWS CENTER
+        </span>
+
+        <h1>
+          INTERVIEWS
+          <span>CENTER</span>
+        </h1>
+
+        <p
+          class="hero-description"
+          data-kre="Entèvyou ak lidè, atis, pwofesyonèl, antreprenè, manm kominote, ekspè ak envite espesyal PRO-MAX FM DMP."
+          data-eng="Interviews with leaders, artists, professionals, entrepreneurs, community members, experts and special PRO-MAX FM DMP guests."
+          data-fra="Interviews avec des dirigeants, artistes, professionnels, entrepreneurs, membres de la communauté, experts et invités spéciaux PRO-MAX FM DMP."
+        >
+          Entèvyou ak lidè, atis,
+          pwofesyonèl, antreprenè,
+          manm kominote, ekspè
+          ak envite espesyal PRO-MAX FM DMP.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#interviews"
+            class="button"
+            data-kre="EKSPORE ENTÈVYOU"
+            data-eng="EXPLORE INTERVIEWS"
+            data-fra="EXPLORER LES INTERVIEWS"
+          >
+            EKSPORE ENTÈVYOU
+          </a>
+
+          <a
+            href="video.html"
+            class="button secondary"
+          >
+            VIDEO CENTER
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="interview-visual">
+
+        <div>
+
+          <span>
+            🎤
+          </span>
+
+          <strong>
+            VOICES • STORIES • IDEAS
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURED -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="featured-interview">
+
+        <div class="featured-visual">
+          🎙️
+        </div>
+
+        <div class="featured-content">
+
+          <small>
+            FEATURED INTERVIEW
+          </small>
+
+          <h3>
+            PRO-MAX Conversations
+          </h3>
+
+          <p
+            data-kre="PRO-MAX Conversations se espas kote envite yo kapab pataje istwa, eksperyans, vizyon ak lide avèk kominote a."
+            data-eng="PRO-MAX Conversations is a space where guests can share stories, experiences, vision and ideas with the community."
+            data-fra="PRO-MAX Conversations est un espace où les invités peuvent partager leurs histoires, expériences, visions et idées avec la communauté."
+          >
+            PRO-MAX Conversations se espas kote
+            envite yo kapab pataje istwa,
+            eksperyans, vizyon ak lide
+            avèk kominote a.
+          </p>
+
+          <a
+            href="https://www.youtube.com/@BSS1815PROMAXDMP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >
+            ▶ YOUTUBE
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTERVIEWS -->
+
+  <section
+    class="section"
+    id="interviews"
+  >
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          INTERVIEW LIBRARY
+        </small>
+
+        <h2
+          data-kre="ENTÈVYOU PRO-MAX"
+          data-eng="PRO-MAX INTERVIEWS"
+          data-fra="INTERVIEWS PRO-MAX"
+        >
+          ENTÈVYOU PRO-MAX
+        </h2>
+
+        <p
+          data-kre="Chèche oswa filtre kategori entèvyou yo."
+          data-eng="Search or filter interview categories."
+          data-fra="Recherchez ou filtrez les catégories d'interviews."
+        >
+          Chèche oswa filtre
+          kategori entèvyou yo.
+        </p>
+
+      </div>
+
+
+      <div class="interview-tools">
+
+        <input
+          type="search"
+          id="interviewSearch"
+          placeholder="Chèche yon entèvyou..."
+          aria-label="Chèche entèvyou"
+        >
+
+        <select
+          id="interviewFilter"
+          aria-label="Filtre kategori"
+        >
+
+          <option value="all">
+            Tout kategori
+          </option>
+
+          <option value="community">
+            Community
+          </option>
+
+          <option value="artists">
+            Artists
+          </option>
+
+          <option value="business">
+            Business
+          </option>
+
+          <option value="leadership">
+            Leadership
+          </option>
+
+          <option value="sports">
+            Sports
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div
+        class="interview-grid"
+        id="interviewGrid"
+      >
+
+        <article
+          class="interview-card"
+          data-category="leadership"
+          data-search="leadership leader vision community"
+        >
+
+          <div class="interview-top">
+            👔
+          </div>
+
+          <div class="interview-content">
+
+            <span class="category">
+              LEADERSHIP
+            </span>
+
+            <h3
+              data-kre="Lidè & Vizyon"
+              data-eng="Leadership & Vision"
+              data-fra="Leadership & Vision"
+            >
+              Lidè & Vizyon
+            </h3>
+
+            <p
+              data-kre="Konvèsasyon ak lidè sou vizyon, eksperyans ak devlopman."
+              data-eng="Conversations with leaders about vision, experience and development."
+              data-fra="Conversations avec des dirigeants sur la vision, l'expérience et le développement."
+            >
+              Konvèsasyon ak lidè
+              sou vizyon, eksperyans
+              ak devlopman.
+            </p>
+
+            <div class="interview-meta">
+
+              <span>
+                🎙️ PRO-MAX Interview
+              </span>
+
+              <span>
+                ▶ Video / Audio
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="interview-card"
+          data-category="artists"
+          data-search="artist music musician singer"
+        >
+
+          <div class="interview-top">
+            🎤
+          </div>
+
+          <div class="interview-content">
+
+            <span class="category">
+              ARTISTS
+            </span>
+
+            <h3
+              data-kre="Atis & Mizisyen"
+              data-eng="Artists & Musicians"
+              data-fra="Artistes & Musiciens"
+            >
+              Atis & Mizisyen
+            </h3>
+
+            <p
+              data-kre="Entèvyou sou mizik, kreyasyon, karyè ak eksperyans atistik."
+              data-eng="Interviews about music, creativity, careers and artistic experiences."
+              data-fra="Interviews sur la musique, la création, les carrières et les expériences artistiques."
+            >
+              Entèvyou sou mizik,
+              kreyasyon, karyè
+              ak eksperyans atistik.
+            </p>
+
+            <div class="interview-meta">
+
+              <span>
+                🎵 Music & Culture
+              </span>
+
+              <span>
+                ▶ PRO-MAX Video
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="interview-card"
+          data-category="community"
+          data-search="community people story kominote"
+        >
+
+          <div class="interview-top">
+            🌍
+          </div>
+
+          <div class="interview-content">
+
+            <span class="category">
+              COMMUNITY
+            </span>
+
+            <h3
+              data-kre="Vwa Kominote A"
+              data-eng="Community Voices"
+              data-fra="Voix de la Communauté"
+            >
+              Vwa Kominote A
+            </h3>
+
+            <p
+              data-kre="Istwa, opinyon ak eksperyans moun nan kominote a."
+              data-eng="Stories, opinions and experiences from community members."
+              data-fra="Histoires, opinions et expériences des membres de la communauté."
+            >
+              Istwa, opinyon
+              ak eksperyans moun
+              nan kominote a.
+            </p>
+
+            <div class="interview-meta">
+
+              <span>
+                🤝 Community
+              </span>
+
+              <span>
+                🎙️ Voices
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="interview-card"
+          data-category="business"
+          data-search="business entrepreneur entrepreneurship"
+        >
+
+          <div class="interview-top">
+            💼
+          </div>
+
+          <div class="interview-content">
+
+            <span class="category">
+              BUSINESS
+            </span>
+
+            <h3
+              data-kre="Biznis & Antreprenarya"
+              data-eng="Business & Entrepreneurship"
+              data-fra="Affaires & Entrepreneuriat"
+            >
+              Biznis & Antreprenarya
+            </h3>
+
+            <p
+              data-kre="Entèvyou ak antreprenè sou biznis, opòtinite ak devlopman."
+              data-eng="Interviews with entrepreneurs about business, opportunities and growth."
+              data-fra="Interviews avec des entrepreneurs sur les affaires, les opportunités et le développement."
+            >
+              Entèvyou ak antreprenè
+              sou biznis, opòtinite
+              ak devlopman.
+            </p>
+
+            <div class="interview-meta">
+
+              <span>
+                📈 Business Center
+              </span>
+
+              <span>
+                💡 Ideas
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="interview-card"
+          data-category="sports"
+          data-search="sports athlete football soccer"
+        >
+
+          <div class="interview-top">
+            ⚽
+          </div>
+
+          <div class="interview-content">
+
+            <span class="category">
+              SPORTS
+            </span>
+
+            <h3
+              data-kre="Espò & Atlèt"
+              data-eng="Sports & Athletes"
+              data-fra="Sports & Athlètes"
+            >
+              Espò & Atlèt
+            </h3>
+
+            <p
+              data-kre="Konvèsasyon sou espò, match, atlèt ak pèfòmans."
+              data-eng="Conversations about sports, matches, athletes and performance."
+              data-fra="Conversations sur les sports, matchs, athlètes et performances."
+            >
+              Konvèsasyon sou espò,
+              match, atlèt
+              ak pèfòmans.
+            </p>
+
+            <div class="interview-meta">
+
+              <span>
+                ⚽ Sports Center
+              </span>
+
+              <span>
+                🏆 Competition
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="interview-card"
+          data-category="community"
+          data-search="special guest expert professional"
+        >
+
+          <div class="interview-top">
+            ⭐
+          </div>
+
+          <div class="interview-content">
+
+            <span class="category">
+              SPECIAL GUEST
+            </span>
+
+            <h3
+              data-kre="Envite Espesyal"
+              data-eng="Special Guests"
+              data-fra="Invités Spéciaux"
+            >
+              Envite Espesyal
+            </h3>
+
+            <p
+              data-kre="Pwofesyonèl, ekspè ak pèsonalite espesyal sou PRO-MAX."
+              data-eng="Professionals, experts and special personalities on PRO-MAX."
+              data-fra="Professionnels, experts et personnalités spéciales sur PRO-MAX."
+            >
+              Pwofesyonèl, ekspè
+              ak pèsonalite espesyal
+              sou PRO-MAX.
+            </p>
+
+            <div class="interview-meta">
+
+              <span>
+                ⭐ Featured
+              </span>
+
+              <span>
+                🎙️ Interview
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TYPES -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          INTERVIEW FORMATS
+        </small>
+
+        <h2
+          data-kre="FÒMA ENTÈVYOU"
+          data-eng="INTERVIEW FORMATS"
+          data-fra="FORMATS D'INTERVIEWS"
+        >
+          FÒMA ENTÈVYOU
+        </h2>
+
+      </div>
+
+
+      <div class="type-grid">
+
+        <article class="type-card">
+
+          <span>
+            📻
+          </span>
+
+          <h3>
+            Radio Interview
+          </h3>
+
+          <p
+            data-kre="Konvèsasyon odyo pou emisyon PRO-MAX FM."
+            data-eng="Audio conversations for PRO-MAX FM programming."
+            data-fra="Conversations audio pour les émissions PRO-MAX FM."
+          >
+            Konvèsasyon odyo
+            pou emisyon PRO-MAX FM.
+          </p>
+
+        </article>
+
+
+        <article class="type-card">
+
+          <span>
+            🎥
+          </span>
+
+          <h3>
+            Video Interview
+          </h3>
+
+          <p
+            data-kre="Entèvyou videyo pou YouTube ak Video Center."
+            data-eng="Video interviews for YouTube and the Video Center."
+            data-fra="Interviews vidéo pour YouTube et le Video Center."
+          >
+            Entèvyou videyo
+            pou YouTube ak Video Center.
+          </p>
+
+        </article>
+
+
+        <article class="type-card">
+
+          <span>
+            🎧
+          </span>
+
+          <h3>
+            Podcast Interview
+          </h3>
+
+          <p
+            data-kre="Konvèsasyon long fòm pou Podcast Center."
+            data-eng="Long-form conversations for the Podcast Center."
+            data-fra="Conversations longues pour le Podcast Center."
+          >
+            Konvèsasyon long fòm
+            pou Podcast Center.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- YOUTUBE -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="youtube-box">
+
+        <span>
+          ▶️
+        </span>
+
+        <h2>
+          WATCH PRO-MAX INTERVIEWS
+        </h2>
+
+        <p
+          data-kre="Videyo entèvyou, Live ak replay kapab disponib sou chanèl YouTube ofisyèl PRO-MAX DMP la."
+          data-eng="Interview videos, live streams and replays can be available on the official PRO-MAX DMP YouTube channel."
+          data-fra="Les vidéos d'interviews, directs et rediffusions peuvent être disponibles sur la chaîne YouTube officielle PRO-MAX DMP."
+        >
+          Videyo entèvyou, Live ak replay
+          kapab disponib sou chanèl YouTube
+          ofisyèl PRO-MAX DMP la.
+        </p>
+
+        <a
+          href="https://www.youtube.com/@BSS1815PROMAXDMP"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button"
+        >
+          ▶ OPEN YOUTUBE
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CONTACT
+        </small>
+
+        <h2
+          data-kre="KONTAKTE PRO-MAX"
+          data-eng="CONTACT PRO-MAX"
+          data-fra="CONTACTER PRO-MAX"
+        >
+          KONTAKTE PRO-MAX
+        </h2>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <article class="contact-card">
+
+          <strong>
+            EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            TELEFÒN
+          </strong>
+
+          <a href="tel:+50943437488">
+            +509 4343-7488
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    PRO-MAX FM DMP Interviews Center
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+
+  /* MOBILE MENU */
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mainNav =
+    document.getElementById("mainNav");
+
+
+  menuButton.addEventListener(
+    "click",
+    function () {
+
+      const open =
+        mainNav.classList.toggle("open");
+
+      menuButton.textContent =
+        open ? "✕" : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+    }
+  );
+
+
+  /* SEARCH + FILTER */
+
+  const interviewSearch =
+    document.getElementById(
+      "interviewSearch"
+    );
+
+  const interviewFilter =
+    document.getElementById(
+      "interviewFilter"
+    );
+
+  const interviewCards =
+    Array.from(
+      document.querySelectorAll(
+        ".interview-card"
+      )
+    );
+
+
+  function filterInterviews() {
+
+    const search =
+      interviewSearch.value
+        .trim()
+        .toLowerCase();
+
+    const category =
+      interviewFilter.value;
+
+
+    interviewCards.forEach(
+      function (card) {
+
+        const text =
+          (
+            card.dataset.search +
+            " " +
+            card.textContent
+          ).toLowerCase();
+
+        const matchesSearch =
+          !search ||
+          text.includes(search);
+
+        const matchesCategory =
+          category === "all" ||
+          card.dataset.category ===
+          category;
+
+        card.classList.toggle(
+          "hidden",
+          !(
+            matchesSearch &&
+            matchesCategory
+          )
+        );
+
+      }
+    );
+  }
+
+
+  interviewSearch.addEventListener(
+    "input",
+    filterInterviews
+  );
+
+
+  interviewFilter.addEventListener(
+    "change",
+    filterInterviews
+  );
+
+
+  /* LANGUAGE */
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-btn"
+    );
+
+  const translatable =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  function changeLanguage(lang) {
+
+    translatable.forEach(
+      function (element) {
+
+        const translation =
+          element.dataset[lang];
+
+        if (translation) {
+          element.textContent =
+            translation;
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function (button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === lang
+        );
+
+      }
+    );
+
+
+    document.documentElement.lang =
+      lang === "eng"
+        ? "en"
+        : lang === "fra"
+          ? "fr"
+          : "ht";
+  }
+
+
+  languageButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+</script>
+
+</body>
+</html>
