@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Weather Center | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP Weather Center — meteyo aktyèl, tanperati, van, imidite, lapli ak forecast 7 jou."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, Weather, Meteyo, Haiti Weather, Forecast, Temperature, Rain, Wind"
+  >
+
+  <meta
+    name="author"
+    content="BSS1815 PRO-MAX DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/weather.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8c00;
+      --orange-light: #ffc078;
+
+      --black: #000000;
+      --black2: #090300;
+      --panel: #160700;
+
+      --border: rgba(255, 106, 0, 0.58);
+
+      --shadow:
+        0 20px 50px rgba(0,0,0,.72);
+
+      --glow:
+        0 0 30px rgba(255,106,0,.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color:
+        var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 88% 8%,
+          rgba(255,106,0,.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255,106,0,.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000 100%
+        );
+
+      background-attachment:
+        fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline:
+        3px solid
+        var(--orange-light);
+
+      outline-offset:
+        4px;
+    }
+
+    .container {
+      width:
+        min(1200px,92%);
+
+      margin-inline:
+        auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        1000;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(50,14,0,.97),
+          rgba(0,0,0,.98)
+        );
+
+      backdrop-filter:
+        blur(14px);
+    }
+
+    .header-inner {
+      min-height:
+        82px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+    .brand {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        13px;
+    }
+
+    .brand-mark {
+      width:
+        58px;
+
+      height:
+        58px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        14px;
+
+      color:
+        #000;
+
+      background:
+        var(--orange);
+
+      font-size:
+        1.8rem;
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .brand-text strong {
+      display:
+        block;
+
+      color:
+        var(--orange-light);
+    }
+
+    .brand-text span {
+      display:
+        block;
+
+      margin-top:
+        4px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        .72rem;
+
+      font-weight:
+        900;
+    }
+
+    .header-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        15px;
+    }
+
+    nav {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+    }
+
+    nav a {
+      padding:
+        10px 12px;
+
+      border-radius:
+        9px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        .84rem;
+
+      font-weight:
+        800;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color:
+        #000;
+
+      background:
+        var(--orange);
+    }
+
+    .languages {
+      display:
+        flex;
+
+      gap:
+        5px;
+    }
+
+    .lang-btn {
+      padding:
+        7px 9px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        7px;
+
+      color:
+        var(--orange);
+
+      background:
+        #000;
+
+      font-size:
+        .7rem;
+
+      font-weight:
+        900;
+    }
+
+    .lang-btn.active {
+      color:
+        #000;
+
+      background:
+        var(--orange);
+    }
+
+    .menu-button {
+      display:
+        none;
+
+      width:
+        45px;
+
+      height:
+        42px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        9px;
+
+      color:
+        var(--orange);
+
+      background:
+        #000;
+
+      font-size:
+        1.3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding:
+        85px 0 70px;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .badge {
+      display:
+        inline-block;
+
+      padding:
+        8px 14px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        999px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        .8rem;
+
+      font-weight:
+        900;
+    }
+
+    .hero h1 {
+      margin-top:
+        20px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          3rem,
+          7vw,
+          6rem
+        );
+
+      line-height:
+        .98;
+
+      text-transform:
+        uppercase;
+    }
+
+    .hero h1 span {
+      color:
+        var(--orange);
+    }
+
+    .hero p {
+      max-width:
+        760px;
+
+      margin-top:
+        22px;
+
+      color:
+        var(--orange2);
+
+      font-size:
+        1.05rem;
+
+      line-height:
+        1.8;
+    }
+
+    /* SEARCH */
+
+    .search-section {
+      padding:
+        45px 0 25px;
+    }
+
+    .search-box {
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr auto;
+
+      gap:
+        12px;
+
+      padding:
+        20px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.13),
+          rgba(0,0,0,.97)
+        );
+    }
+
+    .search-box input {
+      width:
+        100%;
+
+      padding:
+        15px 16px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        10px;
+
+      color:
+        var(--orange-light);
+
+      background:
+        #000;
+    }
+
+    .search-box input::placeholder {
+      color:
+        #cc6c2d;
+    }
+
+    .search-button {
+      padding:
+        15px 22px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius:
+        10px;
+
+      color:
+        #000;
+
+      background:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    /* STATUS */
+
+    .status-message {
+      margin-top:
+        15px;
+
+      min-height:
+        24px;
+
+      color:
+        var(--orange2);
+
+      font-weight:
+        800;
+    }
+
+    .status-message.error {
+      color:
+        var(--orange-light);
+    }
+
+    /* CURRENT WEATHER */
+
+    .section {
+      padding:
+        65px 0;
+    }
+
+    .section-heading {
+      margin-bottom:
+        30px;
+    }
+
+    .section-heading small {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        2px;
+    }
+
+    .section-heading h2 {
+      margin-top:
+        8px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          2rem,
+          5vw,
+          3.5rem
+        );
+
+      text-transform:
+        uppercase;
+    }
+
+    .weather-main {
+      display:
+        grid;
+
+      grid-template-columns:
+        1.1fr .9fr;
+
+      gap:
+        24px;
+    }
+
+    .current-card {
+      padding:
+        35px;
+
+      border:
+        2px solid var(--orange);
+
+      border-radius:
+        22px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255,106,0,.26),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .location-label {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1px;
+    }
+
+    .current-card h2 {
+      margin-top:
+        8px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        clamp(
+          1.8rem,
+          4vw,
+          3rem
+        );
+    }
+
+    .weather-icon {
+      margin-top:
+        28px;
+
+      font-size:
+        5rem;
+    }
+
+    .temperature {
+      margin-top:
+        10px;
+
+      color:
+        var(--orange);
+
+      font-size:
+        clamp(
+          4rem,
+          10vw,
+          7rem
+        );
+
+      font-weight:
+        900;
+
+      line-height:
+        1;
+    }
+
+    .condition {
+      margin-top:
+        13px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1.25rem;
+
+      font-weight:
+        800;
+    }
+
+    .feels-like {
+      margin-top:
+        8px;
+
+      color:
+        var(--orange2);
+    }
+
+    /* DETAILS */
+
+    .details-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap:
+        15px;
+    }
+
+    .detail-card {
+      padding:
+        23px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        16px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #170700,
+          #000
+        );
+    }
+
+    .detail-card span {
+      display:
+        block;
+
+      font-size:
+        2rem;
+    }
+
+    .detail-card small {
+      display:
+        block;
+
+      margin-top:
+        12px;
+
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    .detail-card strong {
+      display:
+        block;
+
+      margin-top:
+        5px;
+
+      color:
+        var(--orange-light);
+
+      font-size:
+        1.35rem;
+    }
+
+    /* FORECAST */
+
+    .forecast-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(7,1fr);
+
+      gap:
+        13px;
+    }
+
+    .forecast-card {
+      padding:
+        20px 12px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        15px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.12),
+          rgba(0,0,0,.97)
+        );
+    }
+
+    .forecast-day {
+      color:
+        var(--orange-light);
+
+      font-weight:
+        900;
+    }
+
+    .forecast-icon {
+      margin:
+        16px 0;
+
+      font-size:
+        2.4rem;
+    }
+
+    .forecast-temp {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    .forecast-low {
+      margin-top:
+        5px;
+
+      color:
+        var(--orange2);
+
+      font-size:
+        .85rem;
+    }
+
+    .forecast-rain {
+      margin-top:
+        10px;
+
+      color:
+        var(--orange2);
+
+      font-size:
+        .78rem;
+    }
+
+    /* SOURCE */
+
+    .source-box {
+      padding:
+        28px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        17px;
+
+      background:
+        #090300;
+    }
+
+    .source-box h3 {
+      color:
+        var(--orange-light);
+    }
+
+    .source-box p {
+      margin-top:
+        10px;
+
+      color:
+        var(--orange2);
+
+      line-height:
+        1.65;
+    }
+
+    .source-box a {
+      color:
+        var(--orange);
+
+      font-weight:
+        900;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:
+        16px;
+    }
+
+    .contact-card {
+      padding:
+        23px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        15px;
+
+      background:
+        #090300;
+    }
+
+    .contact-card strong {
+      display:
+        block;
+
+      margin-bottom:
+        9px;
+
+      color:
+        var(--orange);
+    }
+
+    .contact-card a {
+      overflow-wrap:
+        anywhere;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding:
+        35px 0;
+
+      text-align:
+        center;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        var(--orange2);
+
+      background:
+        #000;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px) {
+
+      .weather-main {
+        grid-template-columns:
+          1fr;
+      }
+
+      .forecast-grid {
+        grid-template-columns:
+          repeat(4,1fr);
+      }
+
+      .menu-button {
+        display:
+          block;
+      }
+
+      nav {
+        position:
+          absolute;
+
+        top:
+          82px;
+
+        left:
+          4%;
+
+        right:
+          4%;
+
+        display:
+          none;
+
+        flex-direction:
+          column;
+
+        padding:
+          15px;
+
+        border:
+          1px solid var(--orange);
+
+        border-radius:
+          12px;
+
+        background:
+          #000;
+      }
+
+      nav.open {
+        display:
+          flex;
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .languages {
+        display:
+          none;
+      }
+
+      .search-box {
+        grid-template-columns:
+          1fr;
+      }
+
+      .details-grid,
+      .contact-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .forecast-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .current-card {
+        padding:
+          28px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        ☀
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PRO-MAX WEATHER
+        </strong>
+
+        <span>
+          FM DMP WEATHER CENTER
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <nav id="mainNav">
+
+        <a
+          href="index.html"
+          data-kre="Akèy"
+          data-eng="Home"
+          data-fra="Accueil"
+        >
+          Akèy
+        </a>
+
+        <a
+          href="news.html"
+          data-kre="Nouvèl"
+          data-eng="News"
+          data-fra="Actualités"
+        >
+          Nouvèl
+        </a>
+
+        <a
+          href="sports.html"
+          data-kre="Espò"
+          data-eng="Sports"
+          data-fra="Sports"
+        >
+          Espò
+        </a>
+
+        <a
+          href="weather.html"
+          class="active"
+        >
+          Weather
+        </a>
+
+      </nav>
+
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <span
+        class="badge"
+        data-kre="PRO-MAX WEATHER CENTER"
+        data-eng="PRO-MAX WEATHER CENTER"
+        data-fra="CENTRE MÉTÉO PRO-MAX"
+      >
+        PRO-MAX WEATHER CENTER
+      </span>
+
+      <h1>
+        WEATHER
+        <span>CENTER</span>
+      </h1>
+
+      <p
+        data-kre="Chèche nenpòt vil pou jwenn meteyo aktyèl, tanperati, van, imidite, chans lapli ak forecast 7 jou."
+        data-eng="Search any city for current weather, temperature, wind, humidity, rain probability and a 7-day forecast."
+        data-fra="Recherchez une ville pour obtenir la météo actuelle, la température, le vent, l'humidité, les risques de pluie et les prévisions sur 7 jours."
+      >
+        Chèche nenpòt vil pou jwenn
+        meteyo aktyèl, tanperati, van,
+        imidite, chans lapli
+        ak forecast 7 jou.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- SEARCH -->
+
+  <section class="search-section">
+
+    <div class="container">
+
+      <div class="search-box">
+
+        <input
+          type="search"
+          id="cityInput"
+          value="Port-au-Prince"
+          placeholder="Egzanp: Port-au-Prince, Miami, New York..."
+          aria-label="Chèche yon vil"
+        >
+
+        <button
+          type="button"
+          class="search-button"
+          id="searchButton"
+          data-kre="CHÈCHE METEYO"
+          data-eng="SEARCH WEATHER"
+          data-fra="RECHERCHER LA MÉTÉO"
+        >
+          CHÈCHE METEYO
+        </button>
+
+      </div>
+
+      <div
+        id="statusMessage"
+        class="status-message"
+        aria-live="polite"
+      >
+        Pare pou chèche meteyo.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CURRENT WEATHER -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CURRENT WEATHER
+        </small>
+
+        <h2
+          data-kre="METEYO AKTYÈL"
+          data-eng="CURRENT WEATHER"
+          data-fra="MÉTÉO ACTUELLE"
+        >
+          METEYO AKTYÈL
+        </h2>
+
+      </div>
+
+
+      <div class="weather-main">
+
+        <article class="current-card">
+
+          <div
+            class="location-label"
+            id="locationLabel"
+          >
+            PRO-MAX Weather
+          </div>
+
+          <h2 id="locationName">
+            Port-au-Prince
+          </h2>
+
+          <div
+            class="weather-icon"
+            id="weatherIcon"
+          >
+            ☀️
+          </div>
+
+          <div
+            class="temperature"
+            id="temperature"
+          >
+            --
+          </div>
+
+          <div
+            class="condition"
+            id="condition"
+          >
+            Ap chaje meteyo...
+          </div>
+
+          <div
+            class="feels-like"
+            id="feelsLike"
+          >
+            --
+          </div>
+
+        </article>
+
+
+        <div class="details-grid">
+
+          <article class="detail-card">
+
+            <span>💧</span>
+
+            <small
+              data-kre="IMIDITE"
+              data-eng="HUMIDITY"
+              data-fra="HUMIDITÉ"
+            >
+              IMIDITE
+            </small>
+
+            <strong id="humidity">
+              --
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span>💨</span>
+
+            <small
+              data-kre="VAN"
+              data-eng="WIND"
+              data-fra="VENT"
+            >
+              VAN
+            </small>
+
+            <strong id="wind">
+              --
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span>🌧️</span>
+
+            <small
+              data-kre="CHANS LAPLI"
+              data-eng="RAIN CHANCE"
+              data-fra="RISQUE DE PLUIE"
+            >
+              CHANS LAPLI
+            </small>
+
+            <strong id="rainChance">
+              --
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span>🌡️</span>
+
+            <small
+              data-kre="SANBLE AK"
+              data-eng="FEELS LIKE"
+              data-fra="RESSENTI"
+            >
+              SANBLE AK
+            </small>
+
+            <strong id="apparentTemperature">
+              --
+            </strong>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FORECAST -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          7 DAY FORECAST
+        </small>
+
+        <h2
+          data-kre="FORECAST 7 JOU"
+          data-eng="7-DAY FORECAST"
+          data-fra="PRÉVISIONS SUR 7 JOURS"
+        >
+          FORECAST 7 JOU
+        </h2>
+
+      </div>
+
+      <div
+        class="forecast-grid"
+        id="forecastGrid"
+      >
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SOURCE -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="source-box">
+
+        <h3>
+          Weather Data
+        </h3>
+
+        <p>
+          Done meteyo paj sa a soti nan Open-Meteo.
+          Sistèm nan itilize rechèch vil pou jwenn
+          latitude/longitude, apre sa li mande
+          forecast pou lokalizasyon an.
+        </p>
+
+        <p>
+          <a
+            href="https://open-meteo.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open-Meteo
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CONTACT
+        </small>
+
+        <h2
+          data-kre="KONTAKTE PRO-MAX"
+          data-eng="CONTACT PRO-MAX"
+          data-fra="CONTACTER PRO-MAX"
+        >
+          KONTAKTE PRO-MAX
+        </h2>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <article class="contact-card">
+
+          <strong>
+            EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            TELEFÒN
+          </strong>
+
+          <a href="tel:+50943437488">
+            +509 4343-7488
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    PRO-MAX FM DMP Weather Center
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+
+  /* =========================
+     ELEMENTS
+  ========================= */
+
+  const cityInput =
+    document.getElementById(
+      "cityInput"
+    );
+
+  const searchButton =
+    document.getElementById(
+      "searchButton"
+    );
+
+  const statusMessage =
+    document.getElementById(
+      "statusMessage"
+    );
+
+  const locationLabel =
+    document.getElementById(
+      "locationLabel"
+    );
+
+  const locationName =
+    document.getElementById(
+      "locationName"
+    );
+
+  const temperature =
+    document.getElementById(
+      "temperature"
+    );
+
+  const condition =
+    document.getElementById(
+      "condition"
+    );
+
+  const weatherIcon =
+    document.getElementById(
+      "weatherIcon"
+    );
+
+  const feelsLike =
+    document.getElementById(
+      "feelsLike"
+    );
+
+  const humidity =
+    document.getElementById(
+      "humidity"
+    );
+
+  const wind =
+    document.getElementById(
+      "wind"
+    );
+
+  const rainChance =
+    document.getElementById(
+      "rainChance"
+    );
+
+  const apparentTemperature =
+    document.getElementById(
+      "apparentTemperature"
+    );
+
+  const forecastGrid =
+    document.getElementById(
+      "forecastGrid"
+    );
+
+
+  /* =========================
+     WEATHER CODES
+  ========================= */
+
+  function getWeatherDescription(code) {
+
+    if (code === 0) {
+      return {
+        text: "Syèl klè",
+        icon: "☀️"
+      };
+    }
+
+    if ([1,2].includes(code)) {
+      return {
+        text: "An pati twoub",
+        icon: "🌤️"
+      };
+    }
+
+    if (code === 3) {
+      return {
+        text: "Twoub",
+        icon: "☁️"
+      };
+    }
+
+    if ([45,48].includes(code)) {
+      return {
+        text: "Bwouya",
+        icon: "🌫️"
+      };
+    }
+
+    if ([51,53,55,56,57].includes(code)) {
+      return {
+        text: "Ti lapli",
+        icon: "🌦️"
+      };
+    }
+
+    if ([61,63,65,66,67,80,81,82].includes(code)) {
+      return {
+        text: "Lapli",
+        icon: "🌧️"
+      };
+    }
+
+    if ([71,73,75,77,85,86].includes(code)) {
+      return {
+        text: "Nèj",
+        icon: "🌨️"
+      };
+    }
+
+    if ([95,96,99].includes(code)) {
+      return {
+        text: "Tanpèt",
+        icon: "⛈️"
+      };
+    }
+
+    return {
+      text: "Kondisyon meteyo",
+      icon: "🌤️"
+    };
+  }
+
+
+  /* =========================
+     DAY LABEL
+  ========================= */
+
+  function formatDay(dateString) {
+
+    const date =
+      new Date(
+        dateString + "T12:00:00"
+      );
+
+    return date.toLocaleDateString(
+      "ht-HT",
+      {
+        weekday:
+          "short"
+      }
+    );
+  }
+
+
+  /* =========================
+     SEARCH LOCATION
+  ========================= */
+
+  async function findLocation(city) {
+
+    const url =
+      "https://geocoding-api.open-meteo.com/v1/search" +
+      "?name=" +
+      encodeURIComponent(city) +
+      "&count=1" +
+      "&language=en" +
+      "&format=json";
+
+    const response =
+      await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(
+        "Geocoding request failed."
+      );
+    }
+
+    const data =
+      await response.json();
+
+    if (
+      !data.results ||
+      data.results.length === 0
+    ) {
+      throw new Error(
+        "Vil la pa jwenn."
+      );
+    }
+
+    return data.results[0];
+  }
+
+
+  /* =========================
+     FETCH WEATHER
+  ========================= */
+
+  async function getWeather(
+    latitude,
+    longitude
+  ) {
+
+    const params =
+      new URLSearchParams({
+        latitude:
+          latitude,
+
+        longitude:
+          longitude,
+
+        current:
+          [
+            "temperature_2m",
+            "relative_humidity_2m",
+            "apparent_temperature",
+            "weather_code",
+            "wind_speed_10m",
+            "precipitation"
+          ].join(","),
+
+        daily:
+          [
+            "weather_code",
+            "temperature_2m_max",
+            "temperature_2m_min",
+            "precipitation_probability_max"
+          ].join(","),
+
+        temperature_unit:
+          "fahrenheit",
+
+        wind_speed_unit:
+          "mph",
+
+        precipitation_unit:
+          "inch",
+
+        timezone:
+          "auto",
+
+        forecast_days:
+          "7"
+      });
+
+
+    const url =
+      "https://api.open-meteo.com/v1/forecast?" +
+      params.toString();
+
+
+    const response =
+      await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(
+        "Weather request failed."
+      );
+    }
+
+    return await response.json();
+  }
+
+
+  /* =========================
+     RENDER CURRENT
+  ========================= */
+
+  function renderCurrent(
+    place,
+    data
+  ) {
+
+    const current =
+      data.current;
+
+    const weather =
+      getWeatherDescription(
+        current.weather_code
+      );
+
+
+    const areaParts = [
+      place.name,
+      place.admin1,
+      place.country
+    ].filter(Boolean);
+
+
+    locationLabel.textContent =
+      "📍 " +
+      areaParts.join(", ");
+
+    locationName.textContent =
+      place.name;
+
+    temperature.textContent =
+      Math.round(
+        current.temperature_2m
+      ) + "°F";
+
+    condition.textContent =
+      weather.text;
+
+    weatherIcon.textContent =
+      weather.icon;
+
+    humidity.textContent =
+      current.relative_humidity_2m +
+      "%";
+
+    wind.textContent =
+      Math.round(
+        current.wind_speed_10m
+      ) + " mph";
+
+    apparentTemperature.textContent =
+      Math.round(
+        current.apparent_temperature
+      ) + "°F";
+
+    feelsLike.textContent =
+      "Feels like " +
+      Math.round(
+        current.apparent_temperature
+      ) +
+      "°F";
+
+
+    const probability =
+      data.daily
+        .precipitation_probability_max?.[0];
+
+    rainChance.textContent =
+      typeof probability ===
+      "number"
+        ? probability + "%"
+        : "--";
+  }
+
+
+  /* =========================
+     RENDER FORECAST
+  ========================= */
+
+  function renderForecast(data) {
+
+    forecastGrid.innerHTML =
+      "";
+
+    const daily =
+      data.daily;
+
+
+    daily.time.forEach(
+      function(date, index) {
+
+        const weather =
+          getWeatherDescription(
+            daily.weather_code[index]
+          );
+
+
+        const card =
+          document.createElement(
+            "article"
+          );
+
+        card.className =
+          "forecast-card";
+
+
+        const rain =
+          daily
+            .precipitation_probability_max[
+              index
+            ];
+
+
+        card.innerHTML =
+          `
+          <div class="forecast-day">
+            ${formatDay(date)}
+          </div>
+
+          <div class="forecast-icon">
+            ${weather.icon}
+          </div>
+
+          <div class="forecast-temp">
+            ${Math.round(
+              daily.temperature_2m_max[index]
+            )}°F
+          </div>
+
+          <div class="forecast-low">
+            Low:
+            ${Math.round(
+              daily.temperature_2m_min[index]
+            )}°F
+          </div>
+
+          <div class="forecast-rain">
+            🌧️
+            ${
+              typeof rain === "number"
+                ? rain
+                : 0
+            }%
+          </div>
+          `;
+
+
+        forecastGrid.appendChild(
+          card
+        );
+      }
+    );
+  }
+
+
+  /* =========================
+     LOAD WEATHER
+  ========================= */
+
+  async function loadWeather() {
+
+    const city =
+      cityInput.value.trim();
+
+
+    if (!city) {
+
+      statusMessage.textContent =
+        "Ekri non yon vil.";
+
+      statusMessage.classList.add(
+        "error"
+      );
+
+      return;
+    }
+
+
+    searchButton.disabled =
+      true;
+
+    searchButton.textContent =
+      "AP CHAJE...";
+
+    statusMessage.textContent =
+      "Ap chèche meteyo pou " +
+      city +
+      "...";
+
+    statusMessage.classList.remove(
+      "error"
+    );
+
+
+    try {
+
+      const place =
+        await findLocation(city);
+
+      const weatherData =
+        await getWeather(
+          place.latitude,
+          place.longitude
+        );
+
+      renderCurrent(
+        place,
+        weatherData
+      );
+
+      renderForecast(
+        weatherData
+      );
+
+      statusMessage.textContent =
+        "Meteyo mete ajou pou " +
+        place.name +
+        ".";
+
+    } catch (error) {
+
+      console.error(
+        "Weather error:",
+        error
+      );
+
+      statusMessage.textContent =
+        error.message ===
+        "Vil la pa jwenn."
+          ? "Vil la pa jwenn. Eseye yon lòt non."
+          : "Nou pa t kapab chaje meteyo a kounye a.";
+
+      statusMessage.classList.add(
+        "error"
+      );
+
+    } finally {
+
+      searchButton.disabled =
+        false;
+
+      searchButton.textContent =
+        "CHÈCHE METEYO";
+    }
+  }
+
+
+  searchButton.addEventListener(
+    "click",
+    loadWeather
+  );
+
+
+  cityInput.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Enter") {
+        loadWeather();
+      }
+
+    }
+  );
+
+
+  /* =========================
+     MOBILE MENU
+  ========================= */
+
+  const menuButton =
+    document.getElementById(
+      "menuButton"
+    );
+
+  const mainNav =
+    document.getElementById(
+      "mainNav"
+    );
+
+
+  menuButton.addEventListener(
+    "click",
+    function() {
+
+      const open =
+        mainNav.classList.toggle(
+          "open"
+        );
+
+      menuButton.textContent =
+        open
+          ? "✕"
+          : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+    }
+  );
+
+
+  /* =========================
+     LANGUAGE
+  ========================= */
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-btn"
+    );
+
+  const translatable =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  function changeLanguage(lang) {
+
+    translatable.forEach(
+      function(element) {
+
+        const translation =
+          element.dataset[lang];
+
+        if (translation) {
+          element.textContent =
+            translation;
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function(button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === lang
+        );
+
+      }
+    );
+
+
+    document.documentElement.lang =
+      lang === "eng"
+        ? "en"
+        : lang === "fra"
+          ? "fr"
+          : "ht";
+  }
+
+
+  languageButtons.forEach(
+    function(button) {
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+
+
+  /* DEFAULT WEATHER */
+
+  loadWeather();
+</script>
+
+</body>
+</html>
