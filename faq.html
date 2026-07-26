@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>FAQ | PRO-MAX FM DMP</title>
+
+  <meta
+    name="description"
+    content="PRO-MAX FM DMP FAQ Center — jwenn repons sou Live Radio, Shows, Podcasts, Video, Academy, Sports, Business, Weather, Events, Interviews, Advertising ak lòt sèvis platfòm lan."
+  >
+
+  <meta
+    name="keywords"
+    content="PRO-MAX FM DMP, FAQ, Help, Support, BSS1815, Live Radio, Podcasts, Academy, Advertising"
+  >
+
+  <meta
+    name="author"
+    content="BSS1815 PRO-MAX DMP"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <link
+    rel="canonical"
+    href="https://bss1815-pro-max-dmp.netlify.app/faq.html"
+  >
+
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    content="FAQ | PRO-MAX FM DMP"
+  >
+
+  <meta
+    property="og:description"
+    content="Kesyon ak repons sou sèvis ak modil PRO-MAX FM DMP."
+  >
+
+  <meta
+    property="og:url"
+    content="https://bss1815-pro-max-dmp.netlify.app/faq.html"
+  >
+
+  <style>
+    :root {
+      --orange: #ff6a00;
+      --orange2: #ff8c00;
+      --orange-light: #ffc078;
+      --black: #000000;
+      --black2: #090300;
+      --panel: #160700;
+      --border: rgba(255, 106, 0, 0.58);
+      --shadow: 0 20px 50px rgba(0,0,0,.72);
+      --glow: 0 0 30px rgba(255,106,0,.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--orange-light);
+
+      background:
+        radial-gradient(
+          circle at 87% 8%,
+          rgba(255,106,0,.28),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255,106,0,.14),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #000 0%,
+          #090300 32%,
+          #351000 55%,
+          #090300 75%,
+          #000 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--orange-light);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,0,0,.98),
+          rgba(50,14,0,.97),
+          rgba(0,0,0,.98)
+        );
+
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-size: 1.8rem;
+
+      box-shadow: var(--glow);
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--orange-light);
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+
+      color: var(--orange);
+
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    nav a {
+      padding: 10px 12px;
+
+      border-radius: 9px;
+
+      color: var(--orange-light);
+
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .languages {
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      padding: 7px 9px;
+
+      border: 1px solid var(--orange);
+      border-radius: 7px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: .7rem;
+      font-weight: 900;
+    }
+
+    .lang-btn.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    .menu-button {
+      display: none;
+
+      width: 45px;
+      height: 42px;
+
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+
+      color: var(--orange);
+      background: #000;
+
+      font-size: 1.3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 470px;
+
+      display: flex;
+      align-items: center;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 80% 45%,
+          rgba(255,106,0,.35),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr .8fr;
+
+      align-items: center;
+
+      gap: 45px;
+
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 8px 14px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange);
+
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(3rem, 7vw, 6rem);
+
+      line-height: .98;
+
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero-description {
+      max-width: 760px;
+
+      margin-top: 22px;
+
+      color: var(--orange2);
+
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-visual {
+      min-height: 350px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,106,0,.42),
+          rgba(30,8,0,.95) 52%,
+          #000 75%
+        );
+
+      box-shadow:
+        0 0 70px rgba(255,106,0,.28);
+    }
+
+    .hero-visual span {
+      display: block;
+      font-size: 6rem;
+    }
+
+    .hero-visual strong {
+      display: block;
+
+      margin-top: 14px;
+
+      color: var(--orange);
+    }
+
+    /* SECTION */
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .section-heading small {
+      color: var(--orange);
+
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      margin-top: 8px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem, 5vw, 3.5rem);
+
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+
+      margin-top: 12px;
+
+      color: var(--orange2);
+
+      line-height: 1.7;
+    }
+
+    /* SEARCH */
+
+    .search-box {
+      max-width: 800px;
+
+      margin: 0 auto 45px;
+    }
+
+    .search-box input {
+      width: 100%;
+
+      padding: 17px 20px;
+
+      border: 2px solid var(--orange);
+      border-radius: 14px;
+
+      color: var(--orange-light);
+      background: #000;
+
+      font-size: 1rem;
+
+      box-shadow: var(--glow);
+    }
+
+    .search-result {
+      margin-top: 12px;
+
+      color: var(--orange2);
+
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    /* CATEGORY BUTTONS */
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-bottom: 35px;
+    }
+
+    .category-button {
+      padding: 10px 15px;
+
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+
+      color: var(--orange-light);
+      background: #000;
+
+      font-weight: 900;
+    }
+
+    .category-button:hover,
+    .category-button.active {
+      color: #000;
+      background: var(--orange);
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,106,0,.12),
+          rgba(0,0,0,.98)
+        );
+
+      box-shadow: var(--shadow);
+    }
+
+    .faq-question {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 20px;
+
+      border: 0;
+
+      text-align: left;
+
+      color: var(--orange-light);
+      background: transparent;
+
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .faq-question:hover {
+      background: rgba(255,106,0,.08);
+    }
+
+    .faq-icon {
+      flex: 0 0 auto;
+
+      width: 34px;
+      height: 34px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--orange);
+      border-radius: 50%;
+
+      color: var(--orange);
+
+      font-size: 1.25rem;
+
+      transition: transform .25s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+
+      color: #000;
+      background: var(--orange);
+    }
+
+    .faq-answer {
+      display: none;
+
+      padding:
+        0 20px 22px;
+
+      color: var(--orange2);
+
+      line-height: 1.75;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-answer a {
+      color: var(--orange-light);
+      font-weight: 900;
+      text-decoration: underline;
+    }
+
+    .faq-item.hidden {
+      display: none;
+    }
+
+    /* MODULE DIRECTORY */
+
+    .module-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 16px;
+    }
+
+    .module-card {
+      min-height: 150px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #170700,
+          #000
+        );
+
+      transition: .25s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-5px);
+
+      border-color: var(--orange);
+
+      box-shadow: var(--glow);
+    }
+
+    .module-card span {
+      font-size: 2.5rem;
+    }
+
+    .module-card strong {
+      margin-top: 12px;
+
+      color: var(--orange-light);
+    }
+
+    /* HELP BOX */
+
+    .help-box {
+      padding: 40px;
+
+      text-align: center;
+
+      border: 2px solid var(--orange);
+      border-radius: 22px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255,106,0,.27),
+          transparent 45%
+        ),
+        #000;
+
+      box-shadow: var(--glow);
+    }
+
+    .help-box span {
+      font-size: 4rem;
+    }
+
+    .help-box h2 {
+      margin-top: 14px;
+
+      color: var(--orange-light);
+
+      font-size:
+        clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .help-box p {
+      max-width: 720px;
+
+      margin: 15px auto 25px;
+
+      color: var(--orange2);
+
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+
+      color: #000;
+      background: var(--orange);
+
+      font-weight: 900;
+
+      transition: .25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 23px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+      border-radius: 15px;
+
+      background: #090300;
+    }
+
+    .contact-card strong {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: var(--orange);
+    }
+
+    .contact-card a {
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 35px 0;
+
+      text-align: center;
+
+      border-top: 1px solid var(--border);
+
+      color: var(--orange2);
+
+      background: #000;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:1000px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        width: min(420px,90%);
+        min-height: 350px;
+
+        margin: auto;
+      }
+
+      .module-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+
+        top: 82px;
+        left: 4%;
+        right: 4%;
+
+        display: none;
+        flex-direction: column;
+
+        padding: 15px;
+
+        border: 1px solid var(--orange);
+        border-radius: 12px;
+
+        background: #000;
+      }
+
+      nav.open {
+        display: flex;
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .languages {
+        display: none;
+      }
+
+      .module-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 300px;
+      }
+
+      .help-box {
+        padding: 30px 18px;
+      }
+
+      .faq-question {
+        padding: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-mark">
+        ❓
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PRO-MAX FAQ
+        </strong>
+
+        <span>
+          HELP & INFORMATION CENTER
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <nav id="mainNav">
+
+        <a
+          href="index.html"
+          data-kre="Akèy"
+          data-eng="Home"
+          data-fra="Accueil"
+        >
+          Akèy
+        </a>
+
+        <a
+          href="live.html"
+          data-kre="Live Radio"
+          data-eng="Live Radio"
+          data-fra="Radio en Direct"
+        >
+          Live Radio
+        </a>
+
+        <a
+          href="advertise.html"
+          data-kre="Piblisite"
+          data-eng="Advertise"
+          data-fra="Publicité"
+        >
+          Piblisite
+        </a>
+
+        <a
+          href="faq.html"
+          class="active"
+        >
+          FAQ
+        </a>
+
+      </nav>
+
+
+      <div class="languages">
+
+        <button
+          type="button"
+          class="lang-btn active"
+          data-lang="kre"
+        >
+          KRE
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="eng"
+        >
+          ENG
+        </button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          data-lang="fra"
+        >
+          FRA
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="menuButton"
+        class="menu-button"
+        aria-label="Louvri meni"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <span
+          class="badge"
+          data-kre="KESYON & REPONS"
+          data-eng="QUESTIONS & ANSWERS"
+          data-fra="QUESTIONS & RÉPONSES"
+        >
+          KESYON & REPONS
+        </span>
+
+        <h1>
+          FAQ
+          <span>CENTER</span>
+        </h1>
+
+        <p
+          class="hero-description"
+          data-kre="Jwenn repons rapid sou PRO-MAX FM DMP, Live Radio, emisyon, podcasts, videyo, Academy, espò, biznis, evènman, piblisite ak lòt sèvis platfòm lan."
+          data-eng="Find quick answers about PRO-MAX FM DMP, Live Radio, shows, podcasts, videos, Academy, sports, business, events, advertising and other platform services."
+          data-fra="Trouvez rapidement des réponses sur PRO-MAX FM DMP, la radio en direct, les émissions, podcasts, vidéos, Academy, sports, affaires, événements, publicité et autres services."
+        >
+          Jwenn repons rapid sou PRO-MAX FM DMP,
+          Live Radio, emisyon, podcasts, videyo,
+          Academy, espò, biznis, evènman,
+          piblisite ak lòt sèvis platfòm lan.
+        </p>
+
+      </div>
+
+
+      <div class="hero-visual">
+
+        <div>
+
+          <span>
+            ❓
+          </span>
+
+          <strong>
+            ASK • LEARN • CONNECT
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FAQ -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          FREQUENTLY ASKED QUESTIONS
+        </small>
+
+        <h2
+          data-kre="KESYON YO POZE SOUVAN"
+          data-eng="FREQUENTLY ASKED QUESTIONS"
+          data-fra="QUESTIONS FRÉQUENTES"
+        >
+          KESYON YO POZE SOUVAN
+        </h2>
+
+        <p
+          data-kre="Ekri yon mo nan bwat rechèch la oswa chwazi yon kategori."
+          data-eng="Enter a word in the search box or select a category."
+          data-fra="Entrez un mot dans la zone de recherche ou sélectionnez une catégorie."
+        >
+          Ekri yon mo nan bwat rechèch la
+          oswa chwazi yon kategori.
+        </p>
+
+      </div>
+
+
+      <div class="search-box">
+
+        <input
+          type="search"
+          id="faqSearch"
+          placeholder="Chèche yon kesyon..."
+          aria-label="Chèche FAQ"
+        >
+
+        <div
+          class="search-result"
+          id="searchResult"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+
+      <div class="categories">
+
+        <button
+          type="button"
+          class="category-button active"
+          data-category="all"
+        >
+          TOUT
+        </button>
+
+        <button
+          type="button"
+          class="category-button"
+          data-category="platform"
+        >
+          PLATFORM
+        </button>
+
+        <button
+          type="button"
+          class="category-button"
+          data-category="radio"
+        >
+          LIVE RADIO
+        </button>
+
+        <button
+          type="button"
+          class="category-button"
+          data-category="media"
+        >
+          MEDIA
+        </button>
+
+        <button
+          type="button"
+          class="category-button"
+          data-category="academy"
+        >
+          ACADEMY
+        </button>
+
+        <button
+          type="button"
+          class="category-button"
+          data-category="advertising"
+        >
+          ADVERTISING
+        </button>
+
+        <button
+          type="button"
+          class="category-button"
+          data-category="account"
+        >
+          ACCOUNT
+        </button>
+
+      </div>
+
+
+      <div
+        class="faq-list"
+        id="faqList"
+      >
+
+        <!-- 1 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="pro max fm dmp platform kisa"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Kisa PRO-MAX FM DMP ye?"
+              data-eng="What is PRO-MAX FM DMP?"
+              data-fra="Qu'est-ce que PRO-MAX FM DMP ?"
+            >
+              Kisa PRO-MAX FM DMP ye?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p
+              data-kre="PRO-MAX FM DMP se yon platfòm dijital ki rasanble radyo, emisyon, podcasts, videyo, enfòmasyon, Academy, espò, biznis, evènman, entèvyou ak lòt sèvis nan yon sèl espas."
+              data-eng="PRO-MAX FM DMP is a digital platform bringing radio, shows, podcasts, videos, information, Academy, sports, business, events, interviews and other services together in one place."
+              data-fra="PRO-MAX FM DMP est une plateforme numérique réunissant radio, émissions, podcasts, vidéos, informations, Academy, sports, affaires, événements, interviews et autres services en un seul endroit."
+            >
+              PRO-MAX FM DMP se yon platfòm dijital
+              ki rasanble radyo, emisyon, podcasts,
+              videyo, enfòmasyon, Academy, espò,
+              biznis, evènman, entèvyou ak lòt sèvis
+              nan yon sèl espas.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 2 -->
+
+        <article
+          class="faq-item"
+          data-category="radio"
+          data-search="live radio listen koute radyo"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Kijan mwen ka ale nan Live Radio?"
+              data-eng="How can I access Live Radio?"
+              data-fra="Comment accéder à la radio en direct ?"
+            >
+              Kijan mwen ka ale nan Live Radio?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Klike sou
+              <a href="live.html">
+                LIVE RADIO
+              </a>
+              pou antre dirèkteman nan
+              Live Radio Center.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 3 -->
+
+        <article
+          class="faq-item"
+          data-category="media"
+          data-search="shows emissions program emisyon"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Ki kote mwen jwenn emisyon yo?"
+              data-eng="Where can I find the shows?"
+              data-fra="Où puis-je trouver les émissions ?"
+            >
+              Ki kote mwen jwenn emisyon yo?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Ou kapab ale nan
+              <a href="shows.html">
+                SHOWS
+              </a>
+              pou jwenn espas emisyon
+              PRO-MAX yo.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 4 -->
+
+        <article
+          class="faq-item"
+          data-category="media"
+          data-search="podcast podcasts audio"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Èske platfòm lan gen Podcast Center?"
+              data-eng="Does the platform have a Podcast Center?"
+              data-fra="La plateforme possède-t-elle un centre de podcasts ?"
+            >
+              Èske platfòm lan gen Podcast Center?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Wi. Ale nan
+              <a href="podcast.html">
+                PODCAST CENTER
+              </a>
+              pou jwenn espas podcast yo.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 5 -->
+
+        <article
+          class="faq-item"
+          data-category="media"
+          data-search="youtube video videos"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Ki kote mwen ka wè videyo PRO-MAX yo?"
+              data-eng="Where can I watch PRO-MAX videos?"
+              data-fra="Où puis-je regarder les vidéos PRO-MAX ?"
+            >
+              Ki kote mwen ka wè videyo PRO-MAX yo?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Ou kapab itilize
+              <a href="video.html">
+                VIDEO CENTER
+              </a>
+              oswa vizite chanèl YouTube
+              ofisyèl PRO-MAX la.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 6 -->
+
+        <article
+          class="faq-item"
+          data-category="media"
+          data-search="gallery galri photo foto"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Èske gen yon galri foto?"
+              data-eng="Is there a photo gallery?"
+              data-fra="Existe-t-il une galerie photo ?"
+            >
+              Èske gen yon galri foto?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Wi. Klike sou
+              <a href="gallery.html">
+                GALLERY
+              </a>
+              pou antre nan galri platfòm lan.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 7 -->
+
+        <article
+          class="faq-item"
+          data-category="academy"
+          data-search="academy akademi learning education formation"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Kisa PRO-MAX Academy ye?"
+              data-eng="What is PRO-MAX Academy?"
+              data-fra="Qu'est-ce que PRO-MAX Academy ?"
+            >
+              Kisa PRO-MAX Academy ye?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p
+              data-kre="PRO-MAX Academy se espas platfòm lan pou aprantisaj, fòmasyon ak kontni edikatif."
+              data-eng="PRO-MAX Academy is the platform's space for learning, training and educational content."
+              data-fra="PRO-MAX Academy est l'espace de la plateforme consacré à l'apprentissage, à la formation et au contenu éducatif."
+            >
+              PRO-MAX Academy se espas
+              platfòm lan pou aprantisaj,
+              fòmasyon ak kontni edikatif.
+            </p>
+
+            <p style="margin-top:10px;">
+              <a href="academy.html">
+                OPEN PRO-MAX ACADEMY
+              </a>
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 8 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="sports sport football soccer"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Ki kote enfòmasyon espò yo ye?"
+              data-eng="Where is the sports section?"
+              data-fra="Où se trouve la section sports ?"
+            >
+              Ki kote enfòmasyon espò yo ye?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Ale nan
+              <a href="sports.html">
+                SPORTS CENTER
+              </a>
+              pou jwenn seksyon espò a.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 9 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="business biznis company entreprise"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Èske gen yon seksyon pou biznis?"
+              data-eng="Is there a business section?"
+              data-fra="Existe-t-il une section pour les entreprises ?"
+            >
+              Èske gen yon seksyon pou biznis?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Wi. Vizite
+              <a href="business.html">
+                BUSINESS CENTER
+              </a>
+              pou seksyon biznis la.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 10 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="weather meteo tan forecast"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Ki kote Weather Center la ye?"
+              data-eng="Where is the Weather Center?"
+              data-fra="Où se trouve le centre météo ?"
+            >
+              Ki kote Weather Center la ye?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Klike sou
+              <a href="weather.html">
+                WEATHER CENTER
+              </a>
+              pou antre nan modil meteyo a.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 11 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="events event evenement activity"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Ki kote mwen ka wè evènman yo?"
+              data-eng="Where can I view events?"
+              data-fra="Où puis-je consulter les événements ?"
+            >
+              Ki kote mwen ka wè evènman yo?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Vizite
+              <a href="events.html">
+                EVENTS CENTER
+              </a>
+              pou seksyon evènman an.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 12 -->
+
+        <article
+          class="faq-item"
+          data-category="media"
+          data-search="interviews interview entevyou"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Ki kote entèvyou PRO-MAX yo ye?"
+              data-eng="Where are the PRO-MAX interviews?"
+              data-fra="Où sont les interviews PRO-MAX ?"
+            >
+              Ki kote entèvyou PRO-MAX yo ye?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Ale nan
+              <a href="interviews.html">
+                INTERVIEWS CENTER
+              </a>
+              pou seksyon entèvyou a.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 13 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="an memwa memorial tribute omaj"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Kisa seksyon An Memwa a ye?"
+              data-eng="What is the An Memwa section?"
+              data-fra="Qu'est-ce que la section An Memwa ?"
+            >
+              Kisa seksyon An Memwa a ye?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p
+              data-kre="An Memwa se espas memorial platfòm lan pou omaj, temwayaj, foto, videyo ak souvni."
+              data-eng="An Memwa is the platform's memorial space for tributes, testimonials, photos, videos and memories."
+              data-fra="An Memwa est l'espace commémoratif de la plateforme pour les hommages, témoignages, photos, vidéos et souvenirs."
+            >
+              An Memwa se espas memorial
+              platfòm lan pou omaj, temwayaj,
+              foto, videyo ak souvni.
+            </p>
+
+            <p style="margin-top:10px;">
+              <a href="an-memwa.html">
+                OPEN AN MEMWA
+              </a>
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 14 -->
+
+        <article
+          class="faq-item"
+          data-category="advertising"
+          data-search="advertise advertising piblisite sponsor sponsorship"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Kijan mwen ka fè piblisite sou PRO-MAX?"
+              data-eng="How can I advertise on PRO-MAX?"
+              data-fra="Comment faire de la publicité sur PRO-MAX ?"
+            >
+              Kijan mwen ka fè piblisite sou PRO-MAX?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p
+              data-kre="PRO-MAX Advertise Center prezante opsyon pou radyo, videyo, website, rezo sosyal, evènman ak sponsorship."
+              data-eng="The PRO-MAX Advertise Center provides options for radio, video, website, social media, events and sponsorship."
+              data-fra="Le centre publicitaire PRO-MAX propose des options pour la radio, la vidéo, le site web, les réseaux sociaux, les événements et le sponsoring."
+            >
+              PRO-MAX Advertise Center prezante
+              opsyon pou radyo, videyo, website,
+              rezo sosyal, evènman ak sponsorship.
+            </p>
+
+            <p style="margin-top:10px;">
+              <a href="advertise.html">
+                OPEN ADVERTISE CENTER
+              </a>
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 15 -->
+
+        <article
+          class="faq-item"
+          data-category="account"
+          data-search="admin login account administrator"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Ki kote Admin Login la ye?"
+              data-eng="Where is Admin Login?"
+              data-fra="Où se trouve la connexion administrateur ?"
+            >
+              Ki kote Admin Login la ye?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Admin yo kapab itilize
+              <a href="login.html">
+                ADMIN LOGIN
+              </a>
+              pou antre nan zòn administrasyon an.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 16 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="language kreyol english french kre eng fra lang"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Èske platfòm lan sipòte plizyè lang?"
+              data-eng="Does the platform support multiple languages?"
+              data-fra="La plateforme prend-elle en charge plusieurs langues ?"
+            >
+              Èske platfòm lan sipòte plizyè lang?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p
+              data-kre="Wi. Paj PRO-MAX yo kapab itilize KRE, ENG ak FRA pou Kreyòl, Anglè ak Fransè."
+              data-eng="Yes. PRO-MAX pages can use KRE, ENG and FRA for Haitian Creole, English and French."
+              data-fra="Oui. Les pages PRO-MAX peuvent utiliser KRE, ENG et FRA pour le créole haïtien, l'anglais et le français."
+            >
+              Wi. Paj PRO-MAX yo kapab itilize
+              KRE, ENG ak FRA pou
+              Kreyòl, Anglè ak Fransè.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 17 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="mobile phone tablet responsive telefon"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Èske mwen ka itilize platfòm lan sou telefòn?"
+              data-eng="Can I use the platform on a phone?"
+              data-fra="Puis-je utiliser la plateforme sur un téléphone ?"
+            >
+              Èske mwen ka itilize platfòm lan sou telefòn?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p
+              data-kre="Wi. Paj yo fèt pou adapte ak telefòn, tablet ak òdinatè."
+              data-eng="Yes. The pages are designed to adapt to phones, tablets and computers."
+              data-fra="Oui. Les pages sont conçues pour s'adapter aux téléphones, tablettes et ordinateurs."
+            >
+              Wi. Paj yo fèt pou adapte
+              ak telefòn, tablet ak òdinatè.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- 18 -->
+
+        <article
+          class="faq-item"
+          data-category="platform"
+          data-search="contact email support help"
+        >
+
+          <button
+            type="button"
+            class="faq-question"
+            aria-expanded="false"
+          >
+
+            <span
+              data-kre="Kijan mwen ka kontakte PRO-MAX?"
+              data-eng="How can I contact PRO-MAX?"
+              data-fra="Comment contacter PRO-MAX ?"
+            >
+              Kijan mwen ka kontakte PRO-MAX?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Ou kapab kontakte PRO-MAX nan:
+              <a href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM">
+                BSS1815-PROMAXFMDMP@GMAIL.COM
+              </a>
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MODULE DIRECTORY -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          QUICK ACCESS
+        </small>
+
+        <h2
+          data-kre="ALE DIRÈK NAN MODIL YO"
+          data-eng="GO DIRECTLY TO MODULES"
+          data-fra="ACCÈS DIRECT AUX MODULES"
+        >
+          ALE DIRÈK NAN MODIL YO
+        </h2>
+
+      </div>
+
+
+      <div class="module-grid">
+
+        <a
+          href="live.html"
+          class="module-card"
+        >
+          <span>📻</span>
+          <strong>LIVE RADIO</strong>
+        </a>
+
+        <a
+          href="shows.html"
+          class="module-card"
+        >
+          <span>🎙️</span>
+          <strong>SHOWS</strong>
+        </a>
+
+        <a
+          href="podcast.html"
+          class="module-card"
+        >
+          <span>🎧</span>
+          <strong>PODCAST</strong>
+        </a>
+
+        <a
+          href="gallery.html"
+          class="module-card"
+        >
+          <span>🖼️</span>
+          <strong>GALLERY</strong>
+        </a>
+
+        <a
+          href="video.html"
+          class="module-card"
+        >
+          <span>🎥</span>
+          <strong>VIDEO</strong>
+        </a>
+
+        <a
+          href="academy.html"
+          class="module-card"
+        >
+          <span>🎓</span>
+          <strong>PRO-MAX ACADEMY</strong>
+        </a>
+
+        <a
+          href="sports.html"
+          class="module-card"
+        >
+          <span>⚽</span>
+          <strong>SPORTS</strong>
+        </a>
+
+        <a
+          href="business.html"
+          class="module-card"
+        >
+          <span>💼</span>
+          <strong>BUSINESS</strong>
+        </a>
+
+        <a
+          href="weather.html"
+          class="module-card"
+        >
+          <span>🌤️</span>
+          <strong>WEATHER</strong>
+        </a>
+
+        <a
+          href="events.html"
+          class="module-card"
+        >
+          <span>📅</span>
+          <strong>EVENTS</strong>
+        </a>
+
+        <a
+          href="interviews.html"
+          class="module-card"
+        >
+          <span>🎤</span>
+          <strong>INTERVIEWS</strong>
+        </a>
+
+        <a
+          href="an-memwa.html"
+          class="module-card"
+        >
+          <span>🕯️</span>
+          <strong>AN MEMWA</strong>
+        </a>
+
+        <a
+          href="advertise.html"
+          class="module-card"
+        >
+          <span>📢</span>
+          <strong>ADVERTISE</strong>
+        </a>
+
+        <a
+          href="login.html"
+          class="module-card"
+        >
+          <span>🔐</span>
+          <strong>ADMIN LOGIN</strong>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HELP -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="help-box">
+
+        <span>
+          💬
+        </span>
+
+        <h2
+          data-kre="OU PA JWENN REPONS LAN?"
+          data-eng="DIDN'T FIND YOUR ANSWER?"
+          data-fra="VOUS N'AVEZ PAS TROUVÉ VOTRE RÉPONSE ?"
+        >
+          OU PA JWENN REPONS LAN?
+        </h2>
+
+        <p
+          data-kre="Si FAQ Center la pa reponn kesyon ou, kontakte ekip PRO-MAX FM DMP la dirèkteman."
+          data-eng="If the FAQ Center doesn't answer your question, contact the PRO-MAX FM DMP team directly."
+          data-fra="Si le centre FAQ ne répond pas à votre question, contactez directement l'équipe PRO-MAX FM DMP."
+        >
+          Si FAQ Center la pa reponn
+          kesyon ou, kontakte ekip
+          PRO-MAX FM DMP la dirèkteman.
+        </p>
+
+        <a
+          href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          class="button"
+        >
+          📧 CONTACT PRO-MAX
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <small>
+          CONTACT
+        </small>
+
+        <h2
+          data-kre="KONTAKTE PRO-MAX"
+          data-eng="CONTACT PRO-MAX"
+          data-fra="CONTACTER PRO-MAX"
+        >
+          KONTAKTE PRO-MAX
+        </h2>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <article class="contact-card">
+
+          <strong>
+            EMAIL
+          </strong>
+
+          <a
+            href="mailto:BSS1815-PROMAXFMDMP@GMAIL.COM"
+          >
+            BSS1815-PROMAXFMDMP@GMAIL.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            WEBSITE
+          </strong>
+
+          <a
+            href="https://briyantsoleysigno1815.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BRIYANTSOLEYSIGNO1815.COM
+          </a>
+
+        </article>
+
+
+        <article class="contact-card">
+
+          <strong>
+            PLATFORM
+          </strong>
+
+          <a href="index.html">
+            BSS1815 PRO-MAX DMP
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    ©
+    <span id="year"></span>
+    PRO-MAX FM DMP —
+    FAQ & Help Center
+
+  </div>
+
+</footer>
+
+
+<script>
+  "use strict";
+
+
+  /* MOBILE MENU */
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mainNav =
+    document.getElementById("mainNav");
+
+
+  menuButton.addEventListener(
+    "click",
+    function () {
+
+      const open =
+        mainNav.classList.toggle("open");
+
+      menuButton.textContent =
+        open ? "✕" : "☰";
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+    }
+  );
+
+
+  /* FAQ ACCORDION */
+
+  const faqItems =
+    Array.from(
+      document.querySelectorAll(
+        ".faq-item"
+      )
+    );
+
+
+  faqItems.forEach(
+    function (item) {
+
+      const question =
+        item.querySelector(
+          ".faq-question"
+        );
+
+
+      question.addEventListener(
+        "click",
+        function () {
+
+          const isOpen =
+            item.classList.contains(
+              "open"
+            );
+
+
+          faqItems.forEach(
+            function (otherItem) {
+
+              otherItem.classList.remove(
+                "open"
+              );
+
+              const otherQuestion =
+                otherItem.querySelector(
+                  ".faq-question"
+                );
+
+              otherQuestion.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+          );
+
+
+          if (!isOpen) {
+
+            item.classList.add(
+              "open"
+            );
+
+            question.setAttribute(
+              "aria-expanded",
+              "true"
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+  /* SEARCH + CATEGORY FILTER */
+
+  const faqSearch =
+    document.getElementById(
+      "faqSearch"
+    );
+
+  const categoryButtons =
+    document.querySelectorAll(
+      ".category-button"
+    );
+
+  const searchResult =
+    document.getElementById(
+      "searchResult"
+    );
+
+  let selectedCategory =
+    "all";
+
+
+  function filterFaq() {
+
+    const search =
+      faqSearch.value
+        .trim()
+        .toLowerCase();
+
+    let visibleCount =
+      0;
+
+
+    faqItems.forEach(
+      function (item) {
+
+        const searchableText =
+          (
+            item.dataset.search +
+            " " +
+            item.textContent
+          ).toLowerCase();
+
+
+        const matchesSearch =
+          !search ||
+          searchableText.includes(
+            search
+          );
+
+
+        const matchesCategory =
+          selectedCategory === "all" ||
+          item.dataset.category ===
+          selectedCategory;
+
+
+        const visible =
+          matchesSearch &&
+          matchesCategory;
+
+
+        item.classList.toggle(
+          "hidden",
+          !visible
+        );
+
+
+        if (visible) {
+          visibleCount++;
+        }
+
+      }
+    );
+
+
+    if (search) {
+
+      searchResult.textContent =
+        visibleCount +
+        " rezilta jwenn.";
+
+    } else {
+
+      searchResult.textContent =
+        "";
+
+    }
+
+  }
+
+
+  faqSearch.addEventListener(
+    "input",
+    filterFaq
+  );
+
+
+  categoryButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          selectedCategory =
+            button.dataset.category;
+
+
+          categoryButtons.forEach(
+            function (otherButton) {
+
+              otherButton.classList.remove(
+                "active"
+              );
+
+            }
+          );
+
+
+          button.classList.add(
+            "active"
+          );
+
+
+          filterFaq();
+
+        }
+      );
+
+    }
+  );
+
+
+  /* LANGUAGE */
+
+  const languageButtons =
+    document.querySelectorAll(
+      ".lang-btn"
+    );
+
+  const translatable =
+    document.querySelectorAll(
+      "[data-kre][data-eng][data-fra]"
+    );
+
+
+  function changeLanguage(lang) {
+
+    translatable.forEach(
+      function (element) {
+
+        const translation =
+          element.dataset[lang];
+
+        if (translation) {
+
+          element.textContent =
+            translation;
+
+        }
+
+      }
+    );
+
+
+    languageButtons.forEach(
+      function (button) {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.lang === lang
+        );
+
+      }
+    );
+
+
+    document.documentElement.lang =
+      lang === "eng"
+        ? "en"
+        : lang === "fra"
+          ? "fr"
+          : "ht";
+
+  }
+
+
+  languageButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          changeLanguage(
+            button.dataset.lang
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* YEAR */
+
+  document
+    .getElementById("year")
+    .textContent =
+      new Date().getFullYear();
+</script>
+
+</body>
+</html>
