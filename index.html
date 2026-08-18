@@ -14,15 +14,13 @@ body{background:#000;color:var(--text);font-family:Arial;overflow-x:hidden}
 header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bottom:1px solid var(--border)}
 .header-inner{min-height:86px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:12px}
-.brand-video-wrap{width:66px;height:66px;overflow:hidden;border:2px solid #ff7900;border-radius:14px;background:#000;box-shadow:var(--glow);position:relative}
+.brand-video-wrap{width:66px;height:66px;overflow:hidden;border:2px solid #ff7900;border-radius:14px;background:#000;box-shadow:var(--glow)}
 .brand-video{width:100%;height:100%;object-fit:cover}
-.brand-video-wrap img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
 .brand-text strong{color:#ff7900;font-size:1rem;font-weight:1000}.brand-text span{color:#ffad4d;font-size:.52rem;font-weight:900}
 .nav a{padding:9px 11px;border-radius:999px;color:#ffad4d;font-size:.61rem;font-weight:1000;text-transform:uppercase}
 .hero{padding:52px 0 76px;text-align:center}
-.hero-logo-frame{width:420px;max-width:92vw;margin:30px auto 0;overflow:hidden;border:3px solid #ff7900;border-radius:22px;background:#000;box-shadow:var(--glow2);aspect-ratio:1/1;position:relative}
+.hero-logo-frame{width:420px;max-width:92vw;margin:30px auto 0;overflow:hidden;border:3px solid #ff7900;border-radius:22px;background:#000;box-shadow:var(--glow2);aspect-ratio:1/1}
 .hero-logo-frame video{width:100%;height:100%;object-fit:cover}
-.hero-logo-frame img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
 .hero h1{margin-top:28px;color:#ff7900;font-size:clamp(2.6rem,8vw,6.2rem);line-height:.88;text-transform:uppercase}
 .stats-grid{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .stat-card{padding:17px;border:1px solid var(--border);border-radius:17px;background:#050200;text-align:center}
@@ -42,9 +40,8 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bott
 .bss-progress-bar{width:0%;height:100%;background:linear-gradient(90deg,#9d3c00,#ff7900,#ffad4d)}
 .modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:30px}
 .module-card{padding:21px;border:1px solid var(--border);border-radius:17px;background:#050200}
-.footer-video{width:105px;height:105px;margin:0 auto 17px;overflow:hidden;border:2px solid #ff7900;border-radius:16px;background:#000;position:relative}
+.footer-video{width:105px;height:105px;margin:0 auto 17px;overflow:hidden;border:2px solid #ff7900;border-radius:16px;background:#000}
 .footer-video video{width:100%;height:100%;object-fit:cover}
-.footer-video img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
 @media(max-width:780px){.modules-grid{grid-template-columns:1fr 1fr}.hero-logo-frame{width:92vw}}
 @media(max-width:570px){.modules-grid{grid-template-columns:1fr}}
 </style>
@@ -53,10 +50,7 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bott
 <div class="top-bar">BSS1815 PRO-MAX DMP — DEVAN DEVAN NET — BATI POU JODI A</div>
 <header><div class="container header-inner">
 <a href="#home" class="brand">
-<div class="brand-video-wrap">
-  <video class="brand-video" autoplay muted loop playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video>
-  <img src="./assets/bss1815-pro-max-dmp.jpg" alt="BSS1815 PRO-MAX DMP">
-</div>
+<div class="brand-video-wrap"><video class="brand-video" autoplay muted loop playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video><img src="./assets/bss1815-pro-max-dmp.jpg" alt="BSS1815" style="display:none;width:100%;height:100%;object-fit:cover"></div>
 <div class="brand-text"><strong>BSS1815 PRO-MAX DMP</strong><span>PLATFOM JESYON DIJITAL</span></div>
 </a>
 <nav class="nav"><a href="#home">AKÈY</a><a href="#ecosystem">EKOSISTÈM</a><a href="#family">FANMI</a><a href="#modules">MODIL</a></nav>
@@ -65,10 +59,7 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bott
 <section class="hero" id="home">
 <div class="container">
 <div style="color:#ff7900;font-weight:1000;letter-spacing:.2em">BRIYANT SOLEY SIGNO 1815</div>
-<div class="hero-logo-frame">
-  <video autoplay muted loop playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video>
-  <img src="./assets/bss1815-pro-max-dmp.jpg" alt="BSS1815 PRO-MAX DMP">
-</div>
+<div class="hero-logo-frame"><video autoplay muted loop playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video><img src="./assets/bss1815-pro-max-dmp.jpg" alt="BSS1815" style="display:none;width:100%;height:100%;object-fit:cover"></div>
 <h1>BSS1815<br>PRO-MAX DMP</h1>
 <p style="margin-top:15px;color:#ffad4d">YON SEL PLATFOM • YON SEL VIZYON</p>
 </div>
@@ -77,11 +68,11 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bott
 <section class="section" id="family">
 <div class="container">
 <h2 class="section-title">FANMI • ERITAJ • KOMINOTE</h2>
-<p style="text-align:center;margin-top:10px"><strong>MOUVMAN SA A SE POU NOU TOUT.</strong> Tout foto yo la direk nan kod la.</p>
+<p style="text-align:center;margin-top:10px"><strong>MOUVMAN SA A SE POU NOU TOUT.</strong></p>
 
 <div class="bss-slideshow">
 <div class="bss-stage" id="bssStage">
-<div class="bss-badge">BSS1815 COMMUNITY - 113 FOTO</div>
+<div class="bss-badge">BSS1815 COMMUNITY - 110 FOTO</div>
 <img class="bss-media" src="./assets/slideshow/tania2.jpg" alt="Tania2" loading="eager">
 <img class="bss-media hidden" src="./assets/slideshow/papouche.jpg" alt="Papouche" loading="lazy">
 <img class="bss-media hidden" src="./assets/slideshow/heritage.jpg" alt="Heritage" loading="lazy">
@@ -190,19 +181,15 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bott
 <img class="bss-media hidden" src="./assets/slideshow/nadou.jpg" alt="Nadou" loading="lazy">
 <img class="bss-media hidden" src="./assets/slideshow/max-is-the-man.jpg" alt="Max Is The Man" loading="lazy">
 <img class="bss-media hidden" src="./assets/slideshow/nadou2.jpg" alt="Nadou2" loading="lazy">
-<video class="bss-media hidden" muted loop playsinline preload="metadata"><source src="./assets/slideshow/pro-max-dmp.mp4" type="video/mp4"></video>
 <img class="bss-media hidden" src="./assets/slideshow/pro-max.jpg" alt="Pro Max" loading="lazy">
-<video class="bss-media hidden" muted loop playsinline preload="metadata"><source src="./assets/slideshow/pro-max-academie.mp4" type="video/mp4"></video>
-<video class="bss-media hidden" muted loop playsinline preload="metadata"><source src="./assets/slideshow/maxi-max.mp4" type="video/mp4"></video>
-<img class="bss-media hidden" src="./assets/slideshow/bss1815-pro-max-dmp.jpg" alt="Bss1815 Pro Max Dmp" loading="lazy">
+<img class="bss-media hidden" src="./assets/slideshow/bss1815-pro-max-dmp.jpg" alt="Bss1815" loading="lazy">
 
 <div class="bss-caption"><h3 id="bssSlideTitle">BSS1815 FAMILY</h3></div>
 <button class="bss-arrow bss-prev" id="bssPrev">‹</button>
 <button class="bss-arrow bss-next" id="bssNext">›</button>
 </div>
-<div class="bss-controls"><div id="bssCounter" style="color:#ff7900;font-weight:1000">1 / 113</div><button id="bssPlayPause" style="padding:8px 14px;border:1px solid #ff7900;border-radius:999px;background:#000;color:#ff7900">⏸ PAUSE</button><div class="bss-progress"><div class="bss-progress-bar" id="bssProgressBar"></div></div></div>
+<div class="bss-controls"><div id="bssCounter" style="color:#ff7900;font-weight:1000">1 / 110</div><button id="bssPlayPause" style="padding:8px 14px;border:1px solid #ff7900;border-radius:999px;background:#000;color:#ff7900">⏸ PAUSE</button><div class="bss-progress"><div class="bss-progress-bar" id="bssProgressBar"></div></div></div>
 </div>
-
 </div>
 </section>
 
@@ -220,56 +207,59 @@ header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bott
 
 </main>
 <footer style="padding:40px 0;text-align:center;border-top:1px solid var(--border);background:#000">
-<div class="footer-video">
-  <video autoplay muted loop playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video>
-  <img src="./assets/bss1815-pro-max-dmp.jpg" alt="BSS1815 PRO-MAX DMP">
-</div>
+<div class="footer-video"><video autoplay muted loop playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video><img src="./assets/bss1815-pro-max-dmp.jpg" alt="BSS1815" style="display:none;width:100%;height:100%;object-fit:cover"></div>
 <div style="color:#ff7900;font-weight:1000">BSS1815 PRO-MAX DMP</div>
 <div style="font-size:.7rem;margin-top:9px">© <span id="currentYear"></span> - DEVAN DEVAN NET</div>
 </footer>
 
 <script>
 document.getElementById('currentYear').textContent=new Date().getFullYear();
-var slides=document.querySelectorAll('.bss-stage .bss-media');
+var slides=document.querySelectorAll('.bss-stage.bss-media');
 var total=slides.length;
 var idx=0; var playing=true; var elapsed=0; var timer=null;
 var counter=document.getElementById('bssCounter');
 var progress=document.getElementById('bssProgressBar');
 var title=document.getElementById('bssSlideTitle');
-var IMAGE_TIME=4000; var VIDEO_TIME=8000; var STEP=100;
+var IMAGE_TIME=5000; var VIDEO_TIME=9000; var STEP=100;
 
 function getFileName(el){
   var src=el.currentSrc || el.src || '';
   if(!src){ var s=el.querySelector('source'); if(s) src=s.src; }
   return src.split('/').pop().split('.')[0].replace(/[-_]/g,' ').toUpperCase() || 'BSS1815 FAMILY';
 }
-
 function show(n){
   if(n<0) n=total-1;
   if(n>=total) n=0;
-  slides.forEach(function(s,i){ s.classList.toggle('hidden', i!==n); if(s.tagName==='VIDEO'){ if(i!==n) s.pause(); else { s.currentTime=0; if(playing) s.play().catch(()=>{}); } } });
+  slides.forEach(function(s,i){
+    s.classList.toggle('hidden', i!==n);
+    if(s.tagName==='VIDEO'){ if(i!==n) s.pause(); else { s.currentTime=0; if(playing) s.play().catch(function(){}); } }
+  });
   idx=n; elapsed=0;
   if(counter) counter.textContent=(idx+1)+' / '+total;
   if(title) title.textContent=getFileName(slides[idx]);
   if(progress) progress.style.width='0%';
 }
-
 function duration(){ return slides[idx].tagName==='VIDEO'? VIDEO_TIME : IMAGE_TIME; }
-
 function start(){
   clearInterval(timer);
-  timer=setInterval(function(){ if(!playing) return; elapsed+=STEP; if(progress) progress.style.width=Math.min(100,(elapsed/duration())*100)+'%'; if(elapsed>=duration()){ show(idx+1); } },STEP);
+  timer=setInterval(function(){
+    if(!playing) return;
+    elapsed+=STEP;
+    if(progress) progress.style.width=Math.min(100,(elapsed/duration())*100)+'%';
+    if(elapsed>=duration()){ show(idx+1); }
+  },STEP);
 }
-
-document.getElementById('bssNext').addEventListener('click',()=>show(idx+1));
-document.getElementById('bssPrev').addEventListener('click',()=>show(idx-1));
+document.getElementById('bssNext').addEventListener('click',function(){show(idx+1);});
+document.getElementById('bssPrev').addEventListener('click',function(){show(idx-1);});
 document.getElementById('bssPlayPause').addEventListener('click',function(){
   playing=!playing; this.textContent=playing?'⏸ PAUSE':'▶ PLAY';
-  var v=slides[idx]; if(v.tagName==='VIDEO'){ if(playing) v.play().catch(()=>{}); else v.pause(); }
+  var v=slides[idx]; if(v.tagName==='VIDEO'){ if(playing) v.play().catch(function(){}); else v.pause(); }
 });
-
-slides.forEach(function(el){ el.addEventListener('error',function(){ console.log('pa jwenn:',el.src); show(idx+1); }); });
-
+slides.forEach(function(el){
+  el.addEventListener('error',function(){
+    setTimeout(function(){ show(idx+1); }, 800);
+  });
+});
 show(0); start();
 </script>
 </body>
