@@ -1,0 +1,3186 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>AI CENTER | BSS1815 PRO-MAX DMP</title>
+
+<meta
+  name="description"
+  content="BSS1815 PRO-MAX DMP AI Center — Assistant, Writer, Voice, Automation ak zouti entèlijans atifisyèl."
+>
+
+<meta name="theme-color" content="#000000">
+
+<style>
+
+:root{
+  --black:#000;
+  --black2:#080300;
+  --black3:#120600;
+
+  --orange:#ff7900;
+  --orange2:#ff8c1a;
+  --orange3:#ffad4d;
+
+  --text:#ffc589;
+
+  --border:rgba(255,121,0,.30);
+  --border2:rgba(255,121,0,.75);
+
+  --glow:
+    0 0 18px rgba(255,121,0,.35);
+
+  --glow2:
+    0 0 20px rgba(255,121,0,.65),
+    0 0 50px rgba(255,121,0,.20);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+
+  overflow-x:hidden;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(255,121,0,.16),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(255,121,0,.10),
+      transparent 36%
+    ),
+
+    linear-gradient(
+      180deg,
+      #000 0%,
+      #0b0400 50%,
+      #000 100%
+    );
+}
+
+body::before{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  z-index:-1;
+
+  pointer-events:none;
+
+  background-image:
+    linear-gradient(
+      rgba(255,121,0,.024) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,121,0,.024) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    42px 42px;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+textarea,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(
+    1220px,
+    calc(100% - 28px)
+  );
+
+  margin:auto;
+}
+
+/* ===================================
+   TOP BAR
+=================================== */
+
+.top-bar{
+  padding:
+    9px 15px;
+
+  text-align:center;
+
+  color:#000;
+
+  background:
+    linear-gradient(
+      90deg,
+      #913700,
+      var(--orange),
+      var(--orange3),
+      var(--orange),
+      #913700
+    );
+
+  font-size:.68rem;
+
+  font-weight:1000;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+}
+
+/* ===================================
+   HEADER
+=================================== */
+
+header{
+  position:sticky;
+  top:0;
+
+  z-index:1000;
+
+  background:
+    rgba(0,0,0,.97);
+
+  border-bottom:
+    1px solid var(--border);
+
+  backdrop-filter:
+    blur(15px);
+
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,.55);
+}
+
+.header-inner{
+  min-height:82px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+}
+
+.logo-box{
+  width:58px;
+  height:58px;
+
+  display:grid;
+
+  place-items:center;
+
+  border:
+    2px solid var(--orange);
+
+  border-radius:16px;
+
+  background:#000;
+
+  box-shadow:var(--glow);
+
+  font-size:1.7rem;
+}
+
+.brand strong{
+  display:block;
+
+  color:var(--orange);
+
+  font-size:1rem;
+
+  font-weight:1000;
+}
+
+.brand span{
+  display:block;
+
+  margin-top:5px;
+
+  color:var(--orange3);
+
+  font-size:.56rem;
+
+  font-weight:900;
+
+  letter-spacing:.09em;
+
+  text-transform:uppercase;
+}
+
+.header-actions{
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+}
+
+.home-btn{
+  padding:
+    10px 15px;
+
+  border:
+    1px solid var(--orange);
+
+  border-radius:999px;
+
+  color:var(--orange);
+
+  background:#000;
+
+  font-size:.62rem;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+}
+
+.home-btn:hover{
+  color:#000;
+
+  background:var(--orange);
+}
+
+/* LANGUAGE */
+
+.lang-switch{
+  display:flex;
+
+  gap:3px;
+
+  padding:3px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:999px;
+
+  background:#000;
+}
+
+.lang-btn{
+  min-width:38px;
+
+  padding:
+    8px 7px;
+
+  border:0;
+
+  border-radius:999px;
+
+  color:var(--orange3);
+
+  background:#000;
+
+  font-size:.60rem;
+
+  font-weight:1000;
+}
+
+.lang-btn.active{
+  color:#000;
+
+  background:var(--orange);
+}
+
+/* ===================================
+   HERO
+=================================== */
+
+.hero{
+  padding:
+    70px 0 60px;
+
+  text-align:center;
+}
+
+.hero-badge{
+  display:inline-flex;
+
+  padding:
+    9px 16px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:999px;
+
+  color:var(--orange);
+
+  background:
+    rgba(255,121,0,.07);
+
+  font-size:.67rem;
+
+  font-weight:1000;
+
+  letter-spacing:.14em;
+
+  text-transform:uppercase;
+}
+
+.ai-orb{
+  width:190px;
+  height:190px;
+
+  margin:
+    30px auto 0;
+
+  display:grid;
+
+  place-items:center;
+
+  border:
+    2px solid var(--orange);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,173,77,.20),
+      rgba(255,121,0,.08) 45%,
+      #000 75%
+    );
+
+  box-shadow:var(--glow2);
+
+  position:relative;
+
+  font-size:4rem;
+
+  animation:
+    pulse 3s ease-in-out infinite;
+}
+
+.ai-orb::before,
+.ai-orb::after{
+  content:"";
+
+  position:absolute;
+
+  border:
+    1px solid rgba(255,121,0,.45);
+
+  border-radius:50%;
+}
+
+.ai-orb::before{
+  inset:-16px;
+
+  animation:
+    rotate 12s linear infinite;
+}
+
+.ai-orb::after{
+  inset:19px;
+
+  border-style:dashed;
+
+  animation:
+    rotateReverse 8s linear infinite;
+}
+
+@keyframes pulse{
+
+  0%,
+  100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.04);
+  }
+
+}
+
+@keyframes rotate{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+@keyframes rotateReverse{
+
+  from{
+    transform:rotate(360deg);
+  }
+
+  to{
+    transform:rotate(0deg);
+  }
+
+}
+
+.hero h1{
+  margin-top:32px;
+
+  color:var(--orange);
+
+  font-size:
+    clamp(
+      2.8rem,
+      8vw,
+      6.5rem
+    );
+
+  line-height:.88;
+
+  text-transform:uppercase;
+}
+
+.hero h2{
+  margin-top:15px;
+
+  color:var(--orange3);
+
+  font-size:
+    clamp(
+      .95rem,
+      3vw,
+      1.35rem
+    );
+
+  text-transform:uppercase;
+}
+
+.hero p{
+  max-width:850px;
+
+  margin:
+    20px auto 0;
+
+  line-height:1.75;
+
+  font-size:.94rem;
+}
+
+/* ===================================
+   STATUS
+=================================== */
+
+.status-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:14px;
+
+  margin-top:42px;
+}
+
+.status-card{
+  min-height:110px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:18px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:18px;
+
+  background:
+    #050200;
+}
+
+.status-card strong{
+  color:var(--orange);
+
+  font-size:1.35rem;
+}
+
+.status-card span{
+  margin-top:7px;
+
+  font-size:.60rem;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+}
+
+/* ===================================
+   SECTION
+=================================== */
+
+.section{
+  padding:
+    75px 0;
+
+  border-top:
+    1px solid rgba(255,121,0,.10);
+}
+
+.section-head{
+  max-width:760px;
+
+  margin:
+    0 auto 38px;
+
+  text-align:center;
+}
+
+.eyebrow{
+  color:var(--orange);
+
+  font-size:.66rem;
+
+  font-weight:1000;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+}
+
+.section-title{
+  margin-top:11px;
+
+  color:var(--orange);
+
+  font-size:
+    clamp(
+      2rem,
+      5vw,
+      3.8rem
+    );
+
+  line-height:.95;
+
+  text-transform:uppercase;
+}
+
+.section-desc{
+  margin-top:16px;
+
+  line-height:1.7;
+}
+
+/* ===================================
+   AI WORKSPACE
+=================================== */
+
+.workspace{
+  overflow:hidden;
+
+  border:
+    1px solid var(--border2);
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #070200,
+      #000
+    );
+
+  box-shadow:var(--glow);
+}
+
+.workspace-tabs{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:1px;
+
+  background:
+    var(--border);
+}
+
+.workspace-tab{
+  padding:
+    18px 10px;
+
+  border:0;
+
+  color:var(--orange3);
+
+  background:#070200;
+
+  font-size:.68rem;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+}
+
+.workspace-tab.active{
+  color:#000;
+
+  background:var(--orange);
+}
+
+.workspace-body{
+  padding:
+    28px;
+}
+
+.tool-panel{
+  display:none;
+}
+
+.tool-panel.active{
+  display:block;
+}
+
+.tool-grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:24px;
+}
+
+.input-box,
+.output-box{
+  min-height:430px;
+
+  padding:22px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:20px;
+
+  background:#030100;
+}
+
+.panel-label{
+  color:var(--orange);
+
+  font-size:.68rem;
+
+  font-weight:1000;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+}
+
+textarea{
+  width:100%;
+  min-height:230px;
+
+  margin-top:15px;
+
+  resize:vertical;
+
+  padding:16px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:15px;
+
+  outline:none;
+
+  color:var(--orange3);
+
+  background:#000;
+
+  line-height:1.65;
+}
+
+textarea:focus{
+  border-color:var(--orange);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,121,0,.08);
+}
+
+.select-row{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+
+  margin-top:12px;
+}
+
+select,
+input{
+  width:100%;
+
+  padding:
+    13px 14px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:12px;
+
+  outline:none;
+
+  color:var(--orange3);
+
+  background:#000;
+}
+
+.action-row{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:15px;
+}
+
+.action-btn{
+  min-height:45px;
+
+  padding:
+    10px 17px;
+
+  border:
+    1px solid var(--orange);
+
+  border-radius:999px;
+
+  color:#000;
+
+  background:var(--orange);
+
+  font-size:.63rem;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+}
+
+.action-btn.secondary{
+  color:var(--orange);
+
+  background:#000;
+}
+
+.action-btn:hover{
+  box-shadow:var(--glow);
+
+  transform:
+    translateY(-2px);
+}
+
+.output-content{
+  min-height:260px;
+
+  margin-top:15px;
+
+  padding:18px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:15px;
+
+  color:var(--orange3);
+
+  background:#000;
+
+  line-height:1.7;
+
+  white-space:pre-wrap;
+}
+
+.output-actions{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:9px;
+
+  margin-top:14px;
+}
+
+/* ===================================
+   QUICK TOOLS
+=================================== */
+
+.quick-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:15px;
+}
+
+.quick-card{
+  min-height:210px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  padding:22px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:19px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #050200,
+      #000
+    );
+
+  transition:.25s;
+}
+
+.quick-card:hover{
+  transform:
+    translateY(-5px);
+
+  border-color:var(--orange);
+
+  box-shadow:var(--glow);
+}
+
+.quick-icon{
+  font-size:1.8rem;
+}
+
+.quick-card h3{
+  margin-top:16px;
+
+  color:var(--orange);
+
+  font-size:.90rem;
+
+  text-transform:uppercase;
+}
+
+.quick-card p{
+  margin-top:10px;
+
+  line-height:1.55;
+
+  font-size:.75rem;
+}
+
+.quick-card button{
+  margin-top:auto;
+
+  padding:
+    10px 12px;
+
+  border:
+    1px solid var(--orange);
+
+  border-radius:999px;
+
+  color:var(--orange);
+
+  background:#000;
+
+  font-size:.60rem;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+}
+
+.quick-card button:hover{
+  color:#000;
+
+  background:var(--orange);
+}
+
+/* ===================================
+   VOICE
+=================================== */
+
+.voice-box{
+  max-width:820px;
+
+  margin:auto;
+
+  padding:30px;
+
+  border:
+    1px solid var(--border2);
+
+  border-radius:24px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,121,0,.12),
+      transparent 40%
+    ),
+    #050200;
+}
+
+.voice-icon{
+  width:110px;
+  height:110px;
+
+  margin:auto;
+
+  display:grid;
+
+  place-items:center;
+
+  border:
+    2px solid var(--orange);
+
+  border-radius:50%;
+
+  color:var(--orange);
+
+  background:#000;
+
+  box-shadow:var(--glow);
+
+  font-size:2.7rem;
+}
+
+.voice-box textarea{
+  min-height:150px;
+}
+
+/* ===================================
+   AUTOMATION
+=================================== */
+
+.automation-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:16px;
+}
+
+.automation-card{
+  min-height:230px;
+
+  padding:23px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:19px;
+
+  background:#050200;
+}
+
+.automation-card h3{
+  color:var(--orange);
+
+  font-size:.90rem;
+
+  text-transform:uppercase;
+}
+
+.automation-card p{
+  margin-top:11px;
+
+  line-height:1.6;
+
+  font-size:.78rem;
+}
+
+.automation-card .status{
+  display:inline-flex;
+
+  margin-top:18px;
+
+  padding:
+    7px 11px;
+
+  border:
+    1px solid var(--orange);
+
+  border-radius:999px;
+
+  color:var(--orange);
+
+  font-size:.58rem;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+}
+
+/* ===================================
+   HISTORY
+=================================== */
+
+.history-box{
+  border:
+    1px solid var(--border);
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  background:#050200;
+}
+
+.history-header{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:18px;
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+.history-header strong{
+  color:var(--orange);
+
+  font-size:.76rem;
+
+  text-transform:uppercase;
+}
+
+.clear-btn{
+  padding:
+    8px 12px;
+
+  border:
+    1px solid var(--orange);
+
+  border-radius:999px;
+
+  color:var(--orange);
+
+  background:#000;
+
+  font-size:.58rem;
+
+  font-weight:1000;
+}
+
+.history-list{
+  padding:12px;
+}
+
+.history-item{
+  padding:14px;
+
+  border-bottom:
+    1px solid rgba(255,121,0,.12);
+
+  font-size:.76rem;
+
+  line-height:1.5;
+}
+
+.history-item:last-child{
+  border-bottom:0;
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+
+footer{
+  padding:
+    42px 0;
+
+  text-align:center;
+
+  border-top:
+    1px solid var(--border);
+
+  background:#000;
+}
+
+.footer-title{
+  color:var(--orange);
+
+  font-weight:1000;
+}
+
+.footer-text{
+  margin-top:10px;
+
+  line-height:1.7;
+
+  font-size:.68rem;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media(max-width:950px){
+
+  .tool-grid{
+    grid-template-columns:1fr;
+  }
+
+  .quick-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .automation-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:720px){
+
+  .header-inner{
+    min-height:74px;
+  }
+
+  .brand span{
+    display:none;
+  }
+
+  .home-btn{
+    padding:
+      8px 10px;
+
+    font-size:.54rem;
+  }
+
+  .status-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .workspace-tabs{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .workspace-body{
+    padding:17px;
+  }
+
+  .select-row{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .logo-box{
+    width:48px;
+    height:48px;
+  }
+
+  .brand strong{
+    font-size:.73rem;
+  }
+
+  .lang-btn{
+    min-width:32px;
+
+    padding:
+      7px 5px;
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     TOP BAR
+===================================== -->
+
+<div
+class="top-bar"
+data-ht="🤖 BSS1815 PRO-MAX DMP — AI CENTER — ENTÈLIJANS • KREYASYON • OTOMATIZASYON"
+data-fr="🤖 BSS1815 PRO-MAX DMP — AI CENTER — INTELLIGENCE • CRÉATION • AUTOMATISATION"
+data-en="🤖 BSS1815 PRO-MAX DMP — AI CENTER — INTELLIGENCE • CREATION • AUTOMATION"
+>
+🤖 BSS1815 PRO-MAX DMP — AI CENTER — ENTÈLIJANS • KREYASYON • OTOMATIZASYON
+</div>
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header>
+
+<div class="container header-inner">
+
+<a
+href="../../index.html"
+class="brand"
+>
+
+<div class="logo-box">
+🤖
+</div>
+
+<div>
+
+<strong>
+BSS1815 AI CENTER
+</strong>
+
+<span
+data-ht="ENTÈLIJANS ATIFISYÈL SANTRAL"
+data-fr="CENTRE D’INTELLIGENCE ARTIFICIELLE"
+data-en="ARTIFICIAL INTELLIGENCE CENTER"
+>
+ENTÈLIJANS ATIFISYÈL SANTRAL
+</span>
+
+</div>
+
+</a>
+
+<div class="header-actions">
+
+<a
+href="../../index.html"
+class="home-btn"
+data-ht="← RETOUNEN AKÈY"
+data-fr="← RETOUR ACCUEIL"
+data-en="← BACK HOME"
+>
+← RETOUNEN AKÈY
+</a>
+
+<div class="lang-switch">
+
+<button
+type="button"
+class="lang-btn active"
+data-lang="ht"
+>
+KRE
+</button>
+
+<button
+type="button"
+class="lang-btn"
+data-lang="fr"
+>
+FRA
+</button>
+
+<button
+type="button"
+class="lang-btn"
+data-lang="en"
+>
+ENG
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     HERO
+===================================== -->
+
+<section class="hero">
+
+<div class="container">
+
+<div
+class="hero-badge"
+data-ht="BSS1815 PRO-MAX DMP • SMART PLATFORM"
+data-fr="BSS1815 PRO-MAX DMP • PLATEFORME INTELLIGENTE"
+data-en="BSS1815 PRO-MAX DMP • SMART PLATFORM"
+>
+BSS1815 PRO-MAX DMP • SMART PLATFORM
+</div>
+
+<div class="ai-orb">
+🤖
+</div>
+
+<h1>
+AI CENTER
+</h1>
+
+<h2
+data-ht="ASSISTANT • WRITER • VOICE • AUTOMATION"
+data-fr="ASSISTANT • RÉDACTION • VOIX • AUTOMATISATION"
+data-en="ASSISTANT • WRITER • VOICE • AUTOMATION"
+>
+ASSISTANT • WRITER • VOICE • AUTOMATION
+</h2>
+
+<p
+data-ht="AI Center se sant entèlijans atifisyèl BSS1815 PRO-MAX DMP. Li òganize zouti pou ekri, prepare kominikasyon, kreye kontni, travay ak vwa, epi prepare automatisation nan yon sèl espas."
+
+data-fr="AI Center est le centre d’intelligence artificielle de BSS1815 PRO-MAX DMP. Il rassemble les outils de rédaction, communication, création de contenu, voix et automatisation dans un seul espace."
+
+data-en="AI Center is the artificial intelligence hub of BSS1815 PRO-MAX DMP. It organizes tools for writing, communication, content creation, voice and automation in one workspace."
+>
+AI Center se sant entèlijans atifisyèl BSS1815 PRO-MAX DMP.
+</p>
+
+<div class="status-grid">
+
+<div class="status-card">
+<strong>AI</strong>
+<span>ASSISTANT</span>
+</div>
+
+<div class="status-card">
+<strong>✍️</strong>
+<span>WRITER</span>
+</div>
+
+<div class="status-card">
+<strong>🎙️</strong>
+<span>VOICE</span>
+</div>
+
+<div class="status-card">
+<strong>⚡</strong>
+<span>AUTOMATION</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     WORKSPACE
+===================================== -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="eyebrow">
+AI WORKSPACE
+</div>
+
+<h2
+class="section-title"
+data-ht="SANT KREYASYON"
+data-fr="CENTRE DE CRÉATION"
+data-en="CREATION CENTER"
+>
+SANT KREYASYON
+</h2>
+
+<p
+class="section-desc"
+data-ht="Chwazi zouti ou bezwen an, ekri demann ou, epi prepare kontni ou dirèkteman nan AI Center."
+
+data-fr="Choisissez l’outil dont vous avez besoin, saisissez votre demande et préparez votre contenu directement dans AI Center."
+
+data-en="Choose the tool you need, enter your request and prepare your content directly inside AI Center."
+>
+Chwazi zouti ou bezwen an.
+</p>
+
+</div>
+
+<div class="workspace">
+
+<div class="workspace-tabs">
+
+<button
+class="workspace-tab active"
+data-panel="assistantPanel"
+>
+🤖 AI ASSISTANT
+</button>
+
+<button
+class="workspace-tab"
+data-panel="writerPanel"
+>
+✍️ AI WRITER
+</button>
+
+<button
+class="workspace-tab"
+data-panel="voicePanel"
+>
+🎙️ VOICE
+</button>
+
+<button
+class="workspace-tab"
+data-panel="automationPanel"
+>
+⚡ AUTOMATION
+</button>
+
+</div>
+
+<div class="workspace-body">
+
+<!-- AI ASSISTANT -->
+
+<div
+class="tool-panel active"
+id="assistantPanel"
+>
+
+<div class="tool-grid">
+
+<div class="input-box">
+
+<div
+class="panel-label"
+data-ht="DEMANN OU"
+data-fr="VOTRE DEMANDE"
+data-en="YOUR REQUEST"
+>
+DEMANN OU
+</div>
+
+<textarea
+id="assistantInput"
+placeholder="Ekri kestyon oswa demann ou isit la..."
+></textarea>
+
+<div class="select-row">
+
+<select id="assistantType">
+
+<option value="general">
+General Assistant
+</option>
+
+<option value="community">
+BSS1815 Community
+</option>
+
+<option value="administration">
+Administration
+</option>
+
+<option value="media">
+Media / Radio
+</option>
+
+<option value="academy">
+Academy
+</option>
+
+<option value="immigration">
+Maximax Services
+</option>
+
+</select>
+
+<select id="assistantLanguage">
+
+<option value="ht">
+Kreyòl
+</option>
+
+<option value="fr">
+Français
+</option>
+
+<option value="en">
+English
+</option>
+
+</select>
+
+</div>
+
+<div class="action-row">
+
+<button
+class="action-btn"
+id="assistantGenerate"
+>
+🤖 GENERATE
+</button>
+
+<button
+class="action-btn secondary"
+id="assistantClear"
+>
+CLEAR
+</button>
+
+</div>
+
+</div>
+
+<div class="output-box">
+
+<div
+class="panel-label"
+data-ht="REZILTA"
+data-fr="RÉSULTAT"
+data-en="RESULT"
+>
+REZILTA
+</div>
+
+<div
+class="output-content"
+id="assistantOutput"
+>
+AI Center pare. Ekri yon demann pou kòmanse.
+</div>
+
+<div class="output-actions">
+
+<button
+class="action-btn secondary"
+data-copy="assistantOutput"
+>
+📋 COPY
+</button>
+
+<button
+class="action-btn secondary"
+data-save="assistantOutput"
+>
+💾 SAVE
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- AI WRITER -->
+
+<div
+class="tool-panel"
+id="writerPanel"
+>
+
+<div class="tool-grid">
+
+<div class="input-box">
+
+<div
+class="panel-label"
+data-ht="SA OU VLE EKRI"
+data-fr="CE QUE VOUS VOULEZ ÉCRIRE"
+data-en="WHAT YOU WANT TO WRITE"
+>
+SA OU VLE EKRI
+</div>
+
+<textarea
+id="writerInput"
+placeholder="Egzanp: Ekri yon anons ofisyèl pou kominote BSS1815..."
+></textarea>
+
+<div class="select-row">
+
+<select id="writerType">
+
+<option value="announcement">
+Official Announcement
+</option>
+
+<option value="letter">
+Letter
+</option>
+
+<option value="social">
+Social Media Post
+</option>
+
+<option value="speech">
+Speech
+</option>
+
+<option value="condolence">
+Condolence
+</option>
+
+<option value="birthday">
+Birthday
+</option>
+
+<option value="emergency">
+Emergency Alert
+</option>
+
+<option value="manifesto">
+Manifesto
+</option>
+
+</select>
+
+<select id="writerTone">
+
+<option value="professional">
+Professional
+</option>
+
+<option value="formal">
+Formal
+</option>
+
+<option value="powerful">
+Powerful
+</option>
+
+<option value="warm">
+Warm
+</option>
+
+<option value="short">
+Short & Direct
+</option>
+
+</select>
+
+</div>
+
+<div class="action-row">
+
+<button
+class="action-btn"
+id="writerGenerate"
+>
+✍️ GENERATE
+</button>
+
+<button
+class="action-btn secondary"
+id="writerClear"
+>
+CLEAR
+</button>
+
+</div>
+
+</div>
+
+<div class="output-box">
+
+<div
+class="panel-label"
+data-ht="DOKIMAN"
+data-fr="DOCUMENT"
+data-en="DOCUMENT"
+>
+DOKIMAN
+</div>
+
+<div
+class="output-content"
+id="writerOutput"
+>
+AI Writer pare pou kreye kontni.
+</div>
+
+<div class="output-actions">
+
+<button
+class="action-btn secondary"
+data-copy="writerOutput"
+>
+📋 COPY
+</button>
+
+<button
+class="action-btn secondary"
+data-save="writerOutput"
+>
+💾 SAVE
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- VOICE -->
+
+<div
+class="tool-panel"
+id="voicePanel"
+>
+
+<div class="voice-box">
+
+<div class="voice-icon">
+🎙️
+</div>
+
+<h2
+style="margin-top:18px;color:#ff7900"
+>
+VOICE CENTER
+</h2>
+
+<p
+style="margin-top:12px;line-height:1.6"
+data-ht="Ekri tèks la epi itilize sistèm vwa aparèy la pou tande li."
+
+data-fr="Écrivez votre texte puis utilisez la synthèse vocale de votre appareil pour l’écouter."
+
+data-en="Enter text and use your device speech system to hear it."
+>
+Ekri tèks la epi koute li.
+</p>
+
+<textarea
+id="voiceText"
+placeholder="Ekri mesaj pou vwa a li..."
+></textarea>
+
+<div class="select-row">
+
+<select id="voiceLanguage">
+
+<option value="fr-FR">
+Français
+</option>
+
+<option value="en-US">
+English
+</option>
+
+</select>
+
+<select id="voiceRate">
+
+<option value="0.8">
+Slow
+</option>
+
+<option value="1" selected>
+Normal
+</option>
+
+<option value="1.15">
+Fast
+</option>
+
+</select>
+
+</div>
+
+<div class="action-row"
+style="justify-content:center"
+>
+
+<button
+class="action-btn"
+id="speakButton"
+>
+▶ SPEAK
+</button>
+
+<button
+class="action-btn secondary"
+id="stopSpeakButton"
+>
+■ STOP
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- AUTOMATION -->
+
+<div
+class="tool-panel"
+id="automationPanel"
+>
+
+<div class="automation-grid">
+
+<div class="automation-card">
+
+<h3>
+🔔 REMINDERS
+</h3>
+
+<p
+data-ht="Prepare rapèl pou reyinyon, evènman, anivèsè ak travay administratif."
+
+data-fr="Préparez des rappels pour les réunions, événements, anniversaires et tâches administratives."
+
+data-en="Prepare reminders for meetings, events, birthdays and administrative tasks."
+>
+Prepare rapèl.
+</p>
+
+<div class="status">
+READY
+</div>
+
+</div>
+
+<div class="automation-card">
+
+<h3>
+📢 COMMUNICATION
+</h3>
+
+<p
+data-ht="Prepare mesaj ak anons pou Communication Center."
+
+data-fr="Préparez des messages et annonces pour le Communication Center."
+
+data-en="Prepare messages and announcements for the Communication Center."
+>
+Prepare mesaj ak anons.
+</p>
+
+<div class="status">
+READY
+</div>
+
+</div>
+
+<div class="automation-card">
+
+<h3>
+📊 REPORTS
+</h3>
+
+<p
+data-ht="Prepare rezime ak rapò pou administrasyon BSS1815."
+
+data-fr="Préparez des résumés et rapports pour l’administration BSS1815."
+
+data-en="Prepare summaries and reports for BSS1815 administration."
+>
+Prepare rapò.
+</p>
+
+<div class="status">
+READY
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     QUICK TOOLS
+===================================== -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="eyebrow">
+QUICK AI TOOLS
+</div>
+
+<h2
+class="section-title"
+data-ht="ZOUTI RAPID"
+data-fr="OUTILS RAPIDES"
+data-en="QUICK TOOLS"
+>
+ZOUTI RAPID
+</h2>
+
+</div>
+
+<div class="quick-grid">
+
+<div class="quick-card">
+
+<div class="quick-icon">
+📢
+</div>
+
+<h3>
+ANNOUNCEMENT
+</h3>
+
+<p
+data-ht="Prepare yon anons ofisyèl rapid pou BSS1815."
+
+data-fr="Préparez rapidement une annonce officielle BSS1815."
+
+data-en="Quickly prepare an official BSS1815 announcement."
+>
+Prepare yon anons.
+</p>
+
+<button
+data-template="announcement"
+>
+OPEN
+</button>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon">
+📝
+</div>
+
+<h3>
+LETTER
+</h3>
+
+<p
+data-ht="Prepare yon lèt pwofesyonèl oswa administratif."
+
+data-fr="Préparez une lettre professionnelle ou administrative."
+
+data-en="Prepare a professional or administrative letter."
+>
+Prepare yon lèt.
+</p>
+
+<button
+data-template="letter"
+>
+OPEN
+</button>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon">
+📱
+</div>
+
+<h3>
+SOCIAL POST
+</h3>
+
+<p
+data-ht="Prepare kontni pou Facebook, WhatsApp, Instagram, TikTok oswa X."
+
+data-fr="Préparez du contenu pour Facebook, WhatsApp, Instagram, TikTok ou X."
+
+data-en="Prepare content for Facebook, WhatsApp, Instagram, TikTok or X."
+>
+Prepare yon post.
+</p>
+
+<button
+data-template="social"
+>
+OPEN
+</button>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon">
+🎤
+</div>
+
+<h3>
+SPEECH
+</h3>
+
+<p
+data-ht="Prepare diskou, mesaj oswa script pou prezantasyon."
+
+data-fr="Préparez un discours, message ou script de présentation."
+
+data-en="Prepare a speech, message or presentation script."
+>
+Prepare yon diskou.
+</p>
+
+<button
+data-template="speech"
+>
+OPEN
+</button>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon">
+🕊️
+</div>
+
+<h3>
+CONDOLENCE
+</h3>
+
+<p
+data-ht="Prepare yon mesaj kondoleyans ak respè."
+
+data-fr="Préparez un message de condoléances respectueux."
+
+data-en="Prepare a respectful condolence message."
+>
+Prepare kondoleyans.
+</p>
+
+<button
+data-template="condolence"
+>
+OPEN
+</button>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon">
+🎂
+</div>
+
+<h3>
+BIRTHDAY
+</h3>
+
+<p
+data-ht="Prepare mesaj anivèsè pou manm kominote a."
+
+data-fr="Préparez un message d’anniversaire pour un membre."
+
+data-en="Prepare a birthday message for a community member."
+>
+Prepare mesaj anivèsè.
+</p>
+
+<button
+data-template="birthday"
+>
+OPEN
+</button>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon">
+🚨
+</div>
+
+<h3>
+EMERGENCY ALERT
+</h3>
+
+<p
+data-ht="Prepare yon alèt ijans kout, klè ak dirèk."
+
+data-fr="Préparez une alerte urgente courte, claire et directe."
+
+data-en="Prepare a short, clear and direct emergency alert."
+>
+Prepare alèt ijans.
+</p>
+
+<button
+data-template="emergency"
+>
+OPEN
+</button>
+
+</div>
+
+<div class="quick-card">
+
+<div class="quick-icon">
+🌎
+</div>
+
+<h3>
+DDN MESSAGE
+</h3>
+
+<p
+data-ht="Prepare mesaj DEVAN DEVAN NÈT™ ak slogan mouvman an."
+
+data-fr="Préparez un message DEVAN DEVAN NÈT™ avec le slogan du mouvement."
+
+data-en="Prepare a DEVAN DEVAN NÈT™ message with the movement slogan."
+>
+Prepare mesaj DDN.
+</p>
+
+<button
+data-template="ddn"
+>
+OPEN
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     HISTORY
+===================================== -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="eyebrow">
+LOCAL HISTORY
+</div>
+
+<h2
+class="section-title"
+data-ht="ISTORIK TRAVAY"
+data-fr="HISTORIQUE"
+data-en="WORK HISTORY"
+>
+ISTORIK TRAVAY
+</h2>
+
+</div>
+
+<div class="history-box">
+
+<div class="history-header">
+
+<strong
+data-ht="DÈNYE KONTNI YO"
+data-fr="CONTENUS RÉCENTS"
+data-en="RECENT CONTENT"
+>
+DÈNYE KONTNI YO
+</strong>
+
+<button
+class="clear-btn"
+id="clearHistory"
+>
+CLEAR HISTORY
+</button>
+
+</div>
+
+<div
+class="history-list"
+id="historyList"
+>
+
+<div class="history-item">
+Pa gen okenn kontni anrejistre pou kounye a.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     FOOTER
+===================================== -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-title">
+🤖 BSS1815 PRO-MAX DMP — AI CENTER
+</div>
+
+<div class="footer-text">
+
+<span
+data-ht="ASSISTANT • WRITER • VOICE • AUTOMATION"
+data-fr="ASSISTANT • RÉDACTION • VOIX • AUTOMATISATION"
+data-en="ASSISTANT • WRITER • VOICE • AUTOMATION"
+>
+ASSISTANT • WRITER • VOICE • AUTOMATION
+</span>
+
+<br><br>
+
+<a href="../../index.html">
+← BSS1815 PRO-MAX DMP
+</a>
+
+<br><br>
+
+©
+<span id="year"></span>
+BSS1815 PRO-MAX DMP
+
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+(function(){
+
+"use strict";
+
+/* ===================================
+   YEAR
+=================================== */
+
+var year =
+document.getElementById(
+  "year"
+);
+
+if(year){
+
+  year.textContent =
+    new Date().getFullYear();
+
+}
+
+/* ===================================
+   LANGUAGE
+=================================== */
+
+var langButtons =
+document.querySelectorAll(
+  ".lang-btn"
+);
+
+function setLanguage(lang){
+
+  document.documentElement.lang =
+    lang;
+
+  document.querySelectorAll(
+    "[data-ht][data-fr][data-en]"
+  )
+  .forEach(
+    function(element){
+
+      var text =
+        element.getAttribute(
+          "data-" + lang
+        );
+
+      if(text !== null){
+
+        element.textContent =
+          text;
+
+      }
+
+    }
+  );
+
+  langButtons.forEach(
+    function(button){
+
+      button.classList.toggle(
+        "active",
+        button.dataset.lang === lang
+      );
+
+    }
+  );
+
+  try{
+
+    localStorage.setItem(
+      "bss-ai-language",
+      lang
+    );
+
+  }catch(error){}
+
+}
+
+langButtons.forEach(
+  function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        setLanguage(
+          this.dataset.lang
+        );
+
+      }
+    );
+
+  }
+);
+
+var savedLanguage =
+  "ht";
+
+try{
+
+  savedLanguage =
+    localStorage.getItem(
+      "bss-ai-language"
+    ) || "ht";
+
+}catch(error){}
+
+setLanguage(
+  savedLanguage
+);
+
+/* ===================================
+   TABS
+=================================== */
+
+var tabs =
+document.querySelectorAll(
+  ".workspace-tab"
+);
+
+var panels =
+document.querySelectorAll(
+  ".tool-panel"
+);
+
+tabs.forEach(
+  function(tab){
+
+    tab.addEventListener(
+      "click",
+      function(){
+
+        tabs.forEach(
+          function(item){
+
+            item.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+        panels.forEach(
+          function(panel){
+
+            panel.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+        tab.classList.add(
+          "active"
+        );
+
+        var target =
+          document.getElementById(
+            tab.dataset.panel
+          );
+
+        if(target){
+
+          target.classList.add(
+            "active"
+          );
+
+        }
+
+      }
+    );
+
+  }
+);
+
+/* ===================================
+   HISTORY
+=================================== */
+
+function getHistory(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "bss-ai-history"
+      ) || "[]"
+    );
+
+  }
+
+  catch(error){
+
+    return [];
+
+  }
+
+}
+
+function saveHistory(
+  type,
+  content
+){
+
+  if(!content){
+    return;
+  }
+
+  var history =
+    getHistory();
+
+  history.unshift({
+
+    type:type,
+
+    content:content,
+
+    date:
+      new Date()
+      .toLocaleString()
+
+  });
+
+  history =
+    history.slice(
+      0,
+      20
+    );
+
+  try{
+
+    localStorage.setItem(
+      "bss-ai-history",
+      JSON.stringify(
+        history
+      )
+    );
+
+  }catch(error){}
+
+  renderHistory();
+
+}
+
+function renderHistory(){
+
+  var box =
+    document.getElementById(
+      "historyList"
+    );
+
+  if(!box){
+    return;
+  }
+
+  var history =
+    getHistory();
+
+  if(
+    history.length === 0
+  ){
+
+    box.innerHTML =
+      '<div class="history-item">Pa gen okenn kontni anrejistre pou kounye a.</div>';
+
+    return;
+
+  }
+
+  box.innerHTML =
+    history.map(
+      function(item){
+
+        return (
+          '<div class="history-item">'
+          +
+          '<strong style="color:#ff7900">'
+          +
+          item.type
+          +
+          '</strong><br>'
+          +
+          item.content
+          .replace(
+            /</g,
+            "&lt;"
+          )
+          .replace(
+            />/g,
+            "&gt;"
+          )
+          +
+          '<br><small>'
+          +
+          item.date
+          +
+          '</small></div>'
+        );
+
+      }
+    ).join("");
+
+}
+
+renderHistory();
+
+var clearHistory =
+document.getElementById(
+  "clearHistory"
+);
+
+if(clearHistory){
+
+  clearHistory.addEventListener(
+    "click",
+    function(){
+
+      localStorage.removeItem(
+        "bss-ai-history"
+      );
+
+      renderHistory();
+
+    }
+  );
+
+}
+
+/* ===================================
+   ASSISTANT
+=================================== */
+
+var assistantGenerate =
+document.getElementById(
+  "assistantGenerate"
+);
+
+if(assistantGenerate){
+
+  assistantGenerate.addEventListener(
+    "click",
+    function(){
+
+      var input =
+        document.getElementById(
+          "assistantInput"
+        );
+
+      var output =
+        document.getElementById(
+          "assistantOutput"
+        );
+
+      var type =
+        document.getElementById(
+          "assistantType"
+        ).value;
+
+      var language =
+        document.getElementById(
+          "assistantLanguage"
+        ).value;
+
+      var text =
+        input.value.trim();
+
+      if(!text){
+
+        output.textContent =
+          "Ekri yon demann anvan.";
+
+        return;
+
+      }
+
+      var intro = "";
+
+      if(language === "fr"){
+
+        intro =
+          "BSS1815 AI CENTER\n\nDemande reçue :\n";
+
+      }
+
+      else if(language === "en"){
+
+        intro =
+          "BSS1815 AI CENTER\n\nRequest received:\n";
+
+      }
+
+      else{
+
+        intro =
+          "BSS1815 AI CENTER\n\nDemann resevwa:\n";
+
+      }
+
+      output.textContent =
+        intro
+        +
+        text
+        +
+        "\n\nMODE: "
+        +
+        type.toUpperCase()
+        +
+        "\n\nAI Center interface la pare pou koneksyon ak motè AI/API.";
+
+      saveHistory(
+        "AI ASSISTANT",
+        text
+      );
+
+    }
+  );
+
+}
+
+var assistantClear =
+document.getElementById(
+  "assistantClear"
+);
+
+if(assistantClear){
+
+  assistantClear.addEventListener(
+    "click",
+    function(){
+
+      document.getElementById(
+        "assistantInput"
+      ).value = "";
+
+      document.getElementById(
+        "assistantOutput"
+      ).textContent =
+        "AI Center pare. Ekri yon demann pou kòmanse.";
+
+    }
+  );
+
+}
+
+/* ===================================
+   WRITER
+=================================== */
+
+var writerGenerate =
+document.getElementById(
+  "writerGenerate"
+);
+
+if(writerGenerate){
+
+  writerGenerate.addEventListener(
+    "click",
+    function(){
+
+      var input =
+        document.getElementById(
+          "writerInput"
+        );
+
+      var output =
+        document.getElementById(
+          "writerOutput"
+        );
+
+      var type =
+        document.getElementById(
+          "writerType"
+        ).value;
+
+      var tone =
+        document.getElementById(
+          "writerTone"
+        ).value;
+
+      var text =
+        input.value.trim();
+
+      if(!text){
+
+        output.textContent =
+          "Ekri sa ou bezwen prepare anvan.";
+
+        return;
+
+      }
+
+      output.textContent =
+        "BSS1815 AI WRITER\n\n"
+        +
+        "TYPE: "
+        +
+        type.toUpperCase()
+        +
+        "\n"
+        +
+        "TONE: "
+        +
+        tone.toUpperCase()
+        +
+        "\n\n"
+        +
+        text
+        +
+        "\n\n"
+        +
+        "Draft la pare pou koneksyon ak motè AI/API.";
+
+      saveHistory(
+        "AI WRITER",
+        text
+      );
+
+    }
+  );
+
+}
+
+var writerClear =
+document.getElementById(
+  "writerClear"
+);
+
+if(writerClear){
+
+  writerClear.addEventListener(
+    "click",
+    function(){
+
+      document.getElementById(
+        "writerInput"
+      ).value = "";
+
+      document.getElementById(
+        "writerOutput"
+      ).textContent =
+        "AI Writer pare pou kreye kontni.";
+
+    }
+  );
+
+}
+
+/* ===================================
+   COPY
+=================================== */
+
+document.querySelectorAll(
+  "[data-copy]"
+)
+.forEach(
+  function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        var target =
+          document.getElementById(
+            this.dataset.copy
+          );
+
+        if(!target){
+          return;
+        }
+
+        navigator.clipboard
+        .writeText(
+          target.textContent
+        )
+        .then(
+          function(){
+
+            button.textContent =
+              "✅ COPIED";
+
+            setTimeout(
+              function(){
+
+                button.textContent =
+                  "📋 COPY";
+
+              },
+              1500
+            );
+
+          }
+        )
+        .catch(
+          function(){}
+        );
+
+      }
+    );
+
+  }
+);
+
+/* ===================================
+   SAVE
+=================================== */
+
+document.querySelectorAll(
+  "[data-save]"
+)
+.forEach(
+  function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        var target =
+          document.getElementById(
+            this.dataset.save
+          );
+
+        if(!target){
+          return;
+        }
+
+        saveHistory(
+          "SAVED OUTPUT",
+          target.textContent
+        );
+
+        button.textContent =
+          "✅ SAVED";
+
+        setTimeout(
+          function(){
+
+            button.textContent =
+              "💾 SAVE";
+
+          },
+          1500
+        );
+
+      }
+    );
+
+  }
+);
+
+/* ===================================
+   VOICE
+=================================== */
+
+var speakButton =
+document.getElementById(
+  "speakButton"
+);
+
+if(speakButton){
+
+  speakButton.addEventListener(
+    "click",
+    function(){
+
+      if(
+        !("speechSynthesis" in window)
+      ){
+
+        alert(
+          "Speech synthesis pa disponib sou aparèy sa."
+        );
+
+        return;
+
+      }
+
+      var text =
+        document.getElementById(
+          "voiceText"
+        ).value.trim();
+
+      if(!text){
+        return;
+      }
+
+      speechSynthesis.cancel();
+
+      var utterance =
+        new SpeechSynthesisUtterance(
+          text
+        );
+
+      utterance.lang =
+        document.getElementById(
+          "voiceLanguage"
+        ).value;
+
+      utterance.rate =
+        Number(
+          document.getElementById(
+            "voiceRate"
+          ).value
+        );
+
+      speechSynthesis.speak(
+        utterance
+      );
+
+      saveHistory(
+        "VOICE",
+        text
+      );
+
+    }
+  );
+
+}
+
+var stopSpeakButton =
+document.getElementById(
+  "stopSpeakButton"
+);
+
+if(stopSpeakButton){
+
+  stopSpeakButton.addEventListener(
+    "click",
+    function(){
+
+      if(
+        "speechSynthesis" in window
+      ){
+
+        speechSynthesis.cancel();
+
+      }
+
+    }
+  );
+
+}
+
+/* ===================================
+   QUICK TEMPLATES
+=================================== */
+
+var templates = {
+
+announcement:
+"Ekri yon anons ofisyèl pou BSS1815 PRO-MAX DMP.",
+
+letter:
+"Ekri yon lèt pwofesyonèl ak administratif.",
+
+social:
+"Ekri yon post pou rezo sosyal BSS1815.",
+
+speech:
+"Ekri yon diskou kout, pwisan ak pwofesyonèl.",
+
+condolence:
+"Ekri yon mesaj kondoleyans ak respè.",
+
+birthday:
+"Ekri yon mesaj anivèsè pou yon manm BSS1815.",
+
+emergency:
+"Ekri yon alèt ijans kout, klè ak dirèk.",
+
+ddn:
+"Ekri yon mesaj DEVAN DEVAN NÈT™ ak slogan: BATI POU JODI A. PARE POU DEMEN."
+
+};
+
+document.querySelectorAll(
+  "[data-template]"
+)
+.forEach(
+  function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        var key =
+          this.dataset.template;
+
+        var text =
+          templates[key] || "";
+
+        document.getElementById(
+          "writerInput"
+        ).value =
+          text;
+
+        tabs.forEach(
+          function(tab){
+
+            tab.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+        panels.forEach(
+          function(panel){
+
+            panel.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+        document.querySelector(
+          '[data-panel="writerPanel"]'
+        )
+        .classList.add(
+          "active"
+        );
+
+        document.getElementById(
+          "writerPanel"
+        )
+        .classList.add(
+          "active"
+        );
+
+        document.getElementById(
+          "writerPanel"
+        )
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+      }
+    );
+
+  }
+);
+
+})();
+
+</script>
+
+</body>
+</html>
