@@ -1,12 +1,15 @@
-Worked for 9s
-
 <!DOCTYPE html>
 <html lang="ht" translate="no">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0"
+  >
 
-  <title>BSS1815 PRO-MAX DMP | Digital Management Platform</title>
+  <title>
+    BSS1815 PRO-MAX DMP | Digital Management Platform
+  </title>
 
   <meta
     name="description"
@@ -21,11 +24,18 @@ Worked for 9s
     :root {
       --black: #000000;
       --black-two: #080300;
+      --black-three: #100500;
       --orange: #ff7900;
+      --orange-two: #ff8c1a;
       --apricot: #ffad4d;
       --text: #ffc589;
-      --border: rgba(255, 121, 0, 0.32);
-      --strong-border: rgba(255, 121, 0, 0.72);
+
+      --border:
+        rgba(255, 121, 0, 0.32);
+
+      --strong-border:
+        rgba(255, 121, 0, 0.72);
+
       --glow:
         0 0 18px rgba(255, 121, 0, 0.55),
         0 0 48px rgba(255, 121, 0, 0.20);
@@ -44,8 +54,14 @@ Worked for 9s
     body {
       min-height: 100vh;
       overflow-x: hidden;
+
       color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background:
         radial-gradient(
           circle at 18% 15%,
@@ -67,10 +83,13 @@ Worked for 9s
 
     body::before {
       content: "";
+
       position: fixed;
       inset: 0;
       z-index: -1;
+
       pointer-events: none;
+
       background-image:
         linear-gradient(
           rgba(255, 121, 0, 0.025) 1px,
@@ -81,6 +100,7 @@ Worked for 9s
           rgba(255, 121, 0, 0.025) 1px,
           transparent 1px
         );
+
       background-size: 44px 44px;
     }
 
@@ -100,18 +120,32 @@ Worked for 9s
     }
 
     .container {
-      width: min(1220px, calc(100% - 28px));
+      width:
+        min(
+          1220px,
+          calc(100% - 28px)
+        );
+
       margin: auto;
     }
 
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+
     .top-bar {
       padding: 10px 15px;
+
       color: #000000;
+
       text-align: center;
+
       font-size: 0.68rem;
       font-weight: 1000;
       letter-spacing: 0.08em;
+
       text-transform: uppercase;
+
       background:
         linear-gradient(
           90deg,
@@ -123,83 +157,119 @@ Worked for 9s
         );
     }
 
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.97);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.60);
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        rgba(0, 0, 0, 0.97);
+
+      backdrop-filter:
+        blur(14px);
+
+      box-shadow:
+        0 8px 28px
+        rgba(0, 0, 0, 0.60);
     }
 
     .header-inner {
       min-height: 86px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
+
       gap: 12px;
     }
 
     .brand-video-wrap {
       width: 66px;
       height: 66px;
+
       overflow: hidden;
       flex-shrink: 0;
-      border: 2px solid var(--orange);
+
+      border:
+        2px solid var(--orange);
+
       border-radius: 17px;
+
       background: #000000;
+
       box-shadow: var(--glow);
     }
 
     .brand-video {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
     }
 
     .brand-text strong {
       display: block;
+
       color: var(--orange);
+
       font-size: 1rem;
       font-weight: 1000;
     }
 
     .brand-text span {
       display: block;
+
       margin-top: 5px;
+
       color: var(--apricot);
+
       font-size: 0.52rem;
       font-weight: 900;
       letter-spacing: 0.08em;
+
       text-transform: uppercase;
     }
 
     .header-right {
       display: flex;
       align-items: center;
+
       gap: 9px;
     }
 
     .nav {
       display: flex;
       align-items: center;
+
       gap: 3px;
     }
 
     .nav a {
       padding: 9px 11px;
+
       border-radius: 999px;
+
       color: var(--apricot);
+
       font-size: 0.61rem;
       font-weight: 1000;
+
       text-transform: uppercase;
+
       transition: 0.2s;
     }
 
@@ -210,21 +280,32 @@ Worked for 9s
 
     .lang-switch {
       display: flex;
+
       gap: 3px;
+
       padding: 3px;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 999px;
+
       background: #000000;
     }
 
     .lang-btn {
       min-width: 42px;
+
       padding: 8px 9px;
+
       border: 0;
       border-radius: 999px;
+
       color: var(--apricot);
       background: #000000;
+
       cursor: pointer;
+
       font-size: 0.61rem;
       font-weight: 1000;
     }
@@ -236,47 +317,75 @@ Worked for 9s
 
     .menu-toggle {
       display: none;
+
       width: 44px;
       height: 42px;
-      border: 1px solid var(--orange);
+
+      border:
+        1px solid var(--orange);
+
       border-radius: 11px;
+
       color: var(--orange);
       background: #000000;
+
       cursor: pointer;
+
       font-size: 1.2rem;
     }
 
+    /* =====================================================
+       HERO
+    ===================================================== */
+
     .hero {
-      min-height: calc(100vh - 115px);
+      min-height:
+        calc(100vh - 115px);
+
       display: flex;
       align-items: center;
+
       padding: 52px 0 76px;
+
       text-align: center;
     }
 
     .platform-label,
     .eyebrow {
       color: var(--orange);
+
       font-size: 0.69rem;
       font-weight: 1000;
       letter-spacing: 0.18em;
+
       text-transform: uppercase;
     }
 
     .hero-video-frame {
       position: relative;
-      width: min(95vw, 690px);
+
+      width:
+        min(95vw, 690px);
+
       margin: 30px auto 0;
+
       overflow: hidden;
-      border: 2px solid var(--orange);
+
+      border:
+        2px solid var(--orange);
+
       border-radius: 28px;
+
       background: #000000;
+
       box-shadow: var(--glow);
     }
 
     .hero-logo-video {
       width: 100%;
+
       object-fit: contain;
+
       background: #000000;
     }
 
@@ -285,62 +394,106 @@ Worked for 9s
       right: 14px;
       bottom: 14px;
       z-index: 10;
+
       padding: 10px 14px;
-      border: 1px solid var(--orange);
+
+      border:
+        1px solid var(--orange);
+
       border-radius: 999px;
+
       color: var(--orange);
-      background: rgba(0, 0, 0, 0.92);
+
+      background:
+        rgba(0, 0, 0, 0.92);
+
       cursor: pointer;
+
       font-size: 0.60rem;
       font-weight: 1000;
     }
 
     .hero h1 {
       margin-top: 28px;
+
       color: var(--orange);
-      font-size: clamp(2.6rem, 8vw, 6.2rem);
+
+      font-size:
+        clamp(
+          2.6rem,
+          8vw,
+          6.2rem
+        );
+
       line-height: 0.88;
+
       text-transform: uppercase;
     }
 
     .hero h2 {
       margin-top: 17px;
+
       color: var(--apricot);
-      font-size: clamp(1rem, 3vw, 1.45rem);
+
+      font-size:
+        clamp(
+          1rem,
+          3vw,
+          1.45rem
+        );
+
       text-transform: uppercase;
     }
 
     .hero-description,
     .section-desc {
       max-width: 850px;
+
       margin: 19px auto 0;
+
       line-height: 1.75;
     }
+
+    /* =====================================================
+       BUTTONS
+    ===================================================== */
 
     .hero-actions {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+
       gap: 12px;
+
       margin-top: 29px;
     }
 
     .btn {
       min-height: 52px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       padding: 12px 22px;
-      border: 2px solid var(--orange);
+
+      border:
+        2px solid var(--orange);
+
       border-radius: 999px;
+
       font-size: 0.68rem;
       font-weight: 1000;
+
       text-transform: uppercase;
+
       transition: 0.25s;
     }
 
     .btn:hover {
-      transform: translateY(-3px);
+      transform:
+        translateY(-3px);
+
       box-shadow: var(--glow);
     }
 
@@ -354,22 +507,36 @@ Worked for 9s
       background: #000000;
     }
 
+    /* =====================================================
+       STATS
+    ===================================================== */
+
     .stats-grid {
       margin-top: 48px;
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 14px;
     }
 
     .stat-card {
       min-height: 125px;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       padding: 17px;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 17px;
+
       background:
         radial-gradient(
           circle at top,
@@ -381,65 +548,109 @@ Worked for 9s
 
     .stat-card strong {
       color: var(--orange);
+
       font-size: 1.55rem;
     }
 
     .stat-card span {
       margin-top: 6px;
+
       font-size: 0.63rem;
       font-weight: 900;
+
       text-transform: uppercase;
     }
 
+    /* =====================================================
+       SECTIONS
+    ===================================================== */
+
     .section {
       padding: 88px 0;
-      border-top: 1px solid rgba(255, 121, 0, 0.12);
+
+      border-top:
+        1px solid
+        rgba(255, 121, 0, 0.12);
     }
 
     .section-heading {
       max-width: 790px;
+
       margin: 0 auto 42px;
+
       text-align: center;
     }
 
     .section-title {
       margin-top: 11px;
+
       color: var(--orange);
-      font-size: clamp(2rem, 6vw, 4.2rem);
+
+      font-size:
+        clamp(
+          2rem,
+          6vw,
+          4.2rem
+        );
+
       line-height: 0.93;
+
       text-transform: uppercase;
     }
+
+    /* =====================================================
+       ECOSYSTEM AND MODULES
+    ===================================================== */
 
     .ecosystem-grid,
     .modules-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 17px;
     }
 
     .ecosystem-card,
     .module-card {
       min-height: 245px;
+
       display: flex;
       flex-direction: column;
+
       padding: 24px;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 20px;
+
       background:
         radial-gradient(
           circle at top right,
           rgba(255, 121, 0, 0.12),
           transparent 36%
         ),
-        linear-gradient(145deg, #000000, #0b0400);
+        linear-gradient(
+          145deg,
+          #000000,
+          #0b0400
+        );
+
       transition: 0.3s;
     }
 
     .ecosystem-card:hover,
     .module-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--orange);
-      box-shadow: var(--glow);
+      transform:
+        translateY(-5px);
+
+      border-color:
+        var(--orange);
+
+      box-shadow:
+        var(--glow);
     }
 
     .eco-icon,
@@ -450,72 +661,130 @@ Worked for 9s
     .ecosystem-card h3,
     .module-card h3 {
       margin-top: 17px;
+
       color: var(--orange);
+
       font-size: 0.95rem;
+
       text-transform: uppercase;
     }
 
     .ecosystem-card p,
     .module-card p {
       margin-top: 11px;
+
       line-height: 1.62;
+
       font-size: 0.80rem;
     }
 
     .card-link,
     .module-open {
       margin-top: auto;
+
       padding-top: 20px;
+
       color: var(--orange);
+
       font-size: 0.67rem;
       font-weight: 1000;
+
       text-transform: uppercase;
     }
 
+    /* =====================================================
+       PROJECT BOXES
+    ===================================================== */
+
     .project-box {
       padding: 42px 28px;
-      border: 1px solid var(--strong-border);
+
+      border:
+        1px solid
+        var(--strong-border);
+
       border-radius: 25px;
+
       text-align: center;
+
       background:
         radial-gradient(
           circle at 80% 25%,
           rgba(255, 121, 0, 0.17),
           transparent 34%
         ),
-        linear-gradient(135deg, #000000, #100500, #000000);
-      box-shadow: var(--glow);
+        linear-gradient(
+          135deg,
+          #000000,
+          #100500,
+          #000000
+        );
+
+      box-shadow:
+        var(--glow);
     }
 
     .project-box h2 {
       color: var(--orange);
-      font-size: clamp(2rem, 6vw, 4rem);
+
+      font-size:
+        clamp(
+          2rem,
+          6vw,
+          4rem
+        );
+
       line-height: 0.94;
+
       text-transform: uppercase;
     }
 
     .project-box p {
       max-width: 780px;
+
       margin: 16px auto 0;
+
       line-height: 1.7;
     }
 
+    /* =====================================================
+       COMMUNITY SLIDESHOW
+    ===================================================== */
+
     .bss-stage {
       position: relative;
-      width: min(1100px, 100%);
-      height: clamp(430px, 62vw, 680px);
+
+      width:
+        min(1100px, 100%);
+
+      height:
+        clamp(
+          430px,
+          62vw,
+          680px
+        );
+
       margin: auto;
+
       overflow: hidden;
-      border: 2px solid var(--orange);
+
+      border:
+        2px solid var(--orange);
+
       border-radius: 28px;
+
       background: #000000;
-      box-shadow: var(--glow);
+
+      box-shadow:
+        var(--glow);
     }
 
     .bss-slide {
       width: 100%;
       height: 100%;
+
       object-fit: contain;
+
       background: #000000;
     }
 
@@ -525,8 +794,14 @@ Worked for 9s
       right: 0;
       bottom: 0;
       z-index: 5;
-      padding: 70px 70px 28px;
+
+      padding:
+        70px
+        70px
+        28px;
+
       text-align: left;
+
       background:
         linear-gradient(
           transparent,
@@ -536,11 +811,18 @@ Worked for 9s
 
     .bss-caption h3 {
       color: var(--orange);
-      font-size: clamp(1.5rem, 5vw, 3rem);
+
+      font-size:
+        clamp(
+          1.5rem,
+          5vw,
+          3rem
+        );
     }
 
     .bss-caption p {
       margin-top: 8px;
+
       color: var(--apricot);
     }
 
@@ -548,14 +830,25 @@ Worked for 9s
       position: absolute;
       top: 50%;
       z-index: 10;
+
       width: 48px;
       height: 48px;
-      transform: translateY(-50%);
-      border: 1px solid var(--orange);
+
+      transform:
+        translateY(-50%);
+
+      border:
+        1px solid var(--orange);
+
       border-radius: 50%;
+
       color: var(--orange);
-      background: rgba(0, 0, 0, 0.88);
+
+      background:
+        rgba(0, 0, 0, 0.88);
+
       cursor: pointer;
+
       font-size: 1.8rem;
     }
 
@@ -568,34 +861,56 @@ Worked for 9s
     }
 
     .slideshow-controls {
-      width: min(1100px, 100%);
+      width:
+        min(1100px, 100%);
+
       margin: 14px auto 0;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       gap: 15px;
+
       padding: 13px;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 15px;
+
       background: #050200;
     }
 
     .slide-button {
       padding: 9px 16px;
-      border: 1px solid var(--orange);
+
+      border:
+        1px solid var(--orange);
+
       border-radius: 999px;
+
       color: var(--orange);
       background: #000000;
+
       cursor: pointer;
+
       font-size: 0.65rem;
       font-weight: 1000;
     }
+
+    /* =====================================================
+       NEWS, CONTACT AND SOCIAL
+    ===================================================== */
 
     .news-grid,
     .contact-grid,
     .social-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
       gap: 16px;
     }
 
@@ -603,8 +918,12 @@ Worked for 9s
     .contact-card,
     .social-link {
       padding: 22px;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 18px;
+
       background: #050200;
     }
 
@@ -616,20 +935,24 @@ Worked for 9s
 
     .news-card p {
       margin: 12px 0 20px;
+
       line-height: 1.6;
     }
 
     .contact-card {
       min-height: 155px;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       text-align: center;
     }
 
     .contact-card a {
       margin-top: 10px;
+
       overflow-wrap: anywhere;
     }
 
@@ -640,40 +963,65 @@ Worked for 9s
     .social-link {
       display: flex;
       align-items: center;
+
       gap: 14px;
+
       transition: 0.25s;
     }
 
     .social-link:hover {
-      transform: translateY(-3px);
-      border-color: var(--orange);
-      box-shadow: var(--glow);
+      transform:
+        translateY(-3px);
+
+      border-color:
+        var(--orange);
+
+      box-shadow:
+        var(--glow);
     }
 
     .social-icon {
       width: 42px;
       height: 42px;
+
       display: grid;
       place-items: center;
+
       flex-shrink: 0;
-      border: 1px solid var(--orange);
+
+      border:
+        1px solid var(--orange);
+
       border-radius: 50%;
+
       color: var(--orange);
       background: #000000;
+
       font-weight: 1000;
     }
 
     .social-link span {
       display: block;
+
       margin-top: 4px;
+
       font-size: 0.65rem;
     }
 
+    /* =====================================================
+       DDN
+    ===================================================== */
+
     .ddn-box {
       padding: 50px 28px;
-      border: 2px solid var(--orange);
+
+      border:
+        2px solid var(--orange);
+
       border-radius: 28px;
+
       text-align: center;
+
       background:
         radial-gradient(
           circle,
@@ -681,59 +1029,210 @@ Worked for 9s
           transparent 50%
         ),
         #000000;
-      box-shadow: var(--glow);
+
+      box-shadow:
+        var(--glow);
     }
 
     .ddn-box h2 {
       color: var(--orange);
-      font-size: clamp(2.8rem, 9vw, 6.7rem);
+
+      font-size:
+        clamp(
+          2.8rem,
+          9vw,
+          6.7rem
+        );
+
       line-height: 0.87;
     }
 
     .ddn-box h3 {
       margin-top: 18px;
+
       color: var(--apricot);
     }
 
     .ddn-box p {
       max-width: 790px;
+
       margin: 19px auto 0;
+
       line-height: 1.72;
     }
 
+    /* =====================================================
+       CUSTOMER SERVICE VIDEO
+    ===================================================== */
+
+    .customer-service-box {
+      max-width: 920px;
+
+      margin: 0 auto;
+
+      padding: 22px;
+
+      border:
+        2px solid var(--orange);
+
+      border-radius: 28px;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 121, 0, 0.14),
+          transparent 44%
+        ),
+        #000000;
+
+      box-shadow:
+        var(--glow);
+    }
+
+    .customer-service-labels {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 12px;
+
+      margin-bottom: 16px;
+
+      color: var(--orange);
+
+      font-size: 0.69rem;
+      font-weight: 1000;
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+    }
+
+    .customer-video-frame {
+      position: relative;
+
+      overflow: hidden;
+
+      border:
+        1px solid
+        var(--strong-border);
+
+      border-radius: 22px;
+
+      background: #000000;
+    }
+
+    .customer-video {
+      width: 100%;
+      max-height: 780px;
+
+      margin: 0 auto;
+
+      object-fit: contain;
+
+      background: #000000;
+    }
+
+    .customer-service-copy {
+      padding: 24px 6px 5px;
+
+      text-align: center;
+    }
+
+    .customer-service-copy h3 {
+      color: var(--orange);
+
+      font-size:
+        clamp(
+          1.45rem,
+          4vw,
+          2.7rem
+        );
+
+      text-transform: uppercase;
+    }
+
+    .customer-service-copy p {
+      max-width: 720px;
+
+      margin: 12px auto 0;
+
+      line-height: 1.7;
+    }
+
+    .customer-video-error {
+      display: none;
+
+      margin-top: 14px;
+
+      padding: 14px;
+
+      border:
+        1px solid var(--orange);
+
+      border-radius: 14px;
+
+      color: var(--apricot);
+      background: #0b0400;
+
+      text-align: center;
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
     footer {
       padding: 45px 0;
+
       text-align: center;
-      border-top: 1px solid var(--border);
+
+      border-top:
+        1px solid var(--border);
+
       background: #000000;
     }
 
     .footer-video {
       width: 105px;
       height: 105px;
+
       margin: 0 auto 17px;
+
       overflow: hidden;
-      border: 2px solid var(--orange);
+
+      border:
+        2px solid var(--orange);
+
       border-radius: 20px;
-      box-shadow: var(--glow);
+
+      box-shadow:
+        var(--glow);
     }
 
     .footer-video video {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
     }
 
     .footer-title {
       color: var(--orange);
+
       font-weight: 1000;
     }
 
     .footer-info {
       margin-top: 9px;
+
       line-height: 1.75;
+
       font-size: 0.72rem;
     }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
 
     @media (max-width: 1050px) {
       .nav {
@@ -741,11 +1240,17 @@ Worked for 9s
         top: 86px;
         left: 14px;
         right: 14px;
+
         display: none;
         flex-direction: column;
+
         padding: 14px;
-        border: 1px solid var(--orange);
+
+        border:
+          1px solid var(--orange);
+
         border-radius: 15px;
+
         background: #000000;
       }
 
@@ -755,6 +1260,7 @@ Worked for 9s
 
       .nav a {
         width: 100%;
+
         text-align: center;
       }
 
@@ -764,11 +1270,16 @@ Worked for 9s
 
       .ecosystem-grid,
       .modules-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
     }
 
     @media (max-width: 760px) {
+      .header-inner {
+        min-height: 76px;
+      }
+
       .brand-video-wrap {
         width: 54px;
         height: 54px;
@@ -784,16 +1295,19 @@ Worked for 9s
 
       .lang-btn {
         min-width: 35px;
+
         padding: 7px 6px;
       }
 
       .hero {
         min-height: auto;
+
         padding-top: 38px;
       }
 
       .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .news-grid,
@@ -807,7 +1321,25 @@ Worked for 9s
       }
 
       .bss-caption {
-        padding: 70px 55px 24px;
+        padding:
+          70px
+          55px
+          24px;
+      }
+
+      .customer-service-box {
+        padding: 12px;
+
+        border-radius: 20px;
+      }
+
+      .customer-service-labels {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .customer-video-frame {
+        border-radius: 16px;
       }
     }
 
@@ -819,6 +1351,7 @@ Worked for 9s
 
       .hero-actions {
         display: grid;
+
         grid-template-columns: 1fr;
       }
 
@@ -844,10 +1377,15 @@ Worked for 9s
     🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥
   </div>
 
+  <!-- ===================================================
+       HEADER
+  ==================================================== -->
+
   <header>
     <div class="container header-inner">
 
       <a href="#home" class="brand">
+
         <div class="brand-video-wrap">
           <video
             class="brand-video"
@@ -857,12 +1395,17 @@ Worked for 9s
             playsinline
             preload="metadata"
           >
-            <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
+            <source
+              src="./bati-pou-jodi-a.mp4"
+              type="video/mp4"
+            >
           </video>
         </div>
 
         <div class="brand-text">
-          <strong>BSS1815 PRO-MAX DMP</strong>
+          <strong>
+            BSS1815 PRO-MAX DMP
+          </strong>
 
           <span
             data-ht="PLATFÒM JESYON DIJITAL"
@@ -872,38 +1415,99 @@ Worked for 9s
             PLATFÒM JESYON DIJITAL
           </span>
         </div>
+
       </a>
 
       <div class="header-right">
 
         <nav class="nav" id="mainNav">
-          <a href="#home" data-ht="AKÈY" data-fr="ACCUEIL" data-en="HOME">
+
+          <a
+            href="#home"
+            data-ht="AKÈY"
+            data-fr="ACCUEIL"
+            data-en="HOME"
+          >
             AKÈY
           </a>
 
-          <a href="#ecosystem" data-ht="EKOSISTÈM" data-fr="ÉCOSYSTÈME" data-en="ECOSYSTEM">
+          <a
+            href="#ecosystem"
+            data-ht="EKOSISTÈM"
+            data-fr="ÉCOSYSTÈME"
+            data-en="ECOSYSTEM"
+          >
             EKOSISTÈM
           </a>
 
-          <a href="#modules" data-ht="MODIL" data-fr="MODULES" data-en="MODULES">
+          <a
+            href="#modules"
+            data-ht="MODIL"
+            data-fr="MODULES"
+            data-en="MODULES"
+          >
             MODIL
           </a>
 
-          <a href="#community" data-ht="KOMINOTE" data-fr="COMMUNAUTÉ" data-en="COMMUNITY">
+          <a
+            href="#community"
+            data-ht="KOMINOTE"
+            data-fr="COMMUNAUTÉ"
+            data-en="COMMUNITY"
+          >
             KOMINOTE
           </a>
 
-          <a href="./ddn/index.html">DDN</a>
+          <a
+            href="#customer-service"
+            data-ht="SÈVIS KLIYAN"
+            data-fr="SERVICE CLIENT"
+            data-en="CUSTOMER SERVICE"
+          >
+            SÈVIS KLIYAN
+          </a>
 
-          <a href="#contact" data-ht="KONTAK" data-fr="CONTACT" data-en="CONTACT">
+          <a href="./ddn/index.html">
+            DDN
+          </a>
+
+          <a
+            href="#contact"
+            data-ht="KONTAK"
+            data-fr="CONTACT"
+            data-en="CONTACT"
+          >
             KONTAK
           </a>
+
         </nav>
 
         <div class="lang-switch">
-          <button type="button" class="lang-btn" data-lang="fr">FRA</button>
-          <button type="button" class="lang-btn" data-lang="en">ENG</button>
-          <button type="button" class="lang-btn active" data-lang="ht">KRE</button>
+
+          <button
+            type="button"
+            class="lang-btn"
+            data-lang="fr"
+          >
+            FRA
+          </button>
+
+          <button
+            type="button"
+            class="lang-btn"
+            data-lang="en"
+          >
+            ENG
+          </button>
+
+          <button
+            type="button"
+            class="lang-btn active"
+            data-lang="ht"
+          >
+            KRE
+          </button>
+
         </div>
 
         <button
@@ -917,10 +1521,15 @@ Worked for 9s
         </button>
 
       </div>
+
     </div>
   </header>
 
   <main>
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
 
     <section class="hero" id="home">
       <div class="container">
@@ -940,13 +1549,19 @@ Worked for 9s
             playsinline
             preload="auto"
           >
-            <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
+            <source
+              src="./bati-pou-jodi-a.mp4"
+              type="video/mp4"
+            >
           </video>
 
           <button
             type="button"
             class="sound-btn"
             id="soundButton"
+            data-ht="🔊 KOUTE SLOGAN AN"
+            data-fr="🔊 ÉCOUTER LE SLOGAN"
+            data-en="🔊 HEAR THE SLOGAN"
           >
             🔊 KOUTE SLOGAN AN
           </button>
@@ -954,7 +1569,8 @@ Worked for 9s
         </div>
 
         <h1>
-          BSS1815<br>
+          BSS1815
+          <br>
           PRO-MAX DMP
         </h1>
 
@@ -977,15 +1593,30 @@ Worked for 9s
 
         <div class="hero-actions">
 
-          <a href="#ecosystem" class="btn btn-primary">
+          <a
+            href="#ecosystem"
+            class="btn btn-primary"
+            data-ht="DEKOUVRI PLATFÒM NAN"
+            data-fr="DÉCOUVRIR LA PLATEFORME"
+            data-en="EXPLORE THE PLATFORM"
+          >
             DEKOUVRI PLATFÒM NAN
           </a>
 
-          <a href="./ddn/index.html" class="btn btn-outline">
+          <a
+            href="./ddn/index.html"
+            class="btn btn-outline"
+          >
             🌎 DEVAN DEVAN NÈT™
           </a>
 
-          <a href="./manifestes/index.html" class="btn btn-outline">
+          <a
+            href="./manifestes/index.html"
+            class="btn btn-outline"
+            data-ht="📜 MANIFESTE OFISYÈL YO"
+            data-fr="📜 MANIFESTES OFFICIELS"
+            data-en="📜 OFFICIAL MANIFESTOS"
+          >
             📜 MANIFESTE OFISYÈL YO
           </a>
 
@@ -995,7 +1626,14 @@ Worked for 9s
 
           <div class="stat-card">
             <strong>4</strong>
-            <span>BRANCH PRENSIPAL</span>
+
+            <span
+              data-ht="BRANCH PRENSIPAL"
+              data-fr="BRANCHES PRINCIPALES"
+              data-en="CORE BRANCHES"
+            >
+              BRANCH PRENSIPAL
+            </span>
           </div>
 
           <div class="stat-card">
@@ -1005,12 +1643,26 @@ Worked for 9s
 
           <div class="stat-card">
             <strong>3</strong>
-            <span>LANG</span>
+
+            <span
+              data-ht="LANG"
+              data-fr="LANGUES"
+              data-en="LANGUAGES"
+            >
+              LANG
+            </span>
           </div>
 
           <div class="stat-card">
             <strong>24/7</strong>
-            <span>AKSÈ DIJITAL</span>
+
+            <span
+              data-ht="AKSÈ DIJITAL"
+              data-fr="ACCÈS NUMÉRIQUE"
+              data-en="DIGITAL ACCESS"
+            >
+              AKSÈ DIJITAL
+            </span>
           </div>
 
         </div>
@@ -1018,11 +1670,18 @@ Worked for 9s
       </div>
     </section>
 
+    <!-- =================================================
+         ECOSYSTEM
+    ================================================== -->
+
     <section class="section" id="ecosystem">
       <div class="container">
 
         <div class="section-heading">
-          <div class="eyebrow">BSS1815 PRO-MAX DMP</div>
+
+          <div class="eyebrow">
+            BSS1815 PRO-MAX DMP
+          </div>
 
           <h2
             class="section-title"
@@ -1041,39 +1700,103 @@ Worked for 9s
           >
             Kat branch prensipal yo konekte anba menm platfòm santral la.
           </p>
+
         </div>
 
         <div class="ecosystem-grid">
 
-          <a href="#community" class="ecosystem-card">
+          <a
+            href="#community"
+            class="ecosystem-card"
+          >
             <div class="eco-icon">🏛️</div>
-            <h3>BSS1815 COMMUNITY</h3>
-            <p>Manm, dirijan, mizisyen, fanatik, eritaj ak aktivite kominotè.</p>
-            <div class="card-link">ENTER →</div>
+
+            <h3>
+              BSS1815 COMMUNITY
+            </h3>
+
+            <p
+              data-ht="Manm, dirijan, mizisyen, fanatik, eritaj ak aktivite kominotè."
+              data-fr="Membres, dirigeants, musiciens, fans, patrimoine et activités communautaires."
+              data-en="Members, leaders, musicians, fans, heritage and community activities."
+            >
+              Manm, dirijan, mizisyen, fanatik, eritaj ak aktivite kominotè.
+            </p>
+
+            <div class="card-link">
+              ENTER →
+            </div>
           </a>
 
-          <a href="#promaxfm" class="ecosystem-card">
+          <a
+            href="#promaxfm"
+            class="ecosystem-card"
+          >
             <div class="eco-icon">📻</div>
-            <h3>PRO-MAX FM</h3>
-            <p>Radyo dijital, live streaming, mizik, podcast, nouvèl ak medya.</p>
-            <div class="card-link">ENTER →</div>
+
+            <h3>
+              PRO-MAX FM
+            </h3>
+
+            <p
+              data-ht="Radyo dijital, live streaming, mizik, podcast, nouvèl ak medya."
+              data-fr="Radio numérique, diffusion en direct, musique, podcasts, actualités et médias."
+              data-en="Digital radio, live streaming, music, podcasts, news and media."
+            >
+              Radyo dijital, live streaming, mizik, podcast, nouvèl ak medya.
+            </p>
+
+            <div class="card-link">
+              ENTER →
+            </div>
           </a>
 
-          <a href="#maximax" class="ecosystem-card">
+          <a
+            href="#maximax"
+            class="ecosystem-card"
+          >
             <div class="eco-icon">💼</div>
-            <h3>MAXIMAX MULTI SERVICES</h3>
-            <p>Imigrasyon, tradiksyon, dokiman ak asistans pwofesyonèl.</p>
-            <div class="card-link">ENTER →</div>
+
+            <h3>
+              MAXIMAX MULTI SERVICES
+            </h3>
+
+            <p
+              data-ht="Imigrasyon, tradiksyon, dokiman ak asistans pwofesyonèl."
+              data-fr="Immigration, traduction, documents et assistance professionnelle."
+              data-en="Immigration, translation, documents and professional assistance."
+            >
+              Imigrasyon, tradiksyon, dokiman ak asistans pwofesyonèl.
+            </p>
+
+            <div class="card-link">
+              ENTER →
+            </div>
           </a>
 
           <a
             href="https://pro-maxacademie.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
             class="ecosystem-card"
           >
             <div class="eco-icon">🎓</div>
-            <h3>PRO-MAX ACADÉMIE</h3>
-            <p>AI, teknoloji, fòmasyon, lekòl, evalyasyon ak sètifikasyon.</p>
-            <div class="card-link">ENTER →</div>
+
+            <h3>
+              PRO-MAX ACADÉMIE
+            </h3>
+
+            <p
+              data-ht="AI, teknoloji, fòmasyon, lekòl, evalyasyon ak sètifikasyon."
+              data-fr="IA, technologie, formation, écoles, évaluations et certification."
+              data-en="AI, technology, training, schools, assessments and certification."
+            >
+              AI, teknoloji, fòmasyon, lekòl, evalyasyon ak sètifikasyon.
+            </p>
+
+            <div class="card-link">
+              ENTER →
+            </div>
           </a>
 
         </div>
@@ -1081,11 +1804,18 @@ Worked for 9s
       </div>
     </section>
 
+    <!-- =================================================
+         MODULES
+    ================================================== -->
+
     <section class="section" id="modules">
       <div class="container">
 
         <div class="section-heading">
-          <div class="eyebrow">DIGITAL MANAGEMENT PLATFORM</div>
+
+          <div class="eyebrow">
+            DIGITAL MANAGEMENT PLATFORM
+          </div>
 
           <h2
             class="section-title"
@@ -1095,27 +1825,64 @@ Worked for 9s
           >
             MODIL PRENSIPAL YO
           </h2>
+
+          <p
+            class="section-desc"
+            data-ht="Tout modil jesyon, kominikasyon, medya, administrasyon ak teknoloji yo nan yon sèl sistèm."
+            data-fr="Tous les modules de gestion, communication, médias, administration et technologie dans un seul système."
+            data-en="All management, communication, media, administration and technology modules in one system."
+          >
+            Tout modil yo konekte nan yon sèl sistèm.
+          </p>
+
         </div>
 
-        <div class="modules-grid" id="modulesGrid"></div>
+        <div
+          class="modules-grid"
+          id="modulesGrid"
+        ></div>
 
       </div>
     </section>
+
+    <!-- =================================================
+         COMMUNITY
+    ================================================== -->
 
     <section class="section" id="community">
       <div class="container">
 
         <div class="section-heading">
-          <div class="eyebrow">BRIYANT SOLÈY SIGNO 1815</div>
 
-          <h2 class="section-title">BSS1815 COMMUNITY</h2>
+          <div class="eyebrow">
+            BRIYANT SOLÈY SIGNO 1815
+          </div>
 
-          <p class="section-desc">
+          <h2
+            class="section-title"
+            data-ht="BSS1815 COMMUNITY"
+            data-fr="COMMUNAUTÉ BSS1815"
+            data-en="BSS1815 COMMUNITY"
+          >
+            BSS1815 COMMUNITY
+          </h2>
+
+          <p
+            class="section-desc"
+            data-ht="Manm, dirijan, mizisyen, fanatik, eritaj, evènman ak achiv BSS1815."
+            data-fr="Membres, dirigeants, musiciens, fans, patrimoine, événements et archives BSS1815."
+            data-en="Members, leaders, musicians, fans, heritage, events and BSS1815 archives."
+          >
             Manm, dirijan, mizisyen, fanatik, eritaj, evènman ak achiv BSS1815.
           </p>
+
         </div>
 
-        <div class="bss-stage" id="bssStage">
+        <div
+          class="bss-stage"
+          id="bssStage"
+          tabindex="0"
+        >
 
           <img
             id="bssSlide"
@@ -1125,704 +1892,14 @@ Worked for 9s
           >
 
           <div class="bss-caption">
-            <h3 id="bssTitle">TANIA2</h3>
-            <p>MOUVMAN SA A SE POU NOU TOUT.</p>
-          </div>
 
-          <button
-            type="button"
-            class="bss-arrow bss-prev"
-            id="bssPrev"
-            aria-label="Previous"
-          >
-            ‹
-          </button>
+            <h3 id="bssTitle">
+              TANIA2
+            </h3>
 
-          <button
-            type="button"
-            class="bss-arrow bss-next"
-            id="bssNext"
-            aria-label="Next"
-          >
-            ›
-          </button>
-
-        </div>
-
-        <div class="slideshow-controls">
-          <span id="bssCounter">1 / 15</span>
-
-          <button
-            type="button"
-            class="slide-button"
-            id="bssPlayPause"
-          >
-            ⏸ PAUSE
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="promaxfm">
-      <div class="container">
-        <div class="project-box">
-
-          <h2>📻 PRO-MAX FM</h2>
-
-          <p>
-            Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio,
-            nouvèl, podcast, mizik ak pwodiksyon medya.
-          </p>
-
-          <div class="hero-actions">
-            <a href="./pro-max-fm/index.html" class="btn btn-primary">
-              📻 ENTER PRO-MAX FM
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="maximax">
-      <div class="container">
-        <div class="project-box">
-
-          <h2>💼 MAXIMAX MULTI SERVICES</h2>
-
-          <p>
-            Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon,
-            dokiman ak asistans administratif.
-          </p>
-
-          <div class="hero-actions">
-            <a href="./maximax/index.html" class="btn btn-primary">
-              💼 ENTER MAXIMAX MULTI SERVICES
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="academy">
-      <div class="container">
-        <div class="project-box">
-
-          <h2
-            data-ht="🎓 PRO-MAX ACADÉMIE"
-            data-fr="🎓 PRO-MAX ACADÉMIE"
-            data-en="🎓 PRO-MAX ACADEMY"
-          >
-            🎓 PRO-MAX ACADÉMIE
-          </h2>
-
-          <p
-            data-ht="Sant fòmasyon pou entèlijans atifisyèl, teknoloji, inovasyon, lidèchip, Student Portal, evalyasyon ak sètifikasyon."
-            data-fr="Centre de formation pour l’intelligence artificielle, la technologie, l’innovation, le leadership, le portail étudiant, les évaluations et la certification."
-            data-en="Training center for artificial intelligence, technology, innovation, leadership, Student Portal, assessments and certification."
-          >
-            Sant fòmasyon AI ak teknoloji.
-          </p>
-
-          <div class="hero-actions">
-
-            <a
-              href="https://pro-maxacademie.netlify.app"
-              class="btn btn-primary"
+            <p
+              data-ht="MOUVMAN SA A SE POU NOU TOUT."
+              data-fr="CE MOUVEMENT EST POUR NOUS TOUS."
+              data-en="THIS MOVEMENT IS FOR ALL OF US."
             >
-              🎓 ENTER PRO-MAX ACADÉMIE
-            </a>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">INTERNATIONAL NEWS</div>
-          <h2 class="section-title">SOUS NOUVÈL</h2>
-        </div>
-
-        <div class="news-grid">
-
-          <article class="news-card">
-            <h3>CNN International</h3>
-            <p>Nouvèl entènasyonal, politik, ekonomi ak teknoloji.</p>
-            <a
-              href="https://www.cnn.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-outline"
-            >
-              OPEN CNN
-            </a>
-          </article>
-
-          <article class="news-card">
-            <h3>Miami Herald</h3>
-            <p>Miami, Florid, Ayiti, Karayib ak kominote entènasyonal.</p>
-            <a
-              href="https://www.miamiherald.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-outline"
-            >
-              OPEN MIAMI HERALD
-            </a>
-          </article>
-
-          <article class="news-card">
-            <h3>RFI</h3>
-            <p>Nouvèl mondyal, analiz, Lafrans, Lafrik ak Karayib.</p>
-            <a
-              href="https://www.rfi.fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-outline"
-            >
-              OPEN RFI
-            </a>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="ddn">
-      <div class="container">
-        <div class="ddn-box">
-
-          <h2>DEVAN DEVAN NÈT™</h2>
-
-          <h3>BATI POU JODI A • PARE POU DEMEN</h3>
-
-          <p>
-            DEVAN DEVAN NÈT™ se vizyon teknoloji ak entèlijans
-            atifisyèl ki ankouraje nou aprann, òganize, kreye,
-            inove epi toujou avanse.
-          </p>
-
-          <div class="hero-actions">
-
-            <a href="./ddn/index.html" class="btn btn-primary">
-              🌎 ENTER DEVAN DEVAN NÈT™
-            </a>
-
-            <a href="./manifestes/index.html" class="btn btn-outline">
-              📜 LI MANIFESTE YO
-            </a>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">STAY CONNECTED</div>
-          <h2 class="section-title">KONTAK & REZO SOSYAL</h2>
-        </div>
-
-        <div class="contact-grid">
-
-          <div class="contact-card">
-            <strong>📞 TELEPHONE</strong>
-            <a href="tel:+50943437488">+509 43 43 7488</a>
-            <a href="tel:+14076405166">(407) 640-5166</a>
-            <a href="tel:+15162168494">(516) 216-8494</a>
-          </div>
-
-          <div class="contact-card">
-            <strong>📧 EMAIL</strong>
-            <a href="mailto:briyantsoleysigno1815@gmail.com">
-              briyantsoleysigno1815@gmail.com
-            </a>
-          </div>
-
-          <div class="contact-card">
-            <strong>🌐 WEBSITE</strong>
-            <a
-              href="https://www.briyantsoleysigno1815.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              www.briyantsoleysigno1815.com
-            </a>
-          </div>
-
-        </div>
-
-        <div class="social-grid">
-
-          <a
-            href="https://wa.me/50943437488"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">☎</div>
-            <div>
-              <strong>WhatsApp</strong>
-              <span>+509 43 43 7488</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.facebook.com/share/1By3KvYRrM/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">f</div>
-            <div>
-              <strong>Facebook</strong>
-              <span>BSS1815 PRO-MAX DMP</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.youtube.com/@BSS1815PROMAXDMP"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">▶</div>
-            <div>
-              <strong>YouTube</strong>
-              <span>@BSS1815PROMAXDMP</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.instagram.com/lebaron072/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">◎</div>
-            <div>
-              <strong>Instagram</strong>
-              <span>@lebaron072</span>
-            </div>
-          </a>
-
-          <a
-            href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">♫</div>
-            <div>
-              <strong>Spotify</strong>
-              <span>MAXIMAX</span>
-            </div>
-          </a>
-
-          <a
-            href="https://truthsocial.com/@briyant_soley_1815"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">T</div>
-            <div>
-              <strong>Truth Social</strong>
-              <span>@briyant_soley_1815</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/maximax-multi-services-075ba2314"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">in</div>
-            <div>
-              <strong>LinkedIn</strong>
-              <span>Maximax Multi Services</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.tiktok.com/@maximax1960"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">♪</div>
-            <div>
-              <strong>TikTok</strong>
-              <span>@maximax1960</span>
-            </div>
-          </a>
-
-          <a
-            href="https://x.com/w05g2m"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">𝕏</div>
-            <div>
-              <strong>X / Twitter</strong>
-              <span>@w05g2m</span>
-            </div>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container">
-
-      <div class="footer-video">
-        <video autoplay muted loop playsinline preload="metadata">
-          <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="footer-title">
-        BSS1815 PRO-MAX DMP
-      </div>
-
-      <div class="footer-info">
-        DEVAN DEVAN NÈT™
-        <br>
-        BATI POU JODI A • PARE POU DEMEN
-        <br><br>
-        briyantsoleysigno1815@gmail.com
-        <br>
-        +509 43 43 7488 • (407) 640-5166 • (516) 216-8494
-        <br><br>
-        © <span id="currentYear"></span> BSS1815 PRO-MAX DMP
-      </div>
-
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      "use strict";
-
-      var year = document.getElementById("currentYear");
-
-      if (year) {
-        year.textContent = new Date().getFullYear();
-      }
-
-      var menuToggle = document.getElementById("menuToggle");
-      var mainNav = document.getElementById("mainNav");
-
-      if (menuToggle && mainNav) {
-        menuToggle.addEventListener("click", function () {
-          var open = mainNav.classList.toggle("open");
-
-          menuToggle.textContent = open ? "✕" : "☰";
-          menuToggle.setAttribute("aria-expanded", String(open));
-        });
-
-        mainNav.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            mainNav.classList.remove("open");
-            menuToggle.textContent = "☰";
-            menuToggle.setAttribute("aria-expanded", "false");
-          });
-        });
-      }
-
-      var languageButtons =
-        document.querySelectorAll(".lang-btn[data-lang]");
-
-      function applyLanguage(language) {
-        if (["ht", "fr", "en"].indexOf(language) === -1) {
-          language = "ht";
-        }
-
-        document.documentElement.lang = language;
-
-        document
-          .querySelectorAll("[data-ht][data-fr][data-en]")
-          .forEach(function (element) {
-            var translation =
-              element.getAttribute("data-" + language);
-
-            if (translation !== null) {
-              element.textContent = translation;
-            }
-          });
-
-        languageButtons.forEach(function (button) {
-          button.classList.toggle(
-            "active",
-            button.getAttribute("data-lang") === language
-          );
-        });
-
-        try {
-          localStorage.setItem("bss1815Language", language);
-        } catch (error) {}
-      }
-
-      languageButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          applyLanguage(button.getAttribute("data-lang"));
-        });
-      });
-
-      var savedLanguage = "ht";
-
-      try {
-        savedLanguage =
-          localStorage.getItem("bss1815Language") || "ht";
-      } catch (error) {}
-
-      applyLanguage(savedLanguage);
-
-      document.querySelectorAll("video").forEach(function (video) {
-        video.muted = true;
-        video.playsInline = true;
-
-        var playPromise = video.play();
-
-        if (playPromise) {
-          playPromise.catch(function () {});
-        }
-      });
-
-      var heroVideo = document.getElementById("heroLogoVideo");
-      var soundButton = document.getElementById("soundButton");
-
-      if (heroVideo && soundButton) {
-        soundButton.addEventListener("click", function () {
-          heroVideo.muted = !heroVideo.muted;
-
-          if (!heroVideo.muted) {
-            heroVideo.currentTime = 0;
-            heroVideo.play().catch(function () {});
-            soundButton.textContent = "🔇 MUTE";
-          } else {
-            soundButton.textContent = "🔊 KOUTE SLOGAN AN";
-          }
-        });
-      }
-
-      var modules = [
-        ["🤖", "AI CENTER", "Assistant • Writer • Voice • Automation", "./modules/ai-center/index.html"],
-        ["👥", "CRM SYSTEM", "Members • Contacts • Relationships • Records", "./modules/crm/index.html"],
-        ["📢", "COMMUNICATION CENTER", "Announcements • Alerts • WhatsApp • Messages", "./modules/communication/index.html"],
-        ["🎨", "FLYER STUDIO", "Flyers • Notices • Graphics • Media", "./modules/flyer-studio/index.html"],
-        ["📋", "DIGITAL REGISTRY", "Members • Musicians • Fans • Merchants", "./modules/registry/index.html"],
-        ["📅", "EVENT MANAGEMENT", "Calendar • Programs • Activities • Meetings", "./modules/events/index.html"],
-        ["📄", "DOCUMENT CENTER", "Letters • Reports • Archives • Files", "./modules/documents/index.html"],
-        ["📣", "ANNOUNCEMENT CENTER", "Official Notices • Community Updates • Alerts", "./modules/announcements/index.html"],
-        ["🤝", "DONATION CENTER", "Contributions • Records • Donor Management", "./modules/donations/index.html"],
-        ["✅", "ATTENDANCE", "Check-In • Meetings • Events • Participation", "./modules/attendance/index.html"],
-        ["🏆", "CERTIFICATE CENTER", "Certificates • Verification • Records", "./modules/certificates/index.html"],
-        ["🗳️", "ELECTION MANAGER", "Voting • Candidates • Results • Records", "./modules/elections/index.html"],
-        ["🙋", "VOLUNTEER CENTER", "Volunteers • Assignments • Activities", "./modules/volunteer/index.html"],
-        ["💰", "FINANCE / TREASURY", "Payments • Donations • Treasury • Reports", "./modules/finance/index.html"],
-        ["🎥", "MEDIA GALLERY", "Photos • Video • Audio • Archives", "./modules/media/index.html"],
-        ["🔔", "NOTIFICATIONS", "Alerts • Reminders • Updates • Messages", "./modules/notifications/index.html"],
-        ["📊", "REPORTS & ANALYTICS", "Statistics • Performance • Reports", "./modules/reports/index.html"],
-        ["🎫", "HELP DESK", "Support • Requests • Cases • Assistance", "./modules/help-desk/index.html"],
-        ["📡", "LIVE STREAMING", "Radio • Video • Live Events • Broadcast", "./modules/live-streaming/index.html"],
-        ["🔐", "ADMIN DASHBOARD", "Roles • Permissions • Firebase • Security", "./login.html"]
-      ];
-
-      var modulesGrid = document.getElementById("modulesGrid");
-
-      if (modulesGrid) {
-        modules.forEach(function (module) {
-          var card = document.createElement("a");
-
-          card.className = "module-card";
-          card.href = module[3];
-
-          card.innerHTML =
-            '<div class="module-icon">' + module[0] + "</div>" +
-            "<h3>" + module[1] + "</h3>" +
-            "<p>" + module[2] + "</p>" +
-            '<div class="module-open">OPEN →</div>';
-
-          modulesGrid.appendChild(card);
-        });
-      }
-
-      var bssFiles = [
-        "tania2.jpg",
-        "papouche.jpg",
-        "heritage.jpg",
-        "team-angrenay.jpg",
-        "sfc-5-stars.jpg",
-        "max-on-the-air.jpg",
-        "montina.jpg",
-        "kendy2.jpg",
-        "perodin.jpg",
-        "roro-8.jpg",
-        "jij-mayan.jpg",
-        "yguens.jpg",
-        "max-louis.jpg",
-        "devan-devan-net.jpg",
-        "bss1815-pro-max-dmp.jpg"
-      ];
-
-      var slide = document.getElementById("bssSlide");
-      var slideTitle = document.getElementById("bssTitle");
-      var slideCounter = document.getElementById("bssCounter");
-      var previousButton = document.getElementById("bssPrev");
-      var nextButton = document.getElementById("bssNext");
-      var playPauseButton =
-        document.getElementById("bssPlayPause");
-
-      var slideIndex = 0;
-      var slideshowPlaying = true;
-      var slideshowTimer = null;
-
-      var slideshowPaths = [
-        "./assets/slideshow/",
-        "./assets/",
-        "./"
-      ];
-
-      function prettyName(file) {
-        return file
-          .replace(/\.[^.]+$/, "")
-          .replace(/[-_]+/g, " ")
-          .toUpperCase();
-      }
-
-      function tryImagePath(file, pathIndex) {
-        if (!slide) {
-          return;
-        }
-
-        if (pathIndex >= slideshowPaths.length) {
-          showSlide(slideIndex + 1);
-          return;
-        }
-
-        slide.onerror = function () {
-          tryImagePath(file, pathIndex + 1);
-        };
-
-        slide.onload = function () {
-          slide.onerror = null;
-        };
-
-        slide.src = slideshowPaths[pathIndex] + file;
-      }
-
-      function showSlide(index) {
-        if (!bssFiles.length) {
-          return;
-        }
-
-        if (index < 0) {
-          index = bssFiles.length - 1;
-        }
-
-        if (index >= bssFiles.length) {
-          index = 0;
-        }
-
-        slideIndex = index;
-
-        var file = bssFiles[slideIndex];
-
-        tryImagePath(file, 0);
-
-        if (slideTitle) {
-          slideTitle.textContent = prettyName(file);
-        }
-
-        if (slideCounter) {
-          slideCounter.textContent =
-            (slideIndex + 1) + " / " + bssFiles.length;
-        }
-      }
-
-      function nextSlide() {
-        showSlide(slideIndex + 1);
-      }
-
-      function previousSlide() {
-        showSlide(slideIndex - 1);
-      }
-
-      function startSlideshow() {
-        window.clearInterval(slideshowTimer);
-
-        slideshowTimer =
-          window.setInterval(function () {
-            if (slideshowPlaying) {
-              nextSlide();
-            }
-          }, 4000);
-      }
-
-      if (previousButton) {
-        previousButton.addEventListener(
-          "click",
-          previousSlide
-        );
-      }
-
-      if (nextButton) {
-        nextButton.addEventListener(
-          "click",
-          nextSlide
-        );
-      }
-
-      if (playPauseButton) {
-        playPauseButton.addEventListener(
-          "click",
-          function () {
-            slideshowPlaying = !slideshowPlaying;
-
-            playPauseButton.textContent =
-              slideshowPlaying
-                ? "⏸ PAUSE"
-                : "▶ PLAY";
-          }
-        );
-      }
-
-      showSlide(0);
-      startSlideshow();
-
-      window.addEventListener("resize", function () {
-        if (
-          window.innerWidth > 1050 &&
-          mainNav &&
-          menuToggle
-        ) {
-          mainNav.classList.remove("open");
-          menuToggle.textContent = "☰";
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-        }
-      });
-    })();
-  </script>
-
-</body>
-</html>
+              MOUVM
