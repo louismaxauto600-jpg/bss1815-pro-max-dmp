@@ -29,4 +29,3 @@ window.PRO_MAX_ADMIN_LOGIN = async function (email, password) {
   await signInWithEmailAndPassword(auth, email, password);
   // Konekte reyisi — login.html ap jere redireksyon an.
 };
-
