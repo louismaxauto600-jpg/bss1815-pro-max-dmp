@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machann — PRO-MAX DMP</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .summary-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+  .summary-card {
+    flex: 1; min-width: 140px; background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: var(--radius); padding: 16px;
+  }
+  .summary-card .num { font-size: 1.4rem; font-weight: 700; color: var(--gold-bright); font-family: "Trebuchet MS", sans-serif; }
+  .summary-card .lbl { font-size: 0.78rem; color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-eyebrow">
+    <img src="logo.jpg" id="brandLogo" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
+    BSS 1815 · MACHANN
+  </div>
+  <div class="who">
+    <strong id="whoName">...</strong>
+    <span class="role-badge" id="roleBadge"></span>
+    &nbsp;&nbsp;<a href="dashboard.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dashboard</a>
+    &nbsp;&nbsp;<button class="btn-secondary" id="logoutBtn">Dekonekte</button>
+  </div>
+</div>
+
+<main>
+  <h2>Machann — <span id="yearLabel"></span></h2>
+
+  <div class="summary-row">
+    <div class="summary-card">
+      <div class="num" id="sumExpected">—</div>
+      <div class="lbl">Total dwe</div>
+    </div>
+    <div class="summary-card">
+      <div class="num" id="sumCollected">—</div>
+      <div class="lbl">Total rantre</div>
+    </div>
+    <div class="summary-card">
+      <div class="num" id="sumRemaining">—</div>
+      <div class="lbl">Rès pa peye</div>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="addVendorPanel">
+    <h3>Anrejistre yon machann</h3>
+    <div class="form-row">
+      <div>
+        <label>Non</label>
+        <input type="text" id="vLastName" placeholder="Non fanmi">
+      </div>
+      <div>
+        <label>Prenon</label>
+        <input type="text" id="vFirstName" placeholder="Prenon">
+      </div>
+      <div>
+        <label>Telefòn (obligatwa)</label>
+        <input type="text" id="vPhone" placeholder="+509...">
+      </div>
+      <div>
+        <label>Imèl (opsyonèl)</label>
+        <input type="email" id="vEmail" placeholder="imel@egzanp.com">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Plas</label>
+        <input type="text" id="vSpot" placeholder="Pa egzanp: Plas #3 — Manje">
+      </div>
+      <div>
+        <label>Frè (goud)</label>
+        <input type="text" id="vFee" placeholder="Pa egzanp: 5000">
+      </div>
+      <div style="flex:0 0 auto;">
+        <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="addVendorBtn">Anrejistre & Voye Badj</button>
+      </div>
+    </div>
+    <p id="addVendorStatus" style="color:var(--text-dim); font-size:0.85rem; margin-top:8px;"></p>
+  </div>
+
+  <div class="project-grid" id="vendorGrid" style="margin-top:16px;"></div>
+
+  <div class="panel hidden" id="vendorDetailPanel">
+    <button class="btn-secondary" id="backToVendorsBtn">← Tounen</button>
+    <h3 id="vendorDetailTitle"></h3>
+    <p id="vendorDetailInfo" style="color:var(--text-dim); font-size:0.88rem;"></p>
+
+    <div class="panel hidden" id="addPaymentPanel">
+      <h4>Anrejistre yon peman</h4>
+      <div class="form-row">
+        <div>
+          <label>Kantite (goud)</label>
+          <input type="text" id="pAmount" placeholder="Pa egzanp: 2000">
+        </div>
+        <div>
+          <label>Metòd</label>
+          <select id="pMethod">
+            <option value="kach">Kach</option>
+            <option value="transfè">Transfè</option>
+            <option value="lòt">Lòt</option>
+          </select>
+        </div>
+        <div style="flex:0 0 auto;">
+          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="addPaymentBtn">Anrejistre</button>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Dat</th><th>Kantite</th><th>Metòd</th><th>Anrejistre pa</th></tr></thead>
+      <tbody id="paymentsTableBody"></tbody>
+    </table>
+  </div>
+</main>
+
+<script type="module" src="vendors.js"></script>
+</body>
+</html>
