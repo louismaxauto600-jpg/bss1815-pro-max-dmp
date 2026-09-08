@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistèm Disiplinè — PRO-MAX DMP</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-eyebrow">
+    <img src="logo.jpg" id="brandLogo" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
+    BSS 1815 · SISTÈM DISIPLINÈ
+  </div>
+  <div class="who">
+    <strong id="whoName">...</strong>
+    <span class="role-badge" id="roleBadge"></span>
+    &nbsp;&nbsp;<a href="dashboard.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dashboard</a>
+    &nbsp;&nbsp;<a href="kazye.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Kazye Sansib</a>
+    &nbsp;&nbsp;<a href="roster.html?type=musicians" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mizisyen</a>
+    &nbsp;&nbsp;<a href="roster.html?type=leaders" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dirijan</a>
+    &nbsp;&nbsp;<a href="messages.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mesaj</a>
+    &nbsp;&nbsp;<button class="btn-secondary" id="logoutBtn">Dekonekte</button>
+  </div>
+</div>
+
+<main>
+
+  <nav class="panel" id="sectionNav" style="display:flex; gap:10px; flex-wrap:wrap;">
+    <button class="btn-secondary" data-target="membersSection">Manm</button>
+    <button class="btn-secondary" data-target="casesSection">Ka Disiplinè</button>
+    <button class="btn-secondary" data-target="suspensionsSection">Sispansyon</button>
+    <button class="btn-secondary" data-target="appealsSection">Apèl</button>
+    <button class="btn-secondary hidden" data-target="auditSection" id="auditNavBtn">Jounal Odit</button>
+  </nav>
+
+  <!-- ============ MANM YO ============ -->
+  <section id="membersSection" class="hidden">
+    <h2>Manm yo</h2>
+    <div class="panel" id="addMemberPanel">
+      <h3>Ajoute yon manm</h3>
+      <div class="form-row">
+        <div>
+          <label>Non manm nan</label>
+          <input type="text" id="newMemberName" placeholder="Non konplè">
+        </div>
+        <div style="flex:0 0 auto;">
+          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="addMemberBtn">Ajoute</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <table>
+        <thead>
+          <tr><th>Non</th><th>Avètisman</th><th>Estati</th><th></th></tr>
+        </thead>
+        <tbody id="membersTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ KA DISIPLINÈ ============ -->
+  <section id="casesSection" class="hidden">
+    <h2>Ka Disiplinè</h2>
+    <div class="panel">
+      <table>
+        <thead>
+          <tr><th>Manm</th><th>Rezon</th><th>Estati</th><th>Kreye</th><th></th></tr>
+        </thead>
+        <tbody id="casesTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Detay yon ka -->
+    <div class="panel hidden" id="caseDetailPanel">
+      <button class="btn-secondary" id="closeCaseBtn">← Fèmen</button>
+      <h3 id="caseDetailTitle"></h3>
+      <p id="caseDetailInfo" style="color:var(--text-dim); font-size:0.88rem;"></p>
+
+      <div id="voteFormWrap" class="hidden">
+        <h3>Vòt ou</h3>
+        <div class="form-row">
+          <div>
+            <label>Desizyon</label>
+            <select id="voteChoice">
+              <option value="klè">Egzante manm nan (klè)</option>
+              <option value="sispann">Sispann manm nan</option>
+              <option value="revoke">Revoke manm nan (ekspilse)</option>
+            </select>
+          </div>
+          <div>
+            <label>Kòmantè (opsyonèl)</label>
+            <input type="text" id="voteComment" placeholder="Rezon vòt ou">
+          </div>
+          <div style="flex:0 0 auto;">
+            <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="submitVoteBtn">Vote</button>
+          </div>
+        </div>
+      </div>
+
+      <h3>Vòt Komite a</h3>
+      <table>
+        <thead><tr><th>Manm Komite</th><th>Vòt</th><th
