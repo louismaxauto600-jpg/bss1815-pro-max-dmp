@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verifikasyon Badj — BSS 1815</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .verify-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .verify-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .verify-icon { font-size: 3rem; margin-bottom: 12px; }
+  .verify-status {
+    font-family: "Trebuchet MS", sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 10px 0;
+  }
+  .verify-status.valid { color: var(--success); }
+  .verify-status.invalid { color: #e8827a; }
+  .verify-detail { color: var(--text-dim); font-size: 0.9rem; margin-top: 4px; }
+  .verify-name { font-size: 1.4rem; color: var(--gold-bright); font-family: "Trebuchet MS", sans-serif; margin: 8px 0 2px 0; }
+</style>
+</head>
+<body>
+
+<div class="verify-wrap">
+  <div class="verify-card" id="verifyCard">
+    <img src="logo.jpg" alt="BSS 1815" class="brand-logo" style="height:56px; width:56px; margin:0 auto 12px auto;" onerror="this.style.display='none'">
+    <div id="verifyContent">Ap verifye...</div>
+  </div>
+</div>
+
+<script type="module" src="verify.js"></script>
+</body>
+</html>
