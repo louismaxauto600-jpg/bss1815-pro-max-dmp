@@ -1,0 +1,166 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function superAdminsDoc() {
+      return get(/databases/$(database)/documents/roles/super_admins);
+    }
+
+    function adminsDoc() {
+      return get(/databases/$(database)/documents/roles/admins);
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && request.auth.uid in superAdminsDoc().data.users;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && request.auth.uid in adminsDoc().data.users;
+    }
+
+    function isActiveAdmin() {
+      return isSuperAdmin() || isAdmin();
+    }
+
+    function myProfile() {
+      return get(/databases/$(database)/documents/administrative_team/$(request.auth.uid));
+    }
+
+    function hasFolderAccess(folderId) {
+      return isSuperAdmin()
+        || (isAdmin() && folderId in myProfile().data.categories);
+    }
+
+    function isCommitteeMember() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/disciplinary_committee/$(request.auth.uid))
+        && get(/databases/$(database)/documents/disciplinary_committee/$(request.auth.uid)).data.active != false;
+    }
+
+    function isAdvisor() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/advisory_council/$(request.auth.uid))
+        && get(/databases/$(database)/documents/advisory_council/$(request.auth.uid)).data.active != false;
+    }
+
+    function isOversight() {
+      return isSuperAdmin() || isCommitteeMember() || isAdvisor();
+    }
+
+    // ---------- /roles/{super_admins|admins} ----------
+    match /roles/{roleDoc} {
+      allow read: if isSignedIn();
+      allow write: if isSuperAdmin();
+    }
+
+    // ---------- /administrative_team/{uid} ----------
+    match /administrative_team/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isSuperAdmin());
+      allow write: if isSuperAdmin();
+    }
+
+    // ---------- /disciplinary_committee/{uid} & /advisory_council/{uid} ----------
+    match /disciplinary_committee/{uid} {
+      allow read: if isSignedIn();
+      allow write: if isSuperAdmin();
+    }
+    match /advisory_council/{uid} {
+      allow read: if isSignedIn();
+      allow write: if isSuperAdmin();
+    }
+
+    // ---------- /folders/{folderId} (Kazye Sansib) ----------
+    match /folders/{folderId} {
+      allow read: if isActiveAdmin();
+      allow create, delete, update: if isSuperAdmin();
+
+      match /files/{fileId} {
+        allow read, create, update: if hasFolderAccess(folderId);
+        allow delete: if isSuperAdmin();
+      }
+    }
+
+    // ---------- /links/{linkId} (Pro-Max FM) ----------
+    match /links/{linkId} {
+      allow read, create: if isActiveAdmin();
+      allow delete, update: if isActiveAdmin()
+        && (isSuperAdmin() || resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------- /member_records/{memberId} ----------
+    match /member_records/{memberId} {
+      allow read: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+      allow create, update: if isActiveAdmin();
+      allow delete: if isSuperAdmin();
+    }
+
+    // ---------- /warnings/{warningId} ----------
+    match /warnings/{warningId} {
+      allow read: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+      allow create: if isActiveAdmin();
+      allow update, delete: if isSuperAdmin();
+    }
+
+    // ---------- /disciplinary_cases/{caseId} ----------
+    match /disciplinary_cases/{caseId} {
+      allow read: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+      allow create: if isActiveAdmin();
+      allow update: if isSuperAdmin() || isCommitteeMember();
+
+      match /votes/{voterUid} {
+        allow read: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+        allow create, update: if isCommitteeMember() && request.auth.uid == voterUid;
+      }
+    }
+
+    // ---------- /suspensions/{suspensionId} ----------
+    match /suspensions/{suspensionId} {
+      allow read: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+      allow create, update: if isSuperAdmin();
+    }
+
+    // ---------- /appeals/{appealId} ----------
+    match /appeals/{appealId} {
+      allow read: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+      allow create: if isActiveAdmin();
+      allow update: if isSuperAdmin() || isAdvisor();
+    }
+
+    // ---------- /audit_logs/{logId} ----------
+    match /audit_logs/{logId} {
+      allow read: if isOversight();
+      allow create: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+      allow update, delete: if false;
+    }
+
+    // ---------- /governance/{docId} ----------
+    match /governance/{docId} {
+      allow read: if isActiveAdmin() || isCommitteeMember() || isAdvisor();
+      allow write: if isSuperAdmin();
+    }
+
+    // ---------- /musicians/{docId} ----------
+    match /musicians/{docId} {
+      allow read: if isSignedIn();
+      allow write, delete: if isActiveAdmin();
+    }
+
+    // ---------- /leaders/{docId} ----------
+    match /leaders/{docId} {
+      allow read: if isSignedIn();
+      allow write, delete: if isActiveAdmin();
+    }
+
+    // ---------- /messages/{msgId} ----------
+    match /messages/{msgId} {
+      allow read: if isSignedIn() && request.auth.uid in resource.data.participants;
+      allow create: if isSignedIn() && request.auth.uid in request.resource.data.participants;
+      allow update, delete: if false;
+    }
+  }
+}
