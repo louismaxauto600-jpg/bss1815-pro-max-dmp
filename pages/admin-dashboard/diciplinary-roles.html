@@ -21,7 +21,9 @@
     &nbsp;&nbsp;<a href="roster.html?type=musicians" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mizisyen</a>
     &nbsp;&nbsp;<a href="roster.html?type=leaders" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dirijan</a>
     &nbsp;&nbsp;<a href="messages.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mesaj</a>
-    &nbsp;&nbsp;<button class="btn-secondary" id="logoutBtn">Dekonekte</button>
+    &nbsp;&nbsp;<a href="vendors.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Machann</a>
+    &nbsp;&nbsp;<a href="badges.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Badj</a>
+    <button class="btn-secondary" id="logoutBtn">Dekonekte</button>
   </div>
 </div>
 
@@ -102,4 +104,76 @@
 
       <h3>Vòt Komite a</h3>
       <table>
-        <thead><tr><th>Manm Komite</th><th>Vòt</th><th
+        <thead><tr><th>Manm Komite</th><th>Vòt</th><th>Kòmantè</th></tr></thead>
+        <tbody id="votesTableBody"></tbody>
+      </table>
+
+      <div class="panel hidden" id="finalizePanel">
+        <h3>Finalize desizyon (Super Admin)</h3>
+        <p id="tallySummary" style="color:var(--text-dim); font-size:0.85rem;"></p>
+        <button class="btn-primary" style="width:auto; padding:12px 20px;" id="finalizeBtn">Fine Desizyon Final</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SISPANSYON ============ -->
+  <section id="suspensionsSection" class="hidden">
+    <h2>Sispansyon</h2>
+    <div class="panel">
+      <table>
+        <thead>
+          <tr><th>Manm</th><th>Rezon</th><th>Dat kòmanse</th><th>Estati</th><th></th></tr>
+        </thead>
+        <tbody id="suspensionsTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ APÈL ============ -->
+  <section id="appealsSection" class="hidden">
+    <h2>Apèl</h2>
+    <div class="panel">
+      <h3>Depoze yon apèl</h3>
+      <div class="form-row">
+        <div>
+          <label>Ka disiplinè a</label>
+          <select id="appealCaseSelect"></select>
+        </div>
+        <div style="flex: 1 1 100%;">
+          <label>Rezon apèl la</label>
+          <input type="text" id="appealReason" placeholder="Poukisa ou panse desizyon an dwe revize">
+        </div>
+        <div style="flex:0 0 auto;">
+          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="submitAppealBtn">Depoze</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <table>
+        <thead>
+          <tr><th>Manm</th><th>Rezon</th><th>Estati</th><th></th></tr>
+        </thead>
+        <tbody id="appealsTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ JOUNAL ODIT ============ -->
+  <section id="auditSection" class="hidden">
+    <h2>Jounal Odit</h2>
+    <div class="panel">
+      <table>
+        <thead>
+          <tr><th>Aksyon</th><th>Pa</th><th>Detay</th><th>Lè</th></tr>
+        </thead>
+        <tbody id="auditTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="disciplinary.js"></script>
+</body>
+</html>
