@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badj — PRO-MAX DMP</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+  .badge-preview {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: var(--radius); padding: 20px; text-align: center;
+    max-width: 320px; margin-top: 16px;
+  }
+  .badge-preview canvas { max-width: 100%; height: auto; background: #fff; border-radius: 8px; padding: 8px; }
+  .badge-id { font-family: monospace; color: var(--gold); font-size: 1rem; margin-top: 10px; }
+  .status-tag.revoked { background: rgba(192,57,43,0.2); color: #e8827a; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-eyebrow">
+    <img src="logo.jpg" id="brandLogo" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
+    BSS 1815 · BADJ
+  </div>
+  <div class="who">
+    <strong id="whoName">...</strong>
+    <span class="role-badge" id="roleBadge"></span>
+    &nbsp;&nbsp;<a href="dashboard.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dashboard</a>
+    &nbsp;&nbsp;<button class="btn-secondary" id="logoutBtn">Dekonekte</button>
+  </div>
+</div>
+
+<main>
+  <h2>Jenere yon Badj</h2>
+
+  <div class="panel hidden" id="genPanel">
+    <div class="form-row">
+      <div>
+        <label>Kategori</label>
+        <select id="bCategory">
+          <option value="Machann">Machann</option>
+          <option value="Manm">Manm</option>
+          <option value="Mizisyen">Mizisyen</option>
+          <option value="Dirijan">Dirijan</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+      <div>
+        <label>Non konplè</label>
+        <input type="text" id="bName" placeholder="Non ak Prenon">
+      </div>
+      <div>
+        <label>Telefòn (opsyonèl — pou SMS)</label>
+        <input type="text" id="bPhone" placeholder="+509...">
+      </div>
+      <div style="flex:0 0 auto;">
+        <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="genBtn">Jenere Badj</button>
+      </div>
+    </div>
+    <p id="genStatus" style="color:var(--text-dim); font-size:0.85rem; margin-top:8px;"></p>
+
+    <div class="badge-preview hidden" id="badgePreview">
+      <canvas id="qrCanvas"></canvas>
+      <div class="badge-id" id="badgeIdText"></div>
+      <div style="margin-top:10px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+        <button class="btn-secondary" id="downloadBtn">Telechaje Imaj</button>
+        <button class="btn-secondary hidden" id="smsBtn">Voye pa SMS</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:30px;">Tout Badj yo</h2>
+  <div class="panel">
+    <table>
+      <thead>
+        <tr><th>Non</th><th>Kategori</th><th>ID Badj</th><th>Estati</th><th>Delivre</th><th></th></tr>
+      </thead>
+      <tbody id="badgesTableBody"></tbody>
+    </table>
+  </div>
+</main>
+
+<script type="module" src="badges.js"></script>
+</body>
+</html>
