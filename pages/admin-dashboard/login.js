@@ -16,13 +16,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDCto1oqxOZ6nNtGRd_xu3x6GGwkmDgmjY",
-  authDomain: "pro-maxfm.firebaseapp.com",
-  projectId: "pro-maxfm",
-  storageBucket: "pro-maxfm.firebasestorage.app",
-  messagingSenderId: "1142157859255",
-  appId: "1:1142157859255:web:2192af6e816d28e03f0032",
-  measurementId: "G-PY7MDQ2WY3"
+  apiKey: "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
+  authDomain: "briyant-soley-signo-1815.firebaseapp.com",
+  projectId: "briyant-soley-signo-1815",
+  storageBucket: "briyant-soley-signo-1815.firebasestorage.app",
+  messagingSenderId: "873317957685",
+  appId: "1:873317957685:web:6bec7a169b344c3a99717c",
+  measurementId: "G-C7ZGMHGJ22"
 };
 
 const app = initializeApp(firebaseConfig);
