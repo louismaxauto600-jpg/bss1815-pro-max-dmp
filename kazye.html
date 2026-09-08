@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kazye Sansib — Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-eyebrow">
+    <img src="logo.jpg" id="brandLogo" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
+    BSS 1815 · KAZYE SANSIB
+  </div>
+  <div class="who">
+    <strong id="whoName">...</strong>
+    <span class="role-badge" id="roleBadge"></span>
+    &nbsp;&nbsp;<a href="dashboard.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dashboard</a>
+    &nbsp;&nbsp;<a href="disciplinary.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Disiplin</a>
+    &nbsp;&nbsp;<a href="roster.html?type=musicians" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mizisyen</a>
+    &nbsp;&nbsp;<a href="roster.html?type=leaders" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dirijan</a>
+    &nbsp;&nbsp;<a href="messages.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mesaj</a>
+    &nbsp;&nbsp;<button class="btn-secondary" id="logoutBtn">Dekonekte</button>
+  </div>
+</div>
+
+<main>
+
+  <!-- Vi jeneral: lis kazye yo -->
+  <section id="folderOverview">
+    <h2>Kazye yo</h2>
+    <p id="overviewSub" style="color:var(--text-dim); font-size:0.88rem;"></p>
+
+    <!-- Sèlman Super Admin wè sa -->
+    <div class="panel hidden" id="newFolderPanel">
+      <h3>Kreye yon nouvo kazye</h3>
+      <div class="form-row">
+        <div>
+          <label>Non kazye a</label>
+          <input type="text" id="newFolderName" placeholder="Pa egzanp: Dosye Mizisyen">
+        </div>
+        <div style="flex:0 0 auto;">
+          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="createFolderBtn">Kreye</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-grid" id="folderGrid"></div>
+  </section>
+
+  <!-- Anndan yon kazye -->
+  <section id="folderDetail" class="hidden">
+    <button class="btn-secondary" id="backBtn">← Tounen</button>
+    <h2 id="detailTitle"></h2>
+
+    <div class="panel">
+      <h3>Telechaje yon fichye</h3>
+      <div class="form-row">
+        <div>
+          <label>Fichye (PDF, imaj, elatriye)</label>
+          <input type="file" id="fileInput">
+        </div>
+        <div>
+          <label>Deskripsyon (opsyonèl)</label>
+          <input type="text" id="fileDescription" placeholder="Pa egzanp: Kontra Janvye 2026">
+        </div>
+        <div style="flex:0 0 auto;">
+          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="uploadBtn">Telechaje</button>
+        </div>
+      </div>
+      <p id="uploadStatus" style="color:var(--text-dim); font-size:0.85rem; margin-top:10px;"></p>
+    </div>
+
+    <div class="panel">
+      <h3>Fichye nan kazye sa a</h3>
+      <table>
+        <thead>
+          <tr><th>Fichye</th><th>Deskripsyon</th><th>Telechaje pa</th><th>Dat</th><th></th></tr>
+        </thead>
+        <tbody id="filesTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="kazye.js"></script>
+</body>
+</html>
