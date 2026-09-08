@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rostè — PRO-MAX DMP</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-eyebrow">
+    <img src="logo.jpg" id="brandLogo" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
+    <span id="pageTitle">BSS 1815 · ROSTÈ</span>
+  </div>
+  <div class="who">
+    <strong id="whoName">...</strong>
+    <span class="role-badge" id="roleBadge"></span>
+    &nbsp;&nbsp;<a href="dashboard.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dashboard</a>
+    &nbsp;&nbsp;<button class="btn-secondary" id="logoutBtn">Dekonekte</button>
+  </div>
+</div>
+
+<main>
+  <h2 id="sectionTitle">Rostè</h2>
+
+  <div class="panel hidden" id="addPanel">
+    <h3>Ajoute yon moun</h3>
+    <div class="form-row">
+      <div>
+        <label>Non</label>
+        <input type="text" id="newName" placeholder="Non konplè">
+      </div>
+      <div id="roleFieldWrap">
+        <label>Wòl / Enstriman / Pozisyon</label>
+        <input type="text" id="newRoleTitle" placeholder="Pa egzanp: Gita, Vokal, Prezidan">
+      </div>
+      <div>
+        <label>Telefòn (opsyonèl)</label>
+        <input type="text" id="newPhone" placeholder="+509...">
+      </div>
+      <div>
+        <label>Foto (opsyonèl)</label>
+        <input type="file" id="newPhoto" accept="image/*">
+      </div>
+      <div style="flex:0 0 auto;">
+        <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="addBtn">Ajoute</button>
+      </div>
+    </div>
+    <p id="addStatus" style="color:var(--text-dim); font-size:0.85rem; margin-top:8px;"></p>
+  </div>
+
+  <div class="filter-bar" id="filterBar" style="display:flex; gap:8px; flex-wrap:wrap; margin: 16px 0;"></div>
+
+  <div class="project-grid" id="rosterGrid" style="margin-top:0;"></div>
+</main>
+
+<script type="module" src="roster.js"></script>
+</body>
+</html>
