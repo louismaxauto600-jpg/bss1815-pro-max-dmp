@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesaj — PRO-MAX DMP</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .conv-list { display: flex; flex-direction: column; gap: 8px; }
+  .conv-item {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: 8px; padding: 12px 14px; cursor: pointer;
+  }
+  .conv-item:hover { border-color: var(--gold); }
+  .msg-bubble {
+    max-width: 75%; padding: 10px 14px; border-radius: 12px; margin-bottom: 8px;
+    font-size: 0.9rem; line-height: 1.4;
+  }
+  .msg-mine { background: var(--ember); color: var(--text); margin-left: auto; }
+  .msg-theirs { background: var(--panel); border: 1px solid var(--panel-border); }
+  .msg-thread { display: flex; flex-direction: column; max-height: 400px; overflow-y: auto; padding: 10px 0; }
+  .msg-meta { font-size: 0.68rem; color: var(--text-dim); margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-eyebrow">
+    <img src="logo.jpg" id="brandLogo" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
+    BSS 1815 · MESAJ
+  </div>
+  <div class="who">
+    <strong id="whoName">...</strong>
+    <span class="role-badge" id="roleBadge"></span>
+    &nbsp;&nbsp;<a href="dashboard.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dashboard</a>
+    &nbsp;&nbsp;<button class="btn-secondary" id="logoutBtn">Dekonekte</button>
+  </div>
+</div>
+
+<main>
+
+  <section id="convListSection">
+    <h2>Konvèsasyon yo</h2>
+
+    <div class="panel">
+      <h3>Kòmanse yon nouvo konvèsasyon</h3>
+      <div class="form-row">
+        <div>
+          <label>Ekri ak</label>
+          <select id="newConvSelect"></select>
+        </div>
+        <div style="flex:0 0 auto;">
+          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="startConvBtn">Kòmanse</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="conv-list" id="convList" style="margin-top:16px;"></div>
+  </section>
+
+  <section id="threadSection" class="hidden">
+    <button class="btn-secondary" id="backToListBtn">← Konvèsasyon yo</button>
+    <h2 id="threadTitle"></h2>
+
+    <div class="panel">
+      <div class="msg-thread" id="msgThread"></div>
+      <div class="form-row" style="margin-top:10px;">
+        <div style="flex:1;">
+          <input type="text" id="msgInput" placeholder="Ekri yon mesaj...">
+        </div>
+        <div style="flex:0 0 auto;">
+          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="sendMsgBtn">Voye</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="messages.js"></script>
+</body>
+</html>
