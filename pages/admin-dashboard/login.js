@@ -21,7 +21,7 @@ const firebaseConfig = {
   projectId: "briyant-soley-signo-1815",
   storageBucket: "briyant-soley-signo-1815.firebasestorage.app",
   messagingSenderId: "873317957685",
-  appId: "1:873317957685:web:6bec7a169b344c3a99717c",
+  appId: "1:873317957685:web:1bb4bb30831a058399717c",
   measurementId: "G-C7ZGMHGJ22"
 };
 
