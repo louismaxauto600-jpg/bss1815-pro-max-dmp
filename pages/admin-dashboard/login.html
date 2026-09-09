@@ -5,12 +5,96 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login — Admin Dashboard</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  body {
+    background: radial-gradient(circle at center, #1a0d00, #000000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .bss-logo {
+    display: block;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255,122,0,0.5);
+  }
+  .login-wrap {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+  }
+  .login-card {
+    background: #111;
+    border: 2px solid #ff7a00;
+    border-radius: 20px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(255,122,0,0.25);
+  }
+  .brand-eyebrow {
+    color: #ffb366;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+  .login-card h1 {
+    color: #ff7a00;
+    font-size: 32px;
+    margin: 0 0 8px;
+  }
+  .login-card .sub {
+    color: #ffb366;
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+  #loginForm label {
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    color: #ffb366;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  #loginForm input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ff7a00;
+    background: #000;
+    color: #fff;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+  .btn-primary {
+    width: 100%;
+    margin-top: 25px;
+    padding: 13px;
+    background: linear-gradient(180deg, #ff9500, #ff6a00);
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .error-msg {
+    color: #ff5c5c;
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 16px;
+  }
+</style>
 </head>
 <body>
 
 <div class="login-wrap">
   <div class="login-card">
-    <img src="logo.jpg" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
+    <img src="./assets/bss-admin-logo.jpg" alt="BSS 1815 Admin" class="bss-logo" onerror="this.style.display='none'">
     <div class="brand-eyebrow">BRIYANT SOLEY SIGNO · BSS 1815</div>
     <h1>Admin Dashboard</h1>
     <p class="sub">Konekte pou jere pwojè yo</p>
@@ -29,6 +113,6 @@
   </div>
 </div>
 
-<script type="module" src="login.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
