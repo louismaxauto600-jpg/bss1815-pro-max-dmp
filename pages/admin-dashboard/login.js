@@ -1,68 +1,72 @@
-// FILE: login.js
+// FILE: login.js (vèsyon san "type=module" pou evite pwoblèm MIME-type Netlify)
 // Konekte fòm Admin Dashboard (Email / Password / Connect) ak Firebase Authentication.
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
-  getFirestore,
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+(async function () {
+  "use strict";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
-  authDomain: "briyant-soley-signo-1815.firebaseapp.com",
-  projectId: "briyant-soley-signo-1815",
-  storageBucket: "briyant-soley-signo-1815.firebasestorage.app",
-  messagingSenderId: "873317957685",
-  appId: "1:873317957685:web:1bb4bb30831a058399717c",
-  measurementId: "G-C7ZGMHGJ22"
-};
+  const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+  const { getAuth, signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+  const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+  const firebaseConfig = {
+    apiKey: "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
+    authDomain: "briyant-soley-signo-1815.firebaseapp.com",
+    projectId: "briyant-soley-signo-1815",
+    storageBucket: "briyant-soley-signo-1815.firebasestorage.app",
+    messagingSenderId: "873317957685",
+    appId: "1:873317957685:web:1bb4bb30831a058399717c",
+    measurementId: "G-C7ZGMHGJ22"
+  };
 
-const form = document.getElementById("loginForm");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const errorMsg = document.getElementById("errorMsg");
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
-async function isInRoleList(roleDocId, uid) {
-  const snap = await getDoc(doc(db, "roles", roleDocId));
-  if (!snap.exists()) return false;
-  const users = snap.data().users || [];
-  return users.includes(uid);
-}
+  const form = document.getElementById("loginForm");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const errorMsg = document.getElementById("errorMsg");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  errorMsg.textContent = "";
-
-  const email = emailInput.value.trim();
-  const password = passwordInput.value;
-
-  try {
-    const cred = await signInWithEmailAndPassword(auth, email, password);
-    const uid = cred.user.uid;
-
-    const isSuper = await isInRoleList("super_admins", uid);
-    const isAdmin = isSuper ? false : await isInRoleList("admins", uid);
-
-    if (!isSuper && !isAdmin) {
-      errorMsg.textContent = "Kont sa a pa gen aksè administratif.";
-      await auth.signOut();
-      return;
-    }
-
-    // Konekte reyisi — voye sou dashboard la
-    window.location.href = "roster.html?type=musicians";
-
-  } catch (err) {
-    console.error(err);
-    errorMsg.textContent = "Imèl oswa modpas pa kòrèk.";
+  if (!form) {
+    console.error("login.js: pa jwenn #loginForm nan paj la.");
+    return;
   }
-});
+
+  async function isInRoleList(roleDocId, uid) {
+    const snap = await getDoc(doc(db, "roles", roleDocId));
+    if (!snap.exists()) return false;
+    const users = snap.data().users || [];
+    return users.includes(uid);
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    errorMsg.textContent = "Ap konekte...";
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      const uid = cred.user.uid;
+
+      const isSuper = await isInRoleList("super_admins", uid);
+      const isAdmin = isSuper ? false : await isInRoleList("admins", uid);
+
+      if (!isSuper && !isAdmin) {
+        errorMsg.textContent = "Kont sa a pa gen aksè administratif.";
+        await auth.signOut();
+        return;
+      }
+
+      errorMsg.textContent = "Siksè! Ap redireksyone...";
+      window.location.href = "roster.html?type=musicians";
+
+    } catch (err) {
+      console.error(err);
+      errorMsg.textContent = "Erè: " + (err.code || err.message || "enkoni");
+    }
+  });
+
+  console.log("login.js chaje e pare.");
+})();
