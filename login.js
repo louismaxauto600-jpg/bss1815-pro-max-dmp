@@ -1,38 +1,40 @@
 // ============================================
-// LOGIN.JS - VERSION SENP FINAL
-// Sèl règ: si Firebase Authentication aksepte imèl + modpas la, aksè bay. PWEN.
-// Pa gen okenn lòt lis, okenn lòt verifikasyon, okenn dezyèm baryè.
+// LOGIN.JS - VERSION FINAL, MATCHE AK login.html
+// ID yo matche: #loginForm, #email, #password, #errorMsg
+// Sèl règ: si Firebase Authentication aksepte imèl + modpas la, aksè bay.
 // ============================================
 
 const firebaseConfig = {
-  apiKey: "METE_API_KEY_OU_ISIT",
-  authDomain: "METE_AUTH_DOMAIN_OU_ISIT",
-  projectId: "METE_PROJECT_ID_OU_ISIT",
-  storageBucket: "METE_STORAGE_BUCKET_OU_ISIT",
-  messagingSenderId: "METE_SENDER_ID_OU_ISIT",
-  appId: "METE_APP_ID_OU_ISIT"
+  apiKey: "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
+  authDomain: "briyant-soley-signo-1815.firebaseapp.com",
+  projectId: "briyant-soley-signo-1815",
+  storageBucket: "briyant-soley-signo-1815.firebasestorage.app",
+  messagingSenderId: "873317957685",
+  appId: "1:873317957685:web:1bb4bb30831a058399717c"
 };
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 const loginForm = document.getElementById('loginForm');
-const imelInput = document.getElementById('imel');
-const modpasInput = document.getElementById('modpas');
-const toggleModpas = document.getElementById('toggleModpas');
-const forgotPassword = document.getElementById('forgotPassword');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
 const errorMsg = document.getElementById('errorMsg');
+const loginBtn = document.getElementById('loginBtn');
 
 loginForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
-  const email = imelInput.value.trim();
-  const password = modpasInput.value;
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
 
   if (!email || !password) {
     showError('Tanpri ranpli tout chan yo.');
     return;
   }
+
+  loginBtn.disabled = true;
+  loginBtn.textContent = 'Ap konekte...';
 
   try {
     // SÈL VERIFIKASYON: Firebase Authentication
@@ -42,6 +44,9 @@ loginForm.addEventListener('submit', async function (e) {
     window.location.href = 'super-admin-dashboard.html';
 
   } catch (error) {
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Konekte';
+
     switch (error.code) {
       case 'auth/invalid-credential':
       case 'auth/wrong-password':
@@ -61,35 +66,5 @@ loginForm.addEventListener('submit', async function (e) {
 });
 
 function showError(message) {
-  if (errorMsg) {
-    errorMsg.textContent = message;
-    errorMsg.style.display = 'block';
-  } else {
-    alert(message);
-  }
-}
-
-if (forgotPassword) {
-  forgotPassword.addEventListener('click', async function (e) {
-    e.preventDefault();
-    const email = imelInput.value.trim();
-    if (!email) {
-      showError('Tanpri mete imèl ou anvan.');
-      return;
-    }
-    try {
-      await auth.sendPasswordResetEmail(email);
-      alert('Yon lyen reset modpas voye nan: ' + email);
-    } catch (error) {
-      showError('Erè: ' + error.message);
-    }
-  });
-}
-
-if (toggleModpas) {
-  toggleModpas.addEventListener('click', function () {
-    const isHidden = modpasInput.type === 'password';
-    modpasInput.type = isHidden ? 'text' : 'password';
-    this.textContent = isHidden ? '🙈' : '👁️';
-  });
+  errorMsg.textContent = message;
 }
