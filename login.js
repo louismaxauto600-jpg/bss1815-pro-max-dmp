@@ -1,9 +1,9 @@
 // ============================================
-// LOGIN.JS - Admin Dashboard (BSS 1815)
-// Firebase Authentication - Login, Forgot Password, Show/Hide Password
+// LOGIN.JS - VERSION SENP FINAL
+// Sèl règ: si Firebase Authentication aksepte imèl + modpas la, aksè bay. PWEN.
+// Pa gen okenn lòt lis, okenn lòt verifikasyon, okenn dezyèm baryè.
 // ============================================
 
-// --- Firebase Config (mete konfigirasyon pwojè ou a isit la) ---
 const firebaseConfig = {
   apiKey: "METE_API_KEY_OU_ISIT",
   authDomain: "METE_AUTH_DOMAIN_OU_ISIT",
@@ -16,7 +16,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// --- Elements ---
 const loginForm = document.getElementById('loginForm');
 const imelInput = document.getElementById('imel');
 const modpasInput = document.getElementById('modpas');
@@ -24,9 +23,6 @@ const toggleModpas = document.getElementById('toggleModpas');
 const forgotPassword = document.getElementById('forgotPassword');
 const errorMsg = document.getElementById('errorMsg');
 
-// ============================================
-// 1) KONEKTE (LOGIN)
-// ============================================
 loginForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
@@ -39,31 +35,30 @@ loginForm.addEventListener('submit', async function (e) {
   }
 
   try {
+    // SÈL VERIFIKASYON: Firebase Authentication
     await auth.signInWithEmailAndPassword(email, password);
-    // Login reyisi - voye itilizatè a nan dashboard la
+
+    // Login reyisi = aksè bay, san kondisyon
     window.location.href = 'super-admin-dashboard.html';
+
   } catch (error) {
-    handleAuthError(error);
+    switch (error.code) {
+      case 'auth/invalid-credential':
+      case 'auth/wrong-password':
+      case 'auth/user-not-found':
+        showError('Imèl oswa modpas la pa kòrèk.');
+        break;
+      case 'auth/invalid-email':
+        showError('Fòma imèl la pa valid.');
+        break;
+      case 'auth/too-many-requests':
+        showError('Twòp tantativ. Tanpri eseye ankò pita.');
+        break;
+      default:
+        showError('Erè: ' + error.message);
+    }
   }
 });
-
-function handleAuthError(error) {
-  switch (error.code) {
-    case 'auth/invalid-credential':
-    case 'auth/wrong-password':
-    case 'auth/user-not-found':
-      showError('Imèl oswa modpas la pa kòrèk.');
-      break;
-    case 'auth/invalid-email':
-      showError('Fòma imèl la pa valid.');
-      break;
-    case 'auth/too-many-requests':
-      showError('Twòp tantativ. Tanpri eseye ankò pita.');
-      break;
-    default:
-      showError('Erè: ' + error.message);
-  }
-}
 
 function showError(message) {
   if (errorMsg) {
@@ -74,33 +69,27 @@ function showError(message) {
   }
 }
 
-// ============================================
-// 2) BLIYE MODPAS (FORGOT PASSWORD)
-// ============================================
-forgotPassword.addEventListener('click', async function (e) {
-  e.preventDefault();
+if (forgotPassword) {
+  forgotPassword.addEventListener('click', async function (e) {
+    e.preventDefault();
+    const email = imelInput.value.trim();
+    if (!email) {
+      showError('Tanpri mete imèl ou anvan.');
+      return;
+    }
+    try {
+      await auth.sendPasswordResetEmail(email);
+      alert('Yon lyen reset modpas voye nan: ' + email);
+    } catch (error) {
+      showError('Erè: ' + error.message);
+    }
+  });
+}
 
-  const email = imelInput.value.trim();
-
-  if (!email) {
-    showError('Tanpri mete imèl ou anvan ou klike sou "Bliye modpas?".');
-    return;
-  }
-
-  try {
-    await auth.sendPasswordResetEmail(email);
-    alert('Yon lyen pou reset modpas te voye nan: ' + email);
-  } catch (error) {
-    handleAuthError(error);
-  }
-});
-
-// ============================================
-// 3) WÈ / KACHE MODPAS (SHOW/HIDE PASSWORD)
-// ============================================
-toggleModpas.addEventListener('click', function () {
-  const isHidden = modpasInput.type === 'password';
-  modpasInput.type = isHidden ? 'text' : 'password';
-  this.textContent = isHidden ? '🙈' : '👁️';
-});
-
+if (toggleModpas) {
+  toggleModpas.addEventListener('click', function () {
+    const isHidden = modpasInput.type === 'password';
+    modpasInput.type = isHidden ? 'text' : 'password';
+    this.textContent = isHidden ? '🙈' : '👁️';
+  });
+}
