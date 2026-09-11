@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ht" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <title>AI Center | BSS1815 PRO-MAX DMP</title>
+
+  <meta
+    name="description"
+    content="AI Center — Asistan, Writer, Tradiktè, Voice Studio, Image Studio, Analytics ak Tutor pou tout ekosistèm BSS1815 PRO-MAX DMP."
+  >
+
+  <meta name="theme-color" content="#000000">
+  <meta name="author" content="BSS1815 PRO-MAX DMP">
+  <meta name="robots" content="index,follow">
+
+  <style>
+    :root {
+      --black: #000000;
+      --black-two: #080300;
+      --orange: #ff7900;
+      --apricot: #ffad4d;
+      --text: #ffc589;
+      --border: rgba(255, 121, 0, 0.32);
+      --strong-border: rgba(255, 121, 0, 0.72);
+      --glow:
+        0 0 18px rgba(255, 121, 0, 0.55),
+        0 0 48px rgba(255, 121, 0, 0.20);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at 18% 15%,
+          rgba(255, 121, 0, 0.16),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 82% 72%,
+          rgba(255, 121, 0, 0.09),
+          transparent 38%
+        ),
+        linear-gradient(
+          180deg,
+          #000000 0%,
+          #0b0400 48%,
+          #000000 100%
+        );
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(
+          rgba(255, 121, 0, 0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 121, 0, 0.025) 1px,
+          transparent 1px
+        );
+      background-size: 44px 44px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1220px, calc(100% - 28px));
+      margin: auto;
+    }
+
+    .top-bar {
+      padding: 10px 15px;
+      color: #000000;
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 1000;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background:
+        linear-gradient(
+          90deg,
+          #913700,
+          var(--orange),
+          var(--apricot),
+          var(--orange),
+          #913700
+        );
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.97);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.60);
+    }
+
+    .header-inner {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 2px solid var(--orange);
+      border-radius: 17px;
+      background: #000000;
+      box-shadow: var(--glow);
+      font-size: 1.5rem;
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--orange);
+      font-size: 0.95rem;
+      font-weight: 1000;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 5px;
+      color: var(--apricot);
+      font-size: 0.52rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .back-link {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--apricot);
+      font-size: 0.63rem;
+      font-weight: 1000;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    .back-link:hover {
+      color: #000000;
+      background: var(--orange);
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #000000;
+    }
+
+    .lang-btn {
+      min-width: 42px;
+      padding: 8px 9px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--apricot);
+      background: #000000;
+      cursor: pointer;
+      font-size: 0.61rem;
+      font-weight: 1000;
+    }
+
+    .lang-btn.active {
+      color: #000000;
+      background: var(--orange);
+    }
+
+    .page-head {
+      padding: 44px 0 8px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-size: 0.69rem;
+      font-weight: 1000;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin-top: 11px;
+      color: var(--orange);
+      font-size: clamp(2.2rem, 7vw, 4.4rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .page-desc {
+      max-width: 720px;
+      margin: 16px auto 0;
+      line-height: 1.75;
+    }
+
+    .ai-layout {
+      padding: 34px 0 90px;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .ai-panel {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 121, 0, 0.11),
+          transparent 50%
+        ),
+        #050200;
+    }
+
+    .ai-panel + .ai-panel {
+      margin-top: 20px;
+    }
+
+    .panel-label {
+      color: var(--orange);
+      font-size: 0.63rem;
+      font-weight: 1000;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #ai-project-selector {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      background: #000000;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    #ai-tools {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ai-tool-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      background: #000000;
+      cursor: pointer;
+      text-align: left;
+      transition: 0.2s;
+    }
+
+    .ai-tool-card:hover {
+      border-color: var(--orange);
+    }
+
+    .ai-tool-card.active {
+      border-color: var(--orange);
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(255, 121, 0, 0.20),
+          transparent 60%
+        ),
+        #000000;
+      box-shadow: var(--glow);
+    }
+
+    .ai-tool-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .ai-tool-information strong {
+      display: block;
+      color: var(--orange);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+    }
+
+    .ai-tool-information small {
+      display: block;
+      margin-top: 4px;
+      line-height: 1.5;
+      font-size: 0.68rem;
+    }
+
+    .ai-history-empty {
+      margin-top: 12px;
+      font-size: 0.72rem;
+      line-height: 1.6;
+    }
+
+    #ai-history {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 360px;
+      overflow-y: auto;
+    }
+
+    .ai-history-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #000000;
+    }
+
+    .ai-history-open {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      width: 100%;
+      padding: 11px;
+      border: 0;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .ai-history-open strong {
+      color: var(--orange);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+    }
+
+    .ai-history-open span {
+      font-size: 0.62rem;
+      color: var(--apricot);
+    }
+
+    .ai-history-open small {
+      font-size: 0.65rem;
+      line-height: 1.5;
+    }
+
+    .ai-history-open time {
+      font-size: 0.58rem;
+      opacity: 0.75;
+    }
+
+    .btn {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
+      border: 2px solid var(--orange);
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 1000;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.25s;
+      background: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      color: #000000;
+      background: var(--orange);
+    }
+
+    .btn-outline {
+      color: var(--orange);
+      background: #000000;
+    }
+
+    .btn-block {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .ai-workspace {
+      padding: 24px;
+      border: 1px solid var(--strong-border);
+      border-radius: 22px;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 121, 0, 0.13),
+          transparent 40%
+        ),
+        linear-gradient(145deg, #000000, #0b0400);
+    }
+
+    .workspace-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .workspace-title {
+      color: var(--orange);
+      font-size: 1.05rem;
+      text-transform: uppercase;
+    }
+
+    #ai-project-display {
+      font-size: 0.68rem;
+      color: var(--apricot);
+    }
+
+    [data-ai-status] {
+      padding: 6px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.6rem;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+
+    [data-ai-status][data-status="processing"] {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    [data-ai-status][data-status="success"] {
+      border-color: #3fbf5c;
+      color: #3fbf5c;
+    }
+
+    [data-ai-status][data-status="error"] {
+      border-color: #ff5c5c;
+      color: #ff5c5c;
+    }
+
+    #ai-form {
+      margin-top: 20px;
+    }
+
+    #ai-prompt {
+      width: 100%;
+      min-height: 140px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+      background: #000000;
+      font: inherit;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      resize: vertical;
+    }
+
+    #ai-prompt:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+
+    .form-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ai-response-box {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .response-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.63rem;
+      color: var(--apricot);
+    }
+
+    #ai-response {
+      margin-top: 12px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #050200;
+      line-height: 1.75;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+    }
+
+    #ai-response[hidden] {
+      display: none;
+    }
+
+    .response-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .response-actions .btn {
+      padding: 9px 16px;
+      min-height: 40px;
+      font-size: 0.6rem;
+    }
+
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: #000000;
+      font-size: 0.68rem;
+      line-height: 1.7;
+    }
+
+    footer strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--orange);
+    }
+
+    @media (max-width: 900px) {
+      .ai-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .form-actions,
+      .response-actions {
+        flex-direction: column;
+      }
+
+      .form-actions .btn,
+      .response-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div
+    class="top-bar"
+    data-ht="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥"
+    data-fr="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — CONSTRUIT POUR AUJOURD’HUI — PRÊT POUR DEMAIN 🔥"
+    data-en="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BUILT FOR TODAY — READY FOR TOMORROW 🔥"
+  >
+    🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥
+  </div>
+
+  <header>
+    <div class="container header-inner">
+
+      <a href="../../index.html" class="brand">
+        <div class="brand-icon" aria-hidden="true">🤖</div>
+
+        <div class="brand-text">
+          <strong>AI CENTER</strong>
+
+          <span
+            data-ht="BSS1815 PRO-MAX DMP"
+            data-fr="BSS1815 PRO-MAX DMP"
+            data-en="BSS1815 PRO-MAX DMP"
+          >
+            BSS1815 PRO-MAX DMP
+          </span>
+        </div>
+      </a>
+
+      <div class="header-right">
+
+        <a
+          href="../../index.html"
+          class="back-link"
+          data-ht="← RETOU AKÈY"
+          data-fr="← RETOUR ACCUEIL"
+          data-en="← BACK HOME"
+        >
+          ← RETOU AKÈY
+        </a>
+
+        <div class="lang-switch">
+          <button type="button" class="lang-btn" data-lang="fr">FRA</button>
+          <button type="button" class="lang-btn" data-lang="en">ENG</button>
+          <button type="button" class="lang-btn active" data-lang="ht">KRE</button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container">
+
+        <div class="eyebrow">BSS1815 PRO-MAX DMP</div>
+
+        <h1
+          class="page-title"
+          data-ht="AI CENTER"
+          data-fr="CENTRE IA"
+          data-en="AI CENTER"
+        >
+          AI CENTER
+        </h1>
+
+        <p
+          class="page-desc"
+          data-ht="Yon sèl espas pou Asistan AI, AI Writer, Tradiktè, Voice Studio, Image Studio, Analytics ak Tutor — adapte pou chak branch nan ekosistèm nan."
+          data-fr="Un seul espace pour l’Assistant IA, le Rédacteur IA, le Traducteur, le Studio vocal, le Studio d’images, l’Analyse et le Tuteur — adapté à chaque branche de l’écosystème."
+          data-en="One space for the AI Assistant, AI Writer, Translator, Voice Studio, Image Studio, Analytics and Tutor — adapted to every branch of the ecosystem."
+        >
+          Yon sèl espas pou tout zouti AI nan ekosistèm nan.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="ai-layout container">
+
+      <aside>
+
+        <div class="ai-panel">
+          <div
+            class="panel-label"
+            data-ht="PWOJÈ AKTYÈL"
+            data-fr="PROJET ACTUEL"
+            data-en="ACTIVE PROJECT"
+          >
+            PWOJÈ AKTYÈL
+          </div>
+
+          <select id="ai-project-selector" aria-label="Active project"></select>
+        </div>
+
+        <div class="ai-panel">
+          <div
+            class="panel-label"
+            data-ht="ZOUTI AI YO"
+            data-fr="OUTILS IA"
+            data-en="AI TOOLS"
+          >
+            ZOUTI AI YO
+          </div>
+
+          <div id="ai-tools"></div>
+        </div>
+
+        <div class="ai-panel">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <div
+              class="panel-label"
+              data-ht="ISTWA"
+              data-fr="HISTORIQUE"
+              data-en="HISTORY"
+            >
+              ISTWA
+            </div>
+          </div>
+
+          <div id="ai-history"></div>
+
+          <button
+            type="button"
+            class="btn btn-outline btn-block"
+            data-ai-clear-history
+            data-ht="EFASE ISTWA"
+            data-fr="EFFACER L’HISTORIQUE"
+            data-en="CLEAR HISTORY"
+          >
+            EFASE ISTWA
+          </button>
+        </div>
+
+      </aside>
+
+      <div class="ai-workspace">
+
+        <div class="workspace-head">
+          <div>
+            <div class="workspace-title" data-ai-active-tool></div>
+            <div id="ai-project-display" data-ai-active-project></div>
+          </div>
+
+          <span data-ai-status data-status="idle">Pare</span>
+        </div>
+
+        <form id="ai-form">
+
+          <textarea
+            id="ai-prompt"
+            name="prompt"
+            required
+          ></textarea>
+
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-ht="VOYE DEMANN LAN"
+              data-fr="ENVOYER LA DEMANDE"
+              data-en="SEND REQUEST"
+            >
+              VOYE DEMANN LAN
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline"
+              data-ai-clear
+              data-ht="EFASE"
+              data-fr="EFFACER"
+              data-en="CLEAR"
+            >
+              EFASE
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline"
+              data-ai-retry
+              data-ht="REKÒMANSE DÈNYE DEMANN"
+              data-fr="RELANCER LA DERNIÈRE"
+              data-en="RETRY LAST"
+            >
+              REKÒMANSE DÈNYE DEMANN
+            </button>
+          </div>
+
+        </form>
+
+        <div class="ai-response-box">
+
+          <div class="response-meta">
+            <span data-ai-provider></span>
+            <span data-ai-response-date></span>
+          </div>
+
+          <div id="ai-response" hidden></div>
+
+          <div class="response-actions">
+            <button
+              type="button"
+              class="btn btn-outline"
+              data-ai-copy
+              data-ht="KOPYE"
+              data-fr="COPIER"
+              data-en="COPY"
+            >
+              KOPYE
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline"
+              data-ai-download
+              data-ht="TELECHAJE"
+              data-fr="TÉLÉCHARGER"
+              data-en="DOWNLOAD"
+            >
+              TELECHAJE
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>BSS1815 PRO-MAX DMP — AI CENTER</strong>
+      DEVAN DEVAN NÈT™ • BATI POU JODI A • PARE POU DEMEN
+      <br>
+      © <span id="currentYear"></span> BSS1815 PRO-MAX DMP
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var year = document.getElementById("currentYear");
+
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+
+      var languageButtons =
+        document.querySelectorAll(".lang-btn[data-lang]");
+
+      window.getCurrentLanguage = function () {
+        try {
+          return localStorage.getItem("bss1815Language") || "ht";
+        } catch (error) {
+          return "ht";
+        }
+      };
+
+      function applyLanguage(language) {
+        if (["ht", "fr", "en"].indexOf(language) === -1) {
+          language = "ht";
+        }
+
+        document.documentElement.lang = language;
+
+        document
+          .querySelectorAll("[data-ht][data-fr][data-en]")
+          .forEach(function (element) {
+            var translation =
+              element.getAttribute("data-" + language);
+
+            if (translation !== null) {
+              element.textContent = translation;
+            }
+          });
+
+        languageButtons.forEach(function (button) {
+          button.classList.toggle(
+            "active",
+            button.getAttribute("data-lang") === language
+          );
+        });
+
+        try {
+          localStorage.setItem("bss1815Language", language);
+        } catch (error) {}
+
+        document.dispatchEvent(new CustomEvent("proMaxLanguageChanged"));
+      }
+
+      languageButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          applyLanguage(button.getAttribute("data-lang"));
+        });
+      });
+
+      applyLanguage(window.getCurrentLanguage());
+
+      /**
+       * Connect the AI Center to the secure Netlify function backend.
+       * Replace the endpoint below with the real path from
+       * Netlify Dashboard → Functions (e.g. "/.netlify/functions/ai-center").
+       */
+      window.PRO_MAX_AI_API = {
+        endpoint: "/.netlify/functions/ai-center"
+      };
+    })();
+  </script>
+
+  <script src="./ai-center.js"></script>
+
+</body>
+</html>
