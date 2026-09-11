@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080604">
+
+  <title>BSS1815 | Admin Login</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange: #ff7518;
+      --apricot: #ffb16a;
+      --black: #050403;
+      --danger: #ff4545;
+      --success: #45d483;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--apricot);
+      background:
+        radial-gradient(
+          circle at top,
+          #5a2100 0%,
+          #180b04 42%,
+          #000 82%
+        );
+    }
+
+    .login-card {
+      width: min(100%, 520px);
+      overflow: hidden;
+      border: 2px solid var(--orange);
+      border-radius: 24px;
+      background: var(--black);
+      box-shadow:
+        0 0 30px rgba(255, 117, 24, 0.23),
+        0 22px 70px #000;
+    }
+
+    .login-image {
+      display: block;
+      width: 100%;
+      max-height: 510px;
+      object-fit: cover;
+      object-position: top center;
+      border-bottom: 2px solid var(--orange);
+    }
+
+    .login-area {
+      padding: 26px 22px 30px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      color: var(--orange);
+      font-size: clamp(28px, 7vw, 40px);
+      text-align: center;
+    }
+
+    .subtitle {
+      margin-bottom: 25px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin: 17px 0 8px;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .password-area {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      min-height: 58px;
+      padding: 15px 52px 15px 16px;
+      color: var(--apricot);
+      font-size: 17px;
+      outline: none;
+      border: 2px solid var(--orange);
+      border-radius: 13px;
+      background: #080604;
+    }
+
+    input::placeholder {
+      color: #a96c40;
+    }
+
+    input:focus {
+      box-shadow:
+        0 0 0 4px rgba(255, 117, 24, 0.18);
+    }
+
+    #showPassword {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      padding: 8px;
+      color: var(--orange);
+      font-size: 19px;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+    }
+
+    .main-button,
+    .reset-button {
+      width: 100%;
+      min-height: 57px;
+      border-radius: 13px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .main-button {
+      margin-top: 23px;
+      color: #080503;
+      border: 2px solid var(--orange);
+      background:
+        linear-gradient(
+          135deg,
+          var(--apricot),
+          var(--orange)
+        );
+    }
+
+    .reset-button {
+      margin-top: 13px;
+      color: var(--orange);
+      border: 1px solid var(--orange);
+      background: transparent;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    #message {
+      display: none;
+      margin-top: 17px;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    #message.error {
+      display: block;
+      color: #ffd0d0;
+      border: 1px solid var(--danger);
+      background: rgba(255, 69, 69, 0.12);
+    }
+
+    #message.success {
+      display: block;
+      color: #caffe0;
+      border: 1px solid var(--success);
+      background: rgba(69, 212, 131, 0.12);
+    }
+
+    .security-note {
+      margin-top: 20px;
+      color: #c9824c;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="login-card">
+    <img
+      class="login-image"
+      src="./bss_admin_login.png"
+      alt="BSS1815 Admin"
+    >
+
+    <section class="login-area">
+      <h1>ADMIN LOGIN</h1>
+
+      <p class="subtitle">
+        BSS1815 PRO-MAX DMP<br>
+        Administratè otorize sèlman
+      </p>
+
+      <form id="loginForm">
+        <label for="email">EMAIL</label>
+
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          placeholder="Antre imel Admin lan"
+          required
+        >
+
+        <label for="password">PASSWORD</label>
+
+        <div class="password-area">
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Antre modpas Admin lan"
+            minlength="6"
+            required
+          >
+
+          <button
+            id="showPassword"
+            type="button"
+            aria-label="Montre modpas"
+          >
+            👁
+          </button>
+        </div>
+
+        <button
+          id="loginButton"
+          class="main-button"
+          type="submit"
+        >
+          ANTRE NAN ADMIN DASHBOARD
+        </button>
+
+        <button
+          id="resetButton"
+          class="reset-button"
+          type="button"
+        >
+          RESET PASSWORD
+        </button>
+
+        <div id="message" role="alert"></div>
+      </form>
+
+      <p class="security-note">
+        Kont Super Admin pa kapab antre nan paj Admin nòmal sa a.
+      </p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      signOut
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
+      authDomain:
+        "briyant-soley-signo-1815.firebaseapp.com",
+      projectId:
+        "briyant-soley-signo-1815",
+      storageBucket:
+        "briyant-soley-signo-1815.firebasestorage.app",
+      messagingSenderId:
+        "873317957685",
+      appId:
+        "1:873317957685:web:1bb4bb30831a058399717c",
+      measurementId:
+        "G-QLDJNN876H"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    /*
+      MAXIMAX pa kapab antre nan paj Admin nòmal la.
+      Li dwe itilize super-admin-login.html.
+    */
+    const SUPER_ADMIN_EMAILS = new Set([
+      "briyantsoleysigno1815@gmail.com"
+    ]);
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const emailInput =
+      document.getElementById("email");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+    const resetButton =
+      document.getElementById("resetButton");
+
+    const showPassword =
+      document.getElementById("showPassword");
+
+    const message =
+      document.getElementById("message");
+
+    function displayMessage(text, type) {
+      message.textContent = text;
+      message.className = type;
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "";
+    }
+
+    function getErrorMessage(code) {
+      const errors = {
+        "auth/invalid-credential":
+          "Imel oswa modpas la pa kòrèk.",
+
+        "auth/invalid-email":
+          "Adrès imel la pa valab.",
+
+        "auth/user-disabled":
+          "Kont Admin sa a dezaktive.",
+
+        "auth/too-many-requests":
+          "Twòp tantativ fèt. Tann yon ti moman.",
+
+        "auth/network-request-failed":
+          "Verifye koneksyon entènèt la.",
+
+        "auth/missing-password":
+          "Antre modpas Admin lan."
+      };
+
+      return errors[code] ||
+        "Login lan pa reyisi. Eseye ankò.";
+    }
+
+    showPassword.addEventListener(
+      "click",
+      () => {
+        const hidden =
+          passwordInput.type === "password";
+
+        passwordInput.type =
+          hidden ? "text" : "password";
+
+        showPassword.textContent =
+          hidden ? "🙈" : "👁";
+      }
+    );
+
+    loginForm.addEventListener(
+      "submit",
+      async (event) => {
+        event.preventDefault();
+        clearMessage();
+
+        const email =
+          emailInput.value.trim().toLowerCase();
+
+        const password =
+          passwordInput.value;
+
+        if (SUPER_ADMIN_EMAILS.has(email)) {
+          displayMessage(
+            "Kont sa a se yon Super Admin. Itilize paj Super Admin Login lan.",
+            "error"
+          );
+
+          return;
+        }
+
+        loginButton.disabled = true;
+        loginButton.textContent =
+          "VERIFIKASYON...";
+
+        try {
+          const result =
+            await signInWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+
+          const connectedEmail =
+            result.user.email
+              ?.trim()
+              .toLowerCase();
+
+          if (
+            SUPER_ADMIN_EMAILS.has(connectedEmail)
+          ) {
+            await signOut(auth);
+
+            displayMessage(
+              "Kont Super Admin pa kapab itilize paj Admin nòmal la.",
+              "error"
+            );
+
+            return;
+          }
+
+          sessionStorage.setItem(
+            "bss1815Role",
+            "ADMIN"
+          );
+
+          sessionStorage.setItem(
+            "bss1815Email",
+            connectedEmail
+          );
+
+          displayMessage(
+            "Login reyisi. N ap ouvri Admin Dashboard la...",
+            "success"
+          );
+
+          setTimeout(() => {
+            window.location.href =
+              "./admin-dashboard.html";
+          }, 700);
+        } catch (error) {
+          displayMessage(
+            getErrorMessage(error.code),
+            "error"
+          );
+        } finally {
+          loginButton.disabled = false;
+          loginButton.textContent =
+            "ANTRE NAN ADMIN DASHBOARD";
+        }
+      }
+    );
+
+    resetButton.addEventListener(
+      "click",
+      async () => {
+        clearMessage();
+
+        const email =
+          emailInput.value.trim().toLowerCase();
+
+        if (!email) {
+          displayMessage(
+            "Antre imel Admin lan anvan.",
+            "error"
+          );
+
+          emailInput.focus();
+          return;
+        }
+
+        if (SUPER_ADMIN_EMAILS.has(email)) {
+          displayMessage(
+            "Pou kont sa a, itilize paj Super Admin Login lan.",
+            "error"
+          );
+
+          return;
+        }
+
+        resetButton.disabled = true;
+        resetButton.textContent = "AP VOYE...";
+
+        try {
+          await sendPasswordResetEmail(
+            auth,
+            email
+          );
+
+          displayMessage(
+            "Firebase voye lyen reset modpas la nan imel Admin lan.",
+            "success"
+          );
+        } catch (error) {
+          displayMessage(
+            getErrorMessage(error.code),
+            "error"
+          );
+        } finally {
+          resetButton.disabled = false;
+          resetButton.textContent =
+            "RESET PASSWORD";
+        }
+      }
+    );
+  </script>
+</body>
+</html>
