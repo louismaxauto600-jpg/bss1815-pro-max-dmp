@@ -1,30 +1,325 @@
-/*
-  BSS1815 PRO-MAX DMP
-  ADMIN DASHBOARD LOGIN
-  FINAL
-*/
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
 
-(async function () {
-  "use strict";
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  try {
-    const {
-      initializeApp,
-      getApps,
-      getApp
-    } = await import(
-      "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js"
-    );
+  <meta
+    name="theme-color"
+    content="#050301"
+  >
 
-    const {
+  <title>
+    BSS1815 PRO-MAX DMP | Admin Dashboard Login
+  </title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange: #ff7518;
+      --apricot: #ffb16a;
+      --black: #000000;
+      --dark: #100b07;
+      --danger: #ff6262;
+      --success: #55dc8b;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--black);
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow-x: hidden;
+      color: var(--apricot);
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 117, 24, 0.12) 0%,
+          rgba(43, 17, 4, 0.38) 35%,
+          #000000 78%
+        );
+    }
+
+    .login-card {
+      width: min(100%, 590px);
+      padding: clamp(28px, 6vw, 48px);
+      border: 2px solid var(--orange);
+      border-radius: 28px;
+      background:
+        linear-gradient(
+          145deg,
+          #15110e 0%,
+          #080604 55%,
+          #000000 100%
+        );
+
+      box-shadow:
+        0 0 30px rgba(255, 117, 24, 0.28),
+        0 30px 90px rgba(0, 0, 0, 0.88);
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+      color: var(--apricot);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      color: var(--orange);
+      font-size: clamp(36px, 8vw, 55px);
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 20px 0 34px;
+      color: var(--apricot);
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 18px 0 9px;
+      color: var(--apricot);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      min-height: 62px;
+      padding: 15px 17px;
+      color: var(--apricot);
+      font-size: 17px;
+      outline: none;
+      border: 1px solid var(--orange);
+      border-radius: 13px;
+      background: #030201;
+    }
+
+    input::placeholder {
+      color: #96613b;
+    }
+
+    input:focus {
+      border-color: var(--apricot);
+      box-shadow:
+        0 0 0 4px rgba(255, 117, 24, 0.18);
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 58px;
+    }
+
+    #togglePassword {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      color: var(--orange);
+      font-size: 20px;
+      border: 0;
+      background: transparent;
+    }
+
+    #loginButton {
+      width: 100%;
+      min-height: 64px;
+      margin-top: 34px;
+      cursor: pointer;
+      color: #090501;
+      font-size: 19px;
+      font-weight: 900;
+      border: 0;
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--apricot),
+          var(--orange)
+        );
+
+      box-shadow:
+        0 10px 28px rgba(255, 117, 24, 0.22);
+    }
+
+    #loginButton:hover {
+      filter: brightness(1.08);
+    }
+
+    #loginButton:disabled {
+      cursor: wait;
+      opacity: 0.68;
+    }
+
+    #message {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 11px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    #message.error {
+      display: block;
+      color: #ffd1d1;
+      border: 1px solid var(--danger);
+      background: rgba(255, 98, 98, 0.1);
+    }
+
+    #message.success {
+      display: block;
+      color: #ccffe0;
+      border: 1px solid var(--success);
+      background: rgba(85, 220, 139, 0.1);
+    }
+
+    .security {
+      margin-top: 25px;
+      color: #b56d37;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 16px;
+      }
+
+      .login-card {
+        padding: 28px 20px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="login-card">
+    <p class="eyebrow">
+      BRIYANT SOLEY SIGNO · BSS 1815
+    </p>
+
+    <h1>
+      Admin Dashboard
+    </h1>
+
+    <p class="subtitle">
+      Konekte pou jere pwojè yo
+    </p>
+
+    <form id="adminLoginForm">
+      <label for="adminEmail">
+        Imèl
+      </label>
+
+      <input
+        id="adminEmail"
+        name="email"
+        type="email"
+        autocomplete="username"
+        placeholder="Antre imel Super Admin lan"
+        required
+      >
+
+      <label for="adminPassword">
+        Modpas
+      </label>
+
+      <div class="password-wrap">
+        <input
+          id="adminPassword"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Antre modpas la"
+          minlength="6"
+          required
+        >
+
+        <button
+          id="togglePassword"
+          type="button"
+          aria-label="Montre modpas"
+        >
+          👁
+        </button>
+      </div>
+
+      <button
+        id="loginButton"
+        type="submit"
+      >
+        Konekte
+      </button>
+
+      <div
+        id="message"
+        role="alert"
+        aria-live="polite"
+      ></div>
+    </form>
+
+    <p class="security">
+      Firebase Authentication · Super Admin Access
+    </p>
+  </main>
+
+  <script type="module">
+    import {
+      initializeApp
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
       getAuth,
       signInWithEmailAndPassword,
       setPersistence,
       browserLocalPersistence,
       signOut
-    } = await import(
-      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js"
-    );
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey:
@@ -50,106 +345,61 @@
     };
 
     const app =
-      getApps().length > 0
-        ? getApp()
-        : initializeApp(firebaseConfig);
+      initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
+    const auth =
+      getAuth(app);
 
-    const MAX_LOUIS_EMAIL =
+    const SUPER_ADMIN_EMAIL =
       "briyantsoleysigno1815@gmail.com";
 
-    const MAX_LOUIS_UID =
+    const SUPER_ADMIN_UID =
       "I7n4gtwXAtMVe3YOjEMm1h7DJ3B3";
 
     const DASHBOARD_URL =
       "./admin-dashboard.html";
 
-    function findElement(selectors) {
-      for (const selector of selectors) {
-        const element =
-          document.querySelector(selector);
+    const form =
+      document.getElementById(
+        "adminLoginForm"
+      );
 
-        if (element) {
-          return element;
-        }
-      }
+    const emailInput =
+      document.getElementById(
+        "adminEmail"
+      );
 
-      return null;
-    }
+    const passwordInput =
+      document.getElementById(
+        "adminPassword"
+      );
 
-    function findLoginElements() {
-      return {
-        form: findElement([
-          "#loginForm",
-          "#adminLoginForm",
-          "#admin-login-form",
-          ".login-form",
-          "form"
-        ]),
+    const loginButton =
+      document.getElementById(
+        "loginButton"
+      );
 
-        email: findElement([
-          "#email",
-          "#adminEmail",
-          "#loginEmail",
-          'input[name="email"]',
-          'input[type="email"]'
-        ]),
+    const togglePassword =
+      document.getElementById(
+        "togglePassword"
+      );
 
-        password: findElement([
-          "#password",
-          "#adminPassword",
-          "#loginPassword",
-          'input[name="password"]',
-          'input[type="password"]'
-        ]),
-
-        button: findElement([
-          "#loginButton",
-          "#connectButton",
-          "#submitButton",
-          'button[type="submit"]',
-          ".login-button"
-        ]),
-
-        message: findElement([
-          "#message",
-          "#loginMessage",
-          "#errorMessage",
-          "#loginError",
-          ".login-message",
-          ".error-message",
-          '[role="alert"]'
-        ])
-      };
-    }
+    const message =
+      document.getElementById(
+        "message"
+      );
 
     function showMessage(
-      element,
       text,
-      type = "error"
+      type
     ) {
-      if (!element) {
-        console.log(text);
-        return;
-      }
-
-      element.textContent = text;
-      element.style.display = "block";
-
-      element.style.color =
-        type === "success"
-          ? "#45d483"
-          : "#ff6b6b";
+      message.textContent = text;
+      message.className = type;
     }
 
-    function clearMessage(element) {
-      if (!element) {
-        return;
-      }
-
-      element.textContent = "";
-      element.style.display = "none";
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "";
     }
 
     function clearAccess() {
@@ -171,23 +421,39 @@
       });
     }
 
-    function saveSuperAdminAccess(user) {
+    function saveAccess(user) {
+      const email =
+        String(user.email || "")
+          .trim()
+          .toLowerCase();
+
       const values = {
-        bss1815Role: "SUPER_ADMIN",
+        bss1815Role:
+          "SUPER_ADMIN",
+
         bss1815Email:
-          user.email || MAX_LOUIS_EMAIL,
+          email,
+
         bss1815Uid:
-          user.uid || MAX_LOUIS_UID,
-        bss1815Authenticated: "true",
+          user.uid || SUPER_ADMIN_UID,
 
-        adminRole: "SUPER_ADMIN",
+        bss1815Authenticated:
+          "true",
+
+        adminRole:
+          "SUPER_ADMIN",
+
         adminEmail:
-          user.email || MAX_LOUIS_EMAIL,
-        adminUid:
-          user.uid || MAX_LOUIS_UID,
+          email,
 
-        isAdmin: "true",
-        isSuperAdmin: "true"
+        adminUid:
+          user.uid || SUPER_ADMIN_UID,
+
+        isAdmin:
+          "true",
+
+        isSuperAdmin:
+          "true"
       };
 
       Object.entries(values).forEach(
@@ -205,7 +471,7 @@
       );
     }
 
-    function firebaseErrorMessage(code) {
+    function getErrorMessage(code) {
       const errors = {
         "auth/invalid-credential":
           "Imel oswa modpas la pa kòrèk.",
@@ -229,10 +495,7 @@
           "Twòp tantativ fèt. Tann yon ti moman.",
 
         "auth/network-request-failed":
-          "Verifye koneksyon entènèt la.",
-
-        "auth/missing-password":
-          "Antre modpas la."
+          "Verifye koneksyon entènèt la."
       };
 
       return (
@@ -241,155 +504,127 @@
       );
     }
 
-    function initializeLogin() {
-      const {
-        form,
-        email,
-        password,
-        button,
-        message
-      } = findLoginElements();
+    togglePassword.addEventListener(
+      "click",
+      () => {
+        const hidden =
+          passwordInput.type ===
+          "password";
 
-      if (!form || !email || !password) {
-        console.error(
-          "BSS1815: Fòm login lan pa jwenn."
-        );
+        passwordInput.type =
+          hidden
+            ? "text"
+            : "password";
 
-        return;
+        togglePassword.textContent =
+          hidden
+            ? "🙈"
+            : "👁";
       }
+    );
 
-      form.addEventListener(
-        "submit",
-        async function (event) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
+    form.addEventListener(
+      "submit",
+      async (event) => {
+        event.preventDefault();
+        clearMessage();
+        clearAccess();
 
-          clearMessage(message);
-          clearAccess();
+        const enteredEmail =
+          emailInput.value
+            .trim()
+            .toLowerCase();
 
-          const enteredEmail =
-            email.value
+        const enteredPassword =
+          passwordInput.value;
+
+        if (
+          enteredEmail !==
+          SUPER_ADMIN_EMAIL
+        ) {
+          showMessage(
+            "Imel sa a pa otorize kòm Super Admin.",
+            "error"
+          );
+
+          return;
+        }
+
+        loginButton.disabled = true;
+        loginButton.textContent =
+          "AP VERIFYE...";
+
+        try {
+          await setPersistence(
+            auth,
+            browserLocalPersistence
+          );
+
+          const credential =
+            await signInWithEmailAndPassword(
+              auth,
+              enteredEmail,
+              enteredPassword
+            );
+
+          const user =
+            credential.user;
+
+          const firebaseEmail =
+            String(user.email || "")
               .trim()
               .toLowerCase();
 
-          const enteredPassword =
-            password.value;
+          if (
+            firebaseEmail !==
+            SUPER_ADMIN_EMAIL
+          ) {
+            await signOut(auth);
+            clearAccess();
 
-          if (!enteredEmail ||
-              !enteredPassword) {
             showMessage(
-              message,
-              "Antre imel ak modpas la."
+              "Kont Firebase sa a pa otorize kòm Super Admin.",
+              "error"
             );
 
             return;
           }
 
-          if (button) {
-            button.disabled = true;
-            button.textContent =
-              "AP VERIFYE...";
-          }
+          saveAccess(user);
 
-          try {
-            await setPersistence(
-              auth,
-              browserLocalPersistence
+          showMessage(
+            "Super Admin Max Louis verifye. Dashboard la ap ouvri...",
+            "success"
+          );
+
+          window.setTimeout(() => {
+            window.location.replace(
+              DASHBOARD_URL
             );
+          }, 600);
 
-            const credential =
-              await signInWithEmailAndPassword(
-                auth,
-                enteredEmail,
-                enteredPassword
-              );
+        } catch (error) {
+          console.error(
+            "BSS1815 LOGIN ERROR:",
+            error
+          );
 
-            const user =
-              credential.user;
+          clearAccess();
 
-            const firebaseEmail =
-              String(user.email || "")
-                .trim()
-                .toLowerCase();
+          showMessage(
+            getErrorMessage(
+              error.code
+            ),
+            "error"
+          );
 
-            /*
-              Firebase deja verifye modpas la.
-              Imel ofisyèl la sifi pou rekonèt
-              Max Louis kòm Super Admin.
-            */
-
-            if (
-              firebaseEmail !==
-              MAX_LOUIS_EMAIL
-            ) {
-              await signOut(auth);
-              clearAccess();
-
-              showMessage(
-                message,
-                "Kont sa a pa gen aksè administratif."
-              );
-
-              return;
-            }
-
-            saveSuperAdminAccess(user);
-
-            showMessage(
-              message,
-              "Super Admin Max Louis verifye. Dashboard la ap ouvri...",
-              "success"
-            );
-
-            window.setTimeout(() => {
-              window.location.replace(
-                DASHBOARD_URL
-              );
-            }, 500);
-
-          } catch (error) {
-            console.error(
-              "BSS1815 LOGIN ERROR:",
-              error
-            );
-
-            clearAccess();
-
-            showMessage(
-              message,
-              firebaseErrorMessage(
-                error.code
-              )
-            );
-
-          } finally {
-            if (button) {
-              button.disabled = false;
-              button.textContent =
-                "Konekte";
-            }
-          }
-        },
-        true
-      );
-    }
-
-    if (
-      document.readyState === "loading"
-    ) {
-      document.addEventListener(
-        "DOMContentLoaded",
-        initializeLogin,
-        { once: true }
-      );
-    } else {
-      initializeLogin();
-    }
-
-  } catch (error) {
-    console.error(
-      "BSS1815 FIREBASE STARTUP ERROR:",
-      error
+        } finally {
+          loginButton.disabled = false;
+          loginButton.textContent =
+            "Konekte";
+        }
+      }
     );
-  }
-})();
+  </script>
+</body>
+</html>
