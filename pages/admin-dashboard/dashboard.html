@@ -1,149 +1,434 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard — BSS 1815</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta name="theme-color" content="#080604">
+
+  <title>Admin Dashboard — BSS1815</title>
+
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
-<div class="topbar">
-  <div class="brand-eyebrow">
-    <img src="logo.jpg" id="brandLogo" alt="BSS 1815" class="brand-logo" onerror="this.style.display='none'">
-    BSS 1815 · ADMIN DASHBOARD
-  </div>
-  <div class="who">
-    <strong id="whoName">...</strong>
-    <span class="role-badge" id="roleBadge"></span>
-    &nbsp;&nbsp;<a href="kazye.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Kazye Sansib</a>
-    &nbsp;&nbsp;<a href="disciplinary.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Disiplin</a>
-    &nbsp;&nbsp;<a href="roster.html?type=musicians" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mizisyen</a>
-    &nbsp;&nbsp;<a href="roster.html?type=leaders" class="btn-secondary" style="text-decoration:none; display:inline-block;">Dirijan</a>
-    &nbsp;&nbsp;<a href="messages.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Mesaj</a>
-    &nbsp;&nbsp;<a href="vendors.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Machann</a>
-    &nbsp;&nbsp;<a href="badges.html" class="btn-secondary" style="text-decoration:none; display:inline-block;">Badj</a>
-    <button class="btn-secondary" id="logoutBtn">Dekonekte</button>
-  </div>
-</div>
+  <header class="topbar">
+    <div class="brand-eyebrow">
+      <img
+        src="./bss-login-admin.webp"
+        id="brandLogo"
+        alt="BSS1815 Admin Dashboard"
+        class="brand-logo"
+        onerror="this.style.display='none'"
+      >
 
-<main>
-
-  <!-- Vi jeneral: kat pou chak pwojè moun nan gen aksè -->
-  <section id="projectOverview">
-    <h2>Pwojè yo</h2>
-    <p id="overviewSub" style="color:var(--text-dim); font-size:0.88rem;"></p>
-    <div class="project-grid" id="projectGrid"></div>
-  </section>
-
-  <!-- Detay yon pwojè espesifik -->
-  <section id="projectDetail" class="hidden">
-    <button class="btn-secondary" id="backBtn">← Tounen</button>
-    <h2 id="detailTitle"></h2>
-    <div class="panel">
-      <p style="color:var(--text-dim);">
-        Sa a se espas pou kontni pwojè a: elèv, kou, peman, elatriye.
-        Ou ka ajoute done ou vle jere isit la pita.
-      </p>
+      <span>BSS1815 · ADMIN DASHBOARD</span>
     </div>
 
-    <!-- Panèl espesyal pou Pro-Max FM: lyen tanporè animatè -->
-    <div class="panel hidden" id="fmPanel">
-      <h3>Lyen tanporè pou animatè yo</h3>
-      <p style="color:var(--text-dim); font-size:0.85rem;">
-        Kreye yon lyen tanporè pou yon animatè ka fè emisyon l.
+    <div class="who">
+      <strong id="whoName">Ap verifye kont lan...</strong>
+
+      <span
+        class="role-badge"
+        id="roleBadge"
+      ></span>
+
+      <a
+        href="./kazye.html"
+        class="btn-secondary dashboard-link"
+      >
+        Kazye Sansib
+      </a>
+
+      <a
+        href="./disciplinary.html"
+        class="btn-secondary dashboard-link"
+      >
+        Disiplin
+      </a>
+
+      <a
+        href="./roster.html?type=musicians"
+        class="btn-secondary dashboard-link"
+      >
+        Mizisyen
+      </a>
+
+      <a
+        href="./roster.html?type=leaders"
+        class="btn-secondary dashboard-link"
+      >
+        Dirijan
+      </a>
+
+      <a
+        href="./messages.html"
+        class="btn-secondary dashboard-link"
+      >
+        Mesaj
+      </a>
+
+      <a
+        href="./vendors.html"
+        class="btn-secondary dashboard-link"
+      >
+        Machann
+      </a>
+
+      <a
+        href="./badges.html"
+        class="btn-secondary dashboard-link"
+      >
+        Badj
+      </a>
+
+      <button
+        class="btn-secondary"
+        id="logoutBtn"
+        type="button"
+      >
+        Dekonekte
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- MESAJ SISTÈM -->
+    <div
+      id="dashboardMessage"
+      role="alert"
+      aria-live="polite"
+    ></div>
+
+    <!-- VI JENERAL PWOJÈ YO -->
+    <section id="projectOverview">
+      <h1>ADMIN DASHBOARD</h1>
+
+      <h2>Pwojè yo</h2>
+
+      <p
+        id="overviewSub"
+        class="section-description"
+      >
+        Pwojè Admin sa a gen otorizasyon pou jere yo ap parèt anba a.
+      </p>
+
+      <div
+        class="project-grid"
+        id="projectGrid"
+      ></div>
+    </section>
+
+    <!-- DETAY YON PWOJÈ -->
+    <section
+      id="projectDetail"
+      class="hidden"
+    >
+      <button
+        class="btn-secondary"
+        id="backBtn"
+        type="button"
+      >
+        ← Tounen nan pwojè yo
+      </button>
+
+      <h2 id="detailTitle">
+        Detay pwojè
+      </h2>
+
+      <div class="panel">
+        <h3>Jesyon pwojè</h3>
+
+        <p class="section-description">
+          Nan espas sa a, Admin lan kapab jere enfòmasyon,
+          manm, kou, peman, mesaj, dokiman ak aktivite pwojè a
+          selon otorizasyon li genyen.
+        </p>
+
+        <div class="module-grid">
+          <a
+            href="./members.html"
+            class="module-card"
+          >
+            <span class="module-icon">👥</span>
+            <strong>Jesyon Manm</strong>
+            <small>Gade epi jere manm yo</small>
+          </a>
+
+          <a
+            href="./messages.html"
+            class="module-card"
+          >
+            <span class="module-icon">✉️</span>
+            <strong>Kominikasyon</strong>
+            <small>Voye epi resevwa mesaj</small>
+          </a>
+
+          <a
+            href="./events.html"
+            class="module-card"
+          >
+            <span class="module-icon">📅</span>
+            <strong>Evènman</strong>
+            <small>Kreye epi jere evènman</small>
+          </a>
+
+          <a
+            href="./attendance.html"
+            class="module-card"
+          >
+            <span class="module-icon">✅</span>
+            <strong>Prezans</strong>
+            <small>Kontwole prezans manm yo</small>
+          </a>
+
+          <a
+            href="./documents.html"
+            class="module-card"
+          >
+            <span class="module-icon">📁</span>
+            <strong>Dokiman</strong>
+            <small>Jere dokiman pwojè a</small>
+          </a>
+
+          <a
+            href="./media-gallery.html"
+            class="module-card"
+          >
+            <span class="module-icon">🎞️</span>
+            <strong>Medya</strong>
+            <small>Foto, videyo ak odyo</small>
+          </a>
+
+          <a
+            href="./notifications.html"
+            class="module-card"
+          >
+            <span class="module-icon">🔔</span>
+            <strong>Notifikasyon</strong>
+            <small>Pibliye avi ofisyèl</small>
+          </a>
+
+          <a
+            href="./reports.html"
+            class="module-card"
+          >
+            <span class="module-icon">📊</span>
+            <strong>Rapò</strong>
+            <small>Gade rapò ak estatistik</small>
+          </a>
+        </div>
+      </div>
+
+      <!-- PRO-MAX FM -->
+      <div
+        class="panel hidden"
+        id="fmPanel"
+      >
+        <h3>Lyen tanporè pou animatè yo</h3>
+
+        <p class="section-description">
+          Kreye yon lyen tanporè pou yon animatè kapab antre
+          nan espas emisyon PRO-MAX FM lan.
+        </p>
+
+        <div class="form-row">
+          <div>
+            <label for="animatorName">
+              Non animatè a
+            </label>
+
+            <input
+              type="text"
+              id="animatorName"
+              placeholder="Pa egzanp: Jan Pyè"
+            >
+          </div>
+
+          <div>
+            <label for="linkDuration">
+              Konbyen tan lyen an valab
+            </label>
+
+            <select id="linkDuration">
+              <option value="1">1 èdtan</option>
+              <option value="3">3 èdtan</option>
+              <option value="6">6 èdtan</option>
+              <option value="24">24 èdtan</option>
+            </select>
+          </div>
+
+          <div class="button-column">
+            <button
+              class="btn-primary action-button"
+              id="generateLinkBtn"
+              type="button"
+            >
+              Kreye lyen
+            </button>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Animatè</th>
+                <th>Lyen</th>
+                <th>Ekspire</th>
+                <th>Estati</th>
+                <th>Aksyon</th>
+              </tr>
+            </thead>
+
+            <tbody id="linksTableBody">
+              <tr>
+                <td colspan="5">
+                  Poko gen lyen tanporè.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- JESYON ADMIN — SUPER ADMIN SÈLMAN -->
+    <section
+      id="adminManagement"
+      class="panel hidden"
+    >
+      <h2>Jesyon Admin yo</h2>
+
+      <p class="section-description">
+        Espas sa a rezève pou Super Admin sèlman.
+        Ajoute yon Admin epi chwazi pwojè li kapab jere.
+      </p>
+
+      <p class="warning-text">
+        ⚠️ Pou aktive yon Super Admin, UID moun nan dwe ajoute
+        nan Firebase selon règleman sekirite platfòm lan.
       </p>
 
       <div class="form-row">
         <div>
-          <label>Non animatè a</label>
-          <input type="text" id="animatorName" placeholder="Pa egzanp: Jan Pyè">
+          <label for="newAdminUid">
+            UID Firebase
+          </label>
+
+          <input
+            type="text"
+            id="newAdminUid"
+            placeholder="UID itilizatè a"
+          >
         </div>
+
         <div>
-          <label>Konbyen èdtan lyen an valab</label>
-          <select id="linkDuration">
-            <option value="1">1 èdtan</option>
-            <option value="3">3 èdtan</option>
-            <option value="6">6 èdtan</option>
-            <option value="24">24 èdtan</option>
+          <label for="newAdminName">
+            Non konplè
+          </label>
+
+          <input
+            type="text"
+            id="newAdminName"
+            placeholder="Non Admin lan"
+          >
+        </div>
+
+        <div>
+          <label for="newAdminRole">
+            Wòl
+          </label>
+
+          <select id="newAdminRole">
+            <option value="admin">
+              Admin
+            </option>
+
+            <option value="super-admin">
+              Super Admin
+            </option>
           </select>
         </div>
-        <div style="flex:0 0 auto;">
-          <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="generateLinkBtn">Kreye lyen</button>
+
+        <div>
+          <label for="newAdminProject">
+            Pwojè
+          </label>
+
+          <select id="newAdminProject">
+            <option value="">
+              Chwazi pwojè
+            </option>
+          </select>
+        </div>
+
+        <div class="button-column">
+          <button
+            class="btn-primary action-button"
+            id="addAdminBtn"
+            type="button"
+          >
+            Ajoute Admin
+          </button>
         </div>
       </div>
 
-      <table>
-        <thead>
-          <tr><th>Animatè</th><th>Lyen</th><th>Ekspire</th><th>Estati</th><th></th></tr>
-        </thead>
-        <tbody id="linksTableBody"></tbody>
-      </table>
-    </div>
-  </section>
+      <div class="form-row categories-row">
+        <div>
+          <label for="newAdminCategories">
+            Kazye sansib Admin lan gen aksè
+          </label>
 
-  <!-- Jesyon Admin yo (Super Admin sèlman) -->
-  <section id="adminManagement" class="panel hidden">
-    <h2>Jesyon Admin yo</h2>
-    <p style="color:var(--text-dim); font-size:0.85rem;">
-      Ajoute yon nouvo admin epi chwazi ki pwojè li gen aksè.
-      Kreye kont lan nan Firebase Authentication anvan, epi kole UID li isit la.
-    </p>
-    <p style="color:#e8827a; font-size:0.78rem;">
-      ⚠️ Si ou chwazi "Super Admin", dashboard la ap sèlman kreye pwofil
-      li — ou dwe AJOUTE UID li MANYÈLMAN nan Firebase Console, dokiman
-      <code>roles/super_admins</code>, chan <code>users</code>, pou wòl la
-      vin aktif tout bon.
-    </p>
+          <input
+            type="text"
+            id="newAdminCategories"
+            placeholder="mizisyen, finans, dokiman"
+          >
+        </div>
+      </div>
 
-    <div class="form-row">
-      <div>
-        <label>UID (Firebase Auth)</label>
-        <input type="text" id="newAdminUid" placeholder="UID moun nan">
-      </div>
-      <div>
-        <label>Non</label>
-        <input type="text" id="newAdminName" placeholder="Non konplè">
-      </div>
-      <div>
-        <label>Wòl</label>
-        <select id="newAdminRole">
-          <option value="admin">Admin</option>
-          <option value="super-admin">Super Admin</option>
-        </select>
-      </div>
-      <div>
-        <label>Pwojè</label>
-        <select id="newAdminProject">
-          <!-- ranpli pa JS -->
-        </select>
-      </div>
-      <div style="flex:0 0 auto;">
-        <button class="btn-primary" style="margin-top:0; width:auto; padding:12px 20px;" id="addAdminBtn">Ajoute</button>
-      </div>
-    </div>
+      <p class="section-description">
+        Separe non kazye yo avèk vigil. Ekri yo an miniskil
+        epi mete tirè nan plas espas.
+      </p>
 
-    <div class="form-row" style="margin-top:4px;">
-      <div style="flex: 1 1 100%;">
-        <label>Kazye sansib li gen aksè (tape non yo separe ak vigil, egzanp: mizisyen,finans)</label>
-        <input type="text" id="newAdminCategories" placeholder="mizisyen,finans,pics">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Non</th>
+              <th>Pwojè</th>
+              <th>Kazye</th>
+              <th>Estati</th>
+              <th>Aksyon</th>
+            </tr>
+          </thead>
+
+          <tbody id="adminsTableBody">
+            <tr>
+              <td colspan="5">
+                Lis Admin yo ap chaje...
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-    <p style="color:var(--text-dim); font-size:0.78rem; margin-top:4px;">
-      Non kazye yo dwe matche egzakteman ak ID kazye a (li montre nan
-      <a href="kazye.html">kazye.html</a>, an miniskil, avèk tiret olye espas).
-    </p>
+    </section>
 
-    <table>
-      <thead>
-        <tr><th>Non</th><th>Pwojè</th><th>Kazye</th><th>Estati</th><th></th></tr>
-      </thead>
-      <tbody id="adminsTableBody"></tbody>
-    </table>
-  </section>
+  </main>
 
-</main>
+  <noscript>
+    JavaScript dwe aktive pou Admin Dashboard sa a fonksyone.
+  </noscript>
 
-<script type="module" src="dashboard.js"></script>
+  <script
+    type="module"
+    src="./dashboard.js"
+  ></script>
 </body>
 </html>
