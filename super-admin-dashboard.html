@@ -1,1038 +1,592 @@
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-import {
-  getAuth,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  onSnapshot,
-  arrayUnion,
-  arrayRemove,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-
-/* =====================================================
-   FIREBASE CONFIGURATION
-===================================================== */
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
-
-  authDomain:
-    "briyant-soley-signo-1815.firebaseapp.com",
-
-  projectId:
-    "briyant-soley-signo-1815",
-
-  storageBucket:
-    "briyant-soley-signo-1815.firebasestorage.app",
-
-  messagingSenderId:
-    "873317957685",
-
-  appId:
-    "1:873317957685:web:1bb4bb30831a058399717c",
-
-  measurementId:
-    "G-QLDJNN876H"
-};
-
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-
-/* =====================================================
-   SUPER ADMIN PRINCIPAL
-===================================================== */
-
-const ROOT_SUPER_ADMIN =
-  "briyantsoleysigno1815@gmail.com";
-
-
-/* =====================================================
-   FIRESTORE DOCUMENTS
-===================================================== */
-
-const superAdminsRef =
-  doc(db, "roles", "super_admins");
-
-const adminsRef =
-  doc(db, "roles", "admins");
-
-const auditRef =
-  doc(db, "system", "last_super_admin_action");
-
-
-/* =====================================================
-   HTML ELEMENTS
-===================================================== */
-
-const loading =
-  document.getElementById("loading");
-
-const accessDenied =
-  document.getElementById("accessDenied");
-
-const panel =
-  document.getElementById("panel");
-
-const logoutBtn =
-  document.getElementById("logoutBtn");
-
-const superAdminEmailInput =
-  document.getElementById("superAdminEmail");
-
-const adminEmailInput =
-  document.getElementById("adminEmail");
-
-const addSuperAdminBtn =
-  document.getElementById("addSuperAdminBtn");
-
-const addAdminBtn =
-  document.getElementById("addAdminBtn");
-
-const superAdminList =
-  document.getElementById("superAdminList");
-
-const adminList =
-  document.getElementById("adminList");
-
-const systemMessage =
-  document.getElementById("systemMessage");
-
-
-let currentUser = null;
-let authorizedSuperAdmin = false;
-
-
-/* =====================================================
-   UTILITIES
-===================================================== */
-
-function normalizeEmail(email) {
-  return String(email || "")
-    .trim()
-    .toLowerCase();
-}
-
-
-function validEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-
-function escapeHTML(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-
-function showMessage(text, type = "success") {
-  if (!systemMessage) {
-    alert(text);
-    return;
-  }
-
-  systemMessage.textContent = text;
-  systemMessage.className = type;
-
-  window.setTimeout(() => {
-    systemMessage.textContent = "";
-    systemMessage.className = "";
-  }, 6000);
-}
-
-
-function getFirebaseError(error) {
-  const errors = {
-    "auth/invalid-email":
-      "Adrès imel la pa valab.",
-
-    "auth/user-not-found":
-      "Firebase pa jwenn kont sa a.",
-
-    "auth/too-many-requests":
-      "Twòp demann fèt. Tann yon ti moman.",
-
-    "auth/network-request-failed":
-      "Verifye koneksyon entènèt la.",
-
-    "permission-denied":
-      "Firestore Rules yo pa bay pèmisyon pou aksyon sa a.",
-
-    "unavailable":
-      "Firebase pa disponib kounye a. Eseye ankò."
-  };
-
-  return (
-    errors[error?.code] ||
-    error?.message ||
-    "Operasyon an pa reyisi."
-  );
-}
-
-
-function setButtonLoading(button, loadingText, state) {
-  if (!button) return;
-
-  if (state) {
-    button.dataset.originalText =
-      button.textContent;
-
-    button.disabled = true;
-    button.textContent = loadingText;
-  } else {
-    button.disabled = false;
-
-    button.textContent =
-      button.dataset.originalText ||
-      button.textContent;
-  }
-}
-
-
-/* =====================================================
-   CREATE REQUIRED FIRESTORE DOCUMENTS
-===================================================== */
-
-async function ensureRoleDocuments() {
-  const superSnapshot =
-    await getDoc(superAdminsRef);
-
-  if (!superSnapshot.exists()) {
-    await setDoc(
-      superAdminsRef,
-      {
-        users: [ROOT_SUPER_ADMIN],
-        updatedAt: serverTimestamp()
-      },
-      { merge: true }
-    );
-  }
-
-  const adminSnapshot =
-    await getDoc(adminsRef);
-
-  if (!adminSnapshot.exists()) {
-    await setDoc(
-      adminsRef,
-      {
-        users: [],
-        updatedAt: serverTimestamp()
-      },
-      { merge: true }
-    );
-  }
-}
-
-
-/* =====================================================
-   VERIFY SUPER ADMIN ACCESS
-===================================================== */
-
-async function verifySuperAdmin(user) {
-  const connectedEmail =
-    normalizeEmail(user.email);
-
-  /*
-    Kont prensipal la toujou rekonèt kòm
-    Super Admin nan aplikasyon an.
-  */
-  if (connectedEmail === ROOT_SUPER_ADMIN) {
-    return true;
-  }
-
-  const snapshot =
-    await getDoc(superAdminsRef);
-
-  if (!snapshot.exists()) {
-    return false;
-  }
-
-  const data = snapshot.data();
-
-  const users = Array.isArray(data.users)
-    ? data.users.map(normalizeEmail)
-    : [];
-
-  /*
-    Kòd la aksepte email oswa UID si ansyen
-    dokiman Firestore la te deja itilize UID.
-  */
-  return (
-    users.includes(connectedEmail) ||
-    users.includes(user.uid)
-  );
-}
-
-
-/* =====================================================
-   SHOW OR BLOCK DASHBOARD
-===================================================== */
-
-function showDashboard() {
-  loading.style.display = "none";
-  accessDenied.style.display = "none";
-  panel.style.display = "block";
-}
-
-
-function denyAccess() {
-  loading.style.display = "none";
-  panel.style.display = "none";
-  accessDenied.style.display = "block";
-}
-
-
-/* =====================================================
-   AUDIT LOG
-===================================================== */
-
-async function saveAudit(action, targetEmail = "") {
-  if (!currentUser) return;
-
-  try {
-    await setDoc(
-      auditRef,
-      {
-        action,
-        targetEmail:
-          normalizeEmail(targetEmail),
-
-        performedBy:
-          normalizeEmail(currentUser.email),
-
-        performedByUid:
-          currentUser.uid,
-
-        createdAt:
-          serverTimestamp()
-      },
-      { merge: true }
-    );
-  } catch (error) {
-    console.warn(
-      "Audit log pa anrejistre:",
-      error
-    );
-  }
-}
-
-
-/* =====================================================
-   RENDER MEMBER LISTS
-===================================================== */
-
-function createMemberRow(email, role) {
-  const normalizedEmail =
-    normalizeEmail(email);
-
-  const item =
-    document.createElement("li");
-
-  item.className = "member-row";
-
-  const isProtectedOwner =
-    normalizedEmail === ROOT_SUPER_ADMIN;
-
-  item.innerHTML = `
-    <div class="member-info">
-      <span class="member-email">
-        ${escapeHTML(normalizedEmail)}
-      </span>
-
-      <span class="member-meta">
-        ${
-          role === "super-admin"
-            ? "SUPER ADMIN"
-            : "ADMIN"
-        }
-        ${
-          isProtectedOwner
-            ? " · PWOTEJE"
-            : ""
-        }
-      </span>
-    </div>
-
-    <div class="member-actions">
-      <button
-        type="button"
-        class="edit-btn"
-        data-email="${escapeHTML(normalizedEmail)}"
-        data-role="${escapeHTML(role)}"
-        ${isProtectedOwner ? "disabled" : ""}
-      >
-        Modifye
-      </button>
-
-      <button
-        type="button"
-        class="reset-password-btn"
-        data-email="${escapeHTML(normalizedEmail)}"
-      >
-        Reset Password
-      </button>
-
-      <button
-        type="button"
-        class="remove-btn"
-        data-email="${escapeHTML(normalizedEmail)}"
-        data-role="${escapeHTML(role)}"
-        ${isProtectedOwner ? "disabled" : ""}
-      >
-        Retire
-      </button>
-    </div>
-  `;
-
-  return item;
-}
-
-
-function renderList(listElement, users, role) {
-  listElement.innerHTML = "";
-
-  const cleanUsers = [
-    ...new Set(
-      users
-        .map(normalizeEmail)
-        .filter(Boolean)
-    )
-  ].sort();
-
-  if (cleanUsers.length === 0) {
-    const emptyItem =
-      document.createElement("li");
-
-    emptyItem.className = "empty-msg";
-
-    emptyItem.textContent =
-      role === "super-admin"
-        ? "Poko gen Super Admin nan lis la."
-        : "Poko gen Admin nan lis la.";
-
-    listElement.appendChild(emptyItem);
-    return;
-  }
-
-  cleanUsers.forEach((email) => {
-    listElement.appendChild(
-      createMemberRow(email, role)
-    );
-  });
-}
-
-
-/* =====================================================
-   LIVE FIRESTORE LISTENERS
-===================================================== */
-
-function startRoleListeners() {
-  onSnapshot(
-    superAdminsRef,
-    (snapshot) => {
-      const data = snapshot.exists()
-        ? snapshot.data()
-        : {};
-
-      let users = Array.isArray(data.users)
-        ? data.users
-        : [];
-
-      if (!users.includes(ROOT_SUPER_ADMIN)) {
-        users = [
-          ROOT_SUPER_ADMIN,
-          ...users
-        ];
-      }
-
-      renderList(
-        superAdminList,
-        users,
-        "super-admin"
-      );
-    },
-    (error) => {
-      showMessage(
-        getFirebaseError(error),
-        "error"
-      );
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta name="theme-color" content="#050403">
+
+  <title>BSS1815 | Super Admin Control Panel</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-  );
 
-  onSnapshot(
-    adminsRef,
-    (snapshot) => {
-      const data = snapshot.exists()
-        ? snapshot.data()
-        : {};
-
-      const users = Array.isArray(data.users)
-        ? data.users
-        : [];
-
-      renderList(
-        adminList,
-        users,
-        "admin"
-      );
-    },
-    (error) => {
-      showMessage(
-        getFirebaseError(error),
-        "error"
-      );
+    :root {
+      --orange: #ff7518;
+      --apricot: #ffb16a;
+      --black: #050403;
+      --dark: #120904;
+      --danger: #ff4d32;
     }
-  );
-}
 
+    body {
+      min-height: 100vh;
+      color: var(--apricot);
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at top,
+          #642500 0%,
+          #190b04 40%,
+          #000000 82%
+        );
+    }
 
-/* =====================================================
-   ADD SUPER ADMIN
-===================================================== */
+    button,
+    input,
+    select {
+      font: inherit;
+    }
 
-async function addSuperAdmin() {
-  if (!authorizedSuperAdmin) return;
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  const email =
-    normalizeEmail(
-      superAdminEmailInput.value
-    );
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 15px 20px;
+      border-bottom: 2px solid var(--orange);
+      background: rgba(5, 4, 3, 0.97);
+      box-shadow: 0 6px 25px rgba(255, 117, 24, 0.2);
+    }
 
-  if (!validEmail(email)) {
-    showMessage(
-      "Antre yon imel Super Admin ki valab.",
-      "error"
-    );
+    .topbar h1 {
+      color: var(--orange);
+      font-size: clamp(17px, 4vw, 24px);
+    }
 
-    superAdminEmailInput.focus();
-    return;
-  }
+    #logoutBtn {
+      min-height: 43px;
+      padding: 9px 16px;
+      color: var(--orange);
+      font-weight: 900;
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+      background: transparent;
+      cursor: pointer;
+    }
 
-  setButtonLoading(
-    addSuperAdminBtn,
-    "AP AJOUTE...",
-    true
-  );
+    #logoutBtn:hover {
+      color: var(--black);
+      background: var(--orange);
+    }
 
-  try {
-    await setDoc(
-      superAdminsRef,
-      {
-        users: arrayUnion(email),
-        updatedAt: serverTimestamp(),
-        updatedBy:
-          normalizeEmail(currentUser.email)
-      },
-      { merge: true }
-    );
+    main {
+      width: min(100%, 1050px);
+      margin: 0 auto;
+      padding: 22px 16px 50px;
+    }
+
+    .dashboard-image {
+      display: block;
+      width: 100%;
+      max-height: 850px;
+      margin-bottom: 24px;
+      object-fit: contain;
+      object-position: top center;
+      border: 2px solid var(--orange);
+      border-radius: 20px;
+      background: var(--black);
+      box-shadow:
+        0 0 30px rgba(255, 117, 24, 0.25),
+        0 20px 60px #000000;
+    }
+
+    #loading {
+      display: none;
+    }
+
+    #accessDenied {
+      display: none;
+      margin-bottom: 20px;
+      padding: 30px 18px;
+      text-align: center;
+      border: 2px solid var(--danger);
+      border-radius: 14px;
+      background: rgba(255, 77, 50, 0.1);
+    }
+
+    #accessDenied h2 {
+      margin-bottom: 10px;
+      color: var(--danger);
+    }
 
     /*
-      Retire menm imel la nan lis Admin nòmal la
-      pou li pa genyen 2 wòl an menm tan.
+      PANEL LA PARÈT DIRÈKTEMAN.
+      LI PA RETE KACHE PANDAN FIREBASE AP CHAJE.
     */
-    await setDoc(
-      adminsRef,
-      {
-        users: arrayRemove(email),
-        updatedAt: serverTimestamp()
-      },
-      { merge: true }
-    );
-
-    await saveAudit(
-      "ADD_SUPER_ADMIN",
-      email
-    );
-
-    superAdminEmailInput.value = "";
-
-    showMessage(
-      `${email} ajoute kòm Super Admin.`,
-      "success"
-    );
-  } catch (error) {
-    showMessage(
-      getFirebaseError(error),
-      "error"
-    );
-  } finally {
-    setButtonLoading(
-      addSuperAdminBtn,
-      "",
-      false
-    );
-  }
-}
-
-
-/* =====================================================
-   ADD ADMIN
-===================================================== */
-
-async function addAdmin() {
-  if (!authorizedSuperAdmin) return;
-
-  const email =
-    normalizeEmail(adminEmailInput.value);
-
-  if (!validEmail(email)) {
-    showMessage(
-      "Antre yon imel Admin ki valab.",
-      "error"
-    );
-
-    adminEmailInput.focus();
-    return;
-  }
-
-  if (email === ROOT_SUPER_ADMIN) {
-    showMessage(
-      "Kont prensipal Super Admin lan pa kapab vin Admin nòmal.",
-      "error"
-    );
-
-    return;
-  }
-
-  setButtonLoading(
-    addAdminBtn,
-    "AP AJOUTE...",
-    true
-  );
-
-  try {
-    await setDoc(
-      adminsRef,
-      {
-        users: arrayUnion(email),
-        updatedAt: serverTimestamp(),
-        updatedBy:
-          normalizeEmail(currentUser.email)
-      },
-      { merge: true }
-    );
-
-    await saveAudit(
-      "ADD_ADMIN",
-      email
-    );
-
-    adminEmailInput.value = "";
-
-    showMessage(
-      `${email} ajoute kòm Admin.`,
-      "success"
-    );
-  } catch (error) {
-    showMessage(
-      getFirebaseError(error),
-      "error"
-    );
-  } finally {
-    setButtonLoading(
-      addAdminBtn,
-      "",
-      false
-    );
-  }
-}
-
-
-/* =====================================================
-   REMOVE MEMBER
-===================================================== */
-
-async function removeMember(email, role) {
-  if (!authorizedSuperAdmin) return;
-
-  const targetEmail =
-    normalizeEmail(email);
-
-  if (targetEmail === ROOT_SUPER_ADMIN) {
-    showMessage(
-      "Kont prensipal Super Admin lan pwoteje. Li pa kapab retire.",
-      "error"
-    );
-
-    return;
-  }
-
-  const confirmed = window.confirm(
-    `Èske ou konfime ou vle retire ${targetEmail}?`
-  );
-
-  if (!confirmed) return;
-
-  try {
-    const targetRef =
-      role === "super-admin"
-        ? superAdminsRef
-        : adminsRef;
-
-    await updateDoc(
-      targetRef,
-      {
-        users: arrayRemove(targetEmail),
-        updatedAt: serverTimestamp(),
-        updatedBy:
-          normalizeEmail(currentUser.email)
-      }
-    );
-
-    await saveAudit(
-      role === "super-admin"
-        ? "REMOVE_SUPER_ADMIN"
-        : "REMOVE_ADMIN",
-      targetEmail
-    );
-
-    showMessage(
-      `${targetEmail} retire avèk siksè.`,
-      "success"
-    );
-  } catch (error) {
-    showMessage(
-      getFirebaseError(error),
-      "error"
-    );
-  }
-}
-
-
-/* =====================================================
-   MODIFY MEMBER EMAIL
-===================================================== */
-
-async function modifyMember(oldEmail, role) {
-  if (!authorizedSuperAdmin) return;
-
-  const normalizedOldEmail =
-    normalizeEmail(oldEmail);
-
-  if (normalizedOldEmail === ROOT_SUPER_ADMIN) {
-    showMessage(
-      "Kont prensipal la pwoteje.",
-      "error"
-    );
-
-    return;
-  }
-
-  const answer = window.prompt(
-    "Antre nouvo imel la:",
-    normalizedOldEmail
-  );
-
-  if (answer === null) return;
-
-  const newEmail =
-    normalizeEmail(answer);
-
-  if (!validEmail(newEmail)) {
-    showMessage(
-      "Nouvo imel la pa valab.",
-      "error"
-    );
-
-    return;
-  }
-
-  if (newEmail === normalizedOldEmail) {
-    showMessage(
-      "Ou pa fè okenn chanjman.",
-      "error"
-    );
-
-    return;
-  }
-
-  try {
-    const targetRef =
-      role === "super-admin"
-        ? superAdminsRef
-        : adminsRef;
-
-    await updateDoc(
-      targetRef,
-      {
-        users:
-          arrayRemove(normalizedOldEmail),
-
-        updatedAt:
-          serverTimestamp()
-      }
-    );
-
-    await updateDoc(
-      targetRef,
-      {
-        users:
-          arrayUnion(newEmail),
-
-        updatedAt:
-          serverTimestamp(),
-
-        updatedBy:
-          normalizeEmail(currentUser.email)
-      }
-    );
-
-    await saveAudit(
-      role === "super-admin"
-        ? "MODIFY_SUPER_ADMIN"
-        : "MODIFY_ADMIN",
-      `${normalizedOldEmail} → ${newEmail}`
-    );
-
-    showMessage(
-      `Kont lan modifye: ${newEmail}`,
-      "success"
-    );
-  } catch (error) {
-    showMessage(
-      getFirebaseError(error),
-      "error"
-    );
-  }
-}
-
-
-/* =====================================================
-   PASSWORD RESET
-===================================================== */
-
-async function resetMemberPassword(email) {
-  if (!authorizedSuperAdmin) return;
-
-  const targetEmail =
-    normalizeEmail(email);
-
-  try {
-    await sendPasswordResetEmail(
-      auth,
-      targetEmail
-    );
-
-    await saveAudit(
-      "SEND_PASSWORD_RESET",
-      targetEmail
-    );
-
-    showMessage(
-      `Firebase voye lyen reset modpas la bay ${targetEmail}.`,
-      "success"
-    );
-  } catch (error) {
-    showMessage(
-      getFirebaseError(error),
-      "error"
-    );
-  }
-}
-
-
-/* =====================================================
-   LIST BUTTON EVENTS
-===================================================== */
-
-document.addEventListener(
-  "click",
-  async (event) => {
-    const removeButton =
-      event.target.closest(".remove-btn");
-
-    const editButton =
-      event.target.closest(".edit-btn");
-
-    const resetPasswordButton =
-      event.target.closest(
-        ".reset-password-btn"
-      );
-
-    if (removeButton) {
-      await removeMember(
-        removeButton.dataset.email,
-        removeButton.dataset.role
-      );
-
-      return;
+    .panel {
+      display: block;
     }
 
-    if (editButton) {
-      await modifyMember(
-        editButton.dataset.email,
-        editButton.dataset.role
-      );
-
-      return;
+    #systemMessage {
+      display: none;
+      margin-bottom: 20px;
+      padding: 14px;
+      font-weight: 800;
+      line-height: 1.45;
+      text-align: center;
+      border-radius: 10px;
     }
 
-    if (resetPasswordButton) {
-      await resetMemberPassword(
-        resetPasswordButton.dataset.email
-      );
-    }
-  }
-);
-
-
-/* =====================================================
-   MAIN BUTTON EVENTS
-===================================================== */
-
-addSuperAdminBtn?.addEventListener(
-  "click",
-  addSuperAdmin
-);
-
-addAdminBtn?.addEventListener(
-  "click",
-  addAdmin
-);
-
-superAdminEmailInput?.addEventListener(
-  "keydown",
-  (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      addSuperAdmin();
-    }
-  }
-);
-
-adminEmailInput?.addEventListener(
-  "keydown",
-  (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      addAdmin();
-    }
-  }
-);
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-logoutBtn?.addEventListener(
-  "click",
-  async () => {
-    try {
-      await signOut(auth);
-
-      sessionStorage.removeItem(
-        "bss1815Role"
-      );
-
-      sessionStorage.removeItem(
-        "bss1815Email"
-      );
-
-      window.location.replace(
-        "./super-admin-login.html"
-      );
-    } catch (error) {
-      showMessage(
-        getFirebaseError(error),
-        "error"
-      );
-    }
-  }
-);
-
-
-/* =====================================================
-   AUTHENTICATION CHECK
-===================================================== */
-
-onAuthStateChanged(
-  auth,
-  async (user) => {
-    if (!user) {
-      window.location.replace(
-        "./super-admin-login.html"
-      );
-
-      return;
+    #systemMessage.success {
+      display: block;
+      color: var(--apricot);
+      border: 1px solid var(--orange);
+      background: rgba(255, 117, 24, 0.12);
     }
 
-    currentUser = user;
+    #systemMessage.error {
+      display: block;
+      color: #ffb7a5;
+      border: 1px solid var(--danger);
+      background: rgba(255, 77, 50, 0.12);
+    }
 
-    try {
-      /*
-        Kont prensipal la kapab kreye premye
-        dokiman roles yo si Firestore Rules yo
-        ba li otorizasyon.
-      */
-      if (
-        normalizeEmail(user.email) ===
-        ROOT_SUPER_ADMIN
-      ) {
-        await ensureRoleDocuments();
+    .control-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .control-button {
+      min-height: 125px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      color: var(--apricot);
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+      background:
+        linear-gradient(
+          145deg,
+          #1b0d05,
+          #050403
+        );
+      box-shadow: 0 0 16px rgba(255, 117, 24, 0.13);
+      cursor: pointer;
+    }
+
+    .control-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 24px rgba(255, 117, 24, 0.35);
+    }
+
+    .control-icon {
+      color: var(--orange);
+      font-size: 32px;
+    }
+
+    .card {
+      margin-bottom: 21px;
+      padding: 21px;
+      border: 1px solid var(--orange);
+      border-radius: 15px;
+      background: rgba(5, 4, 3, 0.94);
+      box-shadow: 0 14px 38px #000000;
+    }
+
+    .card h2 {
+      margin-bottom: 8px;
+      color: var(--orange);
+      font-size: 21px;
+    }
+
+    .card-description {
+      margin-bottom: 17px;
+      color: #c77f49;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .add-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .add-form input {
+      flex: 1;
+      min-width: 210px;
+      min-height: 50px;
+      padding: 11px 14px;
+      color: var(--apricot);
+      outline: none;
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+      background: #090604;
+    }
+
+    .add-form input::placeholder {
+      color: #a9683b;
+    }
+
+    .add-form input:focus {
+      box-shadow:
+        0 0 0 4px rgba(255, 117, 24, 0.17);
+    }
+
+    .add-button {
+      min-height: 50px;
+      padding: 11px 18px;
+      color: var(--black);
+      font-weight: 900;
+      border: 2px solid var(--orange);
+      border-radius: 9px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--apricot),
+          var(--orange)
+        );
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .member-list {
+      list-style: none;
+    }
+
+    .member-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #682a08;
+    }
+
+    .member-list li:last-child {
+      border-bottom: none;
+    }
+
+    .member-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .member-email {
+      overflow-wrap: anywhere;
+      color: var(--apricot);
+      font-weight: 900;
+    }
+
+    .member-meta {
+      color: #b8703e;
+      font-size: 12px;
+    }
+
+    .member-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 7px;
+    }
+
+    .edit-btn,
+    .reset-password-btn,
+    .remove-btn {
+      padding: 7px 10px;
+      border-radius: 7px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .edit-btn,
+    .reset-password-btn {
+      color: var(--orange);
+      border: 1px solid var(--orange);
+    }
+
+    .remove-btn {
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    .edit-btn:hover,
+    .reset-password-btn:hover {
+      color: var(--black);
+      background: var(--orange);
+    }
+
+    .remove-btn:hover {
+      color: var(--black);
+      background: var(--danger);
+    }
+
+    .empty-msg {
+      color: #b8703e;
+      font-size: 14px;
+    }
+
+    @media (max-width: 650px) {
+      .topbar {
+        padding: 13px;
       }
 
-      authorizedSuperAdmin =
-        await verifySuperAdmin(user);
-
-      if (!authorizedSuperAdmin) {
-        denyAccess();
-        return;
+      main {
+        padding: 16px 11px 40px;
       }
 
-      sessionStorage.setItem(
-        "bss1815Role",
-        "SUPER_ADMIN"
-      );
+      .dashboard-image {
+        border-radius: 14px;
+      }
 
-      sessionStorage.setItem(
-        "bss1815Email",
-        normalizeEmail(user.email)
-      );
+      .card {
+        padding: 17px 13px;
+      }
 
-      showDashboard();
-      startRoleListeners();
-    } catch (error) {
-      loading.style.display = "none";
+      .add-form {
+        flex-direction: column;
+      }
 
-      showMessage(
-        getFirebaseError(error),
-        "error"
-      );
+      .add-form input,
+      .add-button {
+        width: 100%;
+      }
 
-      if (
-        normalizeEmail(user.email) ===
-        ROOT_SUPER_ADMIN
-      ) {
-        /*
-          Kont prensipal la toujou kapab wè
-          Dashboard la menm si dokiman Firestore
-          yo poko kreye.
-        */
-        authorizedSuperAdmin = true;
-        showDashboard();
-      } else {
-        denyAccess();
+      .member-list li {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .member-actions {
+        width: 100%;
+        justify-content: flex-start;
       }
     }
-  }
-);
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <h1>BSS1815 · SUPER ADMIN</h1>
+
+    <button
+      id="logoutBtn"
+      type="button"
+    >
+      Dekonekte
+    </button>
+  </header>
+
+  <main>
+
+    <img
+      src="./bss-login-superadmin.webp"
+      alt="BSS1815 Super Admin Dashboard"
+      class="dashboard-image"
+    >
+
+    <div
+      id="systemMessage"
+      role="alert"
+      aria-live="polite"
+    ></div>
+
+    <div id="loading"></div>
+
+    <section id="accessDenied">
+      <h2>AKSÈ REFIZE</h2>
+
+      <p>
+        Kont sa a pa gen otorizasyon Super Admin.
+      </p>
+    </section>
+
+    <!-- BOUTON YO PARÈT DIRÈKTEMAN -->
+    <div
+      class="panel"
+      id="panel"
+    >
+
+      <section class="control-grid">
+
+        <a
+          href="./system-override.html"
+          class="control-button"
+        >
+          <span class="control-icon">⚡</span>
+          <strong>System Override</strong>
+        </a>
+
+        <a
+          href="./system-reset.html"
+          class="control-button"
+        >
+          <span class="control-icon">🔄</span>
+          <strong>System Reset</strong>
+        </a>
+
+        <a
+          href="./twilio-center.html"
+          class="control-button"
+        >
+          <span class="control-icon">📡</span>
+          <strong>Twilio Master Switch</strong>
+        </a>
+
+        <a
+          href="./records.html"
+          class="control-button"
+        >
+          <span class="control-icon">🗑️</span>
+          <strong>Delete Record</strong>
+        </a>
+
+        <a
+          href="./transactions.html"
+          class="control-button"
+        >
+          <span class="control-icon">💲</span>
+          <strong>Transactions</strong>
+        </a>
+
+        <a
+          href="./admin-management.html"
+          class="control-button"
+        >
+          <span class="control-icon">👥</span>
+          <strong>Admin Management</strong>
+        </a>
+
+        <a
+          href="./security-logs.html"
+          class="control-button"
+        >
+          <span class="control-icon">🔒</span>
+          <strong>Security Logs</strong>
+        </a>
+
+        <a
+          href="./upload-center.html"
+          class="control-button"
+        >
+          <span class="control-icon">↕️</span>
+          <strong>Upload Center</strong>
+        </a>
+
+        <a
+          href="./branding.html"
+          class="control-button"
+        >
+          <span class="control-icon">🖌️</span>
+          <strong>Branding</strong>
+        </a>
+
+      </section>
+
+      <section class="card">
+        <h2>Super Admins</h2>
+
+        <p class="card-description">
+          Max Louis ak Cange Derosier sèlman dwe genyen
+          otorizasyon Super Admin.
+        </p>
+
+        <div class="add-form">
+          <input
+            type="email"
+            id="superAdminEmail"
+            placeholder="Imèl nouvo Super Admin lan"
+            autocomplete="off"
+          >
+
+          <button
+            id="addSuperAdminBtn"
+            class="add-button"
+            type="button"
+          >
+            Ajoute Super Admin
+          </button>
+        </div>
+
+        <ul
+          class="member-list"
+          id="superAdminList"
+        >
+          <li class="empty-msg">
+            Lis Super Admin yo ap chaje...
+          </li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Admins</h2>
+
+        <p class="card-description">
+          Ajoute, modifye, reset modpas oswa retire Admin yo.
+        </p>
+
+        <div class="add-form">
+          <input
+            type="email"
+            id="adminEmail"
+            placeholder="Imèl nouvo Admin lan"
+            autocomplete="off"
+          >
+
+          <button
+            id="addAdminBtn"
+            class="add-button"
+            type="button"
+          >
+            Ajoute Admin
+          </button>
+        </div>
+
+        <ul
+          class="member-list"
+          id="adminList"
+        >
+          <li class="empty-msg">
+            Lis Admin yo ap chaje...
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+  </main>
+
+  <noscript>
+    JavaScript dwe aktive pou tout fonksyon Firebase yo travay.
+  </noscript>
+
+  <script
+    type="module"
+    src="./super-admin.js"
+  ></script>
+
+</body>
+</html>
