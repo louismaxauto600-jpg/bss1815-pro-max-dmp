@@ -1,144 +1,601 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Super Admin Control Panel</title>
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, Segoe UI, Roboto, sans-serif;
-    background: #0d1117;
-    color: #e6edf3;
-  }
-  header {
-    padding: 20px 24px;
-    border-bottom: 1px solid #21262d;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  header h1 { font-size: 20px; margin: 0; }
-  #logoutBtn {
-    background: #21262d;
-    color: #e6edf3;
-    border: 1px solid #30363d;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  #logoutBtn:hover { background: #30363d; }
+  <meta charset="UTF-8">
 
-  main { max-width: 900px; margin: 0 auto; padding: 24px; }
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  #accessDenied {
-    display: none;
-    text-align: center;
-    padding: 80px 20px;
-  }
-  #accessDenied h2 { color: #f85149; }
+  <meta name="theme-color" content="#050403">
 
-  #loading { text-align: center; padding: 60px 20px; color: #8b949e; }
+  <title>BSS1815 | Super Admin Control Panel</title>
 
-  .panel { display: none; }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  section.card {
-    background: #161b22;
-    border: 1px solid #21262d;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  section.card h2 { margin-top: 0; font-size: 16px; color: #58a6ff; }
+    :root {
+      --orange: #ff7518;
+      --apricot: #ffb16a;
+      --black: #050403;
+      --dark: #110904;
+      --danger: #ff542e;
+      --success: #ff9a42;
+    }
 
-  .add-form {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  .add-form input {
-    flex: 1;
-    min-width: 180px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #30363d;
-    background: #0d1117;
-    color: #e6edf3;
-  }
-  .add-form button {
-    background: #238636;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  .add-form button:hover { background: #2ea043; }
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--apricot);
+      background:
+        radial-gradient(
+          circle at top,
+          #642500 0%,
+          #180b04 38%,
+          #000000 80%
+        );
+    }
 
-  ul.member-list { list-style: none; margin: 0; padding: 0; }
-  ul.member-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #21262d;
-  }
-  ul.member-list li:last-child { border-bottom: none; }
-  .member-info { display: flex; flex-direction: column; }
-  .member-email { font-weight: 600; }
-  .member-meta { font-size: 12px; color: #8b949e; }
-  .remove-btn {
-    background: transparent;
-    color: #f85149;
-    border: 1px solid #f85149;
-    padding: 5px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-  }
-  .remove-btn:hover { background: #f8514922; }
-  .empty-msg { color: #8b949e; font-size: 14px; padding: 10px 0; }
-</style>
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 22px;
+      border-bottom: 2px solid var(--orange);
+      background: rgba(5, 4, 3, 0.96);
+      box-shadow: 0 5px 24px rgba(255, 117, 24, 0.18);
+    }
+
+    .topbar h1 {
+      color: var(--orange);
+      font-size: clamp(17px, 4vw, 24px);
+      letter-spacing: 0.5px;
+    }
+
+    .logout-button {
+      min-height: 43px;
+      padding: 9px 16px;
+      color: var(--orange);
+      font-weight: 900;
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+      background: transparent;
+    }
+
+    .logout-button:hover {
+      color: var(--black);
+      background: var(--orange);
+    }
+
+    main {
+      width: min(100%, 1050px);
+      margin: 0 auto;
+      padding: 24px 18px 50px;
+    }
+
+    .hero {
+      overflow: hidden;
+      margin-bottom: 24px;
+      text-align: center;
+      border: 2px solid var(--orange);
+      border-radius: 24px;
+      background: var(--black);
+      box-shadow:
+        0 0 28px rgba(255, 117, 24, 0.2),
+        0 20px 60px #000000;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      max-height: 620px;
+      object-fit: cover;
+      object-position: top center;
+      border-bottom: 2px solid var(--orange);
+    }
+
+    .hero-content {
+      padding: 23px 18px 26px;
+    }
+
+    .hero-content h2 {
+      margin-bottom: 8px;
+      color: var(--orange);
+      font-size: clamp(25px, 6vw, 42px);
+    }
+
+    .hero-content p {
+      line-height: 1.5;
+    }
+
+    #loading {
+      padding: 45px 20px;
+      color: var(--orange);
+      font-size: 18px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    #accessDenied {
+      display: none;
+      padding: 45px 20px;
+      text-align: center;
+      border: 2px solid var(--danger);
+      border-radius: 18px;
+      background: rgba(255, 84, 46, 0.09);
+    }
+
+    #accessDenied h2 {
+      margin-bottom: 12px;
+      color: var(--danger);
+      font-size: 28px;
+    }
+
+    #accessDenied p {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .back-login {
+      display: inline-block;
+      padding: 12px 18px;
+      color: var(--black);
+      font-weight: 900;
+      text-decoration: none;
+      border: 2px solid var(--orange);
+      border-radius: 10px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--apricot),
+          var(--orange)
+        );
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(190px, 1fr));
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    .control-link {
+      min-height: 125px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 18px;
+      color: var(--apricot);
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid var(--orange);
+      border-radius: 15px;
+      background:
+        linear-gradient(
+          145deg,
+          #190c05,
+          #050403
+        );
+      box-shadow: 0 0 15px rgba(255, 117, 24, 0.1);
+    }
+
+    .control-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 22px rgba(255, 117, 24, 0.32);
+    }
+
+    .control-icon {
+      color: var(--orange);
+      font-size: 31px;
+    }
+
+    .card {
+      margin-bottom: 21px;
+      padding: 22px;
+      border: 1px solid var(--orange);
+      border-radius: 17px;
+      background: rgba(5, 4, 3, 0.92);
+      box-shadow: 0 12px 35px #000000;
+    }
+
+    .card h2 {
+      margin-bottom: 17px;
+      color: var(--orange);
+      font-size: 21px;
+    }
+
+    .card-description {
+      margin: -7px 0 17px;
+      color: #c9824c;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .add-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 17px;
+    }
+
+    .add-form input {
+      flex: 1;
+      min-width: 210px;
+      min-height: 49px;
+      padding: 12px 14px;
+      color: var(--apricot);
+      outline: none;
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+      background: #090604;
+    }
+
+    .add-form input::placeholder {
+      color: #9e6338;
+    }
+
+    .add-form input:focus {
+      box-shadow:
+        0 0 0 4px rgba(255, 117, 24, 0.16);
+    }
+
+    .add-button {
+      min-height: 49px;
+      padding: 11px 20px;
+      color: var(--black);
+      font-weight: 900;
+      border: 2px solid var(--orange);
+      border-radius: 10px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--apricot),
+          var(--orange)
+        );
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.6;
+    }
+
+    .member-list {
+      list-style: none;
+    }
+
+    .member-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 14px 0;
+      border-bottom: 1px solid #6d2c08;
+    }
+
+    .member-list li:last-child {
+      border-bottom: none;
+    }
+
+    .member-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .member-email {
+      overflow-wrap: anywhere;
+      color: var(--apricot);
+      font-weight: 900;
+    }
+
+    .member-meta {
+      color: #ba7442;
+      font-size: 12px;
+    }
+
+    .remove-btn {
+      flex-shrink: 0;
+      padding: 7px 11px;
+      color: var(--danger);
+      border: 1px solid var(--danger);
+      border-radius: 8px;
+      background: transparent;
+    }
+
+    .remove-btn:hover {
+      color: var(--black);
+      background: var(--danger);
+    }
+
+    .empty-msg {
+      padding: 12px 0;
+      color: #b67140;
+      font-size: 14px;
+    }
+
+    #systemMessage {
+      display: none;
+      margin-bottom: 20px;
+      padding: 14px;
+      font-weight: 800;
+      line-height: 1.45;
+      text-align: center;
+      border-radius: 11px;
+    }
+
+    #systemMessage.error {
+      display: block;
+      color: var(--danger);
+      border: 1px solid var(--danger);
+      background: rgba(255, 84, 46, 0.1);
+    }
+
+    #systemMessage.success {
+      display: block;
+      color: var(--apricot);
+      border: 1px solid var(--orange);
+      background: rgba(255, 117, 24, 0.1);
+    }
+
+    @media (max-width: 650px) {
+      .topbar {
+        align-items: flex-start;
+        padding: 13px;
+      }
+
+      main {
+        padding: 16px 12px 40px;
+      }
+
+      .card {
+        padding: 17px 14px;
+      }
+
+      .add-form {
+        flex-direction: column;
+      }
+
+      .add-form input,
+      .add-button {
+        width: 100%;
+      }
+
+      .member-list li {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .remove-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <h1>🛡️ Super Admin Control Panel</h1>
-  <button id="logoutBtn">Dekonekte</button>
-</header>
+  <header class="topbar">
+    <h1>🛡️ BSS1815 · SUPER ADMIN</h1>
 
-<main>
-  <div id="loading">Chaje...</div>
+    <button
+      id="logoutBtn"
+      class="logout-button"
+      type="button"
+    >
+      Dekonekte
+    </button>
+  </header>
 
-  <div id="accessDenied">
-    <h2>⛔ Aksè refize</h2>
-    <p>Ou pa gen otorizasyon pou wè paj sa a.</p>
-  </div>
+  <main>
 
-  <div class="panel" id="panel">
-    <section class="card">
-      <h2>Super Admins</h2>
-      <div class="add-form">
-        <input type="email" id="superAdminEmail" placeholder="imèl@egzanp.com">
-        <button id="addSuperAdminBtn">+ Ajoute</button>
+    <section class="hero">
+      <img
+        src="./bss-login-superadmin.webp"
+        alt="BSS1815 Super Admin"
+        class="hero-image"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="hero-content">
+        <h2>SUPER ADMIN CONTROL PANEL</h2>
+
+        <p>
+          Kontwòl santral BSS1815 PRO-MAX DMP
+        </p>
       </div>
-      <ul class="member-list" id="superAdminList"></ul>
     </section>
 
-    <section class="card">
-      <h2>Admins</h2>
-      <div class="add-form">
-        <input type="email" id="adminEmail" placeholder="imèl@egzanp.com">
-        <button id="addAdminBtn">+ Ajoute</button>
-      </div>
-      <ul class="member-list" id="adminList"></ul>
-    </section>
-  </div>
-</main>
+    <div
+      id="systemMessage"
+      role="alert"
+      aria-live="polite"
+    ></div>
 
-<script type="module" src="super-admin.js"></script>
+    <div id="loading">
+      Ap verifye otorizasyon Super Admin...
+    </div>
+
+    <section id="accessDenied">
+      <h2>⛔ AKSÈ REFIZE</h2>
+
+      <p>
+        Kont sa a pa gen otorizasyon pou antre nan
+        Super Admin Control Panel la.
+      </p>
+
+      <a
+        href="./super-admin-login.html"
+        class="back-login"
+      >
+        Retounen nan Super Admin Login
+      </a>
+    </section>
+
+    <div
+      class="panel"
+      id="panel"
+    >
+
+      <nav
+        class="control-grid"
+        aria-label="Super Admin modules"
+      >
+        <a
+          href="./transactions.html"
+          class="control-link"
+        >
+          <span class="control-icon">💲</span>
+          <strong>Transactions</strong>
+        </a>
+
+        <a
+          href="./admin-management.html"
+          class="control-link"
+        >
+          <span class="control-icon">👥</span>
+          <strong>Admin Management</strong>
+        </a>
+
+        <a
+          href="./security-logs.html"
+          class="control-link"
+        >
+          <span class="control-icon">🔒</span>
+          <strong>Security Logs</strong>
+        </a>
+
+        <a
+          href="./upload-center.html"
+          class="control-link"
+        >
+          <span class="control-icon">↕️</span>
+          <strong>Upload Center</strong>
+        </a>
+
+        <a
+          href="./twilio-center.html"
+          class="control-link"
+        >
+          <span class="control-icon">📡</span>
+          <strong>Twilio Global Alerts</strong>
+        </a>
+
+        <a
+          href="./branding.html"
+          class="control-link"
+        >
+          <span class="control-icon">🖌️</span>
+          <strong>Branding</strong>
+        </a>
+      </nav>
+
+      <section class="card">
+        <h2>Super Admins</h2>
+
+        <p class="card-description">
+          Max Louis ak Cange Derosier sèlman dwe genyen
+          otorizasyon Super Admin.
+        </p>
+
+        <div class="add-form">
+          <input
+            type="email"
+            id="superAdminEmail"
+            placeholder="imèl@egzanp.com"
+            autocomplete="off"
+          >
+
+          <button
+            id="addSuperAdminBtn"
+            class="add-button"
+            type="button"
+          >
+            + Ajoute Super Admin
+          </button>
+        </div>
+
+        <ul
+          class="member-list"
+          id="superAdminList"
+        >
+          <li class="empty-msg">
+            Lis Super Admin yo ap chaje...
+          </li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Admins</h2>
+
+        <p class="card-description">
+          Ajoute, verifye oswa retire yon kont Admin nòmal.
+        </p>
+
+        <div class="add-form">
+          <input
+            type="email"
+            id="adminEmail"
+            placeholder="imèl@egzanp.com"
+            autocomplete="off"
+          >
+
+          <button
+            id="addAdminBtn"
+            class="add-button"
+            type="button"
+          >
+            + Ajoute Admin
+          </button>
+        </div>
+
+        <ul
+          class="member-list"
+          id="adminList"
+        >
+          <li class="empty-msg">
+            Lis Admin yo ap chaje...
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+  </main>
+
+  <noscript>
+    JavaScript dwe aktive pou Super Admin Control Panel la fonksyone.
+  </noscript>
+
+  <script
+    type="module"
+    src="./super-admin.js"
+  ></script>
+
 </body>
 </html>
-
