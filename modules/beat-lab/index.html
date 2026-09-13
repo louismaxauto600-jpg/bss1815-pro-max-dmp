@@ -1,1 +1,116 @@
-HEY
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRO-MAX BEAT LAB — BSS1815 PRO-MAX DMP</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #0b0b0f;
+      overflow: hidden;
+    }
+
+    .beat-lab-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      background: #14141c;
+      border-bottom: 1px solid #2a2a35;
+      z-index: 10;
+    }
+
+    .beat-lab-header .title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .beat-lab-header .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+      text-decoration: none;
+      background: #2a2a35;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+
+    .beat-lab-header .back-btn:hover {
+      background: #3a3a48;
+    }
+
+    .beat-lab-frame-wrap {
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    iframe#beatLabFrame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #000;
+    }
+
+    .beat-lab-loading {
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      background: #0b0b0f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="beat-lab-header">
+    <div class="title">🎛️ PRO-MAX BEAT LAB</div>
+    <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+  </div>
+
+  <div class="beat-lab-frame-wrap">
+    <div class="beat-lab-loading" id="beatLabLoading">Ap chaje Beat Lab...</div>
+    <iframe
+      id="beatLabFrame"
+      src="https://pro-max-beat-maker.netlify.app"
+      title="Pro-Max Beat Lab"
+      allow="autoplay; microphone; midi"
+      onload="document.getElementById('beatLabLoading').style.display='none';"
+    ></iframe>
+  </div>
+
+</body>
+</html>
+
