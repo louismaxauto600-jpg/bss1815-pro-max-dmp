@@ -1,10 +1,10 @@
-<!-- FILE: modules/donations/index.html -->
+<!-- FILE: modules/attendance/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donation Center | BSS1815 PRO-MAX DMP</title>
+<title>Attendance | BSS1815 PRO-MAX DMP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
@@ -33,7 +33,7 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 <body>
 
 <header>
-<h1>DONATION CENTER</h1>
+<h1>ATTENDANCE</h1>
 <p>BSS1815 PRO-MAX DMP</p>
 <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
 <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
@@ -44,98 +44,80 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 <div class="card">
 <h2>Rezime</h2>
 <div class="stats">
-<div class="stat"><strong id="totalDonations">$0.00</strong>Total Kontribisyon</div>
-<div class="stat"><strong id="totalDonors">0</strong>Donatè</div>
+<div class="stat"><strong id="totalCheckins">0</strong>Total Check-In</div>
+<div class="stat"><strong id="totalEvents">0</strong>Evènman Diferan</div>
 </div>
 </div>
 
 <div class="card">
-<h2>Anrejistre Kontribisyon</h2>
+<h2>Fè Check-In</h2>
 <div class="grid">
 <div>
-<label>Non Donatè</label>
-<input id="donorName" type="text" placeholder="Non konplè">
+<label>Non Patisipan</label>
+<input id="attName" type="text" placeholder="Non konplè">
 </div>
 <div>
-<label>Montan (USD)</label>
-<input id="donorAmount" type="number" step="0.01" placeholder="0.00">
-</div>
-<div>
-<label>Objektif / Rezon</label>
-<input id="donorPurpose" type="text" placeholder="Egzanp: Konstriksyon, Evènman...">
-</div>
-<div>
-<label>Metòd Peman</label>
-<select id="donorMethod">
-<option>Kach</option>
-<option>WhatsApp / Zelle</option>
-<option>Chèk</option>
-<option>Kat Kredi</option>
-<option>Lòt</option>
-</select>
+<label>Evènman / Reyinyon</label>
+<input id="attEvent" type="text" placeholder="Egzanp: Reyinyon Jeneral Sektanm">
 </div>
 </div>
-<button onclick="addDonation()">Anrejistre Kontribisyon</button>
+<button onclick="checkIn()">✅ Check-In</button>
 </div>
 
 <div class="card">
-<h2>Istwa Kontribisyon</h2>
+<h2>Istwa Prezans</h2>
+<input id="searchInput" type="text" placeholder="Chèche pa non oswa evènman..." style="margin-bottom:14px" onkeyup="render()">
 <table>
-<thead><tr><th>Donatè</th><th>Montan</th><th>Rezon</th><th>Metòd</th><th>Dat</th><th></th></tr></thead>
-<tbody id="donationsTable"></tbody>
+<thead><tr><th>Non</th><th>Evènman</th><th>Lè</th><th></th></tr></thead>
+<tbody id="attendanceTable"></tbody>
 </table>
 </div>
 
 </main>
 
-<footer>© 2026 BSS1815 PRO-MAX DMP | Donation Center</footer>
+<footer>© 2026 BSS1815 PRO-MAX DMP | Attendance</footer>
 
 <script>
-let donations = JSON.parse(localStorage.getItem("bss1815_donations")) || [];
+let attendance = JSON.parse(localStorage.getItem("bss1815_attendance")) || [];
 
-function save(){ localStorage.setItem("bss1815_donations", JSON.stringify(donations)); }
+function save(){ localStorage.setItem("bss1815_attendance", JSON.stringify(attendance)); }
 
-function addDonation(){
-const name = document.getElementById("donorName").value.trim();
-const amount = parseFloat(document.getElementById("donorAmount").value);
-const purpose = document.getElementById("donorPurpose").value.trim();
-const method = document.getElementById("donorMethod").value;
+function checkIn(){
+const name = document.getElementById("attName").value.trim();
+const eventName = document.getElementById("attEvent").value.trim();
 
-if(!name || isNaN(amount)){ alert("Non ak Montan obligatwa."); return; }
+if(!name || !eventName){ alert("Non ak Evènman obligatwa."); return; }
 
-donations.unshift({name,amount,purpose,method,date:new Date().toLocaleString()});
+attendance.unshift({name,eventName,time:new Date().toLocaleString()});
 save();
 
-document.getElementById("donorName").value="";
-document.getElementById("donorAmount").value="";
-document.getElementById("donorPurpose").value="";
+document.getElementById("attName").value="";
 
 render();
 }
 
-function deleteDonation(index){
-donations.splice(index,1);
+function deleteEntry(index){
+attendance.splice(index,1);
 save();
 render();
 }
 
 function render(){
-const tbody = document.getElementById("donationsTable");
+const tbody = document.getElementById("attendanceTable");
+const search = (document.getElementById("searchInput").value || "").toLowerCase();
 tbody.innerHTML = "";
 
-let total = 0;
-const donorSet = new Set();
+const filtered = attendance.filter(a => (a.name+" "+a.eventName).toLowerCase().includes(search));
 
-donations.forEach((d,index) => {
-total += d.amount;
-donorSet.add(d.name);
+filtered.forEach((a) => {
+const realIndex = attendance.indexOf(a);
 const row = document.createElement("tr");
-row.innerHTML = `<td>${d.name}</td><td>$${d.amount.toFixed(2)}</td><td>${d.purpose}</td><td>${d.method}</td><td>${d.date}</td><td><button onclick="deleteDonation(${index})">🗑</button></td>`;
+row.innerHTML = `<td>${a.name}</td><td>${a.eventName}</td><td>${a.time}</td><td><button onclick="deleteEntry(${realIndex})">🗑</button></td>`;
 tbody.appendChild(row);
 });
 
-document.getElementById("totalDonations").textContent = "$" + total.toFixed(2);
-document.getElementById("totalDonors").textContent = donorSet.size;
+document.getElementById("totalCheckins").textContent = attendance.length;
+document.getElementById("totalEvents").textContent = new Set(attendance.map(a=>a.eventName)).size;
 }
 
 render();
