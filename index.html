@@ -2,41 +2,26 @@
 <html lang="ht" translate="no">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-  <title>BSS1815 PRO-MAX DMP | Digital Management Platform</title>
-
-  <meta
-    name="description"
-    content="BSS1815 PRO-MAX DMP — platfòm santral pou BSS1815 Community, PRO-MAX FM, Maximax Multi Services ak PRO-MAX Académie."
-  >
-
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
   <meta name="theme-color" content="#000000">
-  <meta name="author" content="BSS1815 PRO-MAX DMP">
-  <meta name="robots" content="index,follow">
+
+  <title>PRO-MAX Beat Maker | BSS1815 PRO-MAX DMP</title>
 
   <style>
     :root {
-      --black: #000000;
-      --black-two: #080300;
       --orange: #ff7900;
       --apricot: #ffad4d;
-      --text: #ffc589;
-      --border: rgba(255, 121, 0, 0.32);
-      --strong-border: rgba(255, 121, 0, 0.72);
-      --glow:
-        0 0 18px rgba(255, 121, 0, 0.55),
-        0 0 48px rgba(255, 121, 0, 0.20);
+      --black: #000000;
+      --dark: #0b0501;
+      --dark-two: #160900;
+      --line: #683000;
+      --text: #ffd0a0;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -45,854 +30,514 @@
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(
-          circle at 18% 15%,
-          rgba(255, 121, 0, 0.16),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 82% 72%,
-          rgba(255, 121, 0, 0.09),
-          transparent 38%
-        ),
-        linear-gradient(
-          180deg,
-          #000000 0%,
-          #0b0400 48%,
-          #000000 100%
-        );
+        radial-gradient(circle at 50% 0, #281000 0, #080300 42%, #000000 100%);
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image:
-        linear-gradient(
-          rgba(255, 121, 0, 0.025) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255, 121, 0, 0.025) 1px,
-          transparent 1px
-        );
-      background-size: 44px 44px;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
+    button,
+    input {
       font: inherit;
     }
 
-    img,
-    video {
-      display: block;
-      max-width: 100%;
+    button {
+      cursor: pointer;
     }
 
-    .container {
-      width: min(1220px, calc(100% - 28px));
-      margin: auto;
-    }
-
-    .top-bar {
-      padding: 10px 15px;
-      color: #000000;
-      text-align: center;
-      font-size: 0.68rem;
-      font-weight: 1000;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background:
-        linear-gradient(
-          90deg,
-          #913700,
-          var(--orange),
-          var(--apricot),
-          var(--orange),
-          #913700
-        );
-    }
-
-    header {
+    .top {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.97);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.60);
-    }
-
-    .header-inner {
-      min-height: 86px;
+      z-index: 20;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 12px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.96);
+      box-shadow: 0 0 24px rgba(255, 121, 0, 0.27);
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      color: var(--orange);
+      font-weight: 1000;
+      letter-spacing: 0.06em;
     }
 
-    .brand-video-wrap {
-      width: 66px;
-      height: 66px;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 2px solid var(--orange);
-      border-radius: 17px;
-      background: #000000;
-      box-shadow: var(--glow);
-    }
-
-    .brand-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-text strong {
+    .brand small {
       display: block;
-      color: var(--orange);
-      font-size: 1rem;
-      font-weight: 1000;
-    }
-
-    .brand-text span {
-      display: block;
-      margin-top: 5px;
+      margin-top: 3px;
       color: var(--apricot);
-      font-size: 0.52rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: 0.55rem;
     }
 
-    .header-right {
+    .top-actions {
       display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-
-    .nav a {
-      padding: 9px 11px;
-      border-radius: 999px;
-      color: var(--apricot);
-      font-size: 0.61rem;
-      font-weight: 1000;
-      text-transform: uppercase;
-      transition: 0.2s;
-    }
-
-    .nav a:hover {
-      color: #000000;
-      background: var(--orange);
-    }
-
-    .lang-switch {
-      display: flex;
-      gap: 3px;
-      padding: 3px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: #000000;
-    }
-
-    .lang-btn {
-      min-width: 42px;
-      padding: 8px 9px;
-      border: 0;
-      border-radius: 999px;
-      color: var(--apricot);
-      background: #000000;
-      cursor: pointer;
-      font-size: 0.61rem;
-      font-weight: 1000;
-    }
-
-    .lang-btn.active {
-      color: #000000;
-      background: var(--orange);
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 44px;
-      height: 42px;
-      border: 1px solid var(--orange);
-      border-radius: 11px;
-      color: var(--orange);
-      background: #000000;
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-
-    .hero {
-      min-height: calc(100vh - 115px);
-      display: flex;
-      align-items: center;
-      padding: 52px 0 76px;
-      text-align: center;
-    }
-
-    .platform-label,
-    .eyebrow {
-      color: var(--orange);
-      font-size: 0.69rem;
-      font-weight: 1000;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .hero-video-frame {
-      position: relative;
-      width: min(95vw, 690px);
-      margin: 30px auto 0;
-      overflow: hidden;
-      border: 2px solid var(--orange);
-      border-radius: 28px;
-      background: #000000;
-      box-shadow: var(--glow);
-    }
-
-    .hero-logo-video {
-      width: 100%;
-      object-fit: contain;
-      background: #000000;
-    }
-
-    .sound-btn {
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
-      z-index: 10;
-      padding: 10px 14px;
-      border: 1px solid var(--orange);
-      border-radius: 999px;
-      color: var(--orange);
-      background: rgba(0, 0, 0, 0.92);
-      cursor: pointer;
-      font-size: 0.60rem;
-      font-weight: 1000;
-    }
-
-    .hero h1 {
-      margin-top: 28px;
-      color: var(--orange);
-      font-size: clamp(2.6rem, 8vw, 6.2rem);
-      line-height: 0.88;
-      text-transform: uppercase;
-    }
-
-    .hero h2 {
-      margin-top: 17px;
-      color: var(--apricot);
-      font-size: clamp(1rem, 3vw, 1.45rem);
-      text-transform: uppercase;
-    }
-
-    .hero-description,
-    .section-desc {
-      max-width: 850px;
-      margin: 19px auto 0;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 29px;
+      gap: 7px;
     }
 
     .btn {
-      min-height: 52px;
-      display: inline-flex;
+      padding: 9px 12px;
+      border: 1px solid var(--orange);
+      border-radius: 8px;
+      color: var(--apricot);
+      background: #080300;
+      font-size: 0.7rem;
+      font-weight: 900;
+    }
+
+    .btn:hover,
+    .btn.on {
+      color: #000000;
+      background: var(--orange);
+      box-shadow: 0 0 15px rgba(255, 121, 0, 0.53);
+    }
+
+    .studio {
+      width: min(1500px, 100%);
+      margin: auto;
+      padding: 12px;
+    }
+
+    .status {
+      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 12px 22px;
-      border: 2px solid var(--orange);
-      border-radius: 999px;
-      font-size: 0.68rem;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 9px 12px;
+      border: 1px solid #452000;
+      border-radius: 9px;
+      background: #060200;
+      font-size: 0.67rem;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 10px var(--orange);
+    }
+
+    .decks {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(145deg, #0c0501, #000000);
+      box-shadow:
+        inset 0 0 25px rgba(255, 121, 0, 0.05),
+        0 6px 22px #000000;
+    }
+
+    .deck-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, #311300, #080300);
+    }
+
+    .deck-name {
+      color: var(--orange);
       font-weight: 1000;
-      text-transform: uppercase;
-      transition: 0.25s;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--glow);
+    .track-name {
+      max-width: 65%;
+      overflow: hidden;
+      font-size: 0.7rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .btn-primary {
+    .wave-wrap {
+      position: relative;
+      height: 150px;
+      background: #020100;
+    }
+
+    .wave {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .playhead {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      pointer-events: none;
+      background: var(--apricot);
+      box-shadow: 0 0 10px var(--orange);
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 11px;
+      color: var(--apricot);
+      background: #050200;
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
+    .deck-data {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 8px;
+    }
+
+    .readout {
+      padding: 8px;
+      border: 1px solid #3d1b00;
+      border-radius: 7px;
+      background: #020100;
+      text-align: center;
+    }
+
+    .readout small {
+      display: block;
+      color: #a95d22;
+      font-size: 0.5rem;
+    }
+
+    .readout strong {
+      color: var(--orange);
+      font-size: 0.88rem;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      padding: 8px;
+    }
+
+    .control {
+      padding: 10px 4px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--apricot);
+      background: #100600;
+      font-size: 0.64rem;
+      font-weight: 1000;
+    }
+
+    .control.primary {
       color: #000000;
       background: var(--orange);
     }
 
-    .btn-outline {
-      color: var(--orange);
-      background: #000000;
+    .control.on {
+      color: #000000;
+      background: var(--apricot);
+      box-shadow: 0 0 14px var(--orange);
     }
 
-    .stats-grid {
-      margin-top: 48px;
+    .sliders {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      padding: 10px;
     }
 
-    .stat-card {
-      min-height: 125px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 17px;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(255, 121, 0, 0.11),
-          transparent 50%
-        ),
-        #050200;
-    }
-
-    .stat-card strong {
-      color: var(--orange);
-      font-size: 1.55rem;
-    }
-
-    .stat-card span {
-      margin-top: 6px;
-      font-size: 0.63rem;
+    .slider-box {
+      color: var(--apricot);
+      font-size: 0.58rem;
       font-weight: 900;
-      text-transform: uppercase;
     }
 
-    .section {
-      padding: 88px 0;
-      border-top: 1px solid rgba(255, 121, 0, 0.12);
-    }
-
-    .section-heading {
-      max-width: 790px;
-      margin: 0 auto 42px;
-      text-align: center;
-    }
-
-    .section-title {
-      margin-top: 11px;
-      color: var(--orange);
-      font-size: clamp(2rem, 6vw, 4.2rem);
-      line-height: 0.93;
-      text-transform: uppercase;
-    }
-
-    .ecosystem-grid,
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 17px;
-    }
-
-    .ecosystem-card,
-    .module-card {
-      min-height: 245px;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(255, 121, 0, 0.12),
-          transparent 36%
-        ),
-        linear-gradient(145deg, #000000, #0b0400);
-      transition: 0.3s;
-    }
-
-    .ecosystem-card:hover,
-    .module-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--orange);
-      box-shadow: var(--glow);
-    }
-
-    .eco-icon,
-    .module-icon {
-      font-size: 2rem;
-    }
-
-    .ecosystem-card h3,
-    .module-card h3 {
-      margin-top: 17px;
-      color: var(--orange);
-      font-size: 0.95rem;
-      text-transform: uppercase;
-    }
-
-    .ecosystem-card p,
-    .module-card p {
-      margin-top: 11px;
-      line-height: 1.62;
-      font-size: 0.80rem;
-    }
-
-    .card-link,
-    .module-open {
-      margin-top: auto;
-      padding-top: 20px;
-      color: var(--orange);
-      font-size: 0.67rem;
-      font-weight: 1000;
-      text-transform: uppercase;
-    }
-
-    .project-box {
-      padding: 42px 28px;
-      border: 1px solid var(--strong-border);
-      border-radius: 25px;
-      text-align: center;
-      background:
-        radial-gradient(
-          circle at 80% 25%,
-          rgba(255, 121, 0, 0.17),
-          transparent 34%
-        ),
-        linear-gradient(135deg, #000000, #100500, #000000);
-      box-shadow: var(--glow);
-    }
-
-    .project-box h2 {
-      color: var(--orange);
-      font-size: clamp(2rem, 6vw, 4rem);
-      line-height: 0.94;
-      text-transform: uppercase;
-    }
-
-    .project-box p {
-      max-width: 780px;
-      margin: 16px auto 0;
-      line-height: 1.7;
-    }
-
-    .bss-stage {
-      position: relative;
-      width: min(1100px, 100%);
-      height: clamp(430px, 62vw, 680px);
-      margin: auto;
-      overflow: hidden;
-      border: 2px solid var(--orange);
-      border-radius: 28px;
-      background: #000000;
-      box-shadow: var(--glow);
-    }
-
-    .bss-slide {
+    input[type="range"] {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #000000;
+      accent-color: var(--orange);
     }
 
-    .bss-caption {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 5;
-      padding: 70px 70px 28px;
-      text-align: left;
+    .load {
+      display: block;
+      margin: 0 10px 10px;
+      padding: 11px;
+      border: 1px dashed var(--orange);
+      border-radius: 8px;
+      color: var(--orange);
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 1000;
+      cursor: pointer;
+    }
+
+    .load input {
+      display: none;
+    }
+
+    .mixer {
+      padding: 10px;
+    }
+
+    .mixer-title {
+      padding: 3px 0 10px;
+      border-bottom: 1px solid var(--line);
+      color: var(--orange);
+      text-align: center;
+      font-weight: 1000;
+    }
+
+    .master {
+      margin: 10px 0;
+      padding: 9px;
+      border: 1px solid #442000;
+      border-radius: 8px;
+    }
+
+    .master label,
+    .channel label {
+      display: block;
+      margin: 7px 0 2px;
+      font-size: 0.55rem;
+      font-weight: 900;
+    }
+
+    .channels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .channel {
+      padding: 8px;
+      border: 1px solid #3a1900;
+      border-radius: 8px;
+      background: #050200;
+    }
+
+    .channel h4 {
+      color: var(--orange);
+      text-align: center;
+    }
+
+    .meter {
+      height: 84px;
+      margin: 8px 0;
+      border: 1px solid #3c1a00;
+      border-radius: 5px;
       background:
         linear-gradient(
-          transparent,
-          rgba(0, 0, 0, 0.95)
+          0deg,
+          var(--orange) var(--level, 12%),
+          #090300 var(--level, 12%)
         );
+      transition: 0.08s;
     }
 
-    .bss-caption h3 {
-      color: var(--orange);
-      font-size: clamp(1.5rem, 5vw, 3rem);
-    }
-
-    .bss-caption p {
-      margin-top: 8px;
-      color: var(--apricot);
-    }
-
-    .bss-arrow {
-      position: absolute;
-      top: 50%;
-      z-index: 10;
-      width: 48px;
-      height: 48px;
-      transform: translateY(-50%);
-      border: 1px solid var(--orange);
-      border-radius: 50%;
-      color: var(--orange);
-      background: rgba(0, 0, 0, 0.88);
-      cursor: pointer;
-      font-size: 1.8rem;
-    }
-
-    .bss-prev {
-      left: 14px;
-    }
-
-    .bss-next {
-      right: 14px;
-    }
-
-    .slideshow-controls {
-      width: min(1100px, 100%);
-      margin: 14px auto 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      padding: 13px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: #050200;
-    }
-
-    .slide-button {
-      padding: 9px 16px;
-      border: 1px solid var(--orange);
-      border-radius: 999px;
-      color: var(--orange);
-      background: #000000;
-      cursor: pointer;
-      font-size: 0.65rem;
-      font-weight: 1000;
-    }
-
-    .news-grid,
-    .contact-grid,
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .news-card,
-    .contact-card,
-    .social-link {
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: #050200;
-    }
-
-    .news-card h3,
-    .contact-card strong,
-    .social-link strong {
-      color: var(--orange);
-    }
-
-    .news-card p {
-      margin: 12px 0 20px;
-      line-height: 1.6;
-    }
-
-    .contact-card {
-      min-height: 155px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .xfader {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
       text-align: center;
+      font-size: 0.58rem;
+      font-weight: 900;
     }
 
-    .contact-card a {
+    .tools {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       margin-top: 10px;
-      overflow-wrap: anywhere;
     }
 
-    .social-grid {
-      margin-top: 28px;
+    .tool-title {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--orange);
+      font-weight: 1000;
     }
 
-    .social-link {
+    .pads {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .pad {
+      min-height: 65px;
+      border: 1px solid var(--orange);
+      border-radius: 9px;
+      color: var(--apricot);
+      background: linear-gradient(145deg, #241000, #050200);
+      font-weight: 1000;
+    }
+
+    .pad:active,
+    .pad.hit {
+      color: #000000;
+      background: var(--orange);
+      transform: scale(0.96);
+      box-shadow: 0 0 20px var(--orange);
+    }
+
+    .sequencer {
+      padding: 10px;
+    }
+
+    .seq-row {
+      display: grid;
+      grid-template-columns: 54px repeat(8, 1fr);
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 6px;
+    }
+
+    .seq-label {
+      color: var(--apricot);
+      font-size: 0.56rem;
+      font-weight: 900;
+    }
+
+    .step {
+      aspect-ratio: 1;
+      border: 1px solid #542500;
+      border-radius: 4px;
+      background: #090300;
+    }
+
+    .step.active {
+      background: var(--orange);
+      box-shadow: 0 0 8px var(--orange);
+    }
+
+    .step.now {
+      outline: 2px solid var(--apricot);
+    }
+
+    .library {
+      margin-top: 10px;
+    }
+
+    .library-toolbar {
       display: flex;
       align-items: center;
-      gap: 14px;
-      transition: 0.25s;
-    }
-
-    .social-link:hover {
-      transform: translateY(-3px);
-      border-color: var(--orange);
-      box-shadow: var(--glow);
-    }
-
-    .social-icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      border: 1px solid var(--orange);
-      border-radius: 50%;
-      color: var(--orange);
-      background: #000000;
-      font-weight: 1000;
-    }
-
-    .social-link span {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.65rem;
-    }
-
-    .ddn-box {
-      padding: 50px 28px;
-      border: 2px solid var(--orange);
-      border-radius: 28px;
-      text-align: center;
-      background:
-        radial-gradient(
-          circle,
-          rgba(255, 121, 0, 0.16),
-          transparent 50%
-        ),
-        #000000;
-      box-shadow: var(--glow);
-    }
-
-    .ddn-box h2 {
-      color: var(--orange);
-      font-size: clamp(2.8rem, 9vw, 6.7rem);
-      line-height: 0.87;
-    }
-
-    .ddn-box h3 {
-      margin-top: 18px;
-      color: var(--apricot);
-    }
-
-    .ddn-box p {
-      max-width: 790px;
-      margin: 19px auto 0;
-      line-height: 1.72;
-    }
-
-    .customer-service-box {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 22px;
-      border: 2px solid var(--orange);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at top, rgba(255, 121, 0, 0.14), transparent 44%),
-        #000000;
-      box-shadow: var(--glow);
-    }
-
-    .customer-service-labels {
-      display: flex;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-      color: var(--orange);
-      font-size: 0.69rem;
-      font-weight: 1000;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .customer-video-frame {
-      overflow: hidden;
-      border: 1px solid var(--strong-border);
-      border-radius: 22px;
-      background: #000000;
-    }
-
-    .customer-video {
+    .library-table {
       width: 100%;
-      max-height: 780px;
-      margin: 0 auto;
-      object-fit: contain;
-      background: #000000;
+      border-collapse: collapse;
+      font-size: 0.67rem;
     }
 
-    .customer-service-copy {
-      padding: 24px 6px 5px;
-      text-align: center;
+    .library-table th,
+    .library-table td {
+      padding: 10px;
+      border-bottom: 1px solid #2d1200;
+      text-align: left;
     }
 
-    .customer-service-copy h3 {
+    .library-table th {
       color: var(--orange);
-      font-size: clamp(1.45rem, 4vw, 2.7rem);
-      text-transform: uppercase;
+      background: #080300;
     }
 
-    .customer-service-copy p {
-      max-width: 720px;
-      margin: 12px auto 0;
-      line-height: 1.7;
+    .library-table tr:hover {
+      background: #160900;
     }
 
-    .customer-video-error {
-      display: none;
-      margin-top: 14px;
-      padding: 14px;
+    .deck-pick {
+      display: flex;
+      gap: 5px;
+    }
+
+    .tiny {
+      padding: 5px 8px;
       border: 1px solid var(--orange);
-      border-radius: 14px;
+      border-radius: 5px;
       color: var(--apricot);
-      background: #0b0400;
+      background: #050200;
+      font-size: 0.58rem;
+      font-weight: 900;
+    }
+
+    .footer {
+      padding: 18px;
+      color: #a95d22;
       text-align: center;
+      font-size: 0.6rem;
     }
 
-    footer {
-      padding: 45px 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      background: #000000;
-    }
-
-    .footer-video {
-      width: 105px;
-      height: 105px;
-      margin: 0 auto 17px;
-      overflow: hidden;
-      border: 2px solid var(--orange);
-      border-radius: 20px;
-      box-shadow: var(--glow);
-    }
-
-    .footer-video video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .footer-title {
-      color: var(--orange);
-      font-weight: 1000;
-    }
-
-    .footer-info {
-      margin-top: 9px;
-      line-height: 1.75;
-      font-size: 0.72rem;
-    }
-
-    @media (max-width: 1050px) {
-      .nav {
-        position: absolute;
-        top: 86px;
-        left: 14px;
-        right: 14px;
-        display: none;
-        flex-direction: column;
-        padding: 14px;
-        border: 1px solid var(--orange);
-        border-radius: 15px;
-        background: #000000;
+    @media (max-width: 980px) {
+      .decks {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .nav.open {
-        display: flex;
+      .mixer {
+        grid-column: 1 / -1;
+        grid-row: 2;
       }
 
-      .nav a {
-        width: 100%;
-        text-align: center;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .ecosystem-grid,
-      .modules-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .tools {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 760px) {
-      .brand-video-wrap {
-        width: 54px;
-        height: 54px;
+    @media (max-width: 650px) {
+      .top {
+        align-items: flex-start;
       }
 
-      .brand-text strong {
+      .brand {
         font-size: 0.78rem;
       }
 
-      .brand-text span {
-        font-size: 0.43rem;
-      }
-
-      .lang-btn {
-        min-width: 35px;
-        padding: 7px 6px;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 38px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .news-grid,
-      .contact-grid,
-      .social-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .bss-stage {
-        height: 500px;
-      }
-
-      .bss-caption {
-        padding: 70px 55px 24px;
-      }
-    }
-
-    @media (max-width: 570px) {
-      .ecosystem-grid,
-      .modules-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions {
-        display: grid;
-        grid-template-columns: 1fr;
+      .top-actions {
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
 
       .btn {
-        width: 100%;
+        padding: 7px;
+        font-size: 0.57rem;
       }
 
-      .bss-stage {
-        height: 450px;
+      .decks {
+        grid-template-columns: 1fr;
+      }
+
+      .mixer {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .wave-wrap {
+        height: 120px;
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+      }
+
+      .pads {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .library {
+        overflow-x: auto;
+      }
+
+      .library-table {
+        min-width: 600px;
       }
     }
   </style>
@@ -900,1123 +545,1344 @@
 
 <body>
 
-  <div
-    class="top-bar"
-    data-ht="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥"
-    data-fr="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — CONSTRUIT POUR AUJOURD’HUI — PRÊT POUR DEMAIN 🔥"
-    data-en="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BUILT FOR TODAY — READY FOR TOMORROW 🔥"
-  >
-    🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥
-  </div>
+  <header class="top">
+    <div class="brand">
+      🎛️ PRO-MAX BEAT MAKER
+      <small>BSS1815 PRO-MAX DMP • CREATE • MIX • EXPORT</small>
+    </div>
 
-  <header>
-    <div class="container header-inner">
-
-      <a href="#home" class="brand">
-        <div class="brand-video-wrap">
-          <video
-            class="brand-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          >
-            <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="brand-text">
-          <strong>BSS1815 PRO-MAX DMP</strong>
-
-          <span
-            data-ht="PLATFÒM JESYON DIJITAL"
-            data-fr="PLATEFORME DE GESTION NUMÉRIQUE"
-            data-en="DIGITAL MANAGEMENT PLATFORM"
-          >
-            PLATFÒM JESYON DIJITAL
-          </span>
-        </div>
-      </a>
-
-      <div class="header-right">
-
-        <nav class="nav" id="mainNav">
-          <a href="#home" data-ht="AKÈY" data-fr="ACCUEIL" data-en="HOME">
-            AKÈY
-          </a>
-
-          <a href="#ecosystem" data-ht="EKOSISTÈM" data-fr="ÉCOSYSTÈME" data-en="ECOSYSTEM">
-            EKOSISTÈM
-          </a>
-
-          <a href="#modules" data-ht="MODIL" data-fr="MODULES" data-en="MODULES">
-            MODIL
-          </a>
-
-          <a href="#community" data-ht="KOMINOTE" data-fr="COMMUNAUTÉ" data-en="COMMUNITY">
-            KOMINOTE
-          </a>
-
-          <a href="#customer-service" data-ht="SÈVIS KLIYAN" data-fr="SERVICE CLIENT" data-en="CUSTOMER SERVICE">
-            SÈVIS KLIYAN
-          </a>
-
-          <a href="./ddn/index.html">DDN</a>
-
-          <a href="#contact" data-ht="KONTAK" data-fr="CONTACT" data-en="CONTACT">
-            KONTAK
-          </a>
-        </nav>
-
-        <div class="lang-switch">
-          <button type="button" class="lang-btn" data-lang="fr">FRA</button>
-          <button type="button" class="lang-btn" data-lang="en">ENG</button>
-          <button type="button" class="lang-btn active" data-lang="ht">KRE</button>
-        </div>
-
-        <button
-          type="button"
-          class="menu-toggle"
-          id="menuToggle"
-          aria-label="Menu"
-          aria-expanded="false"
-        >
-          ☰
-        </button>
-
-      </div>
+    <div class="top-actions">
+      <button class="btn" id="seqPlay">▶ SEQUENCER</button>
+      <button class="btn" id="recordBtn">● RECORD</button>
+      <button class="btn" id="exportBtn">⬇ EXPORT WAV</button>
     </div>
   </header>
 
-  <main>
+  <main class="studio">
 
-    <section class="hero" id="home">
-      <div class="container">
+    <div class="status">
+      <span>
+        <i class="live-dot"></i>
+        <b id="audioStatus">STUDIO READY</b>
+      </span>
 
-        <div class="platform-label">
-          BRIYANT SOLÈY SIGNO 1815
+      <span>ORANGE APRICOT DIGITAL AUDIO WORKSTATION</span>
+    </div>
+
+    <section class="decks">
+
+      <article class="panel deck" data-deck="A">
+
+        <div class="deck-head">
+          <span class="deck-name">DECK A</span>
+          <span class="track-name" id="nameA">NO TRACK LOADED</span>
         </div>
 
-        <div class="hero-video-frame">
+        <div class="wave-wrap">
+          <canvas class="wave" id="waveA"></canvas>
+          <i class="playhead"></i>
+        </div>
 
-          <video
-            class="hero-logo-video"
-            id="heroLogoVideo"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-          >
-            <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
-          </video>
+        <div class="time-row">
+          <span id="timeA">00:00.0</span>
+          <span id="remainA">-00:00.0</span>
+        </div>
 
-          <button
-            type="button"
-            class="sound-btn"
-            id="soundButton"
-          >
-            🔊 KOUTE SLOGAN AN
+        <div class="deck-data">
+          <div class="readout">
+            <small>BPM</small>
+            <strong id="bpmA">120.00</strong>
+          </div>
+
+          <div class="readout">
+            <small>PITCH</small>
+            <strong id="pitchTextA">+0.0%</strong>
+          </div>
+
+          <div class="readout">
+            <small>KEY</small>
+            <strong>--</strong>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="control" data-action="cue" data-d="A">CUE</button>
+          <button class="control primary" data-action="play" data-d="A">
+            ▶ PLAY
           </button>
-
+          <button class="control" data-action="sync" data-d="A">SYNC</button>
+          <button class="control" data-action="loop" data-d="A">LOOP</button>
         </div>
 
-        <h1>
-          BSS1815<br>
-          PRO-MAX DMP
-        </h1>
+        <div class="sliders">
+          <label class="slider-box">
+            PITCH
+            <input
+              id="pitchA"
+              type="range"
+              min="-16"
+              max="16"
+              step="0.1"
+              value="0"
+            >
+          </label>
 
-        <h2
-          data-ht="YON SÈL PLATFÒM • YON SÈL VIZYON"
-          data-fr="UNE SEULE PLATEFORME • UNE SEULE VISION"
-          data-en="ONE PLATFORM • ONE VISION"
-        >
-          YON SÈL PLATFÒM • YON SÈL VIZYON
-        </h2>
-
-        <p
-          class="hero-description"
-          data-ht="BSS1815 PRO-MAX DMP se platfòm santral ki konekte kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administrasyon, teknoloji, medya ak entèlijans atifisyèl."
-          data-fr="BSS1815 PRO-MAX DMP est la plateforme centrale qui relie la communauté BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, l’administration, la technologie, les médias et l’intelligence artificielle."
-          data-en="BSS1815 PRO-MAX DMP is the central platform connecting the BSS1815 community, PRO-MAX FM, Maximax Multi Services, PRO-MAX Academy, administration, technology, media and artificial intelligence."
-        >
-          BSS1815 PRO-MAX DMP se platfòm santral ki konekte tout ekosistèm nan.
-        </p>
-
-        <div class="hero-actions">
-
-          <a href="#ecosystem" class="btn btn-primary">
-            DEKOUVRI PLATFÒM NAN
-          </a>
-
-          <a href="./ddn/index.html" class="btn btn-outline">
-            🌎 DEVAN DEVAN NÈT™
-          </a>
-
-          <a href="./manifestes/index.html" class="btn btn-outline">
-            📜 MANIFESTE OFISYÈL YO
-          </a>
-
+          <label class="slider-box">
+            GAIN
+            <input
+              id="gainA"
+              type="range"
+              min="0"
+              max="1.5"
+              step="0.01"
+              value="1"
+            >
+          </label>
         </div>
 
-        <div class="stats-grid">
+        <label class="load">
+          ＋ LOAD MP3 / WAV
+          <input id="fileA" type="file" accept="audio/*">
+        </label>
 
-          <div class="stat-card">
-            <strong>4</strong>
-            <span>BRANCH PRENSIPAL</span>
+      </article>
+
+      <aside class="panel mixer">
+
+        <div class="mixer-title">PRO-MAX MIXER</div>
+
+        <div class="master">
+          <label>MASTER VOLUME</label>
+          <input
+            id="master"
+            type="range"
+            min="0"
+            max="1.2"
+            step="0.01"
+            value="0.9"
+          >
+        </div>
+
+        <div class="channels">
+
+          <div class="channel">
+            <h4>A</h4>
+            <div class="meter" id="meterA"></div>
+
+            <label>HIGH</label>
+            <input id="highA" type="range" min="-20" max="20" value="0">
+
+            <label>MID</label>
+            <input id="midA" type="range" min="-20" max="20" value="0">
+
+            <label>LOW</label>
+            <input id="lowA" type="range" min="-20" max="20" value="0">
           </div>
 
-          <div class="stat-card">
-            <strong>AI</strong>
-            <span>SMART PLATFORM</span>
+          <div class="channel">
+            <h4>B</h4>
+            <div class="meter" id="meterB"></div>
+
+            <label>HIGH</label>
+            <input id="highB" type="range" min="-20" max="20" value="0">
+
+            <label>MID</label>
+            <input id="midB" type="range" min="-20" max="20" value="0">
+
+            <label>LOW</label>
+            <input id="lowB" type="range" min="-20" max="20" value="0">
           </div>
 
-          <div class="stat-card">
-            <strong>3</strong>
-            <span>LANG</span>
+        </div>
+
+        <div class="xfader">
+          A ◀ CROSSFADER ▶ B
+          <input
+            id="crossfader"
+            type="range"
+            min="-1"
+            max="1"
+            step="0.01"
+            value="0"
+          >
+        </div>
+
+      </aside>
+
+      <article class="panel deck" data-deck="B">
+
+        <div class="deck-head">
+          <span class="deck-name">DECK B</span>
+          <span class="track-name" id="nameB">NO TRACK LOADED</span>
+        </div>
+
+        <div class="wave-wrap">
+          <canvas class="wave" id="waveB"></canvas>
+          <i class="playhead"></i>
+        </div>
+
+        <div class="time-row">
+          <span id="timeB">00:00.0</span>
+          <span id="remainB">-00:00.0</span>
+        </div>
+
+        <div class="deck-data">
+          <div class="readout">
+            <small>BPM</small>
+            <strong id="bpmB">120.00</strong>
           </div>
 
-          <div class="stat-card">
-            <strong>24/7</strong>
-            <span>AKSÈ DIJITAL</span>
+          <div class="readout">
+            <small>PITCH</small>
+            <strong id="pitchTextB">+0.0%</strong>
           </div>
 
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="ecosystem">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">BSS1815 PRO-MAX DMP</div>
-
-          <h2
-            class="section-title"
-            data-ht="YON SÈL EKOSISTÈM"
-            data-fr="UN SEUL ÉCOSYSTÈME"
-            data-en="ONE ECOSYSTEM"
-          >
-            YON SÈL EKOSISTÈM
-          </h2>
-
-          <p
-            class="section-desc"
-            data-ht="Kat branch prensipal yo konekte anba menm platfòm santral la."
-            data-fr="Les quatre branches principales sont reliées sous la même plateforme centrale."
-            data-en="The four core branches are connected under one central platform."
-          >
-            Kat branch prensipal yo konekte anba menm platfòm santral la.
-          </p>
-        </div>
-
-        <div class="ecosystem-grid">
-
-          <a href="#community" class="ecosystem-card">
-            <div class="eco-icon">🏛️</div>
-            <h3>BSS1815 COMMUNITY</h3>
-            <p>Manm, dirijan, mizisyen, fanatik, eritaj ak aktivite kominotè.</p>
-            <div class="card-link">ENTER →</div>
-          </a>
-
-          <a href="#promaxfm" class="ecosystem-card">
-            <div class="eco-icon">📻</div>
-            <h3>PRO-MAX FM</h3>
-            <p>Radyo dijital, live streaming, mizik, podcast, nouvèl ak medya.</p>
-            <div class="card-link">ENTER →</div>
-          </a>
-
-          <a href="#maximax" class="ecosystem-card">
-            <div class="eco-icon">💼</div>
-            <h3>MAXIMAX MULTI SERVICES</h3>
-            <p>Imigrasyon, tradiksyon, dokiman ak asistans pwofesyonèl.</p>
-            <div class="card-link">ENTER →</div>
-          </a>
-
-          <a
-            href="https://pro-maxacademie.netlify.app"
-            class="ecosystem-card"
-          >
-            <div class="eco-icon">🎓</div>
-            <h3>PRO-MAX ACADÉMIE</h3>
-            <p>AI, teknoloji, fòmasyon, lekòl, evalyasyon ak sètifikasyon.</p>
-            <div class="card-link">ENTER →</div>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="modules">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">DIGITAL MANAGEMENT PLATFORM</div>
-
-          <h2
-            class="section-title"
-            data-ht="MODIL PRENSIPAL YO"
-            data-fr="MODULES PRINCIPAUX"
-            data-en="CORE MODULES"
-          >
-            MODIL PRENSIPAL YO
-          </h2>
-        </div>
-
-        <div class="modules-grid" id="modulesGrid"></div>
-
-      </div>
-    </section>
-
-    <section class="section" id="community">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">BRIYANT SOLÈY SIGNO 1815</div>
-
-          <h2 class="section-title">BSS1815 COMMUNITY</h2>
-
-          <p class="section-desc">
-            Manm, dirijan, mizisyen, fanatik, eritaj, evènman ak achiv BSS1815.
-          </p>
-        </div>
-
-        <div class="bss-stage" id="bssStage">
-
-          <img
-            id="bssSlide"
-            class="bss-slide"
-            src="./assets/slideshow/tania2.jpg"
-            alt="BSS1815 Community"
-          >
-
-          <div class="bss-caption">
-            <h3 id="bssTitle">TANIA2</h3>
-            <p>MOUVMAN SA A SE POU NOU TOUT.</p>
+          <div class="readout">
+            <small>KEY</small>
+            <strong>--</strong>
           </div>
+        </div>
 
-          <button
-            type="button"
-            class="bss-arrow bss-prev"
-            id="bssPrev"
-            aria-label="Previous"
-          >
-            ‹
+        <div class="controls">
+          <button class="control" data-action="cue" data-d="B">CUE</button>
+          <button class="control primary" data-action="play" data-d="B">
+            ▶ PLAY
           </button>
-
-          <button
-            type="button"
-            class="bss-arrow bss-next"
-            id="bssNext"
-            aria-label="Next"
-          >
-            ›
-          </button>
-
+          <button class="control" data-action="sync" data-d="B">SYNC</button>
+          <button class="control" data-action="loop" data-d="B">LOOP</button>
         </div>
 
-        <div class="slideshow-controls">
-          <span id="bssCounter">1 / 15</span>
+        <div class="sliders">
+          <label class="slider-box">
+            PITCH
+            <input
+              id="pitchB"
+              type="range"
+              min="-16"
+              max="16"
+              step="0.1"
+              value="0"
+            >
+          </label>
 
-          <button
-            type="button"
-            class="slide-button"
-            id="bssPlayPause"
-          >
-            ⏸ PAUSE
-          </button>
+          <label class="slider-box">
+            GAIN
+            <input
+              id="gainB"
+              type="range"
+              min="0"
+              max="1.5"
+              step="0.01"
+              value="1"
+            >
+          </label>
         </div>
 
-      </div>
+        <label class="load">
+          ＋ LOAD MP3 / WAV
+          <input id="fileB" type="file" accept="audio/*">
+        </label>
+
+      </article>
+
     </section>
 
-    <section class="section" id="promaxfm">
-      <div class="container">
-        <div class="project-box">
+    <section class="tools">
 
-          <h2>📻 PRO-MAX FM</h2>
+      <article class="panel">
+        <div class="tool-title">🔥 PERFORMANCE PADS</div>
 
-          <p>
-            Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio,
-            nouvèl, podcast, mizik ak pwodiksyon medya.
-          </p>
-
-          <div class="hero-actions">
-            <a href="./pro-max-fm/index.html" class="btn btn-primary">
-              📻 ENTER PRO-MAX FM
-            </a>
-          </div>
-
+        <div class="pads">
+          <button class="pad" data-sound="kick">KICK</button>
+          <button class="pad" data-sound="snare">SNARE</button>
+          <button class="pad" data-sound="hat">HI-HAT</button>
+          <button class="pad" data-sound="clap">CLAP</button>
+          <button class="pad" data-sound="tom">TOM</button>
+          <button class="pad" data-sound="bell">BELL</button>
+          <button class="pad" data-sound="bass">BASS</button>
+          <button class="pad" data-sound="fx">FX</button>
         </div>
-      </div>
+      </article>
+
+      <article class="panel">
+        <div class="tool-title">🎼 8-STEP BEAT SEQUENCER</div>
+        <div class="sequencer" id="sequencer"></div>
+      </article>
+
     </section>
 
-    <section class="section" id="maximax">
-      <div class="container">
-        <div class="project-box">
+    <section class="panel library">
 
-          <h2>💼 MAXIMAX MULTI SERVICES</h2>
+      <div class="library-toolbar">
+        <div class="tool-title">🎵 MUSIC LIBRARY</div>
 
-          <p>
-            Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon,
-            dokiman ak asistans administratif.
-          </p>
-
-          <div class="hero-actions">
-            <a href="./maximax/index.html" class="btn btn-primary">
-              💼 ENTER MAXIMAX MULTI SERVICES
-            </a>
-          </div>
-
-        </div>
+        <label class="btn">
+          ＋ ADD TRACKS
+          <input
+            id="libraryFiles"
+            type="file"
+            accept="audio/*"
+            multiple
+            hidden
+          >
+        </label>
       </div>
+
+      <table class="library-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>TITLE</th>
+            <th>TYPE</th>
+            <th>SIZE</th>
+            <th>LOAD TO DECK</th>
+          </tr>
+        </thead>
+
+        <tbody id="libraryBody">
+          <tr id="emptyRow">
+            <td colspan="5">
+              No tracks yet. Add MP3 or WAV files from your device.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </section>
 
-    <section class="section" id="academy">
-      <div class="container">
-        <div class="project-box">
-
-          <h2
-            data-ht="🎓 PRO-MAX ACADÉMIE"
-            data-fr="🎓 PRO-MAX ACADÉMIE"
-            data-en="🎓 PRO-MAX ACADEMY"
-          >
-            🎓 PRO-MAX ACADÉMIE
-          </h2>
-
-          <p
-            data-ht="Sant fòmasyon pou entèlijans atifisyèl, teknoloji, inovasyon, lidèchip, Student Portal, evalyasyon ak sètifikasyon."
-            data-fr="Centre de formation pour l’intelligence artificielle, la technologie, l’innovation, le leadership, le portail étudiant, les évaluations et la certification."
-            data-en="Training center for artificial intelligence, technology, innovation, leadership, Student Portal, assessments and certification."
-          >
-            Sant fòmasyon AI ak teknoloji.
-          </p>
-
-          <div class="hero-actions">
-
-            <a
-              href="https://pro-maxacademie.netlify.app"
-              class="btn btn-primary"
-            >
-              🎓 ENTER PRO-MAX ACADÉMIE
-            </a>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">INTERNATIONAL NEWS</div>
-          <h2 class="section-title">SOUS NOUVÈL</h2>
-        </div>
-
-        <div class="news-grid">
-
-          <article class="news-card">
-            <h3>CNN International</h3>
-            <p>Nouvèl entènasyonal, politik, ekonomi ak teknoloji.</p>
-            <a
-              href="https://www.cnn.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-outline"
-            >
-              OPEN CNN
-            </a>
-          </article>
-
-          <article class="news-card">
-            <h3>Miami Herald</h3>
-            <p>Miami, Florid, Ayiti, Karayib ak kominote entènasyonal.</p>
-            <a
-              href="https://www.miamiherald.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-outline"
-            >
-              OPEN MIAMI HERALD
-            </a>
-          </article>
-
-          <article class="news-card">
-            <h3>RFI</h3>
-            <p>Nouvèl mondyal, analiz, Lafrans, Lafrik ak Karayib.</p>
-            <a
-              href="https://www.rfi.fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-outline"
-            >
-              OPEN RFI
-            </a>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="ddn">
-      <div class="container">
-        <div class="ddn-box">
-
-          <h2>DEVAN DEVAN NÈT™</h2>
-
-          <h3>BATI POU JODI A • PARE POU DEMEN</h3>
-
-          <p>
-            DEVAN DEVAN NÈT™ se vizyon teknoloji ak entèlijans
-            atifisyèl ki ankouraje nou aprann, òganize, kreye,
-            inove epi toujou avanse.
-          </p>
-
-          <div class="hero-actions">
-
-            <a href="./ddn/index.html" class="btn btn-primary">
-              🌎 ENTER DEVAN DEVAN NÈT™
-            </a>
-
-            <a href="./manifestes/index.html" class="btn btn-outline">
-              📜 LI MANIFESTE YO
-            </a>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="customer-service">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">BSS1815 PRO-MAX DMP</div>
-
-          <h2
-            class="section-title"
-            data-ht="SÈVIS KLIYAN"
-            data-fr="SERVICE À LA CLIENTÈLE"
-            data-en="CUSTOMER SERVICE"
-          >
-            SÈVIS KLIYAN
-          </h2>
-
-          <p
-            class="section-desc"
-            data-ht="Nou la pou enfòme w, oryante w epi reponn kesyon ou genyen sou platfòm nan, sèvis yo ak pwogram yo."
-            data-fr="Nous sommes là pour vous informer, vous orienter et répondre à vos questions sur la plateforme, les services et les programmes."
-            data-en="We are here to inform you, guide you and answer your questions about the platform, services and programs."
-          >
-            Nou la pou enfòme w, oryante w epi reponn kesyon ou yo.
-          </p>
-        </div>
-
-        <div class="customer-service-box">
-
-          <div class="customer-service-labels">
-            <span>BSS1815 PRO-MAX DMP</span>
-            <span
-              data-ht="ASISTAN SÈVIS KLIYAN"
-              data-fr="ASSISTANTE SERVICE CLIENT"
-              data-en="CUSTOMER SERVICE ASSISTANT"
-            >
-              ASISTAN SÈVIS KLIYAN
-            </span>
-          </div>
-
-          <div class="customer-video-frame">
-            <video
-              id="customerServiceVideo"
-              class="customer-video"
-              controls
-              playsinline
-              preload="metadata"
-            >
-              <source
-                src="./bss1815-customer-service-final.mp4?v=20260903-final"
-                type="video/mp4"
-              >
-              Browser ou a pa sipòte videyo MP4.
-            </video>
-          </div>
-
-          <div class="customer-service-copy">
-            <h3
-              data-ht="KI KESYON OU GENYEN?"
-              data-fr="QUELLE EST VOTRE QUESTION ?"
-              data-en="WHAT IS YOUR QUESTION?"
-            >
-              KI KESYON OU GENYEN?
-            </h3>
-
-            <p
-              data-ht="Gade videyo a epi kontakte ekip BSS1815 PRO-MAX DMP pou asistans sou nenpòt pati nan ekosistèm nan."
-              data-fr="Regardez la vidéo et contactez l’équipe BSS1815 PRO-MAX DMP pour obtenir de l’aide sur toute partie de l’écosystème."
-              data-en="Watch the video and contact the BSS1815 PRO-MAX DMP team for help with any part of the ecosystem."
-            >
-              Gade videyo a epi kontakte ekip nou an pou asistans.
-            </p>
-
-            <div class="hero-actions">
-              <a
-                href="https://wa.me/50943437488"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary"
-                data-ht="💬 POZE KESYON SOU WHATSAPP"
-                data-fr="💬 POSER UNE QUESTION SUR WHATSAPP"
-                data-en="💬 ASK ON WHATSAPP"
-              >
-                💬 POZE KESYON SOU WHATSAPP
-              </a>
-
-              <a
-                href="https://youtube.com/shorts/uIkKBIujKhg?feature=share"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-outline"
-                data-ht="▶ GADE SOU YOUTUBE"
-                data-fr="▶ REGARDER SUR YOUTUBE"
-                data-en="▶ WATCH ON YOUTUBE"
-              >
-                ▶ GADE SOU YOUTUBE
-              </a>
-            </div>
-
-            <div class="customer-video-error" id="customerVideoError">
-              Videyo a pa t kapab chaje. Sèvi ak bouton YouTube la.
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">STAY CONNECTED</div>
-          <h2 class="section-title">KONTAK & REZO SOSYAL</h2>
-        </div>
-
-        <div class="contact-grid">
-
-          <div class="contact-card">
-            <strong>📞 TELEPHONE</strong>
-            <a href="tel:+50943437488">+509 43 43 7488</a>
-            <a href="tel:+14076405166">(407) 640-5166</a>
-            <a href="tel:+15162168494">(516) 216-8494</a>
-          </div>
-
-          <div class="contact-card">
-            <strong>📧 EMAIL</strong>
-            <a href="mailto:briyantsoleysigno1815@gmail.com">
-              briyantsoleysigno1815@gmail.com
-            </a>
-          </div>
-
-          <div class="contact-card">
-            <strong>🌐 WEBSITE</strong>
-            <a
-              href="https://www.briyantsoleysigno1815.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              www.briyantsoleysigno1815.com
-            </a>
-          </div>
-
-        </div>
-
-        <div class="social-grid">
-
-          <a
-            href="https://wa.me/50943437488"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">☎</div>
-            <div>
-              <strong>WhatsApp</strong>
-              <span>+509 43 43 7488</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.facebook.com/share/1By3KvYRrM/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">f</div>
-            <div>
-              <strong>Facebook</strong>
-              <span>BSS1815 PRO-MAX DMP</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.youtube.com/@BSS1815PROMAXDMP"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">▶</div>
-            <div>
-              <strong>YouTube</strong>
-              <span>@BSS1815PROMAXDMP</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.instagram.com/lebaron072/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">◎</div>
-            <div>
-              <strong>Instagram</strong>
-              <span>@lebaron072</span>
-            </div>
-          </a>
-
-          <a
-            href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">♫</div>
-            <div>
-              <strong>Spotify</strong>
-              <span>MAXIMAX</span>
-            </div>
-          </a>
-
-          <a
-            href="https://truthsocial.com/@briyant_soley_1815"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">T</div>
-            <div>
-              <strong>Truth Social</strong>
-              <span>@briyant_soley_1815</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/maximax-multi-services-075ba2314"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">in</div>
-            <div>
-              <strong>LinkedIn</strong>
-              <span>Maximax Multi Services</span>
-            </div>
-          </a>
-
-          <a
-            href="https://www.tiktok.com/@maximax1960"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">♪</div>
-            <div>
-              <strong>TikTok</strong>
-              <span>@maximax1960</span>
-            </div>
-          </a>
-
-          <a
-            href="https://x.com/w05g2m"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <div class="social-icon">𝕏</div>
-            <div>
-              <strong>X / Twitter</strong>
-              <span>@w05g2m</span>
-            </div>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
+    <div class="footer">
+      BSS1815 PRO-MAX DMP • DEVAN DEVAN NÈT •
+      BATI POU JODI A • PARE POU DEMEN
+    </div>
 
   </main>
 
-  <footer>
-    <div class="container">
-
-      <div class="footer-video">
-        <video autoplay muted loop playsinline preload="metadata">
-          <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="footer-title">
-        BSS1815 PRO-MAX DMP
-      </div>
-
-      <div class="footer-info">
-        DEVAN DEVAN NÈT™
-        <br>
-        BATI POU JODI A • PARE POU DEMEN
-        <br><br>
-        briyantsoleysigno1815@gmail.com
-        <br>
-        +509 43 43 7488 • (407) 640-5166 • (516) 216-8494
-        <br><br>
-        © <span id="currentYear"></span> BSS1815 PRO-MAX DMP
-      </div>
-
-    </div>
-  </footer>
-
   <script>
-    (function () {
+    (() => {
       "use strict";
 
-      var year = document.getElementById("currentYear");
+      const AudioContextClass =
+        window.AudioContext || window.webkitAudioContext;
 
-      if (year) {
-        year.textContent = new Date().getFullYear();
-      }
+      const audioContext = new AudioContextClass();
+      const masterGain = audioContext.createGain();
+      const recordingDestination =
+        audioContext.createMediaStreamDestination();
 
-      var menuToggle = document.getElementById("menuToggle");
-      var mainNav = document.getElementById("mainNav");
+      masterGain.connect(audioContext.destination);
+      masterGain.connect(recordingDestination);
+      masterGain.gain.value = 0.9;
 
-      if (menuToggle && mainNav) {
-        menuToggle.addEventListener("click", function () {
-          var open = mainNav.classList.toggle("open");
+      const decks = {};
 
-          menuToggle.textContent = open ? "✕" : "☰";
-          menuToggle.setAttribute("aria-expanded", String(open));
-        });
+      ["A", "B"].forEach((letter) => {
+        const audio = new Audio();
 
-        mainNav.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            mainNav.classList.remove("open");
-            menuToggle.textContent = "☰";
-            menuToggle.setAttribute("aria-expanded", "false");
-          });
-        });
-      }
+        audio.preload = "auto";
 
-      var languageButtons =
-        document.querySelectorAll(".lang-btn[data-lang]");
+        const source =
+          audioContext.createMediaElementSource(audio);
 
-      function applyLanguage(language) {
-        if (["ht", "fr", "en"].indexOf(language) === -1) {
-          language = "ht";
+        const low = audioContext.createBiquadFilter();
+        const mid = audioContext.createBiquadFilter();
+        const high = audioContext.createBiquadFilter();
+        const gain = audioContext.createGain();
+        const analyser = audioContext.createAnalyser();
+
+        low.type = "lowshelf";
+        low.frequency.value = 250;
+
+        mid.type = "peaking";
+        mid.frequency.value = 1200;
+        mid.Q.value = 0.8;
+
+        high.type = "highshelf";
+        high.frequency.value = 4000;
+
+        analyser.fftSize = 256;
+
+        source
+          .connect(low)
+          .connect(mid)
+          .connect(high)
+          .connect(gain)
+          .connect(analyser)
+          .connect(masterGain);
+
+        decks[letter] = {
+          audio,
+          source,
+          low,
+          mid,
+          high,
+          gain,
+          analyser,
+          buffer: null,
+          file: null,
+          url: null,
+          loop: false,
+          cue: 0,
+          bpm: 120
+        };
+      });
+
+      const get = (id) => document.getElementById(id);
+
+      function resumeAudio() {
+        if (audioContext.state === "suspended") {
+          return audioContext.resume();
         }
 
-        document.documentElement.lang = language;
+        return Promise.resolve();
+      }
 
-        document
-          .querySelectorAll("[data-ht][data-fr][data-en]")
-          .forEach(function (element) {
-            var translation =
-              element.getAttribute("data-" + language);
+      function formatTime(number) {
+        if (!Number.isFinite(number) || number < 0) {
+          number = 0;
+        }
 
-            if (translation !== null) {
-              element.textContent = translation;
-            }
-          });
+        const minutes =
+          String(Math.floor(number / 60)).padStart(2, "0");
 
-        languageButtons.forEach(function (button) {
-          button.classList.toggle(
-            "active",
-            button.getAttribute("data-lang") === language
+        const seconds =
+          String(Math.floor(number % 60)).padStart(2, "0");
+
+        const decimal = Math.floor((number % 1) * 10);
+
+        return minutes + ":" + seconds + "." + decimal;
+      }
+
+      function drawWaveform(letter) {
+        const canvas = get("wave" + letter);
+        const context = canvas.getContext("2d");
+        const deck = decks[letter];
+
+        canvas.width =
+          canvas.clientWidth * window.devicePixelRatio;
+
+        canvas.height =
+          canvas.clientHeight * window.devicePixelRatio;
+
+        context.clearRect(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        context.fillStyle = "#020100";
+
+        context.fillRect(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        context.strokeStyle = "#ff7900";
+        context.lineWidth =
+          1.4 * window.devicePixelRatio;
+
+        context.beginPath();
+
+        if (deck.buffer) {
+          const audioData =
+            deck.buffer.getChannelData(0);
+
+          const step = Math.max(
+            1,
+            Math.floor(audioData.length / canvas.width)
           );
-        });
+
+          for (
+            let horizontalPosition = 0;
+            horizontalPosition < canvas.width;
+            horizontalPosition++
+          ) {
+            let minimum = 1;
+            let maximum = -1;
+
+            for (
+              let sample = 0;
+              sample < step;
+              sample++
+            ) {
+              const value =
+                audioData[
+                  horizontalPosition * step + sample
+                ] || 0;
+
+              if (value < minimum) {
+                minimum = value;
+              }
+
+              if (value > maximum) {
+                maximum = value;
+              }
+            }
+
+            context.moveTo(
+              horizontalPosition,
+              ((1 + minimum) * canvas.height) / 2
+            );
+
+            context.lineTo(
+              horizontalPosition,
+              ((1 + maximum) * canvas.height) / 2
+            );
+          }
+        } else {
+          context.moveTo(0, canvas.height / 2);
+          context.lineTo(canvas.width, canvas.height / 2);
+        }
+
+        context.stroke();
+      }
+
+      async function loadFile(letter, file) {
+        await resumeAudio();
+
+        const deck = decks[letter];
+
+        if (deck.url) {
+          URL.revokeObjectURL(deck.url);
+        }
+
+        deck.file = file;
+        deck.url = URL.createObjectURL(file);
+        deck.audio.src = deck.url;
 
         try {
-          localStorage.setItem("bss1815Language", language);
-        } catch (error) {}
-      }
+          const arrayBuffer = await file.arrayBuffer();
 
-      languageButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          applyLanguage(button.getAttribute("data-lang"));
-        });
-      });
+          deck.buffer =
+            await audioContext.decodeAudioData(arrayBuffer);
 
-      var savedLanguage = "ht";
+          get("name" + letter).textContent = file.name;
 
-      try {
-        savedLanguage =
-          localStorage.getItem("bss1815Language") || "ht";
-      } catch (error) {}
+          get("audioStatus").textContent =
+            "LOADED: " + file.name;
 
-      applyLanguage(savedLanguage);
-
-      var customerServiceVideo =
-        document.getElementById("customerServiceVideo");
-
-      var customerVideoError =
-        document.getElementById("customerVideoError");
-
-      if (customerServiceVideo && customerVideoError) {
-        customerServiceVideo.addEventListener("error", function () {
-          customerVideoError.style.display = "block";
-        });
-
-        customerServiceVideo.addEventListener("loadeddata", function () {
-          customerVideoError.style.display = "none";
-        });
-      }
-
-      document.querySelectorAll("video").forEach(function (video) {
-        if (video.id === "customerServiceVideo") {
-          return;
-        }
-
-        video.muted = true;
-        video.playsInline = true;
-
-        var playPromise = video.play();
-
-        if (playPromise) {
-          playPromise.catch(function () {});
-        }
-      });
-
-      var heroVideo = document.getElementById("heroLogoVideo");
-      var soundButton = document.getElementById("soundButton");
-
-      if (heroVideo && soundButton) {
-        soundButton.addEventListener("click", function () {
-          heroVideo.muted = !heroVideo.muted;
-
-          if (!heroVideo.muted) {
-            heroVideo.currentTime = 0;
-            heroVideo.play().catch(function () {});
-            soundButton.textContent = "🔇 MUTE";
-          } else {
-            soundButton.textContent = "🔊 KOUTE SLOGAN AN";
-          }
-        });
-      }
-
-      var modules = [
-        ["🤖", "AI CENTER", "Assistant • Writer • Voice • Automation", "./modules/ai/center/index.html"],
-        ["👥", "CRM SYSTEM", "Members • Contacts • Relationships • Records", "./modules/crm/index.html"],
-        ["📢", "COMMUNICATION CENTER", "Announcements • Alerts • WhatsApp • Messages", "./modules/communication/index.html"],
-        ["🎨", "FLYER STUDIO", "Flyers • Notices • Graphics • Media", "./modules/flyer-studio/index.html"],
-        ["📋", "DIGITAL REGISTRY", "Members • Musicians • Fans • Merchants", "./modules/registry/index.html"],
-        ["📅", "EVENT MANAGEMENT", "Calendar • Programs • Activities • Meetings", "./modules/events/index.html"],
-        ["📄", "DOCUMENT CENTER", "Letters • Reports • Archives • Files", "./modules/documents/index.html"],
-        ["📣", "ANNOUNCEMENT CENTER", "Official Notices • Community Updates • Alerts", "./modules/announcements/index.html"],
-        ["🤝", "DONATION CENTER", "Contributions • Records • Donor Management", "./modules/donations/index.html"],
-        ["✅", "ATTENDANCE", "Check-In • Meetings • Events • Participation", "./modules/attendance/index.html"],
-        ["🏆", "CERTIFICATE CENTER", "Certificates • Verification • Records", "./modules/certificates/index.html"],
-        ["🗳️", "ELECTION MANAGER", "Voting • Candidates • Results • Records", "./modules/elections/index.html"],
-        ["🙋", "VOLUNTEER CENTER", "Volunteers • Assignments • Activities", "./modules/volunteer/index.html"],
-        ["💰", "FINANCE / TREASURY", "Payments • Donations • Treasury • Reports", "./modules/finance/index.html"],
-        ["🎥", "MEDIA GALLERY", "Photos • Video • Audio • Archives", "./modules/media/index.html"],
-        ["🔔", "NOTIFICATIONS", "Alerts • Reminders • Updates • Messages", "./modules/notifications/index.html"],
-        ["📊", "REPORTS & ANALYTICS", "Statistics • Performance • Reports", "./modules/reports/index.html"],
-        ["🎫", "HELP DESK", "Support • Requests • Cases • Assistance", "./modules/help-desk/index.html"],
-        ["📡", "LIVE STREAMING", "Radio • Video • Live Events • Broadcast", "./modules/live-streaming/index.html"],
-        ["🎛️", "PRO-MAX BEAT LAB", "Beat Sequencer • Piano • Song Arranger • WAV Export", "./modules/beat-lab/index.html"],
-        ["🔐", "ADMIN DASHBOARD", "Roles • Permissions • Firebase • Security", "./pages/admin-dashboard/login.html"]
-      ];
-
-      var modulesGrid = document.getElementById("modulesGrid");
-
-      if (modulesGrid) {
-        modules.forEach(function (module) {
-          var card = document.createElement("a");
-
-          card.className = "module-card";
-          card.href = module[3];
-
-          card.innerHTML =
-            '<div class="module-icon">' + module[0] + "</div>" +
-            "<h3>" + module[1] + "</h3>" +
-            "<p>" + module[2] + "</p>" +
-            '<div class="module-open">OPEN →</div>';
-
-          modulesGrid.appendChild(card);
-        });
-      }
-
-      var bssFiles = [
-        "tania2.jpg",
-        "papouche.jpg",
-        "heritage.jpg",
-        "team-angrenay.jpg",
-        "sfc-5-stars.jpg",
-        "max-on-the-air.jpg",
-        "montina.jpg",
-        "kendy2.jpg",
-        "perodin.jpg",
-        "roro-8.jpg",
-        "jij-mayan.jpg",
-        "yguens.jpg",
-        "max-louis.jpg",
-        "devan-devan-net.jpg",
-        "bss1815-pro-max-dmp.jpg"
-      ];
-
-      var slide = document.getElementById("bssSlide");
-      var slideTitle = document.getElementById("bssTitle");
-      var slideCounter = document.getElementById("bssCounter");
-      var previousButton = document.getElementById("bssPrev");
-      var nextButton = document.getElementById("bssNext");
-      var playPauseButton =
-        document.getElementById("bssPlayPause");
-
-      var slideIndex = 0;
-      var slideshowPlaying = true;
-      var slideshowTimer = null;
-
-      var slideshowPaths = [
-        "./assets/slideshow/",
-        "./assets/",
-        "./"
-      ];
-
-      function prettyName(file) {
-        return file
-          .replace(/\.[^.]+$/, "")
-          .replace(/[-_]+/g, " ")
-          .toUpperCase();
-      }
-
-      function tryImagePath(file, pathIndex) {
-        if (!slide) {
-          return;
-        }
-
-        if (pathIndex >= slideshowPaths.length) {
-          showSlide(slideIndex + 1);
-          return;
-        }
-
-        slide.onerror = function () {
-          tryImagePath(file, pathIndex + 1);
-        };
-
-        slide.onload = function () {
-          slide.onerror = null;
-        };
-
-        slide.src = slideshowPaths[pathIndex] + file;
-      }
-
-      function showSlide(index) {
-        if (!bssFiles.length) {
-          return;
-        }
-
-        if (index < 0) {
-          index = bssFiles.length - 1;
-        }
-
-        if (index >= bssFiles.length) {
-          index = 0;
-        }
-
-        slideIndex = index;
-
-        var file = bssFiles[slideIndex];
-
-        tryImagePath(file, 0);
-
-        if (slideTitle) {
-          slideTitle.textContent = prettyName(file);
-        }
-
-        if (slideCounter) {
-          slideCounter.textContent =
-            (slideIndex + 1) + " / " + bssFiles.length;
-        }
-      }
-
-      function nextSlide() {
-        showSlide(slideIndex + 1);
-      }
-
-      function previousSlide() {
-        showSlide(slideIndex - 1);
-      }
-
-      function startSlideshow() {
-        window.clearInterval(slideshowTimer);
-
-        slideshowTimer =
-          window.setInterval(function () {
-            if (slideshowPlaying) {
-              nextSlide();
-            }
-          }, 4000);
-      }
-
-      if (previousButton) {
-        previousButton.addEventListener(
-          "click",
-          previousSlide
-        );
-      }
-
-      if (nextButton) {
-        nextButton.addEventListener(
-          "click",
-          nextSlide
-        );
-      }
-
-      if (playPauseButton) {
-        playPauseButton.addEventListener(
-          "click",
-          function () {
-            slideshowPlaying = !slideshowPlaying;
-
-            playPauseButton.textContent =
-              slideshowPlaying
-                ? "⏸ PAUSE"
-                : "▶ PLAY";
-          }
-        );
-      }
-
-      showSlide(0);
-      startSlideshow();
-
-      window.addEventListener("resize", function () {
-        if (
-          window.innerWidth > 1050 &&
-          mainNav &&
-          menuToggle
-        ) {
-          mainNav.classList.remove("open");
-          menuToggle.textContent = "☰";
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
+          drawWaveform(letter);
+          addFileToLibrary(file);
+        } catch (error) {
+          alert(
+            "Fichye sa a pa kapab louvri. Eseye yon MP3 oswa WAV."
           );
         }
+      }
+
+      function addFileToLibrary(file) {
+        const existingRows = [
+          ...document.querySelectorAll("#libraryBody tr")
+        ];
+
+        const fileAlreadyExists =
+          existingRows.some(
+            (row) => row.dataset.name === file.name
+          );
+
+        if (fileAlreadyExists) {
+          return;
+        }
+
+        const emptyRow = get("emptyRow");
+
+        if (emptyRow) {
+          emptyRow.remove();
+        }
+
+        const row = document.createElement("tr");
+
+        row.dataset.name = file.name;
+
+        const safeName =
+          file.name.replace(/[<>]/g, "");
+
+        row.innerHTML =
+          "<td>" +
+          (get("libraryBody").children.length + 1) +
+          "</td>" +
+          "<td>" +
+          safeName +
+          "</td>" +
+          "<td>" +
+          (file.type || "audio") +
+          "</td>" +
+          "<td>" +
+          (file.size / 1048576).toFixed(2) +
+          " MB</td>" +
+          '<td class="deck-pick">' +
+          '<button class="tiny">DECK A</button>' +
+          '<button class="tiny">DECK B</button>' +
+          "</td>";
+
+        row.children[4].children[0].onclick =
+          () => loadFile("A", file);
+
+        row.children[4].children[1].onclick =
+          () => loadFile("B", file);
+
+        get("libraryBody").appendChild(row);
+      }
+
+      ["A", "B"].forEach((letter) => {
+        get("file" + letter).addEventListener(
+          "change",
+          (event) => {
+            const file = event.target.files[0];
+
+            if (file) {
+              loadFile(letter, file);
+            }
+          }
+        );
+
+        get("pitch" + letter).addEventListener(
+          "input",
+          (event) => {
+            const pitch = Number(event.target.value);
+
+            decks[letter].audio.playbackRate =
+              1 + pitch / 100;
+
+            get("pitchText" + letter).textContent =
+              (pitch >= 0 ? "+" : "") +
+              pitch.toFixed(1) +
+              "%";
+          }
+        );
+
+        get("gain" + letter).addEventListener(
+          "input",
+          (event) => {
+            decks[letter].gain.gain.value =
+              Number(event.target.value);
+          }
+        );
+
+        ["low", "mid", "high"].forEach(
+          (filterName) => {
+            get(filterName + letter).addEventListener(
+              "input",
+              (event) => {
+                decks[letter][filterName].gain.value =
+                  Number(event.target.value);
+              }
+            );
+          }
+        );
+
+        decks[letter].audio.addEventListener(
+          "timeupdate",
+          () => {
+            get("time" + letter).textContent =
+              formatTime(
+                decks[letter].audio.currentTime
+              );
+
+            get("remain" + letter).textContent =
+              "-" +
+              formatTime(
+                decks[letter].audio.duration -
+                decks[letter].audio.currentTime
+              );
+          }
+        );
+
+        decks[letter].audio.addEventListener(
+          "ended",
+          () => updatePlayButton(letter)
+        );
       });
+
+      function updatePlayButton(letter) {
+        const button = document.querySelector(
+          '[data-action="play"][data-d="' +
+          letter +
+          '"]'
+        );
+
+        const paused = decks[letter].audio.paused;
+
+        button.textContent =
+          paused ? "▶ PLAY" : "Ⅱ PAUSE";
+
+        button.classList.toggle("on", !paused);
+      }
+
+      document
+        .querySelectorAll("[data-action]")
+        .forEach((button) => {
+          button.addEventListener(
+            "click",
+            async () => {
+              await resumeAudio();
+
+              const letter = button.dataset.d;
+              const action = button.dataset.action;
+              const deck = decks[letter];
+
+              if (action === "play") {
+                if (!deck.audio.src) {
+                  alert(
+                    "Load yon MP3 oswa WAV nan Deck " +
+                    letter +
+                    " an premye."
+                  );
+
+                  return;
+                }
+
+                if (deck.audio.paused) {
+                  deck.audio.play();
+                } else {
+                  deck.audio.pause();
+                }
+
+                updatePlayButton(letter);
+              }
+
+              if (action === "cue") {
+                deck.audio.pause();
+                deck.audio.currentTime = deck.cue;
+                updatePlayButton(letter);
+              }
+
+              if (action === "loop") {
+                deck.loop = !deck.loop;
+                deck.audio.loop = deck.loop;
+
+                button.classList.toggle(
+                  "on",
+                  deck.loop
+                );
+
+                button.textContent =
+                  deck.loop ? "LOOP ON" : "LOOP";
+              }
+
+              if (action === "sync") {
+                const otherDeck =
+                  decks[letter === "A" ? "B" : "A"];
+
+                deck.bpm = otherDeck.bpm;
+
+                get("bpm" + letter).textContent =
+                  deck.bpm.toFixed(2);
+              }
+            }
+          );
+        });
+
+      get("master").addEventListener(
+        "input",
+        (event) => {
+          masterGain.gain.value =
+            Number(event.target.value);
+        }
+      );
+
+      get("crossfader").addEventListener(
+        "input",
+        (event) => {
+          const value = Number(event.target.value);
+
+          decks.A.gain.gain.value =
+            Number(get("gainA").value) *
+            Math.cos(
+              ((value + 1) * Math.PI) / 4
+            );
+
+          decks.B.gain.gain.value =
+            Number(get("gainB").value) *
+            Math.sin(
+              ((value + 1) * Math.PI) / 4
+            );
+        }
+      );
+
+      function createNoise(duration, frequency) {
+        const source =
+          audioContext.createBufferSource();
+
+        const buffer = audioContext.createBuffer(
+          1,
+          audioContext.sampleRate * duration,
+          audioContext.sampleRate
+        );
+
+        const audioData = buffer.getChannelData(0);
+
+        for (
+          let index = 0;
+          index < audioData.length;
+          index++
+        ) {
+          audioData[index] =
+            Math.random() * 2 - 1;
+        }
+
+        source.buffer = buffer;
+
+        const filter =
+          audioContext.createBiquadFilter();
+
+        const gain =
+          audioContext.createGain();
+
+        filter.type = "highpass";
+        filter.frequency.value = frequency;
+
+        gain.gain.setValueAtTime(
+          0.65,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + duration
+        );
+
+        source
+          .connect(filter)
+          .connect(gain)
+          .connect(masterGain);
+
+        source.start();
+      }
+
+      function createTone(
+        frequency,
+        duration = 0.18,
+        type = "sine"
+      ) {
+        resumeAudio();
+
+        const oscillator =
+          audioContext.createOscillator();
+
+        const gain =
+          audioContext.createGain();
+
+        oscillator.type = type;
+
+        oscillator.frequency.setValueAtTime(
+          frequency,
+          audioContext.currentTime
+        );
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+          Math.max(30, frequency * 0.55),
+          audioContext.currentTime + duration
+        );
+
+        gain.gain.setValueAtTime(
+          0.7,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + duration
+        );
+
+        oscillator
+          .connect(gain)
+          .connect(masterGain);
+
+        oscillator.start();
+
+        oscillator.stop(
+          audioContext.currentTime + duration
+        );
+      }
+
+      function playPadSound(sound) {
+        if (sound === "kick") {
+          createTone(145, 0.28);
+        } else if (sound === "snare") {
+          createNoise(0.18, 900);
+        } else if (sound === "hat") {
+          createNoise(0.07, 6000);
+        } else if (sound === "clap") {
+          createNoise(0.11, 1300);
+
+          setTimeout(
+            () => createNoise(0.08, 1600),
+            45
+          );
+        } else if (sound === "tom") {
+          createTone(210, 0.25);
+        } else if (sound === "bell") {
+          createTone(880, 0.4, "triangle");
+        } else if (sound === "bass") {
+          createTone(70, 0.4, "square");
+        } else {
+          createTone(420, 0.6, "sawtooth");
+        }
+      }
+
+      document
+        .querySelectorAll(".pad")
+        .forEach((pad) => {
+          pad.addEventListener(
+            "click",
+            () => {
+              playPadSound(pad.dataset.sound);
+
+              pad.classList.add("hit");
+
+              setTimeout(
+                () => pad.classList.remove("hit"),
+                100
+              );
+            }
+          );
+        });
+
+      const sequencerRows = [
+        "kick",
+        "snare",
+        "hat",
+        "clap"
+      ];
+
+      sequencerRows.forEach(
+        (sound, rowIndex) => {
+          const row = document.createElement("div");
+
+          row.className = "seq-row";
+
+          let steps = "";
+
+          for (let step = 0; step < 8; step++) {
+            const enabled =
+              (
+                rowIndex === 0 &&
+                [0, 4].includes(step)
+              ) ||
+              (
+                rowIndex === 1 &&
+                [2, 6].includes(step)
+              ) ||
+              (
+                rowIndex === 2 &&
+                step % 2 === 0
+              );
+
+            steps +=
+              '<button class="step ' +
+              (enabled ? "active" : "") +
+              '" data-s="' +
+              sound +
+              '" data-i="' +
+              step +
+              '"></button>';
+          }
+
+          row.innerHTML =
+            '<span class="seq-label">' +
+            sound.toUpperCase() +
+            "</span>" +
+            steps;
+
+          get("sequencer").appendChild(row);
+        }
+      );
+
+      document
+        .querySelectorAll(".step")
+        .forEach((step) => {
+          step.addEventListener(
+            "click",
+            () => step.classList.toggle("active")
+          );
+        });
+
+      let sequencerTimer = null;
+      let currentStep = 0;
+
+      get("seqPlay").addEventListener(
+        "click",
+        async () => {
+          await resumeAudio();
+
+          if (sequencerTimer) {
+            clearInterval(sequencerTimer);
+            sequencerTimer = null;
+
+            get("seqPlay").textContent =
+              "▶ SEQUENCER";
+
+            return;
+          }
+
+          get("seqPlay").textContent =
+            "■ STOP SEQUENCER";
+
+          sequencerTimer = setInterval(
+            () => {
+              document
+                .querySelectorAll(".step")
+                .forEach((step) => {
+                  const isCurrent =
+                    Number(step.dataset.i) ===
+                    currentStep;
+
+                  step.classList.toggle(
+                    "now",
+                    isCurrent
+                  );
+
+                  if (
+                    isCurrent &&
+                    step.classList.contains("active")
+                  ) {
+                    playPadSound(step.dataset.s);
+                  }
+                }
+              );
+
+              currentStep =
+                (currentStep + 1) % 8;
+            },
+            125
+          );
+        }
+      );
+
+      get("libraryFiles").addEventListener(
+        "change",
+        (event) => {
+          [...event.target.files].forEach(
+            addFileToLibrary
+          );
+        }
+      );
+
+      let mediaRecorder = null;
+      let recordingChunks = [];
+
+      get("recordBtn").addEventListener(
+        "click",
+        async () => {
+          await resumeAudio();
+
+          if (
+            mediaRecorder &&
+            mediaRecorder.state === "recording"
+          ) {
+            mediaRecorder.stop();
+
+            get("recordBtn").textContent =
+              "● RECORD";
+
+            get("recordBtn").classList.remove("on");
+
+            return;
+          }
+
+          if (!window.MediaRecorder) {
+            alert(
+              "Browser sa a pa sipòte live recording."
+            );
+
+            return;
+          }
+
+          recordingChunks = [];
+
+          mediaRecorder = new MediaRecorder(
+            recordingDestination.stream
+          );
+
+          mediaRecorder.addEventListener(
+            "dataavailable",
+            (event) => {
+              if (event.data.size) {
+                recordingChunks.push(event.data);
+              }
+            }
+          );
+
+          mediaRecorder.addEventListener(
+            "stop",
+            () => {
+              const recordingBlob = new Blob(
+                recordingChunks,
+                {
+                  type: mediaRecorder.mimeType
+                }
+              );
+
+              const downloadLink =
+                document.createElement("a");
+
+              downloadLink.href =
+                URL.createObjectURL(recordingBlob);
+
+              downloadLink.download =
+                "PRO-MAX-LIVE-MIX.webm";
+
+              document.body.appendChild(downloadLink);
+              downloadLink.click();
+              downloadLink.remove();
+            }
+          );
+
+          mediaRecorder.start();
+
+          get("recordBtn").textContent =
+            "■ STOP RECORD";
+
+          get("recordBtn").classList.add("on");
+        }
+      );
+
+      function createWavBlob(audioBuffer) {
+        const channels =
+          audioBuffer.numberOfChannels;
+
+        const fileLength =
+          audioBuffer.length * channels * 2 + 44;
+
+        const arrayBuffer =
+          new ArrayBuffer(fileLength);
+
+        const view =
+          new DataView(arrayBuffer);
+
+        function writeText(offset, text) {
+          [...text].forEach(
+            (character, index) => {
+              view.setUint8(
+                offset + index,
+                character.charCodeAt(0)
+              );
+            }
+          );
+        }
+
+        writeText(0, "RIFF");
+        view.setUint32(4, fileLength - 8, true);
+        writeText(8, "WAVE");
+        writeText(12, "fmt ");
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, channels, true);
+
+        view.setUint32(
+          24,
+          audioBuffer.sampleRate,
+          true
+        );
+
+        view.setUint32(
+          28,
+          audioBuffer.sampleRate *
+          channels *
+          2,
+          true
+        );
+
+        view.setUint16(
+          32,
+          channels * 2,
+          true
+        );
+
+        view.setUint16(34, 16, true);
+        writeText(36, "data");
+        view.setUint32(40, fileLength - 44, true);
+
+        let offset = 44;
+
+        for (
+          let sample = 0;
+          sample < audioBuffer.length;
+          sample++
+        ) {
+          for (
+            let channel = 0;
+            channel < channels;
+            channel++
+          ) {
+            let value =
+              audioBuffer
+                .getChannelData(channel)[sample];
+
+            value = Math.max(
+              -1,
+              Math.min(1, value)
+            );
+
+            view.setInt16(
+              offset,
+              value < 0
+                ? value * 32768
+                : value * 32767,
+              true
+            );
+
+            offset += 2;
+          }
+        }
+
+        return new Blob(
+          [view],
+          { type: "audio/wav" }
+        );
+      }
+
+      get("exportBtn").addEventListener(
+        "click",
+        async () => {
+          const activeDecks =
+            ["A", "B"].filter(
+              (letter) => decks[letter].buffer
+            );
+
+          if (!activeDecks.length) {
+            alert(
+              "Load omwen yon MP3 oswa WAV an premye."
+            );
+
+            return;
+          }
+
+          get("audioStatus").textContent =
+            "EXPORTING WAV...";
+
+          const sampleRate = 44100;
+
+          const duration = Math.max(
+            ...activeDecks.map(
+              (letter) =>
+                decks[letter].buffer.duration
+            )
+          );
+
+          const offlineContext =
+            new OfflineAudioContext(
+              2,
+              Math.ceil(duration * sampleRate),
+              sampleRate
+            );
+
+          const outputGain =
+            offlineContext.createGain();
+
+          outputGain.connect(
+            offlineContext.destination
+          );
+
+          const crossfader =
+            Number(get("crossfader").value);
+
+          activeDecks.forEach((letter) => {
+            const source =
+              offlineContext.createBufferSource();
+
+            const gain =
+              offlineContext.createGain();
+
+            source.buffer =
+              decks[letter].buffer;
+
+            if (letter === "A") {
+              gain.gain.value =
+                Number(get("gainA").value) *
+                Math.cos(
+                  ((crossfader + 1) *
+                  Math.PI) / 4
+                );
+            } else {
+              gain.gain.value =
+                Number(get("gainB").value) *
+                Math.sin(
+                  ((crossfader + 1) *
+                  Math.PI) / 4
+                );
+            }
+
+            source
+              .connect(gain)
+              .connect(outputGain);
+
+            source.start();
+          });
+
+          outputGain.gain.value =
+            Number(get("master").value);
+
+          const renderedAudio =
+            await offlineContext.startRendering();
+
+          const downloadLink =
+            document.createElement("a");
+
+          downloadLink.href =
+            URL.createObjectURL(
+              createWavBlob(renderedAudio)
+            );
+
+          downloadLink.download =
+            "PRO-MAX-BEAT-MIX.wav";
+
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          downloadLink.remove();
+
+          get("audioStatus").textContent =
+            "WAV EXPORT COMPLETE";
+        }
+      );
+
+      function animateMeters() {
+        ["A", "B"].forEach((letter) => {
+          const frequencyData =
+            new Uint8Array(
+              decks[letter].analyser.frequencyBinCount
+            );
+
+          decks[letter].analyser
+            .getByteFrequencyData(frequencyData);
+
+          const average =
+            frequencyData.reduce(
+              (total, number) =>
+                total + number,
+              0
+            ) / frequencyData.length;
+
+          const level = Math.max(
+            5,
+            Math.min(100, average * 0.9)
+          );
+
+          get("meter" + letter)
+            .style.setProperty(
+              "--level",
+              level + "%"
+            );
+        });
+
+        requestAnimationFrame(animateMeters);
+      }
+
+      animateMeters();
+
+      window.addEventListener(
+        "resize",
+        () => {
+          drawWaveform("A");
+          drawWaveform("B");
+        }
+      );
+
+      drawWaveform("A");
+      drawWaveform("B");
     })();
   </script>
 
