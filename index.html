@@ -1,10 +1,10 @@
-<!-- FILE: modules/documents/index.html -->
+<!-- FILE: modules/announcements/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document Center | BSS1815 PRO-MAX DMP</title>
+<title>Announcement Center | BSS1815 PRO-MAX DMP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
@@ -16,21 +16,20 @@ header p{color:#ffb366;margin-top:10px}
 main{width:min(1200px,95%);margin:30px auto}
 .card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
 .card h2{color:#ff7a00;margin-bottom:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
 input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+textarea{min-height:120px}
 button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
 button:hover{background:#ff8c1a}
-table{width:100%;border-collapse:collapse;margin-top:18px;background:#000;border-radius:12px;overflow:hidden}
-th,td{border:1px solid #ff7a00;padding:10px;text-align:left}
-th{background:#ff7a00;color:#000}
+.announce-card{background:#000;border:1px solid #ff7a00;border-radius:12px;padding:16px;margin-top:14px}
+.badge{display:inline-block;background:#ff7a00;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold;margin-bottom:8px}
 footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
 </style>
 </head>
 <body>
 
 <header>
-<h1>DOCUMENT CENTER</h1>
+<h1>ANNOUNCEMENT CENTER</h1>
 <p>BSS1815 PRO-MAX DMP</p>
 <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
 <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
@@ -39,99 +38,77 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 <main>
 
 <div class="card">
-<h2>Telechaje / Anrejistre Dokiman</h2>
-<div class="grid">
-<div>
-<label>Tit Dokiman</label>
-<input id="docTitle" type="text" placeholder="Egzanp: Lèt Ofisyèl Novanm 2026">
-</div>
-<div>
-<label>Kategori</label>
-<select id="docCategory">
-<option>Lèt</option>
-<option>Rapò</option>
-<option>Achiv</option>
-<option>Kontra</option>
-<option>Lòt</option>
+<h2>Pibliye Anons</h2>
+<label>Kalite Anons</label>
+<select id="anType">
+<option>Anons Ofisyèl</option>
+<option>Aktyalite Kominotè</option>
+<option>Alèt</option>
+<option>Rapèl</option>
 </select>
-</div>
-<div>
-<label>Fichye (opsyonèl)</label>
-<input id="docFile" type="file">
-</div>
-</div>
-<label>Nòt</label>
-<input id="docNotes" type="text" placeholder="Kèk detay sou dokiman an">
-<button onclick="addDocument()">Anrejistre Dokiman</button>
+<label>Tit</label>
+<input id="anTitle" type="text" placeholder="Tit anons lan">
+<label>Kontni</label>
+<textarea id="anContent" placeholder="Ekri anons lan isit..."></textarea>
+<button onclick="publish()">📣 Pibliye</button>
 </div>
 
 <div class="card">
-<h2>Achiv Dokiman</h2>
-<table>
-<thead><tr><th>Tit</th><th>Kategori</th><th>Dat</th><th>Nòt</th><th></th></tr></thead>
-<tbody id="docsTable"></tbody>
-</table>
+<h2>Tout Anons</h2>
+<div id="announcementsList"></div>
 </div>
 
 </main>
 
-<footer>© 2026 BSS1815 PRO-MAX DMP | Document Center</footer>
+<footer>© 2026 BSS1815 PRO-MAX DMP | Announcement Center</footer>
 
 <script>
-let docs = JSON.parse(localStorage.getItem("bss1815_documents")) || [];
+let announcements = JSON.parse(localStorage.getItem("bss1815_announcements")) || [];
 
-function save(){ localStorage.setItem("bss1815_documents", JSON.stringify(docs)); }
+function save(){ localStorage.setItem("bss1815_announcements", JSON.stringify(announcements)); }
 
-function addDocument(){
-const title = document.getElementById("docTitle").value.trim();
-const category = document.getElementById("docCategory").value;
-const notes = document.getElementById("docNotes").value.trim();
-const fileInput = document.getElementById("docFile");
-const file = fileInput.files[0];
+function publish(){
+const type = document.getElementById("anType").value;
+const title = document.getElementById("anTitle").value.trim();
+const content = document.getElementById("anContent").value.trim();
 
-function finish(fileData, fileName){
-docs.unshift({
-title,
-category,
-notes,
-fileName: fileName || "",
-fileData: fileData || "",
-date: new Date().toLocaleString()
-});
+if(!title || !content){ alert("Tit ak Kontni obligatwa."); return; }
+
+announcements.unshift({type,title,content,date:new Date().toLocaleString()});
 save();
-document.getElementById("docTitle").value="";
-document.getElementById("docNotes").value="";
-fileInput.value="";
+
+document.getElementById("anTitle").value="";
+document.getElementById("anContent").value="";
+
 render();
 }
 
-if(!title){ alert("Tit obligatwa."); return; }
-
-if(file && file.size < 2*1024*1024){
-const reader = new FileReader();
-reader.onload = function(e){ finish(e.target.result, file.name); };
-reader.readAsDataURL(file);
-}else{
-finish("", file ? file.name : "");
-}
-}
-
-function deleteDoc(index){
-docs.splice(index,1);
+function remove(index){
+announcements.splice(index,1);
 save();
 render();
 }
 
 function render(){
-const tbody = document.getElementById("docsTable");
-tbody.innerHTML = "";
+const container = document.getElementById("announcementsList");
+container.innerHTML = "";
 
-docs.forEach((d,index) => {
-const row = document.createElement("tr");
-const link = d.fileData ? `<a href="${d.fileData}" download="${d.fileName}" style="color:#ff7a00">⬇ ${d.fileName}</a>` : (d.fileName || "—");
-row.innerHTML = `<td>${d.title}</td><td>${d.category}</td><td>${d.date}</td><td>${d.notes}<br>${link}</td><td><button onclick="deleteDoc(${index})">🗑</button></td>`;
-tbody.appendChild(row);
+announcements.forEach((a,index) => {
+const div = document.createElement("div");
+div.className = "announce-card";
+div.innerHTML = `
+<span class="badge">${a.type}</span>
+<h3>${a.title}</h3>
+<p style="margin:8px 0;color:#ffd2a1">${a.date}</p>
+<p>${a.content}</p>
+<button onclick="remove(${index})">🗑 Efase</button>
+`;
+container.appendChild(div);
 });
+
+if(announcements.length === 0){
+container.innerHTML = "<p style='color:#ffd2a1'>Pa gen anons pou kounye a.</p>";
+}
 }
 
 render();
