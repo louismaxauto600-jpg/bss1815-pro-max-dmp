@@ -1,10 +1,10 @@
-<!-- FILE: modules/elections/index.html -->
+<!-- FILE: modules/volunteer/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Election Manager | BSS1815 PRO-MAX DMP</title>
+<title>Volunteer Center | BSS1815 PRO-MAX DMP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
@@ -16,20 +16,21 @@ header p{color:#ffb366;margin-top:10px}
 main{width:min(1200px,95%);margin:30px auto}
 .card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
 .card h2{color:#ff7a00;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
-input{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
 button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
 button:hover{background:#ff8c1a}
-.candidate-row{display:flex;justify-content:space-between;align-items:center;background:#000;border:1px solid #ff7a00;border-radius:10px;padding:14px;margin-top:12px}
-.bar-bg{background:#222;border-radius:6px;height:14px;margin-top:8px;overflow:hidden}
-.bar-fill{background:#ff7a00;height:100%}
+table{width:100%;border-collapse:collapse;margin-top:18px;background:#000;border-radius:12px;overflow:hidden}
+th,td{border:1px solid #ff7a00;padding:10px;text-align:left}
+th{background:#ff7a00;color:#000}
 footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
 </style>
 </head>
 <body>
 
 <header>
-<h1>ELECTION MANAGER</h1>
+<h1>VOLUNTEER CENTER</h1>
 <p>BSS1815 PRO-MAX DMP</p>
 <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
 <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
@@ -38,97 +39,86 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 <main>
 
 <div class="card">
-<h2>Ajoute Kandida</h2>
-<label>Non Kandida</label>
-<input id="candName" type="text" placeholder="Non konplè kandida a">
-<label>Pozisyon</label>
-<input id="candPosition" type="text" placeholder="Egzanp: Prezidan, Sekretè...">
-<button onclick="addCandidate()">Ajoute Kandida</button>
+<h2>Anrejistre Volontè</h2>
+<div class="grid">
+<div>
+<label>Non Konplè</label>
+<input id="volName" type="text" placeholder="Non konplè">
+</div>
+<div>
+<label>Telefòn</label>
+<input id="volPhone" type="text" placeholder="Telefòn">
+</div>
+<div>
+<label>Domèn/Talan</label>
+<input id="volSkill" type="text" placeholder="Egzanp: Sekirite, Kuizin, Medya...">
+</div>
+<div>
+<label>Statiti</label>
+<select id="volStatus">
+<option>Disponib</option>
+<option>Asiyen</option>
+<option>Okipe</option>
+</select>
+</div>
+</div>
+<label>Asiyasyon Aktyèl</label>
+<input id="volAssignment" type="text" placeholder="Egzanp: Ekip Sekirite Konsè Oktòb">
+<button onclick="addVolunteer()">Anrejistre</button>
 </div>
 
 <div class="card">
-<h2>Kandida yo & Vòt</h2>
-<div id="candidatesList"></div>
-</div>
-
-<div class="card">
-<h2>Rezilta</h2>
-<div id="resultsList"></div>
+<h2>Lis Volontè</h2>
+<table>
+<thead><tr><th>Non</th><th>Telefòn</th><th>Talan</th><th>Statiti</th><th>Asiyasyon</th><th></th></tr></thead>
+<tbody id="volunteersTable"></tbody>
+</table>
 </div>
 
 </main>
 
-<footer>© 2026 BSS1815 PRO-MAX DMP | Election Manager</footer>
+<footer>© 2026 BSS1815 PRO-MAX DMP | Volunteer Center</footer>
 
 <script>
-let candidates = JSON.parse(localStorage.getItem("bss1815_candidates")) || [];
+let volunteers = JSON.parse(localStorage.getItem("bss1815_volunteers")) || [];
 
-function save(){ localStorage.setItem("bss1815_candidates", JSON.stringify(candidates)); }
+function save(){ localStorage.setItem("bss1815_volunteers", JSON.stringify(volunteers)); }
 
-function addCandidate(){
-const name = document.getElementById("candName").value.trim();
-const position = document.getElementById("candPosition").value.trim();
+function addVolunteer(){
+const name = document.getElementById("volName").value.trim();
+const phone = document.getElementById("volPhone").value.trim();
+const skill = document.getElementById("volSkill").value.trim();
+const status = document.getElementById("volStatus").value;
+const assignment = document.getElementById("volAssignment").value.trim();
 
-if(!name || !position){ alert("Non ak Pozisyon obligatwa."); return; }
+if(!name){ alert("Non obligatwa."); return; }
 
-candidates.push({name,position,votes:0});
+volunteers.unshift({name,phone,skill,status,assignment});
 save();
 
-document.getElementById("candName").value="";
-document.getElementById("candPosition").value="";
+document.getElementById("volName").value="";
+document.getElementById("volPhone").value="";
+document.getElementById("volSkill").value="";
+document.getElementById("volAssignment").value="";
 
 render();
 }
 
-function vote(index){
-candidates[index].votes++;
-save();
-render();
-}
-
-function removeCandidate(index){
-candidates.splice(index,1);
+function deleteVolunteer(index){
+volunteers.splice(index,1);
 save();
 render();
 }
 
 function render(){
-const listContainer = document.getElementById("candidatesList");
-const resultsContainer = document.getElementById("resultsList");
-listContainer.innerHTML = "";
-resultsContainer.innerHTML = "";
+const tbody = document.getElementById("volunteersTable");
+tbody.innerHTML = "";
 
-const totalVotes = candidates.reduce((sum,c)=>sum+c.votes,0);
-
-candidates.forEach((c,index) => {
-const row = document.createElement("div");
-row.className = "candidate-row";
-row.innerHTML = `
-<div>
-<strong>${c.name}</strong><br>
-<span style="color:#ffd2a1">${c.position}</span>
-</div>
-<div>
-<button onclick="vote(${index})">🗳 Vote (${c.votes})</button>
-<button onclick="removeCandidate(${index})">🗑</button>
-</div>
-`;
-listContainer.appendChild(row);
-
-const percent = totalVotes > 0 ? Math.round((c.votes/totalVotes)*100) : 0;
-const resultDiv = document.createElement("div");
-resultDiv.style.marginBottom = "14px";
-resultDiv.innerHTML = `
-<div><strong>${c.name}</strong> (${c.position}) — ${c.votes} vòt (${percent}%)</div>
-<div class="bar-bg"><div class="bar-fill" style="width:${percent}%"></div></div>
-`;
-resultsContainer.appendChild(resultDiv);
+volunteers.forEach((v,index) => {
+const row = document.createElement("tr");
+row.innerHTML = `<td>${v.name}</td><td>${v.phone}</td><td>${v.skill}</td><td>${v.status}</td><td>${v.assignment}</td><td><button onclick="deleteVolunteer(${index})">🗑</button></td>`;
+tbody.appendChild(row);
 });
-
-if(candidates.length === 0){
-listContainer.innerHTML = "<p style='color:#ffd2a1'>Pa gen kandida anrejistre.</p>";
-resultsContainer.innerHTML = "";
-}
 }
 
 render();
