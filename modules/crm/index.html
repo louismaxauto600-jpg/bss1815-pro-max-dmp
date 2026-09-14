@@ -1,0 +1,303 @@
+<!-- FILE: modules/crm/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM System | BSS1815 PRO-MAX DMP</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:linear-gradient(135deg,#000,#1a0900,#ff6a00,#000);
+      color:#fff3e6;
+      min-height:100vh;
+      line-height:1.6;
+    }
+    header{
+      text-align:center;
+      padding:45px 20px;
+      background:linear-gradient(135deg,#000,#ff6a00,#000);
+      border-bottom:3px solid #ff7a00;
+    }
+    header h1{color:#ff7a00;font-size:42px;text-transform:uppercase}
+    header p{color:#ffd2a1;margin-top:8px}
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      background:#000;
+      padding:16px;
+      border-bottom:1px solid #ff7a00;
+    }
+    nav a{
+      color:#fff3e6;
+      text-decoration:none;
+      border:1px solid #ff7a00;
+      padding:9px 14px;
+      border-radius:30px;
+      font-weight:bold;
+    }
+    nav a:hover{background:#ff7a00;color:#000}
+    main{width:min(1150px,94%);margin:35px auto}
+    .card{
+      background:rgba(0,0,0,.82);
+      border:1px solid #ff7a00;
+      border-radius:18px;
+      padding:24px;
+      margin-bottom:24px;
+      box-shadow:0 0 18px rgba(255,122,0,.22);
+    }
+    h2,h3{color:#ff7a00;margin-bottom:12px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
+    label{display:block;margin-top:14px;color:#ffd2a1;font-weight:bold}
+    input,select,textarea{
+      width:100%;
+      padding:12px;
+      margin-top:7px;
+      border-radius:10px;
+      border:1px solid #ff7a00;
+      background:#000;
+      color:#fff3e6;
+      font-size:15px;
+    }
+    textarea{min-height:100px;resize:vertical}
+    button{
+      margin-top:18px;
+      background:#ff7a00;
+      color:#000;
+      border:none;
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:18px;
+      background:#000;
+      overflow:hidden;
+      border-radius:12px;
+    }
+    th,td{
+      border:1px solid #ff7a00;
+      padding:10px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{color:#000;background:#ff7a00}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:14px;
+    }
+    .stat{
+      border:1px solid #ff7a00;
+      border-radius:14px;
+      padding:18px;
+      background:#000;
+      text-align:center;
+    }
+    .stat strong{display:block;color:#ff7a00;font-size:28px}
+    footer{
+      text-align:center;
+      padding:24px;
+      margin-top:40px;
+      background:#000;
+      border-top:3px solid #ff7a00;
+      color:#ffd2a1;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>CRM SYSTEM</h1>
+  <p>BSS1815 PRO-MAX DMP</p>
+  <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+</header>
+
+<nav>
+  <a href="../../index.html">Home</a>
+  <a href="../../modules/crm/index.html">CRM System</a>
+  <a href="../../modules/ai/center/index.html">AI Center</a>
+</nav>
+
+<main>
+
+  <section class="card">
+    <h2>CRM Dashboard</h2>
+    <div class="stats">
+      <div class="stat"><strong id="totalContacts">0</strong>Total Contacts</div>
+      <div class="stat"><strong id="totalMembers">0</strong>Members</div>
+      <div class="stat"><strong id="totalMusicians">0</strong>Musicians</div>
+      <div class="stat"><strong id="totalPartners">0</strong>Partners</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Add New Contact</h2>
+
+    <div class="grid">
+      <div>
+        <label>Full Name</label>
+        <input id="fullName" type="text" placeholder="Full name">
+      </div>
+
+      <div>
+        <label>Phone</label>
+        <input id="phone" type="text" placeholder="Phone number">
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input id="email" type="email" placeholder="Email address">
+      </div>
+
+      <div>
+        <label>Category</label>
+        <select id="category">
+          <option>Member</option>
+          <option>Musician</option>
+          <option>Fanatik</option>
+          <option>Partner</option>
+          <option>Ti Machann</option>
+          <option>Leader</option>
+          <option>Volunteer</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Status</label>
+        <select id="status">
+          <option>Active</option>
+          <option>Pending</option>
+          <option>Inactive</option>
+          <option>VIP</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Location</label>
+        <input id="location" type="text" placeholder="City / State / Country">
+      </div>
+    </div>
+
+    <label>Notes</label>
+    <textarea id="notes" placeholder="Add notes about this contact"></textarea>
+
+    <button onclick="addContact()">Add Contact</button>
+  </section>
+
+  <section class="card">
+    <h2>Search Contacts</h2>
+    <input id="searchInput" type="text" placeholder="Search by name, phone, email, category..." onkeyup="renderContacts()">
+  </section>
+
+  <section class="card">
+    <h2>Contact List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Location</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody id="contactTable"></tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 BSS1815 PRO-MAX DMP | CRM SYSTEM</p>
+</footer>
+
+<script>
+  let contacts = JSON.parse(localStorage.getItem("bss1815_crm_contacts")) || [];
+
+  function saveContacts(){
+    localStorage.setItem("bss1815_crm_contacts", JSON.stringify(contacts));
+  }
+
+  function addContact(){
+    const contact = {
+      fullName: document.getElementById("fullName").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      category: document.getElementById("category").value,
+      status: document.getElementById("status").value,
+      location: document.getElementById("location").value.trim(),
+      notes: document.getElementById("notes").value.trim()
+    };
+
+    if(!contact.fullName || !contact.phone){
+      alert("Full Name ak Phone obligatwa.");
+      return;
+    }
+
+    contacts.push(contact);
+    saveContacts();
+
+    document.getElementById("fullName").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("location").value = "";
+    document.getElementById("notes").value = "";
+
+    renderContacts();
+  }
+
+  function renderContacts(){
+    const tbody = document.getElementById("contactTable");
+    const search = document.getElementById("searchInput").value.toLowerCase();
+
+    tbody.innerHTML = "";
+
+    const filtered = contacts.filter(c =>
+      Object.values(c).join(" ").toLowerCase().includes(search)
+    );
+
+    filtered.forEach(c => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${c.fullName}</td>
+        <td>${c.phone}</td>
+        <td>${c.email}</td>
+        <td>${c.category}</td>
+        <td>${c.status}</td>
+        <td>${c.location}</td>
+        <td>${c.notes}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    updateStats();
+  }
+
+  function updateStats(){
+    document.getElementById("totalContacts").textContent = contacts.length;
+    document.getElementById("totalMembers").textContent = contacts.filter(c => c.category === "Member").length;
+    document.getElementById("totalMusicians").textContent = contacts.filter(c => c.category === "Musician").length;
+    document.getElementById("totalPartners").textContent = contacts.filter(c => c.category === "Partner").length;
+  }
+
+  renderContacts();
+</script>
+
+</body>
+</html>
