@@ -1,10 +1,10 @@
-<!-- FILE: modules/volunteer/index.html -->
+<!-- FILE: modules/media/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Volunteer Center | BSS1815 PRO-MAX DMP</title>
+<title>Media Gallery | BSS1815 PRO-MAX DMP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
@@ -16,21 +16,21 @@ header p{color:#ffb366;margin-top:10px}
 main{width:min(1200px,95%);margin:30px auto}
 .card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
 .card h2{color:#ff7a00;margin-bottom:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
-input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
 button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
 button:hover{background:#ff8c1a}
-table{width:100%;border-collapse:collapse;margin-top:18px;background:#000;border-radius:12px;overflow:hidden}
-th,td{border:1px solid #ff7a00;padding:10px;text-align:left}
-th{background:#ff7a00;color:#000}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-top:14px}
+.media-item{background:#000;border:1px solid #ff7a00;border-radius:10px;padding:8px;text-align:center}
+.media-item img{width:100%;border-radius:6px;margin-bottom:8px;max-height:160px;object-fit:cover}
+.media-item button{width:100%;font-size:12px;padding:8px}
 footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
 </style>
 </head>
 <body>
 
 <header>
-<h1>VOLUNTEER CENTER</h1>
+<h1>MEDIA GALLERY</h1>
 <p>BSS1815 PRO-MAX DMP</p>
 <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
 <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
@@ -39,86 +39,74 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 <main>
 
 <div class="card">
-<h2>Anrejistre Volontè</h2>
-<div class="grid">
-<div>
-<label>Non Konplè</label>
-<input id="volName" type="text" placeholder="Non konplè">
-</div>
-<div>
-<label>Telefòn</label>
-<input id="volPhone" type="text" placeholder="Telefòn">
-</div>
-<div>
-<label>Domèn/Talan</label>
-<input id="volSkill" type="text" placeholder="Egzanp: Sekirite, Kuizin, Medya...">
-</div>
-<div>
-<label>Statiti</label>
-<select id="volStatus">
-<option>Disponib</option>
-<option>Asiyen</option>
-<option>Okipe</option>
-</select>
-</div>
-</div>
-<label>Asiyasyon Aktyèl</label>
-<input id="volAssignment" type="text" placeholder="Egzanp: Ekip Sekirite Konsè Oktòb">
-<button onclick="addVolunteer()">Anrejistre</button>
+<h2>Telechaje Foto</h2>
+<label>Chwazi Imaj</label>
+<input id="mediaUpload" type="file" accept="image/*">
+<label>Tit / Deskripsyon</label>
+<input id="mediaTitle" type="text" placeholder="Egzanp: Konsè Oktòb 2026">
+<button onclick="uploadMedia()">📤 Telechaje</button>
 </div>
 
 <div class="card">
-<h2>Lis Volontè</h2>
-<table>
-<thead><tr><th>Non</th><th>Telefòn</th><th>Talan</th><th>Statiti</th><th>Asiyasyon</th><th></th></tr></thead>
-<tbody id="volunteersTable"></tbody>
-</table>
+<h2>Achiv Medya</h2>
+<div id="mediaGrid" class="grid"></div>
 </div>
 
 </main>
 
-<footer>© 2026 BSS1815 PRO-MAX DMP | Volunteer Center</footer>
+<footer>© 2026 BSS1815 PRO-MAX DMP | Media Gallery</footer>
 
 <script>
-let volunteers = JSON.parse(localStorage.getItem("bss1815_volunteers")) || [];
+function save(items){ localStorage.setItem("bss1815_media", JSON.stringify(items)); }
+function load(){ return JSON.parse(localStorage.getItem("bss1815_media")) || []; }
 
-function save(){ localStorage.setItem("bss1815_volunteers", JSON.stringify(volunteers)); }
+function uploadMedia(){
+const fileInput = document.getElementById("mediaUpload");
+const title = document.getElementById("mediaTitle").value.trim();
+const file = fileInput.files[0];
 
-function addVolunteer(){
-const name = document.getElementById("volName").value.trim();
-const phone = document.getElementById("volPhone").value.trim();
-const skill = document.getElementById("volSkill").value.trim();
-const status = document.getElementById("volStatus").value;
-const assignment = document.getElementById("volAssignment").value.trim();
+if(!file){ alert("Chwazi yon imaj."); return; }
+if(file.size > 3*1024*1024){ alert("Imaj la twò gwo (max 3MB)."); return; }
 
-if(!name){ alert("Non obligatwa."); return; }
-
-volunteers.unshift({name,phone,skill,status,assignment});
-save();
-
-document.getElementById("volName").value="";
-document.getElementById("volPhone").value="";
-document.getElementById("volSkill").value="";
-document.getElementById("volAssignment").value="";
-
+const reader = new FileReader();
+reader.onload = function(e){
+let items = load();
+items.unshift({image:e.target.result, title: title || "San tit", date: new Date().toLocaleString()});
+save(items);
+fileInput.value = "";
+document.getElementById("mediaTitle").value = "";
 render();
+};
+reader.readAsDataURL(file);
 }
 
-function deleteVolunteer(index){
-volunteers.splice(index,1);
-save();
+function deleteMedia(index){
+let items = load();
+items.splice(index,1);
+save(items);
 render();
 }
 
 function render(){
-const tbody = document.getElementById("volunteersTable");
-tbody.innerHTML = "";
+const container = document.getElementById("mediaGrid");
+const items = load();
+container.innerHTML = "";
 
-volunteers.forEach((v,index) => {
-const row = document.createElement("tr");
-row.innerHTML = `<td>${v.name}</td><td>${v.phone}</td><td>${v.skill}</td><td>${v.status}</td><td>${v.assignment}</td><td><button onclick="deleteVolunteer(${index})">🗑</button></td>`;
-tbody.appendChild(row);
+items.forEach((item,index) => {
+const div = document.createElement("div");
+div.className = "media-item";
+div.innerHTML = `
+<img src="${item.image}" alt="${item.title}">
+<div>${item.title}</div>
+<div style="color:#ffd2a1;font-size:11px">${item.date}</div>
+<button onclick="deleteMedia(${index})">🗑 Efase</button>
+`;
+container.appendChild(div);
 });
+
+if(items.length === 0){
+container.innerHTML = "<p style='color:#ffd2a1'>Pa gen medya pou kounye a.</p>";
+}
 }
 
 render();
