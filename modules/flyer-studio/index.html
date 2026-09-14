@@ -1,0 +1,443 @@
+<!-- FILE: modules/flyer-studio/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flyer Studio | BSS1815 PRO-MAX DMP</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#000000,#ff6a00,#000000);
+color:#fff;
+min-height:100vh;
+}
+
+header{
+text-align:center;
+padding:40px 20px;
+background:#000;
+border-bottom:3px solid #ff7a00;
+}
+
+header h1{
+font-size:45px;
+color:#ff7a00;
+}
+
+header p{
+color:#ffb366;
+margin-top:10px;
+}
+
+.back-btn{
+display:inline-block;
+margin-top:14px;
+color:#fff3e6;
+text-decoration:none;
+border:1px solid #ff7a00;
+padding:9px 14px;
+border-radius:30px;
+font-weight:bold;
+}
+
+.back-btn:hover{
+background:#ff7a00;
+color:#000;
+}
+
+main{
+width:min(1200px,95%);
+margin:30px auto;
+}
+
+.layout{
+display:grid;
+grid-template-columns:1fr;
+gap:20px;
+}
+
+@media(min-width:900px){
+.layout{
+grid-template-columns:1fr 1fr;
+}
+}
+
+.card{
+background:#111;
+border:2px solid #ff7a00;
+border-radius:15px;
+padding:20px;
+margin-bottom:25px;
+}
+
+.card h2{
+color:#ff7a00;
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-top:12px;
+margin-bottom:6px;
+font-weight:bold;
+color:#ffb366;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ff7a00;
+background:#000;
+color:#fff;
+}
+
+textarea{
+min-height:80px;
+}
+
+input[type="color"]{
+padding:4px;
+height:48px;
+cursor:pointer;
+}
+
+button{
+margin-top:15px;
+padding:12px 20px;
+background:#ff7a00;
+color:#000;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+margin-right:10px;
+}
+
+button:hover{
+background:#ff8c1a;
+}
+
+.preview-wrap{
+display:flex;
+align-items:center;
+justify-content:center;
+background:#000;
+border:1px solid #ff7a00;
+border-radius:12px;
+padding:12px;
+overflow:auto;
+}
+
+#flyerCanvas{
+max-width:100%;
+border-radius:6px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:14px;
+margin-top:10px;
+}
+
+.saved-flyer{
+background:#000;
+border:1px solid #ff7a00;
+border-radius:10px;
+padding:8px;
+text-align:center;
+}
+
+.saved-flyer img{
+width:100%;
+border-radius:6px;
+margin-bottom:8px;
+}
+
+.saved-flyer button{
+width:100%;
+margin:4px 0 0;
+font-size:12px;
+padding:8px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:40px;
+border-top:3px solid #ff7a00;
+background:#000;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>FLYER STUDIO</h1>
+<p>BSS1815 PRO-MAX DMP</p>
+<p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+<a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+</header>
+
+<main>
+
+<div class="layout">
+
+<div class="card">
+<h2>Kreye Flyer</h2>
+
+<label>Tit Prensipal</label>
+<input type="text" id="flyerTitle" placeholder="Egzanp: GWO SWARE BSS1815" value="GWO SWARE BSS1815">
+
+<label>Su-Tit</label>
+<input type="text" id="flyerSubtitle" placeholder="Egzanp: Yon Nwit Kominotè" value="Yon Nwit Kominotè">
+
+<label>Dat</label>
+<input type="text" id="flyerDate" placeholder="Egzanp: Samdi 20 Sektanm 2026" value="Samdi 20 Sektanm 2026">
+
+<label>Kote</label>
+<input type="text" id="flyerLocation" placeholder="Egzanp: BSS1815 Community Hall" value="BSS1815 Community Hall">
+
+<label>Enfo Kontak</label>
+<input type="text" id="flyerContact" placeholder="Egzanp: +509 43 43 7488" value="+509 43 43 7488">
+
+<label>Koulè Fon</label>
+<input type="color" id="bgColor" value="#0b0400">
+
+<label>Koulè Aksan</label>
+<input type="color" id="accentColor" value="#ff7900">
+
+<label>Logo / Imaj (opsyonèl)</label>
+<input type="file" id="logoUpload" accept="image/*">
+
+<button onclick="drawFlyer()">🎨 Jenere Flyer</button>
+<button onclick="saveFlyer()">💾 Sove Flyer</button>
+<button onclick="downloadFlyer()">⬇ Telechaje PNG</button>
+
+</div>
+
+<div class="card">
+<h2>Aperçu</h2>
+<div class="preview-wrap">
+<canvas id="flyerCanvas" width="800" height="1000"></canvas>
+</div>
+</div>
+
+</div>
+
+<div class="card">
+<h2>Flyer Sove Yo</h2>
+<div id="savedFlyers" class="grid"></div>
+</div>
+
+</main>
+
+<footer>
+© 2026 BSS1815 PRO-MAX DMP | Flyer Studio
+</footer>
+
+<script>
+
+let logoImage = null;
+
+const canvas = document.getElementById("flyerCanvas");
+const ctx = canvas.getContext("2d");
+
+document.getElementById("logoUpload").addEventListener("change", function(e){
+const file = e.target.files[0];
+if(!file) return;
+
+const reader = new FileReader();
+reader.onload = function(event){
+logoImage = new Image();
+logoImage.onload = drawFlyer;
+logoImage.src = event.target.result;
+};
+reader.readAsDataURL(file);
+});
+
+function drawFlyer(){
+
+const title = document.getElementById("flyerTitle").value || "GWO SWARE BSS1815";
+const subtitle = document.getElementById("flyerSubtitle").value || "";
+const date = document.getElementById("flyerDate").value || "";
+const location = document.getElementById("flyerLocation").value || "";
+const contact = document.getElementById("flyerContact").value || "";
+const bgColor = document.getElementById("bgColor").value;
+const accentColor = document.getElementById("accentColor").value;
+
+const w = canvas.width;
+const h = canvas.height;
+
+// Background
+ctx.fillStyle = bgColor;
+ctx.fillRect(0,0,w,h);
+
+// Border
+ctx.strokeStyle = accentColor;
+ctx.lineWidth = 10;
+ctx.strokeRect(15,15,w-30,h-30);
+
+// Top accent bar
+ctx.fillStyle = accentColor;
+ctx.fillRect(0,0,w,14);
+ctx.fillRect(0,h-14,w,14);
+
+// Logo (if uploaded)
+let contentTop = 120;
+
+if(logoImage){
+const logoSize = 160;
+ctx.drawImage(logoImage,(w-logoSize)/2,60,logoSize,logoSize);
+contentTop = 260;
+}
+
+// Title
+ctx.fillStyle = accentColor;
+ctx.font = "bold 56px Arial";
+ctx.textAlign = "center";
+wrapText(title, w/2, contentTop, w-100, 60);
+
+// Subtitle
+ctx.fillStyle = "#ffffff";
+ctx.font = "32px Arial";
+ctx.fillText(subtitle, w/2, contentTop + 90);
+
+// Divider
+ctx.strokeStyle = accentColor;
+ctx.lineWidth = 3;
+ctx.beginPath();
+ctx.moveTo(100, contentTop + 130);
+ctx.lineTo(w-100, contentTop + 130);
+ctx.stroke();
+
+// Date
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 34px Arial";
+ctx.fillText(date, w/2, contentTop + 200);
+
+// Location
+ctx.font = "28px Arial";
+ctx.fillStyle = "#ffd2a1";
+ctx.fillText(location, w/2, contentTop + 245);
+
+// Contact
+ctx.fillStyle = accentColor;
+ctx.font = "bold 26px Arial";
+ctx.fillText(contact, w/2, h - 100);
+
+// Footer brand
+ctx.fillStyle = "#ffffff";
+ctx.font = "18px Arial";
+ctx.fillText("BSS1815 PRO-MAX DMP · DEVAN DEVAN NÈT", w/2, h - 50);
+
+}
+
+function wrapText(text, x, y, maxWidth, lineHeight){
+const words = text.split(" ");
+let line = "";
+let currentY = y;
+
+for(let n=0; n<words.length; n++){
+const testLine = line + words[n] + " ";
+const metrics = ctx.measureText(testLine);
+
+if(metrics.width > maxWidth && n > 0){
+ctx.fillText(line, x, currentY);
+line = words[n] + " ";
+currentY += lineHeight;
+}else{
+line = testLine;
+}
+}
+
+ctx.fillText(line, x, currentY);
+}
+
+function saveFlyer(){
+
+drawFlyer();
+
+const dataUrl = canvas.toDataURL("image/png");
+
+let flyers = JSON.parse(localStorage.getItem("bss1815_flyers")) || [];
+
+flyers.unshift({
+image: dataUrl,
+title: document.getElementById("flyerTitle").value,
+date: new Date().toLocaleString()
+});
+
+localStorage.setItem("bss1815_flyers", JSON.stringify(flyers));
+
+renderSavedFlyers();
+
+}
+
+function downloadFlyer(){
+
+drawFlyer();
+
+const link = document.createElement("a");
+link.download = "flyer-bss1815.png";
+link.href = canvas.toDataURL("image/png");
+link.click();
+
+}
+
+function renderSavedFlyers(){
+
+const container = document.getElementById("savedFlyers");
+const flyers = JSON.parse(localStorage.getItem("bss1815_flyers")) || [];
+
+container.innerHTML = "";
+
+flyers.forEach((f, index) => {
+const div = document.createElement("div");
+div.className = "saved-flyer";
+div.innerHTML = `
+<img src="${f.image}" alt="${f.title}">
+<div>${f.title}</div>
+<button onclick="downloadSaved(${index})">⬇ Telechaje</button>
+<button onclick="deleteSaved(${index})">🗑 Efase</button>
+`;
+container.appendChild(div);
+});
+
+}
+
+function downloadSaved(index){
+const flyers = JSON.parse(localStorage.getItem("bss1815_flyers")) || [];
+const f = flyers[index];
+const link = document.createElement("a");
+link.download = "flyer-bss1815.png";
+link.href = f.image;
+link.click();
+}
+
+function deleteSaved(index){
+let flyers = JSON.parse(localStorage.getItem("bss1815_flyers")) || [];
+flyers.splice(index,1);
+localStorage.setItem("bss1815_flyers", JSON.stringify(flyers));
+renderSavedFlyers();
+}
+
+drawFlyer();
+renderSavedFlyers();
+
+</script>
+
+</body>
+</html>
