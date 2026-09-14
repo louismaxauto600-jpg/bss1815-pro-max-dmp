@@ -1,0 +1,164 @@
+<!-- FILE: modules/registry/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Registry | BSS1815 PRO-MAX DMP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
+header{text-align:center;padding:40px 20px;background:#000;border-bottom:3px solid #ff7a00}
+header h1{font-size:45px;color:#ff7a00}
+header p{color:#ffb366;margin-top:10px}
+.back-btn{display:inline-block;margin-top:14px;color:#fff3e6;text-decoration:none;border:1px solid #ff7a00;padding:9px 14px;border-radius:30px;font-weight:bold}
+.back-btn:hover{background:#ff7a00;color:#000}
+main{width:min(1200px,95%);margin:30px auto}
+.card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
+.card h2{color:#ff7a00;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+button:hover{background:#ff8c1a}
+table{width:100%;border-collapse:collapse;margin-top:18px;background:#000;border-radius:12px;overflow:hidden}
+th,td{border:1px solid #ff7a00;padding:10px;text-align:left}
+th{background:#ff7a00;color:#000}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.stat{border:1px solid #ff7a00;border-radius:14px;padding:16px;background:#000;text-align:center}
+.stat strong{display:block;color:#ff7a00;font-size:26px}
+footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
+</style>
+</head>
+<body>
+
+<header>
+<h1>DIGITAL REGISTRY</h1>
+<p>BSS1815 PRO-MAX DMP</p>
+<p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+<a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+</header>
+
+<main>
+
+<div class="card">
+<h2>Estatistik Rejis</h2>
+<div class="stats">
+<div class="stat"><strong id="totalAll">0</strong>Total</div>
+<div class="stat"><strong id="totalMember">0</strong>Manm</div>
+<div class="stat"><strong id="totalMusician">0</strong>Mizisyen</div>
+<div class="stat"><strong id="totalFan">0</strong>Fanatik</div>
+<div class="stat"><strong id="totalMerchant">0</strong>Machann</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Anrejistre Nouvo Antre</h2>
+<div class="grid">
+<div>
+<label>Non Konplè</label>
+<input id="regName" type="text" placeholder="Non konplè">
+</div>
+<div>
+<label>Kategori</label>
+<select id="regCategory">
+<option>Manm</option>
+<option>Mizisyen</option>
+<option>Fanatik</option>
+<option>Machann</option>
+</select>
+</div>
+<div>
+<label>Telefòn</label>
+<input id="regPhone" type="text" placeholder="Telefòn">
+</div>
+<div>
+<label>Kote</label>
+<input id="regLocation" type="text" placeholder="Vil / Peyi">
+</div>
+<div>
+<label>ID Rejis</label>
+<input id="regId" type="text" placeholder="Otomatik si vid">
+</div>
+</div>
+<button onclick="addRegistry()">Anrejistre</button>
+</div>
+
+<div class="card">
+<h2>Lis Rejis</h2>
+<input id="searchInput" type="text" placeholder="Chèche pa non, telefòn, kategori..." style="margin-bottom:14px" onkeyup="renderRegistry()">
+<table>
+<thead><tr><th>ID</th><th>Non</th><th>Kategori</th><th>Telefòn</th><th>Kote</th><th></th></tr></thead>
+<tbody id="registryTable"></tbody>
+</table>
+</div>
+
+</main>
+
+<footer>© 2026 BSS1815 PRO-MAX DMP | Digital Registry</footer>
+
+<script>
+let registry = JSON.parse(localStorage.getItem("bss1815_registry")) || [];
+
+function save(){ localStorage.setItem("bss1815_registry", JSON.stringify(registry)); }
+
+function addRegistry(){
+const name = document.getElementById("regName").value.trim();
+const category = document.getElementById("regCategory").value;
+const phone = document.getElementById("regPhone").value.trim();
+const location = document.getElementById("regLocation").value.trim();
+let id = document.getElementById("regId").value.trim();
+
+if(!name){ alert("Non obligatwa."); return; }
+if(!id){ id = "BSS-" + Date.now().toString().slice(-6); }
+
+registry.unshift({id,name,category,phone,location});
+save();
+
+document.getElementById("regName").value="";
+document.getElementById("regPhone").value="";
+document.getElementById("regLocation").value="";
+document.getElementById("regId").value="";
+
+render();
+}
+
+function deleteEntry(index){
+registry.splice(index,1);
+save();
+render();
+}
+
+function renderRegistry(){
+const tbody = document.getElementById("registryTable");
+const search = document.getElementById("searchInput").value.toLowerCase();
+tbody.innerHTML = "";
+
+const filtered = registry.filter(r => Object.values(r).join(" ").toLowerCase().includes(search));
+
+filtered.forEach((r) => {
+const realIndex = registry.indexOf(r);
+const row = document.createElement("tr");
+row.innerHTML = `<td>${r.id}</td><td>${r.name}</td><td>${r.category}</td><td>${r.phone}</td><td>${r.location}</td><td><button onclick="deleteEntry(${realIndex})">🗑</button></td>`;
+tbody.appendChild(row);
+});
+}
+
+function updateStats(){
+document.getElementById("totalAll").textContent = registry.length;
+document.getElementById("totalMember").textContent = registry.filter(r=>r.category==="Manm").length;
+document.getElementById("totalMusician").textContent = registry.filter(r=>r.category==="Mizisyen").length;
+document.getElementById("totalFan").textContent = registry.filter(r=>r.category==="Fanatik").length;
+document.getElementById("totalMerchant").textContent = registry.filter(r=>r.category==="Machann").length;
+}
+
+function render(){
+renderRegistry();
+updateStats();
+}
+
+render();
+</script>
+
+</body>
+</html>
