@@ -1,0 +1,145 @@
+<!-- FILE: modules/donations/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Center | BSS1815 PRO-MAX DMP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
+header{text-align:center;padding:40px 20px;background:#000;border-bottom:3px solid #ff7a00}
+header h1{font-size:45px;color:#ff7a00}
+header p{color:#ffb366;margin-top:10px}
+.back-btn{display:inline-block;margin-top:14px;color:#fff3e6;text-decoration:none;border:1px solid #ff7a00;padding:9px 14px;border-radius:30px;font-weight:bold}
+.back-btn:hover{background:#ff7a00;color:#000}
+main{width:min(1200px,95%);margin:30px auto}
+.card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
+.card h2{color:#ff7a00;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+button:hover{background:#ff8c1a}
+table{width:100%;border-collapse:collapse;margin-top:18px;background:#000;border-radius:12px;overflow:hidden}
+th,td{border:1px solid #ff7a00;padding:10px;text-align:left}
+th{background:#ff7a00;color:#000}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat{border:1px solid #ff7a00;border-radius:14px;padding:16px;background:#000;text-align:center}
+.stat strong{display:block;color:#ff7a00;font-size:26px}
+footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
+</style>
+</head>
+<body>
+
+<header>
+<h1>DONATION CENTER</h1>
+<p>BSS1815 PRO-MAX DMP</p>
+<p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+<a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+</header>
+
+<main>
+
+<div class="card">
+<h2>Rezime</h2>
+<div class="stats">
+<div class="stat"><strong id="totalDonations">$0.00</strong>Total Kontribisyon</div>
+<div class="stat"><strong id="totalDonors">0</strong>Donatè</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Anrejistre Kontribisyon</h2>
+<div class="grid">
+<div>
+<label>Non Donatè</label>
+<input id="donorName" type="text" placeholder="Non konplè">
+</div>
+<div>
+<label>Montan (USD)</label>
+<input id="donorAmount" type="number" step="0.01" placeholder="0.00">
+</div>
+<div>
+<label>Objektif / Rezon</label>
+<input id="donorPurpose" type="text" placeholder="Egzanp: Konstriksyon, Evènman...">
+</div>
+<div>
+<label>Metòd Peman</label>
+<select id="donorMethod">
+<option>Kach</option>
+<option>WhatsApp / Zelle</option>
+<option>Chèk</option>
+<option>Kat Kredi</option>
+<option>Lòt</option>
+</select>
+</div>
+</div>
+<button onclick="addDonation()">Anrejistre Kontribisyon</button>
+</div>
+
+<div class="card">
+<h2>Istwa Kontribisyon</h2>
+<table>
+<thead><tr><th>Donatè</th><th>Montan</th><th>Rezon</th><th>Metòd</th><th>Dat</th><th></th></tr></thead>
+<tbody id="donationsTable"></tbody>
+</table>
+</div>
+
+</main>
+
+<footer>© 2026 BSS1815 PRO-MAX DMP | Donation Center</footer>
+
+<script>
+let donations = JSON.parse(localStorage.getItem("bss1815_donations")) || [];
+
+function save(){ localStorage.setItem("bss1815_donations", JSON.stringify(donations)); }
+
+function addDonation(){
+const name = document.getElementById("donorName").value.trim();
+const amount = parseFloat(document.getElementById("donorAmount").value);
+const purpose = document.getElementById("donorPurpose").value.trim();
+const method = document.getElementById("donorMethod").value;
+
+if(!name || isNaN(amount)){ alert("Non ak Montan obligatwa."); return; }
+
+donations.unshift({name,amount,purpose,method,date:new Date().toLocaleString()});
+save();
+
+document.getElementById("donorName").value="";
+document.getElementById("donorAmount").value="";
+document.getElementById("donorPurpose").value="";
+
+render();
+}
+
+function deleteDonation(index){
+donations.splice(index,1);
+save();
+render();
+}
+
+function render(){
+const tbody = document.getElementById("donationsTable");
+tbody.innerHTML = "";
+
+let total = 0;
+const donorSet = new Set();
+
+donations.forEach((d,index) => {
+total += d.amount;
+donorSet.add(d.name);
+const row = document.createElement("tr");
+row.innerHTML = `<td>${d.name}</td><td>$${d.amount.toFixed(2)}</td><td>${d.purpose}</td><td>${d.method}</td><td>${d.date}</td><td><button onclick="deleteDonation(${index})">🗑</button></td>`;
+tbody.appendChild(row);
+});
+
+document.getElementById("totalDonations").textContent = "$" + total.toFixed(2);
+document.getElementById("totalDonors").textContent = donorSet.size;
+}
+
+render();
+</script>
+
+</body>
+</html>
