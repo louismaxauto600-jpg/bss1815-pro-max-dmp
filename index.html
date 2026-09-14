@@ -1,10 +1,10 @@
-<!-- FILE: modules/reports/index.html -->
+<!-- FILE: modules/help-desk/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reports & Analytics | BSS1815 PRO-MAX DMP</title>
+<title>Help Desk | BSS1815 PRO-MAX DMP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
@@ -16,19 +16,24 @@ header p{color:#ffb366;margin-top:10px}
 main{width:min(1200px,95%);margin:30px auto}
 .card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
 .card h2{color:#ff7a00;margin-bottom:15px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-.stat{border:1px solid #ff7a00;border-radius:14px;padding:18px;background:#000;text-align:center}
-.stat strong{display:block;color:#ff7a00;font-size:30px}
-.stat span{color:#ffd2a1;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+textarea{min-height:100px}
 button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
 button:hover{background:#ff8c1a}
+.ticket{background:#000;border:1px solid #ff7a00;border-radius:12px;padding:16px;margin-top:14px}
+.status-badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.status-open{background:#ff7a00;color:#000}
+.status-progress{background:#ffd700;color:#000}
+.status-closed{background:#4CAF50;color:#000}
 footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
 </style>
 </head>
 <body>
 
 <header>
-<h1>REPORTS & ANALYTICS</h1>
+<h1>HELP DESK</h1>
 <p>BSS1815 PRO-MAX DMP</p>
 <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
 <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
@@ -37,60 +42,110 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 <main>
 
 <div class="card">
-<h2>Rezime Jeneral Platfòm nan</h2>
-<div class="stats" id="statsGrid"></div>
-<button onclick="refreshStats()">🔄 Rafrechi Estatistik</button>
+<h2>Kreye Tikè Sipò</h2>
+<div class="grid">
+<div>
+<label>Non</label>
+<input id="ticketName" type="text" placeholder="Non ou">
+</div>
+<div>
+<label>Kategori</label>
+<select id="ticketCategory">
+<option>Teknik</option>
+<option>Kont/Aksè</option>
+<option>Peman/Donasyon</option>
+<option>Lòt</option>
+</select>
+</div>
+</div>
+<label>Deskripsyon Pwoblèm nan</label>
+<textarea id="ticketDescription" placeholder="Eksplike pwoblèm ou an..."></textarea>
+<button onclick="createTicket()">🎫 Soumèt Tikè</button>
+</div>
+
+<div class="card">
+<h2>Tikè Yo</h2>
+<div id="ticketsList"></div>
 </div>
 
 </main>
 
-<footer>© 2026 BSS1815 PRO-MAX DMP | Reports & Analytics</footer>
+<footer>© 2026 BSS1815 PRO-MAX DMP | Help Desk</footer>
 
 <script>
-function count(key){
-try{
-const data = JSON.parse(localStorage.getItem(key)) || [];
-return Array.isArray(data) ? data.length : 0;
-}catch(e){ return 0; }
+let tickets = JSON.parse(localStorage.getItem("bss1815_tickets")) || [];
+
+function save(){ localStorage.setItem("bss1815_tickets", JSON.stringify(tickets)); }
+
+function createTicket(){
+const name = document.getElementById("ticketName").value.trim();
+const category = document.getElementById("ticketCategory").value;
+const description = document.getElementById("ticketDescription").value.trim();
+
+if(!name || !description){ alert("Non ak Deskripsyon obligatwa."); return; }
+
+const id = "TCK-" + Date.now().toString().slice(-6);
+tickets.unshift({id,name,category,description,status:"open",date:new Date().toLocaleString()});
+save();
+
+document.getElementById("ticketName").value="";
+document.getElementById("ticketDescription").value="";
+
+render();
 }
 
-function sumAmount(key, field, filterFn){
-try{
-const data = JSON.parse(localStorage.getItem(key)) || [];
-return data.filter(filterFn || (()=>true)).reduce((sum,item)=>sum+(item[field]||0),0);
-}catch(e){ return 0; }
+function updateStatus(index, status){
+tickets[index].status = status;
+save();
+render();
 }
 
-function refreshStats(){
-const stats = [
-{label:"Kontak CRM", value: count("bss1815_crm_contacts")},
-{label:"Antre Rejis Dijital", value: count("bss1815_registry")},
-{label:"Evènman Planifye", value: count("bss1815_events")},
-{label:"Anons Pibliye", value: count("bss1815_announcements")},
-{label:"Kominikasyon Pibliye", value: count("bss1815_communications")},
-{label:"Kontribisyon Donasyon", value: count("bss1815_donations")},
-{label:"Total Donasyon", value: "$" + sumAmount("bss1815_donations","amount").toFixed(2)},
-{label:"Check-In Prezans", value: count("bss1815_attendance")},
-{label:"Sètifika Emèt", value: count("bss1815_certificates")},
-{label:"Volontè Anrejistre", value: count("bss1815_volunteers")},
-{label:"Balans Finansye", value: "$" + (sumAmount("bss1815_finance","amount",t=>t.type==="income") - sumAmount("bss1815_finance","amount",t=>t.type==="expense")).toFixed(2)},
-{label:"Dokiman Achive", value: count("bss1815_documents")},
-{label:"Foto/Medya", value: count("bss1815_media")},
-{label:"Flyer Kreye", value: count("bss1815_flyers")},
-];
+function deleteTicket(index){
+tickets.splice(index,1);
+save();
+render();
+}
 
-const grid = document.getElementById("statsGrid");
-grid.innerHTML = "";
+function statusClass(status){
+if(status==="open") return "status-open";
+if(status==="progress") return "status-progress";
+return "status-closed";
+}
 
-stats.forEach(s => {
+function statusLabel(status){
+if(status==="open") return "Louvri";
+if(status==="progress") return "An Kou";
+return "Fèmen";
+}
+
+function render(){
+const container = document.getElementById("ticketsList");
+container.innerHTML = "";
+
+tickets.forEach((t,index) => {
 const div = document.createElement("div");
-div.className = "stat";
-div.innerHTML = `<strong>${s.value}</strong><span>${s.label}</span>`;
-grid.appendChild(div);
+div.className = "ticket";
+div.innerHTML = `
+<span class="status-badge ${statusClass(t.status)}">${statusLabel(t.status)}</span>
+<h3>${t.id} — ${t.category}</h3>
+<p style="color:#ffd2a1;margin:6px 0">${t.name} · ${t.date}</p>
+<p>${t.description}</p>
+<div style="margin-top:10px">
+<button onclick="updateStatus(${index},'open')">Louvri</button>
+<button onclick="updateStatus(${index},'progress')">An Kou</button>
+<button onclick="updateStatus(${index},'closed')">Fèmen</button>
+<button onclick="deleteTicket(${index})">🗑</button>
+</div>
+`;
+container.appendChild(div);
 });
+
+if(tickets.length === 0){
+container.innerHTML = "<p style='color:#ffd2a1'>Pa gen tikè pou kounye a.</p>";
+}
 }
 
-refreshStats();
+render();
 </script>
 
 </body>
