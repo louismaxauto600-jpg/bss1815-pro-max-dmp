@@ -1,10 +1,10 @@
-<!-- FILE: modules/help-desk/index.html -->
+<!-- FILE: modules/live-streaming/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Help Desk | BSS1815 PRO-MAX DMP</title>
+<title>Live Streaming | BSS1815 PRO-MAX DMP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
@@ -16,25 +16,21 @@ header p{color:#ffb366;margin-top:10px}
 main{width:min(1200px,95%);margin:30px auto}
 .card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
 .card h2{color:#ff7a00;margin-bottom:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
-input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
-textarea{min-height:100px}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
 button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
 button:hover{background:#ff8c1a}
-.ticket{background:#000;border:1px solid #ff7a00;border-radius:12px;padding:16px;margin-top:14px}
-.status-badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
-.status-open{background:#ff7a00;color:#000}
-.status-progress{background:#ffd700;color:#000}
-.status-closed{background:#4CAF50;color:#000}
+.player-wrap{position:relative;padding-top:56.25%;background:#000;border:1px solid #ff7a00;border-radius:12px;overflow:hidden}
+.player-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.schedule-item{background:#000;border:1px solid #ff7a00;border-radius:10px;padding:14px;margin-top:12px}
 footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
 </style>
 </head>
 <body>
 
 <header>
-<h1>HELP DESK</h1>
-<p>BSS1815 PRO-MAX DMP</p>
+<h1>LIVE STREAMING</h1>
+<p>BSS1815 PRO-MAX DMP · PRO-MAX FM</p>
 <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
 <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
 </header>
@@ -42,110 +38,82 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 <main>
 
 <div class="card">
-<h2>Kreye Tikè Sipò</h2>
-<div class="grid">
-<div>
-<label>Non</label>
-<input id="ticketName" type="text" placeholder="Non ou">
+<h2>Player Live</h2>
+<div class="player-wrap" id="playerWrap">
+<iframe id="liveFrame" src="about:blank" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
-<div>
-<label>Kategori</label>
-<select id="ticketCategory">
-<option>Teknik</option>
-<option>Kont/Aksè</option>
-<option>Peman/Donasyon</option>
-<option>Lòt</option>
-</select>
-</div>
-</div>
-<label>Deskripsyon Pwoblèm nan</label>
-<textarea id="ticketDescription" placeholder="Eksplike pwoblèm ou an..."></textarea>
-<button onclick="createTicket()">🎫 Soumèt Tikè</button>
+<label>Lyen Live (YouTube embed, Facebook Live, elatriye)</label>
+<input id="streamUrl" type="text" placeholder="Kole lyen embed live la isit">
+<button onclick="loadStream()">▶ Chaje Live</button>
 </div>
 
 <div class="card">
-<h2>Tikè Yo</h2>
-<div id="ticketsList"></div>
+<h2>Pwograme Pwochen Emisyon</h2>
+<label>Tit Pwogram</label>
+<input id="schedTitle" type="text" placeholder="Egzanp: PRO-MAX FM Morning Show">
+<label>Dat & Lè</label>
+<input id="schedDatetime" type="text" placeholder="Egzanp: Lendi 21 Sektanm, 8:00 AM">
+<button onclick="addSchedule()">📅 Ajoute nan Orè</button>
+
+<div id="scheduleList"></div>
 </div>
 
 </main>
 
-<footer>© 2026 BSS1815 PRO-MAX DMP | Help Desk</footer>
+<footer>© 2026 BSS1815 PRO-MAX DMP | Live Streaming</footer>
 
 <script>
-let tickets = JSON.parse(localStorage.getItem("bss1815_tickets")) || [];
-
-function save(){ localStorage.setItem("bss1815_tickets", JSON.stringify(tickets)); }
-
-function createTicket(){
-const name = document.getElementById("ticketName").value.trim();
-const category = document.getElementById("ticketCategory").value;
-const description = document.getElementById("ticketDescription").value.trim();
-
-if(!name || !description){ alert("Non ak Deskripsyon obligatwa."); return; }
-
-const id = "TCK-" + Date.now().toString().slice(-6);
-tickets.unshift({id,name,category,description,status:"open",date:new Date().toLocaleString()});
-save();
-
-document.getElementById("ticketName").value="";
-document.getElementById("ticketDescription").value="";
-
-render();
+function loadStream(){
+const url = document.getElementById("streamUrl").value.trim();
+if(!url){ alert("Kole yon lyen embed."); return; }
+document.getElementById("liveFrame").src = url;
+localStorage.setItem("bss1815_stream_url", url);
 }
 
-function updateStatus(index, status){
-tickets[index].status = status;
-save();
-render();
+let schedule = JSON.parse(localStorage.getItem("bss1815_stream_schedule")) || [];
+
+function saveSchedule(){ localStorage.setItem("bss1815_stream_schedule", JSON.stringify(schedule)); }
+
+function addSchedule(){
+const title = document.getElementById("schedTitle").value.trim();
+const datetime = document.getElementById("schedDatetime").value.trim();
+
+if(!title || !datetime){ alert("Tit ak Dat/Lè obligatwa."); return; }
+
+schedule.unshift({title,datetime});
+saveSchedule();
+
+document.getElementById("schedTitle").value="";
+document.getElementById("schedDatetime").value="";
+
+renderSchedule();
 }
 
-function deleteTicket(index){
-tickets.splice(index,1);
-save();
-render();
+function removeSchedule(index){
+schedule.splice(index,1);
+saveSchedule();
+renderSchedule();
 }
 
-function statusClass(status){
-if(status==="open") return "status-open";
-if(status==="progress") return "status-progress";
-return "status-closed";
-}
-
-function statusLabel(status){
-if(status==="open") return "Louvri";
-if(status==="progress") return "An Kou";
-return "Fèmen";
-}
-
-function render(){
-const container = document.getElementById("ticketsList");
+function renderSchedule(){
+const container = document.getElementById("scheduleList");
 container.innerHTML = "";
 
-tickets.forEach((t,index) => {
+schedule.forEach((s,index) => {
 const div = document.createElement("div");
-div.className = "ticket";
-div.innerHTML = `
-<span class="status-badge ${statusClass(t.status)}">${statusLabel(t.status)}</span>
-<h3>${t.id} — ${t.category}</h3>
-<p style="color:#ffd2a1;margin:6px 0">${t.name} · ${t.date}</p>
-<p>${t.description}</p>
-<div style="margin-top:10px">
-<button onclick="updateStatus(${index},'open')">Louvri</button>
-<button onclick="updateStatus(${index},'progress')">An Kou</button>
-<button onclick="updateStatus(${index},'closed')">Fèmen</button>
-<button onclick="deleteTicket(${index})">🗑</button>
-</div>
-`;
+div.className = "schedule-item";
+div.innerHTML = `<strong>${s.title}</strong><br><span style="color:#ffd2a1">${s.datetime}</span><br><button onclick="removeSchedule(${index})">🗑 Efase</button>`;
 container.appendChild(div);
 });
-
-if(tickets.length === 0){
-container.innerHTML = "<p style='color:#ffd2a1'>Pa gen tikè pou kounye a.</p>";
-}
 }
 
-render();
+const savedUrl = localStorage.getItem("bss1815_stream_url");
+if(savedUrl){
+document.getElementById("streamUrl").value = savedUrl;
+document.getElementById("liveFrame").src = savedUrl;
+}
+
+renderSchedule();
 </script>
 
 </body>
