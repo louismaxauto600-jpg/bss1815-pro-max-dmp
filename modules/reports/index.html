@@ -1,0 +1,97 @@
+<!-- FILE: modules/reports/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports & Analytics | BSS1815 PRO-MAX DMP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
+header{text-align:center;padding:40px 20px;background:#000;border-bottom:3px solid #ff7a00}
+header h1{font-size:45px;color:#ff7a00}
+header p{color:#ffb366;margin-top:10px}
+.back-btn{display:inline-block;margin-top:14px;color:#fff3e6;text-decoration:none;border:1px solid #ff7a00;padding:9px 14px;border-radius:30px;font-weight:bold}
+.back-btn:hover{background:#ff7a00;color:#000}
+main{width:min(1200px,95%);margin:30px auto}
+.card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
+.card h2{color:#ff7a00;margin-bottom:15px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat{border:1px solid #ff7a00;border-radius:14px;padding:18px;background:#000;text-align:center}
+.stat strong{display:block;color:#ff7a00;font-size:30px}
+.stat span{color:#ffd2a1;font-size:13px}
+button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+button:hover{background:#ff8c1a}
+footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
+</style>
+</head>
+<body>
+
+<header>
+<h1>REPORTS & ANALYTICS</h1>
+<p>BSS1815 PRO-MAX DMP</p>
+<p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+<a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+</header>
+
+<main>
+
+<div class="card">
+<h2>Rezime Jeneral Platfòm nan</h2>
+<div class="stats" id="statsGrid"></div>
+<button onclick="refreshStats()">🔄 Rafrechi Estatistik</button>
+</div>
+
+</main>
+
+<footer>© 2026 BSS1815 PRO-MAX DMP | Reports & Analytics</footer>
+
+<script>
+function count(key){
+try{
+const data = JSON.parse(localStorage.getItem(key)) || [];
+return Array.isArray(data) ? data.length : 0;
+}catch(e){ return 0; }
+}
+
+function sumAmount(key, field, filterFn){
+try{
+const data = JSON.parse(localStorage.getItem(key)) || [];
+return data.filter(filterFn || (()=>true)).reduce((sum,item)=>sum+(item[field]||0),0);
+}catch(e){ return 0; }
+}
+
+function refreshStats(){
+const stats = [
+{label:"Kontak CRM", value: count("bss1815_crm_contacts")},
+{label:"Antre Rejis Dijital", value: count("bss1815_registry")},
+{label:"Evènman Planifye", value: count("bss1815_events")},
+{label:"Anons Pibliye", value: count("bss1815_announcements")},
+{label:"Kominikasyon Pibliye", value: count("bss1815_communications")},
+{label:"Kontribisyon Donasyon", value: count("bss1815_donations")},
+{label:"Total Donasyon", value: "$" + sumAmount("bss1815_donations","amount").toFixed(2)},
+{label:"Check-In Prezans", value: count("bss1815_attendance")},
+{label:"Sètifika Emèt", value: count("bss1815_certificates")},
+{label:"Volontè Anrejistre", value: count("bss1815_volunteers")},
+{label:"Balans Finansye", value: "$" + (sumAmount("bss1815_finance","amount",t=>t.type==="income") - sumAmount("bss1815_finance","amount",t=>t.type==="expense")).toFixed(2)},
+{label:"Dokiman Achive", value: count("bss1815_documents")},
+{label:"Foto/Medya", value: count("bss1815_media")},
+{label:"Flyer Kreye", value: count("bss1815_flyers")},
+];
+
+const grid = document.getElementById("statsGrid");
+grid.innerHTML = "";
+
+stats.forEach(s => {
+const div = document.createElement("div");
+div.className = "stat";
+div.innerHTML = `<strong>${s.value}</strong><span>${s.label}</span>`;
+grid.appendChild(div);
+});
+}
+
+refreshStats();
+</script>
+
+</body>
+</html>
