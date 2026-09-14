@@ -1,0 +1,127 @@
+<!-- FILE: modules/attendance/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance | BSS1815 PRO-MAX DMP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
+header{text-align:center;padding:40px 20px;background:#000;border-bottom:3px solid #ff7a00}
+header h1{font-size:45px;color:#ff7a00}
+header p{color:#ffb366;margin-top:10px}
+.back-btn{display:inline-block;margin-top:14px;color:#fff3e6;text-decoration:none;border:1px solid #ff7a00;padding:9px 14px;border-radius:30px;font-weight:bold}
+.back-btn:hover{background:#ff7a00;color:#000}
+main{width:min(1200px,95%);margin:30px auto}
+.card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
+.card h2{color:#ff7a00;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+button:hover{background:#ff8c1a}
+table{width:100%;border-collapse:collapse;margin-top:18px;background:#000;border-radius:12px;overflow:hidden}
+th,td{border:1px solid #ff7a00;padding:10px;text-align:left}
+th{background:#ff7a00;color:#000}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.stat{border:1px solid #ff7a00;border-radius:14px;padding:16px;background:#000;text-align:center}
+.stat strong{display:block;color:#ff7a00;font-size:26px}
+footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
+</style>
+</head>
+<body>
+
+<header>
+<h1>ATTENDANCE</h1>
+<p>BSS1815 PRO-MAX DMP</p>
+<p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+<a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+</header>
+
+<main>
+
+<div class="card">
+<h2>Rezime</h2>
+<div class="stats">
+<div class="stat"><strong id="totalCheckins">0</strong>Total Check-In</div>
+<div class="stat"><strong id="totalEvents">0</strong>Evènman Diferan</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Fè Check-In</h2>
+<div class="grid">
+<div>
+<label>Non Patisipan</label>
+<input id="attName" type="text" placeholder="Non konplè">
+</div>
+<div>
+<label>Evènman / Reyinyon</label>
+<input id="attEvent" type="text" placeholder="Egzanp: Reyinyon Jeneral Sektanm">
+</div>
+</div>
+<button onclick="checkIn()">✅ Check-In</button>
+</div>
+
+<div class="card">
+<h2>Istwa Prezans</h2>
+<input id="searchInput" type="text" placeholder="Chèche pa non oswa evènman..." style="margin-bottom:14px" onkeyup="render()">
+<table>
+<thead><tr><th>Non</th><th>Evènman</th><th>Lè</th><th></th></tr></thead>
+<tbody id="attendanceTable"></tbody>
+</table>
+</div>
+
+</main>
+
+<footer>© 2026 BSS1815 PRO-MAX DMP | Attendance</footer>
+
+<script>
+let attendance = JSON.parse(localStorage.getItem("bss1815_attendance")) || [];
+
+function save(){ localStorage.setItem("bss1815_attendance", JSON.stringify(attendance)); }
+
+function checkIn(){
+const name = document.getElementById("attName").value.trim();
+const eventName = document.getElementById("attEvent").value.trim();
+
+if(!name || !eventName){ alert("Non ak Evènman obligatwa."); return; }
+
+attendance.unshift({name,eventName,time:new Date().toLocaleString()});
+save();
+
+document.getElementById("attName").value="";
+
+render();
+}
+
+function deleteEntry(index){
+attendance.splice(index,1);
+save();
+render();
+}
+
+function render(){
+const tbody = document.getElementById("attendanceTable");
+const search = (document.getElementById("searchInput").value || "").toLowerCase();
+tbody.innerHTML = "";
+
+const filtered = attendance.filter(a => (a.name+" "+a.eventName).toLowerCase().includes(search));
+
+filtered.forEach((a) => {
+const realIndex = attendance.indexOf(a);
+const row = document.createElement("tr");
+row.innerHTML = `<td>${a.name}</td><td>${a.eventName}</td><td>${a.time}</td><td><button onclick="deleteEntry(${realIndex})">🗑</button></td>`;
+tbody.appendChild(row);
+});
+
+document.getElementById("totalCheckins").textContent = attendance.length;
+document.getElementById("totalEvents").textContent = new Set(attendance.map(a=>a.eventName)).size;
+}
+
+render();
+</script>
+
+</body>
+</html>
