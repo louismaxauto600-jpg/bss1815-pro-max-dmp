@@ -1,0 +1,152 @@
+<!-- FILE: modules/help-desk/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help Desk | BSS1815 PRO-MAX DMP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
+header{text-align:center;padding:40px 20px;background:#000;border-bottom:3px solid #ff7a00}
+header h1{font-size:45px;color:#ff7a00}
+header p{color:#ffb366;margin-top:10px}
+.back-btn{display:inline-block;margin-top:14px;color:#fff3e6;text-decoration:none;border:1px solid #ff7a00;padding:9px 14px;border-radius:30px;font-weight:bold}
+.back-btn:hover{background:#ff7a00;color:#000}
+main{width:min(1200px,95%);margin:30px auto}
+.card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
+.card h2{color:#ff7a00;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
+textarea{min-height:100px}
+button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+button:hover{background:#ff8c1a}
+.ticket{background:#000;border:1px solid #ff7a00;border-radius:12px;padding:16px;margin-top:14px}
+.status-badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.status-open{background:#ff7a00;color:#000}
+.status-progress{background:#ffd700;color:#000}
+.status-closed{background:#4CAF50;color:#000}
+footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
+</style>
+</head>
+<body>
+
+<header>
+<h1>HELP DESK</h1>
+<p>BSS1815 PRO-MAX DMP</p>
+<p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+<a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+</header>
+
+<main>
+
+<div class="card">
+<h2>Kreye Tikè Sipò</h2>
+<div class="grid">
+<div>
+<label>Non</label>
+<input id="ticketName" type="text" placeholder="Non ou">
+</div>
+<div>
+<label>Kategori</label>
+<select id="ticketCategory">
+<option>Teknik</option>
+<option>Kont/Aksè</option>
+<option>Peman/Donasyon</option>
+<option>Lòt</option>
+</select>
+</div>
+</div>
+<label>Deskripsyon Pwoblèm nan</label>
+<textarea id="ticketDescription" placeholder="Eksplike pwoblèm ou an..."></textarea>
+<button onclick="createTicket()">🎫 Soumèt Tikè</button>
+</div>
+
+<div class="card">
+<h2>Tikè Yo</h2>
+<div id="ticketsList"></div>
+</div>
+
+</main>
+
+<footer>© 2026 BSS1815 PRO-MAX DMP | Help Desk</footer>
+
+<script>
+let tickets = JSON.parse(localStorage.getItem("bss1815_tickets")) || [];
+
+function save(){ localStorage.setItem("bss1815_tickets", JSON.stringify(tickets)); }
+
+function createTicket(){
+const name = document.getElementById("ticketName").value.trim();
+const category = document.getElementById("ticketCategory").value;
+const description = document.getElementById("ticketDescription").value.trim();
+
+if(!name || !description){ alert("Non ak Deskripsyon obligatwa."); return; }
+
+const id = "TCK-" + Date.now().toString().slice(-6);
+tickets.unshift({id,name,category,description,status:"open",date:new Date().toLocaleString()});
+save();
+
+document.getElementById("ticketName").value="";
+document.getElementById("ticketDescription").value="";
+
+render();
+}
+
+function updateStatus(index, status){
+tickets[index].status = status;
+save();
+render();
+}
+
+function deleteTicket(index){
+tickets.splice(index,1);
+save();
+render();
+}
+
+function statusClass(status){
+if(status==="open") return "status-open";
+if(status==="progress") return "status-progress";
+return "status-closed";
+}
+
+function statusLabel(status){
+if(status==="open") return "Louvri";
+if(status==="progress") return "An Kou";
+return "Fèmen";
+}
+
+function render(){
+const container = document.getElementById("ticketsList");
+container.innerHTML = "";
+
+tickets.forEach((t,index) => {
+const div = document.createElement("div");
+div.className = "ticket";
+div.innerHTML = `
+<span class="status-badge ${statusClass(t.status)}">${statusLabel(t.status)}</span>
+<h3>${t.id} — ${t.category}</h3>
+<p style="color:#ffd2a1;margin:6px 0">${t.name} · ${t.date}</p>
+<p>${t.description}</p>
+<div style="margin-top:10px">
+<button onclick="updateStatus(${index},'open')">Louvri</button>
+<button onclick="updateStatus(${index},'progress')">An Kou</button>
+<button onclick="updateStatus(${index},'closed')">Fèmen</button>
+<button onclick="deleteTicket(${index})">🗑</button>
+</div>
+`;
+container.appendChild(div);
+});
+
+if(tickets.length === 0){
+container.innerHTML = "<p style='color:#ffd2a1'>Pa gen tikè pou kounye a.</p>";
+}
+}
+
+render();
+</script>
+
+</body>
+</html>
