@@ -1,0 +1,306 @@
+<!-- FILE: modules/communication/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communication Center | BSS1815 PRO-MAX DMP</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#000000,#ff6a00,#000000);
+color:#fff;
+min-height:100vh;
+}
+
+header{
+text-align:center;
+padding:40px 20px;
+background:#000;
+border-bottom:3px solid #ff7a00;
+}
+
+header h1{
+font-size:45px;
+color:#ff7a00;
+}
+
+header p{
+color:#ffb366;
+margin-top:10px;
+}
+
+main{
+width:min(1200px,95%);
+margin:30px auto;
+}
+
+.card{
+background:#111;
+border:2px solid #ff7a00;
+border-radius:15px;
+padding:20px;
+margin-bottom:25px;
+}
+
+.card h2{
+color:#ff7a00;
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-top:12px;
+margin-bottom:6px;
+font-weight:bold;
+color:#ffb366;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ff7a00;
+background:#000;
+color:#fff;
+}
+
+textarea{
+min-height:150px;
+}
+
+button{
+margin-top:15px;
+padding:12px 20px;
+background:#ff7a00;
+color:#000;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff8c1a;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.message-box{
+background:#000;
+border:1px solid #ff7a00;
+padding:15px;
+border-radius:10px;
+}
+
+.message-type{
+color:#ff7a00;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.back-btn{
+display:inline-block;
+margin-top:14px;
+color:#fff3e6;
+text-decoration:none;
+border:1px solid #ff7a00;
+padding:9px 14px;
+border-radius:30px;
+font-weight:bold;
+}
+
+.back-btn:hover{
+background:#ff7a00;
+color:#000;
+}
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:40px;
+border-top:3px solid #ff7a00;
+background:#000;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>COMMUNICATION CENTER</h1>
+<p>BSS1815 PRO-MAX DMP</p>
+<p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
+<a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
+</header>
+
+<main>
+
+<div class="card">
+
+<h2>Create Communication</h2>
+
+<label>Communication Type</label>
+<select id="messageType">
+<option>Official Notice</option>
+<option>Death Announcement</option>
+<option>Birthday Message</option>
+<option>Condolence Message</option>
+<option>Event Announcement</option>
+<option>Community Update</option>
+<option>Emergency Alert</option>
+<option>Congratulations</option>
+<option>Thank You Message</option>
+<option>PRO-MAX FM Announcement</option>
+</select>
+
+<label>Language</label>
+<select id="language">
+<option>Kreyòl</option>
+<option>English</option>
+<option>Français</option>
+</select>
+
+<label>Title</label>
+<input type="text" id="title" placeholder="Communication Title">
+
+<label>Message</label>
+<textarea id="message" placeholder="Write your communication here..."></textarea>
+
+<button onclick="publishMessage()">Publish Communication</button>
+
+</div>
+
+<div class="card">
+
+<h2>Published Communications</h2>
+
+<div id="communications" class="grid"></div>
+
+</div>
+
+</main>
+
+<footer>
+© 2026 BSS1815 PRO-MAX DMP | Communication Center
+</footer>
+
+<script>
+
+let communications =
+JSON.parse(localStorage.getItem("bss1815_communications")) || [];
+
+function publishMessage(){
+
+const type=document.getElementById("messageType").value;
+const language=document.getElementById("language").value;
+const title=document.getElementById("title").value;
+const message=document.getElementById("message").value;
+
+if(!title || !message){
+alert("Title and Message required.");
+return;
+}
+
+communications.unshift({
+type,
+language,
+title,
+message,
+date:new Date().toLocaleString()
+});
+
+localStorage.setItem(
+"bss1815_communications",
+JSON.stringify(communications)
+);
+
+document.getElementById("title").value="";
+document.getElementById("message").value="";
+
+renderCommunications();
+
+}
+
+function renderCommunications(){
+
+const container=document.getElementById("communications");
+
+container.innerHTML="";
+
+communications.forEach((item,index)=>{
+
+container.innerHTML += `
+<div class="message-box">
+
+<div class="message-type">${item.type}</div>
+
+<h3>${item.title}</h3>
+
+<p><strong>Language:</strong> ${item.language}</p>
+
+<p><strong>Date:</strong> ${item.date}</p>
+
+<p>${item.message}</p>
+
+<button onclick="shareCommunication(${index})">
+Share
+</button>
+
+</div>
+`;
+
+});
+
+}
+
+function shareCommunication(index){
+
+const item=communications[index];
+
+const text=
+`${item.type}
+
+${item.title}
+
+${item.message}
+
+BSS1815 PRO-MAX DMP
+DEVAN DEVAN NÈT. PARE POU DEMEN.`;
+
+if(navigator.share){
+
+navigator.share({
+title:item.title,
+text:text
+});
+
+}else{
+
+navigator.clipboard.writeText(text);
+
+alert("Communication copied.");
+
+}
+
+}
+
+renderCommunications();
+
+</script>
+
+</body>
+</html>
