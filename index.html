@@ -1,10 +1,10 @@
-<!-- FILE: modules/attendance/index.html -->
+<!-- FILE: modules/certificates/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Attendance | BSS1815 PRO-MAX DMP</title>
+<title>Certificate Center | BSS1815 PRO-MAX DMP</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#000,#ff6a00,#000);color:#fff;min-height:100vh}
@@ -14,26 +14,26 @@ header p{color:#ffb366;margin-top:10px}
 .back-btn{display:inline-block;margin-top:14px;color:#fff3e6;text-decoration:none;border:1px solid #ff7a00;padding:9px 14px;border-radius:30px;font-weight:bold}
 .back-btn:hover{background:#ff7a00;color:#000}
 main{width:min(1200px,95%);margin:30px auto}
+.layout{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:900px){.layout{grid-template-columns:1fr 1fr}}
 .card{background:#111;border:2px solid #ff7a00;border-radius:15px;padding:20px;margin-bottom:25px}
 .card h2{color:#ff7a00;margin-bottom:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 label{display:block;margin-top:12px;margin-bottom:6px;font-weight:bold;color:#ffb366}
 input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #ff7a00;background:#000;color:#fff}
-button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+button{margin-top:15px;padding:12px 20px;background:#ff7a00;color:#000;border:none;border-radius:10px;font-weight:bold;cursor:pointer;margin-right:8px}
 button:hover{background:#ff8c1a}
+.preview-wrap{display:flex;align-items:center;justify-content:center;background:#000;border:1px solid #ff7a00;border-radius:12px;padding:12px;overflow:auto}
+#certCanvas{max-width:100%;border-radius:6px}
 table{width:100%;border-collapse:collapse;margin-top:18px;background:#000;border-radius:12px;overflow:hidden}
 th,td{border:1px solid #ff7a00;padding:10px;text-align:left}
 th{background:#ff7a00;color:#000}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-.stat{border:1px solid #ff7a00;border-radius:14px;padding:16px;background:#000;text-align:center}
-.stat strong{display:block;color:#ff7a00;font-size:26px}
 footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a00;background:#000}
 </style>
 </head>
 <body>
 
 <header>
-<h1>ATTENDANCE</h1>
+<h1>CERTIFICATE CENTER</h1>
 <p>BSS1815 PRO-MAX DMP</p>
 <p><strong>DEVAN DEVAN NÈT. PARE POU DEMEN.</strong></p>
 <a class="back-btn" href="../../index.html">← Retounen nan Platfòm nan</a>
@@ -41,86 +41,151 @@ footer{text-align:center;padding:20px;margin-top:40px;border-top:3px solid #ff7a
 
 <main>
 
+<div class="layout">
+
 <div class="card">
-<h2>Rezime</h2>
-<div class="stats">
-<div class="stat"><strong id="totalCheckins">0</strong>Total Check-In</div>
-<div class="stat"><strong id="totalEvents">0</strong>Evènman Diferan</div>
-</div>
+<h2>Kreye Sètifika</h2>
+<label>Non Benefisyè</label>
+<input id="certName" type="text" placeholder="Non konplè" value="Non Benefisyè">
+<label>Rezon / Pwogram</label>
+<input id="certReason" type="text" placeholder="Egzanp: Konplete Fòmasyon AI" value="Konplete Fòmasyon">
+<label>Dat</label>
+<input id="certDate" type="text" placeholder="Egzanp: 13 Sektanm 2026" value="13 Sektanm 2026">
+<label>Siyati (Otorite)</label>
+<input id="certSignature" type="text" placeholder="Egzanp: Direktè BSS1815" value="Direktè BSS1815 PRO-MAX DMP">
+<button onclick="drawCert()">🎨 Jenere</button>
+<button onclick="issueCert()">🏆 Emèt & Sove</button>
+<button onclick="downloadCert()">⬇ Telechaje PNG</button>
 </div>
 
 <div class="card">
-<h2>Fè Check-In</h2>
-<div class="grid">
-<div>
-<label>Non Patisipan</label>
-<input id="attName" type="text" placeholder="Non konplè">
-</div>
-<div>
-<label>Evènman / Reyinyon</label>
-<input id="attEvent" type="text" placeholder="Egzanp: Reyinyon Jeneral Sektanm">
+<h2>Aperçu</h2>
+<div class="preview-wrap">
+<canvas id="certCanvas" width="1000" height="700"></canvas>
 </div>
 </div>
-<button onclick="checkIn()">✅ Check-In</button>
+
 </div>
 
 <div class="card">
-<h2>Istwa Prezans</h2>
-<input id="searchInput" type="text" placeholder="Chèche pa non oswa evènman..." style="margin-bottom:14px" onkeyup="render()">
+<h2>Verifikasyon & Rejis Sètifika</h2>
+<input id="verifyInput" type="text" placeholder="Tape ID sètifika pou verifye..." style="margin-bottom:14px" onkeyup="renderCerts()">
 <table>
-<thead><tr><th>Non</th><th>Evènman</th><th>Lè</th><th></th></tr></thead>
-<tbody id="attendanceTable"></tbody>
+<thead><tr><th>ID</th><th>Benefisyè</th><th>Rezon</th><th>Dat</th><th></th></tr></thead>
+<tbody id="certsTable"></tbody>
 </table>
 </div>
 
 </main>
 
-<footer>© 2026 BSS1815 PRO-MAX DMP | Attendance</footer>
+<footer>© 2026 BSS1815 PRO-MAX DMP | Certificate Center</footer>
 
 <script>
-let attendance = JSON.parse(localStorage.getItem("bss1815_attendance")) || [];
+const canvas = document.getElementById("certCanvas");
+const ctx = canvas.getContext("2d");
 
-function save(){ localStorage.setItem("bss1815_attendance", JSON.stringify(attendance)); }
+function drawCert(){
+const name = document.getElementById("certName").value || "Non Benefisyè";
+const reason = document.getElementById("certReason").value || "";
+const date = document.getElementById("certDate").value || "";
+const signature = document.getElementById("certSignature").value || "";
 
-function checkIn(){
-const name = document.getElementById("attName").value.trim();
-const eventName = document.getElementById("attEvent").value.trim();
+const w = canvas.width, h = canvas.height;
 
-if(!name || !eventName){ alert("Non ak Evènman obligatwa."); return; }
+ctx.fillStyle = "#0b0400";
+ctx.fillRect(0,0,w,h);
 
-attendance.unshift({name,eventName,time:new Date().toLocaleString()});
-save();
+ctx.strokeStyle = "#ff7900";
+ctx.lineWidth = 12;
+ctx.strokeRect(20,20,w-40,h-40);
+ctx.lineWidth = 3;
+ctx.strokeRect(40,40,w-80,h-80);
 
-document.getElementById("attName").value="";
+ctx.fillStyle = "#ff7900";
+ctx.font = "bold 26px Arial";
+ctx.textAlign = "center";
+ctx.fillText("BSS1815 PRO-MAX DMP", w/2, 100);
 
-render();
+ctx.font = "bold 52px Arial";
+ctx.fillText("SÈTIFIKA", w/2, 190);
+
+ctx.fillStyle = "#ffffff";
+ctx.font = "22px Arial";
+ctx.fillText("Sa a sètifye ke", w/2, 250);
+
+ctx.fillStyle = "#ff7900";
+ctx.font = "bold 44px Arial";
+ctx.fillText(name, w/2, 320);
+
+ctx.fillStyle = "#ffffff";
+ctx.font = "24px Arial";
+ctx.fillText(reason, w/2, 380);
+
+ctx.font = "20px Arial";
+ctx.fillStyle = "#ffd2a1";
+ctx.fillText(date, w/2, 430);
+
+ctx.textAlign = "left";
+ctx.fillStyle = "#ffffff";
+ctx.font = "18px Arial";
+ctx.fillText("_________________________", 120, 600);
+ctx.fillText(signature, 120, 630);
+
+ctx.textAlign = "right";
+ctx.fillText("ID: " + (window.currentCertId || "PENDING"), w-120, 630);
 }
 
-function deleteEntry(index){
-attendance.splice(index,1);
-save();
-render();
+function issueCert(){
+const name = document.getElementById("certName").value.trim();
+const reason = document.getElementById("certReason").value.trim();
+const date = document.getElementById("certDate").value.trim();
+
+if(!name){ alert("Non benefisyè obligatwa."); return; }
+
+const id = "CERT-" + Date.now().toString().slice(-8);
+window.currentCertId = id;
+drawCert();
+
+let certs = JSON.parse(localStorage.getItem("bss1815_certificates")) || [];
+certs.unshift({id,name,reason,date});
+localStorage.setItem("bss1815_certificates", JSON.stringify(certs));
+
+renderCerts();
 }
 
-function render(){
-const tbody = document.getElementById("attendanceTable");
-const search = (document.getElementById("searchInput").value || "").toLowerCase();
+function downloadCert(){
+drawCert();
+const link = document.createElement("a");
+link.download = "sètifika-bss1815.png";
+link.href = canvas.toDataURL("image/png");
+link.click();
+}
+
+function deleteCert(index){
+let certs = JSON.parse(localStorage.getItem("bss1815_certificates")) || [];
+certs.splice(index,1);
+localStorage.setItem("bss1815_certificates", JSON.stringify(certs));
+renderCerts();
+}
+
+function renderCerts(){
+const tbody = document.getElementById("certsTable");
+const search = (document.getElementById("verifyInput").value || "").toLowerCase();
+let certs = JSON.parse(localStorage.getItem("bss1815_certificates")) || [];
 tbody.innerHTML = "";
 
-const filtered = attendance.filter(a => (a.name+" "+a.eventName).toLowerCase().includes(search));
+const filtered = certs.filter(c => Object.values(c).join(" ").toLowerCase().includes(search));
 
-filtered.forEach((a) => {
-const realIndex = attendance.indexOf(a);
+filtered.forEach((c) => {
+const realIndex = certs.indexOf(c);
 const row = document.createElement("tr");
-row.innerHTML = `<td>${a.name}</td><td>${a.eventName}</td><td>${a.time}</td><td><button onclick="deleteEntry(${realIndex})">🗑</button></td>`;
+row.innerHTML = `<td>${c.id}</td><td>${c.name}</td><td>${c.reason}</td><td>${c.date}</td><td><button onclick="deleteCert(${realIndex})">🗑</button></td>`;
 tbody.appendChild(row);
 });
-
-document.getElementById("totalCheckins").textContent = attendance.length;
-document.getElementById("totalEvents").textContent = new Set(attendance.map(a=>a.eventName)).size;
 }
 
-render();
+drawCert();
+renderCerts();
 </script>
 
 </body>
