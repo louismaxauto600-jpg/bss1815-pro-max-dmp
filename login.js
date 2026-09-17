@@ -1,8 +1,18 @@
 // ============================================
-// LOGIN.JS - VERSION FINAL, MATCHE AK login.html
-// ID yo matche: #loginForm, #email, #password, #errorMsg
-// Sèl règ: si Firebase Authentication aksepte imèl + modpas la, aksè bay.
+// LOGIN.JS - VERSION AK DYAGNOSTIK
 // ============================================
+
+// Verifye si Firebase SDK chaje anvan nenpòt lòt bagay
+if (typeof firebase === 'undefined') {
+  document.addEventListener('DOMContentLoaded', function() {
+    const errorMsg = document.getElementById('errorMsg');
+    if (errorMsg) {
+      errorMsg.textContent = 'ERE: Firebase SDK pa chaje. Verifye script yo nan login.html.';
+    } else {
+      alert('ERE: Firebase SDK pa chaje.');
+    }
+  });
+} else {
 
 const firebaseConfig = {
   apiKey: "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
@@ -37,12 +47,8 @@ loginForm.addEventListener('submit', async function (e) {
   loginBtn.textContent = 'Ap konekte...';
 
   try {
-    // SÈL VERIFIKASYON: Firebase Authentication
     await auth.signInWithEmailAndPassword(email, password);
-
-    // Login reyisi = aksè bay, san kondisyon
     window.location.href = 'super-admin-dashboard.html';
-
   } catch (error) {
     loginBtn.disabled = false;
     loginBtn.textContent = 'Konekte';
@@ -68,3 +74,5 @@ loginForm.addEventListener('submit', async function (e) {
 function showError(message) {
   errorMsg.textContent = message;
 }
+
+} // fen else Firebase defini
