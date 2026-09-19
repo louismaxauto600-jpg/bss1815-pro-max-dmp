@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<meta name="google" content="notranslate">
+<title>AI Center | BSS1815 PRO-MAX DMP</title>
+<style>
+:root {
+  --orange:#ff7900;
+  --apricot:#ffad4d;
+  --black:#000;
+  --deep:#050200;
+  --soft:#120600;
+  --text:#ffd2a3;
+  --muted:#d89558;
+  --border:rgba(255,121,0,.48);
+  --glow:rgba(255,121,0,.30);
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html {
+  scroll-behavior:smooth;
+  background:#000;
+  scroll-padding-top:100px;
+}
+
+body {
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:radial-gradient(circle at 15% 5%,rgba(255,121,0,.12),transparent 25%),radial-gradient(circle at 90% 30%,rgba(255,173,77,.07),transparent 25%),linear-gradient(180deg,#000,#050200 55%,#000);
+}
+
+a {
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input {
+  font:inherit;
+}
+
+.container {
+  width:min(1180px,94%);
+  margin:auto;
+}
+
+.topbar {
+  padding:9px 12px;
+  text-align:center;
+  color:#000;
+  background:linear-gradient(90deg,var(--orange),var(--apricot),var(--orange));
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:1px;
+}
+
+header {
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,121,0,.30);
+  background:rgba(0,0,0,.96);
+  backdrop-filter:blur(15px);
+}
+
+.header-inner {
+  min-height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex:1 1 auto;
+  min-width:0;
+}
+
+.brand-logo {
+  width:64px;
+  height:64px;
+  object-fit:cover;
+  border:2px solid var(--orange);
+  border-radius:18px;
+  box-shadow:0 0 20px var(--glow);
+}
+
+.brand-copy {
+  min-width:0;
+  overflow:hidden;
+}
+
+.brand-copy h1 {
+  color:var(--orange);
+  font-size:15px;
+  font-weight:1000;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.brand-copy p {
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-top:4px;
+  color:var(--apricot);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+}
+
+.languages {
+  display:flex;
+  gap:4px;
+  padding:4px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#080300;
+}
+
+.lang-btn {
+  min-height:36px;
+  padding:6px 11px;
+  border:1px solid transparent;
+  border-radius:999px;
+  color:var(--apricot);
+  background:#000;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:1000;
+}
+
+.lang-btn.active {
+  color:#000;
+  border-color:var(--orange);
+  background:linear-gradient(135deg,var(--orange),var(--apricot));
+}
+
+.menu-btn {
+  width:52px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid var(--orange);
+  border-radius:14px;
+  color:var(--orange);
+  background:#000;
+  font-size:27px;
+  cursor:pointer;
+}
+
+.mobile-menu {
+  display:none;
+  padding:0 0 15px;
+}
+
+.mobile-menu.open {
+  display:block;
+}
+
+.mobile-menu a {
+  display:block;
+  margin-top:7px;
+  padding:13px 15px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--apricot);
+  background:#080300;
+  font-size:11px;
+  font-weight:900;
+}
+
+.hero {
+  padding:62px 0 42px;
+  text-align:center;
+}
+
+.hero-badge {
+  display:inline-block;
+  padding:8px 15px;
+  border:1px solid var(--orange);
+  border-radius:999px;
+  color:var(--orange);
+  background:rgba(255,121,0,.06);
+  font-size:10px;
+  font-weight:1000;
+}
+
+.hero h2 {
+  margin-top:20px;
+  color:var(--orange);
+  font-size:clamp(38px,7vw,64px);
+  line-height:1.05;
+  font-weight:1000;
+}
+
+.hero p {
+  max-width:820px;
+  margin:22px auto 0;
+  color:var(--text);
+  font-size:16px;
+  line-height:1.8;
+}
+
+.search-wrap {
+  max-width:760px;
+  margin:30px auto 0;
+}
+
+.search-wrap input {
+  width:100%;
+  min-height:56px;
+  padding:15px 20px;
+  border:2px solid var(--orange);
+  border-radius:999px;
+  outline:none;
+  color:var(--text);
+  background:#050200;
+}
+
+.search-wrap input::placeholder {
+  color:#a66b39;
+}
+
+.no-results {
+  display:none;
+  max-width:760px;
+  margin:18px auto 0;
+  padding:14px 18px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:var(--apricot);
+  font-size:12px;
+  text-align:center;
+}
+
+.no-results.show {
+  display:block;
+}
+
+.section {
+  padding:25px 0 60px;
+}
+
+.section-title {
+  margin-bottom:22px;
+}
+
+.section-title small {
+  color:var(--apricot);
+  font-size:10px;
+  font-weight:1000;
+}
+
+.section-title h3 {
+  margin-top:6px;
+  color:var(--orange);
+  font-size:30px;
+  font-weight:1000;
+}
+
+.service-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.service-card {
+  padding:28px;
+  border:1px solid var(--border);
+  border-radius:28px;
+  background:radial-gradient(circle at 100% 0%,rgba(255,121,0,.09),transparent 35%),linear-gradient(145deg,#0c0400,#000);
+  box-shadow:0 8px 28px rgba(255,121,0,.05);
+}
+
+.service-code {
+  color:var(--orange);
+  font-size:11px;
+  font-weight:1000;
+}
+
+.service-icon {
+  margin-top:24px;
+  font-size:35px;
+}
+
+.service-card h4 {
+  margin-top:22px;
+  color:var(--orange);
+  font-size:21px;
+  font-weight:1000;
+}
+
+.service-card>p {
+  margin-top:16px;
+  color:var(--text);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.forms-box {
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,121,0,.25);
+}
+
+.forms-label {
+  margin-bottom:12px;
+  color:var(--apricot);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.8px;
+}
+
+.form-row {
+  margin-top:10px;
+  padding:14px;
+  border:1px solid rgba(255,121,0,.30);
+  border-radius:16px;
+  background:#050200;
+}
+
+.form-number {
+  color:var(--orange);
+  font-size:15px;
+  font-weight:1000;
+}
+
+.form-name {
+  margin-top:4px;
+  color:var(--text);
+  font-size:10px;
+  line-height:1.4;
+}
+
+.form-actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.form-actions.single {
+  grid-template-columns:1fr;
+}
+
+.form-btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:8px 10px;
+  border:2px solid var(--orange);
+  border-radius:999px;
+  color:var(--orange);
+  background:#000;
+  text-align:center;
+  font-size:9px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.form-btn:hover,.form-btn:focus {
+  color:#000;
+  background:linear-gradient(135deg,var(--orange),var(--apricot));
+}
+
+.form-btn.primary {
+  color:#000;
+  background:linear-gradient(135deg,var(--orange),var(--apricot));
+}
+
+.eoir-center {
+  margin-top:20px;
+  padding:25px;
+  border:2px solid var(--orange);
+  border-radius:24px;
+  background:radial-gradient(circle at 50% 0%,rgba(255,121,0,.15),transparent 40%),#000;
+}
+
+.eoir-center h4 {
+  color:var(--orange);
+  font-size:22px;
+}
+
+.eoir-center>p {
+  margin-top:10px;
+  line-height:1.7;
+  font-size:12px;
+}
+
+.eoir-list {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.eoir-list .form-row {
+  margin-top:0;
+}
+
+.eoir-all {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:16px;
+}
+
+.notice {
+  margin:0 0 60px;
+  padding:22px;
+  border:1px solid var(--orange);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(255,121,0,.08),#000);
+  font-size:11px;
+  line-height:1.7;
+}
+
+.notice strong {
+  color:var(--orange);
+}
+
+footer {
+  padding:40px 15px;
+  border-top:1px solid var(--border);
+  text-align:center;
+  background:#000;
+}
+
+footer strong {
+  color:var(--orange);
+}
+
+footer p {
+  margin-top:7px;
+  color:var(--apricot);
+  font-size:10px;
+}
+
+@media(max-width:800px) {
+  .service-grid,.eoir-list,.eoir-all {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:600px) {
+  .header-inner {
+    min-height:78px;
+  }
+  .brand-logo {
+    width:52px;
+    height:52px;
+  }
+  .brand-copy h1 {
+    max-width:180px;
+    font-size:11px;
+  }
+  .brand-copy p {
+    font-size:7px;
+  }
+  .lang-btn {
+    min-height:33px;
+    padding:5px 8px;
+    font-size:8px;
+  }
+  .menu-btn {
+    width:48px;
+    height:44px;
+  }
+  .hero {
+    padding-top:52px;
+  }
+  .hero p {
+    font-size:14px;
+  }
+  .service-card {
+    padding:22px;
+  }
+  .form-actions {
+    grid-template-columns:1fr;
+  }
+}
+
+.wrap{max-width:980px;margin:0 auto}
+.warn{margin:0 0 22px;padding:14px 18px;border:2px solid var(--orange);border-radius:16px;background:linear-gradient(145deg,rgba(255,121,0,.12),#000);color:var(--apricot);font-size:12px;font-weight:1000;line-height:1.6;text-align:center}
+.chat{border:2px solid var(--orange);border-radius:26px;background:radial-gradient(circle at 85% 10%,rgba(255,173,77,.10),transparent 35%),linear-gradient(135deg,#100500,#000);box-shadow:0 0 35px rgba(255,121,0,.18);overflow:hidden;margin-bottom:34px}
+.chat-log{height:min(52vh,460px);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:88%;padding:12px 15px;border-radius:16px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-wrap:break-word}
+.msg.bot{align-self:flex-start;border:1px solid var(--border);background:#080300;color:var(--text)}
+.msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--orange),var(--apricot));color:#000;font-weight:700}
+.msg .go{margin-top:10px;white-space:normal}
+.msg .go a{display:inline-flex;min-height:40px;padding:8px 14px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:11px;font-weight:1000}
+.msg .go a:hover{color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
+.chat-in{display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px;border-top:1px solid var(--border);background:#030100}
+.chat-in input{width:100%;min-height:50px;padding:12px 16px;border:1px solid var(--border);border-radius:14px;color:var(--text);background:#000;outline:none;font-size:14px}
+.chat-in input:focus{border-color:var(--orange)}
+.chat-in button{min-width:100px;border:2px solid var(--orange);border-radius:14px;color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));font-size:11px;font-weight:1000;cursor:pointer}
+.chat-in button:disabled{opacity:.6}
+.qtitle{margin:0 0 12px;color:var(--orange);font-size:12px;font-weight:1000;letter-spacing:1px;text-align:center}
+.qchips{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-bottom:34px}
+.qchip{min-height:42px;padding:10px 15px;border:1px solid var(--border);border-radius:999px;color:var(--apricot);background:#050200;font-size:11px;font-weight:1000;cursor:pointer}
+.qchip:hover{border-color:var(--orange);color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
+.h3{color:var(--orange);font-size:26px;font-weight:1000;margin:0 0 16px}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px}
+.tool{display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--border);border-radius:20px;background:linear-gradient(145deg,#100500,#000);transition:.2s}
+.tool:hover{border-color:var(--orange);transform:translateY(-3px)}
+.tool b{color:var(--orange);font-size:14px}
+.tool span{color:var(--text);font-size:12px;line-height:1.6}
+.legal{padding:24px;border:2px solid var(--orange);border-radius:22px;background:#000;margin-bottom:60px}
+.legal h3{color:var(--orange);font-size:16px;margin-bottom:10px}
+.legal p{color:var(--text);font-size:12px;line-height:1.85}
+@media(max-width:800px){.tools{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.tools{grid-template-columns:1fr}.chat-in{grid-template-columns:1fr}.chat-in button{min-height:48px}}
+
+
+.avatar-stage{position:relative;width:100%;background:#000;border-bottom:1px solid var(--border);text-align:center}
+.avatar-stage video,.avatar-stage iframe{display:block;width:100%;max-height:420px;aspect-ratio:16/9;border:0;object-fit:contain;background:#000}
+.avatar-ph{padding:26px 16px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.avatar-ph .ring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:54px;border:3px solid var(--orange);background:radial-gradient(circle,rgba(255,121,0,.22),#000);box-shadow:0 0 30px rgba(255,121,0,.4)}
+.avatar-ph b{color:var(--orange);font-size:12px;letter-spacing:1px}
+.avatar-ph small{color:var(--muted);font-size:11px}
+.av-sound{position:absolute;right:12px;bottom:12px;min-height:42px;padding:9px 14px;border:2px solid var(--orange);border-radius:999px;color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));font-size:10px;font-weight:1000;cursor:pointer}
+.contacts{padding:56px 0 50px;border-top:1px solid rgba(255,121,0,.15);background:radial-gradient(circle at 50% 0%,rgba(255,121,0,.08),transparent 55%),#020100;text-align:center}
+.ct-p{color:var(--text);font-size:13px;margin:-6px 0 22px}
+.phones{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.phone{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 12px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,#100500,#000);color:var(--text);transition:.2s}
+.phone:hover{border-color:var(--orange);transform:translateY(-3px)}
+.phone .fl{font-size:22px}.phone b{color:var(--orange);font-size:14px;letter-spacing:.3px}
+.socials{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
+.soc{min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 8px;border:1px solid rgba(255,121,0,.55);border-radius:18px;background:linear-gradient(145deg,#100500,#000);color:var(--apricot);font-size:10px;font-weight:1000;text-align:center;transition:.2s}
+.soc svg{width:32px;height:32px;fill:var(--orange);transition:.2s}
+.soc:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 0 22px rgba(255,121,0,.3)}
+.soc:hover svg{transform:scale(1.12)}
+.ct-mail{color:var(--apricot);font-size:13px;font-weight:1000}
+@media(max-width:900px){.phones{grid-template-columns:1fr 1fr}.socials{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.phones{grid-template-columns:1fr}.socials{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="topbar" data-i18n="top">BSS1815 PRO-MAX DMP • AI CENTER</div>
+<header>
+<div class="container header-inner">
+<a class="brand" href="https://maximax-multi-services.netlify.app/index.html">
+<div class="brand-copy"><h1>BSS1815 PRO-MAX DMP</h1><p>AI CENTER • SERVING MAXIMAX MULTI SERVICES</p></div>
+</a>
+<div class="header-actions">
+<div class="languages notranslate" translate="no">
+<button type="button" class="lang-btn active" data-lang="en">🇺🇸 ENG</button>
+<button type="button" class="lang-btn" data-lang="es">🇪🇸 ESP</button>
+<button type="button" class="lang-btn" data-lang="ht">🇭🇹 KRE</button>
+</div>
+<button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
+</div>
+</div>
+<div class="container mobile-menu" id="mobileMenu">
+<a href="https://maximax-multi-services.netlify.app/index.html" data-i18n="home">HOME</a>
+<a href="#chat" data-i18n="m_chat">ASSISTANT</a>
+<a href="#tools" data-i18n="m_tools">AI TOOLS</a>
+<a href="https://maximax-multi-services.netlify.app/pages/about-us.html" data-i18n="about">ABOUT US</a>
+<a href="#contacts" data-i18n="contact">CONTACT CENTER</a>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="container">
+<div class="hero-badge" id="badge" data-i18n="badge">BSS1815 ASSISTANT • READY</div>
+<h2 data-i18n="title">AI CENTER</h2>
+<p data-i18n="sub">Ask a question and get guided to the right Maximax service, form or appointment — in English, Spanish or Haitian Creole.</p>
+</div>
+</section>
+<div class="container wrap">
+<div class="warn" data-i18n="warn">The assistant is NOT an attorney and does not give legal advice. Do not type Social Security, A-Number, passport, card numbers or passwords here.</div>
+
+<section id="chat">
+<div class="chat">
+<div class="avatar-stage" id="avatarStage">
+<div class="avatar-ph" id="avatarPh"><div class="ring">🤖</div><b data-i18n="av_label">AI ASSISTANT AVATAR</b><small data-i18n="av_soon">Avatar video coming soon</small></div>
+</div>
+<div class="chat-log" id="log" aria-live="polite"></div>
+<div class="chat-in">
+<input id="q" type="text" autocomplete="off" maxlength="800" placeholder="Type what you need..." data-i18n-placeholder="ph">
+<button id="send" type="button" data-i18n="send">SEND</button>
+</div>
+</div>
+<div class="qtitle" data-i18n="q_title">QUICK QUESTIONS</div>
+<div class="qchips"><button type="button" class="qchip" data-q="I need a green card form" data-i18n="q1">I need a green card form</button><button type="button" class="qchip" data-q="I need a notary" data-i18n="q2">I need a notary</button><button type="button" class="qchip" data-q="Passport help" data-i18n="q3">Passport help</button><button type="button" class="qchip" data-q="DMV Florida" data-i18n="q4">DMV Florida</button><button type="button" class="qchip" data-q="Unemployment / resume" data-i18n="q5">Unemployment / resume</button><button type="button" class="qchip" data-q="Book an appointment" data-i18n="q6">Book an appointment</button></div>
+</section>
+
+<section id="tools">
+<div class="h3" data-i18n="tools_h">AI TOOLS</div>
+<div class="tools"><a class="tool" href="https://maximax-multi-services.netlify.app/pages/form-helper.html"><b data-i18n="tl1_t">Form Help Center</b><span data-i18n="tl1_d">Guided help with forms and document preparation.</span></a><a class="tool" href="https://maximax-multi-services.netlify.app/pages/translation-ai.html"><b data-i18n="tl2_t">AI Translation</b><span data-i18n="tl2_d">Multilingual digital translation assistance.</span></a><a class="tool" href="https://maximax-multi-services.netlify.app/pages/try-ai.html"><b data-i18n="tl3_t">Try AI</b><span data-i18n="tl3_d">Experience Maximax intelligent digital tools.</span></a><a class="tool" href="https://maximax-multi-services.netlify.app/pages/government-forms.html"><b data-i18n="tl4_t">Government Forms Center</b><span data-i18n="tl4_d">USCIS, EOIR, IRS, passports, SSA and more.</span></a><a class="tool" href="https://maximax-multi-services.netlify.app/pages/appointment-center.html"><b data-i18n="tl5_t">Appointment Center</b><span data-i18n="tl5_d">Book a time with our team.</span></a><a class="tool" href="https://maximax-multi-services.netlify.app/pages/service-request-center.html"><b data-i18n="tl6_t">Service Request Center</b><span data-i18n="tl6_d">Send us a new service request.</span></a></div>
+</section>
+
+<div class="legal"><h3 data-i18n="legal_h">⚖️ IMPORTANT NOTICE</h3><p data-i18n="legal_p">Maximax Multi Services is not a law firm and our staff are not attorneys. The assistant only helps you find services and prepare documents. It does not give legal advice. Consult a licensed attorney for legal matters. Always verify forms and rules on the official agency website.</p></div>
+</div>
+</main>
+
+<section class="contacts" id="contacts">
+<div class="container wrap">
+<div class="h3" data-i18n="ct_h">CONTACT US</div>
+<p class="ct-p" data-i18n="ct_p">Official phone numbers and social networks.</p>
+<div class="phones">
+<a class="phone" href="tel:+14076405166"><span class="fl">🇺🇸</span><b>(407) 640-5166</b></a>
+<a class="phone" href="tel:+13175381150"><span class="fl">🇺🇸</span><b>(317) 538-1150</b></a>
+<a class="phone" href="tel:+15162168494"><span class="fl">🇺🇸</span><b>(516) 216-8494</b></a>
+<a class="phone" href="tel:+50943437488"><span class="fl">🇭🇹</span><b>+509 4343 7488</b></a>
+</div>
+<div class="socials">
+<a class="soc facebook" href="https://www.facebook.com/share/1By3KvYRrM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.973h-1.513c-1.49 0-1.956.931-1.956 1.887v2.261h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg><span>FACEBOOK</span></a>
+<a class="soc whatsapp" href="https://wa.me/50943437488" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.373 0 0 5.373 0 12c0 2.116.552 4.181 1.6 6L0 24l6.153-1.613A11.96 11.96 0 0012.004 24C18.63 24 24 18.627 24 12S18.63 0 12.004 0zm0 21.818a9.78 9.78 0 01-4.99-1.366l-.357-.212-3.65.957.974-3.557-.232-.366A9.77 9.77 0 012.182 12c0-5.414 4.407-9.818 9.822-9.818 5.414 0 9.814 4.404 9.814 9.818s-4.4 9.818-9.814 9.818z"/></svg><span>WHATSAPP</span></a>
+<a class="soc tiktok" href="https://www.tiktok.com/@maximax1960" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.321 5.562a5.124 5.124 0 01-3.005-.96A5.15 5.15 0 0114.323 1H10.5v14.4a3.2 3.2 0 11-2.2-3.038V8.45a7.03 7.03 0 00-1.2-.104A7.1 7.1 0 1014.2 15.4V8.096a8.94 8.94 0 005.121 1.64V5.562z"/></svg><span>TIKTOK</span></a>
+<a class="soc youtube" href="https://www.youtube.com/@BSS1815PROMAXDMP" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.376-.505a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YOUTUBE</span></a>
+<a class="soc telegram" href="#contacts" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.953 4.57a.74.74 0 00-1.017-.267L1.43 12.48c-1.47.59-1.462 1.41-.268 1.776l5.518 1.724 2.114 6.484c.257.71.13.992.878.992.577 0 .831-.264 1.153-.577l2.653-2.58 5.518 4.077c1.016.56 1.748.27 2.001-.943L24 5.585c.322-1.49-.57-2.166-.047-1.015z"/></svg><span>TELEGRAM</span></a>
+<a class="soc spotify" href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.505 17.308a.75.75 0 01-1.032.249c-2.827-1.728-6.386-2.118-10.578-1.16a.75.75 0 11-.334-1.462c4.587-1.049 8.522-.6 11.695 1.34a.75.75 0 01.249 1.033zm1.475-3.282a.94.94 0 01-1.293.31c-3.237-1.988-8.171-2.564-11.998-1.403a.94.94 0 11-.546-1.799c4.376-1.328 9.813-.685 13.527 1.596a.94.94 0 01.31 1.296zm.126-3.417C15.224 8.304 8.819 8.091 5.11 9.212a1.128 1.128 0 11-.652-2.16c4.26-1.288 11.336-1.038 15.8 1.611a1.128 1.128 0 01-1.152 1.946z"/></svg><span>SPOTIFY</span></a>
+<a class="soc instagram" href="https://www.instagram.com/lebaron072/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838A6.162 6.162 0 1012 18.162 6.162 6.162 0 0012 5.838zm0 10.162a4 4 0 110-8 4 4 0 010 8z"/></svg><span>INSTAGRAM</span></a>
+<a class="soc x-twitter" href="https://x.com/w05g2m" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg><span>X / TWITTER</span></a>
+<a class="soc truthsocial" href="https://truthsocial.com/@briyant_soley_1815" target="_blank" rel="noopener noreferrer" aria-label="Truth Social"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v4H14v14h-4V7H3V3zm13 6h5v4h-5V9zm0 6h5v4h-5v-4z"/></svg><span>TRUTH SOCIAL</span></a>
+<a class="soc linkedin" href="https://www.linkedin.com/in/maximax-multi-services-075ba2314" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.371 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.555V9H7.12v11.452z"/></svg><span>LINKEDIN</span></a>
+</div>
+<a class="ct-mail" href="mailto:bss1815promaxdmp@gmail.com">bss1815promaxdmp@gmail.com</a>
+</div>
+</section>
+
+<footer>
+<strong>BSS1815 PRO-MAX DMP</strong>
+<p>AI CENTER FOR MAXIMAX MULTI SERVICES</p>
+<p>bss1815promaxdmp@gmail.com</p>
+<p>(407) 640-5166 • (317) 538-1150 • (516) 216-8494</p>
+<p>© <span id="year"></span> BSS1815 PRO-MAX DMP</p>
+<p style="opacity:.55">CENTRAL AI CENTER VERSION 2026.09.19-D</p>
+</footer>
+<script>
+(function(){
+"use strict";
+var I18N = {"en": {"part_of": "PART OF BSS1815 PRO-MAX DMP", "home": "HOME", "m_chat": "ASSISTANT", "m_tools": "AI TOOLS", "contact": "CONTACT CENTER", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "BSS1815 ASSISTANT • READY", "title": "AI CENTER", "sub": "Ask a question and get guided to the right Maximax service, form or appointment — in English, Spanish or Haitian Creole.", "warn": "The assistant is NOT an attorney and does not give legal advice. Do not type Social Security, A-Number, passport, card numbers or passwords here.", "welcome": "Hello! I'm the BSS1815 PRO-MAX DMP Assistant. Tell me what you need — for example: a green card form, a notary, DMV Florida, a passport, or unemployment.", "ph": "Type what you need...", "send": "SEND", "thinking": "Thinking…", "nomatch": "I could not match that automatically. Book an appointment or contact us and our team will help.", "match": "I found the Maximax center that matches your request:", "open": "OPEN", "q_title": "QUICK QUESTIONS", "q1": "I need a green card form", "q2": "I need a notary", "q3": "Passport help", "q4": "DMV Florida", "q5": "Unemployment / resume", "q6": "Book an appointment", "tools_h": "AI TOOLS", "tl1_t": "Form Help Center", "tl1_d": "Guided help with forms and document preparation.", "tl2_t": "AI Translation", "tl2_d": "Multilingual digital translation assistance.", "tl3_t": "Try AI", "tl3_d": "Experience Maximax intelligent digital tools.", "tl4_t": "Government Forms Center", "tl4_d": "USCIS, EOIR, IRS, passports, SSA and more.", "tl5_t": "Appointment Center", "tl5_d": "Book a time with our team.", "tl6_t": "Service Request Center", "tl6_d": "Send us a new service request.", "legal_h": "IMPORTANT NOTICE", "legal_p": "Maximax Multi Services is not a law firm and our staff are not attorneys. The assistant only helps you find services and prepare documents. It does not give legal advice. Consult a licensed attorney for legal matters. Always verify forms and rules on the official agency website.", "about": "ABOUT US"}, "es": {"part_of": "PARTE DE BSS1815 PRO-MAX DMP", "home": "INICIO", "m_chat": "ASISTENTE", "m_tools": "HERRAMIENTAS IA", "contact": "CENTRO DE CONTACTO", "top": "MAXIMAX MULTI SERVICES • CENTRO IA", "badge": "ASISTENTE MAXIMAX • LISTO", "title": "CENTRO IA", "sub": "Haga una pregunta y sea guiado al servicio, formulario o cita correcta de Maximax — en inglés, español o criollo haitiano.", "warn": "El asistente NO es abogado y no da asesoría legal. No escriba aquí números de Seguro Social, A-Number, pasaporte, tarjetas ni contraseñas.", "welcome": "¡Hola! Soy el Asistente de BSS1815 PRO-MAX DMP. Dígame qué necesita — por ejemplo: un formulario de residencia, un notario, DMV Florida, un pasaporte o desempleo.", "ph": "Escriba lo que necesita...", "send": "ENVIAR", "thinking": "Pensando…", "nomatch": "No pude encontrarlo automáticamente. Reserve una cita o contáctenos y nuestro equipo le ayudará.", "match": "Encontré el centro de Maximax que coincide con su solicitud:", "open": "ABRIR", "q_title": "PREGUNTAS RÁPIDAS", "q1": "Necesito un formulario de residencia", "q2": "Necesito un notario", "q3": "Ayuda con pasaporte", "q4": "DMV Florida", "q5": "Desempleo / currículum", "q6": "Reservar una cita", "tools_h": "HERRAMIENTAS IA", "tl1_t": "Centro de Formularios", "tl1_d": "Ayuda guiada con formularios y preparación de documentos.", "tl2_t": "Traducción IA", "tl2_d": "Asistencia de traducción digital multilingüe.", "tl3_t": "Probar IA", "tl3_d": "Pruebe las herramientas digitales inteligentes de Maximax.", "tl4_t": "Centro de Formularios Gubernamentales", "tl4_d": "USCIS, EOIR, IRS, pasaportes, SSA y más.", "tl5_t": "Centro de Citas", "tl5_d": "Reserve una hora con nuestro equipo.", "tl6_t": "Centro de Solicitudes", "tl6_d": "Envíenos una nueva solicitud.", "legal_h": "AVISO IMPORTANTE", "legal_p": "Maximax Multi Services no es un bufete de abogados y nuestro personal no son abogados. El asistente solo le ayuda a encontrar servicios y preparar documentos. No da asesoría legal. Consulte a un abogado con licencia para asuntos legales. Siempre verifique formularios y reglas en el sitio oficial de la agencia.", "about": "SOBRE NOSOTROS"}, "ht": {"part_of": "PATI NAN BSS1815 PRO-MAX DMP", "home": "AKÈY", "m_chat": "ASISTAN", "m_tools": "ZOUTI AI", "contact": "SANT KONTAK", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "ASISTAN MAXIMAX • PARE", "title": "AI CENTER", "sub": "Poze yon kesyon epi jwenn gid pou bon sèvis, fòm oswa randevou Maximax la — an anglè, panyòl oswa kreyòl ayisyen.", "warn": "Asistan an PA avoka e li pa bay konsèy legal. Pa ekri nimewo Sekirite Sosyal, A-Number, paspò, kat oswa modpas isit la.", "welcome": "Bonjou! Mwen se Asistan BSS1815 PRO-MAX DMP la. Di m sa ou bezwen — pa egzanp: yon fòm green card, yon notè, DMV Florid, yon paspò oswa chòmaj.", "ph": "Ekri sa ou bezwen...", "send": "VOYE", "thinking": "Ap panse…", "nomatch": "Mwen pa t ka jwenn sa otomatikman. Rezève yon randevou oswa kontakte nou epi ekip nou an ap ede w.", "match": "Mwen jwenn sant Maximax ki koresponn ak demann ou an:", "open": "OUVRI", "q_title": "KESYON RAPID", "q1": "Mwen bezwen yon fòm green card", "q2": "Mwen bezwen yon notè", "q3": "Èd ak paspò", "q4": "DMV Florid", "q5": "Chòmaj / rezime", "q6": "Rezève yon randevou", "tools_h": "ZOUTI AI", "tl1_t": "Sant Èd Fòm", "tl1_d": "Èd gide ak fòm ak preparasyon dokiman.", "tl2_t": "Tradiksyon AI", "tl2_d": "Èd tradiksyon dijital nan plizyè lang.", "tl3_t": "Eseye AI", "tl3_d": "Eseye zouti dijital entèlijan Maximax yo.", "tl4_t": "Sant Fòm Gouvènman", "tl4_d": "USCIS, EOIR, IRS, paspò, SSA ak plis ankò.", "tl5_t": "Sant Randevou", "tl5_d": "Rezève yon lè ak ekip nou an.", "tl6_t": "Sant Demann Sèvis", "tl6_d": "Voye yon nouvo demann sèvis ban nou.", "legal_h": "AVI ENPÒTAN", "legal_p": "Maximax Multi Services pa yon kabinè avoka e anplwaye nou yo pa avoka. Asistan an sèlman ede w jwenn sèvis ak prepare dokiman. Li pa bay konsèy legal. Konsilte yon avoka ki gen lisans pou zafè legal. Toujou verifye fòm ak règ sou sit ofisyèl ajans lan.", "about": "DEPI NOU"}};
+var EXTRA = {"en": {"av_label": "AI ASSISTANT AVATAR", "av_soon": "Avatar video coming soon", "ct_h": "CONTACT US", "ct_p": "Official phone numbers and social networks."}, "es": {"av_label": "AVATAR DEL ASISTENTE IA", "av_soon": "Video del avatar próximamente", "ct_h": "CONTÁCTENOS", "ct_p": "Números de teléfono oficiales y redes sociales."}, "ht": {"av_label": "AVATAR ASISTAN AI", "av_soon": "Videyo avatar an ap vini", "ct_h": "KONTAKTE NOU", "ct_p": "Nimewo telefòn ofisyèl ak rezo sosyal yo."}};
+for(var _l in EXTRA){ for(var _k in EXTRA[_l]){ I18N[_l][_k] = EXTRA[_l][_k]; } }
+
+/* ===== AVATAR VIDEO — put your video here =====
+   Option A: a video file in the site  ->  var AVATAR_VIDEO_SRC = "./bss1815pro-maxdmp.mp4";  (file must be in the same folder as this page)
+   Option B: an embed link (HeyGen, D-ID, YouTube, etc.)  ->  var AVATAR_IFRAME_SRC = "https://...";
+   Leave both empty to show the placeholder. */
+var AVATAR_VIDEO_SRC = "./bss1815pro-maxdmp.mp4?v=20260919";
+var AVATAR_IFRAME_SRC = "";
+(function(){
+  var stage = document.getElementById("avatarStage"), ph = document.getElementById("avatarPh");
+  if(!stage) return;
+  if(AVATAR_VIDEO_SRC){
+    var v = document.createElement("video"); v.src = AVATAR_VIDEO_SRC; v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute("playsinline",""); v.preload = "auto";
+    var b = document.createElement("button"); b.type = "button"; b.className = "av-sound"; b.textContent = "🔊 SOUND ON";
+    b.addEventListener("click", function(){ v.muted = !v.muted; var p = v.play(); if(p && p.catch) p.catch(function(){}); b.textContent = v.muted ? "🔊 SOUND ON" : "🔇 MUTE"; });
+    ph.style.display = "none"; stage.appendChild(v); stage.appendChild(b);
+    v.addEventListener("error", function(){ v.remove(); b.remove(); ph.style.display = ""; });
+  }else if(AVATAR_IFRAME_SRC && /^https:\/\//.test(AVATAR_IFRAME_SRC)){
+    var f = document.createElement("iframe"); f.src = AVATAR_IFRAME_SRC; f.allow = "autoplay; fullscreen; microphone"; f.setAttribute("allowfullscreen",""); f.title = "AI Assistant avatar";
+    ph.style.display = "none"; stage.appendChild(f);
+  }
+})();
+var ROUTES = [{"words": ["immigration", "inmigracion", "inmigración", "imigrasyon", "uscis", "green card", "residencia", "citizenship", "ciudadan", "sitwayen", "n400", "n-400", "i130", "i-130", "i485", "i-485", "asylum", "azil"], "page": "https://maximax-multi-services.netlify.app/pages/immigration-services.html#immigrationForms", "label": "IMMIGRATION SERVICES"}, {"words": ["eoir", "bia", "immigration court", "tribunal", "tribinal"], "page": "https://maximax-multi-services.netlify.app/pages/immigration-services.html#eoirForms", "label": "EOIR + BIA"}, {"words": ["passport", "pasaporte", "paspò", "paspo", "ds-11", "ds11"], "page": "https://maximax-multi-services.netlify.app/pages/government-forms.html#passports", "label": "PASSPORT SERVICES"}, {"words": ["social security", "seguro social", "sekirite sosyal", "ssa", "ss-5", "ss5"], "page": "https://maximax-multi-services.netlify.app/pages/government-forms.html#ssa", "label": "SOCIAL SECURITY (SSA)"}, {"words": ["unemployment", "desempleo", "chomaj", "chòmaj", "reemployment", "reempleo", "reyanplwa"], "page": "https://maximax-multi-services.netlify.app/pages/government-forms.html#unemployment", "label": "UNEMPLOYMENT (FLORIDA)"}, {"words": ["resume", "résumé", "curriculum", "currículum", "rezime", "rezimé", "cv"], "page": "https://maximax-multi-services.netlify.app/pages/government-forms.html#resume", "label": "RESUME HELP"}, {"words": ["federal register", "registro federal", "rejis federal"], "page": "https://maximax-multi-services.netlify.app/pages/government-forms.html#federal-register", "label": "FEDERAL REGISTER"}, {"words": ["dmv", "license", "licencia", "lisans", "driver", "chofè", "vehicle", "title", "tag"], "page": "https://maximax-multi-services.netlify.app/pages/travel-dmv.html", "label": "TRAVEL + DMV"}, {"words": ["travel", "viaje", "vwayaj"], "page": "https://maximax-multi-services.netlify.app/pages/travel-dmv.html", "label": "TRAVEL + DMV"}, {"words": ["tax", "taxes", "impuesto", "impuestos", "taks", "1040", "irs", "itin", "w-9", "w9"], "page": "https://maximax-multi-services.netlify.app/pages/taxes.html", "label": "TAX SERVICES"}, {"words": ["notary", "notario", "notè", "note", "notaire", "affidavit", "jurat"], "page": "https://maximax-multi-services.netlify.app/pages/notary.html", "label": "NOTARY SERVICES"}, {"words": ["business", "biznis", "negocio", "llc", "company", "empresa", "ein"], "page": "https://maximax-multi-services.netlify.app/pages/business.html", "label": "BUSINESS SERVICES"}, {"words": ["insurance", "asirans", "seguro", "seguros"], "page": "https://maximax-multi-services.netlify.app/pages/insurance.html", "label": "INSURANCE"}, {"words": ["real estate", "house", "home", "imobilye", "casa", "property", "kay"], "page": "https://maximax-multi-services.netlify.app/pages/real-estate.html", "label": "REAL ESTATE"}, {"words": ["apostille", "apostilla", "legalization", "legalizasyon"], "page": "https://maximax-multi-services.netlify.app/pages/apostille.html", "label": "APOSTILLE"}, {"words": ["translate", "translation", "tradiksyon", "traduccion", "traducción"], "page": "https://maximax-multi-services.netlify.app/pages/translation-ai.html", "label": "AI TRANSLATION"}, {"words": ["credit", "kredi", "credito", "crédito"], "page": "https://maximax-multi-services.netlify.app/pages/credit-repair.html", "label": "CREDIT REPAIR"}, {"words": ["divorce", "divòs", "divorcio"], "page": "https://maximax-multi-services.netlify.app/pages/non-contested-divorce.html", "label": "NON-CONTESTED DIVORCE"}, {"words": ["form", "forms", "fòm", "formulario"], "page": "https://maximax-multi-services.netlify.app/pages/form-helper.html", "label": "FORM HELP CENTER"}, {"words": ["appointment", "randevou", "cita"], "page": "https://maximax-multi-services.netlify.app/pages/appointment-center.html", "label": "APPOINTMENT CENTER"}, {"words": ["request", "demann", "solicitud"], "page": "https://maximax-multi-services.netlify.app/pages/service-request-center.html", "label": "SERVICE REQUEST CENTER"}, {"words": ["payment", "pay", "peman", "pago"], "page": "https://maximax-multi-services.netlify.app/pages/payment-center.html", "label": "PAYMENT CENTER"}, {"words": ["contact", "kontak", "contacto", "phone", "telefòn", "telefono"], "page": "https://maximax-multi-services.netlify.app/pages/contact-center.html", "label": "CONTACT CENTER"}];
+var ENDPOINT = "/.netlify/functions/ai-assistant";
+document.getElementById("year").textContent = new Date().getFullYear();
+
+var menuBtn = document.getElementById("menuBtn"), mobileMenu = document.getElementById("mobileMenu");
+function closeMenu(){ mobileMenu.classList.remove("open"); menuBtn.textContent="☰"; menuBtn.setAttribute("aria-expanded","false"); }
+menuBtn.addEventListener("click", function(){ var o = mobileMenu.classList.toggle("open"); menuBtn.textContent = o ? "✕" : "☰"; menuBtn.setAttribute("aria-expanded", o ? "true" : "false"); });
+mobileMenu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
+
+var lang = "en";
+function t(k){ return (I18N[lang] || I18N.en)[k] || I18N.en[k] || ""; }
+var keyed = document.querySelectorAll("[data-i18n]"), keyedPh = document.querySelectorAll("[data-i18n-placeholder]"), langButtons = document.querySelectorAll(".lang-btn"), qchips = document.querySelectorAll(".qchip");
+var log = document.getElementById("log"), input = document.getElementById("q"), sendBtn = document.getElementById("send");
+function setLanguage(l){
+  if(["en","es","ht"].indexOf(l) === -1) l = "en";
+  lang = l; document.documentElement.lang = l;
+  keyed.forEach(function(el){ var v = t(el.dataset.i18n); if(!v) return; el.textContent = (el.dataset.i18n === "legal_h" ? "⚖️ " : "") + v; });
+  keyedPh.forEach(function(el){ el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder)); });
+  qchips.forEach(function(c){ c.dataset.q = c.textContent; });
+  langButtons.forEach(function(b){ var a = b.dataset.lang === l; b.classList.toggle("active", a); b.setAttribute("aria-pressed", a ? "true" : "false"); });
+  var first = log.querySelector(".msg.welcome"); if(first) first.firstChild.textContent = t("welcome");
+  try{ localStorage.setItem("maximaxLanguage", l); }catch(e){}
+}
+langButtons.forEach(function(b){ b.addEventListener("click", function(){ setLanguage(b.dataset.lang); }); });
+
+function findRoute(text){
+  var c = String(text || "").toLowerCase().trim(); if(!c) return null;
+  for(var i = 0; i < ROUTES.length; i++) for(var j = 0; j < ROUTES[i].words.length; j++) if(c.indexOf(ROUTES[i].words[j]) !== -1) return ROUTES[i];
+  return null;
+}
+function addMsg(role, text, route, cls){
+  var m = document.createElement("div"); m.className = "msg " + role + (cls ? " " + cls : "");
+  m.appendChild(document.createTextNode(text));
+  if(route){
+    var g = document.createElement("div"); g.className = "go";
+    var a = document.createElement("a"); a.href = route.page; a.textContent = t("open") + " " + route.label + " →"; g.appendChild(a); m.appendChild(g);
+  }
+  log.appendChild(m); log.scrollTop = log.scrollHeight; return m;
+}
+var history = [];
+function fallback(text){
+  var r = findRoute(text);
+  if(r) return addMsg("bot", t("match"), r);
+  var m = addMsg("bot", t("nomatch"), { page:"https://maximax-multi-services.netlify.app/pages/appointment-center.html", label:"APPOINTMENT CENTER" });
+  var g = m.querySelector(".go"); var a2 = document.createElement("a"); a2.href = "https://maximax-multi-services.netlify.app/pages/contact-center.html"; a2.textContent = t("open") + " CONTACT CENTER →"; a2.style.marginLeft = "8px"; g.appendChild(a2);
+}
+var busy = false;
+function ask(text){
+  text = String(text || "").trim(); if(!text || busy) return;
+  busy = true; sendBtn.disabled = true;
+  addMsg("user", text); input.value = "";
+  var wait = addMsg("bot", t("thinking"));
+  var done = function(){ busy = false; sendBtn.disabled = false; input.focus(); };
+  if(!window.fetch || location.protocol === "file:"){ wait.remove(); fallback(text); done(); return; }
+  var ctrl = ("AbortController" in window) ? new AbortController() : null; var to = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 20000);
+  fetch(ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message:text, lang:lang, history:history }), signal: ctrl ? ctrl.signal : undefined })
+    .then(function(r){ if(!r.ok) throw new Error("http " + r.status); return r.json(); })
+    .then(function(d){
+      clearTimeout(to); wait.remove();
+      if(!d || !d.reply) throw new Error("empty");
+      history.push({ role:"user", content:text }, { role:"assistant", content:d.reply }); history = history.slice(-8);
+      addMsg("bot", d.reply, findRoute(text) || findRoute(d.reply));
+      done();
+    })
+    .catch(function(){ clearTimeout(to); wait.remove(); fallback(text); done(); });
+}
+sendBtn.addEventListener("click", function(){ ask(input.value); });
+input.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); ask(input.value); } });
+qchips.forEach(function(c){ c.addEventListener("click", function(){ ask(c.dataset.q || c.textContent); }); });
+
+var w = addMsg("bot", "", null, "welcome");
+var saved = "en"; try{ saved = localStorage.getItem("maximaxLanguage") || "en"; }catch(e){}
+try{ var qp = new URLSearchParams(location.search).get("lang"); if(qp) saved = qp; }catch(e){}
+setLanguage(saved);
+})();
+</script>
+</body>
+</html>
