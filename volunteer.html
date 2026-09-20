@@ -1,0 +1,64 @@
+<!-- FILE: volunteer.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volunteer Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Volunteer Center",
+  "icon": "🤝",
+  "desc": "Volontè, travay kominotè ak responsablite.",
+  "collection": "mx_volunteers",
+  "fields": [
+    {
+      "key": "fullName",
+      "label": "Non konplè",
+      "required": true
+    },
+    {
+      "key": "phone",
+      "label": "Telefòn",
+      "type": "tel"
+    },
+    {
+      "key": "task",
+      "label": "Travay / Responsablite"
+    },
+    {
+      "key": "availability",
+      "label": "Disponibilite"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Aktif",
+        "An atant",
+        "Fini"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status"
+});
+</script>
+
+</body>
+</html>
