@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MY MAXIMAX Dashboard | BSS1815 PRO-MAX DMP</title>
+
+<meta name="description"
+content="MY MAXIMAX Dashboard — sant kontwòl modil BSS1815 PRO-MAX DMP.">
+
+<meta name="theme-color" content="#000000">
+
+<style>
+:root{
+  --orange:#ff7900;
+  --apricot:#ffad4d;
+  --black:#000000;
+  --black2:#070402;
+  --panel:#100904;
+  --panel2:#190d05;
+  --text:#fff4e8;
+  --muted:#c9ad94;
+  --line:rgba(255,121,0,.28);
+  --line2:rgba(255,173,77,.65);
+  --green:#37d67a;
+  --red:#ff4d4d;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 90% 5%,rgba(255,121,0,.18),transparent 28%),
+    radial-gradient(circle at 5% 95%,rgba(255,173,77,.10),transparent 28%),
+    linear-gradient(145deg,#000 0%,#080402 48%,#170a02 100%);
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  min-height:78px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:12px 22px;
+
+  background:rgba(0,0,0,.94);
+
+  border-bottom:1px solid var(--line2);
+
+  box-shadow:
+  0 12px 30px rgba(0,0,0,.55);
+
+  backdrop-filter:blur(12px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.logo{
+  width:52px;
+  height:52px;
+
+  object-fit:contain;
+
+  border-radius:50%;
+
+  border:2px solid var(--orange);
+
+  background:#000;
+
+  box-shadow:
+  0 0 22px rgba(255,121,0,.35);
+}
+
+.brand-text strong{
+  display:block;
+
+  color:var(--apricot);
+
+  font-size:1rem;
+
+  letter-spacing:.8px;
+}
+
+.brand-text span{
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:.72rem;
+
+  letter-spacing:1.3px;
+}
+
+/* =========================================================
+   TOP ACTIONS
+========================================================= */
+
+.top-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:8px;
+}
+
+.user{
+  margin-right:5px;
+
+  color:var(--apricot);
+
+  font-size:.82rem;
+
+  font-weight:900;
+}
+
+.top-btn{
+  min-height:40px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:9px 14px;
+
+  border:1px solid var(--line);
+
+  border-radius:11px;
+
+  background:#080402;
+
+  color:var(--apricot);
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  transition:.2s ease;
+}
+
+.top-btn:hover{
+  border-color:var(--apricot);
+
+  background:rgba(255,121,0,.12);
+
+  color:#fff;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+  width:min(1500px,95%);
+
+  margin:auto;
+
+  padding:28px 0 70px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  position:relative;
+
+  overflow:hidden;
+
+  padding:34px;
+
+  border:1px solid var(--line2);
+
+  border-radius:25px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,121,0,.16),
+    rgba(0,0,0,.72)
+  ),
+  #080402;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,.42);
+}
+
+.hero::after{
+  content:"M";
+
+  position:absolute;
+
+  right:35px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  font-size:10rem;
+
+  font-weight:900;
+
+  color:var(--orange);
+
+  opacity:.055;
+}
+
+.eyebrow{
+  color:var(--orange);
+
+  font-size:.75rem;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+}
+
+.hero h1{
+  margin:8px 0;
+
+  color:var(--apricot);
+
+  font-size:clamp(2rem,5vw,3.7rem);
+}
+
+.hero p{
+  max-width:820px;
+
+  color:var(--muted);
+
+  line-height:1.6;
+}
+
+.hero-badge{
+  display:inline-flex;
+
+  margin-top:18px;
+
+  padding:8px 13px;
+
+  border:1px solid var(--line2);
+
+  border-radius:999px;
+
+  background:#000;
+
+  color:var(--orange);
+
+  font-size:.76rem;
+
+  font-weight:900;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-area{
+  margin:24px 0;
+}
+
+.search-box{
+  position:relative;
+}
+
+.search-box input{
+  width:100%;
+
+  height:52px;
+
+  padding:0 20px 0 50px;
+
+  border:1px solid var(--line);
+
+  border-radius:15px;
+
+  outline:none;
+
+  background:#070402;
+
+  color:#fff;
+}
+
+.search-box input:focus{
+  border-color:var(--orange);
+
+  box-shadow:
+  0 0 0 3px rgba(255,121,0,.10);
+}
+
+.search-box::before{
+  content:"🔎";
+
+  position:absolute;
+
+  left:17px;
+  top:50%;
+
+  transform:translateY(-50%);
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section-title{
+  margin:32px 0 15px;
+}
+
+.section-title small{
+  display:block;
+
+  color:var(--orange);
+
+  font-size:.7rem;
+
+  font-weight:900;
+
+  letter-spacing:1.5px;
+}
+
+.section-title h2{
+  margin-top:5px;
+
+  color:var(--apricot);
+
+  font-size:1.5rem;
+}
+
+/* =========================================================
+   MODULE GRID
+========================================================= */
+
+.module-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(235px,1fr));
+
+  gap:15px;
+}
+
+.module-card{
+  position:relative;
+
+  min-height:170px;
+
+  display:flex;
+  flex-direction:column;
+
+  padding:20px;
+
+  overflow:hidden;
+
+  border:1px solid var(--line);
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,121,0,.055),
+    rgba(0,0,0,.55)
+  ),
+  var(--panel);
+
+  box-shadow:
+  0 12px 28px rgba(0,0,0,.30);
+
+  transition:
+  transform .2s ease,
+  border-color .2s ease,
+  box-shadow .2s ease;
+}
+
+.module-card:hover{
+  transform:translateY(-4px);
+
+  border-color:var(--apricot);
+
+  box-shadow:
+  0 18px 36px rgba(0,0,0,.45),
+  0 0 22px rgba(255,121,0,.08);
+}
+
+.module-icon{
+  width:48px;
+  height:48px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:14px;
+
+  border:1px solid var(--line);
+
+  border-radius:13px;
+
+  background:#050301;
+
+  font-size:1.5rem;
+}
+
+.module-card h3{
+  color:var(--apricot);
+
+  font-size:1rem;
+}
+
+.module-card p{
+  margin-top:7px;
+
+  color:var(--muted);
+
+  font-size:.78rem;
+
+  line-height:1.45;
+}
+
+.module-bottom{
+  margin-top:auto;
+
+  padding-top:15px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+
+  gap:6px;
+
+  font-size:.69rem;
+
+  font-weight:900;
+}
+
+.status::before{
+  content:"";
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+  0 0 8px var(--green);
+}
+
+.arrow{
+  color:var(--orange);
+
+  font-size:1.2rem;
+
+  font-weight:900;
+}
+
+/* =========================================================
+   FEATURED
+========================================================= */
+
+.featured{
+  border-color:var(--line2);
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,121,0,.14),
+    rgba(0,0,0,.60)
+  ),
+  var(--panel2);
+}
+
+.featured::before{
+  content:"RESISITE";
+
+  position:absolute;
+
+  top:13px;
+  right:-28px;
+
+  width:115px;
+
+  padding:5px 0;
+
+  transform:rotate(38deg);
+
+  text-align:center;
+
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--apricot)
+  );
+
+  color:#000;
+
+  font-size:.56rem;
+
+  font-weight:900;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  margin-top:50px;
+
+  padding:30px 15px;
+
+  text-align:center;
+
+  border-top:1px solid var(--line);
+
+  color:var(--muted);
+}
+
+footer strong{
+  color:var(--orange);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:800px){
+
+  .topbar{
+    position:relative;
+
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+  .top-actions{
+    justify-content:flex-start;
+  }
+
+  .hero{
+    padding:25px 20px;
+  }
+
+  .hero::after{
+    font-size:6rem;
+  }
+
+}
+
+@media(max-width:500px){
+
+  main{
+    width:93%;
+  }
+
+  .module-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="topbar">
+
+  <div class="brand">
+
+    <img
+      src="logo.jpg"
+      alt="BSS1815"
+      class="logo"
+      onerror="this.style.display='none'">
+
+    <div class="brand-text">
+
+      <strong>
+        BSS1815 PRO-MAX DMP
+      </strong>
+
+      <span>
+        MY MAXIMAX CONTROL CENTER
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="top-actions">
+
+    <span
+      class="user"
+      id="userName">
+      MY MAXIMAX
+    </span>
+
+    <a
+      href="dashboard.html"
+      class="top-btn">
+      🏠 Dashboard
+    </a>
+
+    <a
+      href="super-admin.html"
+      class="top-btn">
+      👑 Super Admin
+    </a>
+
+    <button
+      class="top-btn"
+      id="logoutBtn"
+      type="button">
+      ↪ Dekonekte
+    </button>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="eyebrow">
+    BSS1815 PRO-MAX DMP
+  </div>
+
+  <h1>
+    MY MAXIMAX
+  </h1>
+
+  <p>
+    Sant kontwòl santral pou zouti administratif,
+    jesyon kominote, disiplin, kominikasyon,
+    dokiman, finans, sekirite ak operasyon
+    BSS1815 PRO-MAX DMP.
+  </p>
+
+  <div class="hero-badge">
+    DEVAN DEVAN NÈT • CONTROL CENTER
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section class="search-area">
+
+  <div class="search-box">
+
+    <input
+      type="search"
+      id="moduleSearch"
+      placeholder="Chèche yon modil...">
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     COMMUNITY / MEMBERS
+===================================================== -->
+
+<div class="section-title">
+
+  <small>
+    COMMUNITY MANAGEMENT
+  </small>
+
+  <h2>
+    Manm & Kominote
+  </h2>
+
+</div>
+
+
+<section class="module-grid">
+
+
+<a
+  href="members.html"
+  class="module-card">
+
+  <div class="module-icon">👥</div>
+
+  <h3>Member Center</h3>
+
+  <p>
+    Jesyon manm, pwofil, estati ak enfòmasyon kominote.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="roster.html?type=musicians"
+  class="module-card">
+
+  <div class="module-icon">🥁</div>
+
+  <h3>Musician / Rara</h3>
+
+  <p>
+    Mizisyen, gwoup, enstriman ak operasyon Rara.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="roster.html?type=leaders"
+  class="module-card">
+
+  <div class="module-icon">⭐</div>
+
+  <h3>Leadership</h3>
+
+  <p>
+    Dirijan, responsablite ak estrikti administrasyon.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="attendance.html"
+  class="module-card">
+
+  <div class="module-icon">📋</div>
+
+  <h3>Attendance</h3>
+
+  <p>
+    Prezans manm nan reyinyon, aktivite ak evènman.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="volunteer.html"
+  class="module-card">
+
+  <div class="module-icon">🤝</div>
+
+  <h3>Volunteer Center</h3>
+
+  <p>
+    Volontè, travay kominotè ak responsablite.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="member-id.html"
+  class="module-card">
+
+  <div class="module-icon">🪪</div>
+
+  <h3>Member ID</h3>
+
+  <p>
+    Kat manm, idantifikasyon ak aksè.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+</section>
+
+
+<!-- =====================================================
+     DISCIPLINE & SECURITY
+===================================================== -->
+
+<div class="section-title">
+
+  <small>
+    SECURITY & GOVERNANCE
+  </small>
+
+  <h2>
+    Disiplin & Kontwòl
+  </h2>
+
+</div>
+
+
+<section class="module-grid">
+
+
+<a
+  href="disciplinary.html"
+  class="module-card featured">
+
+  <div class="module-icon">⚖️</div>
+
+  <h3>Sistèm Disiplinè</h3>
+
+  <p>
+    Ka disiplinè, vòt komite, sispansyon,
+    apèl ak desizyon final.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">ACTIVE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="kazye.html"
+  class="module-card">
+
+  <div class="module-icon">🔐</div>
+
+  <h3>Kazye Sansib</h3>
+
+  <p>
+    Dokiman ak dosye ki mande aksè administratif limite.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="audit-center.html"
+  class="module-card">
+
+  <div class="module-icon">🛡️</div>
+
+  <h3>Audit Center</h3>
+
+  <p>
+    Swiv aksyon administratè ak aktivite sistèm lan.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="badge-access.html"
+  class="module-card">
+
+  <div class="module-icon">🔑</div>
+
+  <h3>Badge & Access</h3>
+
+  <p>
+    Badges, nivo aksè ak otorizasyon.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="election.html"
+  class="module-card">
+
+  <div class="module-icon">🗳️</div>
+
+  <h3>Election Center</h3>
+
+  <p>
+    Eleksyon entèn ak jesyon pwosesis vòt òganizasyon an.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="backup-restore.html"
+  class="module-card">
+
+  <div class="module-icon">💾</div>
+
+  <h3>Backup & Restore</h3>
+
+  <p>
+    Sovgad ak restorasyon done sistèm lan.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+</section>
+
+
+<!-- =====================================================
+     COMMUNICATION
+===================================================== -->
+
+<div class="section-title">
+
+  <small>
+    COMMUNICATION
+  </small>
+
+  <h2>
+    Mesaj & Kominikasyon
+  </h2>
+
+</div>
+
+
+<section class="module-grid">
+
+
+<a
+  href="messages.html"
+  class="module-card">
+
+  <div class="module-icon">💬</div>
+
+  <h3>Message Center</h3>
+
+  <p>
+    Mesaj entèn ak kominikasyon administrasyon.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="communication-center.html"
+  class="module-card">
+
+  <div class="module-icon">📢</div>
+
+  <h3>Communication Center</h3>
+
+  <p>
+    Anons, kondoleyans, anivèsè,
+    ijans ak kominikasyon ofisyèl.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="notifications.html"
+  class="module-card">
+
+  <div class="module-icon">🔔</div>
+
+  <h3>Notification Center</h3>
+
+  <p>
+    Alèt ak notifikasyon sistèm lan.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="whatsapp-center.html"
+  class="module-card">
+
+  <div class="module-icon">📱</div>
+
+  <h3>WhatsApp Center</h3>
+
+  <p>
+    Kominikasyon gwoup ak mesaj kominotè.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+</section>
+
+
+<!-- =====================================================
+     DOCUMENTS
+===================================================== -->
+
+<div class="section-title">
+
+  <small>
+    DOCUMENT MANAGEMENT
+  </small>
+
+  <h2>
+    Dokiman & Kreyasyon
+  </h2>
+
+</div>
+
+
+<section class="module-grid">
+
+
+<a
+  href="document-center.html"
+  class="module-card">
+
+  <div class="module-icon">📁</div>
+
+  <h3>Document Center</h3>
+
+  <p>
+    Dokiman ofisyèl BSS1815 ak dosye administrasyon.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="digital-registry.html"
+  class="module-card">
+
+  <div class="module-icon">🗄️</div>
+
+  <h3>Digital Registry</h3>
+
+  <p>
+    Rejis dijital pou achiv ak enfòmasyon òganizasyon.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="certificate-center.html"
+  class="module-card">
+
+  <div class="module-icon">🎓</div>
+
+  <h3>Certificate Center</h3>
+
+  <p>
+    Kreye ak jere sètifika.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="flyer-studio.html"
+  class="module-card">
+
+  <div class="module-icon">🎨</div>
+
+  <h3>Flyer Studio</h3>
+
+  <p>
+    Kreye flyers ak materyèl vizyèl BSS1815.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+</section>
+
+
+<!-- =====================================================
+     OPERATIONS
+===================================================== -->
+
+<div class="section-title">
+
+  <small>
+    OPERATIONS
+  </small>
+
+  <h2>
+    Operasyon & Finans
+  </h2>
+
+</div>
+
+
+<section class="module-grid">
+
+
+<a
+  href="finance.html"
+  class="module-card">
+
+  <div class="module-icon">💰</div>
+
+  <h3>Finance / Treasury</h3>
+
+  <p>
+    Finans, trezò ak jesyon tranzaksyon òganizasyon.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="donation.html"
+  class="module-card">
+
+  <div class="module-icon">❤️</div>
+
+  <h3>Donation Center</h3>
+
+  <p>
+    Donasyon ak sipò finansye.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="event-center.html"
+  class="module-card">
+
+  <div class="module-icon">📅</div>
+
+  <h3>Event Center</h3>
+
+  <p>
+    Evènman, reyinyon ak aktivite BSS1815.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="task-project.html"
+  class="module-card">
+
+  <div class="module-icon">✅</div>
+
+  <h3>Task / Project</h3>
+
+  <p>
+    Travay, pwojè, responsab ak swivi pwogrè.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="reports.html"
+  class="module-card">
+
+  <div class="module-icon">📊</div>
+
+  <h3>Reports & Analytics</h3>
+
+  <p>
+    Rapò ak analiz operasyon BSS1815.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+</section>
+
+
+<!-- =====================================================
+     TECHNOLOGY
+===================================================== -->
+
+<div class="section-title">
+
+  <small>
+    DIGITAL SYSTEM
+  </small>
+
+  <h2>
+    Teknoloji & AI
+  </h2>
+
+</div>
+
+
+<section class="module-grid">
+
+
+<a
+  href="ai-center.html"
+  class="module-card">
+
+  <div class="module-icon">🤖</div>
+
+  <h3>AI Center</h3>
+
+  <p>
+    Zouti AI BSS1815 PRO-MAX DMP.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="qr-code.html"
+  class="module-card">
+
+  <div class="module-icon">▦</div>
+
+  <h3>QR Code Center</h3>
+
+  <p>
+    Kreye ak jere QR codes.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="api-integration.html"
+  class="module-card">
+
+  <div class="module-icon">🔌</div>
+
+  <h3>API / Integration</h3>
+
+  <p>
+    Koneksyon API ak lòt sèvis dijital.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="cms-manager.html"
+  class="module-card">
+
+  <div class="module-icon">🌐</div>
+
+  <h3>CMS / Website</h3>
+
+  <p>
+    Kontwòl kontni ak paj sit BSS1815.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+
+<a
+  href="help-desk.html"
+  class="module-card">
+
+  <div class="module-icon">🎧</div>
+
+  <h3>Help Desk</h3>
+
+  <p>
+    Sipò teknik ak demann asistans.
+  </p>
+
+  <div class="module-bottom">
+    <span class="status">MODULE</span>
+    <span class="arrow">→</span>
+  </div>
+
+</a>
+
+</section>
+
+
+<footer>
+
+  <strong>
+    BSS1815 PRO-MAX DMP
+  </strong>
+
+  <br><br>
+
+  DEVAN DEVAN NÈT.
+  BATI POU JODI A.
+  PARE POU DEMEN.
+
+  <br><br>
+
+  MY MAXIMAX CONTROL CENTER
+
+</footer>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   MODULE SEARCH
+========================================================= */
+
+const moduleSearch =
+document.getElementById("moduleSearch");
+
+const moduleCards =
+document.querySelectorAll(".module-card");
+
+
+moduleSearch.addEventListener("input",function(){
+
+  const value =
+  this.value.toLowerCase().trim();
+
+  moduleCards.forEach(card=>{
+
+    const content =
+    card.innerText.toLowerCase();
+
+    if(content.includes(value)){
+
+      card.style.display="flex";
+
+    }else{
+
+      card.style.display="none";
+
+    }
+
+  });
+
+});
+
+
+/* =========================================================
+   LOGOUT FALLBACK
+========================================================= */
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+if(logoutBtn){
+
+  logoutBtn.addEventListener("click",()=>{
+
+    const confirmed =
+    confirm("Ou vle dekonekte nan MY MAXIMAX?");
+
+    if(!confirmed){
+      return;
+    }
+
+    /*
+      Firebase logout kapab konekte isit la
+      lè sistèm authentication lan aktive.
+    */
+
+    window.location.href="admin-login.html";
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>
