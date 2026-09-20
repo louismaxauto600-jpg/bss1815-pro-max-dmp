@@ -572,7 +572,7 @@ footer p {
 .voice-panel{padding:22px;border:1px solid var(--border);border-radius:22px;background:linear-gradient(145deg,#100500,#000);margin-bottom:34px}
 .voice-panel textarea{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:14px;color:var(--text);background:#000;font-family:inherit;font-size:14px;outline:none;resize:vertical;min-height:110px}
 .voice-panel textarea:focus{border-color:var(--orange)}
-.vrow{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin:14px 0}
+.vrow{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin:14px 0}
 .vlabel{display:flex;flex-direction:column;gap:6px;color:var(--apricot);font-size:10px;font-weight:1000;letter-spacing:.8px}
 .vlabel select{padding:11px 12px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#0a0400;font-size:13px}
 .vlabel input[type=range]{accent-color:var(--orange);width:100%;margin-top:8px}
@@ -646,7 +646,8 @@ footer p {
 <textarea id="vText" rows="5" maxlength="4000" data-i18n-placeholder="v_ph" placeholder="Type or paste text here, then press LISTEN…"></textarea>
 <div class="vrow">
 <label class="vlabel"><span data-i18n="v_voice">VOICE</span><select id="vVoice"></select></label>
-<label class="vlabel"><span data-i18n="v_rate">SPEED</span><input id="vRate" type="range" min="0.6" max="1.4" step="0.1" value="1"></label>
+<label class="vlabel"><span data-i18n="v_rate">SPEED</span><input id="vRate" type="range" min="0.6" max="1.4" step="0.1" value="0.95"></label>
+<label class="vlabel"><span data-i18n="v_pitch">TONE (low = deeper)</span><input id="vPitch" type="range" min="0.4" max="1.2" step="0.05" value="0.75"></label>
 </div>
 <div class="vbtns">
 <button type="button" id="vListen" class="vbtn primary" data-i18n="v_listen">🔊 LISTEN</button>
@@ -701,13 +702,13 @@ footer p {
 <p>briyantsoleysigno1815@gmail.com</p>
 <p>(407) 640-5166 • (317) 538-1150 • (516) 216-8494</p>
 <p>© <span id="year"></span> BSS1815 PRO-MAX DMP</p>
-<p style="opacity:.55">AI CENTER VERSION 2026.09.20-G</p>
+<p style="opacity:.55">AI CENTER VERSION 2026.09.20-H</p>
 </footer>
 <script>
 (function(){
 "use strict";
 var I18N = {"en": {"part_of": "PART OF BSS1815 PRO-MAX DMP", "home": "HOME", "m_chat": "ASSISTANT", "m_tools": "AI TOOLS", "contact": "CONTACT CENTER", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "BSS1815 ASSISTANT • READY", "title": "AI CENTER", "sub": "Ask a question and get guided to the right BSS1815 PRO-MAX DMP module — in English, French or Haitian Creole.", "warn": "The assistant only guides you inside the BSS1815 PRO-MAX DMP modules. It does not give legal, financial or medical advice. Never type passwords, ID numbers or card numbers here.", "welcome": "Hello! I'm the BSS1815 PRO-MAX DMP assistant. Tell me what you need — for example: a member, an announcement, a flyer, reports, events or help.", "ph": "Type what you need...", "send": "SEND", "thinking": "Thinking…", "nomatch": "I can only guide you inside the BSS1815 PRO-MAX DMP modules. Open the Help Desk, or contact us and our team will help.", "match": "I found the BSS1815 module that matches your request:", "open": "OPEN", "q_title": "QUICK QUESTIONS", "q1": "Find a member", "q2": "Send an announcement", "q3": "Create a flyer", "q4": "See reports", "q5": "Manage events", "q6": "Get help", "tools_h": "AI TOOLS", "tl1_t": "CRM SYSTEM", "tl1_d": "Members • Contacts • Relationships • Records", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Official notices • Community updates • Alerts", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyers • Notices • Graphics • Media", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistics • Performance • Reports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendar • Programs • Activities • Meetings", "tl6_t": "HELP DESK", "tl6_d": "Support • Requests • Cases • Assistance", "legal_h": "IMPORTANT NOTICE", "legal_p": "The BSS1815 PRO-MAX DMP assistant only helps you find the right module and use the platform. It does not give legal, financial or medical advice, and it never needs your passwords or ID numbers. Some modules require an administrator login."}, "ht": {"part_of": "PATI NAN BSS1815 PRO-MAX DMP", "home": "AKÈY", "m_chat": "ASISTAN", "m_tools": "ZOUTI AI", "contact": "SANT KONTAK", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "ASISTAN BSS1815 • PARE", "title": "AI CENTER", "sub": "Poze yon kesyon epi jwenn gid pou bon modil BSS1815 PRO-MAX DMP la — an anglè, franse oswa kreyòl ayisyen.", "warn": "Asistan an sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Li pa bay konsèy legal, finansye oswa medikal. Pa janm ekri modpas, nimewo idantite oswa nimewo kat isit la.", "welcome": "Bonjou! Mwen se asistan BSS1815 PRO-MAX DMP la. Di m sa ou bezwen — pa egzanp: yon manm, yon anons, yon flyer, rapò, evènman oswa èd.", "ph": "Ekri sa ou bezwen...", "send": "VOYE", "thinking": "Ap panse…", "nomatch": "Mwen ka sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Louvri Help Desk la, oswa kontakte nou epi ekip nou an ap ede w.", "match": "Mwen jwenn modil BSS1815 ki koresponn ak demann ou an:", "open": "OUVRI", "q_title": "KESYON RAPID", "q1": "Jwenn yon manm", "q2": "Voye yon anons", "q3": "Kreye yon flyer", "q4": "Wè rapò yo", "q5": "Jere evènman yo", "q6": "Jwenn èd", "tools_h": "ZOUTI AI", "tl1_t": "CRM SYSTEM", "tl1_d": "Manm • Kontak • Relasyon • Dosye", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avi ofisyèl • Nouvèl kominote • Alèt", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyer • Avi • Grafik • Medya", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Estatistik • Pèfòmans • Rapò", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Kalandriye • Pwogram • Aktivite • Reyinyon", "tl6_t": "HELP DESK", "tl6_d": "Sipò • Demann • Ka • Asistans", "legal_h": "AVI ENPÒTAN", "legal_p": "Asistan BSS1815 PRO-MAX DMP la sèlman ede w jwenn bon modil la epi itilize platfòm nan. Li pa bay konsèy legal, finansye oswa medikal, epi li pa janm bezwen modpas ou oswa nimewo idantite ou. Gen modil ki mande yon koneksyon administratè."}, "fr": {"part_of": "FAIT PARTIE DE BSS1815 PRO-MAX DMP", "home": "ACCUEIL", "m_chat": "ASSISTANT", "m_tools": "OUTILS IA", "contact": "CENTRE DE CONTACT", "top": "BSS1815 PRO-MAX DMP • CENTRE IA", "badge": "ASSISTANT BSS1815 • PRÊT", "title": "CENTRE IA", "sub": "Posez une question et soyez guidé vers le bon module BSS1815 PRO-MAX DMP — en anglais, français ou créole haïtien.", "warn": "L'assistant vous guide seulement dans les modules BSS1815 PRO-MAX DMP. Il ne donne pas de conseils juridiques, financiers ou médicaux. N'écrivez jamais de mot de passe, de numéro d'identité ou de carte ici.", "welcome": "Bonjour ! Je suis l'assistant BSS1815 PRO-MAX DMP. Dites-moi ce dont vous avez besoin — par exemple : un membre, une annonce, une affiche, des rapports, des événements ou de l'aide.", "ph": "Écrivez ce dont vous avez besoin...", "send": "ENVOYER", "thinking": "Réflexion…", "nomatch": "Je peux seulement vous guider dans les modules BSS1815 PRO-MAX DMP. Ouvrez le Help Desk, ou contactez-nous et notre équipe vous aidera.", "match": "J'ai trouvé le module BSS1815 qui correspond à votre demande :", "open": "OUVRIR", "q_title": "QUESTIONS RAPIDES", "q1": "Trouver un membre", "q2": "Envoyer une annonce", "q3": "Créer une affiche", "q4": "Voir les rapports", "q5": "Gérer les événements", "q6": "Obtenir de l'aide", "tools_h": "OUTILS IA", "tl1_t": "CRM SYSTEM", "tl1_d": "Membres • Contacts • Relations • Dossiers", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avis officiels • Nouvelles de la communauté • Alertes", "tl3_t": "FLYER STUDIO", "tl3_d": "Affiches • Avis • Graphiques • Médias", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistiques • Performance • Rapports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendrier • Programmes • Activités • Réunions", "tl6_t": "HELP DESK", "tl6_d": "Support • Demandes • Dossiers • Assistance", "legal_h": "AVIS IMPORTANT", "legal_p": "L'assistant BSS1815 PRO-MAX DMP vous aide seulement à trouver le bon module et à utiliser la plateforme. Il ne donne pas de conseils juridiques, financiers ou médicaux, et n'a jamais besoin de vos mots de passe ni de vos numéros d'identité. Certains modules exigent une connexion administrateur.", "av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux."}};
-var EXTRA = {"en": {"av_label": "AI ASSISTANT AVATAR", "av_soon": "Avatar video coming soon", "ct_h": "CONTACT US", "ct_p": "Official phone numbers and social networks.", "m_voice": "VOICE", "v_h": "VOICE", "v_p": "Listen to any text read aloud, or speak instead of typing.", "v_ph": "Type or paste text here, then press LISTEN…", "v_listen": "🔊 LISTEN", "v_pause": "⏸ PAUSE", "v_resume": "▶ RESUME", "v_stop": "⏹ STOP", "v_dictate": "🎤 DICTATE", "v_last": "USE LAST ANSWER", "v_rate": "SPEED", "v_voice": "VOICE", "v_auto": "Avatar speaks every answer", "v_auto_voice": "Auto", "v_mic": "Speak instead of typing", "v_nosupport_tts": "This browser cannot read text aloud.", "v_nosupport_stt": "Voice input is not supported in this browser. Use Chrome on Android or on a computer.", "v_ht_note": "No Haitian Creole voice on this device — a French voice is used (pronunciation is approximate).", "v_ht_stt": "Voice input does not understand Creole yet — speak French or English, or type.", "v_listening": "Listening… speak now", "v_denied": "Microphone blocked. Allow the microphone for this site in the browser settings.", "v_nospeech": "Nothing was heard. Try again.", "v_empty": "Type some text first.", "v_speaking": "Reading aloud…", "av_tap": "Tap the avatar to hear the intro — answers are read aloud too", "av_intro": "Hello, my name is Max Louis, alias Le Baron. The only difference is: I am your assistant for BSS eighteen fifteen. How may I help you today?"}, "ht": {"av_label": "AVATAR ASISTAN AI", "av_soon": "Videyo avatar an ap vini", "ct_h": "KONTAKTE NOU", "ct_p": "Nimewo telefòn ofisyèl ak rezo sosyal yo.", "m_voice": "VWA", "v_h": "VWA", "v_p": "Koute nenpòt tèks li byen fò, oswa pale olye w ekri.", "v_ph": "Ekri oswa kole tèks isit la, epi peze KOUTE…", "v_listen": "🔊 KOUTE", "v_pause": "⏸ PAUZ", "v_resume": "▶ KONTINYE", "v_stop": "⏹ ARÈT", "v_dictate": "🎤 DIKTE", "v_last": "ITILIZE DÈNYE REPONS LAN", "v_rate": "VITÈS", "v_voice": "VWA", "v_auto": "Avatar la di chak repons", "v_auto_voice": "Oto", "v_mic": "Pale olye w ekri", "v_nosupport_tts": "Navigatè sa a pa ka li tèks byen fò.", "v_nosupport_stt": "Navigatè sa a pa sipòte antre vwa. Itilize Chrome sou Android oswa sou òdinatè.", "v_ht_note": "Pa gen vwa kreyòl ayisyen sou aparèy sa a — n ap itilize yon vwa franse (pwononsyasyon an apwoksimatif).", "v_ht_stt": "Antre vwa a poko konprann kreyòl — pale franse oswa anglè, oswa ekri.", "v_listening": "Ap koute… pale kounye a", "v_denied": "Mikwo a bloke. Otorize mikwo a pou sit sa a nan paramèt navigatè a.", "v_nospeech": "Pa t tande anyen. Eseye ankò.", "v_empty": "Ekri kèk tèks anvan.", "v_speaking": "Ap li byen fò…", "av_tap": "Peze sou avatar la pou tande entwodiksyon an — li li repons yo byen fò tou", "av_intro": "Bonjou, mwen rele Max Louis, alyas Le Baron. Sèl diferans lan: mwen se asistan ou pou BSS mil wit san kenz. Kijan m ka ede w jodi a?"}, "fr": {"av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux.", "m_voice": "VOIX", "v_h": "VOIX", "v_p": "Écoutez n'importe quel texte lu à voix haute, ou parlez au lieu d'écrire.", "v_ph": "Écrivez ou collez du texte ici, puis appuyez sur ÉCOUTER…", "v_listen": "🔊 ÉCOUTER", "v_pause": "⏸ PAUSE", "v_resume": "▶ REPRENDRE", "v_stop": "⏹ ARRÊTER", "v_dictate": "🎤 DICTER", "v_last": "UTILISER LA DERNIÈRE RÉPONSE", "v_rate": "VITESSE", "v_voice": "VOIX", "v_auto": "L'avatar dit chaque réponse", "v_auto_voice": "Auto", "v_mic": "Parler au lieu d'écrire", "v_nosupport_tts": "Ce navigateur ne peut pas lire le texte à voix haute.", "v_nosupport_stt": "La saisie vocale n'est pas prise en charge par ce navigateur. Utilisez Chrome sur Android ou sur ordinateur.", "v_ht_note": "Aucune voix en créole haïtien sur cet appareil — une voix française est utilisée (la prononciation est approximative).", "v_ht_stt": "La saisie vocale ne comprend pas encore le créole — parlez français ou anglais, ou écrivez.", "v_listening": "J'écoute… parlez maintenant", "v_denied": "Micro bloqué. Autorisez le micro pour ce site dans les paramètres du navigateur.", "v_nospeech": "Rien n'a été entendu. Réessayez.", "v_empty": "Écrivez d'abord du texte.", "v_speaking": "Lecture en cours…", "av_tap": "Touchez l'avatar pour entendre l'introduction — les réponses sont aussi lues à voix haute", "av_intro": "Bonjour, je m'appelle Max Louis, alias Le Baron. La seule différence, c'est que je suis votre assistant pour BSS mille huit cent quinze. Comment puis-je vous aider aujourd'hui ?"}};
+var EXTRA = {"en": {"av_label": "AI ASSISTANT AVATAR", "av_soon": "Avatar video coming soon", "ct_h": "CONTACT US", "ct_p": "Official phone numbers and social networks.", "m_voice": "VOICE", "v_h": "VOICE", "v_p": "Listen to any text read aloud, or speak instead of typing.", "v_ph": "Type or paste text here, then press LISTEN…", "v_listen": "🔊 LISTEN", "v_pause": "⏸ PAUSE", "v_resume": "▶ RESUME", "v_stop": "⏹ STOP", "v_dictate": "🎤 DICTATE", "v_last": "USE LAST ANSWER", "v_rate": "SPEED", "v_voice": "VOICE", "v_auto": "Avatar speaks every answer", "v_auto_voice": "Auto (male voice)", "v_mic": "Speak instead of typing", "v_nosupport_tts": "This browser cannot read text aloud.", "v_nosupport_stt": "Voice input is not supported in this browser. Use Chrome on Android or on a computer.", "v_ht_note": "No Haitian Creole voice on this device — a French voice is used (pronunciation is approximate).", "v_ht_stt": "Voice input does not understand Creole yet — speak French or English, or type.", "v_listening": "Listening… speak now", "v_denied": "Microphone blocked. Allow the microphone for this site in the browser settings.", "v_nospeech": "Nothing was heard. Try again.", "v_empty": "Type some text first.", "v_speaking": "Reading aloud…", "av_tap": "Tap the avatar to hear the intro — answers are read aloud too", "av_intro": "Hello, my name is Max Louis, alias Le Baron. The only difference is: I am your assistant for BSS eighteen fifteen. How may I help you today?", "v_pitch": "TONE (low = deeper)"}, "ht": {"av_label": "AVATAR ASISTAN AI", "av_soon": "Videyo avatar an ap vini", "ct_h": "KONTAKTE NOU", "ct_p": "Nimewo telefòn ofisyèl ak rezo sosyal yo.", "m_voice": "VWA", "v_h": "VWA", "v_p": "Koute nenpòt tèks li byen fò, oswa pale olye w ekri.", "v_ph": "Ekri oswa kole tèks isit la, epi peze KOUTE…", "v_listen": "🔊 KOUTE", "v_pause": "⏸ PAUZ", "v_resume": "▶ KONTINYE", "v_stop": "⏹ ARÈT", "v_dictate": "🎤 DIKTE", "v_last": "ITILIZE DÈNYE REPONS LAN", "v_rate": "VITÈS", "v_voice": "VWA", "v_auto": "Avatar la di chak repons", "v_auto_voice": "Oto (vwa gason)", "v_mic": "Pale olye w ekri", "v_nosupport_tts": "Navigatè sa a pa ka li tèks byen fò.", "v_nosupport_stt": "Navigatè sa a pa sipòte antre vwa. Itilize Chrome sou Android oswa sou òdinatè.", "v_ht_note": "Pa gen vwa kreyòl ayisyen sou aparèy sa a — n ap itilize yon vwa franse (pwononsyasyon an apwoksimatif).", "v_ht_stt": "Antre vwa a poko konprann kreyòl — pale franse oswa anglè, oswa ekri.", "v_listening": "Ap koute… pale kounye a", "v_denied": "Mikwo a bloke. Otorize mikwo a pou sit sa a nan paramèt navigatè a.", "v_nospeech": "Pa t tande anyen. Eseye ankò.", "v_empty": "Ekri kèk tèks anvan.", "v_speaking": "Ap li byen fò…", "av_tap": "Peze sou avatar la pou tande entwodiksyon an — li li repons yo byen fò tou", "av_intro": "Bonjou, mwen rele Max Louis, alyas Le Baron. Sèl diferans lan: mwen se asistan ou pou BSS mil wit san kenz. Kijan m ka ede w jodi a?", "v_pitch": "TON (ba = pi fon)"}, "fr": {"av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux.", "m_voice": "VOIX", "v_h": "VOIX", "v_p": "Écoutez n'importe quel texte lu à voix haute, ou parlez au lieu d'écrire.", "v_ph": "Écrivez ou collez du texte ici, puis appuyez sur ÉCOUTER…", "v_listen": "🔊 ÉCOUTER", "v_pause": "⏸ PAUSE", "v_resume": "▶ REPRENDRE", "v_stop": "⏹ ARRÊTER", "v_dictate": "🎤 DICTER", "v_last": "UTILISER LA DERNIÈRE RÉPONSE", "v_rate": "VITESSE", "v_voice": "VOIX", "v_auto": "L'avatar dit chaque réponse", "v_auto_voice": "Auto (voix masculine)", "v_mic": "Parler au lieu d'écrire", "v_nosupport_tts": "Ce navigateur ne peut pas lire le texte à voix haute.", "v_nosupport_stt": "La saisie vocale n'est pas prise en charge par ce navigateur. Utilisez Chrome sur Android ou sur ordinateur.", "v_ht_note": "Aucune voix en créole haïtien sur cet appareil — une voix française est utilisée (la prononciation est approximative).", "v_ht_stt": "La saisie vocale ne comprend pas encore le créole — parlez français ou anglais, ou écrivez.", "v_listening": "J'écoute… parlez maintenant", "v_denied": "Micro bloqué. Autorisez le micro pour ce site dans les paramètres du navigateur.", "v_nospeech": "Rien n'a été entendu. Réessayez.", "v_empty": "Écrivez d'abord du texte.", "v_speaking": "Lecture en cours…", "av_tap": "Touchez l'avatar pour entendre l'introduction — les réponses sont aussi lues à voix haute", "av_intro": "Bonjour, je m'appelle Max Louis, alias Le Baron. La seule différence, c'est que je suis votre assistant pour BSS mille huit cent quinze. Comment puis-je vous aider aujourd'hui ?", "v_pitch": "TON (bas = plus grave)"}};
 for(var _l in EXTRA){ if(!I18N[_l]){ continue; } for(var _k in EXTRA[_l]){ I18N[_l][_k] = EXTRA[_l][_k]; } }
 
 /* ===== AVATAR VIDEO =====
@@ -725,6 +726,10 @@ var AVATAR_TALK_ONLY = true;
    false = recite the text with the browser voice while the avatar moves.  true = play the video's OWN voice instead. */
 var AVATAR_USE_VIDEO_VOICE = false;
 var AVATAR_INTRO_AUTO = true;
+/* OPTIONAL — the avatar's REAL voice: record (or generate) the intro with a male voice, save it as .mp3 files
+   in the site root, and put the file names here. If a file exists it is played instead of the computer voice. */
+var AVATAR_INTRO_AUDIO = { en: "avatar-intro-en.mp3", fr: "avatar-intro-fr.mp3", ht: "avatar-intro-ht.mp3" };
+var introAudioEl = null;
 var avatarVideoEl = null, avatarMsgOn = false, avPlayEl = null;
 
 function avatarMessageStop(){
@@ -915,11 +920,15 @@ function updateVoiceNote(){
   vNote.textContent = (lang === "ht" && synth && !hasCreoleVoice()) ? t("v_ht_note") : "";
 }
 
+var MALE_RE = /\b(male|man|daniel|thomas|david|mark|guy|henri|antoine|paul|george|james|alex|fred|jorge|diego|liam|ryan|jean|claude|bruno|louis|nicolas|pierre|lucas|olivier|sean|arthur|oliver|aaron|gordon|eddy|reed|rocko|jacques|felix|rishi|matthieu|maxime|remy)\b|-x-(iol|iom|tpd|frd|fre|iog)-/i;
+var FEMALE_RE = /\b(female|woman|samantha|susan|zira|hazel|catherine|amelie|amélie|audrey|marie|julie|hortense|aurelie|aurélie|siri|karen|moira|tessa|fiona|victoria|allison|ava|joana|sara|emma|denise|eloise|élodie|celine|céline|virginie)\b|-x-(iob|tpc|tpf|frb|frc|fra)-/i;
+function maleScore(v){ var n = v.name || ""; return (MALE_RE.test(n) ? 2 : 0) - (FEMALE_RE.test(n) ? 2 : 0); }
+
 function pickVoice(){
   var list = voicesForLang(lang), chosen = null;
   if(vVoice && vVoice.value){ list.forEach(function(v){ if(v.name === vVoice.value){ chosen = v; } }); }
   if(!chosen && lang === "ht"){ list.forEach(function(v){ if(!chosen && (v.lang || "").toLowerCase().indexOf("ht") === 0){ chosen = v; } }); }
-  if(!chosen){ list.forEach(function(v){ if(!chosen && v.default){ chosen = v; } }); }
+  if(!chosen){ var best = -99; list.forEach(function(v){ var s = maleScore(v); if(s > best){ best = s; chosen = v; } }); }
   return chosen || list[0] || null;
 }
 
@@ -947,13 +956,31 @@ function setSpeaking(on){
 
 function stopSpeaking(){
   speakToken++;
+  if(introAudioEl){ try{ introAudioEl.pause(); }catch(e){} introAudioEl = null; }
   if(synth){ try{ synth.cancel(); }catch(e){} }
   setSpeaking(false);
 }
 
+function playIntroAudio(url){
+  stopSpeaking();
+  if(avatarMsgOn){ avatarMessageStop(); }
+  var a = new Audio(url); introAudioEl = a;
+  a.onplay = function(){ setSpeaking(true); };
+  a.onended = function(){ introAudioEl = null; setSpeaking(false); };
+  a.onerror = function(){ introAudioEl = null; setSpeaking(false); speak(t("av_intro")); };
+  var pr = a.play();
+  if(pr && pr.catch){ pr.catch(function(){ introAudioEl = null; setSpeaking(false); speak(t("av_intro")); }); }
+}
+
 function reciteIntro(){
   try{ sessionStorage.setItem("bssIntroDone", "1"); }catch(e){}
-  speak(t("av_intro"));
+  var f = AVATAR_INTRO_AUDIO && AVATAR_INTRO_AUDIO[lang];
+  if(!f || !window.fetch || location.protocol === "file:"){ speak(t("av_intro")); return; }
+  var url = "../../" + encodeURI(f) + "?v=20260920";
+  fetch(url, { method: "HEAD" }).then(function(r){
+    var ct = (r.headers.get("content-type") || "").toLowerCase();
+    if(r.ok && (ct.indexOf("audio") !== -1 || ct.indexOf("octet") !== -1)){ playIntroAudio(url); } else { speak(t("av_intro")); }
+  }).catch(function(){ speak(t("av_intro")); });
 }
 
 function speak(text){
@@ -970,7 +997,8 @@ function speak(text){
     var u = new SpeechSynthesisUtterance(chunks[idx++]);
     u.lang = voice ? voice.lang : LANG_TAG[lang];
     if(voice){ u.voice = voice; }
-    u.rate = parseFloat(vRate && vRate.value) || 1;
+    u.rate = parseFloat(vRate && vRate.value) || 0.95;
+    u.pitch = parseFloat(vPitch && vPitch.value) || 0.75;
     u.onend = function(){ next(); };
     u.onerror = function(){ if(tok === speakToken){ setSpeaking(false); } };
     synth.speak(u);
@@ -1038,7 +1066,15 @@ if(vPause){ vPause.addEventListener("click", function(){
   vPause.textContent = isPaused ? t("v_resume") : t("v_pause");
 }); }
 if(vLast){ vLast.addEventListener("click", function(){ if(lastBotText){ vText.value = lastBotText; } else { vSay(t("v_empty")); } }); }
-if(vRate){ vRate.addEventListener("change", function(){ /* applies to the next sentence/read */ }); }
+var vPitch = document.getElementById("vPitch");
+try{
+  var sv = localStorage.getItem("bssVoiceName"), sp = localStorage.getItem("bssVoicePitch"), sr = localStorage.getItem("bssVoiceRate");
+  if(sp && vPitch){ vPitch.value = sp; } if(sr && vRate){ vRate.value = sr; }
+  if(sv && vVoice){ setTimeout(function(){ if([].some.call(vVoice.options, function(o){ return o.value === sv; })){ vVoice.value = sv; } }, 400); }
+}catch(e){}
+if(vVoice){ vVoice.addEventListener("change", function(){ try{ localStorage.setItem("bssVoiceName", vVoice.value); }catch(e){} }); }
+if(vPitch){ vPitch.addEventListener("change", function(){ try{ localStorage.setItem("bssVoicePitch", vPitch.value); }catch(e){} }); }
+if(vRate){ vRate.addEventListener("change", function(){ try{ localStorage.setItem("bssVoiceRate", vRate.value); }catch(e){} }); }
 
 /* speech recognition (speak instead of typing) */
 var rec = null, listening = false;
