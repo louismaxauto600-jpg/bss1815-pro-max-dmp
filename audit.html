@@ -1,0 +1,50 @@
+<!-- FILE: audit-center.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Audit Center",
+  "icon": "🛡️",
+  "desc": "Swiv aksyon administratè ak aktivite sistèm lan.",
+  "collection": "mx_audit_logs",
+  "access": "super",
+  "fields": [
+    {
+      "key": "action",
+      "label": "Aksyon"
+    },
+    {
+      "key": "module",
+      "label": "Modil"
+    },
+    {
+      "key": "detail",
+      "label": "Detay"
+    },
+    {
+      "key": "by",
+      "label": "Kont"
+    }
+  ],
+  "readOnly": true,
+  "badge": "module",
+  "note": "Chak ajoute, modifikasyon ak efasman nan modil yo sove isit la otomatikman. Pa gen moun ki ka modifye oswa efase jounal la."
+});
+</script>
+
+</body>
+</html>
