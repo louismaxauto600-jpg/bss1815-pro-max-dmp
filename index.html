@@ -583,6 +583,7 @@ footer p {
 @media(max-width:520px){.chat-in{grid-template-columns:1fr 1fr}.chat-in input{grid-column:1/-1}.vrow{grid-template-columns:1fr}}
 .av-hint{padding:8px 14px;text-align:center;color:var(--apricot);font-size:11px;border-bottom:1px solid var(--border);background:#000}
 .avatar-stage{cursor:pointer}
+.av-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);border:3px solid var(--orange);color:var(--orange);font-size:34px;padding-left:6px;pointer-events:none;box-shadow:0 0 30px rgba(255,121,0,.5)}
 </style>
 </head>
 <body>
@@ -625,7 +626,7 @@ footer p {
 <div class="avatar-stage" id="avatarStage">
 <div class="avatar-ph" id="avatarPh"><div class="ring">🤖</div><b data-i18n="av_label">AI ASSISTANT AVATAR</b><small data-i18n="av_soon">Avatar video coming soon</small></div>
 </div>
-<div class="av-hint" data-i18n="av_tap">Tap the avatar to hear the welcome — the avatar speaks every answer</div>
+<div class="av-hint" data-i18n="av_tap">Tap the avatar to hear it speak — answers are read aloud too</div>
 <div class="chat-log" id="log" aria-live="polite"></div>
 <div class="chat-in">
 <input id="q" type="text" autocomplete="off" maxlength="800" placeholder="Type what you need..." data-i18n-placeholder="ph">
@@ -700,55 +701,96 @@ footer p {
 <p>briyantsoleysigno1815@gmail.com</p>
 <p>(407) 640-5166 • (317) 538-1150 • (516) 216-8494</p>
 <p>© <span id="year"></span> BSS1815 PRO-MAX DMP</p>
-<p style="opacity:.55">AI CENTER VERSION 2026.09.20-D</p>
+<p style="opacity:.55">AI CENTER VERSION 2026.09.20-E</p>
 </footer>
 <script>
 (function(){
 "use strict";
 var I18N = {"en": {"part_of": "PART OF BSS1815 PRO-MAX DMP", "home": "HOME", "m_chat": "ASSISTANT", "m_tools": "AI TOOLS", "contact": "CONTACT CENTER", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "BSS1815 ASSISTANT • READY", "title": "AI CENTER", "sub": "Ask a question and get guided to the right BSS1815 PRO-MAX DMP module — in English, French or Haitian Creole.", "warn": "The assistant only guides you inside the BSS1815 PRO-MAX DMP modules. It does not give legal, financial or medical advice. Never type passwords, ID numbers or card numbers here.", "welcome": "Hello! I'm the BSS1815 PRO-MAX DMP assistant. Tell me what you need — for example: a member, an announcement, a flyer, reports, events or help.", "ph": "Type what you need...", "send": "SEND", "thinking": "Thinking…", "nomatch": "I can only guide you inside the BSS1815 PRO-MAX DMP modules. Open the Help Desk, or contact us and our team will help.", "match": "I found the BSS1815 module that matches your request:", "open": "OPEN", "q_title": "QUICK QUESTIONS", "q1": "Find a member", "q2": "Send an announcement", "q3": "Create a flyer", "q4": "See reports", "q5": "Manage events", "q6": "Get help", "tools_h": "AI TOOLS", "tl1_t": "CRM SYSTEM", "tl1_d": "Members • Contacts • Relationships • Records", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Official notices • Community updates • Alerts", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyers • Notices • Graphics • Media", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistics • Performance • Reports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendar • Programs • Activities • Meetings", "tl6_t": "HELP DESK", "tl6_d": "Support • Requests • Cases • Assistance", "legal_h": "IMPORTANT NOTICE", "legal_p": "The BSS1815 PRO-MAX DMP assistant only helps you find the right module and use the platform. It does not give legal, financial or medical advice, and it never needs your passwords or ID numbers. Some modules require an administrator login."}, "ht": {"part_of": "PATI NAN BSS1815 PRO-MAX DMP", "home": "AKÈY", "m_chat": "ASISTAN", "m_tools": "ZOUTI AI", "contact": "SANT KONTAK", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "ASISTAN BSS1815 • PARE", "title": "AI CENTER", "sub": "Poze yon kesyon epi jwenn gid pou bon modil BSS1815 PRO-MAX DMP la — an anglè, franse oswa kreyòl ayisyen.", "warn": "Asistan an sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Li pa bay konsèy legal, finansye oswa medikal. Pa janm ekri modpas, nimewo idantite oswa nimewo kat isit la.", "welcome": "Bonjou! Mwen se asistan BSS1815 PRO-MAX DMP la. Di m sa ou bezwen — pa egzanp: yon manm, yon anons, yon flyer, rapò, evènman oswa èd.", "ph": "Ekri sa ou bezwen...", "send": "VOYE", "thinking": "Ap panse…", "nomatch": "Mwen ka sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Louvri Help Desk la, oswa kontakte nou epi ekip nou an ap ede w.", "match": "Mwen jwenn modil BSS1815 ki koresponn ak demann ou an:", "open": "OUVRI", "q_title": "KESYON RAPID", "q1": "Jwenn yon manm", "q2": "Voye yon anons", "q3": "Kreye yon flyer", "q4": "Wè rapò yo", "q5": "Jere evènman yo", "q6": "Jwenn èd", "tools_h": "ZOUTI AI", "tl1_t": "CRM SYSTEM", "tl1_d": "Manm • Kontak • Relasyon • Dosye", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avi ofisyèl • Nouvèl kominote • Alèt", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyer • Avi • Grafik • Medya", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Estatistik • Pèfòmans • Rapò", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Kalandriye • Pwogram • Aktivite • Reyinyon", "tl6_t": "HELP DESK", "tl6_d": "Sipò • Demann • Ka • Asistans", "legal_h": "AVI ENPÒTAN", "legal_p": "Asistan BSS1815 PRO-MAX DMP la sèlman ede w jwenn bon modil la epi itilize platfòm nan. Li pa bay konsèy legal, finansye oswa medikal, epi li pa janm bezwen modpas ou oswa nimewo idantite ou. Gen modil ki mande yon koneksyon administratè."}, "fr": {"part_of": "FAIT PARTIE DE BSS1815 PRO-MAX DMP", "home": "ACCUEIL", "m_chat": "ASSISTANT", "m_tools": "OUTILS IA", "contact": "CENTRE DE CONTACT", "top": "BSS1815 PRO-MAX DMP • CENTRE IA", "badge": "ASSISTANT BSS1815 • PRÊT", "title": "CENTRE IA", "sub": "Posez une question et soyez guidé vers le bon module BSS1815 PRO-MAX DMP — en anglais, français ou créole haïtien.", "warn": "L'assistant vous guide seulement dans les modules BSS1815 PRO-MAX DMP. Il ne donne pas de conseils juridiques, financiers ou médicaux. N'écrivez jamais de mot de passe, de numéro d'identité ou de carte ici.", "welcome": "Bonjour ! Je suis l'assistant BSS1815 PRO-MAX DMP. Dites-moi ce dont vous avez besoin — par exemple : un membre, une annonce, une affiche, des rapports, des événements ou de l'aide.", "ph": "Écrivez ce dont vous avez besoin...", "send": "ENVOYER", "thinking": "Réflexion…", "nomatch": "Je peux seulement vous guider dans les modules BSS1815 PRO-MAX DMP. Ouvrez le Help Desk, ou contactez-nous et notre équipe vous aidera.", "match": "J'ai trouvé le module BSS1815 qui correspond à votre demande :", "open": "OUVRIR", "q_title": "QUESTIONS RAPIDES", "q1": "Trouver un membre", "q2": "Envoyer une annonce", "q3": "Créer une affiche", "q4": "Voir les rapports", "q5": "Gérer les événements", "q6": "Obtenir de l'aide", "tools_h": "OUTILS IA", "tl1_t": "CRM SYSTEM", "tl1_d": "Membres • Contacts • Relations • Dossiers", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avis officiels • Nouvelles de la communauté • Alertes", "tl3_t": "FLYER STUDIO", "tl3_d": "Affiches • Avis • Graphiques • Médias", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistiques • Performance • Rapports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendrier • Programmes • Activités • Réunions", "tl6_t": "HELP DESK", "tl6_d": "Support • Demandes • Dossiers • Assistance", "legal_h": "AVIS IMPORTANT", "legal_p": "L'assistant BSS1815 PRO-MAX DMP vous aide seulement à trouver le bon module et à utiliser la plateforme. Il ne donne pas de conseils juridiques, financiers ou médicaux, et n'a jamais besoin de vos mots de passe ni de vos numéros d'identité. Certains modules exigent une connexion administrateur.", "av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux."}};
-var EXTRA = {"en": {"av_label": "AI ASSISTANT AVATAR", "av_soon": "Avatar video coming soon", "ct_h": "CONTACT US", "ct_p": "Official phone numbers and social networks.", "m_voice": "VOICE", "v_h": "VOICE", "v_p": "Listen to any text read aloud, or speak instead of typing.", "v_ph": "Type or paste text here, then press LISTEN…", "v_listen": "🔊 LISTEN", "v_pause": "⏸ PAUSE", "v_resume": "▶ RESUME", "v_stop": "⏹ STOP", "v_dictate": "🎤 DICTATE", "v_last": "USE LAST ANSWER", "v_rate": "SPEED", "v_voice": "VOICE", "v_auto": "Avatar speaks every answer", "v_auto_voice": "Auto", "v_mic": "Speak instead of typing", "v_nosupport_tts": "This browser cannot read text aloud.", "v_nosupport_stt": "Voice input is not supported in this browser. Use Chrome on Android or on a computer.", "v_ht_note": "No Haitian Creole voice on this device — a French voice is used (pronunciation is approximate).", "v_ht_stt": "Voice input does not understand Creole yet — speak French or English, or type.", "v_listening": "Listening… speak now", "v_denied": "Microphone blocked. Allow the microphone for this site in the browser settings.", "v_nospeech": "Nothing was heard. Try again.", "v_empty": "Type some text first.", "v_speaking": "Reading aloud…", "av_tap": "Tap the avatar to hear the welcome — the avatar speaks every answer"}, "ht": {"av_label": "AVATAR ASISTAN AI", "av_soon": "Videyo avatar an ap vini", "ct_h": "KONTAKTE NOU", "ct_p": "Nimewo telefòn ofisyèl ak rezo sosyal yo.", "m_voice": "VWA", "v_h": "VWA", "v_p": "Koute nenpòt tèks li byen fò, oswa pale olye w ekri.", "v_ph": "Ekri oswa kole tèks isit la, epi peze KOUTE…", "v_listen": "🔊 KOUTE", "v_pause": "⏸ PAUZ", "v_resume": "▶ KONTINYE", "v_stop": "⏹ ARÈT", "v_dictate": "🎤 DIKTE", "v_last": "ITILIZE DÈNYE REPONS LAN", "v_rate": "VITÈS", "v_voice": "VWA", "v_auto": "Avatar la di chak repons", "v_auto_voice": "Oto", "v_mic": "Pale olye w ekri", "v_nosupport_tts": "Navigatè sa a pa ka li tèks byen fò.", "v_nosupport_stt": "Navigatè sa a pa sipòte antre vwa. Itilize Chrome sou Android oswa sou òdinatè.", "v_ht_note": "Pa gen vwa kreyòl ayisyen sou aparèy sa a — n ap itilize yon vwa franse (pwononsyasyon an apwoksimatif).", "v_ht_stt": "Antre vwa a poko konprann kreyòl — pale franse oswa anglè, oswa ekri.", "v_listening": "Ap koute… pale kounye a", "v_denied": "Mikwo a bloke. Otorize mikwo a pou sit sa a nan paramèt navigatè a.", "v_nospeech": "Pa t tande anyen. Eseye ankò.", "v_empty": "Ekri kèk tèks anvan.", "v_speaking": "Ap li byen fò…", "av_tap": "Peze sou avatar la pou tande akèy la — avatar la di chak repons"}, "fr": {"av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux.", "m_voice": "VOIX", "v_h": "VOIX", "v_p": "Écoutez n'importe quel texte lu à voix haute, ou parlez au lieu d'écrire.", "v_ph": "Écrivez ou collez du texte ici, puis appuyez sur ÉCOUTER…", "v_listen": "🔊 ÉCOUTER", "v_pause": "⏸ PAUSE", "v_resume": "▶ REPRENDRE", "v_stop": "⏹ ARRÊTER", "v_dictate": "🎤 DICTER", "v_last": "UTILISER LA DERNIÈRE RÉPONSE", "v_rate": "VITESSE", "v_voice": "VOIX", "v_auto": "L'avatar dit chaque réponse", "v_auto_voice": "Auto", "v_mic": "Parler au lieu d'écrire", "v_nosupport_tts": "Ce navigateur ne peut pas lire le texte à voix haute.", "v_nosupport_stt": "La saisie vocale n'est pas prise en charge par ce navigateur. Utilisez Chrome sur Android ou sur ordinateur.", "v_ht_note": "Aucune voix en créole haïtien sur cet appareil — une voix française est utilisée (la prononciation est approximative).", "v_ht_stt": "La saisie vocale ne comprend pas encore le créole — parlez français ou anglais, ou écrivez.", "v_listening": "J'écoute… parlez maintenant", "v_denied": "Micro bloqué. Autorisez le micro pour ce site dans les paramètres du navigateur.", "v_nospeech": "Rien n'a été entendu. Réessayez.", "v_empty": "Écrivez d'abord du texte.", "v_speaking": "Lecture en cours…", "av_tap": "Touchez l'avatar pour entendre l'accueil — l'avatar dit chaque réponse"}};
+var EXTRA = {"en": {"av_label": "AI ASSISTANT AVATAR", "av_soon": "Avatar video coming soon", "ct_h": "CONTACT US", "ct_p": "Official phone numbers and social networks.", "m_voice": "VOICE", "v_h": "VOICE", "v_p": "Listen to any text read aloud, or speak instead of typing.", "v_ph": "Type or paste text here, then press LISTEN…", "v_listen": "🔊 LISTEN", "v_pause": "⏸ PAUSE", "v_resume": "▶ RESUME", "v_stop": "⏹ STOP", "v_dictate": "🎤 DICTATE", "v_last": "USE LAST ANSWER", "v_rate": "SPEED", "v_voice": "VOICE", "v_auto": "Avatar speaks every answer", "v_auto_voice": "Auto", "v_mic": "Speak instead of typing", "v_nosupport_tts": "This browser cannot read text aloud.", "v_nosupport_stt": "Voice input is not supported in this browser. Use Chrome on Android or on a computer.", "v_ht_note": "No Haitian Creole voice on this device — a French voice is used (pronunciation is approximate).", "v_ht_stt": "Voice input does not understand Creole yet — speak French or English, or type.", "v_listening": "Listening… speak now", "v_denied": "Microphone blocked. Allow the microphone for this site in the browser settings.", "v_nospeech": "Nothing was heard. Try again.", "v_empty": "Type some text first.", "v_speaking": "Reading aloud…", "av_tap": "Tap the avatar to hear it speak — answers are read aloud too"}, "ht": {"av_label": "AVATAR ASISTAN AI", "av_soon": "Videyo avatar an ap vini", "ct_h": "KONTAKTE NOU", "ct_p": "Nimewo telefòn ofisyèl ak rezo sosyal yo.", "m_voice": "VWA", "v_h": "VWA", "v_p": "Koute nenpòt tèks li byen fò, oswa pale olye w ekri.", "v_ph": "Ekri oswa kole tèks isit la, epi peze KOUTE…", "v_listen": "🔊 KOUTE", "v_pause": "⏸ PAUZ", "v_resume": "▶ KONTINYE", "v_stop": "⏹ ARÈT", "v_dictate": "🎤 DIKTE", "v_last": "ITILIZE DÈNYE REPONS LAN", "v_rate": "VITÈS", "v_voice": "VWA", "v_auto": "Avatar la di chak repons", "v_auto_voice": "Oto", "v_mic": "Pale olye w ekri", "v_nosupport_tts": "Navigatè sa a pa ka li tèks byen fò.", "v_nosupport_stt": "Navigatè sa a pa sipòte antre vwa. Itilize Chrome sou Android oswa sou òdinatè.", "v_ht_note": "Pa gen vwa kreyòl ayisyen sou aparèy sa a — n ap itilize yon vwa franse (pwononsyasyon an apwoksimatif).", "v_ht_stt": "Antre vwa a poko konprann kreyòl — pale franse oswa anglè, oswa ekri.", "v_listening": "Ap koute… pale kounye a", "v_denied": "Mikwo a bloke. Otorize mikwo a pou sit sa a nan paramèt navigatè a.", "v_nospeech": "Pa t tande anyen. Eseye ankò.", "v_empty": "Ekri kèk tèks anvan.", "v_speaking": "Ap li byen fò…", "av_tap": "Peze sou avatar la pou tande l pale — li li repons yo byen fò tou"}, "fr": {"av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux.", "m_voice": "VOIX", "v_h": "VOIX", "v_p": "Écoutez n'importe quel texte lu à voix haute, ou parlez au lieu d'écrire.", "v_ph": "Écrivez ou collez du texte ici, puis appuyez sur ÉCOUTER…", "v_listen": "🔊 ÉCOUTER", "v_pause": "⏸ PAUSE", "v_resume": "▶ REPRENDRE", "v_stop": "⏹ ARRÊTER", "v_dictate": "🎤 DICTER", "v_last": "UTILISER LA DERNIÈRE RÉPONSE", "v_rate": "VITESSE", "v_voice": "VOIX", "v_auto": "L'avatar dit chaque réponse", "v_auto_voice": "Auto", "v_mic": "Parler au lieu d'écrire", "v_nosupport_tts": "Ce navigateur ne peut pas lire le texte à voix haute.", "v_nosupport_stt": "La saisie vocale n'est pas prise en charge par ce navigateur. Utilisez Chrome sur Android ou sur ordinateur.", "v_ht_note": "Aucune voix en créole haïtien sur cet appareil — une voix française est utilisée (la prononciation est approximative).", "v_ht_stt": "La saisie vocale ne comprend pas encore le créole — parlez français ou anglais, ou écrivez.", "v_listening": "J'écoute… parlez maintenant", "v_denied": "Micro bloqué. Autorisez le micro pour ce site dans les paramètres du navigateur.", "v_nospeech": "Rien n'a été entendu. Réessayez.", "v_empty": "Écrivez d'abord du texte.", "v_speaking": "Lecture en cours…", "av_tap": "Touchez l'avatar pour l'entendre parler — les réponses sont aussi lues à voix haute"}};
 for(var _l in EXTRA){ if(!I18N[_l]){ continue; } for(var _k in EXTRA[_l]){ I18N[_l][_k] = EXTRA[_l][_k]; } }
 
-/* ===== AVATAR VIDEO — put your video here =====
-   Option A: a video file in the site  ->  var AVATAR_VIDEO_SRC = "./bss1815pro-maxdmp.mp4";  (path is relative to modules/ai-center/index.html, so ../../ = the site root)
-   Option B: an embed link (HeyGen, D-ID, YouTube, etc.)  ->  var AVATAR_IFRAME_SRC = "https://...";
-   Leave both empty to show the placeholder. */
-var AVATAR_VIDEO_SRC = "../../bss1815pro-maxdmp.mp4?v=20260919";
-var AVATAR_IFRAME_SRC = "";
-/* Parts of the avatar video to skip, in seconds: [from, to].  [53, 91] = jump from 0:53 straight to 1:31.
-   Add more pairs if needed, for example [[53, 91], [120, 140]].  Use [] to play the whole video. */
+/* ===== AVATAR VIDEO =====
+   Put your avatar video file in the SITE ROOT (the same folder as the home page index.html).
+   The page looks for these names in this order and uses the FIRST one that exists.
+   Tap the avatar = the avatar video plays WITH its own voice. Answers are read aloud while the avatar moves. */
+var AVATAR_VIDEO_CANDIDATES = ["formé-jodi-a.mp4", "forme-jodi-a.mp4", "bati-pou-jodi-a.mp4", "bss1815pro-maxdmp.mp4"];
+var AVATAR_VIDEO_SRC = "";        /* or force one file, for example "../../my-avatar.mp4" */
+var AVATAR_IFRAME_SRC = "";       /* or an embed link (HeyGen, D-ID, YouTube...) */
+/* Parts of the avatar video to skip, in seconds: [from, to]. Example [[53, 91]]. [] = play everything. */
 var AVATAR_SKIP = [];
-/* true = the avatar video plays ONLY while an answer is being spoken, and rests on its first frame otherwise */
+/* true = the video rests on its first frame and only moves while the avatar speaks */
 var AVATAR_TALK_ONLY = true;
-var avatarVideoEl = null;
+var avatarVideoEl = null, avatarMsgOn = false, avPlayEl = null;
+
+function avatarMessageStop(){
+  avatarMsgOn = false;
+  if(avPlayEl){ avPlayEl.style.display = ""; }
+  if(!avatarVideoEl){ return; }
+  avatarVideoEl.muted = true; avatarVideoEl.loop = true; avatarVideoEl.pause();
+  try{ avatarVideoEl.currentTime = 0.05; }catch(e){}
+  if(avatarStageEl){ avatarStageEl.classList.remove("speaking"); }
+}
+
+function avatarMessageToggle(){
+  if(!avatarVideoEl){ return false; }
+  if(avatarMsgOn){ avatarMessageStop(); return true; }
+  stopSpeaking();
+  avatarMsgOn = true;
+  if(avPlayEl){ avPlayEl.style.display = "none"; }
+  avatarVideoEl.loop = false; avatarVideoEl.muted = false;
+  try{ avatarVideoEl.currentTime = 0; }catch(e){}
+  var pp = avatarVideoEl.play();
+  if(pp && pp.catch){ pp.catch(function(){ avatarMessageStop(); }); }
+  if(avatarStageEl){ avatarStageEl.classList.add("speaking"); }
+  return true;
+}
+
 (function(){
   var stage = document.getElementById("avatarStage"), ph = document.getElementById("avatarPh");
   if(!stage) return;
-  if(AVATAR_VIDEO_SRC){
-    var v = document.createElement("video"); v.src = AVATAR_VIDEO_SRC; v.autoplay = !AVATAR_TALK_ONLY; v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute("playsinline",""); v.preload = "auto";
+
+  function mount(src){
+    var v = document.createElement("video"); v.src = src; v.autoplay = !AVATAR_TALK_ONLY; v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute("playsinline",""); v.preload = "auto";
     var b = document.createElement("button"); b.type = "button"; b.className = "av-sound"; b.textContent = "🔊 SOUND ON";
     b.addEventListener("click", function(){ v.muted = !v.muted; var p = v.play(); if(p && p.catch) p.catch(function(){}); b.textContent = v.muted ? "🔊 SOUND ON" : "🔇 MUTE"; });
     ph.style.display = "none"; stage.appendChild(v); stage.appendChild(b);
+    avPlayEl = document.createElement("div"); avPlayEl.className = "av-play"; avPlayEl.textContent = "▶"; stage.appendChild(avPlayEl);
     avatarVideoEl = v;
     if(AVATAR_TALK_ONLY){
       b.style.display = "none";
-      v.addEventListener("loadeddata", function(){ if(!isSpeaking){ try{ v.currentTime = 0.05; }catch(e){} v.pause(); } });
+      v.addEventListener("loadeddata", function(){ if(!isSpeaking && !avatarMsgOn){ try{ v.currentTime = 0.05; }catch(e){} v.pause(); } });
     }
-    v.addEventListener("error", function(){ v.remove(); b.remove(); ph.style.display = ""; avatarVideoEl = null; });
+    v.addEventListener("ended", function(){ if(avatarMsgOn){ avatarMessageStop(); } });
+    v.addEventListener("error", function(){ v.remove(); b.remove(); if(avPlayEl){ avPlayEl.remove(); avPlayEl = null; } ph.style.display = ""; avatarVideoEl = null; avatarMsgOn = false; });
     function skipCheck(){
-      var t = v.currentTime;
+      var t0 = v.currentTime;
       for(var i = 0; i < AVATAR_SKIP.length; i++){
-        var a = AVATAR_SKIP[i][0], z = AVATAR_SKIP[i][1];
-        if(t >= a && t < z){ v.currentTime = (v.duration && z >= v.duration) ? Math.max(v.duration - 0.05, 0) : z; return; }
+        var a0 = AVATAR_SKIP[i][0], z0 = AVATAR_SKIP[i][1];
+        if(t0 >= a0 && t0 < z0){ v.currentTime = (v.duration && z0 >= v.duration) ? Math.max(v.duration - 0.05, 0) : z0; return; }
       }
     }
     v.addEventListener("timeupdate", skipCheck);
     v.addEventListener("seeked", skipCheck);
     setInterval(function(){ if(!v.paused) skipCheck(); }, 100);
-  }else if(AVATAR_IFRAME_SRC && /^https:\/\//.test(AVATAR_IFRAME_SRC)){
+  }
+
+  function probe(i){
+    if(i >= AVATAR_VIDEO_CANDIDATES.length){ return; }          /* none found: the placeholder stays */
+    var url = "../../" + encodeURI(AVATAR_VIDEO_CANDIDATES[i]) + "?v=20260920";
+    if(!window.fetch || location.protocol === "file:"){ mount(url); return; }
+    fetch(url, { method: "HEAD" }).then(function(r){
+      var ct = (r.headers.get("content-type") || "").toLowerCase();
+      if(r.ok && (ct.indexOf("video") !== -1 || ct.indexOf("octet") !== -1)){ mount(url); } else { probe(i + 1); }
+    }).catch(function(){ probe(i + 1); });
+  }
+
+  if(AVATAR_VIDEO_SRC){ mount(AVATAR_VIDEO_SRC); }
+  else if(AVATAR_IFRAME_SRC && /^https:\/\//.test(AVATAR_IFRAME_SRC)){
     var f = document.createElement("iframe"); f.src = AVATAR_IFRAME_SRC; f.allow = "autoplay; fullscreen; microphone"; f.setAttribute("allowfullscreen",""); f.title = "AI Assistant avatar";
     ph.style.display = "none"; stage.appendChild(f);
   }
+  else{ probe(0); }
 })();
 var ROUTES = [{"words": ["admin", "dashboard", "login", "log in", "konekte", "connexion", "se connecter", "administrasyon", "administration", "role", "roles", "permission", "permissions", "firebase", "sekirite", "sécurité", "security"], "page": "../../login.html", "label": "ADMIN DASHBOARD"}, {"words": ["live", "streaming", "radio", "broadcast", "difizyon", "diffusion", "podcast", "direct"], "page": "../live-streaming/index.html", "label": "LIVE STREAMING"}, {"words": ["election", "elections", "vote", "voting", "vòt", "elèksyon", "candidate", "candidates", "candidat", "kandida", "résultats", "rezilta"], "page": "../elections/index.html", "label": "ELECTION MANAGER"}, {"words": ["donation", "donations", "donate", "donor", "donatè", "donateur", "don", "dons", "contribution", "contributions", "kontribisyon"], "page": "../donations/index.html", "label": "DONATION CENTER"}, {"words": ["certificate", "certificates", "sètifika", "certificat", "certificats", "verification", "vérification", "verifikasyon"], "page": "../certificates/index.html", "label": "CERTIFICATE CENTER"}, {"words": ["attendance", "présence", "prezans", "pwesans", "check-in", "checkin", "participation"], "page": "../attendance/index.html", "label": "ATTENDANCE"}, {"words": ["volunteer", "volunteers", "volontè", "volontaire", "volontaires", "bénévole", "bénévoles", "assignment", "assignments"], "page": "../volunteer/index.html", "label": "VOLUNTEER CENTER"}, {"words": ["flyer", "flyers", "affiche", "affiches", "graphic", "graphics", "grafik", "graphique", "poster"], "page": "../flyer-studio/index.html", "label": "FLYER STUDIO"}, {"words": ["registry", "registre", "registres", "musician", "musicians", "mizisyen", "musicien", "musiciens", "fans", "fanatik", "merchant", "merchants", "machann", "marchand", "marchands"], "page": "../registry/index.html", "label": "DIGITAL REGISTRY"}, {"words": ["event", "events", "evènman", "événement", "événements", "calendar", "kalandriye", "calendrier", "program", "programs", "meeting", "meetings", "reyinyon", "réunion", "réunions", "aktivite", "activité", "activités"], "page": "../events/index.html", "label": "EVENT MANAGEMENT"}, {"words": ["announcement", "announcements", "anons", "annonce", "annonces", "official notice", "avi ofisyèl", "avis officiel", "community update"], "page": "../announcements/index.html", "label": "ANNOUNCEMENT CENTER"}, {"words": ["notification", "notifications", "reminder", "reminders", "rapèl", "rappel", "rappels", "alert", "alerts", "alèt", "alerte", "alertes"], "page": "../notifications/index.html", "label": "NOTIFICATIONS"}, {"words": ["communication", "whatsapp", "message", "messages", "mesaj", "sms"], "page": "../communication/index.html", "label": "COMMUNICATION CENTER"}, {"words": ["report", "reports", "rapò", "rapport", "rapports", "statistics", "statistik", "statistiques", "analytics", "performance", "pèfòmans"], "page": "../reports/index.html", "label": "REPORTS & ANALYTICS"}, {"words": ["finance", "treasury", "trezò", "trésorerie", "payment", "payments", "peman", "paiement", "paiements", "money", "lajan", "argent"], "page": "../finance/index.html", "label": "FINANCE / TREASURY"}, {"words": ["media", "gallery", "galri", "galerie", "photo", "photos", "foto", "video", "vidéo", "videyo", "audio", "slideshow"], "page": "../media/index.html", "label": "MEDIA GALLERY"}, {"words": ["document", "documents", "dokiman", "letter", "letters", "lèt", "lettre", "lettres", "archive", "archives", "achiv"], "page": "../documents/index.html", "label": "DOCUMENT CENTER"}, {"words": ["crm", "member", "members", "manm", "membre", "membres", "relationship", "relationships", "relation", "relations", "record", "records", "dosye", "dossier", "dossiers"], "page": "../crm/index.html", "label": "CRM SYSTEM"}, {"words": ["help", "help desk", "support", "sipò", "èd", "aide", "ticket", "tickets", "case", "cases", "request", "requests", "demann", "demande", "demandes", "problem", "pwoblèm", "problème"], "page": "../help-desk/index.html", "label": "HELP DESK"}, {"words": ["community", "kominote", "communauté", "communaute", "heritage", "eritaj", "héritage", "bss1815", "fanmi", "famille", "family", "dirijan", "leaders"], "page": "../../index.html#community", "label": "BSS1815 COMMUNITY"}, {"words": ["contact", "contacts", "kontak", "phone", "telefòn", "telefon", "téléphone", "telephone"], "page": "#contacts", "label": "CONTACT"}];
 var ENDPOINT = "/.netlify/functions/ai-assistant";
@@ -908,6 +950,7 @@ function speak(text){
   if(!synth || typeof SpeechSynthesisUtterance === "undefined"){ vSay(t("v_nosupport_tts")); return; }
   var chunks = chunkText(text);
   if(!chunks.length){ vSay(t("v_empty")); return; }
+  if(avatarMsgOn){ avatarMessageStop(); }
   stopSpeaking();
   var tok = speakToken, idx = 0, voice = pickVoice();
   setSpeaking(true);
@@ -949,6 +992,7 @@ if(autoRead){
 if(avatarStageEl){
   avatarStageEl.addEventListener("click", function(e){
     if(e.target && e.target.closest && e.target.closest(".av-sound")){ return; }
+    if(avatarVideoEl){ avatarMessageToggle(); return; }
     if(isSpeaking){ stopSpeaking(); } else { speak(lastBotText || t("welcome")); }
   });
 }
