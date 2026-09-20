@@ -1,0 +1,92 @@
+<!-- FILE: finance.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance / Treasury | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Finance / Treasury",
+  "icon": "💰",
+  "desc": "Finans, trezò ak jesyon tranzaksyon òganizasyon.",
+  "collection": "mx_finance",
+  "access": "super",
+  "fields": [
+    {
+      "key": "description",
+      "label": "Deskripsyon",
+      "required": true
+    },
+    {
+      "key": "kind",
+      "label": "Kalite",
+      "type": "select",
+      "options": [
+        "Antre",
+        "Sòti"
+      ]
+    },
+    {
+      "key": "amount",
+      "label": "Montan",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "currency",
+      "label": "Lajan",
+      "type": "select",
+      "options": [
+        "HTG",
+        "USD"
+      ]
+    },
+    {
+      "key": "date",
+      "label": "Dat",
+      "type": "date"
+    },
+    {
+      "key": "category",
+      "label": "Kategori"
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "kind",
+  "columns": [
+    "amount",
+    "currency",
+    "date",
+    "category",
+    "notes"
+  ],
+  "sum": {
+    "label": "Balans (antre - sòti)",
+    "field": "amount",
+    "group": "currency",
+    "negative": {
+      "field": "kind",
+      "value": "Sòti"
+    }
+  },
+  "note": "Modil rezève pou Super Admin."
+});
+</script>
+
+</body>
+</html>
