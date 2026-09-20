@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<meta name="google" content="notranslate">
+<title>AI Center | BSS1815 PRO-MAX DMP</title>
+<style>
+:root {
+  --orange:#ff7900;
+  --apricot:#ffad4d;
+  --black:#000;
+  --deep:#050200;
+  --soft:#120600;
+  --text:#ffd2a3;
+  --muted:#d89558;
+  --border:rgba(255,121,0,.48);
+  --glow:rgba(255,121,0,.30);
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html {
+  scroll-behavior:smooth;
+  background:#000;
+  scroll-padding-top:100px;
+}
+
+body {
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:radial-gradient(circle at 15% 5%,rgba(255,121,0,.12),transparent 25%),radial-gradient(circle at 90% 30%,rgba(255,173,77,.07),transparent 25%),linear-gradient(180deg,#000,#050200 55%,#000);
+}
+
+a {
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input {
+  font:inherit;
+}
+
+.container {
+  width:min(1180px,94%);
+  margin:auto;
+}
+
+.topbar {
+  padding:9px 12px;
+  text-align:center;
+  color:#000;
+  background:linear-gradient(90deg,var(--orange),var(--apricot),var(--orange));
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:1px;
+}
+
+header {
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,121,0,.30);
+  background:rgba(0,0,0,.96);
+  backdrop-filter:blur(15px);
+}
+
+.header-inner {
+  min-height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex:1 1 auto;
+  min-width:0;
+}
+
+.brand-logo {
+  width:64px;
+  height:64px;
+  object-fit:cover;
+  border:2px solid var(--orange);
+  border-radius:18px;
+  box-shadow:0 0 20px var(--glow);
+}
+
+.brand-copy {
+  min-width:0;
+  overflow:hidden;
+}
+
+.brand-copy h1 {
+  color:var(--orange);
+  font-size:15px;
+  font-weight:1000;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.brand-copy p {
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-top:4px;
+  color:var(--apricot);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+}
+
+.languages {
+  display:flex;
+  gap:4px;
+  padding:4px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#080300;
+}
+
+.lang-btn {
+  min-height:36px;
+  padding:6px 11px;
+  border:1px solid transparent;
+  border-radius:999px;
+  color:var(--apricot);
+  background:#000;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:1000;
+}
+
+.lang-btn.active {
+  color:#000;
+  border-color:var(--orange);
+  background:linear-gradient(135deg,var(--orange),var(--apricot));
+}
+
+.menu-btn {
+  width:52px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid var(--orange);
+  border-radius:14px;
+  color:var(--orange);
+  background:#000;
+  font-size:27px;
+  cursor:pointer;
+}
+
+.mobile-menu {
+  display:none;
+  padding:0 0 15px;
+}
+
+.mobile-menu.open {
+  display:block;
+}
+
+.mobile-menu a {
+  display:block;
+  margin-top:7px;
+  padding:13px 15px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--apricot);
+  background:#080300;
+  font-size:11px;
+  font-weight:900;
+}
+
+.hero {
+  padding:62px 0 42px;
+  text-align:center;
+}
+
+.hero-badge {
+  display:inline-block;
+  padding:8px 15px;
+  border:1px solid var(--orange);
+  border-radius:999px;
+  color:var(--orange);
+  background:rgba(255,121,0,.06);
+  font-size:10px;
+  font-weight:1000;
+}
+
+.hero h2 {
+  margin-top:20px;
+  color:var(--orange);
+  font-size:clamp(38px,7vw,64px);
+  line-height:1.05;
+  font-weight:1000;
+}
+
+.hero p {
+  max-width:820px;
+  margin:22px auto 0;
+  color:var(--text);
+  font-size:16px;
+  line-height:1.8;
+}
+
+.search-wrap {
+  max-width:760px;
+  margin:30px auto 0;
+}
+
+.search-wrap input {
+  width:100%;
+  min-height:56px;
+  padding:15px 20px;
+  border:2px solid var(--orange);
+  border-radius:999px;
+  outline:none;
+  color:var(--text);
+  background:#050200;
+}
+
+.search-wrap input::placeholder {
+  color:#a66b39;
+}
+
+.no-results {
+  display:none;
+  max-width:760px;
+  margin:18px auto 0;
+  padding:14px 18px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:var(--apricot);
+  font-size:12px;
+  text-align:center;
+}
+
+.no-results.show {
+  display:block;
+}
+
+.section {
+  padding:25px 0 60px;
+}
+
+.section-title {
+  margin-bottom:22px;
+}
+
+.section-title small {
+  color:var(--apricot);
+  font-size:10px;
+  font-weight:1000;
+}
+
+.section-title h3 {
+  margin-top:6px;
+  color:var(--orange);
+  font-size:30px;
+  font-weight:1000;
+}
+
+.service-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.service-card {
+  padding:28px;
+  border:1px solid var(--border);
+  border-radius:28px;
+  background:radial-gradient(circle at 100% 0%,rgba(255,121,0,.09),transparent 35%),linear-gradient(145deg,#0c0400,#000);
+  box-shadow:0 8px 28px rgba(255,121,0,.05);
+}
+
+.service-code {
+  color:var(--orange);
+  font-size:11px;
+  font-weight:1000;
+}
+
+.service-icon {
+  margin-top:24px;
+  font-size:35px;
+}
+
+.service-card h4 {
+  margin-top:22px;
+  color:var(--orange);
+  font-size:21px;
+  font-weight:1000;
+}
+
+.service-card>p {
+  margin-top:16px;
+  color:var(--text);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.forms-box {
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,121,0,.25);
+}
+
+.forms-label {
+  margin-bottom:12px;
+  color:var(--apricot);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.8px;
+}
+
+.form-row {
+  margin-top:10px;
+  padding:14px;
+  border:1px solid rgba(255,121,0,.30);
+  border-radius:16px;
+  background:#050200;
+}
+
+.form-number {
+  color:var(--orange);
+  font-size:15px;
+  font-weight:1000;
+}
+
+.form-name {
+  margin-top:4px;
+  color:var(--text);
+  font-size:10px;
+  line-height:1.4;
+}
+
+.form-actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.form-actions.single {
+  grid-template-columns:1fr;
+}
+
+.form-btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:8px 10px;
+  border:2px solid var(--orange);
+  border-radius:999px;
+  color:var(--orange);
+  background:#000;
+  text-align:center;
+  font-size:9px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.form-btn:hover,.form-btn:focus {
+  color:#000;
+  background:linear-gradient(135deg,var(--orange),var(--apricot));
+}
+
+.form-btn.primary {
+  color:#000;
+  background:linear-gradient(135deg,var(--orange),var(--apricot));
+}
+
+.eoir-center {
+  margin-top:20px;
+  padding:25px;
+  border:2px solid var(--orange);
+  border-radius:24px;
+  background:radial-gradient(circle at 50% 0%,rgba(255,121,0,.15),transparent 40%),#000;
+}
+
+.eoir-center h4 {
+  color:var(--orange);
+  font-size:22px;
+}
+
+.eoir-center>p {
+  margin-top:10px;
+  line-height:1.7;
+  font-size:12px;
+}
+
+.eoir-list {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.eoir-list .form-row {
+  margin-top:0;
+}
+
+.eoir-all {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:16px;
+}
+
+.notice {
+  margin:0 0 60px;
+  padding:22px;
+  border:1px solid var(--orange);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(255,121,0,.08),#000);
+  font-size:11px;
+  line-height:1.7;
+}
+
+.notice strong {
+  color:var(--orange);
+}
+
+footer {
+  padding:40px 15px;
+  border-top:1px solid var(--border);
+  text-align:center;
+  background:#000;
+}
+
+footer strong {
+  color:var(--orange);
+}
+
+footer p {
+  margin-top:7px;
+  color:var(--apricot);
+  font-size:10px;
+}
+
+@media(max-width:800px) {
+  .service-grid,.eoir-list,.eoir-all {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:600px) {
+  .header-inner {
+    min-height:78px;
+  }
+  .brand-logo {
+    width:52px;
+    height:52px;
+  }
+  .brand-copy h1 {
+    max-width:180px;
+    font-size:11px;
+  }
+  .brand-copy p {
+    font-size:7px;
+  }
+  .lang-btn {
+    min-height:33px;
+    padding:5px 8px;
+    font-size:8px;
+  }
+  .menu-btn {
+    width:48px;
+    height:44px;
+  }
+  .hero {
+    padding-top:52px;
+  }
+  .hero p {
+    font-size:14px;
+  }
+  .service-card {
+    padding:22px;
+  }
+  .form-actions {
+    grid-template-columns:1fr;
+  }
+}
+
+.wrap{max-width:980px;margin:0 auto}
+.warn{margin:0 0 22px;padding:14px 18px;border:2px solid var(--orange);border-radius:16px;background:linear-gradient(145deg,rgba(255,121,0,.12),#000);color:var(--apricot);font-size:12px;font-weight:1000;line-height:1.6;text-align:center}
+.chat{border:2px solid var(--orange);border-radius:26px;background:radial-gradient(circle at 85% 10%,rgba(255,173,77,.10),transparent 35%),linear-gradient(135deg,#100500,#000);box-shadow:0 0 35px rgba(255,121,0,.18);overflow:hidden;margin-bottom:34px}
+.chat-log{height:min(52vh,460px);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:88%;padding:12px 15px;border-radius:16px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-wrap:break-word}
+.msg.bot{align-self:flex-start;border:1px solid var(--border);background:#080300;color:var(--text)}
+.msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--orange),var(--apricot));color:#000;font-weight:700}
+.msg .go{margin-top:10px;white-space:normal}
+.msg .go a{display:inline-flex;min-height:40px;padding:8px 14px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:11px;font-weight:1000}
+.msg .go a:hover{color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
+.chat-in{display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px;border-top:1px solid var(--border);background:#030100}
+.chat-in input{width:100%;min-height:50px;padding:12px 16px;border:1px solid var(--border);border-radius:14px;color:var(--text);background:#000;outline:none;font-size:14px}
+.chat-in input:focus{border-color:var(--orange)}
+.chat-in button{min-width:100px;border:2px solid var(--orange);border-radius:14px;color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));font-size:11px;font-weight:1000;cursor:pointer}
+.chat-in button:disabled{opacity:.6}
+.qtitle{margin:0 0 12px;color:var(--orange);font-size:12px;font-weight:1000;letter-spacing:1px;text-align:center}
+.qchips{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-bottom:34px}
+.qchip{min-height:42px;padding:10px 15px;border:1px solid var(--border);border-radius:999px;color:var(--apricot);background:#050200;font-size:11px;font-weight:1000;cursor:pointer}
+.qchip:hover{border-color:var(--orange);color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
+.h3{color:var(--orange);font-size:26px;font-weight:1000;margin:0 0 16px}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px}
+.tool{display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--border);border-radius:20px;background:linear-gradient(145deg,#100500,#000);transition:.2s}
+.tool:hover{border-color:var(--orange);transform:translateY(-3px)}
+.tool b{color:var(--orange);font-size:14px}
+.tool span{color:var(--text);font-size:12px;line-height:1.6}
+.legal{padding:24px;border:2px solid var(--orange);border-radius:22px;background:#000;margin-bottom:60px}
+.legal h3{color:var(--orange);font-size:16px;margin-bottom:10px}
+.legal p{color:var(--text);font-size:12px;line-height:1.85}
+@media(max-width:800px){.tools{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.tools{grid-template-columns:1fr}.chat-in{grid-template-columns:1fr}.chat-in button{min-height:48px}}
+
+
+.avatar-stage{position:relative;width:100%;background:#000;border-bottom:1px solid var(--border);text-align:center}
+.avatar-stage video,.avatar-stage iframe{display:block;width:100%;max-height:420px;aspect-ratio:16/9;border:0;object-fit:contain;background:#000}
+.avatar-ph{padding:26px 16px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.avatar-ph .ring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:54px;border:3px solid var(--orange);background:radial-gradient(circle,rgba(255,121,0,.22),#000);box-shadow:0 0 30px rgba(255,121,0,.4)}
+.avatar-ph b{color:var(--orange);font-size:12px;letter-spacing:1px}
+.avatar-ph small{color:var(--muted);font-size:11px}
+.av-sound{position:absolute;right:12px;bottom:12px;min-height:42px;padding:9px 14px;border:2px solid var(--orange);border-radius:999px;color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));font-size:10px;font-weight:1000;cursor:pointer}
+.contacts{padding:56px 0 50px;border-top:1px solid rgba(255,121,0,.15);background:radial-gradient(circle at 50% 0%,rgba(255,121,0,.08),transparent 55%),#020100;text-align:center}
+.ct-p{color:var(--text);font-size:13px;margin:-6px 0 22px}
+.phones{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
+.phone{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 12px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,#100500,#000);color:var(--text);transition:.2s}
+.phone:hover{border-color:var(--orange);transform:translateY(-3px)}
+.phone .fl{font-size:22px}.phone b{color:var(--orange);font-size:14px;letter-spacing:.3px}
+.socials{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
+.soc{min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 8px;border:1px solid rgba(255,121,0,.55);border-radius:18px;background:linear-gradient(145deg,#100500,#000);color:var(--apricot);font-size:10px;font-weight:1000;text-align:center;transition:.2s}
+.soc svg{width:32px;height:32px;fill:var(--orange);transition:.2s}
+.soc:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 0 22px rgba(255,121,0,.3)}
+.soc:hover svg{transform:scale(1.12)}
+.ct-mail{color:var(--apricot);font-size:13px;font-weight:1000}
+@media(max-width:900px){.phones{grid-template-columns:repeat(2,1fr)}.socials{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.phones{grid-template-columns:1fr}.socials{grid-template-columns:repeat(2,1fr)}}
+
+.chat-in{grid-template-columns:1fr auto auto}
+.chat-in .mic{min-width:54px;color:var(--orange);background:#000}
+.chat-in .mic.listening,.vbtn.listening{color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));animation:vpulse 1s infinite}
+@keyframes vpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,121,0,.6)}50%{box-shadow:0 0 0 10px rgba(255,121,0,0)}}
+.autoread{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:0 16px 14px;background:#030100;color:var(--text);font-size:12px}
+.autoread label{display:flex;align-items:center;gap:8px;cursor:pointer}
+.autoread input{accent-color:var(--orange);width:18px;height:18px}
+.vstatus{color:var(--apricot);font-size:12px;line-height:1.6}
+.msg .spk{display:inline-flex;align-items:center;justify-content:center;margin:8px 0 0 0;min-width:38px;min-height:34px;padding:4px 10px;border:1px solid var(--border);border-radius:999px;color:var(--orange);background:#000;font-size:14px;cursor:pointer}
+.msg .spk:hover{background:var(--orange);color:#000}
+.avatar-stage.speaking{box-shadow:inset 0 0 40px rgba(255,121,0,.35)}
+.avatar-stage.speaking .ring{animation:vpulse 1s infinite}
+.vp{color:var(--text);font-size:13px;line-height:1.7;margin:-6px 0 18px}
+.voice-panel{padding:22px;border:1px solid var(--border);border-radius:22px;background:linear-gradient(145deg,#100500,#000);margin-bottom:34px}
+.voice-panel textarea{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:14px;color:var(--text);background:#000;font-family:inherit;font-size:14px;outline:none;resize:vertical;min-height:110px}
+.voice-panel textarea:focus{border-color:var(--orange)}
+.vrow{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin:14px 0}
+.vlabel{display:flex;flex-direction:column;gap:6px;color:var(--apricot);font-size:10px;font-weight:1000;letter-spacing:.8px}
+.vlabel select{padding:11px 12px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#0a0400;font-size:13px}
+.vlabel input[type=range]{accent-color:var(--orange);width:100%;margin-top:8px}
+.vbtns{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px}
+.vbtn{min-height:44px;padding:9px 16px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:11px;font-weight:1000;cursor:pointer}
+.vbtn.primary{color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
+.vbtn:disabled{opacity:.5}
+@media(max-width:520px){.chat-in{grid-template-columns:1fr 1fr}.chat-in input{grid-column:1/-1}.vrow{grid-template-columns:1fr}}
+.av-hint{padding:8px 14px;text-align:center;color:var(--apricot);font-size:11px;border-bottom:1px solid var(--border);background:#000}
+.avatar-stage{cursor:pointer}
+.av-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);border:3px solid var(--orange);color:var(--orange);font-size:34px;padding-left:6px;pointer-events:none;box-shadow:0 0 30px rgba(255,121,0,.5)}
+.mod-h{margin:16px 2px 10px;color:var(--orange);font-size:11px;font-weight:1000;letter-spacing:1px;line-height:1.5}
+.mod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding-bottom:6px}
+.mod-tile{display:flex;align-items:center;gap:10px;min-height:52px;padding:10px 12px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(145deg,#100500,#000);color:var(--text);font-size:11px;font-weight:1000;line-height:1.25;text-transform:uppercase;transition:.2s}
+.mod-tile:hover,.mod-tile:focus{border-color:var(--orange);transform:translateY(-2px);box-shadow:0 0 18px rgba(255,121,0,.25)}
+.mod-tile .mi{font-size:22px;flex:0 0 auto}
+@media(min-width:760px){.mod-grid{grid-template-columns:repeat(3,1fr)}}
+.story-card{margin-bottom:34px;padding:26px;border:2px solid var(--orange);border-radius:24px;background:radial-gradient(circle at 85% 8%,rgba(255,173,77,.12),transparent 38%),linear-gradient(135deg,#100500,#000);box-shadow:0 0 30px rgba(255,121,0,.18)}
+.story-sub{color:var(--apricot);font-size:11px;font-weight:1000;letter-spacing:1.4px;text-align:center}
+.story-h{margin:8px 0 18px;color:var(--orange);font-size:clamp(26px,6vw,40px);line-height:1.05;text-align:center;text-transform:uppercase}
+#storyText p{margin:0 0 14px;color:var(--text);font-size:15px;line-height:1.85}
+#storyText p.q{padding:12px 16px;border-left:4px solid var(--orange);background:rgba(255,121,0,.08);border-radius:10px;color:var(--apricot);font-weight:700}
+#storyText p.big{margin:20px 0;color:var(--orange);font-size:clamp(22px,5.4vw,34px);font-weight:1000;text-align:center;letter-spacing:1px;text-transform:uppercase}
+#storyText p.end{color:var(--apricot);font-style:italic;text-align:center;font-size:16px}
+.story-card .vbtn{display:flex;margin:18px auto 0}
+</style>
+</head>
+<body>
+<div class="topbar" data-i18n="top">BSS1815 PRO-MAX DMP • AI CENTER</div>
+<header>
+<div class="container header-inner">
+<a class="brand" href="./index.html">
+<div class="brand-copy"><h1>BSS1815 PRO-MAX DMP</h1><p>AI CENTER • DIGITAL MANAGEMENT PLATFORM</p></div>
+</a>
+<div class="header-actions">
+<div class="languages notranslate" translate="no">
+<button type="button" class="lang-btn active" data-lang="en">🇺🇸 ENG</button>
+<button type="button" class="lang-btn" data-lang="fr">🇫🇷 FRA</button>
+<button type="button" class="lang-btn" data-lang="ht">🇭🇹 KRE</button>
+</div>
+<button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
+</div>
+</div>
+<div class="container mobile-menu" id="mobileMenu">
+<a href="./index.html" data-i18n="home">HOME</a>
+<a href="#chat" data-i18n="m_chat">ASSISTANT</a>
+<a href="#story" data-i18n="m_story">STORY</a>
+<a href="#voice" data-i18n="m_voice">VOICE</a>
+<a href="#tools" data-i18n="m_tools">AI TOOLS</a>
+<a href="#contacts" data-i18n="contact">CONTACT CENTER</a>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="container">
+<div class="hero-badge" id="badge" data-i18n="badge">BSS1815 ASSISTANT • READY</div>
+<h2 data-i18n="title">AI CENTER</h2>
+<p data-i18n="sub">Ask a question and get guided to the right BSS1815 PRO-MAX DMP module — in English, French or Haitian Creole.</p>
+</div>
+</section>
+<div class="container wrap">
+<div class="warn" data-i18n="warn">The assistant only guides you inside the BSS1815 PRO-MAX DMP modules. It does not give legal, financial or medical advice. Never type passwords, ID numbers or card numbers here.</div>
+
+<section id="chat">
+<div class="chat">
+<div class="avatar-stage" id="avatarStage">
+<div class="avatar-ph" id="avatarPh"><div class="ring">🤖</div><b data-i18n="av_label">AI ASSISTANT AVATAR</b><small data-i18n="av_soon">Avatar video coming soon</small></div>
+</div>
+<div class="av-hint" data-i18n="av_tap">Tap the avatar to hear the story of BSS1815 PRO-MAX DMP</div>
+<div class="chat-log" id="log" aria-live="polite"></div>
+<div class="chat-in">
+<input id="q" type="text" autocomplete="off" maxlength="800" placeholder="Type what you need..." data-i18n-placeholder="ph">
+<button id="mic" type="button" class="mic" aria-label="Voice input" title="Speak instead of typing">🎤</button>
+<button id="send" type="button" data-i18n="send">SEND</button>
+</div>
+<div class="autoread"><label><input type="checkbox" id="autoRead"> <span data-i18n="v_auto">Read answers aloud</span></label><span id="micStatus" class="vstatus"></span></div>
+</div>
+<div class="qtitle" data-i18n="q_title">QUICK QUESTIONS</div>
+<div class="qchips"><button type="button" class="qchip" data-q="Find a member" data-i18n="q1">Find a member</button><button type="button" class="qchip" data-q="Send an announcement" data-i18n="q2">Send an announcement</button><button type="button" class="qchip" data-q="Create a flyer" data-i18n="q3">Create a flyer</button><button type="button" class="qchip" data-q="See reports" data-i18n="q4">See reports</button><button type="button" class="qchip" data-q="Manage events" data-i18n="q5">Manage events</button><button type="button" class="qchip" data-q="Get help" data-i18n="q6">Get help</button></div>
+</section>
+
+<section id="story">
+<div class="story-card">
+<div class="story-sub" data-i18n="story_sub">THE STORY OF BSS1815 PRO-MAX DMP</div>
+<h2 class="story-h">BRIYANT SOLÈY SIGNO 1815</h2>
+<div id="storyText"></div>
+<button type="button" class="vbtn primary" id="storyBtn" data-i18n="story_btn">▶ HEAR THE STORY</button>
+</div>
+</section>
+
+<section id="voice">
+<div class="h3" data-i18n="v_h">VOICE</div>
+<p class="vp" data-i18n="v_p">Listen to any text read aloud, or speak instead of typing.</p>
+<div class="voice-panel">
+<textarea id="vText" rows="5" maxlength="4000" data-i18n-placeholder="v_ph" placeholder="Type or paste text here, then press LISTEN…"></textarea>
+<div class="vrow">
+<label class="vlabel"><span data-i18n="v_voice">VOICE</span><select id="vVoice"></select></label>
+<label class="vlabel"><span data-i18n="v_rate">SPEED</span><input id="vRate" type="range" min="0.6" max="1.4" step="0.1" value="0.95"></label>
+<label class="vlabel"><span data-i18n="v_pitch">TONE (low = deeper)</span><input id="vPitch" type="range" min="0.4" max="1.2" step="0.05" value="0.75"></label>
+</div>
+<div class="vbtns">
+<button type="button" id="vListen" class="vbtn primary" data-i18n="v_listen">🔊 LISTEN</button>
+<button type="button" id="vPause" class="vbtn" data-i18n="v_pause">⏸ PAUSE</button>
+<button type="button" id="vStop" class="vbtn" data-i18n="v_stop">⏹ STOP</button>
+<button type="button" id="vDictate" class="vbtn" data-i18n="v_dictate">🎤 DICTATE</button>
+<button type="button" id="vLast" class="vbtn" data-i18n="v_last">USE LAST ANSWER</button>
+</div>
+<div id="vNote" class="vstatus"></div>
+<div id="voiceStatus" class="vstatus" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="tools">
+<div class="h3" data-i18n="tools_h">AI TOOLS</div>
+<div class="tools"><a class="tool" href="./crm.html"><b data-i18n="tl1_t">CRM SYSTEM</b><span data-i18n="tl1_d">Members • Contacts • Relationships • Records</span></a><a class="tool" href="./modules/announcements/index.html"><b data-i18n="tl2_t">ANNOUNCEMENT CENTER</b><span data-i18n="tl2_d">Official notices • Community updates • Alerts</span></a><a class="tool" href="./modules/flyer-studio/index.html"><b data-i18n="tl3_t">FLYER STUDIO</b><span data-i18n="tl3_d">Flyers • Notices • Graphics • Media</span></a><a class="tool" href="./modules/reports/index.html"><b data-i18n="tl4_t">REPORTS & ANALYTICS</b><span data-i18n="tl4_d">Statistics • Performance • Reports</span></a><a class="tool" href="./modules/events/index.html"><b data-i18n="tl5_t">EVENT MANAGEMENT</b><span data-i18n="tl5_d">Calendar • Programs • Activities • Meetings</span></a><a class="tool" href="./modules/help-desk/index.html"><b data-i18n="tl6_t">HELP DESK</b><span data-i18n="tl6_d">Support • Requests • Cases • Assistance</span></a></div>
+</section>
+
+<div class="legal"><h3 data-i18n="legal_h">⚖️ IMPORTANT NOTICE</h3><p data-i18n="legal_p">The BSS1815 PRO-MAX DMP assistant only helps you find the right module and use the platform. It does not give legal, financial or medical advice, and it never needs your passwords or ID numbers. Some modules require an administrator login.</p></div>
+</div>
+</main>
+
+<section class="contacts" id="contacts">
+<div class="container wrap">
+<div class="h3" data-i18n="ct_h">CONTACT US</div>
+<p class="ct-p" data-i18n="ct_p">Official phone numbers and social networks.</p>
+<div class="phones">
+<a class="phone" href="tel:+14076405166"><span class="fl">🇺🇸</span><b>(407) 640-5166</b></a>
+<a class="phone" href="tel:+13175381150"><span class="fl">🇺🇸</span><b>(317) 538-1150</b></a>
+<a class="phone" href="tel:+15162168494"><span class="fl">🇺🇸</span><b>(516) 216-8494</b></a>
+<a class="phone" href="tel:+50943437488"><span class="fl">🇭🇹</span><b>+509 43 43 7488</b></a>
+<a class="phone" href="tel:+50942544447"><span class="fl">🇭🇹</span><b>+509 42 54 4447</b></a>
+</div>
+<div class="socials">
+<a class="soc whatsapp" href="https://wa.me/50943437488" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.373 0 0 5.373 0 12c0 2.116.552 4.181 1.6 6L0 24l6.153-1.613A11.96 11.96 0 0012.004 24C18.63 24 24 18.627 24 12S18.63 0 12.004 0zm0 21.818a9.78 9.78 0 01-4.99-1.366l-.357-.212-3.65.957.974-3.557-.232-.366A9.77 9.77 0 012.182 12c0-5.414 4.407-9.818 9.822-9.818 5.414 0 9.814 4.404 9.814 9.818s-4.4 9.818-9.814 9.818z"/></svg><span>WHATSAPP</span></a>
+<a class="soc facebook" href="https://www.facebook.com/share/1By3KvYRrM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.973h-1.513c-1.49 0-1.956.931-1.956 1.887v2.261h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg><span>FACEBOOK</span></a>
+<a class="soc tiktok" href="https://www.tiktok.com/@maximax1960" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.321 5.562a5.124 5.124 0 01-3.005-.96A5.15 5.15 0 0114.323 1H10.5v14.4a3.2 3.2 0 11-2.2-3.038V8.45a7.03 7.03 0 00-1.2-.104A7.1 7.1 0 1014.2 15.4V8.096a8.94 8.94 0 005.121 1.64V5.562z"/></svg><span>TIKTOK</span></a>
+<a class="soc youtube" href="https://www.youtube.com/@BSS1815PROMAXDMP" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.376-.505a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YOUTUBE</span></a>
+<a class="soc spotify" href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.505 17.308a.75.75 0 01-1.032.249c-2.827-1.728-6.386-2.118-10.578-1.16a.75.75 0 11-.334-1.462c4.587-1.049 8.522-.6 11.695 1.34a.75.75 0 01.249 1.033zm1.475-3.282a.94.94 0 01-1.293.31c-3.237-1.988-8.171-2.564-11.998-1.403a.94.94 0 11-.546-1.799c4.376-1.328 9.813-.685 13.527 1.596a.94.94 0 01.31 1.296zm.126-3.417C15.224 8.304 8.819 8.091 5.11 9.212a1.128 1.128 0 11-.652-2.16c4.26-1.288 11.336-1.038 15.8 1.611a1.128 1.128 0 01-1.152 1.946z"/></svg><span>SPOTIFY</span></a>
+<a class="soc instagram" href="https://www.instagram.com/lebaron072/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838A6.162 6.162 0 1012 18.162 6.162 6.162 0 0012 5.838zm0 10.162a4 4 0 110-8 4 4 0 010 8z"/></svg><span>INSTAGRAM</span></a>
+<a class="soc x-twitter" href="https://x.com/w05g2m" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg><span>X / TWITTER</span></a>
+<a class="soc truthsocial" href="https://truthsocial.com/@briyant_soley_1815" target="_blank" rel="noopener noreferrer" aria-label="Truth Social"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v4H14v14h-4V7H3V3zm13 6h5v4h-5V9zm0 6h5v4h-5v-4z"/></svg><span>TRUTH SOCIAL</span></a>
+<a class="soc telegram" href="https://t.me/+50943437488" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.953 4.57a.74.74 0 00-1.017-.267L1.43 12.48c-1.47.59-1.462 1.41-.268 1.776l5.518 1.724 2.114 6.484c.257.71.13.992.878.992.577 0 .831-.264 1.153-.577l2.653-2.58 5.518 4.077c1.016.56 1.748.27 2.001-.943L24 5.585c.322-1.49-.57-2.166-.047-1.015z"/></svg><span>TELEGRAM</span></a>
+<a class="soc linkedin" href="https://www.linkedin.com/in/maximax-multi-services-075ba2314" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.371 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.555V9H7.12v11.452z"/></svg><span>LINKEDIN</span></a>
+</div>
+<a class="ct-mail" href="mailto:briyantsoleysigno1815@gmail.com">briyantsoleysigno1815@gmail.com</a>
+</div>
+</section>
+
+<footer>
+<strong>BSS1815 PRO-MAX DMP</strong>
+<p>AI CENTER • DIGITAL MANAGEMENT PLATFORM</p>
+<p>briyantsoleysigno1815@gmail.com</p>
+<p>(407) 640-5166 • (317) 538-1150 • (516) 216-8494</p>
+<p>© <span id="year"></span> BSS1815 PRO-MAX DMP</p>
+<p style="opacity:.55">AI CENTER VERSION 2026.09.20-U</p>
+</footer>
+<script>
+(function(){
+"use strict";
+var I18N = {"en": {"part_of": "PART OF BSS1815 PRO-MAX DMP", "home": "HOME", "m_chat": "ASSISTANT", "m_tools": "AI TOOLS", "contact": "CONTACT CENTER", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "BSS1815 ASSISTANT • READY", "title": "AI CENTER", "sub": "Ask a question and get guided to the right BSS1815 PRO-MAX DMP module — in English, French or Haitian Creole.", "warn": "The assistant only guides you inside the BSS1815 PRO-MAX DMP modules. It does not give legal, financial or medical advice. Never type passwords, ID numbers or card numbers here.", "welcome": "My name is Max Louis, alias Le Baron. La seule différence… How may I help you today?", "ph": "Type what you need...", "send": "SEND", "thinking": "Thinking…", "nomatch": "I can only guide you inside the BSS1815 PRO-MAX DMP modules. Open the Help Desk, or contact us and our team will help.", "match": "I found the BSS1815 module that matches your request:", "open": "OPEN", "q_title": "QUICK QUESTIONS", "q1": "Find a member", "q2": "Send an announcement", "q3": "Create a flyer", "q4": "See reports", "q5": "Manage events", "q6": "Get help", "tools_h": "AI TOOLS", "tl1_t": "CRM SYSTEM", "tl1_d": "Members • Contacts • Relationships • Records", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Official notices • Community updates • Alerts", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyers • Notices • Graphics • Media", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistics • Performance • Reports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendar • Programs • Activities • Meetings", "tl6_t": "HELP DESK", "tl6_d": "Support • Requests • Cases • Assistance", "legal_h": "IMPORTANT NOTICE", "legal_p": "The BSS1815 PRO-MAX DMP assistant only helps you find the right module and use the platform. It does not give legal, financial or medical advice, and it never needs your passwords or ID numbers. Some modules require an administrator login."}, "ht": {"part_of": "PATI NAN BSS1815 PRO-MAX DMP", "home": "AKÈY", "m_chat": "ASISTAN", "m_tools": "ZOUTI AI", "contact": "SANT KONTAK", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "ASISTAN BSS1815 • PARE", "title": "AI CENTER", "sub": "Poze yon kesyon epi jwenn gid pou bon modil BSS1815 PRO-MAX DMP la — an anglè, franse oswa kreyòl ayisyen.", "warn": "Asistan an sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Li pa bay konsèy legal, finansye oswa medikal. Pa janm ekri modpas, nimewo idantite oswa nimewo kat isit la.", "welcome": "Mwen rele Max Louis, alyas Le Baron. Sèl diferans lan… Kijan m ka ede w jodi a?", "ph": "Ekri sa ou bezwen...", "send": "VOYE", "thinking": "Ap panse…", "nomatch": "Mwen ka sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Louvri Help Desk la, oswa kontakte nou epi ekip nou an ap ede w.", "match": "Mwen jwenn modil BSS1815 ki koresponn ak demann ou an:", "open": "OUVRI", "q_title": "KESYON RAPID", "q1": "Jwenn yon manm", "q2": "Voye yon anons", "q3": "Kreye yon flyer", "q4": "Wè rapò yo", "q5": "Jere evènman yo", "q6": "Jwenn èd", "tools_h": "ZOUTI AI", "tl1_t": "CRM SYSTEM", "tl1_d": "Manm • Kontak • Relasyon • Dosye", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avi ofisyèl • Nouvèl kominote • Alèt", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyer • Avi • Grafik • Medya", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Estatistik • Pèfòmans • Rapò", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Kalandriye • Pwogram • Aktivite • Reyinyon", "tl6_t": "HELP DESK", "tl6_d": "Sipò • Demann • Ka • Asistans", "legal_h": "AVI ENPÒTAN", "legal_p": "Asistan BSS1815 PRO-MAX DMP la sèlman ede w jwenn bon modil la epi itilize platfòm nan. Li pa bay konsèy legal, finansye oswa medikal, epi li pa janm bezwen modpas ou oswa nimewo idantite ou. Gen modil ki mande yon koneksyon administratè."}, "fr": {"part_of": "FAIT PARTIE DE BSS1815 PRO-MAX DMP", "home": "ACCUEIL", "m_chat": "ASSISTANT", "m_tools": "OUTILS IA", "contact": "CENTRE DE CONTACT", "top": "BSS1815 PRO-MAX DMP • CENTRE IA", "badge": "ASSISTANT BSS1815 • PRÊT", "title": "CENTRE IA", "sub": "Posez une question et soyez guidé vers le bon module BSS1815 PRO-MAX DMP — en anglais, français ou créole haïtien.", "warn": "L'assistant vous guide seulement dans les modules BSS1815 PRO-MAX DMP. Il ne donne pas de conseils juridiques, financiers ou médicaux. N'écrivez jamais de mot de passe, de numéro d'identité ou de carte ici.", "welcome": "Je m'appelle Max Louis, alias Le Baron. La seule différence… Comment puis-je vous aider aujourd'hui ?", "ph": "Écrivez ce dont vous avez besoin...", "send": "ENVOYER", "thinking": "Réflexion…", "nomatch": "Je peux seulement vous guider dans les modules BSS1815 PRO-MAX DMP. Ouvrez le Help Desk, ou contactez-nous et notre équipe vous aidera.", "match": "J'ai trouvé le module BSS1815 qui correspond à votre demande :", "open": "OUVRIR", "q_title": "QUESTIONS RAPIDES", "q1": "Trouver un membre", "q2": "Envoyer une annonce", "q3": "Créer une affiche", "q4": "Voir les rapports", "q5": "Gérer les événements", "q6": "Obtenir de l'aide", "tools_h": "OUTILS IA", "tl1_t": "CRM SYSTEM", "tl1_d": "Membres • Contacts • Relations • Dossiers", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avis officiels • Nouvelles de la communauté • Alertes", "tl3_t": "FLYER STUDIO", "tl3_d": "Affiches • Avis • Graphiques • Médias", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistiques • Performance • Rapports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendrier • Programmes • Activités • Réunions", "tl6_t": "HELP DESK", "tl6_d": "Support • Demandes • Dossiers • Assistance", "legal_h": "AVIS IMPORTANT", "legal_p": "L'assistant BSS1815 PRO-MAX DMP vous aide seulement à trouver le bon module et à utiliser la plateforme. Il ne donne pas de conseils juridiques, financiers ou médicaux, et n'a jamais besoin de vos mots de passe ni de vos numéros d'identité. Certains modules exigent une connexion administrateur.", "av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux."}};
+var EXTRA = {"en": {"av_label": "AI ASSISTANT AVATAR", "av_soon": "Avatar video coming soon", "ct_h": "CONTACT US", "ct_p": "Official phone numbers and social networks.", "m_voice": "VOICE", "v_h": "VOICE", "v_p": "Listen to any text read aloud, or speak instead of typing.", "v_ph": "Type or paste text here, then press LISTEN…", "v_listen": "🔊 LISTEN", "v_pause": "⏸ PAUSE", "v_resume": "▶ RESUME", "v_stop": "⏹ STOP", "v_dictate": "🎤 DICTATE", "v_last": "USE LAST ANSWER", "v_rate": "SPEED", "v_voice": "VOICE", "v_auto": "Read answers aloud (computer voice)", "v_auto_voice": "Auto (male voice)", "v_mic": "Speak instead of typing", "v_nosupport_tts": "This browser cannot read text aloud.", "v_nosupport_stt": "Voice input is not supported in this browser. Use Chrome on Android or on a computer.", "v_ht_note": "No Haitian Creole voice on this device — a French voice is used (pronunciation is approximate).", "v_ht_stt": "Voice input does not understand Creole yet — speak French or English, or type.", "v_listening": "Listening… speak now", "v_denied": "Microphone blocked. Allow the microphone for this site in the browser settings.", "v_nospeech": "Nothing was heard. Try again.", "v_empty": "Type some text first.", "v_speaking": "Reading aloud…", "av_tap": "Tap the avatar to hear the story of BSS1815 PRO-MAX DMP", "av_intro": "My name is Max Louis, alias Le Baron. La seule différence… How may I help you today?", "v_pitch": "TONE (low = deeper)", "av_nosound": "⚠ This avatar video has NO sound (the file is silent). Use a version of the video that has the voice.", "av_novideo": "The avatar video was not found. Put the video file in the site root.", "mod_h": "OPEN A MODULE — or type / speak your question below", "av_missing": "Avatar video not found — upload formé-jodi-a.mp4 (or max-louis-le-baron.mp4) to the site root.", "av_nostory": "The story audio was not found — upload bss1815-istwa.mp3 (or your CapCut voice file) to the site root.", "m_story": "STORY", "story_sub": "THE STORY OF BSS1815 PRO-MAX DMP", "story_btn": "▶ HEAR THE STORY", "story_stop": "⏹ STOP"}, "ht": {"av_label": "AVATAR ASISTAN AI", "av_soon": "Videyo avatar an ap vini", "ct_h": "KONTAKTE NOU", "ct_p": "Nimewo telefòn ofisyèl ak rezo sosyal yo.", "m_voice": "VWA", "v_h": "VWA", "v_p": "Koute nenpòt tèks li byen fò, oswa pale olye w ekri.", "v_ph": "Ekri oswa kole tèks isit la, epi peze KOUTE…", "v_listen": "🔊 KOUTE", "v_pause": "⏸ PAUZ", "v_resume": "▶ KONTINYE", "v_stop": "⏹ ARÈT", "v_dictate": "🎤 DIKTE", "v_last": "ITILIZE DÈNYE REPONS LAN", "v_rate": "VITÈS", "v_voice": "VWA", "v_auto": "Li repons yo byen fò (vwa òdinatè)", "v_auto_voice": "Oto (vwa gason)", "v_mic": "Pale olye w ekri", "v_nosupport_tts": "Navigatè sa a pa ka li tèks byen fò.", "v_nosupport_stt": "Navigatè sa a pa sipòte antre vwa. Itilize Chrome sou Android oswa sou òdinatè.", "v_ht_note": "Pa gen vwa kreyòl ayisyen sou aparèy sa a — n ap itilize yon vwa franse (pwononsyasyon an apwoksimatif).", "v_ht_stt": "Antre vwa a poko konprann kreyòl — pale franse oswa anglè, oswa ekri.", "v_listening": "Ap koute… pale kounye a", "v_denied": "Mikwo a bloke. Otorize mikwo a pou sit sa a nan paramèt navigatè a.", "v_nospeech": "Pa t tande anyen. Eseye ankò.", "v_empty": "Ekri kèk tèks anvan.", "v_speaking": "Ap li byen fò…", "av_tap": "Peze sou avatar la pou tande istwa BSS1815 PRO-MAX DMP", "av_intro": "Mwen rele Max Louis, alyas Le Baron. Sèl diferans lan… Kijan m ka ede w jodi a?", "v_pitch": "TON (ba = pi fon)", "av_nosound": "⚠ Videyo avatar sa a PA gen son (fichye a mèt). Itilize yon vèsyon videyo a ki gen vwa a.", "av_novideo": "Pa jwenn videyo avatar la. Mete fichye videyo a nan rasin sit la.", "mod_h": "OUVRI YON MODIL — oswa ekri / pale kesyon ou anba a", "av_missing": "Pa jwenn videyo avatar la — mete formé-jodi-a.mp4 (oswa max-louis-le-baron.mp4) nan rasin sit la.", "av_nostory": "Pa jwenn odyo istwa a — mete bss1815-istwa.mp3 (oswa fichye vwa CapCut ou a) nan rasin sit la.", "m_story": "ISTWA", "story_sub": "ISTWA BSS1815 PRO-MAX DMP", "story_btn": "▶ KOUTE ISTWA A", "story_stop": "⏹ ARÈT"}, "fr": {"av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux.", "m_voice": "VOIX", "v_h": "VOIX", "v_p": "Écoutez n'importe quel texte lu à voix haute, ou parlez au lieu d'écrire.", "v_ph": "Écrivez ou collez du texte ici, puis appuyez sur ÉCOUTER…", "v_listen": "🔊 ÉCOUTER", "v_pause": "⏸ PAUSE", "v_resume": "▶ REPRENDRE", "v_stop": "⏹ ARRÊTER", "v_dictate": "🎤 DICTER", "v_last": "UTILISER LA DERNIÈRE RÉPONSE", "v_rate": "VITESSE", "v_voice": "VOIX", "v_auto": "Lire les réponses à voix haute (voix de l'ordinateur)", "v_auto_voice": "Auto (voix masculine)", "v_mic": "Parler au lieu d'écrire", "v_nosupport_tts": "Ce navigateur ne peut pas lire le texte à voix haute.", "v_nosupport_stt": "La saisie vocale n'est pas prise en charge par ce navigateur. Utilisez Chrome sur Android ou sur ordinateur.", "v_ht_note": "Aucune voix en créole haïtien sur cet appareil — une voix française est utilisée (la prononciation est approximative).", "v_ht_stt": "La saisie vocale ne comprend pas encore le créole — parlez français ou anglais, ou écrivez.", "v_listening": "J'écoute… parlez maintenant", "v_denied": "Micro bloqué. Autorisez le micro pour ce site dans les paramètres du navigateur.", "v_nospeech": "Rien n'a été entendu. Réessayez.", "v_empty": "Écrivez d'abord du texte.", "v_speaking": "Lecture en cours…", "av_tap": "Touchez l'avatar pour entendre l'histoire de BSS1815 PRO-MAX DMP", "av_intro": "Je m'appelle Max Louis, alias Le Baron. La seule différence… Comment puis-je vous aider aujourd'hui ?", "v_pitch": "TON (bas = plus grave)", "av_nosound": "⚠ Cette vidéo d'avatar n'a PAS de son (le fichier est muet). Utilisez une version de la vidéo qui contient la voix.", "av_novideo": "La vidéo de l'avatar est introuvable. Mettez le fichier vidéo à la racine du site.", "mod_h": "OUVRIR UN MODULE — ou écrivez / dites votre question ci-dessous", "av_missing": "Vidéo de l'avatar introuvable — mettez formé-jodi-a.mp4 (ou max-louis-le-baron.mp4) à la racine du site.", "av_nostory": "L'audio de l'histoire est introuvable — mettez bss1815-istwa.mp3 (ou votre fichier vocal CapCut) à la racine du site.", "m_story": "HISTOIRE", "story_sub": "L'HISTOIRE DE BSS1815 PRO-MAX DMP", "story_btn": "▶ ÉCOUTER L'HISTOIRE", "story_stop": "⏹ ARRÊTER"}};
+for(var _l in EXTRA){ if(!I18N[_l]){ continue; } for(var _k in EXTRA[_l]){ I18N[_l][_k] = EXTRA[_l][_k]; } }
+
+/* ===== AVATAR VIDEO =====
+   Put your avatar video file in the SITE ROOT (the same folder as the home page index.html).
+   The page looks for these names in this order and uses the FIRST one that exists.
+   Tap the avatar = the avatar video plays WITH its own voice. Answers are read aloud while the avatar moves. */
+var AVATAR_VIDEO_CANDIDATES = ["formé-jodi-a.mp4", "forme-jodi-a.mp4", "max-louis-le-baron.mp4", "bati-pou-jodi-a.mp4", "bss1815pro-maxdmp.mp4"];
+/* the accented name is tried in both Unicode forms (é as one character, or e + accent), because phones and computers save it differently */
+var AVATAR_VIDEO_SRC = "";        /* or force one file, for example "./my-avatar.mp4" */
+var AVATAR_IFRAME_SRC = "";       /* or an embed link (HeyGen, D-ID, YouTube...) */
+/* Parts of the avatar video to skip, in seconds: [from, to]. Example [[53, 91]]. [] = play everything. */
+var AVATAR_SKIP = [];
+/* true = the video rests on its first frame and only moves while the avatar speaks */
+var AVATAR_TALK_ONLY = true;
+/* The avatar recites the intro (av_intro text) when it is tapped, and once automatically on the visitor's first touch.
+   false = recite the text with the browser voice while the avatar moves.  true = play the video's OWN voice instead. */
+var AVATAR_USE_VIDEO_VOICE = false;           /* false = the avatar video stays silent and the story audio (below) is the voice */
+var AVATAR_COMPUTER_VOICE_FALLBACK = false;   /* true = if there is no avatar video, read the intro with the computer voice */
+var AVATAR_INTRO_AUTO = true;
+/* THE AVATAR'S OWN VOICE, lips in sync: one video of the avatar saying the intro, per language.
+   Put these files in the site root. If a language has no file, the main avatar video is played instead. */
+var AVATAR_INTRO_VIDEO = { en: "avatar-intro-en.mp4", fr: "avatar-intro-fr.mp4", ht: "avatar-intro-ht.mp4" };
+var avatarDefaultSrc = null;
+/* OPTIONAL — the avatar's REAL voice: record (or generate) the intro with a male voice, save it as .mp3 files
+   in the site root, and put the file names here. If a file exists it is played instead of the computer voice. */
+var AVATAR_INTRO_AUDIO = { en: "avatar-intro-en.mp3", fr: "avatar-intro-fr.mp3", ht: "avatar-intro-ht.mp3" };
+/* THE STORY OF BSS1815 PRO-MAX DMP, spoken by the avatar (male voice recorded with CapCut).
+   Put the audio file in the site root. The page looks for these names in order (a per-language file wins if you add one). */
+var AVATAR_STORY_AUDIO = ["bss1815-istwa.mp3", "CapCut_TTS_Leo_Emotions_D20251222_T033148.mp3"];
+var introAudioEl = null;
+var avatarVideoEl = null, avatarMsgOn = false, avPlayEl = null;
+
+function avatarMessageStop(){
+  avatarMsgOn = false;
+  vSay("");
+  if(avPlayEl){ avPlayEl.style.display = ""; }
+  if(!avatarVideoEl){ return; }
+  avatarVideoEl.muted = true; avatarVideoEl.loop = true; avatarVideoEl.pause();
+  if(avatarDefaultSrc && avatarVideoEl.getAttribute("src") !== avatarDefaultSrc){
+    avatarVideoEl.setAttribute("src", avatarDefaultSrc); avatarVideoEl.load();
+  }else{
+    try{ avatarVideoEl.currentTime = 0.05; }catch(e){}
+  }
+  if(avatarStageEl){ avatarStageEl.classList.remove("speaking"); }
+}
+
+function avatarMessageStart(langUrl){
+  if(!avatarVideoEl){ return false; }
+  stopSpeaking();
+  avatarMsgOn = true;
+  if(avPlayEl){ avPlayEl.style.display = "none"; }
+  if(langUrl){
+    if(!avatarDefaultSrc){ avatarDefaultSrc = avatarVideoEl.getAttribute("src"); }
+    avatarVideoEl.setAttribute("src", langUrl);
+  }else{
+    try{ avatarVideoEl.currentTime = 0; }catch(e){}
+  }
+  avatarVideoEl.loop = false; avatarVideoEl.muted = false; avatarVideoEl.volume = 1;
+  var pp = avatarVideoEl.play();
+  if(pp && pp.catch){ pp.catch(function(){ avatarMessageStop(); }); }
+  var vv = avatarVideoEl;
+  setTimeout(function(){
+    if(!avatarMsgOn || vv.paused){ return; }
+    var known = false, has = true;
+    if(typeof vv.webkitAudioDecodedByteCount === "number"){ known = true; has = vv.webkitAudioDecodedByteCount > 0; }
+    else if(typeof vv.mozHasAudio === "boolean"){ known = true; has = vv.mozHasAudio; }
+    else if(vv.audioTracks){ known = true; has = vv.audioTracks.length > 0; }
+    if(known && !has){
+      vSay(t("av_nosound"));
+      if(window.console){ console.warn("Avatar video has no audio track: " + vv.currentSrc); }
+    }
+  }, 1600);
+  if(avatarStageEl){ avatarStageEl.classList.add("speaking"); }
+  return true;
+}
+
+var avatarPending = false;
+function avatarMessageToggle(){
+  if(!avatarVideoEl || avatarPending){ return false; }
+  if(avatarMsgOn){ avatarMessageStop(); return true; }
+  var f = AVATAR_INTRO_VIDEO && AVATAR_INTRO_VIDEO[lang];
+  if(!f || !window.fetch || location.protocol === "file:"){ return avatarMessageStart(null); }
+  var url = "./" + encodeURI(f) + "?v=20260920";
+  avatarPending = true;
+  fetch(url, { method: "HEAD" }).then(function(r){
+    var ct = (r.headers.get("content-type") || "").toLowerCase();
+    avatarPending = false;
+    avatarMessageStart(r.ok && (ct.indexOf("video") !== -1 || ct.indexOf("octet") !== -1) ? url : null);
+  }).catch(function(){ avatarPending = false; avatarMessageStart(null); });
+  return true;
+}
+
+(function(){
+  var stage = document.getElementById("avatarStage"), ph = document.getElementById("avatarPh");
+  if(!stage) return;
+
+  function mount(src){
+    var v = document.createElement("video"); v.src = src; v.autoplay = !AVATAR_TALK_ONLY; v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute("playsinline",""); v.preload = "auto";
+    var b = document.createElement("button"); b.type = "button"; b.className = "av-sound"; b.textContent = "🔊 SOUND ON";
+    b.addEventListener("click", function(){ v.muted = !v.muted; var p = v.play(); if(p && p.catch) p.catch(function(){}); b.textContent = v.muted ? "🔊 SOUND ON" : "🔇 MUTE"; });
+    ph.style.display = "none"; stage.appendChild(v); stage.appendChild(b);
+    avPlayEl = document.createElement("div"); avPlayEl.className = "av-play"; avPlayEl.textContent = "▶"; stage.appendChild(avPlayEl);
+    avatarVideoEl = v;
+    if(AVATAR_TALK_ONLY){
+      b.style.display = "none";
+      v.addEventListener("loadeddata", function(){ if(!isSpeaking && !avatarMsgOn){ try{ v.currentTime = 0.05; }catch(e){} v.pause(); } });
+    }
+    v.addEventListener("ended", function(){ if(avatarMsgOn){ avatarMessageStop(); } });
+    v.addEventListener("error", function(){ v.remove(); b.remove(); if(avPlayEl){ avPlayEl.remove(); avPlayEl = null; } ph.style.display = ""; avatarVideoEl = null; avatarMsgOn = false; });
+    function skipCheck(){
+      var t0 = v.currentTime;
+      for(var i = 0; i < AVATAR_SKIP.length; i++){
+        var a0 = AVATAR_SKIP[i][0], z0 = AVATAR_SKIP[i][1];
+        if(t0 >= a0 && t0 < z0){ v.currentTime = (v.duration && z0 >= v.duration) ? Math.max(v.duration - 0.05, 0) : z0; return; }
+      }
+    }
+    v.addEventListener("timeupdate", skipCheck);
+    v.addEventListener("seeked", skipCheck);
+    setInterval(function(){ if(!v.paused) skipCheck(); }, 100);
+  }
+
+  var tries = [];
+  AVATAR_VIDEO_CANDIDATES.forEach(function(c){
+    [c.normalize ? c.normalize("NFC") : c, c.normalize ? c.normalize("NFD") : c].forEach(function(x){ if(tries.indexOf(x) === -1){ tries.push(x); } });
+  });
+  /* where the file may have been uploaded: site root, this same folder, or a common media folder */
+  var BASES = ["./", "./assets/", "./videos/", "./video/", "./media/", "./images/", "./img/", "./modules/ai-center/"];
+  var GH = { owner: "louismaxauto600-jpg", repo: "bss1815-pro-max-dmp" };
+  var AVATAR_WORDS = /(jodi|avatar|baron|forme|formé|bss1815pro|max-louis)/i;
+
+  function isVideoResponse(r){
+    var ct = (r.headers.get("content-type") || "").toLowerCase();
+    return r.ok && (ct.indexOf("video") !== -1 || ct.indexOf("octet") !== -1);
+  }
+  function headFirst(urls, done){                                 /* first url (in order) that is a real video */
+    var results = new Array(urls.length), pending = urls.length;
+    if(!pending){ done(null); return; }
+    urls.forEach(function(u, i){
+      fetch(u, { method: "HEAD" }).then(function(r){ results[i] = isVideoResponse(r); }).catch(function(){ results[i] = false; })
+        .then(function(){ if(--pending === 0){ for(var k = 0; k < urls.length; k++){ if(results[k]){ done(urls[k]); return; } } done(null); } });
+    });
+  }
+  function giveUp(){
+    var sm = ph.querySelector("small");
+    if(sm){
+      sm.setAttribute("data-i18n", "av_missing"); sm.textContent = t("av_missing");
+      var test = "./" + encodeURI(tries[0]);
+      var a2 = document.createElement("a"); a2.href = test; a2.target = "_blank"; a2.rel = "noopener";
+      a2.textContent = "🔗 " + new URL(test, location.href).pathname; a2.style.cssText = "display:block;margin-top:8px;color:#ffad4d;text-decoration:underline;word-break:break-all;font-size:11px";
+      sm.appendChild(a2);
+    }
+  }
+  function fromGitHub(){
+    var dirs = ["", "assets", "videos", "video", "media"], found = [], left = dirs.length;
+    dirs.forEach(function(d){
+      fetch("https://api.github.com/repos/" + GH.owner + "/" + GH.repo + "/contents/" + d, { headers: { "Accept": "application/vnd.github+json" } })
+        .then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; })
+        .then(function(list){
+          (Array.isArray(list) ? list : []).forEach(function(e){ if(e.type === "file" && /\.mp4$/i.test(e.name) && AVATAR_WORDS.test(e.name)){ found.push(e.path); } });
+        }).then(function(){
+          if(--left === 0){ if(found.length){ mount("./" + found[0].split("/").map(encodeURIComponent).join("/") + "?v=20260920"); } else { giveUp(); } }
+        });
+    });
+  }
+  function probe(i){
+    if(i >= BASES.length){ fromGitHub(); return; }
+    var urls = tries.map(function(n){ return BASES[i] + encodeURI(n) + "?v=20260920"; });
+    if(!window.fetch || location.protocol === "file:"){ mount(urls[0]); return; }
+    headFirst(urls, function(u){ if(u){ mount(u); } else { probe(i + 1); } });
+  }
+
+  if(AVATAR_VIDEO_SRC){ mount(AVATAR_VIDEO_SRC); }
+  else if(AVATAR_IFRAME_SRC && /^https:\/\//.test(AVATAR_IFRAME_SRC)){
+    var f = document.createElement("iframe"); f.src = AVATAR_IFRAME_SRC; f.allow = "autoplay; fullscreen; microphone"; f.setAttribute("allowfullscreen",""); f.title = "AI Assistant avatar";
+    ph.style.display = "none"; stage.appendChild(f);
+  }
+  else{ probe(0); }
+})();
+var ROUTES = [{"words": ["admin", "dashboard", "login", "log in", "konekte", "connexion", "se connecter", "administrasyon", "administration", "role", "roles", "permission", "permissions", "firebase", "sekirite", "sécurité", "security"], "page": "./login.html", "label": "ADMIN DASHBOARD"}, {"words": ["live", "streaming", "radio", "broadcast", "difizyon", "diffusion", "podcast", "direct"], "page": "./modules/live-streaming/index.html", "label": "LIVE STREAMING"}, {"words": ["election", "elections", "vote", "voting", "vòt", "elèksyon", "candidate", "candidates", "candidat", "kandida", "résultats", "rezilta"], "page": "./modules/elections/index.html", "label": "ELECTION MANAGER"}, {"words": ["donation", "donations", "donate", "donor", "donatè", "donateur", "don", "dons", "contribution", "contributions", "kontribisyon"], "page": "./modules/donations/index.html", "label": "DONATION CENTER"}, {"words": ["certificate", "certificates", "sètifika", "certificat", "certificats", "verification", "vérification", "verifikasyon"], "page": "./modules/certificates/index.html", "label": "CERTIFICATE CENTER"}, {"words": ["attendance", "présence", "prezans", "pwesans", "check-in", "checkin", "participation"], "page": "./modules/attendance/index.html", "label": "ATTENDANCE"}, {"words": ["volunteer", "volunteers", "volontè", "volontaire", "volontaires", "bénévole", "bénévoles", "assignment", "assignments"], "page": "./modules/volunteer/index.html", "label": "VOLUNTEER CENTER"}, {"words": ["flyer", "flyers", "affiche", "affiches", "graphic", "graphics", "grafik", "graphique", "poster"], "page": "./modules/flyer-studio/index.html", "label": "FLYER STUDIO"}, {"words": ["registry", "registre", "registres", "musician", "musicians", "mizisyen", "musicien", "musiciens", "fans", "fanatik", "merchant", "merchants", "machann", "marchand", "marchands"], "page": "./modules/registry/index.html", "label": "DIGITAL REGISTRY"}, {"words": ["event", "events", "evènman", "événement", "événements", "calendar", "kalandriye", "calendrier", "program", "programs", "meeting", "meetings", "reyinyon", "réunion", "réunions", "aktivite", "activité", "activités"], "page": "./modules/events/index.html", "label": "EVENT MANAGEMENT"}, {"words": ["announcement", "announcements", "anons", "annonce", "annonces", "official notice", "avi ofisyèl", "avis officiel", "community update"], "page": "./modules/announcements/index.html", "label": "ANNOUNCEMENT CENTER"}, {"words": ["notification", "notifications", "reminder", "reminders", "rapèl", "rappel", "rappels", "alert", "alerts", "alèt", "alerte", "alertes"], "page": "./modules/notifications/index.html", "label": "NOTIFICATIONS"}, {"words": ["communication", "whatsapp", "message", "messages", "mesaj", "sms"], "page": "./modules/communication/index.html", "label": "COMMUNICATION CENTER"}, {"words": ["report", "reports", "rapò", "rapport", "rapports", "statistics", "statistik", "statistiques", "analytics", "performance", "pèfòmans"], "page": "./modules/reports/index.html", "label": "REPORTS & ANALYTICS"}, {"words": ["finance", "treasury", "trezò", "trésorerie", "payment", "payments", "peman", "paiement", "paiements", "money", "lajan", "argent"], "page": "./modules/finance/index.html", "label": "FINANCE / TREASURY"}, {"words": ["media", "gallery", "galri", "galerie", "photo", "photos", "foto", "video", "vidéo", "videyo", "audio", "slideshow"], "page": "./modules/media/index.html", "label": "MEDIA GALLERY"}, {"words": ["document", "documents", "dokiman", "letter", "letters", "lèt", "lettre", "lettres", "archive", "archives", "achiv"], "page": "./modules/documents/index.html", "label": "DOCUMENT CENTER"}, {"words": ["crm", "member", "members", "manm", "membre", "membres", "relationship", "relationships", "relation", "relations", "record", "records", "dosye", "dossier", "dossiers"], "page": "./crm.html", "label": "CRM SYSTEM"}, {"words": ["help", "help desk", "support", "sipò", "èd", "aide", "ticket", "tickets", "case", "cases", "request", "requests", "demann", "demande", "demandes", "problem", "pwoblèm", "problème"], "page": "./modules/help-desk/index.html", "label": "HELP DESK"}, {"words": ["community", "kominote", "communauté", "communaute", "heritage", "eritaj", "héritage", "bss1815", "fanmi", "famille", "family", "dirijan", "leaders"], "page": "./index.html#community", "label": "BSS1815 COMMUNITY"}, {"words": ["contact", "contacts", "kontak", "phone", "telefòn", "telefon", "téléphone", "telephone"], "page": "#contacts", "label": "CONTACT"}];
+var ENDPOINT = "/.netlify/functions/ai-assistant";
+document.getElementById("year").textContent = new Date().getFullYear();
+
+var menuBtn = document.getElementById("menuBtn"), mobileMenu = document.getElementById("mobileMenu");
+function closeMenu(){ mobileMenu.classList.remove("open"); menuBtn.textContent="☰"; menuBtn.setAttribute("aria-expanded","false"); }
+menuBtn.addEventListener("click", function(){ var o = mobileMenu.classList.toggle("open"); menuBtn.textContent = o ? "✕" : "☰"; menuBtn.setAttribute("aria-expanded", o ? "true" : "false"); });
+mobileMenu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
+
+var lang = "en";
+function t(k){ return (I18N[lang] || I18N.en)[k] || I18N.en[k] || ""; }
+var keyed = document.querySelectorAll("[data-i18n]"), keyedPh = document.querySelectorAll("[data-i18n-placeholder]"), langButtons = document.querySelectorAll(".lang-btn"), qchips = document.querySelectorAll(".qchip");
+var log = document.getElementById("log"), input = document.getElementById("q"), sendBtn = document.getElementById("send");
+function setLanguage(l){
+  if(["en","fr","ht"].indexOf(l) === -1) l = "en";
+  lang = l; document.documentElement.lang = l;
+  keyed.forEach(function(el){ var v = t(el.dataset.i18n); if(!v) return; el.textContent = (el.dataset.i18n === "legal_h" ? "⚖️ " : "") + v; });
+  keyedPh.forEach(function(el){ el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder)); });
+  qchips.forEach(function(c){ c.dataset.q = c.textContent; });
+  langButtons.forEach(function(b){ var a = b.dataset.lang === l; b.classList.toggle("active", a); b.setAttribute("aria-pressed", a ? "true" : "false"); });
+  var first = log.querySelector(".msg.welcome"); if(first) first.firstChild.textContent = t("welcome");
+  try{ localStorage.setItem("bss1815Language", l); }catch(e){}
+}
+langButtons.forEach(function(b){ b.addEventListener("click", function(){ setLanguage(b.dataset.lang); }); });
+
+function findRoute(text){
+  var c = String(text || "").toLowerCase().trim(); if(!c) return null;
+  var tokens = c.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+  for(var i = 0; i < ROUTES.length; i++){
+    for(var j = 0; j < ROUTES[i].words.length; j++){
+      var w = ROUTES[i].words[j];
+      if(w.length <= 4 || w.indexOf(" ") === -1 && w.length <= 4){ if(tokens.indexOf(w) !== -1) return ROUTES[i]; }
+      else if(c.indexOf(w) !== -1) return ROUTES[i];
+    }
+  }
+  return null;
+}
+function addMsg(role, text, route, cls){
+  var m = document.createElement("div"); m.className = "msg " + role + (cls ? " " + cls : "");
+  m.appendChild(document.createTextNode(text));
+  if(route){
+    var g = document.createElement("div"); g.className = "go";
+    var a = document.createElement("a"); a.href = route.page; a.textContent = t("open") + " " + route.label + " →"; g.appendChild(a); m.appendChild(g);
+  }
+  log.appendChild(m); log.scrollTop = log.scrollHeight; return m;
+}
+var history = [];
+function fallback(text){
+  var r = findRoute(text);
+  if(r) return addMsg("bot", t("match"), r);
+  var m = addMsg("bot", t("nomatch"), { page:"./modules/help-desk/index.html", label:"HELP DESK" });
+  var g = m.querySelector(".go"); var a2 = document.createElement("a"); a2.href = "#contacts"; a2.textContent = t("open") + " CONTACT →"; a2.style.marginLeft = "8px"; g.appendChild(a2);
+}
+var busy = false;
+function ask(text){
+  text = String(text || "").trim(); if(!text || busy) return;
+  busy = true; sendBtn.disabled = true;
+  addMsg("user", text); input.value = "";
+  var wait = addMsg("bot", t("thinking"));
+  var done = function(){ busy = false; sendBtn.disabled = false; input.focus(); };
+  if(!window.fetch || location.protocol === "file:"){ wait.remove(); fallback(text); done(); return; }
+  var ctrl = ("AbortController" in window) ? new AbortController() : null; var to = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 20000);
+  fetch(ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message:text, lang:lang, history:history }), signal: ctrl ? ctrl.signal : undefined })
+    .then(function(r){ if(!r.ok) throw new Error("http " + r.status); return r.json(); })
+    .then(function(d){
+      clearTimeout(to); wait.remove();
+      if(!d || !d.reply) throw new Error("empty");
+      history.push({ role:"user", content:text }, { role:"assistant", content:d.reply }); history = history.slice(-8);
+      addMsg("bot", d.reply, findRoute(text) || findRoute(d.reply));
+      done();
+    })
+    .catch(function(){ clearTimeout(to); wait.remove(); fallback(text); done(); });
+}
+sendBtn.addEventListener("click", function(){ ask(input.value); });
+input.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); ask(input.value); } });
+qchips.forEach(function(c){ c.addEventListener("click", function(){ ask(c.dataset.q || c.textContent); }); });
+
+
+/* ================= VOICE: read aloud + speak instead of typing ================= */
+var synth = window.speechSynthesis || null;
+var SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+var LANG_TAG = { en: "en-US", fr: "fr-FR", ht: "fr-FR" };   /* Creole has no browser voice/recognizer: French is the closest */
+var voices = [], speakToken = 0, isSpeaking = false, isPaused = false, lastBotText = "";
+var micBtn = document.getElementById("mic"), autoRead = document.getElementById("autoRead"), micStatus = document.getElementById("micStatus");
+var vText = document.getElementById("vText"), vVoice = document.getElementById("vVoice"), vRate = document.getElementById("vRate");
+var vListen = document.getElementById("vListen"), vPause = document.getElementById("vPause"), vStop = document.getElementById("vStop");
+var vDictate = document.getElementById("vDictate"), vLast = document.getElementById("vLast"), vNote = document.getElementById("vNote"), vStatus = document.getElementById("voiceStatus");
+var avatarStageEl = document.getElementById("avatarStage");
+
+function vSay(msg){ if(micStatus){ micStatus.textContent = msg || ""; } if(vStatus){ vStatus.textContent = msg || ""; } }
+
+function loadVoices(){ voices = synth ? (synth.getVoices() || []) : []; fillVoiceSelect(); }
+
+function voicePrefixes(l){ return l === "ht" ? ["ht", "fr"] : [l]; }
+
+function voicesForLang(l){
+  var pre = voicePrefixes(l);
+  return voices.filter(function(v){ var vl = (v.lang || "").toLowerCase().replace("_", "-"); return pre.some(function(p){ return vl.indexOf(p) === 0; }); });
+}
+
+function fillVoiceSelect(){
+  if(!vVoice){ return; }
+  var keep = vVoice.value;
+  vVoice.innerHTML = "";
+  var auto = document.createElement("option"); auto.value = ""; auto.textContent = t("v_auto_voice"); vVoice.appendChild(auto);
+  voicesForLang(lang).forEach(function(v){ var o = document.createElement("option"); o.value = v.name; o.textContent = v.name + " (" + v.lang + ")"; vVoice.appendChild(o); });
+  if(keep){ vVoice.value = keep; }
+  updateVoiceNote();
+}
+
+function hasCreoleVoice(){
+  return voices.some(function(v){ return (v.lang || "").toLowerCase().indexOf("ht") === 0; });
+}
+
+function updateVoiceNote(){
+  if(!vNote){ return; }
+  vNote.textContent = (lang === "ht" && synth && !hasCreoleVoice()) ? t("v_ht_note") : "";
+}
+
+var MALE_RE = /\b(male|man|daniel|thomas|david|mark|guy|henri|antoine|paul|george|james|alex|fred|jorge|diego|liam|ryan|jean|claude|bruno|louis|nicolas|pierre|lucas|olivier|sean|arthur|oliver|aaron|gordon|eddy|reed|rocko|jacques|felix|rishi|matthieu|maxime|remy)\b|-x-(iol|iom|tpd|frd|fre|iog)-/i;
+var FEMALE_RE = /\b(female|woman|samantha|susan|zira|hazel|catherine|amelie|amélie|audrey|marie|julie|hortense|aurelie|aurélie|siri|karen|moira|tessa|fiona|victoria|allison|ava|joana|sara|emma|denise|eloise|élodie|celine|céline|virginie)\b|-x-(iob|tpc|tpf|frb|frc|fra)-/i;
+function maleScore(v){ var n = v.name || ""; return (MALE_RE.test(n) ? 2 : 0) - (FEMALE_RE.test(n) ? 2 : 0); }
+
+function pickVoice(force){
+  var L = force || lang;
+  var list = voicesForLang(L), chosen = null;
+  if(!force && vVoice && vVoice.value){ list.forEach(function(v){ if(v.name === vVoice.value){ chosen = v; } }); }
+  if(!chosen && L === "ht"){ list.forEach(function(v){ if(!chosen && (v.lang || "").toLowerCase().indexOf("ht") === 0){ chosen = v; } }); }
+  if(!chosen){ var best = -99; list.forEach(function(v){ var s = maleScore(v); if(s > best){ best = s; chosen = v; } }); }
+  return chosen || list[0] || null;
+}
+
+var PRON_FR = /(le baron|la seule différence|la seule difference)/gi;   /* these words are always spoken with the French voice */
+function segmentize(chunk){
+  var parts = [], last = 0, mt;
+  PRON_FR.lastIndex = 0;
+  while((mt = PRON_FR.exec(chunk))){
+    if(mt.index > last){ parts.push({ t: chunk.slice(last, mt.index), l: null }); }
+    parts.push({ t: mt[0], l: "fr" });
+    last = mt.index + mt[0].length;
+  }
+  if(last < chunk.length){ parts.push({ t: chunk.slice(last), l: null }); }
+  return parts.filter(function(p){ return /[\p{L}\p{N}]/u.test(p.t); });
+}
+
+function chunkText(text){
+  var parts = String(text || "").replace(/\s+/g, " ").trim().match(/[^.!?…]+[.!?…]*/g) || [];
+  var out = [], cur = "";
+  parts.forEach(function(s){
+    if((cur + s).length > 200 && cur){ out.push(cur.trim()); cur = s; } else { cur += s; }
+  });
+  if(cur.trim()){ out.push(cur.trim()); }
+  return out;
+}
+
+function setSpeaking(on){
+  isSpeaking = on; if(!on){ isPaused = false; }
+  if(avatarStageEl){ avatarStageEl.classList.toggle("speaking", on); }
+  if(avPlayEl){ avPlayEl.style.display = on ? "none" : ""; }
+  if(avatarVideoEl && AVATAR_TALK_ONLY){
+    if(on){ var pp = avatarVideoEl.play(); if(pp && pp.catch){ pp.catch(function(){}); } }
+    else{ avatarVideoEl.pause(); try{ avatarVideoEl.currentTime = 0.05; }catch(e){} }
+  }
+  if(vPause){ vPause.textContent = isPaused ? t("v_resume") : t("v_pause"); }
+  if(on){ vSay(t("v_speaking")); } else { vSay(""); }
+}
+
+function stopSpeaking(){
+  speakToken++;
+  if(introAudioEl){ try{ introAudioEl.pause(); }catch(e){} introAudioEl = null; }
+  if(synth){ try{ synth.cancel(); }catch(e){} }
+  setSpeaking(false);
+}
+
+function playIntroAudio(url){
+  stopSpeaking();
+  if(avatarMsgOn){ avatarMessageStop(); }
+  var a = new Audio(url); introAudioEl = a;
+  a.onplay = function(){ setSpeaking(true); };
+  a.onended = function(){ introAudioEl = null; setSpeaking(false); };
+  a.onerror = function(){ introAudioEl = null; setSpeaking(false); vSay(t("av_nostory")); };
+  var pr = a.play();
+  if(pr && pr.catch){ pr.catch(function(){ introAudioEl = null; setSpeaking(false); }); }
+}
+
+var storyUrl = null;
+function findStoryAudio(cb){
+  if(storyUrl){ cb(storyUrl); return; }
+  var names = [], bases = ["./", "./assets/", "./audio/", "./media/", "./sounds/", "./modules/ai-center/"];
+  if(AVATAR_INTRO_AUDIO && AVATAR_INTRO_AUDIO[lang]){ names.push(AVATAR_INTRO_AUDIO[lang]); }
+  AVATAR_STORY_AUDIO.forEach(function(n){ names.push(n); });
+  var urls = [];
+  bases.forEach(function(bs){ names.forEach(function(n){ urls.push(bs + encodeURI(n) + "?v=20260920"); }); });
+  if(!window.fetch || location.protocol === "file:"){ cb(urls[0]); return; }
+  var results = new Array(urls.length), pending = urls.length;
+  urls.forEach(function(u, i){
+    fetch(u, { method: "HEAD" }).then(function(r){
+      var ct = (r.headers.get("content-type") || "").toLowerCase();
+      results[i] = r.ok && (ct.indexOf("audio") !== -1 || ct.indexOf("octet") !== -1 || ct.indexOf("mpeg") !== -1);
+    }).catch(function(){ results[i] = false; }).then(function(){
+      if(--pending === 0){ for(var k = 0; k < urls.length; k++){ if(results[k]){ storyUrl = urls[k]; cb(storyUrl); return; } } cb(null); }
+    });
+  });
+}
+
+function reciteIntroVoice(){
+  findStoryAudio(function(url){
+    if(url){ playIntroAudio(url); }
+    else if(AVATAR_COMPUTER_VOICE_FALLBACK){ speak(t("av_intro")); }
+    else{ vSay(t("av_nostory")); }
+  });
+}
+
+/* 1) if there is a video of the avatar saying the NEW intro (avatar-intro-xx.mp4) -> play it with its sound (lips in sync)
+   2) otherwise the intro is recited while the avatar moves */
+function reciteIntro(){
+  try{ sessionStorage.setItem("bssIntroDone", "1"); }catch(e){}
+  if(avatarMsgOn){ avatarMessageStop(); return; }
+  if(isSpeaking){ stopSpeaking(); return; }
+  if(avatarPending){ return; }
+  var fallback = function(){
+    if(AVATAR_USE_VIDEO_VOICE && avatarVideoEl){ avatarMessageStart(null); }
+    else{ reciteIntroVoice(); }
+  };
+  var f = AVATAR_INTRO_VIDEO && AVATAR_INTRO_VIDEO[lang];
+  if(!avatarVideoEl || !f || !window.fetch || location.protocol === "file:"){ fallback(); return; }
+  var url = "./" + encodeURI(f) + "?v=20260920";
+  avatarPending = true;
+  fetch(url, { method: "HEAD" }).then(function(r){
+    var ct = (r.headers.get("content-type") || "").toLowerCase();
+    avatarPending = false;
+    if(r.ok && (ct.indexOf("video") !== -1 || ct.indexOf("octet") !== -1)){ avatarMessageStart(url); } else { fallback(); }
+  }).catch(function(){ avatarPending = false; fallback(); });
+}
+
+function speak(text){
+  if(!synth || typeof SpeechSynthesisUtterance === "undefined"){ vSay(t("v_nosupport_tts")); return; }
+  var chunks = chunkText(text);
+  if(!chunks.length){ vSay(t("v_empty")); return; }
+  if(avatarMsgOn){ avatarMessageStop(); }
+  stopSpeaking();
+  var items = [];
+  chunks.forEach(function(c){ segmentize(c).forEach(function(s){ items.push(s); }); });
+  var tok = speakToken, idx = 0;
+  setSpeaking(true);
+  function next(){
+    if(tok !== speakToken){ return; }
+    if(idx >= items.length){ setSpeaking(false); return; }
+    var it = items[idx++], L = it.l || lang, voice = pickVoice(it.l);
+    var u = new SpeechSynthesisUtterance(it.t);
+    u.lang = voice ? voice.lang : LANG_TAG[L];
+    if(voice){ u.voice = voice; }
+    u.rate = parseFloat(vRate && vRate.value) || 0.95;
+    u.pitch = parseFloat(vPitch && vPitch.value) || 0.75;
+    u.onend = function(){ next(); };
+    u.onerror = function(){ if(tok === speakToken){ setSpeaking(false); } };
+    synth.speak(u);
+  }
+  setTimeout(next, 60);
+}
+
+/* every bot message gets a small speaker button; optional automatic reading */
+var _addMsg = addMsg;
+addMsg = function(role, text, route, cls){
+  var m = _addMsg(role, text, route, cls);
+  if(role === "bot" && text && text !== t("thinking")){
+    lastBotText = text;
+    var b = document.createElement("button"); b.type = "button"; b.className = "spk"; b.textContent = "🔊"; b.setAttribute("aria-label", "Listen");
+    b.addEventListener("click", function(){ speak(text); });
+    m.appendChild(b);
+    log.scrollTop = log.scrollHeight;
+    if(autoRead && autoRead.checked){ speak(text); }
+  }
+  return m;
+};
+
+if(autoRead){
+  try{ autoRead.checked = localStorage.getItem("bss1815AutoRead") === "1"; }catch(e){ autoRead.checked = false; }
+  autoRead.addEventListener("change", function(){
+    try{ localStorage.setItem("bss1815AutoRead", autoRead.checked ? "1" : "0"); }catch(e){}
+    if(!autoRead.checked){ stopSpeaking(); }
+  });
+}
+if(avatarStageEl){
+  avatarStageEl.addEventListener("click", function(e){
+    if(e.target && e.target.closest && e.target.closest(".av-sound")){ return; }
+    reciteIntro();
+  });
+}
+
+if(AVATAR_INTRO_AUTO){
+  var introTouched = false;
+  var introHandler = function(e){
+    if(introTouched){ return; }
+    var el = e.target;
+    if(el && el.closest && el.closest("button, a, input, select, textarea, label, .lang-switch, .languages")){ return; }
+    introTouched = true;
+    if(el && el.closest && el.closest("#avatarStage")){
+      try{ sessionStorage.setItem("bssIntroDone", "1"); }catch(err){}
+      document.removeEventListener("pointerdown", introHandler, true);
+      return;
+    }
+    document.removeEventListener("pointerdown", introHandler, true);
+    var done = false; try{ done = sessionStorage.getItem("bssIntroDone") === "1"; }catch(err){}
+    if(done){ return; }
+    setTimeout(reciteIntro, 60);
+  };
+  document.addEventListener("pointerdown", introHandler, true);
+}
+
+if(synth){
+  loadVoices();
+  if("onvoiceschanged" in synth){ synth.onvoiceschanged = loadVoices; }
+}else{
+  if(autoRead && autoRead.parentNode){ autoRead.parentNode.style.display = "none"; }
+  [vListen, vPause, vStop].forEach(function(b){ if(b){ b.disabled = true; } });
+}
+
+if(vListen){ vListen.addEventListener("click", function(){ var txt = vText.value.trim() || lastBotText; if(!txt){ vSay(t("v_empty")); return; } speak(txt); }); }
+if(vStop){ vStop.addEventListener("click", stopSpeaking); }
+if(vPause){ vPause.addEventListener("click", function(){
+  if(!synth || !isSpeaking){ return; }
+  if(isPaused){ synth.resume(); isPaused = false; } else { synth.pause(); isPaused = true; }
+  vPause.textContent = isPaused ? t("v_resume") : t("v_pause");
+}); }
+if(vLast){ vLast.addEventListener("click", function(){ if(lastBotText){ vText.value = lastBotText; } else { vSay(t("v_empty")); } }); }
+var vPitch = document.getElementById("vPitch");
+try{
+  var sv = localStorage.getItem("bssVoiceName"), sp = localStorage.getItem("bssVoicePitch"), sr = localStorage.getItem("bssVoiceRate");
+  if(sp && vPitch){ vPitch.value = sp; } if(sr && vRate){ vRate.value = sr; }
+  if(sv && vVoice){ setTimeout(function(){ if([].some.call(vVoice.options, function(o){ return o.value === sv; })){ vVoice.value = sv; } }, 400); }
+}catch(e){}
+if(vVoice){ vVoice.addEventListener("change", function(){ try{ localStorage.setItem("bssVoiceName", vVoice.value); }catch(e){} }); }
+if(vPitch){ vPitch.addEventListener("change", function(){ try{ localStorage.setItem("bssVoicePitch", vPitch.value); }catch(e){} }); }
+if(vRate){ vRate.addEventListener("change", function(){ try{ localStorage.setItem("bssVoiceRate", vRate.value); }catch(e){} }); }
+
+/* speech recognition (speak instead of typing) */
+var rec = null, listening = false;
+function startListening(target){
+  if(!SR){ vSay(t("v_nosupport_stt")); return; }
+  stopSpeaking();
+  if(listening && rec){ try{ rec.stop(); }catch(e){} return; }
+  var btn = target === "chat" ? micBtn : vDictate, field = target === "chat" ? input : vText, finalText = "";
+  rec = new SR();
+  rec.lang = LANG_TAG[lang]; rec.interimResults = true; rec.continuous = false; rec.maxAlternatives = 1;
+  vSay(lang === "ht" ? t("v_ht_stt") : t("v_listening"));
+  rec.onresult = function(e){
+    var interim = "";
+    for(var i = e.resultIndex; i < e.results.length; i++){
+      var tr = e.results[i][0].transcript;
+      if(e.results[i].isFinal){ finalText += tr; } else { interim += tr; }
+    }
+    field.value = (finalText + " " + interim).trim();
+  };
+  rec.onerror = function(e){
+    if(e.error === "not-allowed" || e.error === "service-not-allowed"){ vSay(t("v_denied")); }
+    else if(e.error === "no-speech"){ vSay(t("v_nospeech")); }
+  };
+  rec.onend = function(){
+    listening = false; if(btn){ btn.classList.remove("listening"); }
+    if(target === "chat" && field.value.trim()){ vSay(""); ask(field.value); }
+    else if(field.value.trim()){ vSay(""); }
+  };
+  try{ rec.start(); listening = true; if(btn){ btn.classList.add("listening"); } }catch(err){ vSay(t("v_nosupport_stt")); }
+}
+if(micBtn){ micBtn.addEventListener("click", function(){ startListening("chat"); }); if(!SR){ micBtn.title = t("v_nosupport_stt"); } }
+if(vDictate){ vDictate.addEventListener("click", function(){ startListening("panel"); }); }
+
+langButtons.forEach(function(b){ b.addEventListener("click", function(){
+  if(micBtn){ micBtn.title = t("v_mic"); }
+  fillVoiceSelect(); setSpeaking(isSpeaking);
+}); });
+
+
+/* THE STORY (text shown on the page in the visitor's language) */
+var STORY = {"fr": ["Selon la tradition orale, l’histoire de Briyant Solèy commence à Léogâne en 1815, autour du Général Félix Leclerc, grand propriétaire terrien qui employait de nombreux travailleurs organisés en konbit.", "Reconnu également pour sa maîtrise des chevaux, Félix Leclerc était surnommé « Dompteur de chevaux » par les habitants.", "Après sa nomination au grade de Général, ses travailleurs se réunirent pour célébrer l’événement. Vers dix heures du matin, sous un soleil intense, les rayons frappèrent la plaque métallique et l’étoile que portait le Général, les faisant briller.", "Les personnes présentes s’exclamèrent alors :", "« Solèy la briye ! » — « Le soleil brille ! »", "Selon le récit transmis par les anciens, c’est de cet événement que naquit le nom Briyant Solèy.", "Les travailleurs conservèrent ce nom lors de leurs konbits. Avec le temps, leurs rassemblements intégrèrent les tambours, les bambous et la tradition du rara. Ainsi naquit Rara Briyant Solèy.", "La tradition fut ensuite transmise de génération en génération, notamment à travers la famille Lebrun, puis à travers les liens établis entre Lakou Kolòne et Lakou Donté Kolòne, dans la région de Signo.", "À l’époque, une partie de cette zone aujourd’hui connue comme Santo était appelée Dorivyè, en référence à la rivière qui traversait les lieux.", "C’est ainsi que, depuis 1815, le travail collectif, les familles, les lakou et la tradition ont préservé un même héritage :", "BRIYANT SOLÈY SIGNO 1815."], "ht": ["Dapre tradisyon oral la, istwa Briyant Solèy kòmanse Leyogàn an 1815, alantou Jeneral Félix Leclerc, yon gwo mèt tè ki te gen anpil travayè ki òganize an konbit.", "Yo te rekonèt Félix Leclerc tou pou jan l te konn kenbe chwal, epi moun yo te rele l « Donte Chwal ».", "Apre yo te nonmen l Jeneral, travayè li yo te reyini pou selebre evènman an. Alantou dis è nan maten, anba yon solèy cho, reyon yo te frape plak metal la ak zetwal Jeneral la t ap pote a, epi yo te fè yo klere.", "Moun ki te la yo te kriye :", "« Solèy la briye ! »", "Dapre istwa granmoun yo te transmèt la, se nan evènman sa a non Briyant Solèy la te fèt.", "Travayè yo te kenbe non sa a nan konbit yo. Avèk tan, reyinyon yo te vin gen tanbou, banbou ak tradisyon rara a. Se konsa Rara Briyant Solèy te fèt.", "Apre sa, tradisyon an te pase de jenerasyon an jenerasyon, sitou atravè fanmi Lebrun, epi atravè lyen yo te etabli ant Lakou Kolòne ak Lakou Donté Kolòne, nan zòn Signo a.", "Nan epòk sa a, yon pati nan zòn sa a ki rele Santo jodi a te rele Dorivyè, an referans ak rivyè ki t ap travèse kote sa yo.", "Se konsa, depi 1815, travay kolektif la, fanmi yo, lakou yo ak tradisyon an te prezève yon sèl eritaj :", "BRIYANT SOLÈY SIGNO 1815."], "en": ["According to oral tradition, the story of Briyant Solèy begins in Léogâne in 1815, around General Félix Leclerc, a large landowner who employed many workers organised in konbit.", "Also known for his mastery of horses, Félix Leclerc was nicknamed “Horse Tamer” by the local people.", "After he was appointed to the rank of General, his workers gathered to celebrate the event. Around ten in the morning, under an intense sun, the rays struck the metal plate and the star the General wore, making them shine.", "Those present then exclaimed:", "“Solèy la briye!” — “The sun is shining!”", "According to the account handed down by the elders, it is from this event that the name Briyant Solèy was born.", "The workers kept this name during their konbits. With time, their gatherings came to include drums, bamboo horns and the rara tradition. Thus Rara Briyant Solèy was born.", "The tradition was then passed from generation to generation, notably through the Lebrun family, and then through the ties established between Lakou Kolòne and Lakou Donté Kolòne, in the Signo region.", "At that time, part of this area, now known as Santo, was called Dorivyè, after the river that flowed through the place.", "So it is that, since 1815, collective work, families, the lakou and tradition have preserved one and the same heritage:", "BRIYANT SOLÈY SIGNO 1815."]};
+function renderStory(){
+  var box = document.getElementById("storyText"); if(!box){ return; }
+  var paras = STORY[lang] || STORY.fr; box.textContent = "";
+  paras.forEach(function(txt, i){
+    var p = document.createElement("p");
+    if(i === 4){ p.className = "q"; }
+    else if(i === 10){ p.className = "big"; }
+    p.textContent = txt; box.appendChild(p);
+  });
+}
+var storyBtn = document.getElementById("storyBtn");
+if(storyBtn){ storyBtn.addEventListener("click", function(){ reciteIntro(); }); }
+langButtons.forEach(function(b){ b.addEventListener("click", renderStory); });
+renderStory();
+var w = addMsg("bot", "", null, "welcome");
+
+/* the big box is never empty: all BSS1815 modules as tiles under the intro */
+var BSS_MODULES = [
+  ["👥","CRM SYSTEM","./crm.html"],["📢","COMMUNICATION CENTER","./modules/communication/index.html"],["🎨","FLYER STUDIO","./modules/flyer-studio/index.html"],
+  ["📋","DIGITAL REGISTRY","./modules/registry/index.html"],["📅","EVENT MANAGEMENT","./modules/events/index.html"],["📄","DOCUMENT CENTER","./modules/documents/index.html"],
+  ["📣","ANNOUNCEMENT CENTER","./modules/announcements/index.html"],["🤝","DONATION CENTER","./modules/donations/index.html"],["✅","ATTENDANCE","./modules/attendance/index.html"],
+  ["🏆","CERTIFICATE CENTER","./modules/certificates/index.html"],["🗳️","ELECTION MANAGER","./modules/elections/index.html"],["🙋","VOLUNTEER CENTER","./modules/volunteer/index.html"],
+  ["💰","FINANCE / TREASURY","./modules/finance/index.html"],["🎥","MEDIA GALLERY","./modules/media/index.html"],["🔔","NOTIFICATIONS","./modules/notifications/index.html"],
+  ["📊","REPORTS & ANALYTICS","./modules/reports/index.html"],["🎫","HELP DESK","./modules/help-desk/index.html"],["📡","LIVE STREAMING","./modules/live-streaming/index.html"],
+  ["🔐","ADMIN DASHBOARD","./login.html"]
+];
+(function(){
+  var head = document.createElement("div"); head.className = "mod-h"; head.setAttribute("data-i18n", "mod_h"); head.textContent = t("mod_h");
+  var grid = document.createElement("div"); grid.className = "mod-grid"; grid.id = "modGrid";
+  BSS_MODULES.forEach(function(m){
+    var a = document.createElement("a"); a.className = "mod-tile"; a.href = m[2];
+    var i = document.createElement("span"); i.className = "mi"; i.textContent = m[0];
+    var s = document.createElement("span"); s.textContent = m[1];
+    a.appendChild(i); a.appendChild(s); grid.appendChild(a);
+  });
+  log.appendChild(head); log.appendChild(grid);
+  keyed = document.querySelectorAll("[data-i18n]");
+})();
+
+
+var saved = "en"; try{ saved = localStorage.getItem("bss1815Language") || "en"; }catch(e){}
+try{ var qp = new URLSearchParams(location.search).get("lang"); if(qp === "es"){ qp = "en"; } if(qp) saved = qp; }catch(e){}
+setLanguage(saved);
+renderStory();
+if(micBtn){ micBtn.title = t("v_mic"); }
+fillVoiceSelect();
+})();
+</script>
+</body>
+</html>
