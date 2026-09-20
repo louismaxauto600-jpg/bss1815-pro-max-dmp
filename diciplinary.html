@@ -1,0 +1,81 @@
+<!-- FILE: disciplinary.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistèm Disiplinè | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Sistèm Disiplinè",
+  "icon": "⚖️",
+  "desc": "Ka disiplinè, vòt komite, sispansyon, apèl ak desizyon final.",
+  "collection": "mx_disciplinary",
+  "access": "super",
+  "fields": [
+    {
+      "key": "caseTitle",
+      "label": "Tit ka a",
+      "required": true
+    },
+    {
+      "key": "memberName",
+      "label": "Manm konsène",
+      "required": true
+    },
+    {
+      "key": "caseType",
+      "label": "Kalite ka",
+      "type": "select",
+      "options": [
+        "Avètisman",
+        "Sispansyon",
+        "Ekspilsyon",
+        "Lòt"
+      ]
+    },
+    {
+      "key": "openedAt",
+      "label": "Dat ouvèti",
+      "type": "date"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Louvri",
+        "Vòt komite",
+        "Sispansyon",
+        "Apèl",
+        "Fèmen"
+      ]
+    },
+    {
+      "key": "decision",
+      "label": "Desizyon",
+      "type": "textarea"
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "note": "Modil rezève pou Super Admin. Vòt komite yo anrejistre kòm tèks; vòt otomatik la poko konstwi."
+});
+</script>
+
+</body>
+</html>
