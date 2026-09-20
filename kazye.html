@@ -1,0 +1,60 @@
+<!-- FILE: kazye.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kazye Sansib | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Kazye Sansib",
+  "icon": "🔐",
+  "desc": "Dokiman ak dosye ki mande aksè administratif limite.",
+  "collection": "mx_kazye",
+  "access": "super",
+  "fields": [
+    {
+      "key": "title",
+      "label": "Tit dokiman",
+      "required": true
+    },
+    {
+      "key": "category",
+      "label": "Kategori",
+      "type": "select",
+      "options": [
+        "Kontra",
+        "Finans",
+        "Disiplin",
+        "Legal",
+        "Lòt"
+      ]
+    },
+    {
+      "key": "fileLink",
+      "label": "Lyen fichye",
+      "type": "url"
+    },
+    {
+      "key": "description",
+      "label": "Deskripsyon",
+      "type": "textarea"
+    }
+  ],
+  "badge": "category",
+  "note": "Modil rezève pou Super Admin. Isit la ou sove enfòmasyon ak lyen dokiman yo. Voye fichye yo dirèkteman (Firebase Storage) poko konstwi."
+});
+</script>
+
+</body>
+</html>
