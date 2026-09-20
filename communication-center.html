@@ -1,0 +1,68 @@
+<!-- FILE: communication-center.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Communication Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Communication Center",
+  "icon": "📢",
+  "desc": "Anons, kondoleyans, anivèsè, ijans ak kominikasyon ofisyèl.",
+  "collection": "mx_communications",
+  "fields": [
+    {
+      "key": "title",
+      "label": "Tit",
+      "required": true
+    },
+    {
+      "key": "kind",
+      "label": "Kalite",
+      "type": "select",
+      "options": [
+        "Anons",
+        "Kondoleyans",
+        "Anivèsè",
+        "Ijans",
+        "Ofisyèl"
+      ]
+    },
+    {
+      "key": "message",
+      "label": "Mesaj",
+      "type": "textarea",
+      "required": true
+    },
+    {
+      "key": "publishDate",
+      "label": "Dat piblikasyon",
+      "type": "date"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Bouyon",
+        "Piblye"
+      ]
+    }
+  ],
+  "badge": "kind"
+});
+</script>
+
+</body>
+</html>
