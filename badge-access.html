@@ -1,0 +1,68 @@
+<!-- FILE: badge-access.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badge & Access | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Badge & Access",
+  "icon": "🔑",
+  "desc": "Badges, nivo aksè ak otorizasyon.",
+  "collection": "mx_badges",
+  "fields": [
+    {
+      "key": "holderName",
+      "label": "Non moun nan",
+      "required": true
+    },
+    {
+      "key": "badgeName",
+      "label": "Badge"
+    },
+    {
+      "key": "accessLevel",
+      "label": "Nivo aksè",
+      "type": "select",
+      "options": [
+        "Manm",
+        "Volontè",
+        "Komite",
+        "Admin",
+        "Super Admin"
+      ]
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Aktif",
+        "Sispann",
+        "Revoke"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "note": "Sa a se rejis badge yo. Li pa bay aksè nan sistèm lan; aksè admin yo kontwole pa Firestore (mx_admins)."
+});
+</script>
+
+</body>
+</html>
