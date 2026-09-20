@@ -4,783 +4,2485 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="google" content="notranslate">
-<meta name="robots" content="noindex,nofollow">
+
+<title>BSS1815 PRO-MAX DMP | Digital Management Platform</title>
+
+<meta name="description" content="BSS1815 PRO-MAX DMP — Yon sèl platfòm dijital pou kominote, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, AI, medya, administrasyon ak inovasyon.">
 <meta name="theme-color" content="#000000">
-<title>CRM SYSTEM | BSS1815 PRO-MAX DMP</title>
+<meta name="author" content="BSS1815 PRO-MAX DMP">
+<meta name="robots" content="index,follow">
+
 <style>
-:root{--black:#000;--orange:#ff7900;--orange3:#ffad4d;--text:#ffc589;--border:rgba(255,121,0,.28);--border2:rgba(255,121,0,.72);--glow:0 0 18px rgba(255,121,0,.35);--ok:#7cff9b;--bad:#ff6b6b}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{min-height:100vh;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at 18% 10%,rgba(255,121,0,.16),transparent 33%),radial-gradient(circle at 82% 70%,rgba(255,121,0,.09),transparent 38%),linear-gradient(180deg,#000 0%,#0b0400 48%,#000 100%)}
-a{color:inherit;text-decoration:none}
-button,input,select,textarea{font:inherit}
-.container{width:min(1180px,calc(100% - 28px));margin:auto}
-.top-bar{padding:9px 15px;text-align:center;color:#000;background:linear-gradient(90deg,#913700,var(--orange),var(--orange3),var(--orange),#913700);font-size:.68rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}
-header{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--border);box-shadow:0 8px 28px rgba(0,0,0,.55)}
-.header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand strong{display:block;color:var(--orange);font-size:1rem;font-weight:1000}
-.brand span{display:block;margin-top:5px;color:var(--orange3);font-size:.55rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.navlink{padding:9px 12px;border:1px solid var(--border);border-radius:999px;color:var(--orange3);font-size:.62rem;font-weight:1000;text-transform:uppercase}
-.navlink:hover{background:var(--orange);color:#000}
-.lang-switch{display:flex;gap:3px;padding:3px;border:1px solid var(--border);border-radius:999px;background:#000}
-.lang-btn{min-width:42px;padding:8px 9px;border:0;border-radius:999px;color:var(--orange3);background:#000;cursor:pointer;font-size:.61rem;font-weight:1000}
-.lang-btn.active{color:#000;background:var(--orange)}
-.hero{padding:34px 0 10px;text-align:center}
-.hero h1{color:var(--orange);font-size:clamp(2rem,7vw,4rem);line-height:.95;text-transform:uppercase}
-.hero p{max-width:760px;margin:12px auto 0;line-height:1.7;font-size:.92rem}
-.banner{margin:16px 0 0;padding:12px 16px;border:1px solid var(--border2);border-radius:14px;background:linear-gradient(145deg,rgba(255,121,0,.12),#000);color:var(--orange3);font-size:.72rem;font-weight:1000;line-height:1.6;text-align:center}
-.banner.privacy{font-weight:700;border-color:var(--border)}
-.card{padding:22px;border:1px solid var(--border2);border-radius:22px;background:radial-gradient(circle at 80% 10%,rgba(255,121,0,.13),transparent 36%),linear-gradient(135deg,#000,#100500,#000);box-shadow:var(--glow)}
-.login{max-width:440px;margin:26px auto}
-.login h2{color:var(--orange);font-size:1.15rem;text-transform:uppercase;text-align:center}
-.login p{margin:8px 0 16px;text-align:center;font-size:.82rem;line-height:1.6}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
-.field label{color:var(--orange3);font-size:.62rem;font-weight:1000;letter-spacing:.06em;text-transform:uppercase}
-.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#0a0400;outline:none;font-size:.9rem}
-.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus{border-color:var(--orange)}
-.field textarea{min-height:90px;resize:vertical}
-.btn{min-height:46px;display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:.68rem;font-weight:1000;text-transform:uppercase;cursor:pointer;transition:.2s}
-.btn:hover{transform:translateY(-2px);box-shadow:var(--glow)}
-.btn.primary{color:#000;background:var(--orange)}
-.btn.danger{border-color:var(--bad);color:var(--bad)}
-.btn.small{min-height:38px;padding:7px 12px;font-size:.6rem}
-.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
-.msg{margin-top:10px;font-size:.8rem;line-height:1.5;text-align:center;color:var(--orange3)}
-.msg.bad{color:var(--bad)} .msg.ok{color:var(--ok)}
-.linkbtn{background:none;border:0;color:var(--orange3);text-decoration:underline;cursor:pointer;font-size:.78rem}
-.userbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:14px 0 0;font-size:.74rem}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
-.stat{padding:16px 10px;border:1px solid var(--border);border-radius:16px;text-align:center;background:radial-gradient(circle at top,rgba(255,121,0,.10),transparent 55%),#050200}
-.stat strong{display:block;color:var(--orange);font-size:1.7rem}
-.stat span{display:block;margin-top:5px;font-size:.6rem;font-weight:900;letter-spacing:.05em}
-.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:10px}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-.count{margin:6px 2px 12px;color:var(--orange3);font-size:.72rem;font-weight:1000}
-.list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.person{padding:14px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,#100500,#000);cursor:pointer;transition:.2s}
-.person:hover{border-color:var(--orange);transform:translateY(-2px)}
-.person h3{color:var(--orange);font-size:1rem;word-break:break-word}
-.person .sub{margin-top:4px;font-size:.74rem;line-height:1.5;word-break:break-word}
-.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.badge{padding:4px 9px;border:1px solid var(--border);border-radius:999px;font-size:.58rem;font-weight:1000;text-transform:uppercase;color:var(--orange3)}
-.badge.active{color:var(--ok);border-color:rgba(124,255,155,.5)} .badge.inactive{color:var(--bad);border-color:rgba(255,107,107,.5)} .badge.pending{color:var(--orange3)}
-.quick{display:flex;gap:6px;margin-top:10px}
-.quick a{flex:1;text-align:center;padding:8px 4px;border:1px solid var(--border);border-radius:10px;font-size:.62rem;font-weight:1000;color:var(--orange)}
-.quick a:hover{background:var(--orange);color:#000}
-.empty{padding:34px 16px;text-align:center;line-height:1.7;font-size:.86rem;border:1px dashed var(--border2);border-radius:16px}
-.overlay{position:fixed;inset:0;z-index:500;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 12px;background:rgba(0,0,0,.86)}
-.overlay.open{display:flex}
-#form{z-index:600}
-.modal{width:min(640px,100%);padding:22px;border:1px solid var(--border2);border-radius:22px;background:linear-gradient(145deg,#100500,#000);box-shadow:var(--glow)}
-.modal h2{color:var(--orange);font-size:1.1rem;text-transform:uppercase;margin-bottom:14px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
-.checks{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.check{display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;font-size:.74rem;cursor:pointer}
-.check input{accent-color:var(--orange);width:auto}
-.row-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.info{margin:10px 0;font-size:.82rem;line-height:1.8;word-break:break-word}
-.info b{color:var(--orange3)}
-.timeline{margin-top:10px;display:grid;gap:8px}
-.tl{padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#050200;font-size:.78rem;line-height:1.55;word-break:break-word}
-.tl small{display:block;color:var(--orange3);font-weight:1000;font-size:.6rem;letter-spacing:.05em;margin-bottom:3px;text-transform:uppercase}
-.sect{margin:18px 0 6px;color:var(--orange);font-size:.78rem;font-weight:1000;letter-spacing:.06em}
-.hint{margin-top:8px;font-size:.66rem;color:var(--orange3);line-height:1.5}
-footer{margin-top:40px;padding:30px 0;text-align:center;border-top:1px solid var(--border);background:#000;font-size:.68rem;line-height:1.8}
-footer strong{color:var(--orange)}
-.hidden{display:none!important}
-@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}
-@media(max-width:700px){.list{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.header-inner{padding:8px 0}}
+:root {
+  --black:#000;
+  --black2:#070200;
+  --black3:#100500;
+  --orange:#ff7900;
+  --orange2:#ff8c1a;
+  --orange3:#ffad4d;
+  --text:#ffc589;
+  --border:rgba(255,121,0,.28);
+  --border2:rgba(255,121,0,.72);
+  --glow:0 0 18px rgba(255,121,0,.35);
+  --glow2:0 0 18px rgba(255,121,0,.68),0 0 48px rgba(255,121,0,.25);
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
+body {
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:radial-gradient(circle at 18% 15%,rgba(255,121,0,.16),transparent 33%),radial-gradient(circle at 82% 72%,rgba(255,121,0,.09),transparent 38%),linear-gradient(180deg,#000 0%,#0b0400 48%,#000 100%);
+}
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background-image:linear-gradient(rgba(255,121,0,.024) 1px,transparent 1px),linear-gradient(90deg,rgba(255,121,0,.024) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+button {
+  font:inherit;
+}
+
+img,video {
+  display:block;
+  max-width:100%;
+}
+
+.container {
+  width:min(1220px,calc(100% - 28px));
+  margin:auto;
+}
+
+.top-bar {
+  padding:9px 15px;
+  text-align:center;
+  color:#000;
+  background:linear-gradient(90deg,#913700,var(--orange),var(--orange3),var(--orange),#913700);
+  font-size:.68rem;
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+header {
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(0,0,0,.97);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  box-shadow:0 8px 28px rgba(0,0,0,.55);
+}
+
+.header-inner {
+  min-height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-video-wrap {
+  width:66px;
+  height:66px;
+  overflow:hidden;
+  flex-shrink:0;
+  border:2px solid var(--orange);
+  border-radius:17px;
+  background:#000;
+  box-shadow:var(--glow);
+}
+
+.brand-video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.brand-text strong {
+  display:block;
+  color:var(--orange);
+  font-size:1rem;
+  font-weight:1000;
+}
+
+.brand-text span {
+  display:block;
+  margin-top:5px;
+  color:var(--orange3);
+  font-size:.52rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.header-right {
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.nav {
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+.nav a {
+  padding:9px 11px;
+  border-radius:999px;
+  color:var(--orange3);
+  font-size:.61rem;
+  font-weight:1000;
+  text-transform:uppercase;
+  transition:.2s;
+}
+
+.nav a:hover {
+  background:var(--orange);
+  color:#000;
+}
+
+.lang-switch {
+  display:flex;
+  gap:3px;
+  padding:3px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#000;
+}
+
+.lang-btn {
+  min-width:42px;
+  padding:8px 9px;
+  border:0;
+  border-radius:999px;
+  color:var(--orange3);
+  background:#000;
+  cursor:pointer;
+  font-size:.61rem;
+  font-weight:1000;
+}
+
+.lang-btn.active {
+  color:#000;
+  background:var(--orange);
+}
+
+.menu-toggle {
+  display:none;
+  width:44px;
+  height:42px;
+  border:1px solid var(--orange);
+  border-radius:11px;
+  color:var(--orange);
+  background:#000;
+  cursor:pointer;
+  font-size:1.2rem;
+}
+
+.hero {
+  min-height:calc(100vh - 115px);
+  display:flex;
+  align-items:center;
+  padding:52px 0 76px;
+  text-align:center;
+}
+
+.platform-label {
+  color:var(--orange);
+  font-size:.69rem;
+  font-weight:1000;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+}
+
+.hero-video-frame {
+  position:relative;
+  width:min(95vw,690px);
+  margin:30px auto 0;
+  overflow:hidden;
+  border:2px solid var(--orange);
+  border-radius:28px;
+  background:#000;
+  box-shadow:var(--glow2);
+}
+
+.hero-logo-video {
+  width:100%;
+  object-fit:contain;
+  background:#000;
+}
+
+.sound-btn {
+  position:absolute;
+  right:14px;
+  bottom:14px;
+  z-index:10;
+  padding:10px 14px;
+  border:1px solid var(--orange);
+  border-radius:999px;
+  color:var(--orange);
+  background:rgba(0,0,0,.90);
+  cursor:pointer;
+  font-size:.60rem;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+.sound-btn:hover {
+  background:var(--orange);
+  color:#000;
+}
+
+.hero h1 {
+  margin-top:28px;
+  color:var(--orange);
+  font-size:clamp(2.6rem,8vw,6.2rem);
+  line-height:.88;
+  text-transform:uppercase;
+}
+
+.hero h2 {
+  margin-top:17px;
+  color:var(--orange3);
+  font-size:clamp(1rem,3vw,1.45rem);
+  text-transform:uppercase;
+}
+
+.hero-description {
+  max-width:850px;
+  margin:19px auto 0;
+  line-height:1.75;
+  font-size:.96rem;
+}
+
+.hero-actions {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:29px;
+}
+
+.btn {
+  min-height:52px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 22px;
+  border:2px solid var(--orange);
+  border-radius:999px;
+  font-size:.68rem;
+  font-weight:1000;
+  text-transform:uppercase;
+  transition:.25s;
+}
+
+.btn:hover {
+  transform:translateY(-3px);
+  box-shadow:var(--glow2);
+}
+
+.btn-primary {
+  color:#000;
+  background:var(--orange);
+}
+
+.btn-outline {
+  color:var(--orange);
+  background:#000;
+}
+
+.stats-grid {
+  margin-top:48px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.stat-card {
+  min-height:125px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:17px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:radial-gradient(circle at top,rgba(255,121,0,.10),transparent 50%),#050200;
+}
+
+.stat-card strong {
+  color:var(--orange);
+  font-size:1.55rem;
+}
+
+.stat-card span {
+  margin-top:6px;
+  font-size:.63rem;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.section {
+  padding:88px 0;
+  border-top:1px solid rgba(255,121,0,.10);
+}
+
+.section-heading {
+  max-width:790px;
+  margin:0 auto 42px;
+  text-align:center;
+}
+
+.eyebrow {
+  color:var(--orange);
+  font-size:.68rem;
+  font-weight:1000;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.section-title {
+  margin-top:11px;
+  color:var(--orange);
+  font-size:clamp(2rem,6vw,4.2rem);
+  line-height:.93;
+  text-transform:uppercase;
+}
+
+.section-desc {
+  margin-top:17px;
+  line-height:1.75;
+}
+
+.ecosystem-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px;
+}
+
+.ecosystem-card {
+  min-height:285px;
+  display:flex;
+  flex-direction:column;
+  padding:25px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:radial-gradient(circle at top right,rgba(255,121,0,.12),transparent 36%),linear-gradient(145deg,#000,#0b0400);
+  transition:.3s;
+}
+
+.ecosystem-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--orange);
+  box-shadow:var(--glow);
+}
+
+.eco-icon {
+  font-size:2rem;
+}
+
+.ecosystem-card h3 {
+  margin-top:18px;
+  color:var(--orange);
+  font-size:1rem;
+  text-transform:uppercase;
+}
+
+.ecosystem-card p {
+  margin-top:11px;
+  line-height:1.62;
+  font-size:.82rem;
+}
+
+.card-link {
+  margin-top:auto;
+  padding-top:20px;
+  color:var(--orange);
+  font-size:.67rem;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+.modules-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.module-card {
+  min-height:215px;
+  display:flex;
+  flex-direction:column;
+  padding:21px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:linear-gradient(145deg,#050200,#000);
+  transition:.25s;
+}
+
+.module-card:hover {
+  transform:translateY(-4px);
+  border-color:var(--orange);
+  box-shadow:var(--glow);
+}
+
+.module-icon {
+  font-size:1.8rem;
+}
+
+.module-card h3 {
+  margin-top:14px;
+  color:var(--orange);
+  font-size:.90rem;
+  text-transform:uppercase;
+}
+
+.module-card p {
+  margin-top:9px;
+  line-height:1.55;
+  font-size:.75rem;
+}
+
+.module-open {
+  margin-top:auto;
+  padding-top:17px;
+  color:var(--orange);
+  font-size:.62rem;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+.project-box {
+  margin-top:25px;
+  padding:38px 28px;
+  border:1px solid var(--border2);
+  border-radius:25px;
+  background:radial-gradient(circle at 80% 25%,rgba(255,121,0,.17),transparent 34%),linear-gradient(135deg,#000,#100500,#000);
+  box-shadow:var(--glow);
+}
+
+.project-box h2 {
+  color:var(--orange);
+  font-size:clamp(2rem,6vw,4rem);
+  line-height:.94;
+  text-transform:uppercase;
+}
+
+.project-box p {
+  max-width:780px;
+  margin:16px auto 0;
+  line-height:1.7;
+  text-align:center;
+}
+
+
+/* BSS1815 COMMUNITY SLIDESHOW */
+.bss-slideshow {
+  width:min(1100px,100%);
+  margin:24px auto 0;
+}
+
+.bss-stage {
+  position:relative;
+  width:100%;
+  height:clamp(430px,62vw,680px);
+  overflow:hidden;
+  border:2px solid var(--orange);
+  border-radius:28px;
+  background:#000;
+  box-shadow:var(--glow2);
+}
+
+.bss-slide-image,.bss-slide-video {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
+
+.bss-slide-image.hidden,.bss-slide-video.hidden {
+  display:none!important;
+}
+
+.bss-slide-badge {
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:12;
+  padding:9px 14px;
+  border-radius:999px;
+  color:#000;
+  background:var(--orange);
+  font-size:.60rem;
+  font-weight:1000;
+}
+
+.bss-slide-overlay {
+  position:absolute;
+  inset:0;
+  z-index:7;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.15) 60%,rgba(0,0,0,.93) 100%);
+}
+
+.bss-slide-caption {
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:10;
+  padding:70px 70px 28px;
+  text-align:left;
+}
+
+.bss-slide-caption small {
+  color:var(--orange3);
+  font-size:.60rem;
+  font-weight:1000;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.bss-slide-caption h3 {
+  margin-top:8px;
+  color:var(--orange);
+  font-size:clamp(1.6rem,5vw,3.2rem);
+  line-height:1;
+  text-transform:uppercase;
+  text-shadow:0 3px 14px #000;
+}
+
+.bss-slide-caption p {
+  max-width:760px;
+  margin-top:10px;
+  color:var(--orange3);
+  font-size:.78rem;
+  line-height:1.6;
+  text-shadow:0 3px 12px #000;
+}
+
+.bss-arrow {
+  position:absolute;
+  top:50%;
+  z-index:13;
+  transform:translateY(-50%);
+  width:50px;
+  height:50px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--orange);
+  border-radius:50%;
+  background:rgba(0,0,0,.82);
+  color:var(--orange);
+  font-size:2rem;
+  cursor:pointer;
+}
+
+.bss-prev {
+  left:16px;
+}
+
+.bss-next {
+  right:16px;
+}
+
+.bss-controls {
+  display:grid;
+  grid-template-columns:auto auto 1fr;
+  align-items:center;
+  gap:14px;
+  margin-top:14px;
+  padding:13px 16px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:#050200;
+}
+
+.bss-counter {
+  min-width:88px;
+  color:var(--orange);
+  font-size:.72rem;
+  font-weight:1000;
+  text-align:center;
+}
+
+.bss-play {
+  padding:8px 14px;
+  border:1px solid var(--orange);
+  border-radius:999px;
+  color:var(--orange);
+  background:#000;
+  cursor:pointer;
+  font-size:.60rem;
+  font-weight:1000;
+}
+
+.bss-progress {
+  height:7px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,121,0,.14);
+}
+
+.bss-progress-bar {
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#9d3c00,var(--orange),var(--orange3));
+}
+
+.contact-grid,.social-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.contact-card,.social-link {
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#050200;
+}
+
+.contact-card {
+  text-align:center;
+}
+
+.contact-card strong,.social-link strong {
+  color:var(--orange);
+}
+
+footer {
+  padding:45px 0;
+  text-align:center;
+  border-top:1px solid var(--border);
+  background:#000;
+}
+
+.footer-video {
+  width:105px;
+  height:105px;
+  margin:0 auto 17px;
+  overflow:hidden;
+  border:2px solid var(--orange);
+  border-radius:20px;
+}
+
+.footer-video video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.footer-title {
+  color:var(--orange);
+  font-weight:1000;
+}
+
+.footer-info {
+  margin-top:9px;
+  line-height:1.75;
+  font-size:.70rem;
+}
+
+@media(max-width:1050px) {
+  .nav {
+    position:absolute;
+    top:86px;
+    left:14px;
+    right:14px;
+    display:none;
+    flex-direction:column;
+    padding:14px;
+    border:1px solid var(--orange);
+    border-radius:15px;
+    background:#000;
+  }
+
+  .nav.open {
+    display:flex;
+  }
+
+  .nav a {
+    width:100%;
+    text-align:center;
+  }
+
+  .menu-toggle {
+    display:block;
+  }
+
+  .ecosystem-grid,.modules-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:780px) {
+  .stats-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .contact-grid,.social-grid {
+    grid-template-columns:1fr;
+  }
+
+  .bss-stage {
+    height:520px;
+  }
+
+}
+
+@media(max-width:570px) {
+  .ecosystem-grid,.modules-grid {
+    grid-template-columns:1fr;
+  }
+
+  .hero-actions {
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .btn {
+    width:100%;
+  }
+
+  .bss-stage {
+    height:450px;
+  }
+
+}
 
 </style>
 </head>
-<body>
 
-<div class="top-bar" data-i18n="top">BSS1815 PRO-MAX DMP • CRM SYSTEM</div>
+<body>
+<div
+  class="top-bar"
+  data-ht="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥"
+  data-fr="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — CONSTRUIT POUR AUJOURD'HUI — PRÊT POUR DEMAIN 🔥"
+  data-en="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BUILT FOR TODAY — READY FOR TOMORROW 🔥"
+>
+  🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥
+</div>
 
 <header>
-<div class="container header-inner">
-  <a class="brand" href="../../index.html">
-    <strong>BSS1815 PRO-MAX DMP</strong>
-    <span data-i18n="tagline">CRM SYSTEM • MEMBERS • CONTACTS • RELATIONSHIPS • RECORDS</span>
-  </a>
-  <div class="header-right">
-    <a class="navlink" href="../../index.html" data-i18n="home">HOME</a>
-    <a class="navlink" href="../ai-center/index.html" data-i18n="ai">AI CENTER</a>
-    <div class="lang-switch notranslate" translate="no">
-      <button type="button" class="lang-btn" data-lang="fr">FRA</button>
-      <button type="button" class="lang-btn" data-lang="en">ENG</button>
-      <button type="button" class="lang-btn active" data-lang="ht">KRE</button>
+  <div
+    class="container header-inner"
+  >
+    <a
+      href="#home"
+      class="brand"
+    >
+      <div
+        class="brand-video-wrap"
+      >
+        <video
+          class="brand-video"
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source
+            src="./bati-pou-jodi-a.mp4"
+            type="video/mp4"
+          >
+          </video>
+        </div>
+
+        <div
+          class="brand-text"
+        >
+          <strong>
+            BSS1815 PRO-MAX DMP
+          </strong>
+          <span
+            data-ht="PLATFÒM JESYON DIJITAL"
+            data-fr="PLATEFORME DE GESTION NUMÉRIQUE"
+            data-en="DIGITAL MANAGEMENT PLATFORM"
+          >
+            PLATFÒM JESYON DIJITAL
+          </span>
+        </div>
+
+      </a>
+      <div
+        class="header-right"
+      >
+        <nav
+          class="nav"
+          id="mainNav"
+        >
+          <a
+            href="#home"
+            data-ht="AKÈY"
+            data-fr="ACCUEIL"
+            data-en="HOME"
+          >
+            AKÈY
+          </a>
+          <a
+            href="#ecosystem"
+            data-ht="EKOSISTÈM"
+            data-fr="ÉCOSYSTÈME"
+            data-en="ECOSYSTEM"
+          >
+            EKOSISTÈM
+          </a>
+          <a
+            href="#modules"
+            data-ht="MODIL"
+            data-fr="MODULES"
+            data-en="MODULES"
+          >
+            MODIL
+          </a>
+          <a
+            href="#community"
+          >
+            BSS1815
+          </a>
+          <a
+            href="#ddn"
+          >
+            DDN
+          </a>
+          <a
+            href="#contact"
+            data-ht="KONTAK"
+            data-fr="CONTACT"
+            data-en="CONTACT"
+          >
+            KONTAK
+          </a>
+        </nav>
+
+        <div
+          class="lang-switch notranslate"
+  translate="no"
+        >
+          <button
+            type="button"
+            class="lang-btn"
+            data-lang="fr"
+          >
+            FRA
+          </button>
+          <button
+            type="button"
+            class="lang-btn"
+            data-lang="en"
+          >
+            ENG
+          </button>
+          <button
+            type="button"
+            class="lang-btn active"
+            data-lang="ht"
+          >
+            KRE
+          </button>
+        </div>
+
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menuToggle"
+        >
+          ☰
+        </button>
+      </div>
+
     </div>
-  </div>
-</div>
-</header>
 
-<main class="container">
+  </header>
 
-<section class="hero">
-  <h1 data-i18n="title">CRM SYSTEM</h1>
-  <p data-i18n="sub">Members, contacts, relationships and records of the BSS1815 community — in one place.</p>
-</section>
+  <main>
+    <section
+      class="hero"
+      id="home"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="platform-label"
+        >
+          BRIYANT SOLÈY SIGNO 1815
+        </div>
 
-<div class="banner hidden" id="demoBanner" data-i18n="demo">DEMO MODE</div>
-<div class="banner privacy" data-i18n="privacy">Personal data — for authorised administrators only.</div>
+        <div
+          class="hero-video-frame"
+        >
+          <video
+            class="hero-logo-video"
+            id="heroLogoVideo"
+            autoplay
+            muted
+            loop
+            playsinline
+          >
+            <source
+              src="./bati-pou-jodi-a.mp4"
+              type="video/mp4"
+            >
+            </video>
+            <button
+              type="button"
+              class="sound-btn"
+              id="soundButton"
+              data-ht="🔊 KOUTE SLOGAN AN"
+              data-fr="🔊 ÉCOUTER LE SLOGAN"
+              data-en="🔊 HEAR THE SLOGAN"
+            >
+              🔊 KOUTE SLOGAN AN
+            </button>
+          </div>
 
-<!-- ADMINISTRATOR LOGIN (Firebase mode) -->
-<section class="card login hidden" id="authBox">
-  <h2 data-i18n="login_h">ADMINISTRATOR LOGIN</h2>
-  <p data-i18n="login_p">Sign in with your BSS1815 administrator account.</p>
-  <form id="loginForm" autocomplete="on">
-    <div class="field"><label for="aEmail" data-i18n="email">Email</label><input id="aEmail" type="email" autocomplete="username" required></div>
-    <div class="field"><label for="aPass" data-i18n="password">Password</label><input id="aPass" type="password" autocomplete="current-password" required></div>
-    <button class="btn primary" id="signinBtn" type="submit" style="width:100%" data-i18n="signin">SIGN IN</button>
-  </form>
-  <div style="text-align:center;margin-top:10px"><button class="linkbtn" id="forgotBtn" type="button" data-i18n="forgot">Forgot password?</button></div>
-  <div class="msg" id="authMsg"></div>
-</section>
+          <h1>
+            BSS1815
+            <br>
+            PRO-MAX DMP
+          </h1>
+          <h2
+            data-ht="YON SÈL PLATFÒM • YON SÈL VIZYON"
+            data-fr="UNE SEULE PLATEFORME • UNE SEULE VISION"
+            data-en="ONE PLATFORM • ONE VISION"
+          >
+            YON SÈL PLATFÒM • YON SÈL VIZYON
+          </h2>
+          <p
+            class="hero-description"
+            data-ht="BSS1815 PRO-MAX DMP se platfòm santral ki konekte kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administrasyon, teknoloji, medya ak entèlijans atifisyèl nan yon sèl ekosistèm."
+            data-fr="BSS1815 PRO-MAX DMP est la plateforme centrale qui relie la communauté BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, l'administration, la technologie, les médias et l'intelligence artificielle dans un seul écosystème."
+            data-en="BSS1815 PRO-MAX DMP is the central platform connecting the BSS1815 community, PRO-MAX FM, Maximax Multi Services, PRO-MAX Academy, administration, technology, media and artificial intelligence in one ecosystem."
+          >
+            BSS1815 PRO-MAX DMP se platfòm santral ki konekte tout ekosistèm nan.
+          </p>
+          <div
+            class="hero-actions"
+          >
+            <a
+              href="#ecosystem"
+              class="btn btn-primary"
+            >
+              DEKOUVRI PLATFÒM NAN
+            </a>
+            <a
+              href="./ddn/index.html"
+              class="btn btn-outline"
+            >
+              🌎 DEVAN DEVAN NÈT™
+            </a>
+          </div>
 
-<!-- THE CRM -->
-<section id="app" class="hidden">
+          <div
+            class="stats-grid"
+          >
+            <div
+              class="stat-card"
+            >
+              <strong>
+                4
+              </strong>
+              <span>
+                BRANCH PRENSIPAL
+              </span>
+            </div>
 
-  <div class="userbar hidden" id="userBar">
-    <span>👤 <b id="userEmail"></b></span>
-    <button class="btn small" id="signOutBtn" type="button" data-i18n="signout">SIGN OUT</button>
-  </div>
+            <div
+              class="stat-card"
+            >
+              <strong>
+                AI
+              </strong>
+              <span>
+                SMART PLATFORM
+              </span>
+            </div>
 
-  <div class="stats">
-    <div class="stat"><strong id="sTotal">0</strong><span data-i18n="st_total">TOTAL</span></div>
-    <div class="stat"><strong id="sActive">0</strong><span data-i18n="st_active">ACTIVE</span></div>
-    <div class="stat"><strong id="sNew">0</strong><span data-i18n="st_new">NEW THIS MONTH</span></div>
-    <div class="stat"><strong id="sFollow">0</strong><span data-i18n="st_follow">NEED FOLLOW-UP</span></div>
-  </div>
+            <div
+              class="stat-card"
+            >
+              <strong>
+                3
+              </strong>
+              <span>
+                LANG
+              </span>
+            </div>
 
-  <div class="card">
-    <div class="toolbar">
-      <input id="fSearch" type="search" data-i18n-ph="search" placeholder="Search…" aria-label="Search">
-      <select id="fType" aria-label="Type"></select>
-      <select id="fStatus" aria-label="Status"></select>
-      <select id="fSort" aria-label="Sort"></select>
-    </div>
-    <div class="actions">
-      <button class="btn primary" id="addBtn" type="button" data-i18n="add">+ ADD MEMBER</button>
-      <button class="btn" id="importBtn" type="button" data-i18n="import">⬆ IMPORT CSV</button>
-      <button class="btn" id="exportBtn" type="button" data-i18n="export">⬇ EXPORT CSV</button>
-      <button class="linkbtn" id="templateBtn" type="button" data-i18n="template">Download CSV template</button>
-      <input id="importFile" type="file" accept=".csv,text/csv" class="hidden">
-    </div>
-    <div class="hint" data-i18n="imp_hint"></div>
-    <div class="msg" id="toast" aria-live="polite"></div>
-  </div>
+            <div
+              class="stat-card"
+            >
+              <strong>
+                24/7
+              </strong>
+              <span>
+                AKSÈ DIJITAL
+              </span>
+            </div>
 
-  <div class="count" id="count"></div>
-  <div id="list" class="list"></div>
-  <div style="text-align:center;margin-top:14px"><button class="btn hidden" id="moreBtn" type="button" data-i18n="more">SHOW MORE</button></div>
+          </div>
 
-</section>
+        </div>
 
-</main>
+      </section>
 
-<!-- ADD / EDIT -->
-<div class="overlay" id="form" role="dialog" aria-modal="true">
-  <div class="modal">
-    <h2 id="formTitle" data-i18n="f_new">NEW MEMBER</h2>
-    <div class="field"><label for="mName" data-i18n="f_name">Full name *</label><input id="mName" type="text" maxlength="120" autocomplete="off"></div>
-    <div class="grid2">
-      <div class="field"><label for="mNick" data-i18n="f_nick">Nickname / alias</label><input id="mNick" type="text" maxlength="80"></div>
-      <div class="field"><label for="mStatus" data-i18n="f_status">Status</label><select id="mStatus"></select></div>
-      <div class="field"><label for="mPhone" data-i18n="f_phone">Phone</label><input id="mPhone" type="tel" maxlength="40" placeholder="+509…"></div>
-      <div class="field"><label for="mWa" data-i18n="f_wa">WhatsApp</label><input id="mWa" type="tel" maxlength="40" placeholder="+509…"></div>
-      <div class="field"><label for="mEmail" data-i18n="f_email">Email</label><input id="mEmail" type="email" maxlength="120"></div>
-      <div class="field"><label for="mJoined" data-i18n="f_joined">Joined on</label><input id="mJoined" type="date"></div>
-      <div class="field"><label for="mCity" data-i18n="f_city">City</label><input id="mCity" type="text" maxlength="80"></div>
-      <div class="field"><label for="mCountry" data-i18n="f_country">Country</label><input id="mCountry" type="text" maxlength="80"></div>
-    </div>
-    <div class="field"><label data-i18n="f_types">Type</label><div class="checks" id="mTypes"></div></div>
-    <div class="field"><label for="mTags" data-i18n="f_tags">Tags</label><input id="mTags" type="text" maxlength="200"></div>
-    <div class="field"><label for="mNotes" data-i18n="f_notes">Notes</label><textarea id="mNotes" maxlength="2000"></textarea></div>
-    <div class="msg" id="formMsg"></div>
-    <div class="row-btns">
-      <button class="btn primary" id="saveBtn" type="button" data-i18n="save">SAVE</button>
-      <button class="btn" id="cancelBtn" type="button" data-i18n="cancel">CANCEL</button>
-      <button class="btn danger hidden" id="deleteBtn" type="button" data-i18n="delete">DELETE</button>
-    </div>
-  </div>
-</div>
+      <section
+        class="section"
+        id="ecosystem"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="section-heading"
+          >
+            <div
+              class="eyebrow"
+            >
+              BSS1815 PRO-MAX DMP
+            </div>
 
-<!-- DETAIL + CONTACT HISTORY -->
-<div class="overlay" id="detail" role="dialog" aria-modal="true">
-  <div class="modal">
-    <h2 id="dName"></h2>
-    <div class="badges" id="dBadges"></div>
-    <div class="info" id="dInfo"></div>
-    <div class="row-btns" id="dQuick"></div>
+            <h2
+              class="section-title"
+              data-ht="YON SÈL EKOSISTÈM"
+              data-fr="UN SEUL ÉCOSYSTÈME"
+              data-en="ONE ECOSYSTEM"
+            >
+              YON SÈL EKOSISTÈM
+            </h2>
+          </div>
 
-    <div class="sect" data-i18n="h_h">CONTACT HISTORY</div>
-    <div class="grid2">
-      <div class="field"><label for="iType" data-i18n="i_call">Type</label><select id="iType"></select></div>
-      <div class="field"><label for="iDate" data-i18n="i_date">Date</label><input id="iDate" type="date"></div>
-    </div>
-    <div class="field"><textarea id="iText" maxlength="1000" data-i18n-ph="i_text" placeholder="What was said or decided?"></textarea></div>
-    <button class="btn primary small" id="histBtn" type="button" data-i18n="h_add">ADD TO HISTORY</button>
-    <div class="msg" id="histMsg"></div>
-    <div class="timeline" id="timeline"></div>
+          <div
+            class="ecosystem-grid"
+          >
+            <a
+              href="#community"
+              class="ecosystem-card"
+            >
+              <div
+                class="eco-icon"
+              >
+                🏛️
+              </div>
 
-    <div class="row-btns" style="margin-top:18px"><button class="btn" id="closeDetail" type="button" data-i18n="close">CLOSE</button></div>
-  </div>
-</div>
+              <h3>
+                BSS1815 COMMUNITY
+              </h3>
+              <p>
+                Manm, dirijan, mizisyen, fanatik, eritaj, aktivite ak lavi kominotè BSS1815.
+              </p>
+              <div
+                class="card-link"
+              >
+                ENTER →
+              </div>
 
-<footer>
-  <strong>BSS1815 PRO-MAX DMP</strong><br>
-  CRM SYSTEM • DIGITAL MANAGEMENT PLATFORM<br>
-  © <span id="year"></span> BSS1815 PRO-MAX DMP<br>
-  <span style="opacity:.55">CRM VERSION 2026.09.20-A</span>
-</footer>
+            </a>
+            <a
+              href="#promaxfm"
+              class="ecosystem-card"
+            >
+              <div
+                class="eco-icon"
+              >
+                📻
+              </div>
+
+              <h3>
+                PRO-MAX FM
+              </h3>
+              <p>
+                Radyo dijital, live streaming, mizik, podcast, nouvèl, entèvyou ak pwodiksyon medya.
+              </p>
+              <div
+                class="card-link"
+              >
+                ENTER →
+              </div>
+
+            </a>
+            <a
+              href="#maximax"
+              class="ecosystem-card"
+            >
+              <div
+                class="eco-icon"
+              >
+                💼
+              </div>
+
+              <h3>
+                MAXIMAX MULTI SERVICES
+              </h3>
+              <p>
+                Imigrasyon, tradiksyon, sèvis administratif, dokiman ak asistans pwofesyonèl.
+              </p>
+              <div
+                class="card-link"
+              >
+                ENTER →
+              </div>
+
+            </a>
+            <a
+              href="#academy"
+              class="ecosystem-card"
+            >
+              <div
+                class="eco-icon"
+              >
+                🎓
+              </div>
+
+              <h3>
+                PRO-MAX ACADÉMIE
+              </h3>
+              <p>
+                AI, teknoloji, fòmasyon, inovasyon, evalyasyon, Student Portal ak sètifikasyon.
+              </p>
+              <div
+                class="card-link"
+              >
+                ENTER →
+              </div>
+
+            </a>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        class="section"
+        id="modules"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="section-heading"
+          >
+            <div
+              class="eyebrow"
+            >
+              DIGITAL MANAGEMENT PLATFORM
+            </div>
+
+            <h2
+              class="section-title"
+            >
+              MODIL PRENSIPAL YO
+            </h2>
+            <p
+              class="section-desc"
+            >
+              Tout modil yo travay anba menm platfòm santral la.
+            </p>
+          </div>
+
+          <div
+            class="modules-grid"
+          >
+            <a
+              href="./modules/ai-center/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🤖
+              </div>
+
+              <h3>
+                AI CENTER
+              </h3>
+              <p>
+                Assistant • Writer • Voice • Automation
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./crm.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                👥
+              </div>
+
+              <h3>
+                CRM SYSTEM
+              </h3>
+              <p>
+                Members • Contacts • Relationships • Records
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/communication/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                📢
+              </div>
+
+              <h3>
+                COMMUNICATION CENTER
+              </h3>
+              <p>
+                Announcements • Alerts • WhatsApp • Messages
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/flyer-studio/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🎨
+              </div>
+
+              <h3>
+                FLYER STUDIO
+              </h3>
+              <p>
+                Flyers • Notices • Graphics • Media
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/registry/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                📋
+              </div>
+
+              <h3>
+                DIGITAL REGISTRY
+              </h3>
+              <p>
+                Members • Musicians • Fans • Merchants
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/events/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                📅
+              </div>
+
+              <h3>
+                EVENT MANAGEMENT
+              </h3>
+              <p>
+                Calendar • Programs • Activities • Meetings
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/documents/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                📄
+              </div>
+
+              <h3>
+                DOCUMENT CENTER
+              </h3>
+              <p>
+                Letters • Reports • Archives • Files
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/announcements/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                📣
+              </div>
+
+              <h3>
+                ANNOUNCEMENT CENTER
+              </h3>
+              <p>
+                Official Notices • Community Updates • Alerts
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/donations/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🤝
+              </div>
+
+              <h3>
+                DONATION CENTER
+              </h3>
+              <p>
+                Contributions • Records • Donor Management
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/attendance/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                ✅
+              </div>
+
+              <h3>
+                ATTENDANCE
+              </h3>
+              <p>
+                Check-In • Meetings • Events • Participation
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/certificates/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🏆
+              </div>
+
+              <h3>
+                CERTIFICATE CENTER
+              </h3>
+              <p>
+                Certificates • Verification • Records
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/elections/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🗳️
+              </div>
+
+              <h3>
+                ELECTION MANAGER
+              </h3>
+              <p>
+                Voting • Candidates • Results • Records
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/volunteer/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🙋
+              </div>
+
+              <h3>
+                VOLUNTEER CENTER
+              </h3>
+              <p>
+                Volunteers • Assignments • Activities
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/finance/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                💰
+              </div>
+
+              <h3>
+                FINANCE / TREASURY
+              </h3>
+              <p>
+                Payments • Donations • Treasury • Reports
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/media/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🎥
+              </div>
+
+              <h3>
+                MEDIA GALLERY
+              </h3>
+              <p>
+                Photos • Video • Audio • Archives
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/notifications/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🔔
+              </div>
+
+              <h3>
+                NOTIFICATIONS
+              </h3>
+              <p>
+                Alerts • Reminders • Updates • Messages
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/reports/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                📊
+              </div>
+
+              <h3>
+                REPORTS & ANALYTICS
+              </h3>
+              <p>
+                Statistics • Performance • Reports
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/help-desk/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🎫
+              </div>
+
+              <h3>
+                HELP DESK
+              </h3>
+              <p>
+                Support • Requests • Cases • Assistance
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./modules/live-streaming/index.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                📡
+              </div>
+
+              <h3>
+                LIVE STREAMING
+              </h3>
+              <p>
+                Radio • Video • Live Events • Broadcast
+              </p>
+              <div
+                class="module-open"
+              >
+                OPEN →
+              </div>
+
+            </a>
+            <a
+              href="./login.html"
+              class="module-card"
+            >
+              <div
+                class="module-icon"
+              >
+                🔐
+              </div>
+
+              <h3>
+                ADMIN DASHBOARD
+              </h3>
+              <p>
+                Roles • Permissions • Firebase • Security
+              </p>
+              <div
+                class="module-open"
+              >
+                LOGIN →
+              </div>
+
+            </a>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        class="section"
+        id="community"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="section-heading"
+          >
+            <div
+              class="eyebrow"
+            >
+              BRIYANT SOLÈY SIGNO 1815
+            </div>
+
+            <h2
+              class="section-title"
+            >
+              BSS1815 COMMUNITY
+            </h2>
+            <p
+              class="section-desc"
+            >
+              Kominote istorik BSS1815 la se yon pati dirèk nan PRO-MAX DMP: manm, dirijan, mizisyen, fanatik, eritaj, evènman ak achiv yo.
+            </p>
+          </div>
+
+          <div
+            class="bss-slideshow"
+          >
+            <div
+              class="bss-stage"
+              id="bssStage"
+              tabindex="0"
+            >
+              <div
+                class="bss-slide-badge"
+              >
+                BSS1815 COMMUNITY • 113 MEDIA
+              </div>
+
+              <img
+                id="bssSlideImage"
+                class="bss-slide-image"
+                src="./tania2.jpg"
+                alt="BSS1815 Community"
+              >
+              <video
+                id="bssSlideVideo"
+                class="bss-slide-video hidden"
+                muted
+                playsinline
+              >
+              </video>
+              <div
+                class="bss-slide-overlay"
+              >
+              </div>
+
+              <div
+                class="bss-slide-caption"
+              >
+                <small>
+                  FANMI • ERITAJ • KOMINOTE
+                </small>
+                <h3
+                  id="bssSlideTitle"
+                >
+                  TANIA2
+                </h3>
+                <p>
+                  MOUVMAN SA A SE POU NOU TOUT. Chak figi se yon pati nan istwa ak eritaj BSS1815.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                class="bss-arrow bss-prev"
+                id="bssPrev"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                class="bss-arrow bss-next"
+                id="bssNext"
+              >
+                ›
+              </button>
+            </div>
+
+            <div
+              class="bss-controls"
+            >
+              <div
+                class="bss-counter"
+                id="bssCounter"
+              >
+                1 / 113
+              </div>
+
+              <button
+                type="button"
+                class="bss-play"
+                id="bssPlayPause"
+              >
+                ⏸ PAUSE
+              </button>
+              <div
+                class="bss-progress"
+              >
+                <div
+                  class="bss-progress-bar"
+                  id="bssProgressBar"
+                >
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        class="section"
+        id="promaxfm"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="project-box"
+          >
+            <h2>
+              📻 PRO-MAX FM
+            </h2>
+            <p>
+              Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya.
+            </p>
+            <div
+              class="hero-actions"
+            >
+              <a
+                href="./pro-max-fm/index.html"
+                class="btn btn-primary"
+              >
+                📻 ENTER PRO-MAX FM
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        class="section"
+        id="maximax"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="project-box"
+          >
+            <h2>
+              💼 MAXIMAX MULTI SERVICES
+            </h2>
+            <p>
+              Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman, asistans administratif ak lòt sèvis kominotè.
+            </p>
+            <div
+              class="hero-actions"
+            >
+              <a
+                href="./maximax/index.html"
+                class="btn btn-primary"
+              >
+                💼 ENTER MAXIMAX MULTI SERVICES
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        class="section"
+        id="academy"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="project-box"
+          >
+            <h2>
+              🎓 PRO-MAX ACADÉMIE
+            </h2>
+            <p>
+              Sant fòmasyon pou entèlijans atifisyèl, teknoloji, inovasyon, lidèchip, Student Portal, evalyasyon ak sètifikasyon.
+            </p>
+            <div
+              class="hero-actions"
+            >
+              <a
+                href="./academy/index.html"
+                class="btn btn-primary"
+              >
+                🎓 ENTER PRO-MAX ACADÉMIE
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        class="section"
+        id="ddn"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="project-box"
+          >
+            <h2>
+              DEVAN DEVAN NÈT™
+            </h2>
+            <p>
+              DEVAN DEVAN NÈT™ se vizyon teknoloji ak entèlijans atifisyèl ki ankouraje nou aprann, òganize, kreye, inove epi toujou avanse.
+            </p>
+            <div
+              class="hero-actions"
+            >
+              <a
+                href="./ddn/index.html"
+                class="btn btn-primary"
+              >
+                🌎 ENTER DEVAN DEVAN NÈT™
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        class="section"
+        id="contact"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="section-heading"
+          >
+            <div
+              class="eyebrow"
+            >
+              STAY CONNECTED
+            </div>
+
+            <h2
+              class="section-title"
+            >
+              KONTAK & REZO SOSYAL
+            </h2>
+          </div>
+
+          <div
+            class="contact-grid"
+          >
+            <div
+              class="contact-card"
+            >
+              <strong>
+                📞 TELEPHONE
+              </strong>
+              <br>
+              <br>
+              <a
+                href="tel:+50943437488"
+              >
+                +509 43 43 7488
+              </a>
+              <br>
+              <a
+                href="tel:+14076405166"
+              >
+                (407) 640-5166
+              </a>
+              <br>
+              <a
+                href="tel:+15162168494"
+              >
+                (516) 216-8494
+              </a>
+            </div>
+
+            <div
+              class="contact-card"
+            >
+              <strong>
+                📧 EMAIL
+              </strong>
+              <br>
+              <br>
+              <a
+                href="mailto:briyantsoleysigno1815@gmail.com"
+              >
+                briyantsoleysigno1815@gmail.com
+              </a>
+            </div>
+
+            <div
+              class="contact-card"
+            >
+              <strong>
+                🌐 WEBSITE
+              </strong>
+              <br>
+              <br>
+              BSS1815 PRO-MAX DMP
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer>
+      <div
+        class="container"
+      >
+        <div
+          class="footer-video"
+        >
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+          >
+            <source
+              src="./bati-pou-jodi-a.mp4"
+              type="video/mp4"
+            >
+            </video>
+          </div>
+
+          <div
+            class="footer-title"
+          >
+            BSS1815 PRO-MAX DMP
+          </div>
+
+          <div
+            class="footer-info"
+          >
+            DEVAN DEVAN NÈT™
+            <br>
+            BATI POU JODI A • PARE POU DEMEN
+            <br>
+            <br>
+            briyantsoleysigno1815@gmail.com
+            <br>
+            +509 43 43 7488 • (407) 640-5166 • (516) 216-8494
+            <br>
+            <br>
+            ©
+            <span
+              id="currentYear"
+            >
+            </span>
+            BSS1815 PRO-MAX DMP
+          </div>
+
+        </div>
+
+      </footer>
+
 
 <script>
 (function(){
+
 "use strict";
 
-/* =====================================================================
-   FIREBASE SETTINGS — paste the web config of the BSS1815 Firebase project here
-   (Firebase console > Project settings > General > Your apps > SDK setup and configuration).
-   Leave apiKey and projectId empty = DEMO MODE (data stays on this device only).
-===================================================================== */
-var FIREBASE_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
-};
-var FIREBASE_VERSION = "10.12.2";
-var COLLECTION = "crm_members";
-var FOLLOW_UP_DAYS = 30;
-var PAGE_SIZE = 60;
+/* =========================================
+   CURRENT YEAR
+========================================= */
 
-var I18N = {"top": {"en": "BSS1815 PRO-MAX DMP • CRM SYSTEM", "fr": "BSS1815 PRO-MAX DMP • SYSTÈME CRM", "ht": "BSS1815 PRO-MAX DMP • SISTÈM CRM"}, "tagline": {"en": "CRM SYSTEM • MEMBERS • CONTACTS • RELATIONSHIPS • RECORDS", "fr": "SYSTÈME CRM • MEMBRES • CONTACTS • RELATIONS • DOSSIERS", "ht": "SISTÈM CRM • MANM • KONTAK • RELASYON • DOSYE"}, "home": {"en": "HOME", "fr": "ACCUEIL", "ht": "AKÈY"}, "ai": {"en": "AI CENTER", "fr": "CENTRE IA", "ht": "AI CENTER"}, "title": {"en": "CRM SYSTEM", "fr": "SYSTÈME CRM", "ht": "SISTÈM CRM"}, "sub": {"en": "Members, contacts, relationships and records of the BSS1815 community — in one place.", "fr": "Membres, contacts, relations et dossiers de la communauté BSS1815 — au même endroit.", "ht": "Manm, kontak, relasyon ak dosye kominote BSS1815 la — nan yon sèl kote."}, "demo": {"en": "DEMO MODE — the data stays on THIS device only. Add your Firebase settings to save for the whole team.", "fr": "MODE DÉMO — les données restent sur CET appareil seulement. Ajoutez vos paramètres Firebase pour enregistrer pour toute l'équipe.", "ht": "MOD DEMO — done yo rete sou aparèy SA A sèlman. Ajoute paramèt Firebase ou yo pou sove pou tout ekip la."}, "privacy": {"en": "Personal data — for authorised administrators only.", "fr": "Données personnelles — réservé aux administrateurs autorisés.", "ht": "Done pèsonèl — pou administratè otorize yo sèlman."}, "login_h": {"en": "ADMINISTRATOR LOGIN", "fr": "CONNEXION ADMINISTRATEUR", "ht": "KONEKSYON ADMINISTRATÈ"}, "login_p": {"en": "Sign in with your BSS1815 administrator account.", "fr": "Connectez-vous avec votre compte administrateur BSS1815.", "ht": "Konekte ak kont administratè BSS1815 ou a."}, "email": {"en": "Email", "fr": "E-mail", "ht": "Imèl"}, "password": {"en": "Password", "fr": "Mot de passe", "ht": "Modpas"}, "signin": {"en": "SIGN IN", "fr": "SE CONNECTER", "ht": "KONEKTE"}, "signout": {"en": "SIGN OUT", "fr": "SE DÉCONNECTER", "ht": "DEKONEKTE"}, "forgot": {"en": "Forgot password?", "fr": "Mot de passe oublié ?", "ht": "Ou bliye modpas?"}, "reset_sent": {"en": "Password reset email sent. Check your inbox.", "fr": "E-mail de réinitialisation envoyé. Vérifiez votre boîte de réception.", "ht": "Imèl pou reyinisyalize modpas la voye. Gade bwat imèl ou."}, "reset_need": {"en": "Type your email first.", "fr": "Écrivez d'abord votre e-mail.", "ht": "Ekri imèl ou anvan."}, "auth_bad": {"en": "Wrong email or password.", "fr": "E-mail ou mot de passe incorrect.", "ht": "Imèl oswa modpas pa bon."}, "auth_err": {"en": "Could not sign in. Try again.", "fr": "Connexion impossible. Réessayez.", "ht": "Pa ka konekte. Eseye ankò."}, "denied": {"en": "Access denied: this account is not an authorised administrator.", "fr": "Accès refusé : ce compte n'est pas un administrateur autorisé.", "ht": "Aksè refize: kont sa a pa yon administratè otorize."}, "loading": {"en": "Loading…", "fr": "Chargement…", "ht": "Ap chaje…"}, "st_total": {"en": "TOTAL", "fr": "TOTAL", "ht": "TOTAL"}, "st_active": {"en": "ACTIVE", "fr": "ACTIFS", "ht": "AKTIF"}, "st_new": {"en": "NEW THIS MONTH", "fr": "NOUVEAUX CE MOIS", "ht": "NOUVO MWA SA A"}, "st_follow": {"en": "NEED FOLLOW-UP", "fr": "À RELANCER", "ht": "BEZWEN SWIVI"}, "search": {"en": "Search name, phone, email, city, tag…", "fr": "Rechercher nom, téléphone, e-mail, ville, tag…", "ht": "Chèche non, telefòn, imèl, vil, tag…"}, "all_types": {"en": "All types", "fr": "Tous les types", "ht": "Tout tip"}, "all_status": {"en": "All statuses", "fr": "Tous les statuts", "ht": "Tout eta"}, "sort_name": {"en": "Sort: name", "fr": "Tri : nom", "ht": "Klase: non"}, "sort_new": {"en": "Sort: newest", "fr": "Tri : plus récents", "ht": "Klase: pi nouvo"}, "sort_contact": {"en": "Sort: longest without contact", "fr": "Tri : sans contact depuis le plus longtemps", "ht": "Klase: pi lontan san kontak"}, "add": {"en": "+ ADD MEMBER", "fr": "+ AJOUTER UN MEMBRE", "ht": "+ AJOUTE YON MANM"}, "import": {"en": "⬆ IMPORT CSV", "fr": "⬆ IMPORTER CSV", "ht": "⬆ ENPÒTE CSV"}, "export": {"en": "⬇ EXPORT CSV", "fr": "⬇ EXPORTER CSV", "ht": "⬇ EKSPÒTE CSV"}, "template": {"en": "Download CSV template", "fr": "Télécharger le modèle CSV", "ht": "Telechaje modèl CSV la"}, "count": {"en": "{n} people", "fr": "{n} personnes", "ht": "{n} moun"}, "more": {"en": "SHOW MORE", "fr": "VOIR PLUS", "ht": "WÈ PLIS"}, "empty": {"en": "No one yet. Press “+ ADD MEMBER” to start, or import a CSV.", "fr": "Personne pour l'instant. Appuyez sur « + AJOUTER UN MEMBRE » pour commencer, ou importez un CSV.", "ht": "Poko gen moun. Peze « + AJOUTE YON MANM » pou kòmanse, oswa enpòte yon CSV."}, "no_match": {"en": "No result for this search.", "fr": "Aucun résultat pour cette recherche.", "ht": "Pa gen rezilta pou rechèch sa a."}, "t_member": {"en": "Member", "fr": "Membre", "ht": "Manm"}, "t_leader": {"en": "Leader", "fr": "Dirigeant", "ht": "Dirijan"}, "t_musician": {"en": "Musician", "fr": "Musicien", "ht": "Mizisyen"}, "t_fan": {"en": "Fan", "fr": "Fan", "ht": "Fanatik"}, "t_merchant": {"en": "Merchant", "fr": "Commerçant", "ht": "Machann"}, "t_volunteer": {"en": "Volunteer", "fr": "Bénévole", "ht": "Volontè"}, "t_donor": {"en": "Donor", "fr": "Donateur", "ht": "Donatè"}, "s_active": {"en": "Active", "fr": "Actif", "ht": "Aktif"}, "s_inactive": {"en": "Inactive", "fr": "Inactif", "ht": "Inaktif"}, "s_pending": {"en": "Pending", "fr": "En attente", "ht": "Annatant"}, "f_new": {"en": "NEW MEMBER", "fr": "NOUVEAU MEMBRE", "ht": "NOUVO MANM"}, "f_edit": {"en": "EDIT MEMBER", "fr": "MODIFIER LE MEMBRE", "ht": "MODIFYE MANM NAN"}, "f_name": {"en": "Full name *", "fr": "Nom complet *", "ht": "Non konplè *"}, "f_nick": {"en": "Nickname / alias", "fr": "Surnom / alias", "ht": "Metsyè / alyas"}, "f_phone": {"en": "Phone (with country code)", "fr": "Téléphone (avec indicatif)", "ht": "Telefòn (ak kòd peyi)"}, "f_wa": {"en": "WhatsApp (with country code)", "fr": "WhatsApp (avec indicatif)", "ht": "WhatsApp (ak kòd peyi)"}, "f_email": {"en": "Email", "fr": "E-mail", "ht": "Imèl"}, "f_city": {"en": "City", "fr": "Ville", "ht": "Vil"}, "f_country": {"en": "Country", "fr": "Pays", "ht": "Peyi"}, "f_types": {"en": "Type (choose one or more)", "fr": "Type (un ou plusieurs)", "ht": "Tip (youn oswa plizyè)"}, "f_status": {"en": "Status", "fr": "Statut", "ht": "Eta"}, "f_tags": {"en": "Tags (comma separated)", "fr": "Tags (séparés par des virgules)", "ht": "Tag (separe ak vigil)"}, "f_joined": {"en": "Joined on", "fr": "Date d'adhésion", "ht": "Dat li antre"}, "f_notes": {"en": "Notes", "fr": "Notes", "ht": "Nòt"}, "save": {"en": "SAVE", "fr": "ENREGISTRER", "ht": "SOVE"}, "cancel": {"en": "CANCEL", "fr": "ANNULER", "ht": "ANILE"}, "delete": {"en": "DELETE", "fr": "SUPPRIMER", "ht": "EFASE"}, "need_name": {"en": "The name is required.", "fr": "Le nom est obligatoire.", "ht": "Non an obligatwa."}, "dup_warn": {"en": "Someone with the same phone or email already exists: {name}. Save anyway?", "fr": "Une personne avec le même téléphone ou e-mail existe déjà : {name}. Enregistrer quand même ?", "ht": "Gen yon moun ki gen menm telefòn oswa imèl la deja: {name}. Sove kanmenm?"}, "del_confirm": {"en": "Delete {name}? This also deletes the contact history and cannot be undone.", "fr": "Supprimer {name} ? Cela supprime aussi l'historique des contacts et ne peut pas être annulé.", "ht": "Efase {name}? Sa efase istorik kontak yo tou epi li pa ka anile."}, "saved": {"en": "Saved.", "fr": "Enregistré.", "ht": "Sove."}, "err_save": {"en": "Could not save. Check your connection and permissions.", "fr": "Enregistrement impossible. Vérifiez la connexion et les autorisations.", "ht": "Pa ka sove. Verifye koneksyon ak otorizasyon yo."}, "d_call": {"en": "CALL", "fr": "APPELER", "ht": "RELE"}, "d_wa": {"en": "WHATSAPP", "fr": "WHATSAPP", "ht": "WHATSAPP"}, "d_mail": {"en": "EMAIL", "fr": "E-MAIL", "ht": "IMÈL"}, "d_edit": {"en": "EDIT", "fr": "MODIFIER", "ht": "MODIFYE"}, "d_since": {"en": "Joined", "fr": "Adhésion", "ht": "Antre"}, "d_last": {"en": "Last contact", "fr": "Dernier contact", "ht": "Dènye kontak"}, "d_never": {"en": "never", "fr": "jamais", "ht": "jamè"}, "h_h": {"en": "CONTACT HISTORY", "fr": "HISTORIQUE DES CONTACTS", "ht": "ISTORIK KONTAK"}, "h_add": {"en": "ADD TO HISTORY", "fr": "AJOUTER À L'HISTORIQUE", "ht": "AJOUTE NAN ISTORIK"}, "h_none": {"en": "No contact recorded yet.", "fr": "Aucun contact enregistré.", "ht": "Poko gen kontak anrejistre."}, "i_call": {"en": "Call", "fr": "Appel", "ht": "Apèl"}, "i_whatsapp": {"en": "WhatsApp", "fr": "WhatsApp", "ht": "WhatsApp"}, "i_email": {"en": "Email", "fr": "E-mail", "ht": "Imèl"}, "i_meeting": {"en": "Meeting", "fr": "Réunion", "ht": "Reyinyon"}, "i_note": {"en": "Note", "fr": "Note", "ht": "Nòt"}, "i_text": {"en": "What was said or decided?", "fr": "Qu'a-t-on dit ou décidé ?", "ht": "Kisa yo di oswa deside?"}, "i_date": {"en": "Date", "fr": "Date", "ht": "Dat"}, "i_need": {"en": "Write a short note.", "fr": "Écrivez une courte note.", "ht": "Ekri yon ti nòt."}, "imp_done": {"en": "Import finished: {a} added, {d} duplicates skipped, {i} invalid rows.", "fr": "Import terminé : {a} ajoutés, {d} doublons ignorés, {i} lignes invalides.", "ht": "Enpòtasyon fini: {a} ajoute, {d} dosye double sote, {i} liy pa valid."}, "imp_bad": {"en": "This file has no readable rows.", "fr": "Ce fichier ne contient aucune ligne lisible.", "ht": "Fichye sa a pa gen okenn liy ki ka li."}, "imp_hint": {"en": "CSV columns: fullName, phone, whatsapp, email, city, country, types, status, tags, joinedAt, notes", "fr": "Colonnes CSV : fullName, phone, whatsapp, email, city, country, types, status, tags, joinedAt, notes", "ht": "Kolòn CSV: fullName, phone, whatsapp, email, city, country, types, status, tags, joinedAt, notes"}, "close": {"en": "CLOSE", "fr": "FERMER", "ht": "FÈMEN"}};
-var TYPES = ["member", "leader", "musician", "fan", "merchant", "volunteer", "donor"];
-var STATUSES = ["active", "inactive", "pending"];
-var INTERACTION_TYPES = ["call", "whatsapp", "email", "meeting", "note"];
-var DEMO = !FIREBASE_CONFIG.apiKey || !FIREBASE_CONFIG.projectId;
+var currentYear = document.getElementById("currentYear");
+if(currentYear){ currentYear.textContent = new Date().getFullYear(); }
 
-var lang = "ht";
-function t(k, vars){
-  var s = (I18N[k] && (I18N[k][lang] || I18N[k].en)) || k;
-  if(vars){ Object.keys(vars).forEach(function(v){ s = s.replace("{" + v + "}", vars[v]); }); }
-  return s;
-}
-function $(id){ return document.getElementById(id); }
-function el(tag, cls, text){ var e = document.createElement(tag); if(cls){ e.className = cls; } if(text !== undefined){ e.textContent = text; } return e; }
-function todayStr(){ var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
-function uid(){ return "l" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
-function digits(s){ return String(s || "").replace(/\D+/g, ""); }
-function clean(s){ return String(s == null ? "" : s).trim(); }
 
-/* ---------- normalising one person ---------- */
-function toMillis(v){
-  if(!v){ return 0; }
-  if(typeof v === "number"){ return v; }
-  if(typeof v.toMillis === "function"){ return v.toMillis(); }
-  var p = Date.parse(v); return isNaN(p) ? 0 : p;
-}
-function norm(d, id){
-  d = d || {};
-  return {
-    id: id || d.id || "",
-    fullName: clean(d.fullName), nickname: clean(d.nickname), phone: clean(d.phone), whatsapp: clean(d.whatsapp),
-    email: clean(d.email), city: clean(d.city), country: clean(d.country),
-    types: Array.isArray(d.types) ? d.types.filter(function(x){ return TYPES.indexOf(x) !== -1; }) : [],
-    status: STATUSES.indexOf(d.status) !== -1 ? d.status : "active",
-    tags: Array.isArray(d.tags) ? d.tags.map(clean).filter(Boolean) : [],
-    notes: clean(d.notes), joinedAt: clean(d.joinedAt), lastContactAt: clean(d.lastContactAt),
-    createdAt: toMillis(d.createdAt)
-  };
-}
-function payload(m){
-  return { fullName: m.fullName, nickname: m.nickname, phone: m.phone, whatsapp: m.whatsapp, email: m.email, city: m.city, country: m.country,
-           types: m.types, status: m.status, tags: m.tags, notes: m.notes, joinedAt: m.joinedAt, lastContactAt: m.lastContactAt };
-}
+/* =========================================
+   MOBILE MENU
+========================================= */
 
-/* =====================================================================
-   STORAGE 1 — this device (demo)
-===================================================================== */
-var LocalStore = (function(){
-  var KEY = "bss1815_crm_members_v1", IKEY = "bss1815_crm_hist_v1_";
-  var members = [], listeners = [], histListeners = {};
-  function load(){ try{ members = JSON.parse(localStorage.getItem(KEY) || "[]"); }catch(e){ members = []; } }
-  function persist(){ try{ localStorage.setItem(KEY, JSON.stringify(members)); }catch(e){} }
-  function emit(){ var copy = members.map(function(m){ return norm(m, m.id); }); listeners.forEach(function(cb){ cb(copy); }); }
-  function loadHist(id){ try{ return JSON.parse(localStorage.getItem(IKEY + id) || "[]"); }catch(e){ return []; } }
-  function saveHist(id, arr){ try{ localStorage.setItem(IKEY + id, JSON.stringify(arr)); }catch(e){} }
-  function emitHist(id){ (histListeners[id] || []).forEach(function(cb){ cb(loadHist(id)); }); }
-  return {
-    subscribe: function(cb, onError){ load(); listeners.push(cb); cb(members.map(function(m){ return norm(m, m.id); })); return function(){ listeners = listeners.filter(function(x){ return x !== cb; }); }; },
-    save: function(m){
-      load(); var p = payload(m);
-      if(m.id){ members = members.map(function(x){ return x.id === m.id ? Object.assign({}, x, p) : x; }); }
-      else{ members.push(Object.assign({ id: uid(), createdAt: Date.now() }, p)); }
-      persist(); emit(); return Promise.resolve();
-    },
-    remove: function(id){ load(); members = members.filter(function(x){ return x.id !== id; }); try{ localStorage.removeItem(IKEY + id); }catch(e){} persist(); emit(); return Promise.resolve(); },
-    history: function(id, cb){ histListeners[id] = (histListeners[id] || []).concat([cb]); cb(loadHist(id)); return function(){ histListeners[id] = (histListeners[id] || []).filter(function(x){ return x !== cb; }); }; },
-    addHistory: function(id, item){
-      var arr = loadHist(id); arr.push(Object.assign({ id: uid(), createdAt: Date.now() }, item)); saveHist(id, arr); emitHist(id);
-      load(); members = members.map(function(x){ return x.id === id ? Object.assign({}, x, { lastContactAt: item.date }) : x; }); persist(); emit(); return Promise.resolve();
-    },
-    bulkAdd: function(list){
-      load(); list.forEach(function(m){ members.push(Object.assign({ id: uid(), createdAt: Date.now() }, payload(m))); });
-      persist(); emit(); return Promise.resolve();
-    },
-    signOut: null
-  };
-})();
+var menuToggle = document.getElementById("menuToggle");
+var mainNav = document.getElementById("mainNav");
 
-/* =====================================================================
-   STORAGE 2 — Firebase (Firestore + Auth), loaded only when configured
-===================================================================== */
-var FirebaseStore = (function(){
-  var app, auth, db, F = {}, A = {}, user = null;
-  function base(f){ return "https://www.gstatic.com/firebasejs/" + FIREBASE_VERSION + "/" + f + ".js"; }
-  function col(){ return F.collection(db, COLLECTION); }
-  function stamp(m, isNew){
-    var p = payload(m); p.updatedAt = F.serverTimestamp(); p.updatedBy = user ? user.email : "";
-    if(isNew){ p.createdAt = F.serverTimestamp(); p.createdBy = user ? user.email : ""; }
-    return p;
-  }
-  return {
-    init: function(){
-      return Promise.all([import(base("firebase-app")), import(base("firebase-auth")), import(base("firebase-firestore"))]).then(function(mods){
-        var App = mods[0]; A = mods[1]; F = mods[2];
-        app = App.initializeApp(FIREBASE_CONFIG); auth = A.getAuth(app); db = F.getFirestore(app);
-      });
-    },
-    onAuth: function(cb){ A.onAuthStateChanged(auth, function(u){ user = u; cb(u); }); },
-    signIn: function(email, pass){ return A.signInWithEmailAndPassword(auth, email, pass); },
-    reset: function(email){ return A.sendPasswordResetEmail(auth, email); },
-    signOut: function(){ return A.signOut(auth); },
-    probe: function(){ return F.getDocs(F.query(col(), F.limit(1))); },
-    subscribe: function(cb, onError){
-      return F.onSnapshot(col(), function(snap){
-        var list = []; snap.forEach(function(d){ list.push(norm(d.data(), d.id)); }); cb(list);
-      }, function(err){ if(onError){ onError(err); } });
-    },
-    save: function(m){
-      if(m.id){ return F.updateDoc(F.doc(db, COLLECTION, m.id), stamp(m, false)); }
-      return F.addDoc(col(), stamp(m, true));
-    },
-    remove: function(id){
-      var sub = F.collection(db, COLLECTION, id, "history");
-      return F.getDocs(sub).then(function(snap){
-        var batch = F.writeBatch(db); var n = 0;
-        snap.forEach(function(d){ batch.delete(d.ref); n++; });
-        batch.delete(F.doc(db, COLLECTION, id));
-        return batch.commit();
-      });
-    },
-    history: function(id, cb){
-      return F.onSnapshot(F.collection(db, COLLECTION, id, "history"), function(snap){
-        var arr = []; snap.forEach(function(d){ var x = d.data(); x.id = d.id; x.createdAt = toMillis(x.createdAt); arr.push(x); }); cb(arr);
-      }, function(){ cb([]); });
-    },
-    addHistory: function(id, item){
-      var rec = { type: item.type, text: item.text, date: item.date, by: user ? user.email : "", createdAt: F.serverTimestamp() };
-      return F.addDoc(F.collection(db, COLLECTION, id, "history"), rec).then(function(){
-        return F.updateDoc(F.doc(db, COLLECTION, id), { lastContactAt: item.date, updatedAt: F.serverTimestamp() });
-      });
-    },
-    bulkAdd: function(list){
-      var chunks = [], i; for(i = 0; i < list.length; i += 400){ chunks.push(list.slice(i, i + 400)); }
-      return chunks.reduce(function(p, chunk){
-        return p.then(function(){
-          var batch = F.writeBatch(db);
-          chunk.forEach(function(m){ batch.set(F.doc(col()), stamp(m, true)); });
-          return batch.commit();
-        });
-      }, Promise.resolve());
-    }
-  };
-})();
-
-var store = DEMO ? LocalStore : FirebaseStore;
-
-/* =====================================================================
-   STATE + RENDER
-===================================================================== */
-var people = [], shown = PAGE_SIZE, currentId = null, unsubHist = null, unsubList = null;
-
-function daysSince(dateStr){
-  if(!dateStr){ return Infinity; }
-  var d = Date.parse(dateStr); if(isNaN(d)){ return Infinity; }
-  return Math.floor((Date.now() - d) / 86400000);
-}
-function typeLabel(x){ return t("t_" + x); }
-function statusLabel(x){ return t("s_" + x); }
-
-function matches(m, q){
-  if(!q){ return true; }
-  var hay = [m.fullName, m.nickname, m.phone, m.whatsapp, m.email, m.city, m.country, m.tags.join(" "), m.notes].join(" ").toLowerCase();
-  var qd = digits(q);
-  return q.toLowerCase().split(/\s+/).every(function(w){ return hay.indexOf(w) !== -1; }) || (qd.length >= 4 && (digits(m.phone).indexOf(qd) !== -1 || digits(m.whatsapp).indexOf(qd) !== -1));
-}
-
-function filtered(){
-  var q = clean($("fSearch").value), ty = $("fType").value, st = $("fStatus").value, so = $("fSort").value;
-  var list = people.filter(function(m){
-    return matches(m, q) && (!ty || m.types.indexOf(ty) !== -1) && (!st || m.status === st);
-  });
-  list.sort(function(a, b){
-    if(so === "new"){ return (b.createdAt || Date.parse(b.joinedAt) || 0) - (a.createdAt || Date.parse(a.joinedAt) || 0); }
-    if(so === "contact"){ return (Date.parse(a.lastContactAt) || 0) - (Date.parse(b.lastContactAt) || 0); }
-    return a.fullName.localeCompare(b.fullName, undefined, { sensitivity: "base" });
-  });
-  return list;
-}
-
-function renderStats(){
-  var now = new Date(), ym = now.getFullYear() + "-" + ("0" + (now.getMonth() + 1)).slice(-2);
-  $("sTotal").textContent = people.length;
-  $("sActive").textContent = people.filter(function(m){ return m.status === "active"; }).length;
-  $("sNew").textContent = people.filter(function(m){ return (m.joinedAt || "").slice(0, 7) === ym || (!m.joinedAt && m.createdAt && new Date(m.createdAt).toISOString().slice(0, 7) === ym); }).length;
-  $("sFollow").textContent = people.filter(function(m){ return m.status === "active" && daysSince(m.lastContactAt) > FOLLOW_UP_DAYS; }).length;
-}
-
-function quickLink(cls, href, text, ext){
-  var a = el("a", "", text); a.href = href; if(ext){ a.target = "_blank"; a.rel = "noopener noreferrer"; }
-  a.addEventListener("click", function(e){ e.stopPropagation(); }); return a;
-}
-function telHref(p){ var d = digits(p); return d ? "tel:" + (String(p).trim().charAt(0) === "+" ? "+" : "") + d : ""; }
-function waHref(m){ var d = digits(m.whatsapp || m.phone); return d ? "https://wa.me/" + d : ""; }
-
-function renderList(){
-  var list = filtered(), box = $("list"); box.textContent = "";
-  $("count").textContent = t("count", { n: list.length });
-  if(!people.length){ box.className = ""; box.appendChild(el("div", "empty", t("empty"))); $("moreBtn").classList.add("hidden"); return; }
-  if(!list.length){ box.className = ""; box.appendChild(el("div", "empty", t("no_match"))); $("moreBtn").classList.add("hidden"); return; }
-  box.className = "list";
-  list.slice(0, shown).forEach(function(m){
-    var c = el("div", "person"); c.tabIndex = 0;
-    c.appendChild(el("h3", "", m.fullName + (m.nickname ? " “" + m.nickname + "”" : "")));
-    var sub = [m.phone, m.email, [m.city, m.country].filter(Boolean).join(", ")].filter(Boolean).join(" • ");
-    if(sub){ c.appendChild(el("div", "sub", sub)); }
-    var b = el("div", "badges"); b.appendChild(el("span", "badge " + m.status, statusLabel(m.status)));
-    m.types.forEach(function(x){ b.appendChild(el("span", "badge", typeLabel(x))); });
-    m.tags.slice(0, 3).forEach(function(x){ b.appendChild(el("span", "badge", "#" + x)); });
-    c.appendChild(b);
-    var q = el("div", "quick");
-    var th = telHref(m.phone), wh = waHref(m);
-    if(th){ q.appendChild(quickLink("", th, "📞 " + t("d_call"))); }
-    if(wh){ q.appendChild(quickLink("", wh, "💬 " + t("d_wa"), true)); }
-    if(m.email){ q.appendChild(quickLink("", "mailto:" + m.email, "✉️ " + t("d_mail"))); }
-    if(q.children.length){ c.appendChild(q); }
-    c.addEventListener("click", function(){ openDetail(m.id); });
-    c.addEventListener("keydown", function(e){ if(e.key === "Enter"){ openDetail(m.id); } });
-    box.appendChild(c);
-  });
-  $("moreBtn").classList.toggle("hidden", list.length <= shown);
-}
-
-function refresh(){ renderStats(); renderList(); if(currentId && $("detail").classList.contains("open")){ renderDetail(); } }
-
-/* ---------- filters (selects) ---------- */
-function fillSelects(){
-  var ty = $("fType"), st = $("fStatus"), so = $("fSort"), tv = ty.value, sv = st.value, ov = so.value;
-  ty.textContent = ""; st.textContent = ""; so.textContent = "";
-  var o = el("option", "", t("all_types")); o.value = ""; ty.appendChild(o);
-  TYPES.forEach(function(x){ var e = el("option", "", typeLabel(x)); e.value = x; ty.appendChild(e); });
-  var o2 = el("option", "", t("all_status")); o2.value = ""; st.appendChild(o2);
-  STATUSES.forEach(function(x){ var e = el("option", "", statusLabel(x)); e.value = x; st.appendChild(e); });
-  [["name", "sort_name"], ["new", "sort_new"], ["contact", "sort_contact"]].forEach(function(p){ var e = el("option", "", t(p[1])); e.value = p[0]; so.appendChild(e); });
-  ty.value = tv; st.value = sv; so.value = ov || "name";
-  // form controls
-  var fs = $("mStatus"), fv = fs.value; fs.textContent = "";
-  STATUSES.forEach(function(x){ var e = el("option", "", statusLabel(x)); e.value = x; fs.appendChild(e); }); fs.value = fv || "active";
-  var it = $("iType"), iv = it.value; it.textContent = "";
-  INTERACTION_TYPES.forEach(function(x){ var e = el("option", "", t("i_" + x)); e.value = x; it.appendChild(e); }); it.value = iv || "call";
-  var checks = $("mTypes"), sel = Array.prototype.map.call(checks.querySelectorAll("input:checked"), function(i){ return i.value; });
-  checks.textContent = "";
-  TYPES.forEach(function(x){
-    var l = el("label", "check"), i = document.createElement("input"); i.type = "checkbox"; i.value = x; i.checked = sel.indexOf(x) !== -1;
-    l.appendChild(i); l.appendChild(el("span", "", typeLabel(x))); checks.appendChild(l);
+if(menuToggle && mainNav){
+  menuToggle.addEventListener("click", function(){
+    var open = mainNav.classList.toggle("open");
+    menuToggle.textContent = open ? "✕" : "☰";
   });
 }
 
-/* ---------- language ---------- */
-function applyLanguage(l){
-  if(["en", "fr", "ht"].indexOf(l) === -1){ l = "ht"; }
-  lang = l; document.documentElement.lang = l;
-  document.querySelectorAll("[data-i18n]").forEach(function(e){ e.textContent = t(e.getAttribute("data-i18n")); });
-  document.querySelectorAll("[data-i18n-ph]").forEach(function(e){ e.setAttribute("placeholder", t(e.getAttribute("data-i18n-ph"))); });
-  document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-lang") === l); });
-  try{ localStorage.setItem("bss1815Language", l); }catch(e){}
-  fillSelects(); refresh();
-  if($("form").classList.contains("open")){ $("formTitle").textContent = editingId ? t("f_edit") : t("f_new"); }
-}
 
-/* ---------- message helper ---------- */
-var toastTimer = null;
-function toast(msg, bad){
-  var e = $("toast"); e.textContent = msg; e.className = "msg " + (bad ? "bad" : "ok"); clearTimeout(toastTimer);
-  toastTimer = setTimeout(function(){ e.textContent = ""; }, 5000);
-}
+/* =========================================
+   LANGUAGE SYSTEM
+========================================= */
 
-/* =====================================================================
-   FORM (add / edit)
-===================================================================== */
-var editingId = null;
-function openOverlay(id){ $(id).classList.add("open"); document.body.style.overflow = "hidden"; }
-function closeOverlay(id){ $(id).classList.remove("open"); if(!document.querySelector(".overlay.open")){ document.body.style.overflow = ""; } }
+var languageButtons = document.querySelectorAll(".lang-btn[data-lang]");
+var currentLanguage = "ht";
 
-function openForm(m){
-  editingId = m ? m.id : null;
-  $("formTitle").textContent = m ? t("f_edit") : t("f_new");
-  $("mName").value = m ? m.fullName : ""; $("mNick").value = m ? m.nickname : ""; $("mPhone").value = m ? m.phone : ""; $("mWa").value = m ? m.whatsapp : "";
-  $("mEmail").value = m ? m.email : ""; $("mCity").value = m ? m.city : ""; $("mCountry").value = m ? m.country : "";
-  $("mStatus").value = m ? m.status : "active"; $("mTags").value = m ? m.tags.join(", ") : ""; $("mJoined").value = m ? m.joinedAt : todayStr(); $("mNotes").value = m ? m.notes : "";
-  $("mTypes").querySelectorAll("input").forEach(function(i){ i.checked = m ? m.types.indexOf(i.value) !== -1 : i.value === "member"; });
-  $("formMsg").textContent = ""; $("deleteBtn").classList.toggle("hidden", !m);
-  openOverlay("form"); setTimeout(function(){ $("mName").focus(); }, 50);
-}
-
-function readForm(){
-  var types = Array.prototype.map.call($("mTypes").querySelectorAll("input:checked"), function(i){ return i.value; });
-  return norm({
-    id: editingId || "", fullName: $("mName").value, nickname: $("mNick").value, phone: $("mPhone").value, whatsapp: $("mWa").value, email: $("mEmail").value,
-    city: $("mCity").value, country: $("mCountry").value, types: types, status: $("mStatus").value,
-    tags: $("mTags").value.split(","), joinedAt: $("mJoined").value, notes: $("mNotes").value,
-    lastContactAt: editingId ? (people.filter(function(p){ return p.id === editingId; })[0] || {}).lastContactAt : ""
-  }, editingId);
-}
-
-function findDuplicate(m){
-  var pd = digits(m.phone).slice(-8), wd = digits(m.whatsapp).slice(-8), em = m.email.toLowerCase();
-  for(var i = 0; i < people.length; i++){
-    var p = people[i]; if(p.id === m.id){ continue; }
-    if(em && p.email.toLowerCase() === em){ return p; }
-    if(pd.length >= 7 && (digits(p.phone).slice(-8) === pd || digits(p.whatsapp).slice(-8) === pd)){ return p; }
-    if(wd.length >= 7 && (digits(p.phone).slice(-8) === wd || digits(p.whatsapp).slice(-8) === wd)){ return p; }
-  }
-  return null;
-}
-
-function saveForm(){
-  var m = readForm();
-  if(!m.fullName){ $("formMsg").className = "msg bad"; $("formMsg").textContent = t("need_name"); return; }
-  var dup = findDuplicate(m);
-  if(dup && !window.confirm(t("dup_warn", { name: dup.fullName }))){ return; }
-  $("saveBtn").disabled = true;
-  Promise.resolve(store.save(m)).then(function(){ closeOverlay("form"); toast(t("saved")); })
-    .catch(function(){ $("formMsg").className = "msg bad"; $("formMsg").textContent = t("err_save"); })
-    .then(function(){ $("saveBtn").disabled = false; });
-}
-
-function deleteCurrent(){
-  var m = people.filter(function(p){ return p.id === editingId; })[0]; if(!m){ return; }
-  if(!window.confirm(t("del_confirm", { name: m.fullName }))){ return; }
-  Promise.resolve(store.remove(m.id)).then(function(){ closeOverlay("form"); closeDetail(); toast(t("saved")); })
-    .catch(function(){ $("formMsg").className = "msg bad"; $("formMsg").textContent = t("err_save"); });
-}
-
-/* =====================================================================
-   DETAIL + CONTACT HISTORY
-===================================================================== */
-function closeDetail(){ if(unsubHist){ try{ unsubHist(); }catch(e){} unsubHist = null; } currentId = null; closeOverlay("detail"); }
-
-function openDetail(id){
-  currentId = id; renderDetail(); openOverlay("detail");
-  if(unsubHist){ try{ unsubHist(); }catch(e){} }
-  $("iText").value = ""; $("iDate").value = todayStr(); $("histMsg").textContent = "";
-  unsubHist = store.history(id, renderHistory);
-}
-
-function renderDetail(){
-  var m = people.filter(function(p){ return p.id === currentId; })[0];
-  if(!m){ closeDetail(); return; }
-  $("dName").textContent = m.fullName + (m.nickname ? " “" + m.nickname + "”" : "");
-  var badges = $("dBadges"); badges.textContent = "";
-  badges.appendChild(el("span", "badge " + m.status, statusLabel(m.status)));
-  m.types.forEach(function(x){ badges.appendChild(el("span", "badge", typeLabel(x))); });
-  m.tags.forEach(function(x){ badges.appendChild(el("span", "badge", "#" + x)); });
-  var info = $("dInfo"); info.textContent = "";
-  function line(label, value){ if(!value){ return; } var d = el("div"); d.appendChild(el("b", "", label + ": ")); d.appendChild(document.createTextNode(value)); info.appendChild(d); }
-  line(t("f_phone").replace(/ \(.*\)/, ""), m.phone); line("WhatsApp", m.whatsapp); line(t("f_email"), m.email);
-  line(t("f_city") + " / " + t("f_country"), [m.city, m.country].filter(Boolean).join(", "));
-  line(t("d_since"), m.joinedAt); line(t("d_last"), m.lastContactAt || t("d_never")); line(t("f_notes"), m.notes);
-  var q = $("dQuick"); q.textContent = "";
-  var th = telHref(m.phone), wh = waHref(m);
-  if(th){ var a1 = el("a", "btn small", "📞 " + t("d_call")); a1.href = th; q.appendChild(a1); }
-  if(wh){ var a2 = el("a", "btn small", "💬 " + t("d_wa")); a2.href = wh; a2.target = "_blank"; a2.rel = "noopener noreferrer"; q.appendChild(a2); }
-  if(m.email){ var a3 = el("a", "btn small", "✉️ " + t("d_mail")); a3.href = "mailto:" + m.email; q.appendChild(a3); }
-  var ed = el("button", "btn small primary", "✎ " + t("d_edit")); ed.type = "button"; ed.addEventListener("click", function(){ openForm(m); }); q.appendChild(ed);
-}
-
-function renderHistory(items){
-  var box = $("timeline"); box.textContent = "";
-  items = (items || []).slice().sort(function(a, b){ return (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0) || (b.createdAt || 0) - (a.createdAt || 0); });
-  if(!items.length){ box.appendChild(el("div", "hint", t("h_none"))); return; }
-  items.forEach(function(x){
-    var d = el("div", "tl"); d.appendChild(el("small", "", (x.date || "") + " • " + t("i_" + x.type) + (x.by ? " • " + x.by : "")));
-    d.appendChild(document.createTextNode(x.text || "")); box.appendChild(d);
+function applyLanguage(lang){
+  if(["ht","fr","en"].indexOf(lang) === -1){ lang = "ht"; }
+  currentLanguage = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-ht][data-fr][data-en]").forEach(function(element){
+    var translation = element.getAttribute("data-" + lang);
+    if(translation !== null){ element.textContent = translation; }
   });
-}
-
-function addHistory(){
-  var text = clean($("iText").value);
-  if(!text){ $("histMsg").className = "msg bad"; $("histMsg").textContent = t("i_need"); return; }
-  var item = { type: $("iType").value, text: text, date: $("iDate").value || todayStr() };
-  $("histBtn").disabled = true;
-  Promise.resolve(store.addHistory(currentId, item)).then(function(){ $("iText").value = ""; $("histMsg").textContent = ""; })
-    .catch(function(){ $("histMsg").className = "msg bad"; $("histMsg").textContent = t("err_save"); })
-    .then(function(){ $("histBtn").disabled = false; });
-}
-
-/* =====================================================================
-   CSV export / import
-===================================================================== */
-var CSV_COLS = ["fullName", "nickname", "phone", "whatsapp", "email", "city", "country", "types", "status", "tags", "joinedAt", "lastContactAt", "notes"];
-function csvCell(v){ v = String(v == null ? "" : v); if(/^[=+\-@]/.test(v) && !/^\+?[\d\s().-]+$/.test(v)){ v = "'" + v; } return /[",\n\r;]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
-function downloadFile(name, text){
-  var blob = new Blob(["\ufeff" + text], { type: "text/csv;charset=utf-8" });
-  var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
-  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
-}
-function exportCsv(){
-  var rows = [CSV_COLS.join(",")];
-  filtered().forEach(function(m){
-    rows.push(CSV_COLS.map(function(c){ var v = m[c]; if(Array.isArray(v)){ v = v.join(c === "types" ? ";" : ";"); } return csvCell(v); }).join(","));
+  languageButtons.forEach(function(button){
+    button.classList.toggle("active", button.getAttribute("data-lang") === lang);
   });
-  downloadFile("bss1815-crm-" + todayStr() + ".csv", rows.join("\r\n"));
-}
-function templateCsv(){ downloadFile("bss1815-crm-template.csv", CSV_COLS.join(",") + "\r\n" + 'Jean Baptiste,,+50900000000,+50900000000,jean@example.com,Port-au-Prince,Haiti,member;musician,active,bss1815;fanmi,2026-01-15,,"Example row — delete me"'); }
-
-function parseCsv(text){
-  text = text.replace(/^\ufeff/, "");
-  var first = text.split(/\r?\n/)[0] || "", delim = (first.split(";").length > first.split(",").length) ? ";" : ",";
-  var rows = [], row = [], cur = "", q = false, i, ch;
-  for(i = 0; i < text.length; i++){
-    ch = text[i];
-    if(q){ if(ch === '"'){ if(text[i + 1] === '"'){ cur += '"'; i++; } else { q = false; } } else { cur += ch; } }
-    else if(ch === '"'){ q = true; }
-    else if(ch === delim){ row.push(cur); cur = ""; }
-    else if(ch === "\n" || ch === "\r"){ if(ch === "\r" && text[i + 1] === "\n"){ i++; } row.push(cur); cur = ""; if(row.some(function(c){ return clean(c); })){ rows.push(row); } row = []; }
-    else{ cur += ch; }
-  }
-  row.push(cur); if(row.some(function(c){ return clean(c); })){ rows.push(row); }
-  return rows;
+  try{ localStorage.setItem("bss1815Language", lang); }catch(error){}
+  updateSoundButton();
 }
 
-var HEADER_ALIASES = { fullname: "fullName", name: "fullName", "full name": "fullName", nom: "fullName", non: "fullName", nickname: "nickname", alias: "nickname", surnom: "nickname",
-  phone: "phone", telephone: "phone", "téléphone": "phone", telefon: "phone", "telefòn": "phone", whatsapp: "whatsapp", email: "email", "e-mail": "email", "imèl": "email", imel: "email",
-  city: "city", ville: "city", vil: "city", country: "country", pays: "country", peyi: "country", types: "types", type: "types", tip: "types", status: "status", statut: "status", eta: "status",
-  tags: "tags", joinedat: "joinedAt", joined: "joinedAt", lastcontactat: "lastContactAt", notes: "notes", note: "notes", "nòt": "notes" };
+languageButtons.forEach(function(button){
+  button.addEventListener("click", function(){ applyLanguage(this.getAttribute("data-lang")); });
+});
 
-function importCsv(file){
-  var reader = new FileReader();
-  reader.onload = function(){
-    var rows = parseCsv(String(reader.result || ""));
-    if(rows.length < 2){ toast(t("imp_bad"), true); return; }
-    var head = rows[0].map(function(h){ return HEADER_ALIASES[clean(h).toLowerCase()] || HEADER_ALIASES[clean(h).toLowerCase().replace(/[\s_]+/g, "")] || ""; });
-    var added = [], dupes = 0, invalid = 0, seenPhone = {}, seenMail = {};
-    rows.slice(1).forEach(function(r){
-      var o = {}; head.forEach(function(h, idx){ if(h){ o[h] = r[idx]; } });
-      var types = clean(o.types).toLowerCase().split(/[;|,]/).map(clean).filter(function(x){ return TYPES.indexOf(x) !== -1; });
-      var m = norm({ fullName: o.fullName, nickname: o.nickname, phone: o.phone, whatsapp: o.whatsapp, email: o.email, city: o.city, country: o.country,
-        types: types.length ? types : ["member"], status: clean(o.status).toLowerCase(), tags: clean(o.tags).split(/[;|,]/), joinedAt: clean(o.joinedAt) || todayStr(),
-        lastContactAt: clean(o.lastContactAt), notes: o.notes });
-      if(!m.fullName){ invalid++; return; }
-      var pd = digits(m.phone).slice(-8), em = m.email.toLowerCase();
-      var dup = findDuplicate(m) || (pd.length >= 7 && seenPhone[pd]) || (em && seenMail[em]);
-      if(dup){ dupes++; return; }
-      if(pd.length >= 7){ seenPhone[pd] = 1; } if(em){ seenMail[em] = 1; }
-      added.push(m);
-    });
-    if(!added.length){ toast(t("imp_done", { a: 0, d: dupes, i: invalid }), true); return; }
-    Promise.resolve(store.bulkAdd(added)).then(function(){ toast(t("imp_done", { a: added.length, d: dupes, i: invalid })); })
-      .catch(function(){ toast(t("err_save"), true); });
-  };
-  reader.readAsText(file);
-}
+var savedLanguage = "ht";
+try{ savedLanguage = localStorage.getItem("bss1815Language") || "ht"; }catch(error){}
+applyLanguage(savedLanguage);
 
-/* =====================================================================
-   START: demo or Firebase (with login)
-===================================================================== */
-function startApp(){
-  $("authBox").classList.add("hidden"); $("app").classList.remove("hidden");
-  if(unsubList){ try{ unsubList(); }catch(e){} }
-  unsubList = store.subscribe(function(list){ people = list; refresh(); }, function(err){
-    if(err && (err.code === "permission-denied" || /permission/i.test(err.message || ""))){ showDenied(); }
-  });
-}
 
-function showAuth(msg, bad){
-  $("app").classList.add("hidden"); $("authBox").classList.remove("hidden"); $("userBar").classList.add("hidden");
-  $("authMsg").className = "msg " + (bad ? "bad" : ""); $("authMsg").textContent = msg || "";
-}
-function showDenied(){
-  if(unsubList){ try{ unsubList(); }catch(e){} unsubList = null; }
-  showAuth(t("denied"), true);
-}
+/* =========================================
+   VIDEO SYSTEM
+========================================= */
 
-function boot(){
-  $("year").textContent = new Date().getFullYear();
-  var saved = "ht"; try{ saved = localStorage.getItem("bss1815Language") || "ht"; }catch(e){}
-  document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ applyLanguage(b.getAttribute("data-lang")); }); });
-  applyLanguage(saved);
+document.querySelectorAll("video").forEach(function(video){
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  var promise = video.play();
+  if(promise){ promise.catch(function(){}); }
+});
 
-  $("fSearch").addEventListener("input", function(){ shown = PAGE_SIZE; renderList(); });
-  ["fType", "fStatus", "fSort"].forEach(function(id){ $(id).addEventListener("change", function(){ shown = PAGE_SIZE; renderList(); }); });
-  $("moreBtn").addEventListener("click", function(){ shown += PAGE_SIZE; renderList(); });
-  $("addBtn").addEventListener("click", function(){ openForm(null); });
-  $("exportBtn").addEventListener("click", exportCsv);
-  $("templateBtn").addEventListener("click", templateCsv);
-  $("importBtn").addEventListener("click", function(){ $("importFile").click(); });
-  $("importFile").addEventListener("change", function(){ if(this.files && this.files[0]){ importCsv(this.files[0]); } this.value = ""; });
-  $("saveBtn").addEventListener("click", saveForm);
-  $("cancelBtn").addEventListener("click", function(){ closeOverlay("form"); });
-  $("deleteBtn").addEventListener("click", deleteCurrent);
-  $("closeDetail").addEventListener("click", closeDetail);
-  $("histBtn").addEventListener("click", addHistory);
-  document.addEventListener("keydown", function(e){ if(e.key === "Escape"){ if($("form").classList.contains("open")){ closeOverlay("form"); } else if($("detail").classList.contains("open")){ closeDetail(); } } });
-  ["form", "detail"].forEach(function(id){ $(id).addEventListener("mousedown", function(e){ if(e.target === $(id)){ if(id === "detail"){ closeDetail(); } else { closeOverlay("form"); } } }); });
 
-  if(DEMO){
-    $("demoBanner").classList.remove("hidden");
-    startApp();
+/* =========================================
+   HERO SOUND
+========================================= */
+
+var heroVideo = document.getElementById("heroLogoVideo");
+var soundButton = document.getElementById("soundButton");
+
+function updateSoundButton(){
+  if(!soundButton){ return; }
+  if(heroVideo && !heroVideo.muted){
+    soundButton.textContent = "🔇 MUTE";
     return;
   }
-
-  showAuth(t("loading"));
-  FirebaseStore.init().then(function(){
-    FirebaseStore.onAuth(function(user){
-      if(!user){ showAuth(""); return; }
-      $("userBar").classList.remove("hidden"); $("userEmail").textContent = user.email || "";
-      FirebaseStore.probe().then(startApp).catch(function(err){
-        if(err && (err.code === "permission-denied" || /permission/i.test(err.message || ""))){ showDenied(); }
-        else{ startApp(); }
-      });
-    });
-  }).catch(function(){ showAuth(t("auth_err"), true); });
-
-  $("loginForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    var em = clean($("aEmail").value), pw = $("aPass").value;
-    $("authMsg").className = "msg"; $("authMsg").textContent = t("loading"); $("signinBtn").disabled = true;
-    FirebaseStore.signIn(em, pw).then(function(){ $("authMsg").textContent = ""; })
-      .catch(function(err){
-        var bad = err && /invalid|wrong|user-not-found|credential/i.test((err.code || "") + " " + (err.message || ""));
-        $("authMsg").className = "msg bad"; $("authMsg").textContent = bad ? t("auth_bad") : t("auth_err");
-      }).then(function(){ $("signinBtn").disabled = false; });
-  });
-  $("forgotBtn").addEventListener("click", function(){
-    var em = clean($("aEmail").value);
-    if(!em){ $("authMsg").className = "msg bad"; $("authMsg").textContent = t("reset_need"); return; }
-    FirebaseStore.reset(em).then(function(){ $("authMsg").className = "msg ok"; $("authMsg").textContent = t("reset_sent"); })
-      .catch(function(){ $("authMsg").className = "msg bad"; $("authMsg").textContent = t("auth_err"); });
-  });
-  $("signOutBtn").addEventListener("click", function(){ FirebaseStore.signOut(); });
+  if(currentLanguage === "fr"){
+    soundButton.textContent = "🔊 ÉCOUTER LE SLOGAN";
+  }else if(currentLanguage === "en"){
+    soundButton.textContent = "🔊 HEAR THE SLOGAN";
+  }else{
+    soundButton.textContent = "🔊 KOUTE SLOGAN AN";
+  }
 }
 
-boot();
+if(heroVideo && soundButton){
+  soundButton.addEventListener("click", function(){
+    if(heroVideo.muted){
+      heroVideo.muted = false;
+      heroVideo.currentTime = 0;
+      heroVideo.play().catch(function(){});
+    }else{
+      heroVideo.muted = true;
+    }
+    updateSoundButton();
+  });
+}
+
+
+/* =========================================
+   BSS1815 COMMUNITY SLIDESHOW
+========================================= */
+
+var bssFiles = [
+"tania2.jpg",
+"papouche.jpg",
+"heritage.jpg",
+"team-angrenay.jpg",
+"sfc-5-stars.jpg",
+"team-angrenaye.jpg",
+"team-san-presyon.jpg",
+"max-on-the-air.jpg",
+"montina.jpg",
+"kendy2.jpg",
+"perodin.jpg",
+"rorony.jpg",
+"maxl.jpg",
+"maxle.jpg",
+"doodly.jpg",
+"roro-8.jpg",
+"cols1.jpg",
+"bouboul.jpg",
+"sindy-b.jpg",
+"warrens-v.jpg",
+"ones-g.jpg",
+"dede.jpg",
+"jij-mayan-1.jpg",
+"paulema.jpg",
+"mass-vokal.jpg",
+"maximax-m-s.jpg",
+"max-the-man.jpg",
+"ti-fre.jpg",
+"the-change.jpg",
+"jij-mayan2.jpg",
+"montinat.jpg",
+"cange-d.jpg",
+"ti-la-france.jpg",
+"jij-mayan-3.jpg",
+"bss.jpg",
+"ti-marassa.jpg",
+"the-change-1.jpg",
+"the-plan.jpg",
+"max.jpg",
+"sonsonn.jpeg",
+"valery.jpg",
+"thin-khard.jpg",
+"maximax-2.jpg",
+"y-max.jpg",
+"roro-ny.jpg",
+"le-baron.jpg",
+"prez-tirat.jpg",
+"the-one.jpg",
+"andy.jpeg",
+"badin-s.jpg",
+"ti-rat.jpg",
+"roro-1lajan.jpg",
+"roro-p-p.jpg",
+"madina.jpg",
+"prez-papit.jpg",
+"may-1.jpg",
+"fanfan-d.jpg",
+"ti-renold.jpg",
+"asmide1.jpg",
+"jeff-c.jpg",
+"tania-f.jpg",
+"jude.jpg",
+"andre-a.jpg",
+"nadege.jpg",
+"macu-1.jpg",
+"prez-aly.jpg",
+"sonson-m.jpg",
+"brunel-t.jpg",
+"roro-lj.jpg",
+"ti-papouche.jpg",
+"michel-b.jpg",
+"michel.jpg",
+"tatane.jpg",
+"la-belle-yole.jpg",
+"tila-france.jpg",
+"ralph-p.jpg",
+"ti-marassa2.jpg",
+"landry.jpg",
+"vp-ernso.jpg",
+"fanfan2.jpg",
+"paulema2.jpg",
+"yguens.jpg",
+"tifre2.jpg",
+"tichery.jpg",
+"jij-mayan.jpg",
+"yguens2.jpg",
+"heuch-love.jpg",
+"cange-0.jpg",
+"prez-aly-2.jpg",
+"anpere-doudou.jpg",
+"rivelino.jpg",
+"tatane-vp.jpg",
+"montinat2.jpg",
+"prezidan-aly.jpg",
+"max-louis.jpg",
+"paulema21.jpg",
+"le-baron1.jpg",
+"devan-devan-net.jpg",
+"jq-max.jpg",
+"system-akayik.jpg",
+"montina-prof.jpg",
+"systeme-akayik.jpg",
+"derosier.jpg",
+"odeline-ademe.jpg",
+"nadia-lafortune.jpg",
+"nadou.jpg",
+"max-is-the-man.jpg",
+"nadou2.jpg",
+"pro-max-dmp.mp4",
+"pro-max.jpg",
+"pro-max-academie.mp4",
+"maxi-max.mp4",
+"bss1815-pro-max-dmp.jpg"
+];
+
+var bssImage = document.getElementById("bssSlideImage");
+var bssVideo = document.getElementById("bssSlideVideo");
+var bssTitle = document.getElementById("bssSlideTitle");
+var bssCounter = document.getElementById("bssCounter");
+var bssProgress = document.getElementById("bssProgressBar");
+var bssPrev = document.getElementById("bssPrev");
+var bssNext = document.getElementById("bssNext");
+var bssPlay = document.getElementById("bssPlayPause");
+var bssStage = document.getElementById("bssStage");
+
+var bssIndex = 0;
+var bssPlaying = true;
+var bssElapsed = 0;
+var bssTimer = null;
+
+var BSS_IMAGE_TIME = 4000;
+var BSS_VIDEO_TIME = 8000;
+var BSS_STEP = 100;
+
+var BSS_PATH = "./";
+
+
+function bssIsVideo(file){
+  return /\.mp4$/i.test(file);
+}
+
+
+function bssPretty(file){
+  return file
+    .replace(/\.[^.]+$/, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+}
+
+
+function bssDuration(){
+  return bssIsVideo(bssFiles[bssIndex]) ? BSS_VIDEO_TIME : BSS_IMAGE_TIME;
+}
+
+
+function bssShow(index){
+
+  if(index < 0){ index = bssFiles.length - 1; }
+  if(index >= bssFiles.length){ index = 0; }
+
+  bssIndex = index;
+  bssElapsed = 0;
+
+  var file = bssFiles[bssIndex];
+  var src = BSS_PATH + file;
+
+  if(bssCounter){ bssCounter.textContent = (bssIndex + 1) + " / " + bssFiles.length; }
+  if(bssTitle){ bssTitle.textContent = bssPretty(file); }
+  if(bssProgress){ bssProgress.style.width = "0%"; }
+
+  if(bssIsVideo(file)){
+
+    if(bssImage){ bssImage.classList.add("hidden"); }
+
+    if(bssVideo){
+      bssVideo.pause();
+      bssVideo.classList.remove("hidden");
+      bssVideo.src = src;
+      bssVideo.currentTime = 0;
+      bssVideo.muted = true;
+      if(bssPlaying){ bssVideo.play().catch(function(){}); }
+    }
+
+  }else{
+
+    if(bssVideo){
+      bssVideo.pause();
+      bssVideo.classList.add("hidden");
+    }
+
+    if(bssImage){
+      bssImage.classList.remove("hidden");
+      bssImage.src = src;
+      bssImage.alt = bssPretty(file);
+    }
+
+  }
+
+}
+
+
+function bssGoNext(){ bssShow(bssIndex + 1); }
+function bssGoPrev(){ bssShow(bssIndex - 1); }
+
+if(bssNext){ bssNext.addEventListener("click", bssGoNext); }
+if(bssPrev){ bssPrev.addEventListener("click", bssGoPrev); }
+
+if(bssPlay){
+  bssPlay.addEventListener("click", function(){
+    bssPlaying = !bssPlaying;
+    bssPlay.textContent = bssPlaying ? "⏸ PAUSE" : "▶ PLAY";
+    if(bssIsVideo(bssFiles[bssIndex]) && bssVideo){
+      if(bssPlaying){ bssVideo.play().catch(function(){}); }
+      else{ bssVideo.pause(); }
+    }
+  });
+}
+
+if(bssImage){ bssImage.addEventListener("error", bssGoNext); }
+if(bssVideo){ bssVideo.addEventListener("error", bssGoNext); }
+
+
+/* =========================================
+   TABLET / MOBILE SWIPE
+========================================= */
+
+var touchStartX = 0;
+
+if(bssStage){
+
+  bssStage.addEventListener("touchstart", function(e){
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  bssStage.addEventListener("touchend", function(e){
+    var diff = touchStartX - e.changedTouches[0].screenX;
+    if(diff > 55){ bssGoNext(); }
+    else if(diff < -55){ bssGoPrev(); }
+  }, { passive: true });
+
+  bssStage.addEventListener("keydown", function(e){
+    if(e.key === "ArrowRight"){ bssGoNext(); }
+    else if(e.key === "ArrowLeft"){ bssGoPrev(); }
+  });
+
+}
+
+
+/* =========================================
+   SLIDESHOW TIMER
+========================================= */
+
+function bssStart(){
+
+  clearInterval(bssTimer);
+
+  bssTimer = setInterval(function(){
+
+    if(!bssPlaying || document.hidden){ return; }
+
+    bssElapsed += BSS_STEP;
+
+    var pct = Math.min(100, (bssElapsed / bssDuration()) * 100);
+    if(bssProgress){ bssProgress.style.width = pct + "%"; }
+
+    if(bssElapsed >= bssDuration()){ bssGoNext(); }
+
+  }, BSS_STEP);
+
+}
+
+
+bssShow(0);
+bssStart();
+
+
+/* =========================================
+   RESPONSIVE NAV RESET
+========================================= */
+
+window.addEventListener("resize", function(){
+  if(window.innerWidth > 1050 && mainNav){
+    mainNav.classList.remove("open");
+    if(menuToggle){ menuToggle.textContent = "☰"; }
+  }
+});
 
 })();
 
