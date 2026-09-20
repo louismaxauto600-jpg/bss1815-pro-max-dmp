@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================
+  NON FICHYE A (FILE NAME) : live-streaming.html
+  SA LI YE                  : MODIL LIVE STREAMING (chanèl YouTube BSS1815 PRO-MAX DMP)
+  KOTE POU W MONTE L        : nan RASIN repo GitHub la (menm kote ak index.html).
+  Fichye sa a PA index.html. Li gen pwòp non li.
+  PA CHANJE NON LI.
+  ==========================================================
+-->
+<html lang="ht" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta name="theme-color" content="#000000">
+<title>LIVE STREAMING | BSS1815 PRO-MAX DMP</title>
+<style>
+:root{--black:#000;--orange:#ff7900;--orange3:#ffad4d;--text:#ffc589;--border:rgba(255,121,0,.28);--border2:rgba(255,121,0,.72);--glow:0 0 18px rgba(255,121,0,.35);--ok:#7cff9b;--bad:#ff6b6b}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{min-height:100vh;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at 18% 10%,rgba(255,121,0,.16),transparent 33%),radial-gradient(circle at 82% 70%,rgba(255,121,0,.09),transparent 38%),linear-gradient(180deg,#000 0%,#0b0400 48%,#000 100%)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.container{width:min(1180px,calc(100% - 28px));margin:auto}
+.top-bar{padding:9px 15px;text-align:center;color:#000;background:linear-gradient(90deg,#913700,var(--orange),var(--orange3),var(--orange),#913700);font-size:.68rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--border);box-shadow:0 8px 28px rgba(0,0,0,.55)}
+.header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand strong{display:block;color:var(--orange);font-size:1rem;font-weight:1000}
+.brand span{display:block;margin-top:5px;color:var(--orange3);font-size:.55rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.navlink{padding:9px 12px;border:1px solid var(--border);border-radius:999px;color:var(--orange3);font-size:.62rem;font-weight:1000;text-transform:uppercase}
+.navlink:hover{background:var(--orange);color:#000}
+.lang-switch{display:flex;gap:3px;padding:3px;border:1px solid var(--border);border-radius:999px;background:#000}
+.lang-btn{min-width:42px;padding:8px 9px;border:0;border-radius:999px;color:var(--orange3);background:#000;cursor:pointer;font-size:.61rem;font-weight:1000}
+.lang-btn.active{color:#000;background:var(--orange)}
+.hero{padding:34px 0 10px;text-align:center}
+.hero h1{color:var(--orange);font-size:clamp(2rem,7vw,4rem);line-height:.95;text-transform:uppercase}
+.hero p{max-width:760px;margin:12px auto 0;line-height:1.7;font-size:.92rem}
+.banner{margin:16px 0 0;padding:12px 16px;border:1px solid var(--border2);border-radius:14px;background:linear-gradient(145deg,rgba(255,121,0,.12),#000);color:var(--orange3);font-size:.72rem;font-weight:1000;line-height:1.6;text-align:center}
+.banner.privacy{font-weight:700;border-color:var(--border)}
+.card{padding:22px;border:1px solid var(--border2);border-radius:22px;background:radial-gradient(circle at 80% 10%,rgba(255,121,0,.13),transparent 36%),linear-gradient(135deg,#000,#100500,#000);box-shadow:var(--glow)}
+.login{max-width:440px;margin:26px auto}
+.login h2{color:var(--orange);font-size:1.15rem;text-transform:uppercase;text-align:center}
+.login p{margin:8px 0 16px;text-align:center;font-size:.82rem;line-height:1.6}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{color:var(--orange3);font-size:.62rem;font-weight:1000;letter-spacing:.06em;text-transform:uppercase}
+.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#0a0400;outline:none;font-size:.9rem}
+.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus{border-color:var(--orange)}
+.field textarea{min-height:90px;resize:vertical}
+.btn{min-height:46px;display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:.68rem;font-weight:1000;text-transform:uppercase;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.btn.primary{color:#000;background:var(--orange)}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn.small{min-height:38px;padding:7px 12px;font-size:.6rem}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.msg{margin-top:10px;font-size:.8rem;line-height:1.5;text-align:center;color:var(--orange3)}
+.msg.bad{color:var(--bad)} .msg.ok{color:var(--ok)}
+.linkbtn{background:none;border:0;color:var(--orange3);text-decoration:underline;cursor:pointer;font-size:.78rem}
+.userbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:14px 0 0;font-size:.74rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{padding:16px 10px;border:1px solid var(--border);border-radius:16px;text-align:center;background:radial-gradient(circle at top,rgba(255,121,0,.10),transparent 55%),#050200}
+.stat strong{display:block;color:var(--orange);font-size:1.7rem}
+.stat span{display:block;margin-top:5px;font-size:.6rem;font-weight:900;letter-spacing:.05em}
+.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:10px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.count{margin:6px 2px 12px;color:var(--orange3);font-size:.72rem;font-weight:1000}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.person{padding:14px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,#100500,#000);cursor:pointer;transition:.2s}
+.person:hover{border-color:var(--orange);transform:translateY(-2px)}
+.person h3{color:var(--orange);font-size:1rem;word-break:break-word}
+.person .sub{margin-top:4px;font-size:.74rem;line-height:1.5;word-break:break-word}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.badge{padding:4px 9px;border:1px solid var(--border);border-radius:999px;font-size:.58rem;font-weight:1000;text-transform:uppercase;color:var(--orange3)}
+.badge.active{color:var(--ok);border-color:rgba(124,255,155,.5)} .badge.inactive{color:var(--bad);border-color:rgba(255,107,107,.5)} .badge.pending{color:var(--orange3)}
+.quick{display:flex;gap:6px;margin-top:10px}
+.quick a{flex:1;text-align:center;padding:8px 4px;border:1px solid var(--border);border-radius:10px;font-size:.62rem;font-weight:1000;color:var(--orange)}
+.quick a:hover{background:var(--orange);color:#000}
+.empty{padding:34px 16px;text-align:center;line-height:1.7;font-size:.86rem;border:1px dashed var(--border2);border-radius:16px}
+.overlay{position:fixed;inset:0;z-index:500;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 12px;background:rgba(0,0,0,.86)}
+.overlay.open{display:flex}
+#form{z-index:600}
+.modal{width:min(640px,100%);padding:22px;border:1px solid var(--border2);border-radius:22px;background:linear-gradient(145deg,#100500,#000);box-shadow:var(--glow)}
+.modal h2{color:var(--orange);font-size:1.1rem;text-transform:uppercase;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.checks{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.check{display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;font-size:.74rem;cursor:pointer}
+.check input{accent-color:var(--orange);width:auto}
+.row-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.info{margin:10px 0;font-size:.82rem;line-height:1.8;word-break:break-word}
+.info b{color:var(--orange3)}
+.timeline{margin-top:10px;display:grid;gap:8px}
+.tl{padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#050200;font-size:.78rem;line-height:1.55;word-break:break-word}
+.tl small{display:block;color:var(--orange3);font-weight:1000;font-size:.6rem;letter-spacing:.05em;margin-bottom:3px;text-transform:uppercase}
+.sect{margin:18px 0 6px;color:var(--orange);font-size:.78rem;font-weight:1000;letter-spacing:.06em}
+.hint{margin-top:8px;font-size:.66rem;color:var(--orange3);line-height:1.5}
+footer{margin-top:40px;padding:30px 0;text-align:center;border-top:1px solid var(--border);background:#000;font-size:.68rem;line-height:1.8}
+footer strong{color:var(--orange)}
+.hidden{display:none!important}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}
+@media(max-width:700px){.list{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.header-inner{padding:8px 0}}
+.tabs{display:flex;gap:8px;justify-content:center;margin:22px 0 6px}
+.tab{min-width:130px;padding:11px 18px;border:2px solid var(--border2);border-radius:999px;color:var(--orange3);background:#000;font-size:.68rem;font-weight:1000;cursor:pointer;text-transform:uppercase}
+.tab.active{color:#000;background:var(--orange);border-color:var(--orange)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0 18px}
+.chip{padding:8px 14px;border:1px solid var(--border);border-radius:999px;color:var(--orange3);background:#000;font-size:.64rem;font-weight:1000;cursor:pointer;text-transform:uppercase}
+.chip.active{color:#000;background:var(--orange3)}
+.feed{display:grid;gap:14px}
+.note{padding:18px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,#100500,#000)}
+.note.urgent{border-color:rgba(255,107,107,.75);box-shadow:0 0 22px rgba(255,107,107,.18)}
+.note.important{border-color:var(--border2)}
+.note .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.note h3{margin:8px 0 6px;color:var(--orange);font-size:1.08rem;line-height:1.3;word-break:break-word}
+.note p{white-space:pre-wrap;font-size:.9rem;line-height:1.75;word-break:break-word}
+.note .meta{margin-top:10px;color:var(--orange3);font-size:.66rem;font-weight:900;letter-spacing:.04em}
+.badge.urgent{color:var(--bad);border-color:rgba(255,107,107,.6)} .badge.important{color:var(--orange)}
+.badge.published{color:var(--ok);border-color:rgba(124,255,155,.5)} .badge.draft{color:var(--orange3)}
+.note .row-btns{margin-top:12px}
+.member-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#050200;font-size:.8rem}
+.member-row b{color:var(--orange)}
+.pre{margin:8px 0 12px;padding:12px 14px;border:1px dashed var(--border2);border-radius:12px;background:#050200;font-size:.78rem;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.stats.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:700px){.tab{min-width:0;flex:1}}
+.player{position:relative;width:100%;aspect-ratio:16/9;border:2px solid var(--orange);border-radius:22px;overflow:hidden;background:#000;box-shadow:0 0 34px rgba(255,121,0,.28)}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player.has-poster{aspect-ratio:auto}
+.player.has-poster .poster{position:relative;inset:auto;padding:30px 20px}
+.poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;background:radial-gradient(circle at 50% 35%,rgba(255,0,0,.22),transparent 55%),linear-gradient(145deg,#140000,#000)}
+.yt-ic{width:92px;height:64px;border-radius:18px;background:#ff0000;display:flex;align-items:center;justify-content:center;box-shadow:0 0 34px rgba(255,0,0,.5)}
+.yt-ic svg{width:34px;height:34px;fill:#fff;margin-left:4px}
+.poster h2{color:var(--orange);font-size:clamp(1.1rem,4.4vw,1.7rem);text-transform:uppercase}
+.poster p{max-width:520px;font-size:.84rem;line-height:1.7}
+.btn.red{border-color:#ff3b3b;background:#ff0000;color:#fff}
+.btn.big{min-height:54px;padding:12px 26px;font-size:.78rem}
+.yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.yt-tile{min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px 8px;border:1px solid var(--border);border-radius:16px;background:#050200;color:var(--orange3);font-size:.64rem;font-weight:1000;text-align:center;text-transform:uppercase;transition:.2s}
+.yt-tile:hover{border-color:var(--orange);transform:translateY(-3px);box-shadow:var(--glow)}
+.yt-tile .e{font-size:1.5rem}
+.sect2{margin:34px 0 4px;text-align:center;color:var(--orange);font-size:.72rem;font-weight:1000;letter-spacing:.18em;text-transform:uppercase}
+.social-icons{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:16px}
+.soc-tile{min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 8px;border:1px solid var(--border);border-radius:18px;background:#050200;color:var(--orange3);font-size:.6rem;font-weight:1000;text-align:center;transition:.2s}
+.soc-tile svg{width:32px;height:32px;fill:var(--orange);transition:.2s}
+.soc-tile:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:var(--glow)}
+.card.radio{margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.card.radio h3{color:var(--orange);text-transform:uppercase;font-size:1rem}
+.card.radio p{font-size:.82rem;line-height:1.6;margin-top:4px}
+@media(max-width:900px){.social-icons{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.yt-grid{grid-template-columns:repeat(2,1fr)}.social-icons{grid-template-columns:repeat(2,1fr)}}
+
+</style>
+</head>
+<body>
+<div class="top-bar" data-i18n="top">BSS1815 PRO-MAX DMP • LIVE STREAMING</div>
+<header>
+<div class="container header-inner">
+  <a class="brand" href="./index.html"><strong>BSS1815 PRO-MAX DMP</strong><span data-i18n="tagline">LIVE STREAMING</span></a>
+  <div class="header-right">
+    <a class="navlink" href="./index.html" data-i18n="home">HOME</a>
+    <a class="navlink" href="./ai-center.html" data-i18n="ai">AI CENTER</a>
+    <div class="lang-switch notranslate" translate="no">
+      <button type="button" class="lang-btn" data-lang="fr">FRA</button>
+      <button type="button" class="lang-btn" data-lang="en">ENG</button>
+      <button type="button" class="lang-btn active" data-lang="ht">KRE</button>
+    </div>
+  </div>
+</div>
+</header>
+
+<main class="container">
+<section class="hero"><h1 data-i18n="title">LIVE STREAMING</h1><p data-i18n="sub">Watch…</p></section>
+
+<div class="player" id="player"></div>
+<div class="actions" style="justify-content:center;margin-top:18px">
+  <a class="btn red big" id="liveBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_live">▶ WATCH LIVE</a>
+  <a class="btn big" id="shareBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="share">SHARE THE LIVE ON WHATSAPP</a>
+</div>
+<div class="hint" style="text-align:center;margin-top:8px" data-i18n="tip"></div>
+
+<div class="sect2" data-i18n="yt_h">OUR YOUTUBE CHANNEL</div>
+<div class="yt-grid" id="ytGrid"></div>
+
+<section id="featured" class="hidden">
+  <div class="sect2" data-i18n="feat_h">FEATURED VIDEO</div>
+  <div class="player" id="featPlayer" style="margin-top:14px"></div>
+</section>
+
+<div class="card radio">
+  <div><h3 data-i18n="radio_h">RADIO PRO-MAX FM</h3><p data-i18n="radio_p">Listen…</p></div>
+  <a class="btn primary" href="./pro-max-fm/index.html" data-i18n="radio_btn">LISTEN</a>
+</div>
+
+<div class="sect2" data-i18n="soc_h">FOLLOW US EVERYWHERE</div>
+<div class="social-icons">
+<a class="soc-tile whatsapp" href="https://wa.me/50943437488" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.373 0 0 5.373 0 12c0 2.116.552 4.181 1.6 6L0 24l6.153-1.613A11.96 11.96 0 0012.004 24C18.63 24 24 18.627 24 12S18.63 0 12.004 0zm0 21.818a9.78 9.78 0 01-4.99-1.366l-.357-.212-3.65.957.974-3.557-.232-.366A9.77 9.77 0 012.182 12c0-5.414 4.407-9.818 9.822-9.818 5.414 0 9.814 4.404 9.814 9.818s-4.4 9.818-9.814 9.818z"/></svg><span>WHATSAPP</span></a>
+<a class="soc-tile facebook" href="https://www.facebook.com/share/1By3KvYRrM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.973h-1.513c-1.49 0-1.956.931-1.956 1.887v2.261h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg><span>FACEBOOK</span></a>
+<a class="soc-tile tiktok" href="https://www.tiktok.com/@maximax1960" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.321 5.562a5.124 5.124 0 01-3.005-.96A5.15 5.15 0 0114.323 1H10.5v14.4a3.2 3.2 0 11-2.2-3.038V8.45a7.03 7.03 0 00-1.2-.104A7.1 7.1 0 1014.2 15.4V8.096a8.94 8.94 0 005.121 1.64V5.562z"/></svg><span>TIKTOK</span></a>
+<a class="soc-tile youtube" href="https://www.youtube.com/@BSS1815PROMAXDMP" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.376-.505a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YOUTUBE</span></a>
+<a class="soc-tile spotify" href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.505 17.308a.75.75 0 01-1.032.249c-2.827-1.728-6.386-2.118-10.578-1.16a.75.75 0 11-.334-1.462c4.587-1.049 8.522-.6 11.695 1.34a.75.75 0 01.249 1.033zm1.475-3.282a.94.94 0 01-1.293.31c-3.237-1.988-8.171-2.564-11.998-1.403a.94.94 0 11-.546-1.799c4.376-1.328 9.813-.685 13.527 1.596a.94.94 0 01.31 1.296zm.126-3.417C15.224 8.304 8.819 8.091 5.11 9.212a1.128 1.128 0 11-.652-2.16c4.26-1.288 11.336-1.038 15.8 1.611a1.128 1.128 0 01-1.152 1.946z"/></svg><span>SPOTIFY</span></a>
+<a class="soc-tile instagram" href="https://www.instagram.com/lebaron072/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838A6.162 6.162 0 1012 18.162 6.162 6.162 0 0012 5.838zm0 10.162a4 4 0 110-8 4 4 0 010 8z"/></svg><span>INSTAGRAM</span></a>
+<a class="soc-tile x-twitter" href="https://x.com/w05g2m" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg><span>X / TWITTER</span></a>
+<a class="soc-tile truthsocial" href="https://truthsocial.com/@briyant_soley_1815" target="_blank" rel="noopener noreferrer" aria-label="Truth Social"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v4H14v14h-4V7H3V3zm13 6h5v4h-5V9zm0 6h5v4h-5v-4z"/></svg><span>TRUTH SOCIAL</span></a>
+<a class="soc-tile telegram" href="https://t.me/+50943437488" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.953 4.57a.74.74 0 00-1.017-.267L1.43 12.48c-1.47.59-1.462 1.41-.268 1.776l5.518 1.724 2.114 6.484c.257.71.13.992.878.992.577 0 .831-.264 1.153-.577l2.653-2.58 5.518 4.077c1.016.56 1.748.27 2.001-.943L24 5.585c.322-1.49-.57-2.166-.047-1.015z"/></svg><span>TELEGRAM</span></a>
+<a class="soc-tile linkedin" href="https://www.linkedin.com/in/maximax-multi-services-075ba2314" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.371 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.555V9H7.12v11.452z"/></svg><span>LINKEDIN</span></a>
+</div>
+</main>
+
+<footer>
+  <strong>BSS1815 PRO-MAX DMP</strong><br>LIVE STREAMING • DIGITAL MANAGEMENT PLATFORM<br>© <span id="year"></span> BSS1815 PRO-MAX DMP<br>
+  <span style="opacity:.55">LIVE STREAMING VERSION 2026.09.20-A</span>
+</footer>
+<script>
+(function(){
+"use strict";
+
+/* =====================================================================
+   YOUTUBE SETTINGS
+   handle          : the name of the channel (from the YouTube link  youtube.com/@BSS1815PROMAXDMP)
+   channelId       : OPTIONAL. Starts with UC... (YouTube Studio > Settings > Channel > Advanced settings).
+                     When it is filled, the live plays INSIDE this page. Empty = the big WATCH LIVE button opens YouTube.
+   featuredVideoId : OPTIONAL. The 11 characters after  watch?v=  of a video you want to show on this page.
+                     You can also test with  live-streaming.html?v=VIDEOID
+===================================================================== */
+var YT = { handle: "BSS1815PROMAXDMP", channelId: "", featuredVideoId: "" };
+
+var I18N = {"top": {"en": "BSS1815 PRO-MAX DMP • LIVE STREAMING", "fr": "BSS1815 PRO-MAX DMP • DIFFUSION EN DIRECT", "ht": "BSS1815 PRO-MAX DMP • LIVE STREAMING"}, "tagline": {"en": "LIVE STREAMING • RADIO • VIDEO • LIVE EVENTS • BROADCAST", "fr": "DIRECT • RADIO • VIDÉO • ÉVÉNEMENTS EN DIRECT • DIFFUSION", "ht": "LIVE STREAMING • RADYO • VIDEYO • LIV EVÈNMAN • DIFIZYON"}, "home": {"en": "HOME", "fr": "ACCUEIL", "ht": "AKÈY"}, "ai": {"en": "AI CENTER", "fr": "CENTRE IA", "ht": "AI CENTER"}, "title": {"en": "LIVE STREAMING", "fr": "DIFFUSION EN DIRECT", "ht": "LIVE STREAMING"}, "sub": {"en": "Watch the BSS1815 PRO-MAX DMP live shows and videos on our official YouTube channel.", "fr": "Regardez les directs et vidéos de BSS1815 PRO-MAX DMP sur notre chaîne YouTube officielle.", "ht": "Gade live ak videyo BSS1815 PRO-MAX DMP yo sou chanèl YouTube ofisyèl nou an."}, "poster_h": {"en": "WATCH THE LIVE ON YOUTUBE", "fr": "REGARDEZ LE DIRECT SUR YOUTUBE", "ht": "GADE LIVE LA SOU YOUTUBE"}, "poster_p": {"en": "Press the button: if we are live, the live opens right away. If not, our latest video opens.", "fr": "Appuyez sur le bouton : si nous sommes en direct, le direct s'ouvre tout de suite. Sinon, notre dernière vidéo s'ouvre.", "ht": "Peze bouton an: si nou an live, live la louvri touswit. Si non, dènye videyo nou an louvri."}, "btn_live": {"en": "▶ WATCH LIVE", "fr": "▶ REGARDER LE DIRECT", "ht": "▶ GADE LIVE LA"}, "yt_h": {"en": "OUR YOUTUBE CHANNEL", "fr": "NOTRE CHAÎNE YOUTUBE", "ht": "CHANÈL YOUTUBE NOU AN"}, "y_live": {"en": "LIVE NOW", "fr": "EN DIRECT", "ht": "LIVE KOUNYE A"}, "y_videos": {"en": "VIDEOS", "fr": "VIDÉOS", "ht": "VIDEYO"}, "y_shorts": {"en": "SHORTS", "fr": "SHORTS", "ht": "SHORTS"}, "y_playlists": {"en": "PLAYLISTS", "fr": "PLAYLISTS", "ht": "PLAYLIST"}, "y_channel": {"en": "CHANNEL", "fr": "CHAÎNE", "ht": "CHANÈL"}, "y_sub": {"en": "SUBSCRIBE", "fr": "S'ABONNER", "ht": "ABONE"}, "tip": {"en": "Tip: tap SUBSCRIBE, then the bell 🔔 and choose “All”, to be notified when we go live.", "fr": "Astuce : touchez S'ABONNER, puis la cloche 🔔 et choisissez « Toutes », pour être averti quand nous passons en direct.", "ht": "Konsèy: peze ABONE, apre sa klòch la 🔔 epi chwazi « Tout », pou w jwenn avètisman lè nou ap fè live."}, "share": {"en": "SHARE THE LIVE ON WHATSAPP", "fr": "PARTAGER LE DIRECT SUR WHATSAPP", "ht": "PATAJE LIVE LA SOU WHATSAPP"}, "share_txt": {"en": "🔴 BSS1815 PRO-MAX DMP is live! Watch here:", "fr": "🔴 BSS1815 PRO-MAX DMP est en direct ! Regardez ici :", "ht": "🔴 BSS1815 PRO-MAX DMP ap fè live! Gade isit la:"}, "feat_h": {"en": "FEATURED VIDEO", "fr": "VIDÉO EN VEDETTE", "ht": "VIDEYO ENPÒTAN"}, "radio_h": {"en": "RADIO PRO-MAX FM", "fr": "RADIO PRO-MAX FM", "ht": "RADYO PRO-MAX FM"}, "radio_p": {"en": "Listen to our digital radio.", "fr": "Écoutez notre radio numérique.", "ht": "Koute radyo dijital nou an."}, "radio_btn": {"en": "LISTEN", "fr": "ÉCOUTER", "ht": "KOUTE"}, "soc_h": {"en": "FOLLOW US EVERYWHERE", "fr": "SUIVEZ-NOUS PARTOUT", "ht": "SIVI NOU NAN TOUT KOTE"}};
+var lang = "ht";
+function t(k){ return (I18N[k] && (I18N[k][lang] || I18N[k].en)) || k; }
+function $(id){ return document.getElementById(id); }
+function el(tag, cls, text){ var e = document.createElement(tag); if(cls){ e.className = cls; } if(text !== undefined){ e.textContent = text; } return e; }
+
+var BASE = "https://www.youtube.com/@" + YT.handle;
+var URLS = { live: BASE + "/live", videos: BASE + "/videos", shorts: BASE + "/shorts", playlists: BASE + "/playlists", channel: BASE, sub: BASE + "?sub_confirmation=1" };
+
+function buildPlayer(){
+  var box = $("player"); box.textContent = "";
+  if(/^UC[A-Za-z0-9_-]{22}$/.test(YT.channelId)){
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube.com/embed/live_stream?channel=" + YT.channelId; f.title = "BSS1815 PRO-MAX DMP LIVE";
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen"; f.setAttribute("allowfullscreen", ""); f.setAttribute("loading", "lazy");
+    box.appendChild(f); return;
+  }
+  box.classList.add("has-poster"); $("liveBtn").classList.add("hidden");   /* the poster already has the big WATCH LIVE button */
+  var p = el("div", "poster");
+  var ic = el("div", "yt-ic"); ic.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'; p.appendChild(ic);
+  var h = el("h2", "", t("poster_h")); h.setAttribute("data-i18n", "poster_h"); p.appendChild(h);
+  var q = el("p", "", t("poster_p")); q.setAttribute("data-i18n", "poster_p"); p.appendChild(q);
+  var a = el("a", "btn red big", t("btn_live")); a.setAttribute("data-i18n", "btn_live"); a.href = URLS.live; a.target = "_blank"; a.rel = "noopener noreferrer"; p.appendChild(a);
+  box.appendChild(p);
+}
+
+function buildGrid(){
+  var g = $("ytGrid"); g.textContent = "";
+  [["🔴", "y_live", URLS.live], ["🎬", "y_videos", URLS.videos], ["⚡", "y_shorts", URLS.shorts], ["📚", "y_playlists", URLS.playlists], ["📺", "y_channel", URLS.channel], ["🔔", "y_sub", URLS.sub]].forEach(function(x){
+    var a = el("a", "yt-tile"); a.href = x[2]; a.target = "_blank"; a.rel = "noopener noreferrer";
+    a.appendChild(el("span", "e", x[0])); var s = el("span", "", t(x[1])); s.setAttribute("data-i18n", x[1]); a.appendChild(s); g.appendChild(a);
+  });
+}
+
+function featured(){
+  var id = "", m = /[?&]v=([A-Za-z0-9_-]{11})(?:&|$)/.exec(location.search);
+  if(m){ id = m[1]; } else if(/^[A-Za-z0-9_-]{11}$/.test(YT.featuredVideoId)){ id = YT.featuredVideoId; }
+  if(!id){ return; }
+  var f = document.createElement("iframe"); f.src = "https://www.youtube-nocookie.com/embed/" + id; f.title = "BSS1815 PRO-MAX DMP video";
+  f.allow = "accelerometer; encrypted-media; picture-in-picture; fullscreen"; f.setAttribute("allowfullscreen", ""); f.setAttribute("loading", "lazy");
+  $("featPlayer").appendChild(f); $("featured").classList.remove("hidden");
+}
+
+function applyLanguage(l){
+  if(["en", "fr", "ht"].indexOf(l) === -1){ l = "ht"; } lang = l; document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(function(e){ e.textContent = t(e.getAttribute("data-i18n")); });
+  document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-lang") === l); });
+  try{ localStorage.setItem("bss1815Language", l); }catch(e){}
+  $("shareBtn").href = "https://wa.me/?text=" + encodeURIComponent(t("share_txt") + " " + URLS.live);
+}
+
+function boot(){
+  $("year").textContent = new Date().getFullYear();
+  $("liveBtn").href = URLS.live;
+  buildPlayer(); buildGrid(); featured();
+  var saved = "ht"; try{ saved = localStorage.getItem("bss1815Language") || "ht"; }catch(e){}
+  document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ applyLanguage(b.getAttribute("data-lang")); }); });
+  applyLanguage(saved);
+}
+boot();
+})();
+
+</script>
+</body>
+</html>
