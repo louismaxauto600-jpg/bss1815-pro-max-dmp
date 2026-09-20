@@ -2,45 +2,32 @@
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI CENTER | BSS1815 PRO-MAX DMP</title>
+<title>AI Center | BSS1815 PRO-MAX DMP</title>
 
-<meta
-  name="description"
-  content="BSS1815 PRO-MAX DMP AI Center — Assistant, Writer, Voice, Automation ak zouti entèlijans atifisyèl."
->
-
+<meta name="description" content="BSS1815 PRO-MAX DMP AI Center — Assistant, Writer, Voice, Translation, Research and Automation tools.">
 <meta name="theme-color" content="#000000">
 
 <style>
-
 :root{
-  --black:#000;
+  --black:#000000;
   --black2:#080300;
-  --black3:#120600;
-
+  --black3:#130700;
   --orange:#ff7900;
-  --orange2:#ff8c1a;
-  --orange3:#ffad4d;
-
-  --text:#ffc589;
-
-  --border:rgba(255,121,0,.30);
+  --apricot:#ffad4d;
+  --text:#ffd0a1;
+  --muted:#c98550;
+  --border:rgba(255,121,0,.32);
   --border2:rgba(255,121,0,.75);
-
-  --glow:
-    0 0 18px rgba(255,121,0,.35);
-
-  --glow2:
-    0 0 20px rgba(255,121,0,.65),
-    0 0 50px rgba(255,121,0,.20);
+  --shadow:0 0 22px rgba(255,121,0,.22);
+  --glow:0 0 20px rgba(255,121,0,.55);
 }
 
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
 html{
@@ -49,61 +36,24 @@ html{
 
 body{
   min-height:100vh;
-
-  overflow-x:hidden;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  font-family:Arial,Helvetica,sans-serif;
   color:var(--text);
-
   background:
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(255,121,0,.16),
-      transparent 32%
-    ),
-
-    radial-gradient(
-      circle at 85% 75%,
-      rgba(255,121,0,.10),
-      transparent 36%
-    ),
-
-    linear-gradient(
-      180deg,
-      #000 0%,
-      #0b0400 50%,
-      #000 100%
-    );
+    radial-gradient(circle at 15% 12%,rgba(255,121,0,.17),transparent 32%),
+    radial-gradient(circle at 85% 80%,rgba(255,173,77,.10),transparent 34%),
+    linear-gradient(180deg,#000 0%,#100500 50%,#000 100%);
 }
 
 body::before{
   content:"";
-
   position:fixed;
   inset:0;
-
   z-index:-1;
-
   pointer-events:none;
-
   background-image:
-    linear-gradient(
-      rgba(255,121,0,.024) 1px,
-      transparent 1px
-    ),
-
-    linear-gradient(
-      90deg,
-      rgba(255,121,0,.024) 1px,
-      transparent 1px
-    );
-
-  background-size:
-    42px 42px;
+    linear-gradient(rgba(255,121,0,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,121,0,.025) 1px,transparent 1px);
+  background-size:42px 42px;
 }
 
 a{
@@ -112,8 +62,8 @@ a{
 }
 
 button,
-textarea,
 input,
+textarea,
 select{
   font:inherit;
 }
@@ -123,1322 +73,624 @@ button{
 }
 
 .container{
-  width:min(
-    1220px,
-    calc(100% - 28px)
-  );
-
+  width:min(1220px,calc(100% - 28px));
   margin:auto;
 }
 
-/* ===================================
-   TOP BAR
-=================================== */
+/* ================= TOP BAR ================= */
 
-.top-bar{
-  padding:
-    9px 15px;
-
+.topbar{
+  padding:9px 15px;
   text-align:center;
-
   color:#000;
-
-  background:
-    linear-gradient(
-      90deg,
-      #913700,
-      var(--orange),
-      var(--orange3),
-      var(--orange),
-      #913700
-    );
-
+  background:linear-gradient(
+    90deg,
+    #8c3300,
+    var(--orange),
+    var(--apricot),
+    var(--orange),
+    #8c3300
+  );
   font-size:.68rem;
-
   font-weight:1000;
-
   letter-spacing:.08em;
-
   text-transform:uppercase;
 }
 
-/* ===================================
-   HEADER
-=================================== */
+/* ================= HEADER ================= */
 
 header{
   position:sticky;
   top:0;
-
   z-index:1000;
-
-  background:
-    rgba(0,0,0,.97);
-
-  border-bottom:
-    1px solid var(--border);
-
-  backdrop-filter:
-    blur(15px);
-
-  box-shadow:
-    0 8px 30px
-    rgba(0,0,0,.55);
+  border-bottom:1px solid var(--border);
+  background:rgba(0,0,0,.96);
+  backdrop-filter:blur(14px);
 }
 
 .header-inner{
   min-height:82px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
-  gap:18px;
+  gap:16px;
 }
 
 .brand{
   display:flex;
-
   align-items:center;
-
-  gap:13px;
+  gap:12px;
 }
 
-.logo-box{
-  width:58px;
-  height:58px;
-
+.brand-icon{
+  width:55px;
+  height:55px;
   display:grid;
-
   place-items:center;
-
-  border:
-    2px solid var(--orange);
-
-  border-radius:16px;
-
+  flex-shrink:0;
+  border:2px solid var(--orange);
+  border-radius:15px;
   background:#000;
-
   box-shadow:var(--glow);
-
   font-size:1.7rem;
 }
 
-.brand strong{
+.brand-text strong{
   display:block;
-
   color:var(--orange);
-
   font-size:1rem;
-
   font-weight:1000;
 }
 
-.brand span{
+.brand-text span{
   display:block;
-
-  margin-top:5px;
-
-  color:var(--orange3);
-
-  font-size:.56rem;
-
+  margin-top:4px;
+  color:var(--apricot);
+  font-size:.55rem;
   font-weight:900;
-
-  letter-spacing:.09em;
-
+  letter-spacing:.08em;
   text-transform:uppercase;
 }
 
 .header-actions{
   display:flex;
-
   align-items:center;
-
-  gap:9px;
+  gap:8px;
 }
 
-.home-btn{
-  padding:
-    10px 15px;
-
-  border:
-    1px solid var(--orange);
-
+.header-btn{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 15px;
+  border:1px solid var(--orange);
   border-radius:999px;
-
   color:var(--orange);
-
   background:#000;
-
   font-size:.62rem;
-
   font-weight:1000;
-
   text-transform:uppercase;
+  transition:.2s;
 }
 
-.home-btn:hover{
+.header-btn:hover{
   color:#000;
-
   background:var(--orange);
 }
 
-/* LANGUAGE */
-
-.lang-switch{
+.lang{
   display:flex;
-
   gap:3px;
-
   padding:3px;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:999px;
-
   background:#000;
 }
 
-.lang-btn{
-  min-width:38px;
-
-  padding:
-    8px 7px;
-
+.lang button{
+  min-width:40px;
+  padding:8px;
   border:0;
-
   border-radius:999px;
-
-  color:var(--orange3);
-
+  color:var(--apricot);
   background:#000;
-
-  font-size:.60rem;
-
+  font-size:.58rem;
   font-weight:1000;
 }
 
-.lang-btn.active{
+.lang button.active{
   color:#000;
-
   background:var(--orange);
 }
 
-/* ===================================
-   HERO
-=================================== */
+/* ================= HERO ================= */
 
 .hero{
-  padding:
-    70px 0 60px;
-
-  text-align:center;
-}
-
-.hero-badge{
-  display:inline-flex;
-
-  padding:
-    9px 16px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:999px;
-
-  color:var(--orange);
-
-  background:
-    rgba(255,121,0,.07);
-
-  font-size:.67rem;
-
-  font-weight:1000;
-
-  letter-spacing:.14em;
-
-  text-transform:uppercase;
-}
-
-.ai-orb{
-  width:190px;
-  height:190px;
-
-  margin:
-    30px auto 0;
-
-  display:grid;
-
-  place-items:center;
-
-  border:
-    2px solid var(--orange);
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,173,77,.20),
-      rgba(255,121,0,.08) 45%,
-      #000 75%
-    );
-
-  box-shadow:var(--glow2);
-
-  position:relative;
-
-  font-size:4rem;
-
-  animation:
-    pulse 3s ease-in-out infinite;
-}
-
-.ai-orb::before,
-.ai-orb::after{
-  content:"";
-
-  position:absolute;
-
-  border:
-    1px solid rgba(255,121,0,.45);
-
-  border-radius:50%;
-}
-
-.ai-orb::before{
-  inset:-16px;
-
-  animation:
-    rotate 12s linear infinite;
-}
-
-.ai-orb::after{
-  inset:19px;
-
-  border-style:dashed;
-
-  animation:
-    rotateReverse 8s linear infinite;
-}
-
-@keyframes pulse{
-
-  0%,
-  100%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.04);
-  }
-
-}
-
-@keyframes rotate{
-
-  from{
-    transform:rotate(0deg);
-  }
-
-  to{
-    transform:rotate(360deg);
-  }
-
-}
-
-@keyframes rotateReverse{
-
-  from{
-    transform:rotate(360deg);
-  }
-
-  to{
-    transform:rotate(0deg);
-  }
-
-}
-
-.hero h1{
-  margin-top:32px;
-
-  color:var(--orange);
-
-  font-size:
-    clamp(
-      2.8rem,
-      8vw,
-      6.5rem
-    );
-
-  line-height:.88;
-
-  text-transform:uppercase;
-}
-
-.hero h2{
-  margin-top:15px;
-
-  color:var(--orange3);
-
-  font-size:
-    clamp(
-      .95rem,
-      3vw,
-      1.35rem
-    );
-
-  text-transform:uppercase;
-}
-
-.hero p{
-  max-width:850px;
-
-  margin:
-    20px auto 0;
-
-  line-height:1.75;
-
-  font-size:.94rem;
-}
-
-/* ===================================
-   STATUS
-=================================== */
-
-.status-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:14px;
-
-  margin-top:42px;
-}
-
-.status-card{
-  min-height:110px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  align-items:center;
-
-  padding:18px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:18px;
-
-  background:
-    #050200;
-}
-
-.status-card strong{
-  color:var(--orange);
-
-  font-size:1.35rem;
-}
-
-.status-card span{
-  margin-top:7px;
-
-  font-size:.60rem;
-
-  font-weight:900;
-
-  text-transform:uppercase;
-}
-
-/* ===================================
-   SECTION
-=================================== */
-
-.section{
-  padding:
-    75px 0;
-
-  border-top:
-    1px solid rgba(255,121,0,.10);
-}
-
-.section-head{
-  max-width:760px;
-
-  margin:
-    0 auto 38px;
-
+  padding:72px 0 48px;
   text-align:center;
 }
 
 .eyebrow{
   color:var(--orange);
-
-  font-size:.66rem;
-
+  font-size:.69rem;
   font-weight:1000;
-
-  letter-spacing:.16em;
-
+  letter-spacing:.18em;
   text-transform:uppercase;
 }
 
-.section-title{
-  margin-top:11px;
+.hero-icon{
+  width:115px;
+  height:115px;
+  display:grid;
+  place-items:center;
+  margin:25px auto 20px;
+  border:2px solid var(--orange);
+  border-radius:30px;
+  background:
+    radial-gradient(circle,rgba(255,121,0,.20),transparent 65%),
+    #000;
+  box-shadow:var(--glow);
+  font-size:3.8rem;
+}
 
+.hero h1{
   color:var(--orange);
-
-  font-size:
-    clamp(
-      2rem,
-      5vw,
-      3.8rem
-    );
-
-  line-height:.95;
-
+  font-size:clamp(2.7rem,8vw,6rem);
+  line-height:.9;
   text-transform:uppercase;
 }
 
-.section-desc{
-  margin-top:16px;
-
-  line-height:1.7;
+.hero h2{
+  margin-top:14px;
+  color:var(--apricot);
+  font-size:clamp(.95rem,3vw,1.35rem);
+  text-transform:uppercase;
 }
 
-/* ===================================
-   AI WORKSPACE
-=================================== */
+.hero p{
+  max-width:820px;
+  margin:18px auto 0;
+  line-height:1.75;
+  font-size:.92rem;
+}
+
+.status-row{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
+}
+
+.status{
+  padding:9px 14px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  color:var(--apricot);
+  background:#050200;
+  font-size:.62rem;
+  font-weight:900;
+}
+
+.status strong{
+  color:var(--orange);
+}
+
+/* ================= AI TOOLS ================= */
+
+.section{
+  padding:48px 0 80px;
+}
+
+.section-head{
+  margin-bottom:28px;
+  text-align:center;
+}
+
+.section-head h2{
+  color:var(--orange);
+  font-size:clamp(1.8rem,5vw,3.3rem);
+  text-transform:uppercase;
+}
+
+.section-head p{
+  max-width:760px;
+  margin:10px auto 0;
+  line-height:1.65;
+  font-size:.82rem;
+}
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.tool-card{
+  min-height:210px;
+  display:flex;
+  flex-direction:column;
+  padding:21px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at top right,rgba(255,121,0,.13),transparent 38%),
+    linear-gradient(145deg,#000,#0c0400);
+  transition:.25s;
+}
+
+.tool-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--orange);
+  box-shadow:var(--shadow);
+}
+
+.tool-icon{
+  font-size:2rem;
+}
+
+.tool-card h3{
+  margin-top:14px;
+  color:var(--orange);
+  font-size:.92rem;
+  text-transform:uppercase;
+}
+
+.tool-card p{
+  margin-top:8px;
+  line-height:1.55;
+  font-size:.73rem;
+}
+
+.tool-open{
+  margin-top:auto;
+  padding-top:18px;
+  color:var(--orange);
+  font-size:.61rem;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+/* ================= WORKSPACE ================= */
 
 .workspace{
+  margin-top:35px;
   overflow:hidden;
-
-  border:
-    1px solid var(--border2);
-
-  border-radius:25px;
-
+  border:1px solid var(--border2);
+  border-radius:24px;
   background:
-    linear-gradient(
-      145deg,
-      #070200,
-      #000
-    );
-
-  box-shadow:var(--glow);
+    radial-gradient(circle at top right,rgba(255,121,0,.12),transparent 32%),
+    #030100;
+  box-shadow:var(--shadow);
 }
 
-.workspace-tabs{
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:1px;
-
-  background:
-    var(--border);
+.workspace-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:20px 22px;
+  border-bottom:1px solid var(--border);
 }
 
-.workspace-tab{
-  padding:
-    18px 10px;
-
-  border:0;
-
-  color:var(--orange3);
-
-  background:#070200;
-
-  font-size:.68rem;
-
-  font-weight:1000;
-
+.workspace-header h2{
+  color:var(--orange);
+  font-size:1rem;
   text-transform:uppercase;
 }
 
-.workspace-tab.active{
-  color:#000;
-
-  background:var(--orange);
+.workspace-status{
+  padding:7px 11px;
+  border:1px solid var(--orange);
+  border-radius:999px;
+  color:var(--orange);
+  font-size:.55rem;
+  font-weight:1000;
 }
 
 .workspace-body{
-  padding:
-    28px;
-}
-
-.tool-panel{
-  display:none;
-}
-
-.tool-panel.active{
-  display:block;
-}
-
-.tool-grid{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:24px;
+  grid-template-columns:1fr 1fr;
 }
 
-.input-box,
-.output-box{
-  min-height:430px;
-
+.input-panel,
+.output-panel{
   padding:22px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:20px;
-
-  background:#030100;
 }
 
-.panel-label{
-  color:var(--orange);
+.input-panel{
+  border-right:1px solid var(--border);
+}
 
-  font-size:.68rem;
-
+.panel-title{
+  margin-bottom:10px;
+  color:var(--apricot);
+  font-size:.65rem;
   font-weight:1000;
-
-  letter-spacing:.08em;
-
   text-transform:uppercase;
 }
 
-textarea{
+.tool-select{
   width:100%;
-  min-height:230px;
-
-  margin-top:15px;
-
-  resize:vertical;
-
-  padding:16px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:15px;
-
+  min-height:46px;
+  margin-bottom:12px;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:11px;
   outline:none;
-
-  color:var(--orange3);
-
+  color:var(--text);
   background:#000;
+}
 
+.ai-input{
+  width:100%;
+  min-height:260px;
+  resize:vertical;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  outline:none;
+  color:var(--text);
+  background:#000;
   line-height:1.65;
 }
 
-textarea:focus{
+.ai-input:focus,
+.tool-select:focus{
   border-color:var(--orange);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(255,121,0,.08);
+  box-shadow:0 0 0 3px rgba(255,121,0,.08);
 }
 
-.select-row{
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:10px;
-
-  margin-top:12px;
-}
-
-select,
-input{
-  width:100%;
-
-  padding:
-    13px 14px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:12px;
-
-  outline:none;
-
-  color:var(--orange3);
-
-  background:#000;
+.ai-input::placeholder{
+  color:#91552c;
 }
 
 .action-row{
   display:flex;
-
   flex-wrap:wrap;
-
-  gap:10px;
-
-  margin-top:15px;
+  gap:9px;
+  margin-top:12px;
 }
 
 .action-btn{
-  min-height:45px;
-
-  padding:
-    10px 17px;
-
-  border:
-    1px solid var(--orange);
-
+  min-height:43px;
+  padding:10px 16px;
+  border:1px solid var(--orange);
   border-radius:999px;
-
   color:#000;
-
   background:var(--orange);
-
-  font-size:.63rem;
-
+  font-size:.61rem;
   font-weight:1000;
-
   text-transform:uppercase;
 }
 
 .action-btn.secondary{
   color:var(--orange);
-
   background:#000;
 }
 
 .action-btn:hover{
   box-shadow:var(--glow);
-
-  transform:
-    translateY(-2px);
 }
 
-.output-content{
-  min-height:260px;
-
-  margin-top:15px;
-
-  padding:18px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:15px;
-
-  color:var(--orange3);
-
-  background:#000;
-
-  line-height:1.7;
-
+.output-box{
+  min-height:319px;
+  padding:16px;
+  overflow-wrap:anywhere;
   white-space:pre-wrap;
+  border:1px solid var(--border);
+  border-radius:14px;
+  color:var(--apricot);
+  background:#000;
+  line-height:1.7;
+  font-size:.82rem;
 }
 
-.output-actions{
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:9px;
-
-  margin-top:14px;
+.output-placeholder{
+  color:#89502d;
 }
 
-/* ===================================
-   QUICK TOOLS
-=================================== */
+/* ================= QUICK ACTIONS ================= */
 
 .quick-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:15px;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:35px;
 }
 
 .quick-card{
-  min-height:210px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  padding:22px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:19px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #050200,
-      #000
-    );
-
-  transition:.25s;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:#050200;
 }
 
-.quick-card:hover{
-  transform:
-    translateY(-5px);
-
-  border-color:var(--orange);
-
-  box-shadow:var(--glow);
-}
-
-.quick-icon{
-  font-size:1.8rem;
-}
-
-.quick-card h3{
-  margin-top:16px;
-
+.quick-card strong{
+  display:block;
   color:var(--orange);
-
-  font-size:.90rem;
-
+  font-size:.76rem;
   text-transform:uppercase;
 }
 
 .quick-card p{
-  margin-top:10px;
-
+  margin-top:8px;
   line-height:1.55;
-
-  font-size:.75rem;
+  font-size:.72rem;
 }
 
-.quick-card button{
-  margin-top:auto;
-
-  padding:
-    10px 12px;
-
-  border:
-    1px solid var(--orange);
-
-  border-radius:999px;
-
-  color:var(--orange);
-
-  background:#000;
-
-  font-size:.60rem;
-
-  font-weight:1000;
-
-  text-transform:uppercase;
-}
-
-.quick-card button:hover{
-  color:#000;
-
-  background:var(--orange);
-}
-
-/* ===================================
-   VOICE
-=================================== */
-
-.voice-box{
-  max-width:820px;
-
-  margin:auto;
-
-  padding:30px;
-
-  border:
-    1px solid var(--border2);
-
-  border-radius:24px;
-
-  text-align:center;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(255,121,0,.12),
-      transparent 40%
-    ),
-    #050200;
-}
-
-.voice-icon{
-  width:110px;
-  height:110px;
-
-  margin:auto;
-
-  display:grid;
-
-  place-items:center;
-
-  border:
-    2px solid var(--orange);
-
-  border-radius:50%;
-
-  color:var(--orange);
-
-  background:#000;
-
-  box-shadow:var(--glow);
-
-  font-size:2.7rem;
-}
-
-.voice-box textarea{
-  min-height:150px;
-}
-
-/* ===================================
-   AUTOMATION
-=================================== */
-
-.automation-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:16px;
-}
-
-.automation-card{
-  min-height:230px;
-
-  padding:23px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:19px;
-
-  background:#050200;
-}
-
-.automation-card h3{
-  color:var(--orange);
-
-  font-size:.90rem;
-
-  text-transform:uppercase;
-}
-
-.automation-card p{
-  margin-top:11px;
-
-  line-height:1.6;
-
-  font-size:.78rem;
-}
-
-.automation-card .status{
-  display:inline-flex;
-
-  margin-top:18px;
-
-  padding:
-    7px 11px;
-
-  border:
-    1px solid var(--orange);
-
-  border-radius:999px;
-
-  color:var(--orange);
-
-  font-size:.58rem;
-
-  font-weight:1000;
-
-  text-transform:uppercase;
-}
-
-/* ===================================
-   HISTORY
-=================================== */
-
-.history-box{
-  border:
-    1px solid var(--border);
-
-  border-radius:20px;
-
-  overflow:hidden;
-
-  background:#050200;
-}
-
-.history-header{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  padding:18px;
-
-  border-bottom:
-    1px solid var(--border);
-}
-
-.history-header strong{
-  color:var(--orange);
-
-  font-size:.76rem;
-
-  text-transform:uppercase;
-}
-
-.clear-btn{
-  padding:
-    8px 12px;
-
-  border:
-    1px solid var(--orange);
-
-  border-radius:999px;
-
-  color:var(--orange);
-
-  background:#000;
-
-  font-size:.58rem;
-
-  font-weight:1000;
-}
-
-.history-list{
-  padding:12px;
-}
-
-.history-item{
-  padding:14px;
-
-  border-bottom:
-    1px solid rgba(255,121,0,.12);
-
-  font-size:.76rem;
-
-  line-height:1.5;
-}
-
-.history-item:last-child{
-  border-bottom:0;
-}
-
-/* ===================================
-   FOOTER
-=================================== */
+/* ================= FOOTER ================= */
 
 footer{
-  padding:
-    42px 0;
-
+  padding:38px 0;
   text-align:center;
-
-  border-top:
-    1px solid var(--border);
-
+  border-top:1px solid var(--border);
   background:#000;
 }
 
 .footer-title{
   color:var(--orange);
-
   font-weight:1000;
 }
 
 .footer-text{
-  margin-top:10px;
-
+  margin-top:8px;
   line-height:1.7;
-
-  font-size:.68rem;
+  font-size:.67rem;
 }
 
-/* ===================================
-   RESPONSIVE
-=================================== */
+/* ================= RESPONSIVE ================= */
 
-@media(max-width:950px){
-
-  .tool-grid{
-    grid-template-columns:1fr;
+@media(max-width:1000px){
+  .tools-grid{
+    grid-template-columns:repeat(2,1fr);
   }
-
-  .quick-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .automation-grid{
-    grid-template-columns:1fr;
-  }
-
 }
 
-@media(max-width:720px){
-
+@media(max-width:760px){
   .header-inner{
     min-height:74px;
   }
 
-  .brand span{
+  .brand-text span{
     display:none;
   }
 
-  .home-btn{
-    padding:
-      8px 10px;
-
-    font-size:.54rem;
-  }
-
-  .status-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .workspace-tabs{
-    grid-template-columns:
-      repeat(2,1fr);
+  .header-btn.dashboard{
+    display:none;
   }
 
   .workspace-body{
-    padding:17px;
-  }
-
-  .select-row{
     grid-template-columns:1fr;
   }
 
-}
-
-@media(max-width:520px){
-
-  .logo-box{
-    width:48px;
-    height:48px;
-  }
-
-  .brand strong{
-    font-size:.73rem;
-  }
-
-  .lang-btn{
-    min-width:32px;
-
-    padding:
-      7px 5px;
+  .input-panel{
+    border-right:0;
+    border-bottom:1px solid var(--border);
   }
 
   .quick-grid{
     grid-template-columns:1fr;
   }
-
-  .hero{
-    padding-top:45px;
-  }
-
 }
 
+@media(max-width:540px){
+  .tools-grid{
+    grid-template-columns:1fr;
+  }
+
+  .brand-icon{
+    width:48px;
+    height:48px;
+  }
+
+  .header-btn{
+    padding:8px 11px;
+  }
+
+  .lang button{
+    min-width:34px;
+  }
+
+  .hero{
+    padding-top:48px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- =====================================
-     TOP BAR
-===================================== -->
-
-<div
-class="top-bar"
-data-ht="🤖 BSS1815 PRO-MAX DMP — AI CENTER — ENTÈLIJANS • KREYASYON • OTOMATIZASYON"
-data-fr="🤖 BSS1815 PRO-MAX DMP — AI CENTER — INTELLIGENCE • CRÉATION • AUTOMATISATION"
-data-en="🤖 BSS1815 PRO-MAX DMP — AI CENTER — INTELLIGENCE • CREATION • AUTOMATION"
->
-🤖 BSS1815 PRO-MAX DMP — AI CENTER — ENTÈLIJANS • KREYASYON • OTOMATIZASYON
+<div class="topbar"
+data-kre="BSS1815 PRO-MAX DMP • AI CENTER • DEVAN DEVAN NÈT™"
+data-eng="BSS1815 PRO-MAX DMP • AI CENTER • DEVAN DEVAN NÈT™"
+data-fra="BSS1815 PRO-MAX DMP • CENTRE IA • DEVAN DEVAN NÈT™">
+BSS1815 PRO-MAX DMP • AI CENTER • DEVAN DEVAN NÈT™
 </div>
-
-<!-- =====================================
-     HEADER
-===================================== -->
 
 <header>
-
 <div class="container header-inner">
 
-<a
-href="../../index.html"
-class="brand"
->
+<a href="../../index.html" class="brand">
+<div class="brand-icon">🤖</div>
 
-<div class="logo-box">
-🤖
-</div>
-
-<div>
-
-<strong>
-BSS1815 AI CENTER
-</strong>
-
+<div class="brand-text">
+<strong>BSS1815 PRO-MAX DMP</strong>
 <span
-data-ht="ENTÈLIJANS ATIFISYÈL SANTRAL"
-data-fr="CENTRE D’INTELLIGENCE ARTIFICIELLE"
-data-en="ARTIFICIAL INTELLIGENCE CENTER"
->
-ENTÈLIJANS ATIFISYÈL SANTRAL
+data-kre="AI CENTER • SMART DIGITAL TOOLS"
+data-eng="AI CENTER • SMART DIGITAL TOOLS"
+data-fra="CENTRE IA • OUTILS NUMÉRIQUES">
+AI CENTER • SMART DIGITAL TOOLS
 </span>
-
 </div>
-
 </a>
 
 <div class="header-actions">
 
-<a
-href="../../index.html"
-class="home-btn"
-data-ht="← RETOUNEN AKÈY"
-data-fr="← RETOUR ACCUEIL"
-data-en="← BACK HOME"
->
-← RETOUNEN AKÈY
+<a href="../../index.html"
+class="header-btn"
+data-kre="← HOMEPAGE"
+data-eng="← HOMEPAGE"
+data-fra="← ACCUEIL">
+← HOMEPAGE
 </a>
 
-<div class="lang-switch">
+<a href="../../my-maximax-dashboard.html"
+class="header-btn dashboard"
+data-kre="MY MAXIMAX"
+data-eng="MY MAXIMAX"
+data-fra="MY MAXIMAX">
+MY MAXIMAX
+</a>
 
-<button
-type="button"
-class="lang-btn active"
-data-lang="ht"
->
-KRE
-</button>
-
-<button
-type="button"
-class="lang-btn"
-data-lang="fr"
->
-FRA
-</button>
-
-<button
-type="button"
-class="lang-btn"
-data-lang="en"
->
-ENG
-</button>
-
+<div class="lang">
+<button type="button" data-lang="eng">ENG</button>
+<button type="button" data-lang="fra">FRA</button>
+<button type="button" class="active" data-lang="kre">KRE</button>
 </div>
 
 </div>
-
 </div>
-
 </header>
 
 <main>
-
-<!-- =====================================
-     HERO
-===================================== -->
 
 <section class="hero">
 
 <div class="container">
 
-<div
-class="hero-badge"
-data-ht="BSS1815 PRO-MAX DMP • SMART PLATFORM"
-data-fr="BSS1815 PRO-MAX DMP • PLATEFORME INTELLIGENTE"
-data-en="BSS1815 PRO-MAX DMP • SMART PLATFORM"
->
-BSS1815 PRO-MAX DMP • SMART PLATFORM
+<div class="eyebrow">
+BSS1815 PRO-MAX DMP
 </div>
 
-<div class="ai-orb">
-🤖
-</div>
+<div class="hero-icon">🤖</div>
 
-<h1>
-AI CENTER
-</h1>
+<h1>AI CENTER</h1>
 
 <h2
-data-ht="ASSISTANT • WRITER • VOICE • AUTOMATION"
-data-fr="ASSISTANT • RÉDACTION • VOIX • AUTOMATISATION"
-data-en="ASSISTANT • WRITER • VOICE • AUTOMATION"
->
-ASSISTANT • WRITER • VOICE • AUTOMATION
+data-kre="ENTÈLIJANS • KREYASYON • OTOMATIZASYON"
+data-eng="INTELLIGENCE • CREATION • AUTOMATION"
+data-fra="INTELLIGENCE • CRÉATION • AUTOMATISATION">
+ENTÈLIJANS • KREYASYON • OTOMATIZASYON
 </h2>
 
 <p
-data-ht="AI Center se sant entèlijans atifisyèl BSS1815 PRO-MAX DMP. Li òganize zouti pou ekri, prepare kominikasyon, kreye kontni, travay ak vwa, epi prepare automatisation nan yon sèl espas."
-
-data-fr="AI Center est le centre d’intelligence artificielle de BSS1815 PRO-MAX DMP. Il rassemble les outils de rédaction, communication, création de contenu, voix et automatisation dans un seul espace."
-
-data-en="AI Center is the artificial intelligence hub of BSS1815 PRO-MAX DMP. It organizes tools for writing, communication, content creation, voice and automation in one workspace."
->
-AI Center se sant entèlijans atifisyèl BSS1815 PRO-MAX DMP.
+data-kre="Sant entèlijans atifisyèl BSS1815 PRO-MAX DMP pou ekri, tradui, rezime, prepare kominikasyon, òganize travay, kreye kontni ak ede administrasyon platfòm nan."
+data-eng="The BSS1815 PRO-MAX DMP artificial intelligence center for writing, translation, summaries, communications, organization, content creation and platform administration."
+data-fra="Le centre d’intelligence artificielle de BSS1815 PRO-MAX DMP pour la rédaction, la traduction, les résumés, les communications, l’organisation, la création de contenu et l’administration.">
+Sant entèlijans atifisyèl BSS1815 PRO-MAX DMP.
 </p>
 
-<div class="status-grid">
-
-<div class="status-card">
-<strong>AI</strong>
-<span>ASSISTANT</span>
-</div>
-
-<div class="status-card">
-<strong>✍️</strong>
-<span>WRITER</span>
-</div>
-
-<div class="status-card">
-<strong>🎙️</strong>
-<span>VOICE</span>
-</div>
-
-<div class="status-card">
-<strong>⚡</strong>
-<span>AUTOMATION</span>
+<div class="status-row">
+<div class="status"><strong>●</strong> AI WORKSPACE</div>
+<div class="status"><strong>3</strong> LANGUAGES</div>
+<div class="status"><strong>24/7</strong> DIGITAL ACCESS</div>
+<div class="status"><strong>PRO-MAX</strong> ECOSYSTEM</div>
 </div>
 
 </div>
-
-</div>
-
 </section>
-
-<!-- =====================================
-     WORKSPACE
-===================================== -->
 
 <section class="section">
 
@@ -1446,154 +698,188 @@ AI Center se sant entèlijans atifisyèl BSS1815 PRO-MAX DMP.
 
 <div class="section-head">
 
-<div class="eyebrow">
-AI WORKSPACE
-</div>
-
 <h2
-class="section-title"
-data-ht="SANT KREYASYON"
-data-fr="CENTRE DE CRÉATION"
-data-en="CREATION CENTER"
->
-SANT KREYASYON
+data-kre="ZOUTI AI YO"
+data-eng="AI TOOLS"
+data-fra="OUTILS IA">
+ZOUTI AI YO
 </h2>
 
 <p
-class="section-desc"
-data-ht="Chwazi zouti ou bezwen an, ekri demann ou, epi prepare kontni ou dirèkteman nan AI Center."
-
-data-fr="Choisissez l’outil dont vous avez besoin, saisissez votre demande et préparez votre contenu directement dans AI Center."
-
-data-en="Choose the tool you need, enter your request and prepare your content directly inside AI Center."
->
+data-kre="Chwazi zouti ou bezwen an epi itilize workspace santral la pou prepare travay ou."
+data-eng="Choose the tool you need and use the central workspace to prepare your work."
+data-fra="Choisissez l’outil dont vous avez besoin et utilisez l’espace central pour préparer votre travail.">
 Chwazi zouti ou bezwen an.
 </p>
 
 </div>
 
-<div class="workspace">
+<div class="tools-grid">
 
-<div class="workspace-tabs">
+<a href="#workspace" class="tool-card" data-tool="assistant">
+<div class="tool-icon">💬</div>
+<h3>AI ASSISTANT</h3>
+<p
+data-kre="Poze kesyon, òganize lide, prepare pwojè ak jwenn asistans pou travay BSS1815."
+data-eng="Ask questions, organize ideas, prepare projects and get assistance with BSS1815 work."
+data-fra="Posez des questions, organisez des idées, préparez des projets et obtenez de l’aide pour BSS1815.">
+Poze kesyon epi òganize travay.
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
 
-<button
-class="workspace-tab active"
-data-panel="assistantPanel"
->
-🤖 AI ASSISTANT
-</button>
+<a href="#workspace" class="tool-card" data-tool="writer">
+<div class="tool-icon">✍️</div>
+<h3>AI WRITER</h3>
+<p
+data-kre="Prepare lèt, anons, mesaj ofisyèl, deskripsyon, atik ak lòt dokiman."
+data-eng="Prepare letters, announcements, official messages, descriptions, articles and other documents."
+data-fra="Préparez des lettres, annonces, messages officiels, descriptions, articles et autres documents.">
+Prepare lèt ak dokiman.
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
 
-<button
-class="workspace-tab"
-data-panel="writerPanel"
->
-✍️ AI WRITER
-</button>
+<a href="#workspace" class="tool-card" data-tool="translate">
+<div class="tool-icon">🌐</div>
+<h3>TRANSLATION AI</h3>
+<p
+data-kre="Travay ant Kreyòl, Anglè ak Fransè pou kominikasyon platfòm nan."
+data-eng="Work between Haitian Creole, English and French for platform communications."
+data-fra="Travaillez entre le créole haïtien, l’anglais et le français pour les communications.">
+KRE • ENG • FRA
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
 
-<button
-class="workspace-tab"
-data-panel="voicePanel"
->
-🎙️ VOICE
-</button>
+<a href="#workspace" class="tool-card" data-tool="summary">
+<div class="tool-icon">📝</div>
+<h3>SMART SUMMARY</h3>
+<p
+data-kre="Rezime tèks long, rapò, nòt reyinyon ak lòt enfòmasyon."
+data-eng="Summarize long text, reports, meeting notes and other information."
+data-fra="Résumez des textes longs, rapports, notes de réunion et autres informations.">
+Rezime dokiman ak rapò.
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
 
-<button
-class="workspace-tab"
-data-panel="automationPanel"
->
-⚡ AUTOMATION
-</button>
+<a href="#workspace" class="tool-card" data-tool="communication">
+<div class="tool-icon">📢</div>
+<h3>COMMUNICATION AI</h3>
+<p
+data-kre="Prepare anons, kondoleyans, anivèsè, remèsiman, alèt ak kominike ofisyèl."
+data-eng="Prepare announcements, condolences, birthdays, thank-you messages, alerts and official notices."
+data-fra="Préparez annonces, condoléances, anniversaires, remerciements, alertes et communications officielles.">
+Kominikasyon ofisyèl.
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
+
+<a href="#workspace" class="tool-card" data-tool="social">
+<div class="tool-icon">📱</div>
+<h3>SOCIAL MEDIA AI</h3>
+<p
+data-kre="Prepare caption, post, tit, hashtag ak kontni pou rezo sosyal."
+data-eng="Prepare captions, posts, titles, hashtags and social media content."
+data-fra="Préparez légendes, publications, titres, hashtags et contenu pour les réseaux sociaux.">
+Kontni pou rezo sosyal.
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
+
+<a href="#workspace" class="tool-card" data-tool="research">
+<div class="tool-icon">🔎</div>
+<h3>RESEARCH DESK</h3>
+<p
+data-kre="Òganize kestyon rechèch, sijè, nòt ak plan verifikasyon."
+data-eng="Organize research questions, topics, notes and verification plans."
+data-fra="Organisez questions de recherche, sujets, notes et plans de vérification.">
+Rechèch ak òganizasyon.
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
+
+<a href="#workspace" class="tool-card" data-tool="automation">
+<div class="tool-icon">⚙️</div>
+<h3>AUTOMATION</h3>
+<p
+data-kre="Prepare workflow, lis travay, pwosedi ak plan operasyon otomatik."
+data-eng="Prepare workflows, task lists, procedures and automation plans."
+data-fra="Préparez workflows, listes de tâches, procédures et plans d’automatisation.">
+Workflow ak operasyon.
+</p>
+<div class="tool-open">OPEN →</div>
+</a>
+
+</div>
+
+<!-- ================= AI WORKSPACE ================= -->
+
+<div class="workspace" id="workspace">
+
+<div class="workspace-header">
+
+<h2
+data-kre="AI WORKSPACE"
+data-eng="AI WORKSPACE"
+data-fra="ESPACE DE TRAVAIL IA">
+AI WORKSPACE
+</h2>
+
+<div class="workspace-status">
+BSS1815 PRO-MAX DMP
+</div>
 
 </div>
 
 <div class="workspace-body">
 
-<!-- AI ASSISTANT -->
+<div class="input-panel">
 
-<div
-class="tool-panel active"
-id="assistantPanel"
->
+<div class="panel-title"
+data-kre="CHWAZI ZOUTI"
+data-eng="SELECT TOOL"
+data-fra="CHOISIR L’OUTIL">
+CHWAZI ZOUTI
+</div>
 
-<div class="tool-grid">
+<select id="toolSelect" class="tool-select">
+<option value="assistant">💬 AI Assistant</option>
+<option value="writer">✍️ AI Writer</option>
+<option value="translate">🌐 Translation AI</option>
+<option value="summary">📝 Smart Summary</option>
+<option value="communication">📢 Communication AI</option>
+<option value="social">📱 Social Media AI</option>
+<option value="research">🔎 Research Desk</option>
+<option value="automation">⚙️ Automation</option>
+</select>
 
-<div class="input-box">
-
-<div
-class="panel-label"
-data-ht="DEMANN OU"
-data-fr="VOTRE DEMANDE"
-data-en="YOUR REQUEST"
->
-DEMANN OU
+<div class="panel-title"
+data-kre="EKRI DEMANN OU"
+data-eng="ENTER YOUR REQUEST"
+data-fra="ÉCRIVEZ VOTRE DEMANDE">
+EKRI DEMANN OU
 </div>
 
 <textarea
-id="assistantInput"
-placeholder="Ekri kestyon oswa demann ou isit la..."
-></textarea>
-
-<div class="select-row">
-
-<select id="assistantType">
-
-<option value="general">
-General Assistant
-</option>
-
-<option value="community">
-BSS1815 Community
-</option>
-
-<option value="administration">
-Administration
-</option>
-
-<option value="media">
-Media / Radio
-</option>
-
-<option value="academy">
-Academy
-</option>
-
-<option value="immigration">
-Maximax Services
-</option>
-
-</select>
-
-<select id="assistantLanguage">
-
-<option value="ht">
-Kreyòl
-</option>
-
-<option value="fr">
-Français
-</option>
-
-<option value="en">
-English
-</option>
-
-</select>
-
-</div>
+id="aiInput"
+class="ai-input"
+placeholder="Ekri sa ou bezwen AI Center prepare pou ou..."></textarea>
 
 <div class="action-row">
 
 <button
+type="button"
 class="action-btn"
-id="assistantGenerate"
->
-🤖 GENERATE
+id="generateBtn">
+⚡ GENERATE
 </button>
 
 <button
+type="button"
 class="action-btn secondary"
-id="assistantClear"
->
+id="clearBtn">
 CLEAR
 </button>
 
@@ -1601,189 +887,35 @@ CLEAR
 
 </div>
 
-<div class="output-box">
+<div class="output-panel">
 
-<div
-class="panel-label"
-data-ht="REZILTA"
-data-fr="RÉSULTAT"
-data-en="RESULT"
->
+<div class="panel-title"
+data-kre="REZILTA"
+data-eng="RESULT"
+data-fra="RÉSULTAT">
 REZILTA
 </div>
 
-<div
-class="output-content"
-id="assistantOutput"
->
-AI Center pare. Ekri yon demann pou kòmanse.
-</div>
-
-<div class="output-actions">
-
-<button
-class="action-btn secondary"
-data-copy="assistantOutput"
->
-📋 COPY
-</button>
-
-<button
-class="action-btn secondary"
-data-save="assistantOutput"
->
-💾 SAVE
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- AI WRITER -->
-
-<div
-class="tool-panel"
-id="writerPanel"
->
-
-<div class="tool-grid">
-
-<div class="input-box">
-
-<div
-class="panel-label"
-data-ht="SA OU VLE EKRI"
-data-fr="CE QUE VOUS VOULEZ ÉCRIRE"
-data-en="WHAT YOU WANT TO WRITE"
->
-SA OU VLE EKRI
-</div>
-
-<textarea
-id="writerInput"
-placeholder="Egzanp: Ekri yon anons ofisyèl pou kominote BSS1815..."
-></textarea>
-
-<div class="select-row">
-
-<select id="writerType">
-
-<option value="announcement">
-Official Announcement
-</option>
-
-<option value="letter">
-Letter
-</option>
-
-<option value="social">
-Social Media Post
-</option>
-
-<option value="speech">
-Speech
-</option>
-
-<option value="condolence">
-Condolence
-</option>
-
-<option value="birthday">
-Birthday
-</option>
-
-<option value="emergency">
-Emergency Alert
-</option>
-
-<option value="manifesto">
-Manifesto
-</option>
-
-</select>
-
-<select id="writerTone">
-
-<option value="professional">
-Professional
-</option>
-
-<option value="formal">
-Formal
-</option>
-
-<option value="powerful">
-Powerful
-</option>
-
-<option value="warm">
-Warm
-</option>
-
-<option value="short">
-Short & Direct
-</option>
-
-</select>
-
+<div class="output-box" id="outputBox">
+<span class="output-placeholder">
+AI Center pare. Chwazi yon zouti, ekri demann ou epi peze GENERATE.
+</span>
 </div>
 
 <div class="action-row">
 
 <button
-class="action-btn"
-id="writerGenerate"
->
-✍️ GENERATE
-</button>
-
-<button
+type="button"
 class="action-btn secondary"
-id="writerClear"
->
-CLEAR
-</button>
-
-</div>
-
-</div>
-
-<div class="output-box">
-
-<div
-class="panel-label"
-data-ht="DOKIMAN"
-data-fr="DOCUMENT"
-data-en="DOCUMENT"
->
-DOKIMAN
-</div>
-
-<div
-class="output-content"
-id="writerOutput"
->
-AI Writer pare pou kreye kontni.
-</div>
-
-<div class="output-actions">
-
-<button
-class="action-btn secondary"
-data-copy="writerOutput"
->
+id="copyBtn">
 📋 COPY
 </button>
 
 <button
+type="button"
 class="action-btn secondary"
-data-save="writerOutput"
->
-💾 SAVE
+id="downloadBtn">
+⬇ SAVE TXT
 </button>
 
 </div>
@@ -1794,540 +926,44 @@ data-save="writerOutput"
 
 </div>
 
-<!-- VOICE -->
-
-<div
-class="tool-panel"
-id="voicePanel"
->
-
-<div class="voice-box">
-
-<div class="voice-icon">
-🎙️
-</div>
-
-<h2
-style="margin-top:18px;color:#ff7900"
->
-VOICE CENTER
-</h2>
-
-<p
-style="margin-top:12px;line-height:1.6"
-data-ht="Ekri tèks la epi itilize sistèm vwa aparèy la pou tande li."
-
-data-fr="Écrivez votre texte puis utilisez la synthèse vocale de votre appareil pour l’écouter."
-
-data-en="Enter text and use your device speech system to hear it."
->
-Ekri tèks la epi koute li.
-</p>
-
-<textarea
-id="voiceText"
-placeholder="Ekri mesaj pou vwa a li..."
-></textarea>
-
-<div class="select-row">
-
-<select id="voiceLanguage">
-
-<option value="fr-FR">
-Français
-</option>
-
-<option value="en-US">
-English
-</option>
-
-</select>
-
-<select id="voiceRate">
-
-<option value="0.8">
-Slow
-</option>
-
-<option value="1" selected>
-Normal
-</option>
-
-<option value="1.15">
-Fast
-</option>
-
-</select>
-
-</div>
-
-<div class="action-row"
-style="justify-content:center"
->
-
-<button
-class="action-btn"
-id="speakButton"
->
-▶ SPEAK
-</button>
-
-<button
-class="action-btn secondary"
-id="stopSpeakButton"
->
-■ STOP
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- AUTOMATION -->
-
-<div
-class="tool-panel"
-id="automationPanel"
->
-
-<div class="automation-grid">
-
-<div class="automation-card">
-
-<h3>
-🔔 REMINDERS
-</h3>
-
-<p
-data-ht="Prepare rapèl pou reyinyon, evènman, anivèsè ak travay administratif."
-
-data-fr="Préparez des rappels pour les réunions, événements, anniversaires et tâches administratives."
-
-data-en="Prepare reminders for meetings, events, birthdays and administrative tasks."
->
-Prepare rapèl.
-</p>
-
-<div class="status">
-READY
-</div>
-
-</div>
-
-<div class="automation-card">
-
-<h3>
-📢 COMMUNICATION
-</h3>
-
-<p
-data-ht="Prepare mesaj ak anons pou Communication Center."
-
-data-fr="Préparez des messages et annonces pour le Communication Center."
-
-data-en="Prepare messages and announcements for the Communication Center."
->
-Prepare mesaj ak anons.
-</p>
-
-<div class="status">
-READY
-</div>
-
-</div>
-
-<div class="automation-card">
-
-<h3>
-📊 REPORTS
-</h3>
-
-<p
-data-ht="Prepare rezime ak rapò pou administrasyon BSS1815."
-
-data-fr="Préparez des résumés et rapports pour l’administration BSS1815."
-
-data-en="Prepare summaries and reports for BSS1815 administration."
->
-Prepare rapò.
-</p>
-
-<div class="status">
-READY
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =====================================
-     QUICK TOOLS
-===================================== -->
-
-<section class="section">
-
-<div class="container">
-
-<div class="section-head">
-
-<div class="eyebrow">
-QUICK AI TOOLS
-</div>
-
-<h2
-class="section-title"
-data-ht="ZOUTI RAPID"
-data-fr="OUTILS RAPIDES"
-data-en="QUICK TOOLS"
->
-ZOUTI RAPID
-</h2>
-
-</div>
+<!-- ================= QUICK LINKS ================= -->
 
 <div class="quick-grid">
 
-<div class="quick-card">
+<a href="../../my-maximax-dashboard.html" class="quick-card">
+<strong>🔐 MY MAXIMAX</strong>
+<p>Internal BSS1815 administration and operations dashboard.</p>
+</a>
 
-<div class="quick-icon">
-📢
-</div>
+<a href="../communication/index.html" class="quick-card">
+<strong>📢 COMMUNICATION CENTER</strong>
+<p>Announcements, alerts, official notices and community communications.</p>
+</a>
 
-<h3>
-ANNOUNCEMENT
-</h3>
-
-<p
-data-ht="Prepare yon anons ofisyèl rapid pou BSS1815."
-
-data-fr="Préparez rapidement une annonce officielle BSS1815."
-
-data-en="Quickly prepare an official BSS1815 announcement."
->
-Prepare yon anons.
-</p>
-
-<button
-data-template="announcement"
->
-OPEN
-</button>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon">
-📝
-</div>
-
-<h3>
-LETTER
-</h3>
-
-<p
-data-ht="Prepare yon lèt pwofesyonèl oswa administratif."
-
-data-fr="Préparez une lettre professionnelle ou administrative."
-
-data-en="Prepare a professional or administrative letter."
->
-Prepare yon lèt.
-</p>
-
-<button
-data-template="letter"
->
-OPEN
-</button>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon">
-📱
-</div>
-
-<h3>
-SOCIAL POST
-</h3>
-
-<p
-data-ht="Prepare kontni pou Facebook, WhatsApp, Instagram, TikTok oswa X."
-
-data-fr="Préparez du contenu pour Facebook, WhatsApp, Instagram, TikTok ou X."
-
-data-en="Prepare content for Facebook, WhatsApp, Instagram, TikTok or X."
->
-Prepare yon post.
-</p>
-
-<button
-data-template="social"
->
-OPEN
-</button>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon">
-🎤
-</div>
-
-<h3>
-SPEECH
-</h3>
-
-<p
-data-ht="Prepare diskou, mesaj oswa script pou prezantasyon."
-
-data-fr="Préparez un discours, message ou script de présentation."
-
-data-en="Prepare a speech, message or presentation script."
->
-Prepare yon diskou.
-</p>
-
-<button
-data-template="speech"
->
-OPEN
-</button>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon">
-🕊️
-</div>
-
-<h3>
-CONDOLENCE
-</h3>
-
-<p
-data-ht="Prepare yon mesaj kondoleyans ak respè."
-
-data-fr="Préparez un message de condoléances respectueux."
-
-data-en="Prepare a respectful condolence message."
->
-Prepare kondoleyans.
-</p>
-
-<button
-data-template="condolence"
->
-OPEN
-</button>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon">
-🎂
-</div>
-
-<h3>
-BIRTHDAY
-</h3>
-
-<p
-data-ht="Prepare mesaj anivèsè pou manm kominote a."
-
-data-fr="Préparez un message d’anniversaire pour un membre."
-
-data-en="Prepare a birthday message for a community member."
->
-Prepare mesaj anivèsè.
-</p>
-
-<button
-data-template="birthday"
->
-OPEN
-</button>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon">
-🚨
-</div>
-
-<h3>
-EMERGENCY ALERT
-</h3>
-
-<p
-data-ht="Prepare yon alèt ijans kout, klè ak dirèk."
-
-data-fr="Préparez une alerte urgente courte, claire et directe."
-
-data-en="Prepare a short, clear and direct emergency alert."
->
-Prepare alèt ijans.
-</p>
-
-<button
-data-template="emergency"
->
-OPEN
-</button>
-
-</div>
-
-<div class="quick-card">
-
-<div class="quick-icon">
-🌎
-</div>
-
-<h3>
-DDN MESSAGE
-</h3>
-
-<p
-data-ht="Prepare mesaj DEVAN DEVAN NÈT™ ak slogan mouvman an."
-
-data-fr="Préparez un message DEVAN DEVAN NÈT™ avec le slogan du mouvement."
-
-data-en="Prepare a DEVAN DEVAN NÈT™ message with the movement slogan."
->
-Prepare mesaj DDN.
-</p>
-
-<button
-data-template="ddn"
->
-OPEN
-</button>
+<a href="../documents/index.html" class="quick-card">
+<strong>📄 DOCUMENT CENTER</strong>
+<p>Letters, reports, archives and BSS1815 documents.</p>
+</a>
 
 </div>
 
 </div>
-
-</div>
-
-</section>
-
-<!-- =====================================
-     HISTORY
-===================================== -->
-
-<section class="section">
-
-<div class="container">
-
-<div class="section-head">
-
-<div class="eyebrow">
-LOCAL HISTORY
-</div>
-
-<h2
-class="section-title"
-data-ht="ISTORIK TRAVAY"
-data-fr="HISTORIQUE"
-data-en="WORK HISTORY"
->
-ISTORIK TRAVAY
-</h2>
-
-</div>
-
-<div class="history-box">
-
-<div class="history-header">
-
-<strong
-data-ht="DÈNYE KONTNI YO"
-data-fr="CONTENUS RÉCENTS"
-data-en="RECENT CONTENT"
->
-DÈNYE KONTNI YO
-</strong>
-
-<button
-class="clear-btn"
-id="clearHistory"
->
-CLEAR HISTORY
-</button>
-
-</div>
-
-<div
-class="history-list"
-id="historyList"
->
-
-<div class="history-item">
-Pa gen okenn kontni anrejistre pou kounye a.
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
 
 </main>
-
-<!-- =====================================
-     FOOTER
-===================================== -->
 
 <footer>
 
 <div class="container">
 
 <div class="footer-title">
-🤖 BSS1815 PRO-MAX DMP — AI CENTER
+BSS1815 PRO-MAX DMP • AI CENTER
 </div>
 
 <div class="footer-text">
-
-<span
-data-ht="ASSISTANT • WRITER • VOICE • AUTOMATION"
-data-fr="ASSISTANT • RÉDACTION • VOIX • AUTOMATISATION"
-data-en="ASSISTANT • WRITER • VOICE • AUTOMATION"
->
-ASSISTANT • WRITER • VOICE • AUTOMATION
-</span>
-
-<br><br>
-
-<a href="../../index.html">
-← BSS1815 PRO-MAX DMP
-</a>
-
-<br><br>
-
-©
-<span id="year"></span>
-BSS1815 PRO-MAX DMP
-
+DEVAN DEVAN NÈT™<br>
+BATI POU JODI A. PARE POU DEMEN.<br><br>
+© <span id="year"></span> BSS1815 PRO-MAX DMP
 </div>
 
 </div>
@@ -2335,853 +971,237 @@ BSS1815 PRO-MAX DMP
 </footer>
 
 <script>
-
 (function(){
 
 "use strict";
 
-/* ===================================
-   YEAR
-=================================== */
+/* ================= LANGUAGE ================= */
 
-var year =
-document.getElementById(
-  "year"
-);
-
-if(year){
-
-  year.textContent =
-    new Date().getFullYear();
-
-}
-
-/* ===================================
-   LANGUAGE
-=================================== */
-
-var langButtons =
-document.querySelectorAll(
-  ".lang-btn"
-);
+var langButtons=document.querySelectorAll(".lang button");
 
 function setLanguage(lang){
 
-  document.documentElement.lang =
-    lang;
-
-  document.querySelectorAll(
-    "[data-ht][data-fr][data-en]"
-  )
-  .forEach(
-    function(element){
-
-      var text =
-        element.getAttribute(
-          "data-" + lang
-        );
-
-      if(text !== null){
-
-        element.textContent =
-          text;
-
-      }
-
+  document.querySelectorAll("[data-"+lang+"]").forEach(function(el){
+    var text=el.getAttribute("data-"+lang);
+    if(text){
+      el.textContent=text;
     }
-  );
+  });
 
-  langButtons.forEach(
-    function(button){
+  langButtons.forEach(function(btn){
+    btn.classList.toggle("active",btn.dataset.lang===lang);
+  });
 
-      button.classList.toggle(
-        "active",
-        button.dataset.lang === lang
-      );
+  if(lang==="kre"){
+    document.documentElement.lang="ht";
+    document.getElementById("aiInput").placeholder=
+      "Ekri sa ou bezwen AI Center prepare pou ou...";
+  }
 
-    }
-  );
+  if(lang==="eng"){
+    document.documentElement.lang="en";
+    document.getElementById("aiInput").placeholder=
+      "Enter what you want AI Center to prepare...";
+  }
+
+  if(lang==="fra"){
+    document.documentElement.lang="fr";
+    document.getElementById("aiInput").placeholder=
+      "Écrivez ce que vous voulez que le Centre IA prépare...";
+  }
 
   try{
-
-    localStorage.setItem(
-      "bss-ai-language",
-      lang
-    );
-
-  }catch(error){}
-
+    localStorage.setItem("bss-ai-language",lang);
+  }catch(e){}
 }
 
-langButtons.forEach(
-  function(button){
+langButtons.forEach(function(btn){
+  btn.addEventListener("click",function(){
+    setLanguage(this.dataset.lang);
+  });
+});
 
-    button.addEventListener(
-      "click",
-      function(){
-
-        setLanguage(
-          this.dataset.lang
-        );
-
-      }
-    );
-
-  }
-);
-
-var savedLanguage =
-  "ht";
+var savedLang="kre";
 
 try{
+  savedLang=localStorage.getItem("bss-ai-language") || "kre";
+}catch(e){}
 
-  savedLanguage =
-    localStorage.getItem(
-      "bss-ai-language"
-    ) || "ht";
+setLanguage(savedLang);
 
-}catch(error){}
 
-setLanguage(
-  savedLanguage
-);
+/* ================= TOOL CARDS ================= */
 
-/* ===================================
-   TABS
-=================================== */
+var toolSelect=document.getElementById("toolSelect");
 
-var tabs =
-document.querySelectorAll(
-  ".workspace-tab"
-);
+document.querySelectorAll(".tool-card").forEach(function(card){
 
-var panels =
-document.querySelectorAll(
-  ".tool-panel"
-);
+  card.addEventListener("click",function(){
 
-tabs.forEach(
-  function(tab){
+    var tool=this.dataset.tool;
 
-    tab.addEventListener(
-      "click",
-      function(){
-
-        tabs.forEach(
-          function(item){
-
-            item.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-        panels.forEach(
-          function(panel){
-
-            panel.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-        tab.classList.add(
-          "active"
-        );
-
-        var target =
-          document.getElementById(
-            tab.dataset.panel
-          );
-
-        if(target){
-
-          target.classList.add(
-            "active"
-          );
-
-        }
-
-      }
-    );
-
-  }
-);
-
-/* ===================================
-   HISTORY
-=================================== */
-
-function getHistory(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        "bss-ai-history"
-      ) || "[]"
-    );
-
-  }
-
-  catch(error){
-
-    return [];
-
-  }
-
-}
-
-function saveHistory(
-  type,
-  content
-){
-
-  if(!content){
-    return;
-  }
-
-  var history =
-    getHistory();
-
-  history.unshift({
-
-    type:type,
-
-    content:content,
-
-    date:
-      new Date()
-      .toLocaleString()
+    if(tool){
+      toolSelect.value=tool;
+    }
 
   });
 
-  history =
-    history.slice(
-      0,
-      20
-    );
+});
+
+
+/* ================= LOCAL WORKSPACE ================= */
+
+/*
+This page restores the AI Center interface and eliminates
+the 404 at /modules/ai-center/index.html.
+
+A real AI API can later be connected to generateBtn.
+Until an API/backend is connected, the page does NOT
+pretend that a live AI response has been generated.
+*/
+
+var aiInput=document.getElementById("aiInput");
+var outputBox=document.getElementById("outputBox");
+var generateBtn=document.getElementById("generateBtn");
+var clearBtn=document.getElementById("clearBtn");
+var copyBtn=document.getElementById("copyBtn");
+var downloadBtn=document.getElementById("downloadBtn");
+
+var toolNames={
+  assistant:"AI ASSISTANT",
+  writer:"AI WRITER",
+  translate:"TRANSLATION AI",
+  summary:"SMART SUMMARY",
+  communication:"COMMUNICATION AI",
+  social:"SOCIAL MEDIA AI",
+  research:"RESEARCH DESK",
+  automation:"AUTOMATION"
+};
+
+generateBtn.addEventListener("click",function(){
+
+  var request=aiInput.value.trim();
+  var tool=toolSelect.value;
+
+  if(!request){
+
+    outputBox.textContent=
+      "⚠️ Ekri demann ou anvan ou peze GENERATE.";
+
+    return;
+  }
+
+  outputBox.textContent=
+    "🤖 "+toolNames[tool]+"\n\n"+
+    "Demann ou an pare pou voye bay AI API a:\n\n"+
+    request+
+    "\n\n"+
+    "STATUS: AI API / backend poko konekte sou paj sa a. "+
+    "Entèfas modil la fonksyone epi 404 la elimine; "+
+    "pwochen etap teknik la se konekte API AI a san nou pa chanje paj la.";
+
+});
+
+
+/* ================= CLEAR ================= */
+
+clearBtn.addEventListener("click",function(){
+
+  aiInput.value="";
+
+  outputBox.innerHTML=
+    '<span class="output-placeholder">'+
+    'AI Center pare. Chwazi yon zouti, ekri demann ou epi peze GENERATE.'+
+    '</span>';
+
+  aiInput.focus();
+
+});
+
+
+/* ================= COPY ================= */
+
+copyBtn.addEventListener("click",async function(){
+
+  var text=outputBox.innerText.trim();
+
+  if(!text){
+    return;
+  }
 
   try{
 
-    localStorage.setItem(
-      "bss-ai-history",
-      JSON.stringify(
-        history
-      )
-    );
+    await navigator.clipboard.writeText(text);
 
-  }catch(error){}
+    var old=this.textContent;
 
-  renderHistory();
+    this.textContent="✓ COPIED";
 
-}
+    var button=this;
 
-function renderHistory(){
+    setTimeout(function(){
+      button.textContent=old;
+    },1400);
 
-  var box =
-    document.getElementById(
-      "historyList"
-    );
+  }catch(error){
 
-  if(!box){
+    var temp=document.createElement("textarea");
+
+    temp.value=text;
+
+    document.body.appendChild(temp);
+
+    temp.select();
+
+    document.execCommand("copy");
+
+    temp.remove();
+
+  }
+
+});
+
+
+/* ================= SAVE TXT ================= */
+
+downloadBtn.addEventListener("click",function(){
+
+  var text=outputBox.innerText.trim();
+
+  if(!text){
     return;
   }
 
-  var history =
-    getHistory();
-
-  if(
-    history.length === 0
-  ){
-
-    box.innerHTML =
-      '<div class="history-item">Pa gen okenn kontni anrejistre pou kounye a.</div>';
-
-    return;
-
-  }
-
-  box.innerHTML =
-    history.map(
-      function(item){
-
-        return (
-          '<div class="history-item">'
-          +
-          '<strong style="color:#ff7900">'
-          +
-          item.type
-          +
-          '</strong><br>'
-          +
-          item.content
-          .replace(
-            /</g,
-            "&lt;"
-          )
-          .replace(
-            />/g,
-            "&gt;"
-          )
-          +
-          '<br><small>'
-          +
-          item.date
-          +
-          '</small></div>'
-        );
-
-      }
-    ).join("");
-
-}
-
-renderHistory();
-
-var clearHistory =
-document.getElementById(
-  "clearHistory"
-);
-
-if(clearHistory){
-
-  clearHistory.addEventListener(
-    "click",
-    function(){
-
-      localStorage.removeItem(
-        "bss-ai-history"
-      );
-
-      renderHistory();
-
-    }
+  var blob=new Blob(
+    [text],
+    {type:"text/plain;charset=utf-8"}
   );
 
-}
+  var url=URL.createObjectURL(blob);
 
-/* ===================================
-   ASSISTANT
-=================================== */
+  var link=document.createElement("a");
 
-var assistantGenerate =
-document.getElementById(
-  "assistantGenerate"
-);
+  link.href=url;
+  link.download="bss1815-ai-center.txt";
 
-if(assistantGenerate){
+  document.body.appendChild(link);
 
-  assistantGenerate.addEventListener(
-    "click",
-    function(){
+  link.click();
 
-      var input =
-        document.getElementById(
-          "assistantInput"
-        );
+  link.remove();
 
-      var output =
-        document.getElementById(
-          "assistantOutput"
-        );
+  URL.revokeObjectURL(url);
 
-      var type =
-        document.getElementById(
-          "assistantType"
-        ).value;
+});
 
-      var language =
-        document.getElementById(
-          "assistantLanguage"
-        ).value;
 
-      var text =
-        input.value.trim();
+/* ================= YEAR ================= */
 
-      if(!text){
-
-        output.textContent =
-          "Ekri yon demann anvan.";
-
-        return;
-
-      }
-
-      var intro = "";
-
-      if(language === "fr"){
-
-        intro =
-          "BSS1815 AI CENTER\n\nDemande reçue :\n";
-
-      }
-
-      else if(language === "en"){
-
-        intro =
-          "BSS1815 AI CENTER\n\nRequest received:\n";
-
-      }
-
-      else{
-
-        intro =
-          "BSS1815 AI CENTER\n\nDemann resevwa:\n";
-
-      }
-
-      output.textContent =
-        intro
-        +
-        text
-        +
-        "\n\nMODE: "
-        +
-        type.toUpperCase()
-        +
-        "\n\nAI Center interface la pare pou koneksyon ak motè AI/API.";
-
-      saveHistory(
-        "AI ASSISTANT",
-        text
-      );
-
-    }
-  );
-
-}
-
-var assistantClear =
-document.getElementById(
-  "assistantClear"
-);
-
-if(assistantClear){
-
-  assistantClear.addEventListener(
-    "click",
-    function(){
-
-      document.getElementById(
-        "assistantInput"
-      ).value = "";
-
-      document.getElementById(
-        "assistantOutput"
-      ).textContent =
-        "AI Center pare. Ekri yon demann pou kòmanse.";
-
-    }
-  );
-
-}
-
-/* ===================================
-   WRITER
-=================================== */
-
-var writerGenerate =
-document.getElementById(
-  "writerGenerate"
-);
-
-if(writerGenerate){
-
-  writerGenerate.addEventListener(
-    "click",
-    function(){
-
-      var input =
-        document.getElementById(
-          "writerInput"
-        );
-
-      var output =
-        document.getElementById(
-          "writerOutput"
-        );
-
-      var type =
-        document.getElementById(
-          "writerType"
-        ).value;
-
-      var tone =
-        document.getElementById(
-          "writerTone"
-        ).value;
-
-      var text =
-        input.value.trim();
-
-      if(!text){
-
-        output.textContent =
-          "Ekri sa ou bezwen prepare anvan.";
-
-        return;
-
-      }
-
-      output.textContent =
-        "BSS1815 AI WRITER\n\n"
-        +
-        "TYPE: "
-        +
-        type.toUpperCase()
-        +
-        "\n"
-        +
-        "TONE: "
-        +
-        tone.toUpperCase()
-        +
-        "\n\n"
-        +
-        text
-        +
-        "\n\n"
-        +
-        "Draft la pare pou koneksyon ak motè AI/API.";
-
-      saveHistory(
-        "AI WRITER",
-        text
-      );
-
-    }
-  );
-
-}
-
-var writerClear =
-document.getElementById(
-  "writerClear"
-);
-
-if(writerClear){
-
-  writerClear.addEventListener(
-    "click",
-    function(){
-
-      document.getElementById(
-        "writerInput"
-      ).value = "";
-
-      document.getElementById(
-        "writerOutput"
-      ).textContent =
-        "AI Writer pare pou kreye kontni.";
-
-    }
-  );
-
-}
-
-/* ===================================
-   COPY
-=================================== */
-
-document.querySelectorAll(
-  "[data-copy]"
-)
-.forEach(
-  function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        var target =
-          document.getElementById(
-            this.dataset.copy
-          );
-
-        if(!target){
-          return;
-        }
-
-        navigator.clipboard
-        .writeText(
-          target.textContent
-        )
-        .then(
-          function(){
-
-            button.textContent =
-              "✅ COPIED";
-
-            setTimeout(
-              function(){
-
-                button.textContent =
-                  "📋 COPY";
-
-              },
-              1500
-            );
-
-          }
-        )
-        .catch(
-          function(){}
-        );
-
-      }
-    );
-
-  }
-);
-
-/* ===================================
-   SAVE
-=================================== */
-
-document.querySelectorAll(
-  "[data-save]"
-)
-.forEach(
-  function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        var target =
-          document.getElementById(
-            this.dataset.save
-          );
-
-        if(!target){
-          return;
-        }
-
-        saveHistory(
-          "SAVED OUTPUT",
-          target.textContent
-        );
-
-        button.textContent =
-          "✅ SAVED";
-
-        setTimeout(
-          function(){
-
-            button.textContent =
-              "💾 SAVE";
-
-          },
-          1500
-        );
-
-      }
-    );
-
-  }
-);
-
-/* ===================================
-   VOICE
-=================================== */
-
-var speakButton =
-document.getElementById(
-  "speakButton"
-);
-
-if(speakButton){
-
-  speakButton.addEventListener(
-    "click",
-    function(){
-
-      if(
-        !("speechSynthesis" in window)
-      ){
-
-        alert(
-          "Speech synthesis pa disponib sou aparèy sa."
-        );
-
-        return;
-
-      }
-
-      var text =
-        document.getElementById(
-          "voiceText"
-        ).value.trim();
-
-      if(!text){
-        return;
-      }
-
-      speechSynthesis.cancel();
-
-      var utterance =
-        new SpeechSynthesisUtterance(
-          text
-        );
-
-      utterance.lang =
-        document.getElementById(
-          "voiceLanguage"
-        ).value;
-
-      utterance.rate =
-        Number(
-          document.getElementById(
-            "voiceRate"
-          ).value
-        );
-
-      speechSynthesis.speak(
-        utterance
-      );
-
-      saveHistory(
-        "VOICE",
-        text
-      );
-
-    }
-  );
-
-}
-
-var stopSpeakButton =
-document.getElementById(
-  "stopSpeakButton"
-);
-
-if(stopSpeakButton){
-
-  stopSpeakButton.addEventListener(
-    "click",
-    function(){
-
-      if(
-        "speechSynthesis" in window
-      ){
-
-        speechSynthesis.cancel();
-
-      }
-
-    }
-  );
-
-}
-
-/* ===================================
-   QUICK TEMPLATES
-=================================== */
-
-var templates = {
-
-announcement:
-"Ekri yon anons ofisyèl pou BSS1815 PRO-MAX DMP.",
-
-letter:
-"Ekri yon lèt pwofesyonèl ak administratif.",
-
-social:
-"Ekri yon post pou rezo sosyal BSS1815.",
-
-speech:
-"Ekri yon diskou kout, pwisan ak pwofesyonèl.",
-
-condolence:
-"Ekri yon mesaj kondoleyans ak respè.",
-
-birthday:
-"Ekri yon mesaj anivèsè pou yon manm BSS1815.",
-
-emergency:
-"Ekri yon alèt ijans kout, klè ak dirèk.",
-
-ddn:
-"Ekri yon mesaj DEVAN DEVAN NÈT™ ak slogan: BATI POU JODI A. PARE POU DEMEN."
-
-};
-
-document.querySelectorAll(
-  "[data-template]"
-)
-.forEach(
-  function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        var key =
-          this.dataset.template;
-
-        var text =
-          templates[key] || "";
-
-        document.getElementById(
-          "writerInput"
-        ).value =
-          text;
-
-        tabs.forEach(
-          function(tab){
-
-            tab.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-        panels.forEach(
-          function(panel){
-
-            panel.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-        document.querySelector(
-          '[data-panel="writerPanel"]'
-        )
-        .classList.add(
-          "active"
-        );
-
-        document.getElementById(
-          "writerPanel"
-        )
-        .classList.add(
-          "active"
-        );
-
-        document.getElementById(
-          "writerPanel"
-        )
-        .scrollIntoView({
-          behavior:"smooth",
-          block:"center"
-        });
-
-      }
-    );
-
-  }
-);
+document.getElementById("year").textContent=
+new Date().getFullYear();
 
 })();
-
 </script>
 
 </body>
 </html>
-.
