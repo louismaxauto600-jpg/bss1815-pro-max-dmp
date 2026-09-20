@@ -1,0 +1,63 @@
+<!-- FILE: whatsapp-center.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "WhatsApp Center",
+  "icon": "📱",
+  "desc": "Kominikasyon gwoup ak mesaj kominotè.",
+  "collection": "mx_whatsapp",
+  "fields": [
+    {
+      "key": "groupName",
+      "label": "Non gwoup",
+      "required": true
+    },
+    {
+      "key": "link",
+      "label": "Lyen envitasyon",
+      "type": "url"
+    },
+    {
+      "key": "purpose",
+      "label": "Objektif"
+    },
+    {
+      "key": "adminName",
+      "label": "Responsab"
+    },
+    {
+      "key": "membersCount",
+      "label": "Kantite manm",
+      "type": "number"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Aktif",
+        "Inaktif"
+      ]
+    }
+  ],
+  "badge": "status"
+});
+</script>
+
+</body>
+</html>
