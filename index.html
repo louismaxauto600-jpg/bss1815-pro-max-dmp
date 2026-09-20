@@ -661,6 +661,16 @@ header {
   background:linear-gradient(90deg,#9d3c00,var(--orange),var(--orange3));
 }
 
+.bss-slide-image {
+  opacity:1;
+  transition:opacity .6s ease;
+}
+
+.bss-slide-image.off {
+  opacity:0;
+  pointer-events:none;
+}
+
 
 /* SLIDESHOW DIAGNOSTIC (only shown with ?debug in the address) */
 .bss-debug {
@@ -2233,10 +2243,13 @@ if(heroVideo && soundButton){
 
 
 /* =========================================
-   BSS1815 COMMUNITY SLIDESHOW
+   BSS1815 COMMUNITY SLIDESHOW  — new player
+   Plays the list in slides.json (written at every deploy from the files that really exist).
+   Every photo is shown one after another, with a smooth fade. Nothing is guessed.
 ========================================= */
 
-var bssFiles = [
+/* Only used if slides.json cannot be read (for example before the first deploy with build-slides.js) */
+var bssBackupList = [
 "tania2.jpg",
 "papouche.jpg",
 "heritage.jpg",
@@ -2352,7 +2365,7 @@ var bssFiles = [
 "bss1815-pro-max-dmp.jpg"
 ];
 
-var bssImage = document.getElementById("bssSlideImage");
+var bssImgA = document.getElementById("bssSlideImage");
 var bssVideo = document.getElementById("bssSlideVideo");
 var bssTitle = document.getElementById("bssSlideTitle");
 var bssCounter = document.getElementById("bssCounter");
@@ -2361,52 +2374,51 @@ var bssPrev = document.getElementById("bssPrev");
 var bssNext = document.getElementById("bssNext");
 var bssPlay = document.getElementById("bssPlayPause");
 var bssStage = document.getElementById("bssStage");
+var bssBadge = document.querySelector(".bss-slide-badge");
+
+var bssImgB = null;
+if(bssImgA){
+  bssImgB = bssImgA.cloneNode(false);
+  bssImgB.id = "bssSlideImageB";
+  bssImgB.classList.add("off");
+  bssImgB.removeAttribute("src");
+  bssImgA.parentNode.insertBefore(bssImgB, bssImgA.nextSibling);
+}
+var bssLayers = [bssImgA, bssImgB];
+var bssFront = 0;
+
+var bssSlides = [];
+var bssManifest = null;
+var bssSource = "loading";
+var bssFallback = false;
 
 var bssIndex = 0;
 var bssPlaying = true;
+var bssReady = false;
 var bssElapsed = 0;
+var bssToken = 0;
 var bssTimer = null;
 
 var BSS_IMAGE_TIME = 4000;
-var BSS_VIDEO_TIME = 8000;
+var BSS_VIDEO_MAX = 15000;
 var BSS_STEP = 100;
-
-var BSS_PATH = "./";
-
-/* If a photo does not load with the exact name written in the list above,
-   the slideshow now tries other extensions (.jpg .jpeg .png .webp .JPG .JPEG .PNG)
-   and a capitalised name, remembers what works, and only then skips it.
-   Add  ?debug  to the page address to see exactly which files are missing. */
 var BSS_EXTS = [".jpg", ".jpeg", ".png", ".webp", ".JPG", ".JPEG", ".PNG"];
-var bssResolved = {};
-var bssDead = {};
-var bssAttempt = null;
-var bssStreak = 0;
 
 
-function bssIsVideo(file){
-  return /\.mp4$/i.test(file);
-}
-
+function bssBase(file){ return file.split("/").pop(); }
+function bssUrl(file){ return "./" + file.split("/").map(encodeURIComponent).join("/"); }
+function bssIsVideo(file){ return /\.mp4$/i.test(file); }
 
 function bssPretty(file){
-  return file
+  return bssBase(file)
     .replace(/\.[^.]+$/, "")
     .replace(/[-_]+/g, " ")
     .replace(/\b\w/g, function(c){ return c.toUpperCase(); });
 }
 
-
-function bssDuration(){
-  return bssIsVideo(bssFiles[bssIndex]) ? BSS_VIDEO_TIME : BSS_IMAGE_TIME;
-}
-
-
 function bssVariants(file){
   var m = file.match(/^(.*?)(\.[^.]+)?$/);
-  var base = m[1];
-  var ext = m[2] || "";
-  var out = [file];
+  var base = m[1], ext = m[2] || "", out = [file];
   BSS_EXTS.forEach(function(e){ if(e !== ext){ out.push(base + e); } });
   var cap = base.charAt(0).toUpperCase() + base.slice(1);
   if(cap !== base){
@@ -2416,74 +2428,124 @@ function bssVariants(file){
   return out;
 }
 
+function bssUpdateBadge(){
+  if(bssBadge){ bssBadge.textContent = "BSS1815 COMMUNITY • " + bssSlides.length + " MEDIA"; }
+}
 
-function bssLoadImage(file){
-  var list = bssResolved[file] ? [bssResolved[file]] : bssVariants(file);
-  bssAttempt = { file: file, list: list, i: 0 };
-  bssImage.src = BSS_PATH + list[0];
-  bssImage.alt = bssPretty(file);
+function bssSetProgress(){
+  if(!bssProgress){ return; }
+  var limit = bssIsVideo(bssSlides[bssIndex] || "") ? BSS_VIDEO_MAX : BSS_IMAGE_TIME;
+  bssProgress.style.width = Math.min(100, (bssElapsed / limit) * 100) + "%";
 }
 
 
-function bssShow(index){
+/* ---------- loading one photo (with the fade) ---------- */
 
-  if(index < 0){ index = bssFiles.length - 1; }
-  if(index >= bssFiles.length){ index = 0; }
+var bssResolved = {};
 
+function bssLoadInto(layer, file, done){
+
+  var list = bssFallback ? (bssResolved[file] ? [bssResolved[file]] : bssVariants(file)) : [file];
+  var i = 0, retried = false;
+  var probe = new Image();
+
+  probe.onload = function(){
+    if(bssFallback){ bssResolved[file] = list[i]; }
+    layer.src = probe.src;
+    done(true);
+  };
+
+  probe.onerror = function(){
+    if(i + 1 < list.length){ i++; probe.src = bssUrl(list[i]); return; }
+    if(!retried && !bssFallback){
+      retried = true;
+      probe.src = bssUrl(list[0]) + "?r=" + Date.now();
+      return;
+    }
+    done(false);
+  };
+
+  probe.src = bssUrl(list[0]);
+
+}
+
+
+function bssPreload(from){
+  for(var k = 1; k <= 2; k++){
+    var f = bssSlides[(from + k) % bssSlides.length];
+    if(f && !bssIsVideo(f)){ var im = new Image(); im.src = bssUrl(bssFallback && bssResolved[f] ? bssResolved[f] : f); }
+  }
+}
+
+
+function bssShow(index, direction){
+
+  if(!bssSlides.length){ return; }
+  if(index < 0){ index = bssSlides.length - 1; }
+  if(index >= bssSlides.length){ index = 0; }
+
+  var token = ++bssToken;
   bssIndex = index;
   bssElapsed = 0;
+  bssReady = false;
 
-  var file = bssFiles[bssIndex];
-  var src = BSS_PATH + file;
+  var file = bssSlides[index];
 
-  if(bssCounter){ bssCounter.textContent = (bssIndex + 1) + " / " + bssFiles.length; }
+  if(bssCounter){ bssCounter.textContent = (index + 1) + " / " + bssSlides.length; }
   if(bssTitle){ bssTitle.textContent = bssPretty(file); }
-  if(bssProgress){ bssProgress.style.width = "0%"; }
-
-  /* nothing at all could be loaded */
-  if(bssStreak >= bssFiles.length){ return; }
-
-  /* known missing file: skip straight away */
-  if(bssDead[file]){
-    bssStreak++;
-    bssShow(bssIndex + 1);
-    return;
-  }
+  bssSetProgress();
 
   if(bssIsVideo(file)){
 
-    bssAttempt = { file: file, list: [file], i: 0 };
-
-    if(bssImage){ bssImage.classList.add("hidden"); }
+    bssLayers.forEach(function(l){ if(l){ l.classList.add("off"); } });
 
     if(bssVideo){
       bssVideo.pause();
       bssVideo.classList.remove("hidden");
-      bssVideo.src = src;
-      bssVideo.currentTime = 0;
+      bssVideo.onloadeddata = function(){ if(token === bssToken){ bssReady = true; } };
+      bssVideo.onended = function(){ if(token === bssToken && bssPlaying){ bssShow(bssIndex + 1, 1); } };
+      bssVideo.onerror = function(){ if(token === bssToken){ bssFailed(file, direction); } };
+      bssVideo.loop = false;
+      bssVideo.src = bssUrl(file);
       bssVideo.muted = true;
       if(bssPlaying){ bssVideo.play().catch(function(){}); }
     }
 
   }else{
 
-    if(bssVideo){
-      bssVideo.pause();
-      bssVideo.classList.add("hidden");
-    }
+    if(bssVideo){ bssVideo.pause(); bssVideo.classList.add("hidden"); }
 
-    if(bssImage){
-      bssImage.classList.remove("hidden");
-      bssLoadImage(file);
-    }
+    var back = bssLayers[1 - bssFront];
+    var front = bssLayers[bssFront];
+
+    bssLoadInto(back, file, function(ok){
+      if(token !== bssToken){ return; }
+      if(!ok){ bssFailed(file, direction); return; }
+      back.alt = bssPretty(file);
+      back.classList.remove("off");
+      back.classList.remove("hidden");
+      if(front && front !== back){ front.classList.add("off"); }
+      bssFront = 1 - bssFront;
+      bssReady = true;
+      bssPreload(index);
+    });
 
   }
 
 }
 
 
-function bssGoNext(){ bssShow(bssIndex + 1); }
-function bssGoPrev(){ bssShow(bssIndex - 1); }
+/* a file that really cannot be loaded (damaged) — only then do we move on, and we say so in the console */
+function bssFailed(file, direction){
+  if(window.console){ console.warn("BSS slideshow: could not load " + file); }
+  if(bssFailedInRow++ >= bssSlides.length){ return; }
+  bssShow(bssIndex + (direction === -1 ? -1 : 1), direction);
+}
+var bssFailedInRow = 0;
+
+
+function bssGoNext(){ bssFailedInRow = 0; bssShow(bssIndex + 1, 1); }
+function bssGoPrev(){ bssFailedInRow = 0; bssShow(bssIndex - 1, -1); }
 
 if(bssNext){ bssNext.addEventListener("click", bssGoNext); }
 if(bssPrev){ bssPrev.addEventListener("click", bssGoPrev); }
@@ -2492,7 +2554,7 @@ if(bssPlay){
   bssPlay.addEventListener("click", function(){
     bssPlaying = !bssPlaying;
     bssPlay.textContent = bssPlaying ? "⏸ PAUSE" : "▶ PLAY";
-    if(bssIsVideo(bssFiles[bssIndex]) && bssVideo){
+    if(bssIsVideo(bssSlides[bssIndex] || "") && bssVideo){
       if(bssPlaying){ bssVideo.play().catch(function(){}); }
       else{ bssVideo.pause(); }
     }
@@ -2500,53 +2562,7 @@ if(bssPlay){
 }
 
 
-if(bssImage){
-
-  bssImage.addEventListener("load", function(){
-    var a = bssAttempt;
-    if(a && !bssIsVideo(a.file)){
-      bssResolved[a.file] = a.list[a.i];
-      bssStreak = 0;
-    }
-  });
-
-  bssImage.addEventListener("error", function(){
-    var a = bssAttempt;
-    if(!a || bssIsVideo(a.file)){ return; }
-    if(a.i + 1 < a.list.length){
-      a.i++;
-      bssImage.src = BSS_PATH + a.list[a.i];
-      return;
-    }
-    bssDead[a.file] = true;
-    delete bssResolved[a.file];
-    bssStreak++;
-    if(window.console){ console.warn("BSS slideshow: file not found -> " + a.file); }
-    bssGoNext();
-  });
-
-}
-
-
-if(bssVideo){
-
-  bssVideo.addEventListener("loadeddata", function(){ bssStreak = 0; });
-
-  bssVideo.addEventListener("error", function(){
-    var a = bssAttempt;
-    if(!a || !bssIsVideo(a.file)){ return; }
-    bssDead[a.file] = true;
-    bssStreak++;
-    if(window.console){ console.warn("BSS slideshow: video not found -> " + a.file); }
-    bssGoNext();
-  });
-
-}
-
-
-/* =========================================
-   TABLET / MOBILE SWIPE
-========================================= */
+/* ---------- swipe + keyboard ---------- */
 
 var touchStartX = 0;
 
@@ -2570,9 +2586,7 @@ if(bssStage){
 }
 
 
-/* =========================================
-   SLIDESHOW TIMER
-========================================= */
+/* ---------- timer: only counts while the photo is really on screen ---------- */
 
 function bssStart(){
 
@@ -2580,119 +2594,115 @@ function bssStart(){
 
   bssTimer = setInterval(function(){
 
-    if(!bssPlaying || document.hidden){ return; }
+    if(!bssPlaying || document.hidden || !bssReady){ return; }
 
     bssElapsed += BSS_STEP;
+    bssSetProgress();
 
-    var pct = Math.min(100, (bssElapsed / bssDuration()) * 100);
-    if(bssProgress){ bssProgress.style.width = pct + "%"; }
+    var isVid = bssIsVideo(bssSlides[bssIndex] || "");
+    var limit = isVid ? BSS_VIDEO_MAX : BSS_IMAGE_TIME;
 
-    if(bssElapsed >= bssDuration()){ bssGoNext(); }
+    if(bssElapsed >= limit){ bssGoNext(); }
 
   }, BSS_STEP);
 
 }
 
 
-bssShow(0);
-bssStart();
+/* ---------- start: read slides.json, otherwise use the backup list ---------- */
+
+function bssBegin(list, source){
+  bssSlides = list;
+  bssSource = source;
+  bssUpdateBadge();
+  bssShow(0, 1);
+  bssStart();
+}
+
+(function(){
+
+  var backup = function(reason){
+    if(window.console){ console.warn("BSS slideshow: slides.json not used (" + reason + "). Using the backup list."); }
+    bssFallback = true;
+    bssBegin(bssBackupList.slice(), "backup list");
+  };
+
+  if(!window.fetch || location.protocol === "file:"){ backup("file or old browser"); return; }
+
+  fetch("./slides.json?v=" + Date.now(), { cache: "no-store" })
+    .then(function(r){ if(!r.ok){ throw new Error("http " + r.status); } return r.json(); })
+    .then(function(data){
+      if(!data || !data.slides || !data.slides.length){ throw new Error("empty"); }
+      bssManifest = data;
+      bssBegin(data.slides.slice(), "slides.json");
+    })
+    .catch(function(e){ backup(e && e.message ? e.message : "error"); });
+
+})();
 
 
 /* =========================================
    SLIDESHOW DIAGNOSTIC  (open the site with  ?debug  at the end of the address)
-   Lists every file that is OK, found under a different name, or missing.
 ========================================= */
 
-function bssDebugScan(){
+function bssList(list){
+  var ol = document.createElement("ol");
+  list.forEach(function(item){
+    var li = document.createElement("li");
+    li.value = item.n;
+    li.textContent = item.text;
+    if(item.n >= 53 && item.n <= 91){ li.className = "range"; }
+    ol.appendChild(li);
+  });
+  return ol;
+}
+
+function bssDebugRender(){
 
   var host = document.querySelector(".bss-slideshow");
   if(!host){ return; }
+  var panel = document.getElementById("bssDebug");
+  if(!panel){ panel = document.createElement("div"); panel.className = "bss-debug"; panel.id = "bssDebug"; host.appendChild(panel); }
+  panel.textContent = "";
 
-  var panel = document.createElement("div");
-  panel.className = "bss-debug";
-  panel.id = "bssDebug";
-  panel.textContent = "Scanning " + bssFiles.length + " files…";
-  host.appendChild(panel);
+  var h = document.createElement("h4");
+  panel.appendChild(h);
 
-  var total = bssFiles.length, done = 0, next = 0, active = 0, MAX = 6;
-  var results = new Array(total);
+  if(bssSource === "loading"){ h.textContent = "Slideshow check: loading…"; return; }
 
-  function finish(i, found){
-    results[i] = found;
-    done++;
-    active--;
-    if(done === total){ report(); } else { pump(); }
+  if(bssSource === "backup list"){
+    h.textContent = "Slideshow check: using the BACKUP list (slides.json was not found)";
+    var d = document.createElement("div"); d.className = "bad";
+    d.textContent = "slides.json is missing. Upload build-slides.js and netlify.toml to the site, then redeploy. Until then some photos with different names can be skipped.";
+    panel.appendChild(d);
+    return;
   }
 
-  function probe(i){
-    var file = bssFiles[i];
-    active++;
-    if(bssIsVideo(file)){
-      fetch(BSS_PATH + file, { method: "HEAD" })
-        .then(function(r){ finish(i, r.ok ? file : null); })
-        .catch(function(){ finish(i, null); });
-      return;
-    }
-    var list = bssVariants(file), k = 0, im = new Image();
-    im.onload = function(){ finish(i, list[k]); };
-    im.onerror = function(){
-      k++;
-      if(k < list.length){ im.src = BSS_PATH + list[k]; }
-      else{ finish(i, null); }
-    };
-    im.src = BSS_PATH + list[0];
-  }
+  h.textContent = "Slideshow check: " + bssSlides.length + " files playing, in order • " + bssManifest.missing.length + " names in the list have no file • " + bssManifest.extras.length + " extra files added • built " + bssManifest.generated;
 
-  function pump(){
-    while(active < MAX && next < total){ probe(next++); }
+  if(bssManifest.missing.length){
+    var t2 = document.createElement("div"); t2.className = "bad";
+    t2.textContent = "NAMES IN THE LIST THAT HAVE NO FILE IN THE SITE (upload these photos, they will appear at the next deploy):";
+    panel.appendChild(t2);
+    panel.appendChild(bssList(bssManifest.missing.map(function(m){ return { n: m.n, text: m.name }; })));
   }
-
-  function line(list){
-    var ol = document.createElement("ol");
-    list.forEach(function(item){
-      var li = document.createElement("li");
-      li.value = item.n;
-      li.textContent = item.text;
-      if(item.n >= 53 && item.n <= 91){ li.className = "range"; }
-      ol.appendChild(li);
-    });
-    return ol;
+  if(bssManifest.extras.length){
+    var t3 = document.createElement("div"); t3.className = "warn";
+    t3.textContent = "EXTRA FILES ADDED AT THE END:";
+    panel.appendChild(t3);
+    panel.appendChild(bssList(bssManifest.extras.map(function(p, i){ return { n: i + 1, text: p }; })));
   }
-
-  function report(){
-    var ok = 0, renamed = [], missing = [];
-    for(var i = 0; i < total; i++){
-      if(results[i] === null){ missing.push({ n: i + 1, text: bssFiles[i] }); }
-      else if(results[i] !== bssFiles[i]){ renamed.push({ n: i + 1, text: bssFiles[i] + "  →  real file is:  " + results[i] }); }
-      else{ ok++; }
-    }
-    panel.textContent = "";
-    var h = document.createElement("h4");
-    h.textContent = "Slideshow check: " + ok + " OK • " + renamed.length + " found with a different name • " + missing.length + " missing";
-    panel.appendChild(h);
-    if(renamed.length){
-      var t1 = document.createElement("div"); t1.className = "warn"; t1.textContent = "FOUND WITH A DIFFERENT NAME (the slideshow now handles these; rename the file or the list):";
-      panel.appendChild(t1); panel.appendChild(line(renamed));
-    }
-    if(missing.length){
-      var t2 = document.createElement("div"); t2.className = "bad"; t2.textContent = "MISSING (no file with this name, or any other extension, exists in the site folder):";
-      panel.appendChild(t2); panel.appendChild(line(missing));
-    }
-    if(!renamed.length && !missing.length){
-      var t3 = document.createElement("div"); t3.className = "ok"; t3.textContent = "All files were found.";
-      panel.appendChild(t3);
-    }
-    var note = document.createElement("div");
-    note.textContent = "Slides 53–91 are highlighted. Remove ?debug from the address to hide this panel.";
-    panel.appendChild(note);
+  if(!bssManifest.missing.length && !bssManifest.extras.length){
+    var t4 = document.createElement("div"); t4.className = "ok"; t4.textContent = "Every file in the list exists and is playing.";
+    panel.appendChild(t4);
   }
-
-  pump();
 
 }
 
 if(/[?&]debug(=|&|$)/.test(location.search) || location.hash === "#debug"){
-  bssDebugScan();
+  bssDebugRender();
+  var bssDbgTimer = setInterval(function(){ bssDebugRender(); if(bssSource !== "loading"){ clearInterval(bssDbgTimer); } }, 500);
+  setTimeout(function(){ clearInterval(bssDbgTimer); }, 12000);
 }
 
 
