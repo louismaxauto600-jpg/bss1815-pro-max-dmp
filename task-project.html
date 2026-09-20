@@ -1,0 +1,74 @@
+<!-- FILE: task-project.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task / Project | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Task / Project",
+  "icon": "✅",
+  "desc": "Travay, pwojè, responsab ak swivi pwogrè.",
+  "collection": "mx_tasks",
+  "fields": [
+    {
+      "key": "title",
+      "label": "Travay",
+      "required": true
+    },
+    {
+      "key": "project",
+      "label": "Pwojè"
+    },
+    {
+      "key": "assignee",
+      "label": "Responsab"
+    },
+    {
+      "key": "dueDate",
+      "label": "Dat limit",
+      "type": "date"
+    },
+    {
+      "key": "priority",
+      "label": "Priyorite",
+      "type": "select",
+      "options": [
+        "Nòmal",
+        "Wo",
+        "Ijan"
+      ]
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Pou fè",
+        "An kou",
+        "Fini"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status"
+});
+</script>
+
+</body>
+</html>
