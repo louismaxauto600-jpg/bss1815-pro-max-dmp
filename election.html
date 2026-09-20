@@ -1,0 +1,72 @@
+<!-- FILE: election.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Election Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Election Center",
+  "icon": "🗳️",
+  "desc": "Eleksyon entèn ak jesyon pwosesis vòt òganizasyon an.",
+  "collection": "mx_elections",
+  "access": "super",
+  "fields": [
+    {
+      "key": "title",
+      "label": "Non eleksyon",
+      "required": true
+    },
+    {
+      "key": "position",
+      "label": "Pòs"
+    },
+    {
+      "key": "candidates",
+      "label": "Kandida yo",
+      "type": "textarea"
+    },
+    {
+      "key": "startDate",
+      "label": "Dat ouvèti",
+      "type": "date"
+    },
+    {
+      "key": "endDate",
+      "label": "Dat fèmti",
+      "type": "date"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Pwograme",
+        "Louvri",
+        "Fèmen"
+      ]
+    },
+    {
+      "key": "result",
+      "label": "Rezilta",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "note": "Modil sa a anrejistre eleksyon yo ak rezilta yo. Sistèm vòt an liy la poko konstwi."
+});
+</script>
+
+</body>
+</html>
