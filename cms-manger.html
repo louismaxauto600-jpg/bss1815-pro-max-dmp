@@ -1,0 +1,59 @@
+<!-- FILE: cms-manager.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS / Website | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "CMS / Website",
+  "icon": "🌐",
+  "desc": "Kontwòl kontni ak paj sit BSS1815.",
+  "collection": "mx_cms_pages",
+  "fields": [
+    {
+      "key": "pageTitle",
+      "label": "Tit paj",
+      "required": true
+    },
+    {
+      "key": "slug",
+      "label": "Slug (adrès paj la)"
+    },
+    {
+      "key": "section",
+      "label": "Seksyon"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Bouyon",
+        "Piblye"
+      ]
+    },
+    {
+      "key": "content",
+      "label": "Kontni",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "note": "Kontni an sove nan Firebase. Sit piblik la poko li kontni sa a."
+});
+</script>
+
+</body>
+</html>
