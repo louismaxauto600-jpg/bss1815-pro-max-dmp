@@ -1,0 +1,105 @@
+<!-- FILE: donation.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Donation Center",
+  "icon": "❤️",
+  "desc": "Donasyon ak sipò finansye.",
+  "collection": "mx_donations",
+  "access": "super",
+  "fields": [
+    {
+      "key": "donor",
+      "label": "Non donatè",
+      "required": true
+    },
+    {
+      "key": "amount",
+      "label": "Montan",
+      "type": "number",
+      "required": true
+    },
+    {
+      "key": "currency",
+      "label": "Lajan",
+      "type": "select",
+      "options": [
+        "HTG",
+        "USD"
+      ]
+    },
+    {
+      "key": "date",
+      "label": "Dat",
+      "type": "date"
+    },
+    {
+      "key": "method",
+      "label": "Metòd",
+      "type": "select",
+      "options": [
+        "MonCash",
+        "NatCash",
+        "Kach",
+        "Bank",
+        "Lòt"
+      ]
+    },
+    {
+      "key": "purpose",
+      "label": "Objektif"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "An atant",
+        "Konfime"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "columns": [
+    "amount",
+    "currency",
+    "date",
+    "method",
+    "purpose",
+    "notes"
+  ],
+  "sum": {
+    "label": "Total konfime",
+    "field": "amount",
+    "group": "currency",
+    "only": {
+      "field": "status",
+      "value": "Konfime"
+    }
+  },
+  "note": "Modil rezève pou Super Admin. Peman yo antre alamen; pa gen koneksyon otomatik ak MonCash oswa NatCash."
+});
+</script>
+
+</body>
+</html>
