@@ -123,8 +123,6 @@ footer strong{color:var(--orange)}
 @media(max-width:700px){.tab{min-width:0;flex:1}}
 .player{position:relative;width:100%;aspect-ratio:16/9;border:2px solid var(--orange);border-radius:22px;overflow:hidden;background:#000;box-shadow:0 0 34px rgba(255,121,0,.28)}
 .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.player.has-poster{aspect-ratio:auto}
-.player.has-poster .poster{position:relative;inset:auto;padding:30px 20px}
 .poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;background:radial-gradient(circle at 50% 35%,rgba(255,0,0,.22),transparent 55%),linear-gradient(145deg,#140000,#000)}
 .yt-ic{width:92px;height:64px;border-radius:18px;background:#ff0000;display:flex;align-items:center;justify-content:center;box-shadow:0 0 34px rgba(255,0,0,.5)}
 .yt-ic svg{width:34px;height:34px;fill:#fff;margin-left:4px}
@@ -146,6 +144,9 @@ footer strong{color:var(--orange)}
 .card.radio p{font-size:.82rem;line-height:1.6;margin-top:4px}
 @media(max-width:900px){.social-icons{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.yt-grid{grid-template-columns:repeat(2,1fr)}.social-icons{grid-template-columns:repeat(2,1fr)}}
+
+.player.has-poster{aspect-ratio:auto}
+.player.has-poster .poster{position:relative;inset:auto;padding:30px 20px}
 
 </style>
 </head>
@@ -172,17 +173,21 @@ footer strong{color:var(--orange)}
 <div class="player" id="player"></div>
 <div class="actions" style="justify-content:center;margin-top:18px">
   <a class="btn red big" id="liveBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_live">▶ WATCH LIVE</a>
+  <a class="btn big hidden" id="openYt" href="#" target="_blank" rel="noopener noreferrer" data-i18n="open_yt">OPEN ON YOUTUBE</a>
   <a class="btn big" id="shareBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="share">SHARE THE LIVE ON WHATSAPP</a>
 </div>
-<div class="hint" style="text-align:center;margin-top:8px" data-i18n="tip"></div>
+<div class="hint" style="text-align:center;margin-top:8px" data-i18n="blocked"></div>
+
+<div class="card" style="margin-top:22px">
+  <div class="field" style="margin-bottom:10px"><label for="linkIn" data-i18n="link_h">PASTE A YOUTUBE LINK</label>
+    <input id="linkIn" type="url" inputmode="url" autocomplete="off" data-i18n-ph="link_ph" placeholder="https://youtu.be/…"></div>
+  <div class="row-btns"><button class="btn primary" id="linkBtn" type="button" data-i18n="link_btn">▶ PLAY THIS LINK</button><button class="btn hidden" id="resetBtn" type="button" data-i18n="reset">BACK TO THE LIVE</button></div>
+  <div class="msg" id="linkMsg"></div>
+</div>
+<div class="hint" style="text-align:center;margin-top:10px" data-i18n="tip"></div>
 
 <div class="sect2" data-i18n="yt_h">OUR YOUTUBE CHANNEL</div>
 <div class="yt-grid" id="ytGrid"></div>
-
-<section id="featured" class="hidden">
-  <div class="sect2" data-i18n="feat_h">FEATURED VIDEO</div>
-  <div class="player" id="featPlayer" style="margin-top:14px"></div>
-</section>
 
 <div class="card radio">
   <div><h3 data-i18n="radio_h">RADIO PRO-MAX FM</h3><p data-i18n="radio_p">Listen…</p></div>
@@ -206,7 +211,7 @@ footer strong{color:var(--orange)}
 
 <footer>
   <strong>BSS1815 PRO-MAX DMP</strong><br>LIVE STREAMING • DIGITAL MANAGEMENT PLATFORM<br>© <span id="year"></span> BSS1815 PRO-MAX DMP<br>
-  <span style="opacity:.55">LIVE STREAMING VERSION 2026.09.20-A</span>
+  <span style="opacity:.55">LIVE STREAMING VERSION 2026.09.20-B</span>
 </footer>
 <script>
 (function(){
@@ -214,15 +219,14 @@ footer strong{color:var(--orange)}
 
 /* =====================================================================
    YOUTUBE SETTINGS
-   handle          : the name of the channel (from the YouTube link  youtube.com/@BSS1815PROMAXDMP)
-   channelId       : OPTIONAL. Starts with UC... (YouTube Studio > Settings > Channel > Advanced settings).
-                     When it is filled, the live plays INSIDE this page. Empty = the big WATCH LIVE button opens YouTube.
-   featuredVideoId : OPTIONAL. The 11 characters after  watch?v=  of a video you want to show on this page.
-                     You can also test with  live-streaming.html?v=VIDEOID
+   handle    : the name of the channel (youtube.com/@BSS1815PROMAXDMP)
+   featured  : the video everybody sees when the page opens. Paste ANY YouTube link (the Share link is fine).
+               Empty "" = show the big WATCH LIVE button instead.
+   channelId : OPTIONAL. Starts with UC... When it is filled and "featured" is empty, your live plays INSIDE this page.
 ===================================================================== */
-var YT = { handle: "BSS1815PROMAXDMP", channelId: "", featuredVideoId: "" };
+var YT = { handle: "BSS1815PROMAXDMP", featured: "https://youtu.be/6j7Ty6C6VyY", channelId: "" };
 
-var I18N = {"top": {"en": "BSS1815 PRO-MAX DMP • LIVE STREAMING", "fr": "BSS1815 PRO-MAX DMP • DIFFUSION EN DIRECT", "ht": "BSS1815 PRO-MAX DMP • LIVE STREAMING"}, "tagline": {"en": "LIVE STREAMING • RADIO • VIDEO • LIVE EVENTS • BROADCAST", "fr": "DIRECT • RADIO • VIDÉO • ÉVÉNEMENTS EN DIRECT • DIFFUSION", "ht": "LIVE STREAMING • RADYO • VIDEYO • LIV EVÈNMAN • DIFIZYON"}, "home": {"en": "HOME", "fr": "ACCUEIL", "ht": "AKÈY"}, "ai": {"en": "AI CENTER", "fr": "CENTRE IA", "ht": "AI CENTER"}, "title": {"en": "LIVE STREAMING", "fr": "DIFFUSION EN DIRECT", "ht": "LIVE STREAMING"}, "sub": {"en": "Watch the BSS1815 PRO-MAX DMP live shows and videos on our official YouTube channel.", "fr": "Regardez les directs et vidéos de BSS1815 PRO-MAX DMP sur notre chaîne YouTube officielle.", "ht": "Gade live ak videyo BSS1815 PRO-MAX DMP yo sou chanèl YouTube ofisyèl nou an."}, "poster_h": {"en": "WATCH THE LIVE ON YOUTUBE", "fr": "REGARDEZ LE DIRECT SUR YOUTUBE", "ht": "GADE LIVE LA SOU YOUTUBE"}, "poster_p": {"en": "Press the button: if we are live, the live opens right away. If not, our latest video opens.", "fr": "Appuyez sur le bouton : si nous sommes en direct, le direct s'ouvre tout de suite. Sinon, notre dernière vidéo s'ouvre.", "ht": "Peze bouton an: si nou an live, live la louvri touswit. Si non, dènye videyo nou an louvri."}, "btn_live": {"en": "▶ WATCH LIVE", "fr": "▶ REGARDER LE DIRECT", "ht": "▶ GADE LIVE LA"}, "yt_h": {"en": "OUR YOUTUBE CHANNEL", "fr": "NOTRE CHAÎNE YOUTUBE", "ht": "CHANÈL YOUTUBE NOU AN"}, "y_live": {"en": "LIVE NOW", "fr": "EN DIRECT", "ht": "LIVE KOUNYE A"}, "y_videos": {"en": "VIDEOS", "fr": "VIDÉOS", "ht": "VIDEYO"}, "y_shorts": {"en": "SHORTS", "fr": "SHORTS", "ht": "SHORTS"}, "y_playlists": {"en": "PLAYLISTS", "fr": "PLAYLISTS", "ht": "PLAYLIST"}, "y_channel": {"en": "CHANNEL", "fr": "CHAÎNE", "ht": "CHANÈL"}, "y_sub": {"en": "SUBSCRIBE", "fr": "S'ABONNER", "ht": "ABONE"}, "tip": {"en": "Tip: tap SUBSCRIBE, then the bell 🔔 and choose “All”, to be notified when we go live.", "fr": "Astuce : touchez S'ABONNER, puis la cloche 🔔 et choisissez « Toutes », pour être averti quand nous passons en direct.", "ht": "Konsèy: peze ABONE, apre sa klòch la 🔔 epi chwazi « Tout », pou w jwenn avètisman lè nou ap fè live."}, "share": {"en": "SHARE THE LIVE ON WHATSAPP", "fr": "PARTAGER LE DIRECT SUR WHATSAPP", "ht": "PATAJE LIVE LA SOU WHATSAPP"}, "share_txt": {"en": "🔴 BSS1815 PRO-MAX DMP is live! Watch here:", "fr": "🔴 BSS1815 PRO-MAX DMP est en direct ! Regardez ici :", "ht": "🔴 BSS1815 PRO-MAX DMP ap fè live! Gade isit la:"}, "feat_h": {"en": "FEATURED VIDEO", "fr": "VIDÉO EN VEDETTE", "ht": "VIDEYO ENPÒTAN"}, "radio_h": {"en": "RADIO PRO-MAX FM", "fr": "RADIO PRO-MAX FM", "ht": "RADYO PRO-MAX FM"}, "radio_p": {"en": "Listen to our digital radio.", "fr": "Écoutez notre radio numérique.", "ht": "Koute radyo dijital nou an."}, "radio_btn": {"en": "LISTEN", "fr": "ÉCOUTER", "ht": "KOUTE"}, "soc_h": {"en": "FOLLOW US EVERYWHERE", "fr": "SUIVEZ-NOUS PARTOUT", "ht": "SIVI NOU NAN TOUT KOTE"}};
+var I18N = {"top": {"en": "BSS1815 PRO-MAX DMP • LIVE STREAMING", "fr": "BSS1815 PRO-MAX DMP • DIFFUSION EN DIRECT", "ht": "BSS1815 PRO-MAX DMP • LIVE STREAMING"}, "tagline": {"en": "LIVE STREAMING • RADIO • VIDEO • LIVE EVENTS • BROADCAST", "fr": "DIRECT • RADIO • VIDÉO • ÉVÉNEMENTS EN DIRECT • DIFFUSION", "ht": "LIVE STREAMING • RADYO • VIDEYO • LIV EVÈNMAN • DIFIZYON"}, "home": {"en": "HOME", "fr": "ACCUEIL", "ht": "AKÈY"}, "ai": {"en": "AI CENTER", "fr": "CENTRE IA", "ht": "AI CENTER"}, "title": {"en": "LIVE STREAMING", "fr": "DIFFUSION EN DIRECT", "ht": "LIVE STREAMING"}, "sub": {"en": "Watch the BSS1815 PRO-MAX DMP live shows and videos on our official YouTube channel.", "fr": "Regardez les directs et vidéos de BSS1815 PRO-MAX DMP sur notre chaîne YouTube officielle.", "ht": "Gade live ak videyo BSS1815 PRO-MAX DMP yo sou chanèl YouTube ofisyèl nou an."}, "poster_h": {"en": "WATCH THE LIVE ON YOUTUBE", "fr": "REGARDEZ LE DIRECT SUR YOUTUBE", "ht": "GADE LIVE LA SOU YOUTUBE"}, "poster_p": {"en": "Press the button: if we are live, the live opens right away. If not, our latest video opens.", "fr": "Appuyez sur le bouton : si nous sommes en direct, le direct s'ouvre tout de suite. Sinon, notre dernière vidéo s'ouvre.", "ht": "Peze bouton an: si nou an live, live la louvri touswit. Si non, dènye videyo nou an louvri."}, "btn_live": {"en": "▶ WATCH LIVE", "fr": "▶ REGARDER LE DIRECT", "ht": "▶ GADE LIVE LA"}, "yt_h": {"en": "OUR YOUTUBE CHANNEL", "fr": "NOTRE CHAÎNE YOUTUBE", "ht": "CHANÈL YOUTUBE NOU AN"}, "y_live": {"en": "LIVE NOW", "fr": "EN DIRECT", "ht": "LIVE KOUNYE A"}, "y_videos": {"en": "VIDEOS", "fr": "VIDÉOS", "ht": "VIDEYO"}, "y_shorts": {"en": "SHORTS", "fr": "SHORTS", "ht": "SHORTS"}, "y_playlists": {"en": "PLAYLISTS", "fr": "PLAYLISTS", "ht": "PLAYLIST"}, "y_channel": {"en": "CHANNEL", "fr": "CHAÎNE", "ht": "CHANÈL"}, "y_sub": {"en": "SUBSCRIBE", "fr": "S'ABONNER", "ht": "ABONE"}, "tip": {"en": "Tip: tap SUBSCRIBE, then the bell 🔔 and choose “All”, to be notified when we go live.", "fr": "Astuce : touchez S'ABONNER, puis la cloche 🔔 et choisissez « Toutes », pour être averti quand nous passons en direct.", "ht": "Konsèy: peze ABONE, apre sa klòch la 🔔 epi chwazi « Tout », pou w jwenn avètisman lè nou ap fè live."}, "share": {"en": "SHARE THE LIVE ON WHATSAPP", "fr": "PARTAGER LE DIRECT SUR WHATSAPP", "ht": "PATAJE LIVE LA SOU WHATSAPP"}, "share_txt": {"en": "🔴 BSS1815 PRO-MAX DMP is live! Watch here:", "fr": "🔴 BSS1815 PRO-MAX DMP est en direct ! Regardez ici :", "ht": "🔴 BSS1815 PRO-MAX DMP ap fè live! Gade isit la:"}, "feat_h": {"en": "FEATURED VIDEO", "fr": "VIDÉO EN VEDETTE", "ht": "VIDEYO ENPÒTAN"}, "radio_h": {"en": "RADIO PRO-MAX FM", "fr": "RADIO PRO-MAX FM", "ht": "RADYO PRO-MAX FM"}, "radio_p": {"en": "Listen to our digital radio.", "fr": "Écoutez notre radio numérique.", "ht": "Koute radyo dijital nou an."}, "radio_btn": {"en": "LISTEN", "fr": "ÉCOUTER", "ht": "KOUTE"}, "soc_h": {"en": "FOLLOW US EVERYWHERE", "fr": "SUIVEZ-NOUS PARTOUT", "ht": "SIVI NOU NAN TOUT KOTE"}, "link_h": {"en": "PASTE A YOUTUBE LINK", "fr": "COLLEZ UN LIEN YOUTUBE", "ht": "KOLE YON LYEN YOUTUBE"}, "link_ph": {"en": "Paste any YouTube link (share link, live, playlist)…", "fr": "Collez n'importe quel lien YouTube (partage, direct, playlist)…", "ht": "Kole nenpòt lyen YouTube (lyen partaj, live, playlist)…"}, "link_btn": {"en": "▶ PLAY THIS LINK", "fr": "▶ LIRE CE LIEN", "ht": "▶ JWE LYEN SA A"}, "link_ok": {"en": "Playing this link.", "fr": "Lecture de ce lien.", "ht": "Ap jwe lyen sa a."}, "err_handle": {"en": "This is a channel name, not a video. Paste the link of a video or of a live (Share → Copy link).", "fr": "C'est un nom de chaîne, pas une vidéo. Collez le lien d'une vidéo ou d'un direct (Partager → Copier le lien).", "ht": "Sa a se non yon chanèl, pa yon videyo. Kole lyen yon videyo oswa yon live (Share → Copy link)."}, "err_bad": {"en": "This link is not a YouTube or Facebook video link.", "fr": "Ce lien n'est pas un lien vidéo YouTube ou Facebook.", "ht": "Lyen sa a pa yon lyen videyo YouTube oswa Facebook."}, "open_yt": {"en": "OPEN ON YOUTUBE", "fr": "OUVRIR SUR YOUTUBE", "ht": "OUVRI SOU YOUTUBE"}, "blocked": {"en": "If the player says “Video unavailable”, the owner blocks playing it on other sites. Press OPEN ON YOUTUBE. Videos of your own channel always play here.", "fr": "Si le lecteur indique « Vidéo indisponible », le propriétaire interdit la lecture sur d'autres sites. Appuyez sur OUVRIR SUR YOUTUBE. Les vidéos de votre propre chaîne se lisent toujours ici.", "ht": "Si lektè a di « Video unavailable », mèt videyo a bloke l sou lòt sit. Peze OUVRI SOU YOUTUBE. Videyo chanèl ou an menm toujou jwe isit la."}, "reset": {"en": "BACK TO THE LIVE", "fr": "RETOUR AU DIRECT", "ht": "RETOUNEN SOU LIVE LA"}};
 var lang = "ht";
 function t(k){ return (I18N[k] && (I18N[k][lang] || I18N[k].en)) || k; }
 function $(id){ return document.getElementById(id); }
@@ -231,21 +235,68 @@ function el(tag, cls, text){ var e = document.createElement(tag); if(cls){ e.cla
 var BASE = "https://www.youtube.com/@" + YT.handle;
 var URLS = { live: BASE + "/live", videos: BASE + "/videos", shorts: BASE + "/shorts", playlists: BASE + "/playlists", channel: BASE, sub: BASE + "?sub_confirmation=1" };
 
-function buildPlayer(){
-  var box = $("player"); box.textContent = "";
-  if(/^UC[A-Za-z0-9_-]{22}$/.test(YT.channelId)){
-    var f = document.createElement("iframe");
-    f.src = "https://www.youtube.com/embed/live_stream?channel=" + YT.channelId; f.title = "BSS1815 PRO-MAX DMP LIVE";
-    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen"; f.setAttribute("allowfullscreen", ""); f.setAttribute("loading", "lazy");
-    box.appendChild(f); return;
+/* ---- understand any link and turn it into something that can be played here ---- */
+var ID11 = /^[A-Za-z0-9_-]{11}$/;
+function parseLink(raw){
+  raw = String(raw || "").trim(); if(!raw){ return { err: "err_bad" }; }
+  if(/^@/.test(raw)){ return { err: "err_handle" }; }
+  if(ID11.test(raw)){ return { src: "https://www.youtube-nocookie.com/embed/" + raw, watch: "https://www.youtube.com/watch?v=" + raw }; }
+  if(/^UC[A-Za-z0-9_-]{22}$/.test(raw)){ return { src: "https://www.youtube.com/embed/live_stream?channel=" + raw, watch: "https://www.youtube.com/channel/" + raw + "/live" }; }
+  if(!/^https?:\/\//i.test(raw)){ raw = "https://" + raw; }
+  var u; try{ u = new URL(raw); }catch(e){ return { err: "err_bad" }; }
+  var host = u.hostname.replace(/^www\./, "").replace(/^m\./, "").replace(/^music\./, ""), path = u.pathname, q = u.searchParams;
+  if(host === "facebook.com" || host === "fb.watch" || host === "fb.com"){
+    return { src: "https://www.facebook.com/plugins/video.php?show_text=false&href=" + encodeURIComponent(u.href), watch: u.href };
   }
-  box.classList.add("has-poster"); $("liveBtn").classList.add("hidden");   /* the poster already has the big WATCH LIVE button */
+  if(host !== "youtube.com" && host !== "youtu.be" && host !== "youtube-nocookie.com"){ return { err: "err_bad" }; }
+  if(host === "youtu.be"){ var id0 = path.split("/")[1] || ""; if(ID11.test(id0)){ return video(id0, q.get("list")); } return { err: "err_bad" }; }
+  if(/^\/@/.test(path) && !/\/live\/?$/.test(path)){ return { err: "err_handle" }; }
+  if(/^\/@[^\/]+\/live\/?$/.test(path)){ return { src: null, watch: u.href, external: true }; }
+  var mm = /^\/(?:embed|live|shorts|v)\/([A-Za-z0-9_-]{11})/.exec(path); if(mm){ return video(mm[1], q.get("list")); }
+  if(path === "/watch" && ID11.test(q.get("v") || "")){ return video(q.get("v"), q.get("list")); }
+  if(path === "/playlist" && q.get("list")){ return { src: "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(q.get("list")), watch: u.href }; }
+  var cm = /^\/channel\/(UC[A-Za-z0-9_-]{22})/.exec(path); if(cm){ return { src: "https://www.youtube.com/embed/live_stream?channel=" + cm[1], watch: "https://www.youtube.com/channel/" + cm[1] + "/live" }; }
+  return { err: "err_bad" };
+  function video(id, list){ return { src: "https://www.youtube-nocookie.com/embed/" + id + (list ? "?list=" + encodeURIComponent(list) : ""), watch: "https://www.youtube.com/watch?v=" + id + (list ? "&list=" + encodeURIComponent(list) : "") }; }
+}
+
+/* ---- the player ---- */
+function showFrame(src, watch){
+  var box = $("player"); box.textContent = ""; box.classList.remove("has-poster");
+  var f = document.createElement("iframe"); f.src = src; f.title = "BSS1815 PRO-MAX DMP";
+  f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen"; f.setAttribute("allowfullscreen", ""); f.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+  box.appendChild(f); $("liveBtn").classList.add("hidden");
+  var o = $("openYt"); if(watch){ o.href = watch; o.classList.remove("hidden"); } else { o.classList.add("hidden"); }
+}
+function showPoster(){
+  var box = $("player"); box.textContent = ""; box.classList.add("has-poster"); $("liveBtn").classList.add("hidden"); $("openYt").classList.add("hidden");
   var p = el("div", "poster");
   var ic = el("div", "yt-ic"); ic.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'; p.appendChild(ic);
   var h = el("h2", "", t("poster_h")); h.setAttribute("data-i18n", "poster_h"); p.appendChild(h);
   var q = el("p", "", t("poster_p")); q.setAttribute("data-i18n", "poster_p"); p.appendChild(q);
   var a = el("a", "btn red big", t("btn_live")); a.setAttribute("data-i18n", "btn_live"); a.href = URLS.live; a.target = "_blank"; a.rel = "noopener noreferrer"; p.appendChild(a);
   box.appendChild(p);
+}
+function playLink(raw, remember){
+  var r = parseLink(raw), msg = $("linkMsg");
+  if(r.err){ msg.className = "msg bad"; msg.setAttribute("data-i18n", r.err); msg.textContent = t(r.err); return false; }
+  if(r.external){ window.open(r.watch, "_blank", "noopener"); return true; }
+  showFrame(r.src, r.watch); msg.className = "msg ok"; msg.setAttribute("data-i18n", "link_ok"); msg.textContent = t("link_ok");
+  if(remember){ try{ localStorage.setItem("bssLiveLink", raw); }catch(e){} $("resetBtn").classList.remove("hidden"); }
+  return true;
+}
+function defaultPlayer(){
+  var f = parseLink(YT.featured);
+  if(YT.featured && !f.err && f.src){ showFrame(f.src, f.watch); return; }
+  if(/^UC[A-Za-z0-9_-]{22}$/.test(YT.channelId)){ var c = parseLink(YT.channelId); showFrame(c.src, c.watch); return; }
+  showPoster();
+}
+function startPlayer(){
+  var m = /[?&]v=([A-Za-z0-9_-]{11})(?:&|$)/.exec(location.search), saved = "";
+  try{ saved = localStorage.getItem("bssLiveLink") || ""; }catch(e){}
+  if(m && playLink(m[1], false)){ return; }
+  if(saved && !parseLink(saved).err && !parseLink(saved).external){ playLink(saved, true); $("linkMsg").textContent = ""; return; }
+  defaultPlayer();
 }
 
 function buildGrid(){
@@ -255,31 +306,23 @@ function buildGrid(){
     a.appendChild(el("span", "e", x[0])); var s = el("span", "", t(x[1])); s.setAttribute("data-i18n", x[1]); a.appendChild(s); g.appendChild(a);
   });
 }
-
-function featured(){
-  var id = "", m = /[?&]v=([A-Za-z0-9_-]{11})(?:&|$)/.exec(location.search);
-  if(m){ id = m[1]; } else if(/^[A-Za-z0-9_-]{11}$/.test(YT.featuredVideoId)){ id = YT.featuredVideoId; }
-  if(!id){ return; }
-  var f = document.createElement("iframe"); f.src = "https://www.youtube-nocookie.com/embed/" + id; f.title = "BSS1815 PRO-MAX DMP video";
-  f.allow = "accelerometer; encrypted-media; picture-in-picture; fullscreen"; f.setAttribute("allowfullscreen", ""); f.setAttribute("loading", "lazy");
-  $("featPlayer").appendChild(f); $("featured").classList.remove("hidden");
-}
-
 function applyLanguage(l){
   if(["en", "fr", "ht"].indexOf(l) === -1){ l = "ht"; } lang = l; document.documentElement.lang = l;
   document.querySelectorAll("[data-i18n]").forEach(function(e){ e.textContent = t(e.getAttribute("data-i18n")); });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function(e){ e.setAttribute("placeholder", t(e.getAttribute("data-i18n-ph"))); });
   document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-lang") === l); });
   try{ localStorage.setItem("bss1815Language", l); }catch(e){}
   $("shareBtn").href = "https://wa.me/?text=" + encodeURIComponent(t("share_txt") + " " + URLS.live);
 }
-
 function boot(){
-  $("year").textContent = new Date().getFullYear();
-  $("liveBtn").href = URLS.live;
-  buildPlayer(); buildGrid(); featured();
+  $("year").textContent = new Date().getFullYear(); $("liveBtn").href = URLS.live;
+  buildGrid(); startPlayer();
   var saved = "ht"; try{ saved = localStorage.getItem("bss1815Language") || "ht"; }catch(e){}
   document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ applyLanguage(b.getAttribute("data-lang")); }); });
   applyLanguage(saved);
+  $("linkBtn").addEventListener("click", function(){ playLink($("linkIn").value, true); });
+  $("linkIn").addEventListener("keydown", function(e){ if(e.key === "Enter"){ playLink($("linkIn").value, true); } });
+  $("resetBtn").addEventListener("click", function(){ try{ localStorage.removeItem("bssLiveLink"); }catch(e){} $("resetBtn").classList.add("hidden"); $("linkMsg").textContent = ""; $("linkIn").value = ""; defaultPlayer(); });
 }
 boot();
 })();
