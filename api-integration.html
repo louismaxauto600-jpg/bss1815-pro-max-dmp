@@ -1,0 +1,58 @@
+<!-- FILE: api-integration.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API / Integration | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "API / Integration",
+  "icon": "🔌",
+  "desc": "Koneksyon API ak lòt sèvis dijital.",
+  "collection": "mx_integrations",
+  "access": "super",
+  "fields": [
+    {
+      "key": "serviceName",
+      "label": "Non sèvis",
+      "required": true
+    },
+    {
+      "key": "endpoint",
+      "label": "URL sèvis la",
+      "type": "url"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Tès",
+        "Aktif",
+        "Dezaktive"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "note": "Pa ekri kle sekrè, token oswa modpas isit la. Sèlman non sèvis la, URL la ak nòt."
+});
+</script>
+
+</body>
+</html>
