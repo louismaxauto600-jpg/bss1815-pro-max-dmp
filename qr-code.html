@@ -1,0 +1,51 @@
+<!-- FILE: qr-code.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "QR Code Center",
+  "icon": "▦",
+  "desc": "Kreye ak jere QR codes.",
+  "collection": "mx_qr_codes",
+  "fields": [
+    {
+      "key": "label",
+      "label": "Non QR la",
+      "required": true
+    },
+    {
+      "key": "url",
+      "label": "Lyen destinasyon",
+      "type": "url",
+      "required": true
+    },
+    {
+      "key": "purpose",
+      "label": "Objektif"
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "note": "Modil sa a sove lyen QR yo. Jenerasyon imaj QR la poko konstwi."
+});
+</script>
+
+</body>
+</html>
