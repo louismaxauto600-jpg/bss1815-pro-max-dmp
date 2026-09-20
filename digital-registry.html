@@ -1,0 +1,59 @@
+<!-- FILE: digital-registry.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Registry | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Digital Registry",
+  "icon": "🗄️",
+  "desc": "Rejis dijital pou achiv ak enfòmasyon òganizasyon.",
+  "collection": "mx_registry",
+  "fields": [
+    {
+      "key": "entryTitle",
+      "label": "Tit antre a",
+      "required": true
+    },
+    {
+      "key": "registryNumber",
+      "label": "Nimewo rejis"
+    },
+    {
+      "key": "category",
+      "label": "Kategori"
+    },
+    {
+      "key": "entryDate",
+      "label": "Dat",
+      "type": "date"
+    },
+    {
+      "key": "link",
+      "label": "Lyen",
+      "type": "url"
+    },
+    {
+      "key": "description",
+      "label": "Deskripsyon",
+      "type": "textarea"
+    }
+  ],
+  "badge": "category"
+});
+</script>
+
+</body>
+</html>
