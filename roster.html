@@ -1,0 +1,68 @@
+<!-- FILE: roster.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Musician / Rara & Leadership | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Musician / Rara & Leadership",
+  "icon": "🥁",
+  "desc": "Mizisyen, gwoup, enstriman, Rara, dirijan ak estrikti administrasyon.",
+  "collection": "mx_roster",
+  "fields": [
+    {
+      "key": "fullName",
+      "label": "Non konplè",
+      "required": true
+    },
+    {
+      "key": "function",
+      "label": "Fonksyon / Enstriman"
+    },
+    {
+      "key": "group",
+      "label": "Gwoup / Sektè"
+    },
+    {
+      "key": "phone",
+      "label": "Telefòn",
+      "type": "tel"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Aktif",
+        "Inaktif"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "typeParam": "type",
+  "typeLabels": {
+    "musicians": "Musician / Rara",
+    "leaders": "Leadership"
+  }
+});
+</script>
+
+</body>
+</html>
