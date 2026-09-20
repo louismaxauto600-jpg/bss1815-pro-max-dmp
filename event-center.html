@@ -1,0 +1,78 @@
+<!-- FILE: event-center.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Center | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Event Center",
+  "icon": "📅",
+  "desc": "Evènman, reyinyon ak aktivite BSS1815.",
+  "collection": "mx_events",
+  "fields": [
+    {
+      "key": "title",
+      "label": "Non evènman",
+      "required": true
+    },
+    {
+      "key": "eventDate",
+      "label": "Dat",
+      "type": "date",
+      "required": true
+    },
+    {
+      "key": "time",
+      "label": "Lè",
+      "type": "time"
+    },
+    {
+      "key": "location",
+      "label": "Kote"
+    },
+    {
+      "key": "kind",
+      "label": "Kalite",
+      "type": "select",
+      "options": [
+        "Reyinyon",
+        "Aktivite",
+        "Fèt",
+        "Fòmasyon",
+        "Lòt"
+      ]
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Pwograme",
+        "Fini",
+        "Anile"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status"
+});
+</script>
+
+</body>
+</html>
