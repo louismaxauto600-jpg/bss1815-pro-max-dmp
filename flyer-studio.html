@@ -1,0 +1,61 @@
+<!-- FILE: flyer-studio.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flyer Studio | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Flyer Studio",
+  "icon": "🎨",
+  "desc": "Kreye flyers ak materyèl vizyèl BSS1815.",
+  "collection": "mx_flyers",
+  "fields": [
+    {
+      "key": "title",
+      "label": "Tit flyer",
+      "required": true
+    },
+    {
+      "key": "eventName",
+      "label": "Evènman"
+    },
+    {
+      "key": "designLink",
+      "label": "Lyen desen (Canva, Drive…)",
+      "type": "url"
+    },
+    {
+      "key": "status",
+      "label": "Estati",
+      "type": "select",
+      "options": [
+        "Bouyon",
+        "Apwouve",
+        "Piblye"
+      ]
+    },
+    {
+      "key": "notes",
+      "label": "Nòt",
+      "type": "textarea"
+    }
+  ],
+  "badge": "status",
+  "note": "Modil sa a swiv flyers yo ak lyen desen yo. Edite flyer a dirèkteman isit la poko konstwi."
+});
+</script>
+
+</body>
+</html>
