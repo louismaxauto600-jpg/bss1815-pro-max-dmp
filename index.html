@@ -1,2790 +1,1664 @@
 <!DOCTYPE html>
-<!--
-  ==========================================================
-  NON FICHYE A (FILE NAME) : index.html
-  SA LI YE                  : PAJ AKÈY (HOMEPAGE) BSS1815 PRO-MAX DMP
-  KOTE POU W MONTE L        : nan RASIN repo GitHub la (menm kote ak index.html).
-  Se li ki parèt lè yon moun louvri sit la. Li ranplase ansyen index.html la.
-  PA CHANJE NON LI.
-  ==========================================================
--->
-<html lang="ht" translate="no">
+<html lang="ht">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BSS1815 PRO-MAX DMP | Digital Management Platform</title>
+<title>BSS1815 PRO-MAX DMP | Central Hub</title>
 
-<meta name="description" content="BSS1815 PRO-MAX DMP — Yon sèl platfòm dijital pou kominote, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, AI, medya, administrasyon ak inovasyon.">
+<meta name="description"
+content="BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT. BATI POU JODI A. PARE POU DEMEN.">
+
 <meta name="theme-color" content="#000000">
-<meta name="author" content="BSS1815 PRO-MAX DMP">
-<meta name="robots" content="index,follow">
 
 <style>
-:root {
-  --black:#000;
-  --black2:#070200;
-  --black3:#100500;
+:root{
   --orange:#ff7900;
-  --orange2:#ff8c1a;
-  --orange3:#ffad4d;
-  --text:#ffc589;
-  --border:rgba(255,121,0,.28);
-  --border2:rgba(255,121,0,.72);
-  --glow:0 0 18px rgba(255,121,0,.35);
-  --glow2:0 0 18px rgba(255,121,0,.68),0 0 48px rgba(255,121,0,.25);
+  --apricot:#ffad4d;
+  --black:#000000;
+  --black2:#070402;
+  --panel:#110904;
+  --panel2:#1a0d04;
+  --text:#fff4e8;
+  --muted:#cdb39a;
+  --line:rgba(255,121,0,.28);
+  --line2:rgba(255,173,77,.70);
+  --green:#39d87a;
 }
 
-* {
+*{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
-html {
+html{
   scroll-behavior:smooth;
 }
 
-body {
+body{
   min-height:100vh;
-  overflow-x:hidden;
   font-family:Arial,Helvetica,sans-serif;
   color:var(--text);
-  background:radial-gradient(circle at 18% 15%,rgba(255,121,0,.16),transparent 33%),radial-gradient(circle at 82% 72%,rgba(255,121,0,.09),transparent 38%),linear-gradient(180deg,#000 0%,#0b0400 48%,#000 100%);
+
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(255,121,0,.20),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 10% 95%,
+      rgba(255,173,77,.10),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #000000 0%,
+      #070402 50%,
+      #170a02 100%
+    );
 }
 
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background-image:linear-gradient(rgba(255,121,0,.024) 1px,transparent 1px),linear-gradient(90deg,rgba(255,121,0,.024) 1px,transparent 1px);
-  background-size:44px 44px;
-}
-
-a {
+a{
   color:inherit;
   text-decoration:none;
 }
 
-button {
+button,
+input{
   font:inherit;
 }
 
-img,video {
-  display:block;
-  max-width:100%;
-}
+/* ======================================================
+   HEADER
+====================================================== */
 
-.container {
-  width:min(1220px,calc(100% - 28px));
-  margin:auto;
-}
-
-.top-bar {
-  padding:9px 15px;
-  text-align:center;
-  color:#000;
-  background:linear-gradient(90deg,#913700,var(--orange),var(--orange3),var(--orange),#913700);
-  font-size:.68rem;
-  font-weight:1000;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-header {
+.header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:rgba(0,0,0,.97);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(14px);
-  box-shadow:0 8px 28px rgba(0,0,0,.55);
-}
 
-.header-inner {
-  min-height:86px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:18px;
+
+  gap:20px;
+
+  min-height:78px;
+
+  padding:12px 24px;
+
+  background:rgba(0,0,0,.94);
+
+  border-bottom:1px solid var(--line2);
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.55);
+
+  backdrop-filter:blur(12px);
 }
 
-.brand {
+.brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:13px;
 }
 
-.brand-video-wrap {
-  width:66px;
-  height:66px;
-  overflow:hidden;
-  flex-shrink:0;
-  border:2px solid var(--orange);
-  border-radius:17px;
-  background:#000;
-  box-shadow:var(--glow);
-}
+.brand-logo{
+  width:55px;
+  height:55px;
 
-.brand-video {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.brand-text strong {
-  display:block;
-  color:var(--orange);
-  font-size:1rem;
-  font-weight:1000;
-}
-
-.brand-text span {
-  display:block;
-  margin-top:5px;
-  color:var(--orange3);
-  font-size:.52rem;
-  font-weight:900;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-.header-right {
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
-.nav {
-  display:flex;
-  align-items:center;
-  gap:3px;
-}
-
-.nav a {
-  padding:9px 11px;
-  border-radius:999px;
-  color:var(--orange3);
-  font-size:.61rem;
-  font-weight:1000;
-  text-transform:uppercase;
-  transition:.2s;
-}
-
-.nav a:hover {
-  background:var(--orange);
-  color:#000;
-}
-
-.lang-switch {
-  display:flex;
-  gap:3px;
-  padding:3px;
-  border:1px solid var(--border);
-  border-radius:999px;
-  background:#000;
-}
-
-.lang-btn {
-  min-width:42px;
-  padding:8px 9px;
-  border:0;
-  border-radius:999px;
-  color:var(--orange3);
-  background:#000;
-  cursor:pointer;
-  font-size:.61rem;
-  font-weight:1000;
-}
-
-.lang-btn.active {
-  color:#000;
-  background:var(--orange);
-}
-
-.menu-toggle {
-  display:none;
-  width:44px;
-  height:42px;
-  border:1px solid var(--orange);
-  border-radius:11px;
-  color:var(--orange);
-  background:#000;
-  cursor:pointer;
-  font-size:1.2rem;
-}
-
-.hero {
-  min-height:calc(100vh - 115px);
-  display:flex;
-  align-items:center;
-  padding:52px 0 76px;
-  text-align:center;
-}
-
-.platform-label {
-  color:var(--orange);
-  font-size:.69rem;
-  font-weight:1000;
-  letter-spacing:.20em;
-  text-transform:uppercase;
-}
-
-.hero-video-frame {
-  position:relative;
-  width:min(95vw,690px);
-  margin:30px auto 0;
-  overflow:hidden;
-  border:2px solid var(--orange);
-  border-radius:28px;
-  background:#000;
-  box-shadow:var(--glow2);
-}
-
-.hero-logo-video {
-  width:100%;
   object-fit:contain;
+
+  border-radius:50%;
+
+  border:2px solid var(--orange);
+
   background:#000;
+
+  box-shadow:
+    0 0 25px rgba(255,121,0,.32);
 }
 
-.sound-btn {
-  position:absolute;
-  right:14px;
-  bottom:14px;
-  z-index:10;
-  padding:10px 14px;
-  border:1px solid var(--orange);
-  border-radius:999px;
-  color:var(--orange);
-  background:rgba(0,0,0,.90);
-  cursor:pointer;
-  font-size:.60rem;
-  font-weight:1000;
-  text-transform:uppercase;
+.brand-text strong{
+  display:block;
+
+  color:var(--apricot);
+
+  font-size:1rem;
+
+  letter-spacing:.8px;
 }
 
-.sound-btn:hover {
-  background:var(--orange);
-  color:#000;
+.brand-text span{
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--muted);
+
+  font-size:.70rem;
+
+  letter-spacing:1.2px;
 }
 
-.hero h1 {
-  margin-top:28px;
-  color:var(--orange);
-  font-size:clamp(2.6rem,8vw,6.2rem);
-  line-height:.88;
-  text-transform:uppercase;
-}
-
-.hero h2 {
-  margin-top:17px;
-  color:var(--orange3);
-  font-size:clamp(1rem,3vw,1.45rem);
-  text-transform:uppercase;
-}
-
-.hero-description {
-  max-width:850px;
-  margin:19px auto 0;
-  line-height:1.75;
-  font-size:.96rem;
-}
-
-.hero-actions {
+.header-actions{
   display:flex;
-  justify-content:center;
+  align-items:center;
+  gap:8px;
   flex-wrap:wrap;
-  gap:12px;
-  margin-top:29px;
 }
 
-.btn {
-  min-height:52px;
+.nav-btn{
+  min-height:40px;
+
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:12px 22px;
-  border:2px solid var(--orange);
-  border-radius:999px;
-  font-size:.68rem;
-  font-weight:1000;
-  text-transform:uppercase;
-  transition:.25s;
+
+  padding:9px 14px;
+
+  border:1px solid var(--line);
+
+  border-radius:11px;
+
+  background:#080402;
+
+  color:var(--apricot);
+
+  font-size:.78rem;
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:.2s ease;
 }
 
-.btn:hover {
-  transform:translateY(-3px);
-  box-shadow:var(--glow2);
+.nav-btn:hover{
+  border-color:var(--apricot);
+
+  background:rgba(255,121,0,.12);
+
+  color:#fff;
 }
 
-.btn-primary {
-  color:#000;
-  background:var(--orange);
-}
+/* ======================================================
+   LANGUAGE
+====================================================== */
 
-.btn-outline {
-  color:var(--orange);
-  background:#000;
-}
-
-.stats-grid {
-  margin-top:48px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-
-.stat-card {
-  min-height:125px;
+.language-switcher{
   display:flex;
-  flex-direction:column;
+  gap:5px;
+}
+
+.lang-btn{
+  min-width:42px;
+  height:38px;
+
+  border:1px solid var(--line);
+
+  border-radius:9px;
+
+  background:#050301;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:.70rem;
+  font-weight:900;
+}
+
+.lang-btn.active,
+.lang-btn:hover{
+  border-color:var(--apricot);
+
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--apricot)
+  );
+
+  color:#000;
+}
+
+/* ======================================================
+   MAIN
+====================================================== */
+
+main{
+  width:min(1500px,95%);
+
+  margin:auto;
+
+  padding:30px 0 70px;
+}
+
+/* ======================================================
+   HERO
+====================================================== */
+
+.hero{
+  position:relative;
+
+  overflow:hidden;
+
+  min-height:400px;
+
+  display:flex;
+  align-items:center;
+
+  padding:55px 40px;
+
+  border:1px solid var(--line2);
+
+  border-radius:28px;
+
+  background:
+    radial-gradient(
+      circle at 80% 25%,
+      rgba(255,121,0,.25),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,121,0,.12),
+      rgba(0,0,0,.82)
+    ),
+    #080402;
+
+  box-shadow:
+    0 25px 65px rgba(0,0,0,.48);
+}
+
+.hero::after{
+  content:"1815";
+
+  position:absolute;
+
+  right:25px;
+  bottom:-30px;
+
+  color:var(--orange);
+
+  font-size:clamp(7rem,20vw,18rem);
+
+  font-weight:900;
+
+  opacity:.045;
+
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+
+  max-width:900px;
+}
+
+.eyebrow{
+  margin-bottom:10px;
+
+  color:var(--orange);
+
+  font-size:.78rem;
+  font-weight:900;
+
+  letter-spacing:2.2px;
+
+  text-transform:uppercase;
+}
+
+.hero h1{
+  color:var(--apricot);
+
+  font-size:clamp(2.3rem,7vw,5.2rem);
+
+  line-height:.95;
+
+  letter-spacing:-2px;
+}
+
+.hero h2{
+  margin-top:15px;
+
+  color:#fff;
+
+  font-size:clamp(1rem,2.5vw,1.6rem);
+
+  font-weight:700;
+}
+
+.hero p{
+  max-width:780px;
+
+  margin-top:17px;
+
+  color:var(--muted);
+
+  line-height:1.7;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+  margin-top:25px;
+}
+
+.primary-btn{
+  min-height:48px;
+
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:17px;
-  border:1px solid var(--border);
-  border-radius:17px;
-  background:radial-gradient(circle at top,rgba(255,121,0,.10),transparent 50%),#050200;
-}
 
-.stat-card strong {
-  color:var(--orange);
-  font-size:1.55rem;
-}
+  padding:11px 20px;
 
-.stat-card span {
-  margin-top:6px;
-  font-size:.63rem;
+  border:1px solid var(--apricot);
+
+  border-radius:13px;
+
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--apricot)
+  );
+
+  color:#000;
+
   font-weight:900;
-  text-transform:uppercase;
+
+  transition:.2s ease;
 }
 
-.section {
-  padding:88px 0;
-  border-top:1px solid rgba(255,121,0,.10);
+.primary-btn:hover{
+  transform:translateY(-2px);
+
+  filter:brightness(1.08);
 }
 
-.section-heading {
-  max-width:790px;
-  margin:0 auto 42px;
-  text-align:center;
+.secondary-btn{
+  min-height:48px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:11px 20px;
+
+  border:1px solid var(--line2);
+
+  border-radius:13px;
+
+  background:#070402;
+
+  color:var(--apricot);
+
+  font-weight:900;
+
+  transition:.2s ease;
 }
 
-.eyebrow {
+.secondary-btn:hover{
+  transform:translateY(-2px);
+
+  background:rgba(255,121,0,.12);
+}
+
+/* ======================================================
+   SECTION TITLES
+====================================================== */
+
+.section-heading{
+  margin:42px 0 18px;
+}
+
+.section-heading small{
+  display:block;
+
   color:var(--orange);
-  font-size:.68rem;
-  font-weight:1000;
-  letter-spacing:.18em;
+
+  font-size:.70rem;
+
+  font-weight:900;
+
+  letter-spacing:1.7px;
+
   text-transform:uppercase;
 }
 
-.section-title {
-  margin-top:11px;
-  color:var(--orange);
-  font-size:clamp(2rem,6vw,4.2rem);
-  line-height:.93;
-  text-transform:uppercase;
+.section-heading h2{
+  margin-top:5px;
+
+  color:var(--apricot);
+
+  font-size:clamp(1.5rem,4vw,2.2rem);
 }
 
-.section-desc {
-  margin-top:17px;
-  line-height:1.75;
+.section-heading p{
+  max-width:800px;
+
+  margin-top:8px;
+
+  color:var(--muted);
+
+  line-height:1.55;
 }
 
-.ecosystem-grid {
+/* ======================================================
+   MAIN PROJECT GRID
+====================================================== */
+
+.project-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
   gap:17px;
 }
 
-.ecosystem-card {
-  min-height:285px;
+.project-card{
+  position:relative;
+
+  min-height:235px;
+
   display:flex;
   flex-direction:column;
-  padding:25px;
-  border:1px solid var(--border);
+
+  overflow:hidden;
+
+  padding:23px;
+
+  border:1px solid var(--line);
+
   border-radius:20px;
-  background:radial-gradient(circle at top right,rgba(255,121,0,.12),transparent 36%),linear-gradient(145deg,#000,#0b0400);
-  transition:.3s;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,121,0,.06),
+      rgba(0,0,0,.55)
+    ),
+    var(--panel);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.32);
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
 }
 
-.ecosystem-card:hover {
+.project-card:hover{
   transform:translateY(-5px);
-  border-color:var(--orange);
-  box-shadow:var(--glow);
+
+  border-color:var(--apricot);
+
+  box-shadow:
+    0 22px 48px rgba(0,0,0,.48),
+    0 0 25px rgba(255,121,0,.08);
 }
 
-.eco-icon {
-  font-size:2rem;
-}
+.project-icon{
+  width:58px;
+  height:58px;
 
-.ecosystem-card h3 {
-  margin-top:18px;
-  color:var(--orange);
-  font-size:1rem;
-  text-transform:uppercase;
-}
-
-.ecosystem-card p {
-  margin-top:11px;
-  line-height:1.62;
-  font-size:.82rem;
-}
-
-.card-link {
-  margin-top:auto;
-  padding-top:20px;
-  color:var(--orange);
-  font-size:.67rem;
-  font-weight:1000;
-  text-transform:uppercase;
-}
-
-.modules-grid {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.module-card {
-  min-height:215px;
   display:flex;
-  flex-direction:column;
-  padding:21px;
-  border:1px solid var(--border);
-  border-radius:17px;
-  background:linear-gradient(145deg,#050200,#000);
-  transition:.25s;
-}
+  align-items:center;
+  justify-content:center;
 
-.module-card:hover {
-  transform:translateY(-4px);
-  border-color:var(--orange);
-  box-shadow:var(--glow);
-}
+  margin-bottom:18px;
 
-.module-icon {
+  border:1px solid var(--line);
+
+  border-radius:16px;
+
+  background:#050301;
+
   font-size:1.8rem;
 }
 
-.module-card h3 {
-  margin-top:14px;
-  color:var(--orange);
-  font-size:.90rem;
-  text-transform:uppercase;
+.project-card h3{
+  color:var(--apricot);
+
+  font-size:1.15rem;
 }
 
-.module-card p {
+.project-card p{
   margin-top:9px;
+
+  color:var(--muted);
+
+  font-size:.83rem;
+
   line-height:1.55;
-  font-size:.75rem;
 }
 
-.module-open {
+.project-footer{
   margin-top:auto;
-  padding-top:17px;
-  color:var(--orange);
-  font-size:.62rem;
-  font-weight:1000;
-  text-transform:uppercase;
-}
 
-.project-box {
-  margin-top:25px;
-  padding:38px 28px;
-  border:1px solid var(--border2);
-  border-radius:25px;
-  background:radial-gradient(circle at 80% 25%,rgba(255,121,0,.17),transparent 34%),linear-gradient(135deg,#000,#100500,#000);
-  box-shadow:var(--glow);
-}
+  padding-top:20px;
 
-.project-box h2 {
-  color:var(--orange);
-  font-size:clamp(2rem,6vw,4rem);
-  line-height:.94;
-  text-transform:uppercase;
-}
-
-.project-box p {
-  max-width:780px;
-  margin:16px auto 0;
-  line-height:1.7;
-  text-align:center;
-}
-
-
-/* BSS1815 COMMUNITY SLIDESHOW */
-.bss-slideshow {
-  width:min(1100px,100%);
-  margin:24px auto 0;
-}
-
-.bss-stage {
-  position:relative;
-  width:100%;
-  height:clamp(430px,62vw,680px);
-  overflow:hidden;
-  border:2px solid var(--orange);
-  border-radius:28px;
-  background:#000;
-  box-shadow:var(--glow2);
-}
-
-.bss-slide-image,.bss-slide-video {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#000;
-}
-
-.bss-slide-image.hidden,.bss-slide-video.hidden {
-  display:none!important;
-}
-
-.bss-slide-badge {
-  position:absolute;
-  top:18px;
-  left:18px;
-  z-index:12;
-  padding:9px 14px;
-  border-radius:999px;
-  color:#000;
-  background:var(--orange);
-  font-size:.60rem;
-  font-weight:1000;
-}
-
-.bss-slide-overlay {
-  position:absolute;
-  inset:0;
-  z-index:7;
-  pointer-events:none;
-  background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.15) 60%,rgba(0,0,0,.93) 100%);
-}
-
-.bss-slide-caption {
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:10;
-  padding:70px 70px 28px;
-  text-align:left;
-}
-
-.bss-slide-caption small {
-  color:var(--orange3);
-  font-size:.60rem;
-  font-weight:1000;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-}
-
-.bss-slide-caption h3 {
-  margin-top:8px;
-  color:var(--orange);
-  font-size:clamp(1.6rem,5vw,3.2rem);
-  line-height:1;
-  text-transform:uppercase;
-  text-shadow:0 3px 14px #000;
-}
-
-.bss-slide-caption p {
-  max-width:760px;
-  margin-top:10px;
-  color:var(--orange3);
-  font-size:.78rem;
-  line-height:1.6;
-  text-shadow:0 3px 12px #000;
-}
-
-.bss-arrow {
-  position:absolute;
-  top:50%;
-  z-index:13;
-  transform:translateY(-50%);
-  width:50px;
-  height:50px;
-  display:grid;
-  place-items:center;
-  border:1px solid var(--orange);
-  border-radius:50%;
-  background:rgba(0,0,0,.82);
-  color:var(--orange);
-  font-size:2rem;
-  cursor:pointer;
-}
-
-.bss-prev {
-  left:16px;
-}
-
-.bss-next {
-  right:16px;
-}
-
-.bss-controls {
-  display:grid;
-  grid-template-columns:auto auto 1fr;
-  align-items:center;
-  gap:14px;
-  margin-top:14px;
-  padding:13px 16px;
-  border:1px solid var(--border);
-  border-radius:16px;
-  background:#050200;
-}
-
-.bss-counter {
-  min-width:88px;
-  color:var(--orange);
-  font-size:.72rem;
-  font-weight:1000;
-  text-align:center;
-}
-
-.bss-play {
-  padding:8px 14px;
-  border:1px solid var(--orange);
-  border-radius:999px;
-  color:var(--orange);
-  background:#000;
-  cursor:pointer;
-  font-size:.60rem;
-  font-weight:1000;
-}
-
-.bss-progress {
-  height:7px;
-  overflow:hidden;
-  border-radius:999px;
-  background:rgba(255,121,0,.14);
-}
-
-.bss-progress-bar {
-  width:0%;
-  height:100%;
-  background:linear-gradient(90deg,#9d3c00,var(--orange),var(--orange3));
-}
-
-.contact-grid,.social-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.contact-card,.social-link {
-  padding:20px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:#050200;
-}
-
-.contact-card {
-  text-align:center;
-}
-
-.contact-card strong,.social-link strong {
-  color:var(--orange);
-}
-
-footer {
-  padding:45px 0;
-  text-align:center;
-  border-top:1px solid var(--border);
-  background:#000;
-}
-
-.footer-video {
-  width:105px;
-  height:105px;
-  margin:0 auto 17px;
-  overflow:hidden;
-  border:2px solid var(--orange);
-  border-radius:20px;
-}
-
-.footer-video video {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.footer-title {
-  color:var(--orange);
-  font-weight:1000;
-}
-
-.footer-info {
-  margin-top:9px;
-  line-height:1.75;
-  font-size:.70rem;
-}
-
-@media(max-width:1050px) {
-  .nav {
-    position:absolute;
-    top:86px;
-    left:14px;
-    right:14px;
-    display:none;
-    flex-direction:column;
-    padding:14px;
-    border:1px solid var(--orange);
-    border-radius:15px;
-    background:#000;
-  }
-
-  .nav.open {
-    display:flex;
-  }
-
-  .nav a {
-    width:100%;
-    text-align:center;
-  }
-
-  .menu-toggle {
-    display:block;
-  }
-
-  .ecosystem-grid,.modules-grid {
-    grid-template-columns:repeat(2,1fr);
-  }
-
-}
-
-@media(max-width:780px) {
-  .stats-grid {
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .contact-grid,.social-grid {
-    grid-template-columns:1fr;
-  }
-
-  .bss-stage {
-    height:520px;
-  }
-
-}
-
-@media(max-width:570px) {
-  .ecosystem-grid,.modules-grid {
-    grid-template-columns:1fr;
-  }
-
-  .hero-actions {
-    display:grid;
-    grid-template-columns:1fr;
-  }
-
-  .btn {
-    width:100%;
-  }
-
-  .bss-stage {
-    height:450px;
-  }
-
-}
-
-.social-icons {
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
-  margin-top:26px;
-}
-
-.soc-tile {
-  min-height:104px;
   display:flex;
-  flex-direction:column;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+
   gap:10px;
-  padding:16px 8px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:#050200;
-  color:var(--orange3);
-  font-size:.62rem;
-  font-weight:1000;
-  text-align:center;
-  transition:.2s;
 }
 
-.soc-tile svg {
-  width:34px;
-  height:34px;
-  fill:var(--orange);
-  transition:.2s;
+.project-status{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:#d7c0aa;
+
+  font-size:.68rem;
+  font-weight:900;
 }
 
-.soc-tile:hover {
-  border-color:var(--orange);
-  transform:translateY(-4px);
-  box-shadow:var(--glow);
+.project-status::before{
+  content:"";
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+    0 0 9px var(--green);
 }
 
-.soc-tile:hover svg {
-  transform:scale(1.12);
-}
-
-.social-title {
-  margin-top:34px;
-  text-align:center;
+.project-arrow{
   color:var(--orange);
-  font-size:.7rem;
-  font-weight:1000;
-  letter-spacing:.18em;
-  text-transform:uppercase;
+
+  font-size:1.35rem;
+
+  font-weight:900;
 }
 
-.contact-card a {
+/* ======================================================
+   MY MAXIMAX — IMPORTANT
+====================================================== */
+
+.my-maximax-card{
+  border:1px solid var(--apricot);
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255,121,0,.30),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,121,0,.18),
+      rgba(0,0,0,.72)
+    ),
+    #100702;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.48),
+    0 0 32px rgba(255,121,0,.13);
+}
+
+.my-maximax-card::before{
+  content:"SECURED";
+
+  position:absolute;
+
+  top:15px;
+  right:-31px;
+
+  width:125px;
+
+  padding:6px 0;
+
+  transform:rotate(39deg);
+
+  text-align:center;
+
+  background:linear-gradient(
+    135deg,
+    var(--orange),
+    var(--apricot)
+  );
+
+  color:#000;
+
+  font-size:.58rem;
+
+  font-weight:900;
+}
+
+.my-maximax-card .project-icon{
+  border-color:var(--apricot);
+
+  box-shadow:
+    0 0 22px rgba(255,121,0,.16);
+}
+
+.my-maximax-card h3{
+  font-size:1.3rem;
+}
+
+.internal-label{
+  display:inline-flex;
+
+  width:max-content;
+
+  margin-top:12px;
+
+  padding:6px 10px;
+
+  border:1px solid var(--line2);
+
+  border-radius:999px;
+
+  background:#000;
+
+  color:var(--orange);
+
+  font-size:.63rem;
+
+  font-weight:900;
+
+  letter-spacing:.8px;
+}
+
+/* ======================================================
+   INTERNAL MODULE PREVIEW
+====================================================== */
+
+.internal-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+  gap:14px;
+}
+
+.internal-preview{
+  padding:18px;
+
+  border:1px solid var(--line);
+
+  border-radius:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,121,0,.045),
+      rgba(0,0,0,.55)
+    ),
+    #0b0603;
+}
+
+.internal-preview strong{
   display:block;
-  margin:5px 0;
-  color:var(--text);
+
+  color:var(--apricot);
+
+  margin-bottom:6px;
 }
 
-.contact-card a:hover {
+.internal-preview span{
+  color:var(--muted);
+
+  font-size:.78rem;
+
+  line-height:1.45;
+}
+
+/* ======================================================
+   COMMUNITY
+====================================================== */
+
+.community{
+  margin-top:20px;
+
+  padding:28px;
+
+  border:1px solid var(--line);
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,121,0,.09),
+      rgba(0,0,0,.70)
+    );
+}
+
+.community h3{
+  color:var(--apricot);
+}
+
+.community p{
+  margin-top:8px;
+
+  color:var(--muted);
+
+  line-height:1.6;
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer{
+  margin-top:55px;
+
+  padding:32px 15px;
+
+  border-top:1px solid var(--line);
+
+  text-align:center;
+
+  color:var(--muted);
+
+  line-height:1.7;
+}
+
+footer strong{
   color:var(--orange);
 }
 
-@media(max-width:1050px) {
-  .social-icons {
-    grid-template-columns:repeat(3,1fr);
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media(max-width:850px){
+
+  .header{
+    position:relative;
+
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+  .header-actions{
+    width:100%;
+
+    justify-content:flex-start;
+  }
+
+  .hero{
+    min-height:350px;
+
+    padding:35px 24px;
   }
 
 }
 
-@media(max-width:570px) {
-  .social-icons {
-    grid-template-columns:repeat(2,1fr);
+@media(max-width:550px){
+
+  main{
+    width:93%;
+  }
+
+  .project-grid,
+  .internal-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    letter-spacing:-1px;
   }
 
 }
-
 </style>
 </head>
 
 <body>
-<div
-  class="top-bar"
-  data-ht="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥"
-  data-fr="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — CONSTRUIT POUR AUJOURD'HUI — PRÊT POUR DEMAIN 🔥"
-  data-en="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BUILT FOR TODAY — READY FOR TOMORROW 🔥"
->
-  🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥
-</div>
 
-<header>
-  <div
-    class="container header-inner"
-  >
-    <a
-      href="#home"
-      class="brand"
-    >
-      <div
-        class="brand-video-wrap"
-      >
-        <video
-          class="brand-video"
-          autoplay
-          muted
-          loop
-          playsinline
-        >
-          <source
-            src="./bati-pou-jodi-a.mp4"
-            type="video/mp4"
-          >
-          </video>
-        </div>
+<!-- ======================================================
+     HEADER
+====================================================== -->
 
-        <div
-          class="brand-text"
-        >
-          <strong>
-            BSS1815 PRO-MAX DMP
-          </strong>
-          <span
-            data-ht="PLATFÒM JESYON DIJITAL"
-            data-fr="PLATEFORME DE GESTION NUMÉRIQUE"
-            data-en="DIGITAL MANAGEMENT PLATFORM"
-          >
-            PLATFÒM JESYON DIJITAL
-          </span>
-        </div>
+<header class="header">
 
-      </a>
-      <div
-        class="header-right"
-      >
-        <nav
-          class="nav"
-          id="mainNav"
-        >
-          <a
-            href="#home"
-            data-ht="AKÈY"
-            data-fr="ACCUEIL"
-            data-en="HOME"
-          >
-            AKÈY
-          </a>
-          <a
-            href="#ecosystem"
-            data-ht="EKOSISTÈM"
-            data-fr="ÉCOSYSTÈME"
-            data-en="ECOSYSTEM"
-          >
-            EKOSISTÈM
-          </a>
-          <a
-            href="#modules"
-            data-ht="MODIL"
-            data-fr="MODULES"
-            data-en="MODULES"
-          >
-            MODIL
-          </a>
-          <a
-            href="#community"
-          >
-            BSS1815
-          </a>
-          <a
-            href="#ddn"
-          >
-            DDN
-          </a>
-          <a
-            href="#contact"
-            data-ht="KONTAK"
-            data-fr="CONTACT"
-            data-en="CONTACT"
-          >
-            KONTAK
-          </a>
-        </nav>
+  <a href="index.html" class="brand">
 
-        <div
-          class="lang-switch notranslate"
-  translate="no"
-        >
-          <button
-            type="button"
-            class="lang-btn"
-            data-lang="fr"
-          >
-            FRA
-          </button>
-          <button
-            type="button"
-            class="lang-btn"
-            data-lang="en"
-          >
-            ENG
-          </button>
-          <button
-            type="button"
-            class="lang-btn active"
-            data-lang="ht"
-          >
-            KRE
-          </button>
-        </div>
+    <img
+      src="logo.jpg"
+      alt="BSS1815 PRO-MAX DMP"
+      class="brand-logo"
+      onerror="this.style.display='none'">
 
-        <button
-          type="button"
-          class="menu-toggle"
-          id="menuToggle"
-        >
-          ☰
-        </button>
-      </div>
+    <div class="brand-text">
+
+      <strong>
+        BSS1815 PRO-MAX DMP
+      </strong>
+
+      <span>
+        CENTRAL DIGITAL MANAGEMENT PLATFORM
+      </span>
 
     </div>
 
-  </header>
-
-  <main>
-    <section
-      class="hero"
-      id="home"
-    >
-      <div
-        class="container"
-      >
-        <div
-          class="platform-label"
-        >
-          BRIYANT SOLÈY SIGNO 1815
-        </div>
-
-        <div
-          class="hero-video-frame"
-        >
-          <video
-            class="hero-logo-video"
-            id="heroLogoVideo"
-            autoplay
-            muted
-            loop
-            playsinline
-          >
-            <source
-              src="./bati-pou-jodi-a.mp4"
-              type="video/mp4"
-            >
-            </video>
-            <button
-              type="button"
-              class="sound-btn"
-              id="soundButton"
-              data-ht="🔊 KOUTE SLOGAN AN"
-              data-fr="🔊 ÉCOUTER LE SLOGAN"
-              data-en="🔊 HEAR THE SLOGAN"
-            >
-              🔊 KOUTE SLOGAN AN
-            </button>
-          </div>
-
-          <h1>
-            BSS1815
-            <br>
-            PRO-MAX DMP
-          </h1>
-          <h2
-            data-ht="YON SÈL PLATFÒM • YON SÈL VIZYON"
-            data-fr="UNE SEULE PLATEFORME • UNE SEULE VISION"
-            data-en="ONE PLATFORM • ONE VISION"
-          >
-            YON SÈL PLATFÒM • YON SÈL VIZYON
-          </h2>
-          <p
-            class="hero-description"
-            data-ht="BSS1815 PRO-MAX DMP se platfòm santral ki konekte kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administrasyon, teknoloji, medya ak entèlijans atifisyèl nan yon sèl ekosistèm."
-            data-fr="BSS1815 PRO-MAX DMP est la plateforme centrale qui relie la communauté BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, l'administration, la technologie, les médias et l'intelligence artificielle dans un seul écosystème."
-            data-en="BSS1815 PRO-MAX DMP is the central platform connecting the BSS1815 community, PRO-MAX FM, Maximax Multi Services, PRO-MAX Academy, administration, technology, media and artificial intelligence in one ecosystem."
-          >
-            BSS1815 PRO-MAX DMP se platfòm santral ki konekte tout ekosistèm nan.
-          </p>
-          <div
-            class="hero-actions"
-          >
-            <a
-              href="#ecosystem"
-              class="btn btn-primary"
-            >
-              DEKOUVRI PLATFÒM NAN
-            </a>
-            <a
-              href="./ddn/index.html"
-              class="btn btn-outline"
-            >
-              🌎 DEVAN DEVAN NÈT™
-            </a>
-          </div>
-
-          <div
-            class="stats-grid"
-          >
-            <div
-              class="stat-card"
-            >
-              <strong>
-                4
-              </strong>
-              <span>
-                BRANCH PRENSIPAL
-              </span>
-            </div>
-
-            <div
-              class="stat-card"
-            >
-              <strong>
-                AI
-              </strong>
-              <span>
-                SMART PLATFORM
-              </span>
-            </div>
-
-            <div
-              class="stat-card"
-            >
-              <strong>
-                3
-              </strong>
-              <span>
-                LANG
-              </span>
-            </div>
-
-            <div
-              class="stat-card"
-            >
-              <strong>
-                24/7
-              </strong>
-              <span>
-                AKSÈ DIJITAL
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="ecosystem"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="section-heading"
-          >
-            <div
-              class="eyebrow"
-            >
-              BSS1815 PRO-MAX DMP
-            </div>
-
-            <h2
-              class="section-title"
-              data-ht="YON SÈL EKOSISTÈM"
-              data-fr="UN SEUL ÉCOSYSTÈME"
-              data-en="ONE ECOSYSTEM"
-            >
-              YON SÈL EKOSISTÈM
-            </h2>
-          </div>
-
-          <div
-            class="ecosystem-grid"
-          >
-            <a
-              href="#community"
-              class="ecosystem-card"
-            >
-              <div
-                class="eco-icon"
-              >
-                🏛️
-              </div>
-
-              <h3>
-                BSS1815 COMMUNITY
-              </h3>
-              <p>
-                Manm, dirijan, mizisyen, fanatik, eritaj, aktivite ak lavi kominotè BSS1815.
-              </p>
-              <div
-                class="card-link"
-              >
-                ENTER →
-              </div>
-
-            </a>
-            <a
-              href="#promaxfm"
-              class="ecosystem-card"
-            >
-              <div
-                class="eco-icon"
-              >
-                📻
-              </div>
-
-              <h3>
-                PRO-MAX FM
-              </h3>
-              <p>
-                Radyo dijital, live streaming, mizik, podcast, nouvèl, entèvyou ak pwodiksyon medya.
-              </p>
-              <div
-                class="card-link"
-              >
-                ENTER →
-              </div>
-
-            </a>
-            <a
-              href="#maximax"
-              class="ecosystem-card"
-            >
-              <div
-                class="eco-icon"
-              >
-                💼
-              </div>
-
-              <h3>
-                MAXIMAX MULTI SERVICES
-              </h3>
-              <p>
-                Imigrasyon, tradiksyon, sèvis administratif, dokiman ak asistans pwofesyonèl.
-              </p>
-              <div
-                class="card-link"
-              >
-                ENTER →
-              </div>
-
-            </a>
-            <a
-              href="#academy"
-              class="ecosystem-card"
-            >
-              <div
-                class="eco-icon"
-              >
-                🎓
-              </div>
-
-              <h3>
-                PRO-MAX ACADÉMIE
-              </h3>
-              <p>
-                AI, teknoloji, fòmasyon, inovasyon, evalyasyon, Student Portal ak sètifikasyon.
-              </p>
-              <div
-                class="card-link"
-              >
-                ENTER →
-              </div>
-
-            </a>
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="modules"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="section-heading"
-          >
-            <div
-              class="eyebrow"
-            >
-              DIGITAL MANAGEMENT PLATFORM
-            </div>
-
-            <h2
-              class="section-title"
-            >
-              MODIL PRENSIPAL YO
-            </h2>
-            <p
-              class="section-desc"
-            >
-              Tout modil yo travay anba menm platfòm santral la.
-            </p>
-          </div>
-
-          <div
-            class="modules-grid"
-          >
-            <a
-              href="./ai-center.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🤖
-              </div>
-
-              <h3>
-                AI CENTER
-              </h3>
-              <p>
-                Assistant • Writer • Voice • Automation
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./crm.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                👥
-              </div>
-
-              <h3>
-                CRM SYSTEM
-              </h3>
-              <p>
-                Members • Contacts • Relationships • Records
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/communication/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                📢
-              </div>
-
-              <h3>
-                COMMUNICATION CENTER
-              </h3>
-              <p>
-                Announcements • Alerts • WhatsApp • Messages
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/flyer-studio/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🎨
-              </div>
-
-              <h3>
-                FLYER STUDIO
-              </h3>
-              <p>
-                Flyers • Notices • Graphics • Media
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/registry/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                📋
-              </div>
-
-              <h3>
-                DIGITAL REGISTRY
-              </h3>
-              <p>
-                Members • Musicians • Fans • Merchants
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/events/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                📅
-              </div>
-
-              <h3>
-                EVENT MANAGEMENT
-              </h3>
-              <p>
-                Calendar • Programs • Activities • Meetings
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/documents/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                📄
-              </div>
-
-              <h3>
-                DOCUMENT CENTER
-              </h3>
-              <p>
-                Letters • Reports • Archives • Files
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/announcements/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                📣
-              </div>
-
-              <h3>
-                ANNOUNCEMENT CENTER
-              </h3>
-              <p>
-                Official Notices • Community Updates • Alerts
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/donations/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🤝
-              </div>
-
-              <h3>
-                DONATION CENTER
-              </h3>
-              <p>
-                Contributions • Records • Donor Management
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./attendance.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                ✅
-              </div>
-
-              <h3>
-                ATTENDANCE
-              </h3>
-              <p>
-                Check-In • Meetings • Events • Participation
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/certificates/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🏆
-              </div>
-
-              <h3>
-                CERTIFICATE CENTER
-              </h3>
-              <p>
-                Certificates • Verification • Records
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/elections/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🗳️
-              </div>
-
-              <h3>
-                ELECTION MANAGER
-              </h3>
-              <p>
-                Voting • Candidates • Results • Records
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/volunteer/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🙋
-              </div>
-
-              <h3>
-                VOLUNTEER CENTER
-              </h3>
-              <p>
-                Volunteers • Assignments • Activities
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/finance/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                💰
-              </div>
-
-              <h3>
-                FINANCE / TREASURY
-              </h3>
-              <p>
-                Payments • Donations • Treasury • Reports
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/media/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🎥
-              </div>
-
-              <h3>
-                MEDIA GALLERY
-              </h3>
-              <p>
-                Photos • Video • Audio • Archives
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./notifications.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🔔
-              </div>
-
-              <h3>
-                NOTIFICATIONS
-              </h3>
-              <p>
-                Alerts • Reminders • Updates • Messages
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/reports/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                📊
-              </div>
-
-              <h3>
-                REPORTS & ANALYTICS
-              </h3>
-              <p>
-                Statistics • Performance • Reports
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./help-desk.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🎫
-              </div>
-
-              <h3>
-                HELP DESK
-              </h3>
-              <p>
-                Support • Requests • Cases • Assistance
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./modules/live-streaming/index.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                📡
-              </div>
-
-              <h3>
-                LIVE STREAMING
-              </h3>
-              <p>
-                Radio • Video • Live Events • Broadcast
-              </p>
-              <div
-                class="module-open"
-              >
-                OPEN →
-              </div>
-
-            </a>
-            <a
-              href="./login.html"
-              class="module-card"
-            >
-              <div
-                class="module-icon"
-              >
-                🔐
-              </div>
-
-              <h3>
-                ADMIN DASHBOARD
-              </h3>
-              <p>
-                Roles • Permissions • Firebase • Security
-              </p>
-              <div
-                class="module-open"
-              >
-                LOGIN →
-              </div>
-
-            </a>
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="community"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="section-heading"
-          >
-            <div
-              class="eyebrow"
-            >
-              BRIYANT SOLÈY SIGNO 1815
-            </div>
-
-            <h2
-              class="section-title"
-            >
-              BSS1815 COMMUNITY
-            </h2>
-            <p
-              class="section-desc"
-            >
-              Kominote istorik BSS1815 la se yon pati dirèk nan PRO-MAX DMP: manm, dirijan, mizisyen, fanatik, eritaj, evènman ak achiv yo.
-            </p>
-          </div>
-
-          <div
-            class="bss-slideshow"
-          >
-            <div
-              class="bss-stage"
-              id="bssStage"
-              tabindex="0"
-            >
-              <div
-                class="bss-slide-badge"
-              >
-                BSS1815 COMMUNITY • 113 MEDIA
-              </div>
-
-              <img
-                id="bssSlideImage"
-                class="bss-slide-image"
-                src="./tania2.jpg"
-                alt="BSS1815 Community"
-              >
-              <video
-                id="bssSlideVideo"
-                class="bss-slide-video hidden"
-                muted
-                playsinline
-              >
-              </video>
-              <div
-                class="bss-slide-overlay"
-              >
-              </div>
-
-              <div
-                class="bss-slide-caption"
-              >
-                <small>
-                  FANMI • ERITAJ • KOMINOTE
-                </small>
-                <h3
-                  id="bssSlideTitle"
-                >
-                  TANIA2
-                </h3>
-                <p>
-                  MOUVMAN SA A SE POU NOU TOUT. Chak figi se yon pati nan istwa ak eritaj BSS1815.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                class="bss-arrow bss-prev"
-                id="bssPrev"
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                class="bss-arrow bss-next"
-                id="bssNext"
-              >
-                ›
-              </button>
-            </div>
-
-            <div
-              class="bss-controls"
-            >
-              <div
-                class="bss-counter"
-                id="bssCounter"
-              >
-                1 / 113
-              </div>
-
-              <button
-                type="button"
-                class="bss-play"
-                id="bssPlayPause"
-              >
-                ⏸ PAUSE
-              </button>
-              <div
-                class="bss-progress"
-              >
-                <div
-                  class="bss-progress-bar"
-                  id="bssProgressBar"
-                >
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="promaxfm"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="project-box"
-          >
-            <h2>
-              📻 PRO-MAX FM
-            </h2>
-            <p>
-              Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya.
-            </p>
-            <div
-              class="hero-actions"
-            >
-              <a
-                href="./pro-max-fm/index.html"
-                class="btn btn-primary"
-              >
-                📻 ENTER PRO-MAX FM
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="maximax"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="project-box"
-          >
-            <h2>
-              💼 MAXIMAX MULTI SERVICES
-            </h2>
-            <p>
-              Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman, asistans administratif ak lòt sèvis kominotè.
-            </p>
-            <div
-              class="hero-actions"
-            >
-              <a
-                href="./maximax/index.html"
-                class="btn btn-primary"
-              >
-                💼 ENTER MAXIMAX MULTI SERVICES
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="academy"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="project-box"
-          >
-            <h2>
-              🎓 PRO-MAX ACADÉMIE
-            </h2>
-            <p>
-              Sant fòmasyon pou entèlijans atifisyèl, teknoloji, inovasyon, lidèchip, Student Portal, evalyasyon ak sètifikasyon.
-            </p>
-            <div
-              class="hero-actions"
-            >
-              <a
-                href="./academy/index.html"
-                class="btn btn-primary"
-              >
-                🎓 ENTER PRO-MAX ACADÉMIE
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="ddn"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="project-box"
-          >
-            <h2>
-              DEVAN DEVAN NÈT™
-            </h2>
-            <p>
-              DEVAN DEVAN NÈT™ se vizyon teknoloji ak entèlijans atifisyèl ki ankouraje nou aprann, òganize, kreye, inove epi toujou avanse.
-            </p>
-            <div
-              class="hero-actions"
-            >
-              <a
-                href="./ddn/index.html"
-                class="btn btn-primary"
-              >
-                🌎 ENTER DEVAN DEVAN NÈT™
-              </a>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      <section
-        class="section"
-        id="contact"
-      >
-        <div
-          class="container"
-        >
-          <div
-            class="section-heading"
-          >
-            <div
-              class="eyebrow"
-            >
-              STAY CONNECTED
-            </div>
-
-            <h2
-              class="section-title"
-            >
-              KONTAK & REZO SOSYAL
-            </h2>
-          </div>
-
-          <div
-            class="contact-grid"
-          >
-            <div
-              class="contact-card"
-            >
-              <strong>
-                📞 TELEPHONE
-              </strong>
-              <br>
-              <br>
-              <a
-                href="tel:+14076405166"
-              >
-                (407) 640-5166
-              </a>
-              <a
-                href="tel:+13175381150"
-              >
-                (317) 538-1150
-              </a>
-              <a
-                href="tel:+15162168494"
-              >
-                (516) 216-8494
-              </a>
-              <a
-                href="tel:+50943437488"
-              >
-                +509 43 43 7488
-              </a>
-              <a
-                href="tel:+50942544447"
-              >
-                +509 42 54 4447
-              </a>
-            </div>
-
-            <div
-              class="contact-card"
-            >
-              <strong>
-                📧 EMAIL
-              </strong>
-              <br>
-              <br>
-              <a
-                href="mailto:briyantsoleysigno1815@gmail.com"
-              >
-                briyantsoleysigno1815@gmail.com
-              </a>
-            </div>
-
-            <div
-              class="contact-card"
-            >
-              <strong>
-                🌐 WEBSITE
-              </strong>
-              <br>
-              <br>
-              BSS1815 PRO-MAX DMP
-            </div>
-
-          </div>
-
-          <div
-            class="social-title"
-            data-ht="REZO SOSYAL"
-            data-fr="RÉSEAUX SOCIAUX"
-            data-en="SOCIAL NETWORKS"
-          >
-            REZO SOSYAL
-          </div>
-
-          <div
-            class="social-icons"
-          >
-            <a
-              class="soc-tile whatsapp"
-              href="https://wa.me/50943437488"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
-                />
-                <path
-                  d="M12.004 0C5.373 0 0 5.373 0 12c0 2.116.552 4.181 1.6 6L0 24l6.153-1.613A11.96 11.96 0 0012.004 24C18.63 24 24 18.627 24 12S18.63 0 12.004 0zm0 21.818a9.78 9.78 0 01-4.99-1.366l-.357-.212-3.65.957.974-3.557-.232-.366A9.77 9.77 0 012.182 12c0-5.414 4.407-9.818 9.822-9.818 5.414 0 9.814 4.404 9.814 9.818s-4.4 9.818-9.814 9.818z"
-                />
-              </svg>
-              <span>
-                WHATSAPP
-              </span>
-            </a>
-            <a
-              class="soc-tile facebook"
-              href="https://www.facebook.com/share/1By3KvYRrM/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.973h-1.513c-1.49 0-1.956.931-1.956 1.887v2.261h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"
-                />
-              </svg>
-              <span>
-                FACEBOOK
-              </span>
-            </a>
-            <a
-              class="soc-tile tiktok"
-              href="https://www.tiktok.com/@maximax1960"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="TikTok"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M19.321 5.562a5.124 5.124 0 01-3.005-.96A5.15 5.15 0 0114.323 1H10.5v14.4a3.2 3.2 0 11-2.2-3.038V8.45a7.03 7.03 0 00-1.2-.104A7.1 7.1 0 1014.2 15.4V8.096a8.94 8.94 0 005.121 1.64V5.562z"
-                />
-              </svg>
-              <span>
-                TIKTOK
-              </span>
-            </a>
-            <a
-              class="soc-tile youtube"
-              href="https://www.youtube.com/@BSS1815PROMAXDMP"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.376-.505a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-                />
-              </svg>
-              <span>
-                YOUTUBE
-              </span>
-            </a>
-            <a
-              class="soc-tile spotify"
-              href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Spotify"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.505 17.308a.75.75 0 01-1.032.249c-2.827-1.728-6.386-2.118-10.578-1.16a.75.75 0 11-.334-1.462c4.587-1.049 8.522-.6 11.695 1.34a.75.75 0 01.249 1.033zm1.475-3.282a.94.94 0 01-1.293.31c-3.237-1.988-8.171-2.564-11.998-1.403a.94.94 0 11-.546-1.799c4.376-1.328 9.813-.685 13.527 1.596a.94.94 0 01.31 1.296zm.126-3.417C15.224 8.304 8.819 8.091 5.11 9.212a1.128 1.128 0 11-.652-2.16c4.26-1.288 11.336-1.038 15.8 1.611a1.128 1.128 0 01-1.152 1.946z"
-                />
-              </svg>
-              <span>
-                SPOTIFY
-              </span>
-            </a>
-            <a
-              class="soc-tile instagram"
-              href="https://www.instagram.com/lebaron072/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838A6.162 6.162 0 1012 18.162 6.162 6.162 0 0012 5.838zm0 10.162a4 4 0 110-8 4 4 0 010 8z"
-                />
-              </svg>
-              <span>
-                INSTAGRAM
-              </span>
-            </a>
-            <a
-              class="soc-tile x-twitter"
-              href="https://x.com/w05g2m"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X / Twitter"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"
-                />
-              </svg>
-              <span>
-                X / TWITTER
-              </span>
-            </a>
-            <a
-              class="soc-tile truthsocial"
-              href="https://truthsocial.com/@briyant_soley_1815"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Truth Social"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M3 3h18v4H14v14h-4V7H3V3zm13 6h5v4h-5V9zm0 6h5v4h-5v-4z"
-                />
-              </svg>
-              <span>
-                TRUTH SOCIAL
-              </span>
-            </a>
-            <a
-              class="soc-tile telegram"
-              href="https://t.me/+50943437488"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Telegram"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M23.953 4.57a.74.74 0 00-1.017-.267L1.43 12.48c-1.47.59-1.462 1.41-.268 1.776l5.518 1.724 2.114 6.484c.257.71.13.992.878.992.577 0 .831-.264 1.153-.577l2.653-2.58 5.518 4.077c1.016.56 1.748.27 2.001-.943L24 5.585c.322-1.49-.57-2.166-.047-1.015z"
-                />
-              </svg>
-              <span>
-                TELEGRAM
-              </span>
-            </a>
-            <a
-              class="soc-tile linkedin"
-              href="https://www.linkedin.com/in/maximax-multi-services-075ba2314"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.371 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.555V9H7.12v11.452z"
-                />
-              </svg>
-              <span>
-                LINKEDIN
-              </span>
-            </a>
-          </div>
-
-        </div>
-
-      </section>
-
-    </main>
-
-    <footer>
-      <div
-        class="container"
-      >
-        <div
-          class="footer-video"
-        >
-          <video
-            autoplay
-            muted
-            loop
-            playsinline
-          >
-            <source
-              src="./bati-pou-jodi-a.mp4"
-              type="video/mp4"
-            >
-            </video>
-          </div>
-
-          <div
-            class="footer-title"
-          >
-            BSS1815 PRO-MAX DMP
-          </div>
-
-          <div
-            class="footer-info"
-          >
-            DEVAN DEVAN NÈT™
-            <br>
-            BATI POU JODI A • PARE POU DEMEN
-            <br>
-            <br>
-            briyantsoleysigno1815@gmail.com
-            <br>
-            +509 43 43 7488 • +509 42 54 4447 • (407) 640-5166 • (317) 538-1150 • (516) 216-8494
-            <br>
-            <br>
-            ©
-            <span
-              id="currentYear"
-            >
-            </span>
-            BSS1815 PRO-MAX DMP
-          </div>
-
-        </div>
-
-      </footer>
+  </a>
+
+
+  <div class="header-actions">
+
+    <div class="language-switcher">
+
+      <button
+        class="lang-btn active"
+        data-lang="ht">
+        KRE
+      </button>
+
+      <button
+        class="lang-btn"
+        data-lang="en">
+        ENG
+      </button>
+
+      <button
+        class="lang-btn"
+        data-lang="fr">
+        FRA
+      </button>
+
+    </div>
+
+    <a
+      href="my-maximax-dashboard.html"
+      class="nav-btn">
+      🔐 MY MAXIMAX
+    </a>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div
+      class="eyebrow"
+      data-i18n="eyebrow">
+      BRIYANT SOLÈY SIGNO 1815
+    </div>
+
+    <h1>
+      BSS1815<br>
+      PRO-MAX DMP
+    </h1>
+
+    <h2
+      data-i18n="heroTitle">
+      Yon sèl vizyon. Yon sèl platfòm.
+    </h2>
+
+    <p
+      data-i18n="heroText">
+      Sant dijital BSS1815 pou kominote,
+      administrasyon, kominikasyon,
+      medya, akademi ak operasyon entèn.
+    </p>
+
+    <div class="hero-actions">
+
+      <a
+        href="#projects"
+        class="primary-btn"
+        data-i18n="explore">
+        Eksplore Platfòm nan
+      </a>
+
+      <a
+        href="my-maximax-dashboard.html"
+        class="secondary-btn"
+        data-i18n="internalAccess">
+        🔐 Aksè Entèn — MY MAXIMAX
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     MAIN MODULES
+====================================================== -->
+
+<section id="projects">
+
+  <div class="section-heading">
+
+    <small
+      data-i18n="mainModules">
+      MODIL PRENSIPAL
+    </small>
+
+    <h2
+      data-i18n="platformTitle">
+      BSS1815 PRO-MAX DMP
+    </h2>
+
+    <p
+      data-i18n="platformText">
+      Antre nan diferan sant platfòm BSS1815 la.
+      Zafè entèn òganizasyon an antre atravè
+      pòt sekirize MY MAXIMAX.
+    </p>
+
+  </div>
+
+
+  <div class="project-grid">
+
+
+    <!-- =========================================
+         MY MAXIMAX
+    ========================================== -->
+
+    <a
+      href="my-maximax-dashboard.html"
+      class="project-card my-maximax-card">
+
+      <div class="project-icon">
+        🔐
+      </div>
+
+      <h3>
+        MY MAXIMAX
+      </h3>
+
+      <p
+        data-i18n="maximaxText">
+        Pòt sekirize pou administrasyon entèn
+        BSS1815: manm, disiplin, sekirite,
+        dokiman, finans, mesaj, audit ak operasyon.
+      </p>
+
+      <span class="internal-label">
+        FIREBASE SECURED ACCESS
+      </span>
+
+      <div class="project-footer">
+
+        <span class="project-status">
+          INTERNAL
+        </span>
+
+        <span class="project-arrow">
+          →
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- =========================================
+         PRO-MAX FM
+    ========================================== -->
+
+    <a
+      href="https://pro-maxfm.com"
+      class="project-card">
+
+      <div class="project-icon">
+        📻
+      </div>
+
+      <h3>
+        PRO-MAX FM
+      </h3>
+
+      <p
+        data-i18n="radioText">
+        Radyo, mizik, emisyon, nouvèl,
+        podcast, videyo ak kominote medya.
+      </p>
+
+      <div class="project-footer">
+
+        <span class="project-status">
+          PROJECT
+        </span>
+
+        <span class="project-arrow">
+          →
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- =========================================
+         PRO-MAX ACADEMIE
+    ========================================== -->
+
+    <a
+      href="academy.html"
+      class="project-card">
+
+      <div class="project-icon">
+        🎓
+      </div>
+
+      <h3>
+        PRO-MAX ACADÉMIE
+      </h3>
+
+      <p
+        data-i18n="academyText">
+        Sant fòmasyon BSS1815 ak lekòl,
+        kou, egzamen, sètifika ak pwofesè AI.
+      </p>
+
+      <div class="project-footer">
+
+        <span class="project-status">
+          PROJECT
+        </span>
+
+        <span class="project-arrow">
+          →
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- =========================================
+         BEAT LAB
+    ========================================== -->
+
+    <a
+      href="beat-lab.html"
+      class="project-card">
+
+      <div class="project-icon">
+        🎹
+      </div>
+
+      <h3>
+        PRO-MAX Beat Lab
+      </h3>
+
+      <p
+        data-i18n="beatText">
+        Studio dijital pou beat,
+        melodi, aranjman ak kreyasyon mizikal.
+      </p>
+
+      <div class="project-footer">
+
+        <span class="project-status">
+          CREATIVE
+        </span>
+
+        <span class="project-arrow">
+          →
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- =========================================
+         DDN
+    ========================================== -->
+
+    <a
+      href="ddn.html"
+      class="project-card">
+
+      <div class="project-icon">
+        ☀️
+      </div>
+
+      <h3>
+        DEVAN DEVAN NÈT
+      </h3>
+
+      <p
+        data-i18n="ddnText">
+        Espas kominotè ak vizyon
+        DEVAN DEVAN NÈT BSS1815.
+      </p>
+
+      <div class="project-footer">
+
+        <span class="project-status">
+          BSS1815
+        </span>
+
+        <span class="project-arrow">
+          →
+        </span>
+
+      </div>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     INTERNAL SYSTEM PREVIEW
+====================================================== -->
+
+<section>
+
+  <div class="section-heading">
+
+    <small>
+      MY MAXIMAX
+    </small>
+
+    <h2
+      data-i18n="internalTitle">
+      Sant Operasyon Entèn
+    </h2>
+
+    <p
+      data-i18n="internalText">
+      Modil sa yo pa bezwen gaye sou pati piblik
+      platfòm nan. Yo antre atravè MY MAXIMAX
+      epi Firebase kontwole aksè administratè yo.
+    </p>
+
+  </div>
+
+
+  <div class="internal-grid">
+
+    <div class="internal-preview">
+
+      <strong>
+        ⚖️ Sistèm Disiplinè
+      </strong>
+
+      <span>
+        Ka disiplinè, sispansyon,
+        apèl ak desizyon komite.
+      </span>
+
+    </div>
+
+
+    <div class="internal-preview">
+
+      <strong>
+        🔐 Kazye Sansib
+      </strong>
+
+      <span>
+        Dosye konfidansyèl ak
+        aksè administratif limite.
+      </span>
+
+    </div>
+
+
+    <div class="internal-preview">
+
+      <strong>
+        👥 Member Center
+      </strong>
+
+      <span>
+        Jesyon manm ak enfòmasyon
+        kominote BSS1815.
+      </span>
+
+    </div>
+
+
+    <div class="internal-preview">
+
+      <strong>
+        🥁 Musician / Rara
+      </strong>
+
+      <span>
+        Mizisyen, Rara ak
+        operasyon kominotè.
+      </span>
+
+    </div>
+
+
+    <div class="internal-preview">
+
+      <strong>
+        💰 Finance / Treasury
+      </strong>
+
+      <span>
+        Finans, trezò,
+        donasyon ak rapò.
+      </span>
+
+    </div>
+
+
+    <div class="internal-preview">
+
+      <strong>
+        📢 Communication Center
+      </strong>
+
+      <span>
+        Mesaj, anons ak
+        kominikasyon ofisyèl.
+      </span>
+
+    </div>
+
+
+    <div class="internal-preview">
+
+      <strong>
+        🛡️ Audit Center
+      </strong>
+
+      <span>
+        Swivi aktivite
+        ak aksyon administratif.
+      </span>
+
+    </div>
+
+
+    <div class="internal-preview">
+
+      <strong>
+        📁 Document Center
+      </strong>
+
+      <span>
+        Dokiman ak achiv
+        dijital BSS1815.
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     COMMUNITY
+====================================================== -->
+
+<section>
+
+  <div class="section-heading">
+
+    <small>
+      BSS1815 COMMUNITY
+    </small>
+
+    <h2
+      data-i18n="communityTitle">
+      Kominote a se kè mouvman an
+    </h2>
+
+  </div>
+
+
+  <div class="community">
+
+    <h3>
+      Briyant Solèy Signo 1815
+    </h3>
+
+    <p
+      data-i18n="communityText">
+      BSS1815 PRO-MAX DMP bati pou manm,
+      mizisyen, dirijan, fanatik, aktivite,
+      evènman ak eritaj kominote BSS1815 la.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+  <strong>
+    BSS1815 PRO-MAX DMP
+  </strong>
+
+  <br>
+
+  <span
+    data-i18n="slogan">
+    DEVAN DEVAN NÈT.
+    BATI POU JODI A.
+    PARE POU DEMEN.
+  </span>
+
+  <br><br>
+
+  © <span id="year"></span>
+  BSS1815 PRO-MAX DMP
+
+</footer>
+
+</main>
 
 
 <script>
-(function(){
 
-"use strict";
+/* ======================================================
+   YEAR
+====================================================== */
 
-/* =========================================
-   CURRENT YEAR
-========================================= */
-
-var currentYear = document.getElementById("currentYear");
-if(currentYear){ currentYear.textContent = new Date().getFullYear(); }
+document.getElementById("year").textContent =
+new Date().getFullYear();
 
 
-/* =========================================
-   MOBILE MENU
-========================================= */
-
-var menuToggle = document.getElementById("menuToggle");
-var mainNav = document.getElementById("mainNav");
-
-if(menuToggle && mainNav){
-  menuToggle.addEventListener("click", function(){
-    var open = mainNav.classList.toggle("open");
-    menuToggle.textContent = open ? "✕" : "☰";
-  });
-}
-
-
-/* =========================================
+/* ======================================================
    LANGUAGE SYSTEM
-========================================= */
+====================================================== */
 
-var languageButtons = document.querySelectorAll(".lang-btn[data-lang]");
-var currentLanguage = "ht";
+const translations = {
 
-function applyLanguage(lang){
-  if(["ht","fr","en"].indexOf(lang) === -1){ lang = "ht"; }
-  currentLanguage = lang;
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-ht][data-fr][data-en]").forEach(function(element){
-    var translation = element.getAttribute("data-" + lang);
-    if(translation !== null){ element.textContent = translation; }
-  });
-  languageButtons.forEach(function(button){
-    button.classList.toggle("active", button.getAttribute("data-lang") === lang);
-  });
-  try{ localStorage.setItem("bss1815Language", lang); }catch(error){}
-  updateSoundButton();
-}
+  ht:{
 
-languageButtons.forEach(function(button){
-  button.addEventListener("click", function(){ applyLanguage(this.getAttribute("data-lang")); });
-});
+    eyebrow:
+    "BRIYANT SOLÈY SIGNO 1815",
 
-var savedLanguage = "ht";
-try{ savedLanguage = localStorage.getItem("bss1815Language") || "ht"; }catch(error){}
-applyLanguage(savedLanguage);
+    heroTitle:
+    "Yon sèl vizyon. Yon sèl platfòm.",
+
+    heroText:
+    "Sant dijital BSS1815 pou kominote, administrasyon, kominikasyon, medya, akademi ak operasyon entèn.",
+
+    explore:
+    "Eksplore Platfòm nan",
+
+    internalAccess:
+    "🔐 Aksè Entèn — MY MAXIMAX",
+
+    mainModules:
+    "MODIL PRENSIPAL",
+
+    platformTitle:
+    "BSS1815 PRO-MAX DMP",
+
+    platformText:
+    "Antre nan diferan sant platfòm BSS1815 la. Zafè entèn òganizasyon an antre atravè pòt sekirize MY MAXIMAX.",
+
+    maximaxText:
+    "Pòt sekirize pou administrasyon entèn BSS1815: manm, disiplin, sekirite, dokiman, finans, mesaj, audit ak operasyon.",
+
+    radioText:
+    "Radyo, mizik, emisyon, nouvèl, podcast, videyo ak kominote medya.",
+
+    academyText:
+    "Sant fòmasyon BSS1815 ak lekòl, kou, egzamen, sètifika ak pwofesè AI.",
+
+    beatText:
+    "Studio dijital pou beat, melodi, aranjman ak kreyasyon mizikal.",
+
+    ddnText:
+    "Espas kominotè ak vizyon DEVAN DEVAN NÈT BSS1815.",
+
+    internalTitle:
+    "Sant Operasyon Entèn",
+
+    internalText:
+    "Modil sa yo pa bezwen gaye sou pati piblik platfòm nan. Yo antre atravè MY MAXIMAX epi Firebase kontwole aksè administratè yo.",
+
+    communityTitle:
+    "Kominote a se kè mouvman an",
+
+    communityText:
+    "BSS1815 PRO-MAX DMP bati pou manm, mizisyen, dirijan, fanatik, aktivite, evènman ak eritaj kominote BSS1815 la.",
+
+    slogan:
+    "DEVAN DEVAN NÈT. BATI POU JODI A. PARE POU DEMEN."
+
+  },
 
 
-/* =========================================
-   VIDEO SYSTEM
-========================================= */
+  en:{
 
-document.querySelectorAll("video").forEach(function(video){
-  video.muted = true;
-  video.loop = true;
-  video.playsInline = true;
-  var promise = video.play();
-  if(promise){ promise.catch(function(){}); }
-});
+    eyebrow:
+    "BRIYANT SOLÈY SIGNO 1815",
+
+    heroTitle:
+    "One vision. One platform.",
+
+    heroText:
+    "The BSS1815 digital center for community, administration, communications, media, academy and internal operations.",
+
+    explore:
+    "Explore the Platform",
+
+    internalAccess:
+    "🔐 Internal Access — MY MAXIMAX",
+
+    mainModules:
+    "MAIN MODULES",
+
+    platformTitle:
+    "BSS1815 PRO-MAX DMP",
+
+    platformText:
+    "Enter the different centers of the BSS1815 platform. Internal organization operations are accessed through the secured MY MAXIMAX gateway.",
+
+    maximaxText:
+    "Secure gateway for BSS1815 internal administration: members, discipline, security, documents, finance, communications, audit and operations.",
+
+    radioText:
+    "Radio, music, shows, news, podcasts, video and media community.",
+
+    academyText:
+    "BSS1815 education center with schools, courses, exams, certificates and AI professors.",
+
+    beatText:
+    "Digital studio for beats, melodies, arrangements and music creation.",
+
+    ddnText:
+    "Community space and the DEVAN DEVAN NÈT vision of BSS1815.",
+
+    internalTitle:
+    "Internal Operations Center",
+
+    internalText:
+    "These modules stay out of the public area of the platform. They are accessed through MY MAXIMAX with Firebase-controlled administrative access.",
+
+    communityTitle:
+    "The community is the heart of the movement",
+
+    communityText:
+    "BSS1815 PRO-MAX DMP is built for the members, musicians, leaders, supporters, activities, events and heritage of the BSS1815 community.",
+
+    slogan:
+    "DEVAN DEVAN NÈT. BUILT FOR TODAY. READY FOR TOMORROW."
+
+  },
 
 
-/* =========================================
-   HERO SOUND
-========================================= */
+  fr:{
 
-var heroVideo = document.getElementById("heroLogoVideo");
-var soundButton = document.getElementById("soundButton");
+    eyebrow:
+    "BRIYANT SOLÈY SIGNO 1815",
 
-function updateSoundButton(){
-  if(!soundButton){ return; }
-  if(heroVideo && !heroVideo.muted){
-    soundButton.textContent = "🔇 MUTE";
+    heroTitle:
+    "Une seule vision. Une seule plateforme.",
+
+    heroText:
+    "Le centre numérique BSS1815 pour la communauté, l'administration, la communication, les médias, l'académie et les opérations internes.",
+
+    explore:
+    "Explorer la plateforme",
+
+    internalAccess:
+    "🔐 Accès interne — MY MAXIMAX",
+
+    mainModules:
+    "MODULES PRINCIPAUX",
+
+    platformTitle:
+    "BSS1815 PRO-MAX DMP",
+
+    platformText:
+    "Accédez aux différents centres de la plateforme BSS1815. Les opérations internes de l'organisation passent par la porte sécurisée MY MAXIMAX.",
+
+    maximaxText:
+    "Portail sécurisé pour l'administration interne BSS1815 : membres, discipline, sécurité, documents, finances, communications, audit et opérations.",
+
+    radioText:
+    "Radio, musique, émissions, actualités, podcasts, vidéo et communauté média.",
+
+    academyText:
+    "Centre de formation BSS1815 avec écoles, cours, examens, certificats et professeurs IA.",
+
+    beatText:
+    "Studio numérique pour beats, mélodies, arrangements et création musicale.",
+
+    ddnText:
+    "Espace communautaire et vision DEVAN DEVAN NÈT de BSS1815.",
+
+    internalTitle:
+    "Centre des opérations internes",
+
+    internalText:
+    "Ces modules restent hors de la partie publique de la plateforme. Ils sont accessibles via MY MAXIMAX avec un contrôle d'accès administratif Firebase.",
+
+    communityTitle:
+    "La communauté est au cœur du mouvement",
+
+    communityText:
+    "BSS1815 PRO-MAX DMP est conçu pour les membres, musiciens, dirigeants, supporters, activités, événements et le patrimoine de la communauté BSS1815.",
+
+    slogan:
+    "DEVAN DEVAN NÈT. CONSTRUIT POUR AUJOURD'HUI. PRÊT POUR DEMAIN."
+
+  }
+
+};
+
+
+const langButtons =
+document.querySelectorAll(".lang-btn");
+
+
+function setLanguage(lang){
+
+  const dictionary =
+  translations[lang];
+
+  if(!dictionary){
     return;
   }
-  if(currentLanguage === "fr"){
-    soundButton.textContent = "🔊 ÉCOUTER LE SLOGAN";
-  }else if(currentLanguage === "en"){
-    soundButton.textContent = "🔊 HEAR THE SLOGAN";
-  }else{
-    soundButton.textContent = "🔊 KOUTE SLOGAN AN";
-  }
-}
 
-if(heroVideo && soundButton){
-  soundButton.addEventListener("click", function(){
-    if(heroVideo.muted){
-      heroVideo.muted = false;
-      heroVideo.currentTime = 0;
-      heroVideo.play().catch(function(){});
-    }else{
-      heroVideo.muted = true;
-    }
-    updateSoundButton();
-  });
-}
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element=>{
+
+      const key =
+      element.dataset.i18n;
+
+      if(dictionary[key]){
+        element.textContent =
+        dictionary[key];
+      }
+
+    });
 
 
-/* =========================================
-   BSS1815 COMMUNITY SLIDESHOW
-========================================= */
+  langButtons.forEach(button=>{
 
-var bssFiles = [
-"tania2.jpg",
-"papouche.jpg",
-"heritage.jpg",
-"team-angrenay.jpg",
-"sfc-5-stars.jpg",
-"team-angrenaye.jpg",
-"team-san-presyon.jpg",
-"max-on-the-air.jpg",
-"montina.jpg",
-"kendy2.jpg",
-"perodin.jpg",
-"rorony.jpg",
-"maxl.jpg",
-"maxle.jpg",
-"doodly.jpg",
-"roro-8.jpg",
-"cols1.jpg",
-"bouboul.jpg",
-"sindy-b.jpg",
-"warrens-v.jpg",
-"ones-g.jpg",
-"dede.jpg",
-"jij-mayan-1.jpg",
-"paulema.jpg",
-"mass-vokal.jpg",
-"maximax-m-s.jpg",
-"max-the-man.jpg",
-"ti-fre.jpg",
-"the-change.jpg",
-"jij-mayan2.jpg",
-"montinat.jpg",
-"cange-d.jpg",
-"ti-la-france.jpg",
-"jij-mayan-3.jpg",
-"bss.jpg",
-"ti-marassa.jpg",
-"the-change-1.jpg",
-"the-plan.jpg",
-"max.jpg",
-"sonsonn.jpeg",
-"valery.jpg",
-"thin-khard.jpg",
-"maximax-2.jpg",
-"y-max.jpg",
-"roro-ny.jpg",
-"le-baron.jpg",
-"prez-tirat.jpg",
-"the-one.jpg",
-"andy.jpeg",
-"badin-s.jpg",
-"ti-rat.jpg",
-"roro-1lajan.jpg",
-"roro-p-p.jpg",
-"madina.jpg",
-"prez-papit.jpg",
-"may-1.jpg",
-"fanfan-d.jpg",
-"ti-renold.jpg",
-"asmide1.jpg",
-"jeff-c.jpg",
-"tania-f.jpg",
-"jude.jpg",
-"andre-a.jpg",
-"nadege.jpg",
-"macu-1.jpg",
-"prez-aly.jpg",
-"sonson-m.jpg",
-"brunel-t.jpg",
-"roro-lj.jpg",
-"ti-papouche.jpg",
-"michel-b.jpg",
-"michel.jpg",
-"tatane.jpg",
-"la-belle-yole.jpg",
-"tila-france.jpg",
-"ralph-p.jpg",
-"ti-marassa2.jpg",
-"landry.jpg",
-"vp-ernso.jpg",
-"fanfan2.jpg",
-"paulema2.jpg",
-"yguens.jpg",
-"tifre2.jpg",
-"tichery.jpg",
-"jij-mayan.jpg",
-"yguens2.jpg",
-"heuch-love.jpg",
-"cange-0.jpg",
-"prez-aly-2.jpg",
-"anpere-doudou.jpg",
-"rivelino.jpg",
-"tatane-vp.jpg",
-"montinat2.jpg",
-"prezidan-aly.jpg",
-"max-louis.jpg",
-"paulema21.jpg",
-"le-baron1.jpg",
-"devan-devan-net.jpg",
-"jq-max.jpg",
-"system-akayik.jpg",
-"montina-prof.jpg",
-"systeme-akayik.jpg",
-"derosier.jpg",
-"odeline-ademe.jpg",
-"nadia-lafortune.jpg",
-"nadou.jpg",
-"max-is-the-man.jpg",
-"nadou2.jpg",
-"pro-max-dmp.mp4",
-"pro-max.jpg",
-"pro-max-academie.mp4",
-"maxi-max.mp4",
-"bss1815-pro-max-dmp.jpg"
-];
+    button.classList.toggle(
+      "active",
+      button.dataset.lang === lang
+    );
 
-var bssImage = document.getElementById("bssSlideImage");
-var bssVideo = document.getElementById("bssSlideVideo");
-var bssTitle = document.getElementById("bssSlideTitle");
-var bssCounter = document.getElementById("bssCounter");
-var bssProgress = document.getElementById("bssProgressBar");
-var bssPrev = document.getElementById("bssPrev");
-var bssNext = document.getElementById("bssNext");
-var bssPlay = document.getElementById("bssPlayPause");
-var bssStage = document.getElementById("bssStage");
-
-var bssIndex = 0;
-var bssPlaying = true;
-var bssElapsed = 0;
-var bssTimer = null;
-
-var BSS_IMAGE_TIME = 4000;
-var BSS_VIDEO_TIME = 8000;
-var BSS_STEP = 100;
-
-var BSS_PATH = "./";
-
-
-function bssIsVideo(file){
-  return /\.mp4$/i.test(file);
-}
-
-
-function bssPretty(file){
-  return file
-    .replace(/\.[^.]+$/, "")
-    .replace(/[-_]+/g, " ")
-    .replace(/\b\w/g, function(c){ return c.toUpperCase(); });
-}
-
-
-function bssDuration(){
-  return bssIsVideo(bssFiles[bssIndex]) ? BSS_VIDEO_TIME : BSS_IMAGE_TIME;
-}
-
-
-function bssShow(index){
-
-  if(index < 0){ index = bssFiles.length - 1; }
-  if(index >= bssFiles.length){ index = 0; }
-
-  bssIndex = index;
-  bssElapsed = 0;
-
-  var file = bssFiles[bssIndex];
-  var src = BSS_PATH + file;
-
-  if(bssCounter){ bssCounter.textContent = (bssIndex + 1) + " / " + bssFiles.length; }
-  if(bssTitle){ bssTitle.textContent = bssPretty(file); }
-  if(bssProgress){ bssProgress.style.width = "0%"; }
-
-  if(bssIsVideo(file)){
-
-    if(bssImage){ bssImage.classList.add("hidden"); }
-
-    if(bssVideo){
-      bssVideo.pause();
-      bssVideo.classList.remove("hidden");
-      bssVideo.src = src;
-      bssVideo.currentTime = 0;
-      bssVideo.muted = true;
-      if(bssPlaying){ bssVideo.play().catch(function(){}); }
-    }
-
-  }else{
-
-    if(bssVideo){
-      bssVideo.pause();
-      bssVideo.classList.add("hidden");
-    }
-
-    if(bssImage){
-      bssImage.classList.remove("hidden");
-      bssImage.src = src;
-      bssImage.alt = bssPretty(file);
-    }
-
-  }
-
-}
-
-
-function bssGoNext(){ bssShow(bssIndex + 1); }
-function bssGoPrev(){ bssShow(bssIndex - 1); }
-
-if(bssNext){ bssNext.addEventListener("click", bssGoNext); }
-if(bssPrev){ bssPrev.addEventListener("click", bssGoPrev); }
-
-if(bssPlay){
-  bssPlay.addEventListener("click", function(){
-    bssPlaying = !bssPlaying;
-    bssPlay.textContent = bssPlaying ? "⏸ PAUSE" : "▶ PLAY";
-    if(bssIsVideo(bssFiles[bssIndex]) && bssVideo){
-      if(bssPlaying){ bssVideo.play().catch(function(){}); }
-      else{ bssVideo.pause(); }
-    }
-  });
-}
-
-if(bssImage){ bssImage.addEventListener("error", bssGoNext); }
-if(bssVideo){ bssVideo.addEventListener("error", bssGoNext); }
-
-
-/* =========================================
-   TABLET / MOBILE SWIPE
-========================================= */
-
-var touchStartX = 0;
-
-if(bssStage){
-
-  bssStage.addEventListener("touchstart", function(e){
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  bssStage.addEventListener("touchend", function(e){
-    var diff = touchStartX - e.changedTouches[0].screenX;
-    if(diff > 55){ bssGoNext(); }
-    else if(diff < -55){ bssGoPrev(); }
-  }, { passive: true });
-
-  bssStage.addEventListener("keydown", function(e){
-    if(e.key === "ArrowRight"){ bssGoNext(); }
-    else if(e.key === "ArrowLeft"){ bssGoPrev(); }
   });
 
-}
+
+  document.documentElement.lang =
+  lang === "ht"
+    ? "ht"
+    : lang;
 
 
-/* =========================================
-   SLIDESHOW TIMER
-========================================= */
-
-function bssStart(){
-
-  clearInterval(bssTimer);
-
-  bssTimer = setInterval(function(){
-
-    if(!bssPlaying || document.hidden){ return; }
-
-    bssElapsed += BSS_STEP;
-
-    var pct = Math.min(100, (bssElapsed / bssDuration()) * 100);
-    if(bssProgress){ bssProgress.style.width = pct + "%"; }
-
-    if(bssElapsed >= bssDuration()){ bssGoNext(); }
-
-  }, BSS_STEP);
+  localStorage.setItem(
+    "bss1815-language",
+    lang
+  );
 
 }
 
 
-bssShow(0);
-bssStart();
+langButtons.forEach(button=>{
 
+  button.addEventListener(
+    "click",
+    ()=>{
 
-/* =========================================
-   RESPONSIVE NAV RESET
-========================================= */
+      setLanguage(
+        button.dataset.lang
+      );
 
-window.addEventListener("resize", function(){
-  if(window.innerWidth > 1050 && mainNav){
-    mainNav.classList.remove("open");
-    if(menuToggle){ menuToggle.textContent = "☰"; }
-  }
+    }
+  );
+
 });
 
-})();
+
+const savedLanguage =
+localStorage.getItem(
+  "bss1815-language"
+);
+
+
+if(
+  savedLanguage &&
+  translations[savedLanguage]
+){
+
+  setLanguage(
+    savedLanguage
+  );
+
+}
 
 </script>
 
