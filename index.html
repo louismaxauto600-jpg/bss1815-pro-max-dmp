@@ -557,14 +557,14 @@ line-height:1.7;
 text-align:center;
 }
 
-/* ================= COMMUNITY SLIDESHOW (TEMWAYAJ) ================= */
+/* ================= SLIDESHOW TEMWAYAJ ================= */
 
-.bss-slideshow{
+.tw{
 width:min(1100px,100%);
 margin:30px auto 0;
 }
 
-.bss-stage{
+.tw-stage{
 position:relative;
 width:100%;
 height:clamp(430px,62vw,680px);
@@ -573,10 +573,11 @@ border:2px solid var(--orange);
 border-radius:28px;
 background:#000;
 box-shadow:var(--glow2);
+touch-action:pan-y;
 }
 
-.bss-slide-image,
-.bss-slide-video{
+.tw-img,
+.tw-video{
 position:absolute;
 inset:0;
 width:100%;
@@ -585,11 +586,11 @@ object-fit:contain;
 background:#000;
 }
 
-.bss-hidden{
+.tw-hide{
 display:none!important;
 }
 
-.bss-badge{
+.tw-badge{
 position:absolute;
 top:18px;
 left:18px;
@@ -602,77 +603,42 @@ font-size:.60rem;
 font-weight:1000;
 }
 
-.bss-sound{
-position:absolute;
-top:18px;
-right:18px;
-z-index:15;
-padding:9px 14px;
-border:1px solid var(--orange);
-border-radius:999px;
-color:var(--orange);
-background:rgba(0,0,0,.88);
-cursor:pointer;
-font-size:.62rem;
-font-weight:1000;
-}
-
-.bss-sound:hover{
-color:#000;
-background:var(--orange);
-}
-
-.bss-overlay{
+.tw-fade{
 position:absolute;
 inset:0;
 z-index:8;
 pointer-events:none;
-background:
-linear-gradient(
-180deg,
-transparent 45%,
-rgba(0,0,0,.15) 65%,
-rgba(0,0,0,.92) 100%
-);
+background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.92) 100%);
 }
 
-.bss-caption{
+.tw-cap{
 position:absolute;
 left:0;
 right:0;
 bottom:0;
 z-index:12;
-padding:65px 70px 28px;
+padding:60px 70px 26px;
 text-align:left;
 }
 
-.bss-caption small{
-color:var(--orange3);
-font-size:.62rem;
-font-weight:1000;
-letter-spacing:.15em;
-text-transform:uppercase;
-}
-
-.bss-caption h3{
-margin-top:9px;
+.tw-cap h3{
 color:var(--orange);
-font-size:clamp(1.6rem,5vw,3.2rem);
+font-size:clamp(1.5rem,5vw,3rem);
 line-height:1;
 text-transform:uppercase;
 text-shadow:0 3px 16px #000;
 }
 
-.bss-caption p{
+.tw-cap p{
 max-width:760px;
 margin-top:10px;
 line-height:1.55;
-font-size:.80rem;
+font-size:.86rem;
 color:var(--orange3);
 text-shadow:0 3px 12px #000;
 }
 
-.bss-arrow{
+.tw-arrow{
 position:absolute;
 top:50%;
 z-index:16;
@@ -689,20 +655,32 @@ cursor:pointer;
 font-size:2rem;
 }
 
-.bss-arrow:hover{
+.tw-arrow:hover{
 color:#000;
 background:var(--orange);
 }
 
-.bss-prev{
+.tw-prev{
 left:16px;
 }
 
-.bss-next{
+.tw-next{
 right:16px;
 }
 
-.bss-controls{
+.tw-msg{
+position:absolute;
+inset:0;
+z-index:14;
+display:grid;
+place-items:center;
+padding:30px;
+text-align:center;
+color:var(--orange3);
+line-height:1.6;
+}
+
+.tw-bar{
 display:grid;
 grid-template-columns:auto auto 1fr;
 align-items:center;
@@ -714,7 +692,7 @@ border-radius:16px;
 background:#050200;
 }
 
-.bss-counter{
+.tw-count{
 min-width:90px;
 color:var(--orange);
 text-align:center;
@@ -722,7 +700,7 @@ font-size:.72rem;
 font-weight:1000;
 }
 
-.bss-play{
+.tw-play{
 padding:8px 14px;
 border:1px solid var(--orange);
 border-radius:999px;
@@ -733,27 +711,42 @@ font-size:.60rem;
 font-weight:1000;
 }
 
-.bss-play:hover{
+.tw-play:hover{
 color:#000;
 background:var(--orange);
 }
 
-.bss-progress{
+.tw-track{
 height:7px;
 overflow:hidden;
 border-radius:999px;
 background:rgba(255,121,0,.14);
 }
 
-.bss-progress-bar{
+.tw-prog{
 width:0;
 height:100%;
-background:linear-gradient(
-90deg,
-#9d3c00,
-var(--orange),
-var(--orange3)
-);
+background:linear-gradient(90deg,#9d3c00,var(--orange),var(--orange3));
+}
+
+@media(max-width:780px){
+
+.tw-stage{
+height:520px;
+}
+
+.tw-cap{
+padding:60px 22px 22px;
+}
+
+}
+
+@media(max-width:570px){
+
+.tw-stage{
+height:450px;
+}
+
 }
 
 /* ================= CONTACT ================= */
@@ -1154,14 +1147,6 @@ grid-template-columns:repeat(2,1fr);
 grid-template-columns:1fr;
 }
 
-.bss-stage{
-height:520px;
-}
-
-.bss-caption{
-padding:65px 24px 24px;
-}
-
 }
 
 @media(max-width:570px){
@@ -1178,10 +1163,6 @@ grid-template-columns:1fr;
 
 .btn{
 width:100%;
-}
-
-.bss-stage{
-height:450px;
 }
 
 }
@@ -1570,108 +1551,39 @@ BSS1815 Community entegre dirèkteman nan sistèm nan.
 
 </div>
 
-<div class="bss-slideshow">
+<div class="tw" id="tw">
 
-<div
-class="bss-stage"
-id="bssStage"
-tabindex="0">
+<div class="tw-stage" id="twStage" tabindex="0" aria-label="Temwayaj BSS1815 COMMUNITY">
 
-<div class="bss-badge"
+<div class="tw-badge"
 data-ht="BSS1815 COMMUNITY • TEMWAYAJ"
 data-fr="BSS1815 COMMUNITY • TÉMOIGNAGES"
 data-en="BSS1815 COMMUNITY • TESTIMONIALS">
 BSS1815 COMMUNITY • TEMWAYAJ
 </div>
 
-<button
-type="button"
-class="bss-sound bss-hidden"
-id="bssSound"
-aria-label="Son">
-🔇
-</button>
+<img id="twImg" class="tw-img" alt="">
 
-<img
-id="bssSlideImage"
-class="bss-slide-image"
-src="./assets/slideshow/tania2.jpg"
-alt="BSS1815 COMMUNITY">
+<video id="twVideo" class="tw-video tw-hide" muted playsinline preload="metadata"></video>
 
-<video
-id="bssSlideVideo"
-class="bss-slide-video bss-hidden"
-muted
-playsinline
-preload="metadata">
-</video>
+<div class="tw-fade"></div>
 
-<div class="bss-overlay"></div>
+<div class="tw-cap">
+<h3 id="twName"></h3>
+<p id="twText"></p>
+</div>
 
-<div class="bss-caption">
+<div class="tw-msg tw-hide" id="twMsg"></div>
 
-<small
-id="bssSlideSmall"
-data-ht="FANMI • ERITAJ • KOMINOTE"
-data-fr="FAMILLE • HÉRITAGE • COMMUNAUTÉ"
-data-en="FAMILY • HERITAGE • COMMUNITY">
-FANMI • ERITAJ • KOMINOTE
-</small>
-
-<h3 id="bssSlideTitle">
-TANIA2
-</h3>
-
-<p
-id="bssSlideText"
-data-ht="MOUVMAN SA A SE POU NOU TOUT. Chak figi se yon pati nan istwa ak eritaj BSS1815."
-data-fr="CE MOUVEMENT EST POUR NOUS TOUS. Chaque visage fait partie de l’histoire et de l’héritage BSS1815."
-data-en="THIS MOVEMENT IS FOR ALL OF US. Every face is part of the history and heritage of BSS1815.">
-MOUVMAN SA A SE POU NOU TOUT.
-</p>
+<button type="button" class="tw-arrow tw-prev" id="twPrev" aria-label="Previous">‹</button>
+<button type="button" class="tw-arrow tw-next" id="twNext" aria-label="Next">›</button>
 
 </div>
 
-<button
-type="button"
-class="bss-arrow bss-prev"
-id="bssPrev"
-aria-label="Previous">
-‹
-</button>
-
-<button
-type="button"
-class="bss-arrow bss-next"
-id="bssNext"
-aria-label="Next">
-›
-</button>
-
-</div>
-
-<div class="bss-controls">
-
-<div
-class="bss-counter"
-id="bssCounter">
-1 / 1
-</div>
-
-<button
-type="button"
-class="bss-play"
-id="bssPlayPause">
-⏸ PAUSE
-</button>
-
-<div class="bss-progress">
-<div
-class="bss-progress-bar"
-id="bssProgressBar">
-</div>
-</div>
-
+<div class="tw-bar">
+<div class="tw-count" id="twCount">0 / 0</div>
+<button type="button" class="tw-play" id="twPlay">⏸ PAUSE</button>
+<div class="tw-track"><div class="tw-prog" id="twProg"></div></div>
 </div>
 
 </div>
@@ -2374,405 +2286,397 @@ savedLanguage==="fr"
 
 
 /* =====================================================
-   COMMUNITY SLIDESHOW — TEMWAYAJ (6 SEGONN MAKSIMÒM)
-
-   SENP: pa gen Firebase ni baz done. Lis la anba a se sèl
-   bagay pou modifye. Pou ajoute yon moun, kopye yon liy
-   { ... }, mete yon vigil ant yo, epi chanje non, foto ak mesaj.
-
-   - photo : chemen foto a (mete foto a nan assets/temwayaj/)
-   - video : (opsyonèl) chemen yon ti videyo. Li koupe apre 6 segonn.
-   - Si yon foto pa jwenn, slideshow la sote li epi kontinye.
+   SLIDESHOW TEMWAYAJ — 113 MEDIA — 6 SEGONN CHAK
+   - Chak foto (oswa videyo) rete 6 segonn epi pase.
+   - Yon foto ki pa jwenn sote otomatikman.
+   - Pou ajoute non ak mesaj yon moun, ranpli TW_TEXT anba a.
 ===================================================== */
 
-var TEMWAYAJ=[
+var TW_PATH="./assets/slideshow/";
+var TW_MS=6000;
+var TW_STEP=100;
+var TW_LOAD_LIMIT=8000;
 
-{
-name:"TANIA2",
-place:"BSS1815 COMMUNITY",
-message:"MOUVMAN SA A SE POU NOU TOUT.",
-photo:"./assets/slideshow/tania2.jpg"
-}
+var TW_FILES=[
+
+"tania2.jpg",
+"papouche.jpg",
+"heritage.jpg",
+"team-angrenay.jpg",
+"sfc-5-stars.jpg",
+"team-angrenaye.jpg",
+"team-san-presyon.jpg",
+"max-on-the-air.jpg",
+"montina.jpg",
+"kendy2.jpg",
+"perodin.jpg",
+"rorony.jpg",
+"maxl.jpg",
+"maxle.jpg",
+"doodly.jpg",
+"roro-8.jpg",
+"cols1.jpg",
+"bouboul.jpg",
+"sindy-b.jpg",
+"warrens-v.jpg",
+"ones-g.jpg",
+"dede.jpg",
+"jij-mayan-1.jpg",
+"paulema.jpg",
+"mass-vokal.jpg",
+"maximax-m-s.jpg",
+"max-the-man.jpg",
+"ti-fre.jpg",
+"the-change.jpg",
+"jij-mayan2.jpg",
+"montinat.jpg",
+"cange-d.jpg",
+"ti-la-france.jpg",
+"jij-mayan-3.jpg",
+"bss.jpg",
+"ti-marassa.jpg",
+"the-change-1.jpg",
+"the-plan.jpg",
+"max.jpg",
+"sonsonn.jpeg",
+"valery.jpg",
+"thin-khard.jpg",
+"maximax-2.jpg",
+"y-max.jpg",
+"roro-ny.jpg",
+"le-baron.jpg",
+"prez-tirat.jpg",
+"the-one.jpg",
+"andy.jpeg",
+"badin-s.jpg",
+"ti-rat.jpg",
+"roro-1lajan.jpg",
+"roro-p-p.jpg",
+"madina.jpg",
+"prez-papit.jpg",
+"may-1.jpg",
+"fanfan-d.jpg",
+"ti-renold.jpg",
+"asmide1.jpg",
+"jeff-c.jpg",
+"tania-f.jpg",
+"jude.jpg",
+"andre-a.jpg",
+"nadege.jpg",
+"macu-1.jpg",
+"prez-aly.jpg",
+"sonson-m.jpg",
+"brunel-t.jpg",
+"roro-lj.jpg",
+"ti-papouche.jpg",
+"michel-b.jpg",
+"michel.jpg",
+"tatane.jpg",
+"la-belle-yole.jpg",
+"tila-france.jpg",
+"ralph-p.jpg",
+"ti-marassa2.jpg",
+"landry.jpg",
+"vp-ernso.jpg",
+"fanfan2.jpg",
+"paulema2.jpg",
+"yguens.jpg",
+"tifre2.jpg",
+"tichery.jpg",
+"jij-mayan.jpg",
+"yguens2.jpg",
+"heuch-love.jpg",
+"cange-0.jpg",
+"prez-aly-2.jpg",
+"anpere-doudou.jpg",
+"rivelino.jpg",
+"tatane-vp.jpg",
+"montinat2.jpg",
+"prezidan-aly.jpg",
+"max-louis.jpg",
+"paulema21.jpg",
+"le-baron1.jpg",
+"devan-devan-net.jpg",
+"jq-max.jpg",
+"system-akayik.jpg",
+"montina-prof.jpg",
+"systeme-akayik.jpg",
+"derosier.jpg",
+"odeline-ademe.jpg",
+"nadia-lafortune.jpg",
+"nadou.jpg",
+"max-is-the-man.jpg",
+"nadou2.jpg",
+"pro-max-dmp.mp4",
+"pro-max.jpg",
+"pro-max-academie.mp4",
+"maxi-max.mp4",
+"bss1815-pro-max-dmp.jpg"
 
 ];
 
-var bssMedia=
-TEMWAYAJ.map(function(t){
-
-var video=bssSafe(t.video);
-var photo=bssSafe(t.photo);
-
-return {
-type:video ? "video" : "image",
-src:video || photo,
-poster:video ? photo : "",
-title:t.name || "",
-place:t.place || "",
-message:t.message || "",
-custom:true
-};
-
-}).filter(function(item){
-return item.title;
-});
-
-var bssIndex=0;
-var bssPlaying=true;
-var bssTimer=null;
-var bssDuration=6000;
-var bssMuted=true;
-
-var bssImage=
-document.getElementById("bssSlideImage");
-
-var bssVideo=
-document.getElementById("bssSlideVideo");
-
-var bssTitle=
-document.getElementById("bssSlideTitle");
-
-var bssSmall=
-document.getElementById("bssSlideSmall");
-
-var bssText=
-document.getElementById("bssSlideText");
-
-var bssCounter=
-document.getElementById("bssCounter");
-
-var bssPrev=
-document.getElementById("bssPrev");
-
-var bssNext=
-document.getElementById("bssNext");
-
-var bssPlayPause=
-document.getElementById("bssPlayPause");
-
-var bssProgressBar=
-document.getElementById("bssProgressBar");
-
-var bssSound=
-document.getElementById("bssSound");
-
-function bssSafe(url){
-
-if(typeof url!=="string"){
-return "";
-}
-
-url=url.trim();
-
-if(
-/^https?:\/\//i.test(url) ||
-/^(\.\/|\/|assets\/)/.test(url)
-){
-return url;
-}
-
-return "";
-
-}
-
-function renderBssSlide(){
-
-if(!bssMedia.length){
-return;
-}
-
-var item=
-bssMedia[bssIndex];
-
-bssVideo.pause();
-
-if(item.type==="video"){
-
-bssImage.classList.add("bss-hidden");
-
-bssVideo.classList.remove("bss-hidden");
-
-bssVideo.muted=bssMuted;
-
-if(item.poster){
-bssVideo.poster=item.poster;
-}else{
-bssVideo.removeAttribute("poster");
-}
-
-bssVideo.src=item.src;
-
-bssVideo.currentTime=0;
-
-if(bssPlaying){
-
-bssVideo.play()
-.catch(function(){});
-
-}
-
-bssSound.classList.remove("bss-hidden");
-
-}else{
-
-bssVideo.removeAttribute("src");
-
-bssVideo.load();
-
-bssVideo.classList.add("bss-hidden");
-
-bssSound.classList.add("bss-hidden");
-
-if(item.src){
-
-bssImage.classList.remove("bss-hidden");
-
-bssImage.src=item.src;
-
-bssImage.alt=item.title || "BSS1815 COMMUNITY";
-
-}else{
-
-bssImage.classList.add("bss-hidden");
-
-}
-
-}
-
-if(item.custom){
-
-/* temwayaj: retire tradiksyon otomatik pou yo pa ranplase tèks la */
-
-["ht","fr","en"].forEach(function(code){
-
-bssSmall.removeAttribute("data-"+code);
-bssText.removeAttribute("data-"+code);
-
-});
-
-bssSmall.textContent=
-item.place || "TEMWAYAJ";
-
-bssTitle.textContent=
-item.title;
-
-bssText.textContent=
-item.message ? "“"+item.message+"”" : "";
-
-}else{
-
-bssTitle.textContent=
-item.title || "BSS1815 COMMUNITY";
-
-}
-
-bssCounter.textContent=
-(bssIndex+1)+" / "+bssMedia.length;
-
-restartBssTimer();
-
-}
-
-function nextBssSlide(){
-
-if(!bssMedia.length){
-return;
-}
-
-bssIndex=
-(bssIndex+1)%bssMedia.length;
-
-renderBssSlide();
-
-}
-
-function previousBssSlide(){
-
-if(!bssMedia.length){
-return;
-}
-
-bssIndex=
-(bssIndex-1+bssMedia.length)%bssMedia.length;
-
-renderBssSlide();
-
-}
-
-function restartBssTimer(){
-
-clearInterval(bssTimer);
-
-var progress=0;
-
-if(bssProgressBar){
-bssProgressBar.style.width="0%";
-}
-
-if(!bssPlaying){
-return;
-}
-
-bssTimer=
-setInterval(function(){
-
-progress+=100/(bssDuration/100);
-
-if(bssProgressBar){
-
-bssProgressBar.style.width=
-Math.min(progress,100)+"%";
-
-}
-
-if(progress>=100){
-
-clearInterval(bssTimer);
-
-nextBssSlide();
-
-}
-
-},100);
-
-}
+window.TW_FILES=TW_FILES;
 
 /*
-Videyo: pase nan pwochen slide la lè videyo a fini,
-oswa apre 6 segonn si li pi long (revèy la koupe l).
+Non ak mesaj chak moun (opsyonèl). Si yon foto pa la, non an
+soti nan non fichye a. Egzanp:
+
+var TW_TEXT={
+"tania2.jpg":{name:"Tania",message:"Temwayaj li isit la."},
+"papouche.jpg":{name:"Papouche",message:"Temwayaj li isit la."}
+};
 */
 
-bssVideo.addEventListener(
-"ended",
-function(){
+var TW_TEXT={};
 
-if(bssPlaying){
-nextBssSlide();
+var twActive=TW_FILES.slice();
+var twIndex=0;
+var twPlaying=true;
+var twElapsed=0;
+var twWaited=0;
+var twWaiting=true;
+
+var twImg=document.getElementById("twImg");
+var twVideo=document.getElementById("twVideo");
+var twName=document.getElementById("twName");
+var twText=document.getElementById("twText");
+var twCount=document.getElementById("twCount");
+var twProg=document.getElementById("twProg");
+var twMsg=document.getElementById("twMsg");
+var twStage=document.getElementById("twStage");
+
+function twIsVideo(file){
+return /\.mp4$/i.test(file);
 }
 
+function twPretty(file){
+return file
+.replace(/\.[^.]+$/,"")
+.replace(/[-_]+/g," ")
+.replace(/\b\w/g,function(c){
+return c.toUpperCase();
 });
-
-var bssFails=0;
-
-bssImage.addEventListener(
-"load",
-function(){
-bssFails=0;
-});
-
-bssImage.addEventListener(
-"error",
-function(){
-
-bssImage.classList.add("bss-hidden");
-
-bssFails++;
-
-if(bssMedia.length>1 && bssFails<bssMedia.length){
-nextBssSlide();
 }
 
-});
-
-if(bssSound){
-
-bssSound.addEventListener(
-"click",
-function(){
-
-bssMuted=!bssMuted;
-
-bssVideo.muted=bssMuted;
-
-this.textContent=
-bssMuted ? "🔇" : "🔊";
-
-});
-
+function twInfo(file){
+var t=TW_TEXT[file] || {};
+return {
+name:t.name || twPretty(file),
+message:t.message || ""
+};
 }
 
-if(bssPrev){
-
-bssPrev.addEventListener(
-"click",
-previousBssSlide
-);
-
+function twPreload(index){
+if(!twActive.length){
+return;
+}
+var next=twActive[index % twActive.length];
+if(next && !twIsVideo(next)){
+var probe=new Image();
+probe.src=TW_PATH+next;
+}
 }
 
-if(bssNext){
-
-bssNext.addEventListener(
-"click",
-nextBssSlide
-);
-
+function twEmpty(){
+twImg.classList.add("tw-hide");
+twVideo.classList.add("tw-hide");
+twName.textContent="";
+twText.textContent="";
+twCount.textContent="0 / 0";
+twProg.style.width="0%";
+twMsg.textContent="Foto yo pa jwenn. Verifye ke dosye assets/slideshow/ egziste sou sit la.";
+twMsg.classList.remove("tw-hide");
 }
 
-if(bssPlayPause){
+function twShow(index){
 
-bssPlayPause.addEventListener(
-"click",
-function(){
-
-bssPlaying=
-!bssPlaying;
-
-this.textContent=
-bssPlaying
-? "⏸ PAUSE"
-: "▶ PLAY";
-
-if(bssPlaying){
-
-if(
-!bssVideo.classList.contains(
-"bss-hidden"
-)
-){
-
-bssVideo.play()
-.catch(function(){});
-
+if(!twActive.length){
+twEmpty();
+return;
 }
 
-restartBssTimer();
+if(index<0){
+index=twActive.length-1;
+}
+
+if(index>=twActive.length){
+index=0;
+}
+
+twIndex=index;
+twElapsed=0;
+twWaited=0;
+twWaiting=true;
+
+var file=twActive[index];
+var src=TW_PATH+file;
+var info=twInfo(file);
+
+twName.textContent=info.name;
+twText.textContent=info.message ? "“"+info.message+"”" : "";
+twCount.textContent=(index+1)+" / "+twActive.length;
+twProg.style.width="0%";
+twMsg.classList.add("tw-hide");
+
+if(twIsVideo(file)){
+
+twImg.classList.add("tw-hide");
+twVideo.classList.remove("tw-hide");
+twVideo.muted=true;
+twVideo.src=src;
+
+if(twPlaying){
+twVideo.play().catch(function(){});
+}
 
 }else{
 
-clearInterval(bssTimer);
+twVideo.pause();
+twVideo.removeAttribute("src");
+twVideo.classList.add("tw-hide");
+twImg.classList.remove("tw-hide");
+twImg.alt=info.name;
+twImg.src=src;
 
-if(bssVideo){
-bssVideo.pause();
+if(twImg.complete && twImg.naturalWidth>0){
+twWaiting=false;
+}
+
+}
+
+twPreload(index+1);
+
+}
+
+function twNext(){
+twShow(twIndex+1);
+}
+
+function twPrevious(){
+twShow(twIndex-1);
+}
+
+function twDrop(){
+
+console.warn("Slideshow: foto pa jwenn:",twActive[twIndex]);
+
+twActive.splice(twIndex,1);
+
+if(!twActive.length){
+twEmpty();
+return;
+}
+
+twShow(twIndex>=twActive.length ? 0 : twIndex);
+
+}
+
+twImg.addEventListener("load",function(){
+twWaiting=false;
+});
+
+twImg.addEventListener("error",twDrop);
+
+twVideo.addEventListener("loadeddata",function(){
+twWaiting=false;
+});
+
+twVideo.addEventListener("error",twDrop);
+
+twVideo.addEventListener("ended",function(){
+if(twPlaying){
+twNext();
+}
+});
+
+function twTick(){
+
+if(!twPlaying || !twActive.length){
+return;
+}
+
+if(twWaiting){
+
+twWaited+=TW_STEP;
+
+if(twWaited>=TW_LOAD_LIMIT){
+twNext();
+}
+
+return;
+
+}
+
+twElapsed+=TW_STEP;
+
+twProg.style.width=Math.min(100,(twElapsed/TW_MS)*100)+"%";
+
+if(twElapsed>=TW_MS){
+twNext();
+}
+
+}
+
+document.getElementById("twNext").addEventListener("click",twNext);
+document.getElementById("twPrev").addEventListener("click",twPrevious);
+
+var twPlayButton=document.getElementById("twPlay");
+
+twPlayButton.addEventListener("click",function(){
+
+twPlaying=!twPlaying;
+
+this.textContent=twPlaying ? "⏸ PAUSE" : "▶ PLAY";
+
+if(!twVideo.classList.contains("tw-hide")){
+
+if(twPlaying){
+twVideo.play().catch(function(){});
+}else{
+twVideo.pause();
 }
 
 }
 
 });
 
-}
-
-var bssStage=
-document.getElementById("bssStage");
-
-if(bssStage){
-
-bssStage.addEventListener(
-"keydown",
-function(event){
+twStage.addEventListener("keydown",function(event){
 
 if(event.key==="ArrowLeft"){
-previousBssSlide();
+twPrevious();
 }
 
 if(event.key==="ArrowRight"){
-nextBssSlide();
+twNext();
 }
 
 });
 
+var twTouchX=0;
+
+twStage.addEventListener("touchstart",function(event){
+twTouchX=event.changedTouches[0].screenX;
+},{passive:true});
+
+twStage.addEventListener("touchend",function(event){
+
+var distance=event.changedTouches[0].screenX-twTouchX;
+
+if(Math.abs(distance)<45){
+return;
 }
 
-renderBssSlide();
+if(distance>0){
+twPrevious();
+}else{
+twNext();
+}
+
+},{passive:true});
+
+setInterval(twTick,TW_STEP);
+
+twShow(0);
 
 
 /* =====================================================
