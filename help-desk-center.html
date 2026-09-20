@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ht" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta name="theme-color" content="#000000">
+<title>HELP DESK | BSS1815 PRO-MAX DMP</title>
+<style>
+:root{--black:#000;--orange:#ff7900;--orange3:#ffad4d;--text:#ffc589;--border:rgba(255,121,0,.28);--border2:rgba(255,121,0,.72);--glow:0 0 18px rgba(255,121,0,.35);--ok:#7cff9b;--bad:#ff6b6b}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{min-height:100vh;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at 18% 10%,rgba(255,121,0,.16),transparent 33%),radial-gradient(circle at 82% 70%,rgba(255,121,0,.09),transparent 38%),linear-gradient(180deg,#000 0%,#0b0400 48%,#000 100%)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.container{width:min(1180px,calc(100% - 28px));margin:auto}
+.top-bar{padding:9px 15px;text-align:center;color:#000;background:linear-gradient(90deg,#913700,var(--orange),var(--orange3),var(--orange),#913700);font-size:.68rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--border);box-shadow:0 8px 28px rgba(0,0,0,.55)}
+.header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand strong{display:block;color:var(--orange);font-size:1rem;font-weight:1000}
+.brand span{display:block;margin-top:5px;color:var(--orange3);font-size:.55rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.navlink{padding:9px 12px;border:1px solid var(--border);border-radius:999px;color:var(--orange3);font-size:.62rem;font-weight:1000;text-transform:uppercase}
+.navlink:hover{background:var(--orange);color:#000}
+.lang-switch{display:flex;gap:3px;padding:3px;border:1px solid var(--border);border-radius:999px;background:#000}
+.lang-btn{min-width:42px;padding:8px 9px;border:0;border-radius:999px;color:var(--orange3);background:#000;cursor:pointer;font-size:.61rem;font-weight:1000}
+.lang-btn.active{color:#000;background:var(--orange)}
+.hero{padding:34px 0 10px;text-align:center}
+.hero h1{color:var(--orange);font-size:clamp(2rem,7vw,4rem);line-height:.95;text-transform:uppercase}
+.hero p{max-width:760px;margin:12px auto 0;line-height:1.7;font-size:.92rem}
+.banner{margin:16px 0 0;padding:12px 16px;border:1px solid var(--border2);border-radius:14px;background:linear-gradient(145deg,rgba(255,121,0,.12),#000);color:var(--orange3);font-size:.72rem;font-weight:1000;line-height:1.6;text-align:center}
+.banner.privacy{font-weight:700;border-color:var(--border)}
+.card{padding:22px;border:1px solid var(--border2);border-radius:22px;background:radial-gradient(circle at 80% 10%,rgba(255,121,0,.13),transparent 36%),linear-gradient(135deg,#000,#100500,#000);box-shadow:var(--glow)}
+.login{max-width:440px;margin:26px auto}
+.login h2{color:var(--orange);font-size:1.15rem;text-transform:uppercase;text-align:center}
+.login p{margin:8px 0 16px;text-align:center;font-size:.82rem;line-height:1.6}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{color:var(--orange3);font-size:.62rem;font-weight:1000;letter-spacing:.06em;text-transform:uppercase}
+.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#0a0400;outline:none;font-size:.9rem}
+.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus{border-color:var(--orange)}
+.field textarea{min-height:90px;resize:vertical}
+.btn{min-height:46px;display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:.68rem;font-weight:1000;text-transform:uppercase;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.btn.primary{color:#000;background:var(--orange)}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn.small{min-height:38px;padding:7px 12px;font-size:.6rem}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.msg{margin-top:10px;font-size:.8rem;line-height:1.5;text-align:center;color:var(--orange3)}
+.msg.bad{color:var(--bad)} .msg.ok{color:var(--ok)}
+.linkbtn{background:none;border:0;color:var(--orange3);text-decoration:underline;cursor:pointer;font-size:.78rem}
+.userbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:14px 0 0;font-size:.74rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{padding:16px 10px;border:1px solid var(--border);border-radius:16px;text-align:center;background:radial-gradient(circle at top,rgba(255,121,0,.10),transparent 55%),#050200}
+.stat strong{display:block;color:var(--orange);font-size:1.7rem}
+.stat span{display:block;margin-top:5px;font-size:.6rem;font-weight:900;letter-spacing:.05em}
+.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:10px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.count{margin:6px 2px 12px;color:var(--orange3);font-size:.72rem;font-weight:1000}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.person{padding:14px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,#100500,#000);cursor:pointer;transition:.2s}
+.person:hover{border-color:var(--orange);transform:translateY(-2px)}
+.person h3{color:var(--orange);font-size:1rem;word-break:break-word}
+.person .sub{margin-top:4px;font-size:.74rem;line-height:1.5;word-break:break-word}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.badge{padding:4px 9px;border:1px solid var(--border);border-radius:999px;font-size:.58rem;font-weight:1000;text-transform:uppercase;color:var(--orange3)}
+.badge.active{color:var(--ok);border-color:rgba(124,255,155,.5)} .badge.inactive{color:var(--bad);border-color:rgba(255,107,107,.5)} .badge.pending{color:var(--orange3)}
+.quick{display:flex;gap:6px;margin-top:10px}
+.quick a{flex:1;text-align:center;padding:8px 4px;border:1px solid var(--border);border-radius:10px;font-size:.62rem;font-weight:1000;color:var(--orange)}
+.quick a:hover{background:var(--orange);color:#000}
+.empty{padding:34px 16px;text-align:center;line-height:1.7;font-size:.86rem;border:1px dashed var(--border2);border-radius:16px}
+.overlay{position:fixed;inset:0;z-index:500;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 12px;background:rgba(0,0,0,.86)}
+.overlay.open{display:flex}
+#form{z-index:600}
+.modal{width:min(640px,100%);padding:22px;border:1px solid var(--border2);border-radius:22px;background:linear-gradient(145deg,#100500,#000);box-shadow:var(--glow)}
+.modal h2{color:var(--orange);font-size:1.1rem;text-transform:uppercase;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.checks{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.check{display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;font-size:.74rem;cursor:pointer}
+.check input{accent-color:var(--orange);width:auto}
+.row-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.info{margin:10px 0;font-size:.82rem;line-height:1.8;word-break:break-word}
+.info b{color:var(--orange3)}
+.timeline{margin-top:10px;display:grid;gap:8px}
+.tl{padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#050200;font-size:.78rem;line-height:1.55;word-break:break-word}
+.tl small{display:block;color:var(--orange3);font-weight:1000;font-size:.6rem;letter-spacing:.05em;margin-bottom:3px;text-transform:uppercase}
+.sect{margin:18px 0 6px;color:var(--orange);font-size:.78rem;font-weight:1000;letter-spacing:.06em}
+.hint{margin-top:8px;font-size:.66rem;color:var(--orange3);line-height:1.5}
+footer{margin-top:40px;padding:30px 0;text-align:center;border-top:1px solid var(--border);background:#000;font-size:.68rem;line-height:1.8}
+footer strong{color:var(--orange)}
+.hidden{display:none!important}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}
+@media(max-width:700px){.list{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.header-inner{padding:8px 0}}
+.tabs{display:flex;gap:8px;justify-content:center;margin:22px 0 6px}
+.tab{min-width:130px;padding:11px 18px;border:2px solid var(--border2);border-radius:999px;color:var(--orange3);background:#000;font-size:.68rem;font-weight:1000;cursor:pointer;text-transform:uppercase}
+.tab.active{color:#000;background:var(--orange);border-color:var(--orange)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0 18px}
+.chip{padding:8px 14px;border:1px solid var(--border);border-radius:999px;color:var(--orange3);background:#000;font-size:.64rem;font-weight:1000;cursor:pointer;text-transform:uppercase}
+.chip.active{color:#000;background:var(--orange3)}
+.feed{display:grid;gap:14px}
+.note{padding:18px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,#100500,#000)}
+.note.urgent{border-color:rgba(255,107,107,.75);box-shadow:0 0 22px rgba(255,107,107,.18)}
+.note.important{border-color:var(--border2)}
+.note .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.note h3{margin:8px 0 6px;color:var(--orange);font-size:1.08rem;line-height:1.3;word-break:break-word}
+.note p{white-space:pre-wrap;font-size:.9rem;line-height:1.75;word-break:break-word}
+.note .meta{margin-top:10px;color:var(--orange3);font-size:.66rem;font-weight:900;letter-spacing:.04em}
+.badge.urgent{color:var(--bad);border-color:rgba(255,107,107,.6)} .badge.important{color:var(--orange)}
+.badge.published{color:var(--ok);border-color:rgba(124,255,155,.5)} .badge.draft{color:var(--orange3)}
+.note .row-btns{margin-top:12px}
+.member-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#050200;font-size:.8rem}
+.member-row b{color:var(--orange)}
+.pre{margin:8px 0 12px;padding:12px 14px;border:1px dashed var(--border2);border-radius:12px;background:#050200;font-size:.78rem;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.stats.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:700px){.tab{min-width:0;flex:1}}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.okbox{padding:22px;border:2px solid rgba(124,255,155,.6);border-radius:18px;background:rgba(124,255,155,.06);text-align:center;line-height:1.7}
+.okbox .code{display:inline-block;margin:10px 0;padding:10px 18px;border:1px dashed var(--ok);border-radius:12px;color:var(--ok);font-size:1.3rem;font-weight:1000;letter-spacing:.08em}
+.altbox{margin-top:16px;padding:16px;border:1px solid var(--border2);border-radius:16px;background:#050200;text-align:center;font-size:.8rem;line-height:1.7}
+.altbox .row-btns{justify-content:center}
+.tk{padding:16px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,#100500,#000);cursor:pointer;transition:.2s}
+.tk:hover{border-color:var(--orange);transform:translateY(-2px)}
+.tk.urgent{border-color:rgba(255,107,107,.7)}
+.tk h3{margin:8px 0 4px;color:var(--orange);font-size:1rem;word-break:break-word}
+.tk .sub{font-size:.76rem;line-height:1.6;word-break:break-word}
+.tk .meta{color:var(--orange3);font-size:.62rem;font-weight:900;letter-spacing:.04em}
+.badge.new{color:var(--orange);border-color:var(--orange)} .badge.progress{color:#7cc6ff;border-color:rgba(124,198,255,.6)} .badge.resolved{color:var(--ok);border-color:rgba(124,255,155,.5)} .badge.closed{color:#999;border-color:#555}
+.badge.urgent{color:var(--bad);border-color:rgba(255,107,107,.6)}
+.stats.four{grid-template-columns:repeat(4,1fr)}
+.toolbar.four{grid-template-columns:2fr 1fr 1fr 1fr}
+.msgbox{white-space:pre-wrap;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#050200;font-size:.86rem;line-height:1.7;word-break:break-word}
+@media(max-width:900px){.stats.four{grid-template-columns:repeat(2,1fr)}.toolbar.four{grid-template-columns:1fr 1fr}.toolbar.four input{grid-column:1/-1}}
+@media(max-width:700px){.toolbar.four{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="top-bar" data-i18n="top">BSS1815 PRO-MAX DMP • HELP DESK</div>
+<header>
+<div class="container header-inner">
+  <a class="brand" href="./index.html"><strong>BSS1815 PRO-MAX DMP</strong><span data-i18n="tagline">HELP DESK • SUPPORT • REQUESTS • CASES</span></a>
+  <div class="header-right">
+    <a class="navlink" href="./index.html" data-i18n="home">HOME</a>
+    <a class="navlink" href="./ai-center.html" data-i18n="ai">AI CENTER</a>
+    <div class="lang-switch notranslate" translate="no">
+      <button type="button" class="lang-btn" data-lang="fr">FRA</button>
+      <button type="button" class="lang-btn" data-lang="en">ENG</button>
+      <button type="button" class="lang-btn active" data-lang="ht">KRE</button>
+    </div>
+  </div>
+</div>
+</header>
+
+<main class="container">
+<section class="hero"><h1 data-i18n="title">HELP DESK</h1><p data-i18n="sub">Ask for help…</p></section>
+<div class="banner hidden" id="demoBanner" data-i18n="demo">DEMO MODE</div>
+<div class="tabs">
+  <button class="tab active" id="tabReq" type="button" data-i18n="tab_req">ASK FOR HELP</button>
+  <button class="tab" id="tabAdmin" type="button" data-i18n="tab_admin">ADMIN</button>
+</div>
+<div class="msg" id="toast" aria-live="polite"></div>
+
+<!-- PUBLIC: ask for help -->
+<section id="viewReq" style="max-width:720px;margin:18px auto 0">
+  <div class="banner privacy" data-i18n="warn">Never write passwords…</div>
+  <div class="card" style="margin-top:16px">
+    <form id="reqForm" autocomplete="on">
+      <div class="grid2">
+        <div class="field"><label for="rName" data-i18n="r_name">Your name *</label><input id="rName" type="text" maxlength="100" autocomplete="name"></div>
+        <div class="field"><label for="rPhone" data-i18n="r_phone">Phone *</label><input id="rPhone" type="tel" maxlength="40" placeholder="+509…" autocomplete="tel"></div>
+        <div class="field"><label for="rEmail" data-i18n="r_email">Email</label><input id="rEmail" type="email" maxlength="120" autocomplete="email"></div>
+        <div class="field"><label for="rCat" data-i18n="r_cat">What is it about?</label><select id="rCat"></select></div>
+      </div>
+      <div class="field"><label for="rSubject" data-i18n="r_subject">Subject *</label><input id="rSubject" type="text" maxlength="140"></div>
+      <div class="field"><label for="rMessage" data-i18n="r_msg">Explain *</label><textarea id="rMessage" maxlength="2000"></textarea></div>
+      <div class="checks"><label class="check"><input type="checkbox" id="rUrgent"><span data-i18n="r_urgent">This is urgent</span></label></div>
+      <input class="hp" id="rWebsite" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn primary" id="rSend" type="submit" style="width:100%" data-i18n="send">SEND MY REQUEST</button>
+      <div class="msg" id="rMsgBox"></div>
+    </form>
+    <div class="okbox hidden" id="okBox">
+      <h2 style="color:var(--ok)" data-i18n="ok_h">REQUEST RECEIVED</h2>
+      <p data-i18n="ok_p">Keep this code:</p>
+      <div class="code" id="okCode"></div>
+      <div class="row-btns" id="okAlt" style="justify-content:center"></div>
+      <div style="margin-top:14px"><button class="btn small" id="again" type="button" data-i18n="new_req">SEND ANOTHER REQUEST</button></div>
+    </div>
+    <div class="altbox hidden" id="altBox"><div class="row-btns" id="altBtns"></div></div>
+  </div>
+  <div class="altbox"><b style="color:var(--orange)" data-i18n="alt_h">OR CONTACT US DIRECTLY</b><div class="row-btns" id="altStatic" style="margin-top:10px"></div></div>
+</section>
+
+<!-- ADMIN -->
+<section id="viewAdmin" class="hidden">
+  <section class="card login hidden" id="authBox">
+    <h2 data-i18n="login_h">ADMINISTRATOR LOGIN</h2><p data-i18n="login_p">Sign in…</p>
+    <form id="loginForm" autocomplete="on">
+      <div class="field"><label for="aEmail" data-i18n="email">Email</label><input id="aEmail" type="email" autocomplete="username" required></div>
+      <div class="field"><label for="aPass" data-i18n="password">Password</label><input id="aPass" type="password" autocomplete="current-password" required></div>
+      <button class="btn primary" id="signinBtn" type="submit" style="width:100%" data-i18n="signin">SIGN IN</button>
+    </form>
+    <div style="text-align:center;margin-top:10px"><button class="linkbtn" id="forgotBtn" type="button" data-i18n="forgot">Forgot password?</button></div>
+    <div class="msg" id="authMsg"></div>
+  </section>
+  <section id="adminApp" class="hidden">
+    <div class="userbar hidden" id="userBar"><span>👤 <b id="userEmail"></b></span><button class="btn small" id="signOutBtn" type="button" data-i18n="signout">SIGN OUT</button></div>
+    <div class="stats four">
+      <div class="stat"><strong id="sNew">0</strong><span data-i18n="st_new">NEW</span></div>
+      <div class="stat"><strong id="sProg">0</strong><span data-i18n="st_progress">IN PROGRESS</span></div>
+      <div class="stat"><strong id="sRes">0</strong><span data-i18n="st_resolved">RESOLVED</span></div>
+      <div class="stat"><strong id="sUrg">0</strong><span data-i18n="st_urgent">URGENT</span></div>
+    </div>
+    <div class="card">
+      <div class="toolbar four">
+        <input id="fSearch" type="search" data-i18n-ph="search" placeholder="Search…">
+        <select id="fStatus"></select><select id="fCat"></select><select id="fPri"></select>
+      </div>
+      <div class="actions"><button class="btn" id="exportBtn" type="button" data-i18n="export">⬇ EXPORT CSV</button></div>
+    </div>
+    <div class="count" id="count"></div>
+    <div class="feed" id="list"></div>
+  </section>
+</section>
+</main>
+
+<!-- TICKET DETAIL -->
+<div class="overlay" id="detail" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2 id="dTitle"></h2>
+    <div class="hint" id="dCode"></div>
+    <div class="info" id="dInfo"></div>
+    <div class="msgbox" id="dMsg"></div>
+    <div class="row-btns" id="dQuick"></div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="field"><label for="dStatus" data-i18n="d_status">Status</label><select id="dStatus"></select></div>
+      <div class="field"><label for="dPri" data-i18n="d_pri">Priority</label><select id="dPri"></select></div>
+    </div>
+    <div class="field"><label for="dAssign" data-i18n="d_assigned">Assigned to</label><input id="dAssign" type="text" maxlength="100"></div>
+    <div class="row-btns"><button class="btn primary" id="dSave" type="button" data-i18n="save">SAVE</button></div>
+    <div class="sect" data-i18n="n_h">INTERNAL NOTES</div>
+    <div class="field"><textarea id="nText" maxlength="1000" data-i18n-ph="n_ph" placeholder="Note…"></textarea></div>
+    <button class="btn small primary" id="nBtn" type="button" data-i18n="n_add">ADD NOTE</button>
+    <div class="msg" id="nMsg"></div>
+    <div class="timeline" id="notes"></div>
+    <div class="row-btns" style="margin-top:18px">
+      <button class="btn" id="dClose" type="button" data-i18n="close">CLOSE</button>
+      <button class="btn danger" id="dDelete" type="button" data-i18n="delete">DELETE</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>BSS1815 PRO-MAX DMP</strong><br>HELP DESK • DIGITAL MANAGEMENT PLATFORM<br>© <span id="year"></span> BSS1815 PRO-MAX DMP<br>
+  <span style="opacity:.55">HELP DESK VERSION 2026.09.20-A</span>
+</footer>
+<script>
+(function(){
+"use strict";
+
+/* Firebase settings of the BSS1815 project (same as the CRM). Empty apiKey/projectId = DEMO MODE. */
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDenkzhQh5rHMoZYDXrM8zSSCCoX4gBcYY",
+  authDomain: "briyant-soley-signo-1815.firebaseapp.com",
+  projectId: "briyant-soley-signo-1815",
+  storageBucket: "briyant-soley-signo-1815.firebasestorage.app",
+  messagingSenderId: "873317957685",
+  appId: "1:873317957685:web:4cc037fd0a61cd8899717c"
+};
+var FIREBASE_VERSION = "10.12.2";
+var COL = "helpdesk_tickets";
+var TEAM_WA = "50943437488", TEAM_TEL = "+50943437488", TEAM_MAIL = "briyantsoleysigno1815@gmail.com";
+var DEMO = !FIREBASE_CONFIG.apiKey || !FIREBASE_CONFIG.projectId;
+
+var I18N = {"top": {"en": "BSS1815 PRO-MAX DMP • HELP DESK", "fr": "BSS1815 PRO-MAX DMP • ASSISTANCE", "ht": "BSS1815 PRO-MAX DMP • HELP DESK"}, "tagline": {"en": "HELP DESK • SUPPORT • REQUESTS • CASES", "fr": "ASSISTANCE • SUPPORT • DEMANDES • DOSSIERS", "ht": "HELP DESK • SIPÒ • DEMANN • KA"}, "home": {"en": "HOME", "fr": "ACCUEIL", "ht": "AKÈY"}, "ai": {"en": "AI CENTER", "fr": "CENTRE IA", "ht": "AI CENTER"}, "title": {"en": "HELP DESK", "fr": "ASSISTANCE", "ht": "HELP DESK"}, "sub": {"en": "Ask for help, report a problem or send a request to the BSS1815 team.", "fr": "Demandez de l'aide, signalez un problème ou envoyez une demande à l'équipe BSS1815.", "ht": "Mande èd, siyale yon pwoblèm oswa voye yon demann bay ekip BSS1815 la."}, "demo": {"en": "DEMO MODE — the data stays on THIS device only.", "fr": "MODE DÉMO — les données restent sur CET appareil seulement.", "ht": "MOD DEMO — done yo rete sou aparèy SA A sèlman."}, "tab_req": {"en": "ASK FOR HELP", "fr": "DEMANDER DE L'AIDE", "ht": "MANDE ÈD"}, "tab_admin": {"en": "ADMIN", "fr": "ADMIN", "ht": "ADMIN"}, "warn": {"en": "Never write passwords, ID numbers or card numbers here.", "fr": "N'écrivez jamais de mot de passe, de numéro d'identité ou de carte ici.", "ht": "Pa janm ekri modpas, nimewo idantite oswa nimewo kat isit la."}, "r_name": {"en": "Your name *", "fr": "Votre nom *", "ht": "Non ou *"}, "r_phone": {"en": "Phone / WhatsApp * (with country code)", "fr": "Téléphone / WhatsApp * (avec indicatif)", "ht": "Telefòn / WhatsApp * (ak kòd peyi)"}, "r_email": {"en": "Email (optional)", "fr": "E-mail (facultatif)", "ht": "Imèl (opsyonèl)"}, "r_cat": {"en": "What is it about?", "fr": "De quoi s'agit-il ?", "ht": "Sou ki sa l ye?"}, "r_subject": {"en": "Subject *", "fr": "Sujet *", "ht": "Sijè *"}, "r_msg": {"en": "Explain your request *", "fr": "Expliquez votre demande *", "ht": "Eksplike demann ou *"}, "r_urgent": {"en": "This is urgent", "fr": "C'est urgent", "ht": "Sa ijan"}, "c_membership": {"en": "Membership", "fr": "Adhésion", "ht": "Manm"}, "c_events": {"en": "Events", "fr": "Événements", "ht": "Evènman"}, "c_donations": {"en": "Donations", "fr": "Dons", "ht": "Don"}, "c_technical": {"en": "Technical problem", "fr": "Problème technique", "ht": "Pwoblèm teknik"}, "c_account": {"en": "Account / login", "fr": "Compte / connexion", "ht": "Kont / koneksyon"}, "c_other": {"en": "Other", "fr": "Autre", "ht": "Lòt"}, "send": {"en": "SEND MY REQUEST", "fr": "ENVOYER MA DEMANDE", "ht": "VOYE DEMANN MWEN AN"}, "need": {"en": "Please fill in your name, phone, subject and message.", "fr": "Veuillez remplir votre nom, téléphone, sujet et message.", "ht": "Tanpri ranpli non ou, telefòn, sijè ak mesaj la."}, "wait": {"en": "Please wait a minute before sending another request.", "fr": "Veuillez patienter une minute avant d'envoyer une autre demande.", "ht": "Tanpri tann yon minit anvan w voye yon lòt demann."}, "ok_h": {"en": "REQUEST RECEIVED", "fr": "DEMANDE REÇUE", "ht": "DEMANN LAN RESEVWA"}, "ok_p": {"en": "Our team will contact you. Keep this code:", "fr": "Notre équipe vous contactera. Gardez ce code :", "ht": "Ekip nou an ap kontakte w. Kenbe kòd sa a:"}, "alt_h": {"en": "OR CONTACT US DIRECTLY", "fr": "OU CONTACTEZ-NOUS DIRECTEMENT", "ht": "OSWA KONTAKTE NOU DIRÈKTEMAN"}, "alt_wa": {"en": "WHATSAPP", "fr": "WHATSAPP", "ht": "WHATSAPP"}, "alt_mail": {"en": "EMAIL", "fr": "E-MAIL", "ht": "IMÈL"}, "alt_call": {"en": "CALL", "fr": "APPELER", "ht": "RELE"}, "fail": {"en": "The request could not be saved online. Send it by WhatsApp or email with the buttons below (the message is already written).", "fr": "La demande n'a pas pu être enregistrée en ligne. Envoyez-la par WhatsApp ou e-mail avec les boutons ci-dessous (le message est déjà écrit).", "ht": "Demann lan pa t ka sove sou entènèt. Voye l pa WhatsApp oswa imèl ak bouton yo anba a (mesaj la ekri deja)."}, "new_req": {"en": "SEND ANOTHER REQUEST", "fr": "ENVOYER UNE AUTRE DEMANDE", "ht": "VOYE YON LÒT DEMANN"}, "login_h": {"en": "ADMINISTRATOR LOGIN", "fr": "CONNEXION ADMINISTRATEUR", "ht": "KONEKSYON ADMINISTRATÈ"}, "login_p": {"en": "Sign in with your BSS1815 administrator account to manage the requests.", "fr": "Connectez-vous avec votre compte administrateur BSS1815 pour gérer les demandes.", "ht": "Konekte ak kont administratè BSS1815 ou a pou jere demann yo."}, "email": {"en": "Email", "fr": "E-mail", "ht": "Imèl"}, "password": {"en": "Password", "fr": "Mot de passe", "ht": "Modpas"}, "signin": {"en": "SIGN IN", "fr": "SE CONNECTER", "ht": "KONEKTE"}, "signout": {"en": "SIGN OUT", "fr": "SE DÉCONNECTER", "ht": "DEKONEKTE"}, "forgot": {"en": "Forgot password?", "fr": "Mot de passe oublié ?", "ht": "Ou bliye modpas?"}, "reset_sent": {"en": "Password reset email sent. Check your inbox.", "fr": "E-mail de réinitialisation envoyé. Vérifiez votre boîte de réception.", "ht": "Imèl pou reyinisyalize modpas la voye. Gade bwat imèl ou."}, "reset_need": {"en": "Type your email first.", "fr": "Écrivez d'abord votre e-mail.", "ht": "Ekri imèl ou anvan."}, "auth_bad": {"en": "Wrong email or password.", "fr": "E-mail ou mot de passe incorrect.", "ht": "Imèl oswa modpas pa bon."}, "auth_err": {"en": "Could not sign in. Try again.", "fr": "Connexion impossible. Réessayez.", "ht": "Pa ka konekte. Eseye ankò."}, "denied": {"en": "Access denied: this account is not an authorised administrator.", "fr": "Accès refusé : ce compte n'est pas un administrateur autorisé.", "ht": "Aksè refize: kont sa a pa yon administratè otorize."}, "loading": {"en": "Loading…", "fr": "Chargement…", "ht": "Ap chaje…"}, "st_new": {"en": "NEW", "fr": "NOUVELLES", "ht": "NOUVO"}, "st_progress": {"en": "IN PROGRESS", "fr": "EN COURS", "ht": "AP TRAITE"}, "st_resolved": {"en": "RESOLVED", "fr": "RÉSOLUES", "ht": "REZOLI"}, "st_urgent": {"en": "URGENT", "fr": "URGENTES", "ht": "IJAN"}, "s_new": {"en": "New", "fr": "Nouvelle", "ht": "Nouvo"}, "s_progress": {"en": "In progress", "fr": "En cours", "ht": "Ap trete"}, "s_resolved": {"en": "Resolved", "fr": "Résolue", "ht": "Rezoli"}, "s_closed": {"en": "Closed", "fr": "Clôturée", "ht": "Fèmen"}, "p_normal": {"en": "Normal", "fr": "Normale", "ht": "Nòmal"}, "p_urgent": {"en": "URGENT", "fr": "URGENT", "ht": "IJAN"}, "search": {"en": "Search name, phone, code, subject…", "fr": "Rechercher nom, téléphone, code, sujet…", "ht": "Chèche non, telefòn, kòd, sijè…"}, "all_status": {"en": "All statuses", "fr": "Tous les statuts", "ht": "Tout eta"}, "all_cat": {"en": "All categories", "fr": "Toutes les catégories", "ht": "Tout kategori"}, "all_pri": {"en": "All priorities", "fr": "Toutes les priorités", "ht": "Tout priyorite"}, "empty": {"en": "No request yet.", "fr": "Aucune demande pour l'instant.", "ht": "Poko gen demann."}, "no_match": {"en": "No result for this search.", "fr": "Aucun résultat pour cette recherche.", "ht": "Pa gen rezilta pou rechèch sa a."}, "count": {"en": "{n} requests", "fr": "{n} demandes", "ht": "{n} demann"}, "export": {"en": "⬇ EXPORT CSV", "fr": "⬇ EXPORTER CSV", "ht": "⬇ EKSPÒTE CSV"}, "d_status": {"en": "Status", "fr": "Statut", "ht": "Eta"}, "d_pri": {"en": "Priority", "fr": "Priorité", "ht": "Priyorite"}, "d_assigned": {"en": "Assigned to", "fr": "Assignée à", "ht": "Asiyen bay"}, "d_contact": {"en": "CONTACT", "fr": "CONTACT", "ht": "KONTAK"}, "d_call": {"en": "CALL", "fr": "APPELER", "ht": "RELE"}, "d_wa": {"en": "WHATSAPP", "fr": "WHATSAPP", "ht": "WHATSAPP"}, "d_mail": {"en": "EMAIL", "fr": "E-MAIL", "ht": "IMÈL"}, "n_h": {"en": "INTERNAL NOTES", "fr": "NOTES INTERNES", "ht": "NÒT ENTÈN"}, "n_add": {"en": "ADD NOTE", "fr": "AJOUTER UNE NOTE", "ht": "AJOUTE YON NÒT"}, "n_ph": {"en": "Note for the team (the person does not see it)…", "fr": "Note pour l'équipe (la personne ne la voit pas)…", "ht": "Nòt pou ekip la (moun nan pa wè l)…"}, "n_none": {"en": "No note yet.", "fr": "Aucune note.", "ht": "Poko gen nòt."}, "save": {"en": "SAVE", "fr": "ENREGISTRER", "ht": "SOVE"}, "delete": {"en": "DELETE", "fr": "SUPPRIMER", "ht": "EFASE"}, "close": {"en": "CLOSE", "fr": "FERMER", "ht": "FÈMEN"}, "saved": {"en": "Saved.", "fr": "Enregistré.", "ht": "Sove."}, "del_confirm": {"en": "Delete this request and its notes? This cannot be undone.", "fr": "Supprimer cette demande et ses notes ? Cela ne peut pas être annulé.", "ht": "Efase demann sa a ak nòt li yo? Sa pa ka anile."}, "err_save": {"en": "Could not save. Check your connection and permissions.", "fr": "Enregistrement impossible. Vérifiez la connexion et les autorisations.", "ht": "Pa ka sove. Verifye koneksyon ak otorizasyon yo."}};
+var CATS = ["membership", "events", "donations", "technical", "account", "other"];
+var STATUSES = ["new", "progress", "resolved", "closed"], PRIS = ["normal", "urgent"];
+
+var lang = "ht";
+function t(k, v){ var s = (I18N[k] && (I18N[k][lang] || I18N[k].en)) || k; if(v){ Object.keys(v).forEach(function(x){ s = s.replace("{" + x + "}", v[x]); }); } return s; }
+function $(id){ return document.getElementById(id); }
+function el(tag, cls, text){ var e = document.createElement(tag); if(cls){ e.className = cls; } if(text !== undefined){ e.textContent = text; } return e; }
+function clean(s){ return String(s == null ? "" : s).trim(); }
+function digits(s){ return String(s || "").replace(/\D+/g, ""); }
+function todayStr(){ var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+function uid(){ return "l" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function toMillis(v){ if(!v){ return 0; } if(typeof v === "number"){ return v; } if(typeof v.toMillis === "function"){ return v.toMillis(); } var p = Date.parse(v); return isNaN(p) ? 0 : p; }
+function fmt(ms){ if(!ms){ return ""; } var d = new Date(ms); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2); }
+function makeCode(){ var a = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", r = ""; for(var i = 0; i < 4; i++){ r += a.charAt(Math.floor(Math.random() * a.length)); } return "HD-" + todayStr().replace(/-/g, "") + "-" + r; }
+
+function norm(d, id){
+  d = d || {};
+  return { id: id || d.id || "", code: clean(d.code), name: clean(d.name), phone: clean(d.phone), email: clean(d.email),
+    category: CATS.indexOf(d.category) !== -1 ? d.category : "other", subject: clean(d.subject), message: clean(d.message),
+    priority: d.priority === "urgent" ? "urgent" : "normal", status: STATUSES.indexOf(d.status) !== -1 ? d.status : "new",
+    assignedTo: clean(d.assignedTo), lang: clean(d.lang), createdAt: toMillis(d.createdAt) || Date.now() };
+}
+
+/* ---------------- STORAGE 1 — this device (demo) ---------------- */
+var LocalStore = (function(){
+  var KEY = "bss1815_hd_v1", NK = "bss1815_hd_notes_", items = [], subs = [], nsubs = {};
+  function load(){ try{ items = JSON.parse(localStorage.getItem(KEY) || "[]"); }catch(e){ items = []; } }
+  function persist(){ try{ localStorage.setItem(KEY, JSON.stringify(items)); }catch(e){} }
+  function emit(){ var l = items.map(function(x){ return norm(x, x.id); }); subs.forEach(function(cb){ cb(l); }); }
+  function loadN(id){ try{ return JSON.parse(localStorage.getItem(NK + id) || "[]"); }catch(e){ return []; } }
+  return {
+    createPublic: function(tk){ load(); items.push(Object.assign({ id: uid(), createdAt: Date.now() }, tk)); persist(); emit(); return Promise.resolve(); },
+    subscribeAll: function(cb){ load(); subs.push(cb); emit(); return function(){ subs = subs.filter(function(x){ return x !== cb; }); }; },
+    update: function(id, patch){ load(); items = items.map(function(x){ return x.id === id ? Object.assign({}, x, patch) : x; }); persist(); emit(); return Promise.resolve(); },
+    remove: function(id){ load(); items = items.filter(function(x){ return x.id !== id; }); try{ localStorage.removeItem(NK + id); }catch(e){} persist(); emit(); return Promise.resolve(); },
+    notes: function(id, cb){ (nsubs[id] = nsubs[id] || []).push(cb); cb(loadN(id)); return function(){ nsubs[id] = (nsubs[id] || []).filter(function(x){ return x !== cb; }); }; },
+    addNote: function(id, text){ var a = loadN(id); a.push({ id: uid(), text: text, by: "demo", createdAt: Date.now() }); try{ localStorage.setItem(NK + id, JSON.stringify(a)); }catch(e){} (nsubs[id] || []).forEach(function(cb){ cb(a); }); return Promise.resolve(); }
+  };
+})();
+
+/* ---------------- STORAGE 2 — Firebase ---------------- */
+var FirebaseStore = (function(){
+  var app, auth, db, F = {}, A = {}, user = null;
+  function base(f){ return "https://www.gstatic.com/firebasejs/" + FIREBASE_VERSION + "/" + f + ".js"; }
+  function col(){ return F.collection(db, COL); }
+  return {
+    init: function(){ return Promise.all([import(base("firebase-app")), import(base("firebase-auth")), import(base("firebase-firestore"))]).then(function(m){ A = m[1]; F = m[2]; app = m[0].initializeApp(FIREBASE_CONFIG); auth = A.getAuth(app); db = F.getFirestore(app); }); },
+    onAuth: function(cb){ A.onAuthStateChanged(auth, function(u){ user = u; cb(u); }); },
+    signIn: function(e, p){ return A.signInWithEmailAndPassword(auth, e, p); }, reset: function(e){ return A.sendPasswordResetEmail(auth, e); }, signOut: function(){ return A.signOut(auth); },
+    probe: function(){ return F.getDocs(F.query(col(), F.limit(1))); },
+    createPublic: function(tk){ var p = Object.assign({}, tk); p.createdAt = F.serverTimestamp(); return F.addDoc(col(), p); },
+    subscribeAll: function(cb, err){ return F.onSnapshot(col(), function(s){ var l = []; s.forEach(function(d){ l.push(norm(d.data(), d.id)); }); cb(l); }, function(e){ if(err){ err(e); } }); },
+    update: function(id, patch){ var p = Object.assign({}, patch); p.updatedAt = F.serverTimestamp(); p.updatedBy = user ? user.email : ""; return F.updateDoc(F.doc(db, COL, id), p); },
+    remove: function(id){ return F.getDocs(F.collection(db, COL, id, "notes")).then(function(s){ var b = F.writeBatch(db); s.forEach(function(d){ b.delete(d.ref); }); b.delete(F.doc(db, COL, id)); return b.commit(); }); },
+    notes: function(id, cb){ return F.onSnapshot(F.collection(db, COL, id, "notes"), function(s){ var a = []; s.forEach(function(d){ var x = d.data(); x.id = d.id; x.createdAt = toMillis(x.createdAt); a.push(x); }); cb(a); }, function(){ cb([]); }); },
+    addNote: function(id, text){ return F.addDoc(F.collection(db, COL, id, "notes"), { text: text, by: user ? user.email : "", createdAt: F.serverTimestamp() }); }
+  };
+})();
+var store = DEMO ? LocalStore : FirebaseStore;
+
+/* ---------------- PUBLIC FORM ---------------- */
+function requestText(tk){
+  return "BSS1815 HELP DESK " + tk.code + "\n" + t("r_name").replace(" *", "") + ": " + tk.name + "\n" + t("r_phone").replace(/ \*.*$/, "") + ": " + tk.phone + (tk.email ? "\n" + t("r_email").replace(/ \(.*\)/, "") + ": " + tk.email : "") +
+    "\n" + t("r_cat") + " " + t("c_" + tk.category) + (tk.priority === "urgent" ? " • " + t("p_urgent") : "") + "\n" + t("r_subject").replace(" *", "") + ": " + tk.subject + "\n\n" + tk.message;
+}
+function altButtons(box, tk){
+  box.textContent = "";
+  var msg = tk ? requestText(tk) : "BSS1815 HELP DESK";
+  var wa = el("a", "btn small", "💬 " + t("alt_wa")); wa.href = "https://wa.me/" + TEAM_WA + "?text=" + encodeURIComponent(msg); wa.target = "_blank"; wa.rel = "noopener noreferrer";
+  var ml = el("a", "btn small", "✉️ " + t("alt_mail")); ml.href = "mailto:" + TEAM_MAIL + "?subject=" + encodeURIComponent("BSS1815 HELP DESK" + (tk ? " " + tk.code : "")) + "&body=" + encodeURIComponent(msg);
+  var cl = el("a", "btn small", "📞 " + t("alt_call")); cl.href = "tel:" + TEAM_TEL;
+  box.appendChild(wa); box.appendChild(ml); box.appendChild(cl);
+}
+function submitRequest(e){
+  e.preventDefault();
+  var msg = $("rMsgBox"); msg.className = "msg";
+  if($("rWebsite").value){ showOk({ code: makeCode() }); return; }              /* honeypot: bots */
+  var tk = { code: makeCode(), name: clean($("rName").value), phone: clean($("rPhone").value), email: clean($("rEmail").value), category: $("rCat").value,
+             subject: clean($("rSubject").value), message: clean($("rMessage").value), priority: $("rUrgent").checked ? "urgent" : "normal", status: "new", lang: lang };
+  if(!tk.name || digits(tk.phone).length < 7 || !tk.subject || !tk.message){ msg.className = "msg bad"; msg.textContent = t("need"); return; }
+  var last = 0; try{ last = parseInt(localStorage.getItem("bssHdLast") || "0", 10); }catch(x){}
+  if(Date.now() - last < 60000){ msg.className = "msg bad"; msg.textContent = t("wait"); return; }
+  $("rSend").disabled = true; msg.textContent = t("loading");
+  Promise.resolve(store.createPublic(tk)).then(function(){ try{ localStorage.setItem("bssHdLast", String(Date.now())); }catch(x){} showOk(tk); })
+    .catch(function(){ msg.className = "msg bad"; msg.textContent = t("fail"); altButtons($("altBtns"), tk); $("altBox").classList.remove("hidden"); })
+    .then(function(){ $("rSend").disabled = false; });
+}
+function showOk(tk){
+  $("reqForm").classList.add("hidden"); $("okBox").classList.remove("hidden"); $("okCode").textContent = tk.code; altButtons($("okAlt"), tk.name ? tk : null);
+}
+
+/* ---------------- ADMIN ---------------- */
+var tickets = [], current = null, unsubAll = null, unsubNotes = null;
+function labelStatus(s){ return t("s_" + s); }
+function filtered(){
+  var q = clean($("fSearch").value).toLowerCase(), st = $("fStatus").value, ct = $("fCat").value, pr = $("fPri").value;
+  return tickets.filter(function(x){
+    return (!st || x.status === st) && (!ct || x.category === ct) && (!pr || x.priority === pr) &&
+      (!q || [x.name, x.phone, x.email, x.code, x.subject, x.message].join(" ").toLowerCase().indexOf(q) !== -1 || (digits(q).length >= 4 && digits(x.phone).indexOf(digits(q)) !== -1));
+  }).sort(function(a, b){ return (b.priority === "urgent") - (a.priority === "urgent") || b.createdAt - a.createdAt; });
+}
+function renderStats(){
+  $("sNew").textContent = tickets.filter(function(x){ return x.status === "new"; }).length;
+  $("sProg").textContent = tickets.filter(function(x){ return x.status === "progress"; }).length;
+  $("sRes").textContent = tickets.filter(function(x){ return x.status === "resolved"; }).length;
+  $("sUrg").textContent = tickets.filter(function(x){ return x.priority === "urgent" && x.status !== "resolved" && x.status !== "closed"; }).length;
+}
+function renderList(){
+  var list = filtered(), box = $("list"); box.textContent = ""; $("count").textContent = t("count", { n: list.length });
+  if(!tickets.length){ box.appendChild(el("div", "empty", t("empty"))); return; }
+  if(!list.length){ box.appendChild(el("div", "empty", t("no_match"))); return; }
+  list.forEach(function(x){
+    var c = el("div", "tk" + (x.priority === "urgent" ? " urgent" : "")); c.tabIndex = 0;
+    var b = el("div", "badges"); b.appendChild(el("span", "badge " + x.status, labelStatus(x.status))); if(x.priority === "urgent"){ b.appendChild(el("span", "badge urgent", t("p_urgent"))); } b.appendChild(el("span", "badge", t("c_" + x.category)));
+    c.appendChild(b); c.appendChild(el("h3", "", x.subject)); c.appendChild(el("div", "sub", x.name + " • " + x.phone));
+    c.appendChild(el("div", "meta", x.code + " • " + fmt(x.createdAt) + (x.assignedTo ? " • → " + x.assignedTo : "")));
+    c.addEventListener("click", function(){ openDetail(x.id); }); c.addEventListener("keydown", function(e){ if(e.key === "Enter"){ openDetail(x.id); } }); box.appendChild(c);
+  });
+}
+function refresh(){ renderStats(); renderList(); if(current && $("detail").classList.contains("open")){ fillDetail(true); } }
+
+function fillSelects(){
+  [["fStatus", STATUSES, "s_", "all_status"], ["fCat", CATS, "c_", "all_cat"], ["fPri", PRIS, "p_", "all_pri"]].forEach(function(x){
+    var s = $(x[0]), v = s.value; s.textContent = ""; var o = el("option", "", t(x[3])); o.value = ""; s.appendChild(o);
+    x[1].forEach(function(k){ var e = el("option", "", t(x[2] + k)); e.value = k; s.appendChild(e); }); s.value = v;
+  });
+  [["rCat", CATS, "c_"], ["dStatus", STATUSES, "s_"], ["dPri", PRIS, "p_"]].forEach(function(x){
+    var s = $(x[0]), v = s.value; s.textContent = ""; x[1].forEach(function(k){ var e = el("option", "", t(x[2] + k)); e.value = k; s.appendChild(e); }); if(v){ s.value = v; }
+  });
+}
+function openOverlay(id){ $(id).classList.add("open"); document.body.style.overflow = "hidden"; }
+function closeOverlay(id){ $(id).classList.remove("open"); if(!document.querySelector(".overlay.open")){ document.body.style.overflow = ""; } }
+
+function openDetail(id){
+  current = id; fillDetail(false); openOverlay("detail"); $("nText").value = ""; $("nMsg").textContent = "";
+  if(unsubNotes){ try{ unsubNotes(); }catch(e){} }
+  unsubNotes = store.notes(id, function(arr){
+    var box = $("notes"); box.textContent = ""; arr = (arr || []).slice().sort(function(a, b){ return b.createdAt - a.createdAt; });
+    if(!arr.length){ box.appendChild(el("div", "hint", t("n_none"))); return; }
+    arr.forEach(function(n){ var d = el("div", "tl"); d.appendChild(el("small", "", fmt(n.createdAt) + (n.by ? " • " + n.by : ""))); d.appendChild(document.createTextNode(n.text || "")); box.appendChild(d); });
+  });
+}
+function fillDetail(keepEdits){
+  var x = tickets.filter(function(y){ return y.id === current; })[0]; if(!x){ closeDetail(); return; }
+  $("dTitle").textContent = x.subject; $("dCode").textContent = x.code + " • " + fmt(x.createdAt);
+  var i = $("dInfo"); i.textContent = "";
+  [[t("r_name").replace(" *", ""), x.name], [t("r_phone").replace(/ \*.*$/, ""), x.phone], [t("r_email").replace(/ \(.*\)/, ""), x.email], [t("r_cat").replace("?", ""), t("c_" + x.category)]].forEach(function(p){
+    if(p[1]){ var d = el("div"); d.appendChild(el("b", "", p[0] + ": ")); d.appendChild(document.createTextNode(p[1])); i.appendChild(d); }
+  });
+  $("dMsg").textContent = x.message;
+  if(!keepEdits){ $("dStatus").value = x.status; $("dPri").value = x.priority; $("dAssign").value = x.assignedTo; }
+  var q = $("dQuick"); q.textContent = ""; var pd = digits(x.phone);
+  if(pd){ var a1 = el("a", "btn small", "📞 " + t("d_call")); a1.href = "tel:" + (String(x.phone).trim().charAt(0) === "+" ? "+" : "") + pd; q.appendChild(a1);
+          var a2 = el("a", "btn small", "💬 " + t("d_wa")); a2.href = "https://wa.me/" + pd; a2.target = "_blank"; a2.rel = "noopener noreferrer"; q.appendChild(a2); }
+  if(x.email){ var a3 = el("a", "btn small", "✉️ " + t("d_mail")); a3.href = "mailto:" + x.email; q.appendChild(a3); }
+}
+function closeDetail(){ if(unsubNotes){ try{ unsubNotes(); }catch(e){} unsubNotes = null; } current = null; closeOverlay("detail"); }
+function toast(msg, bad){ var e = $("toast"); e.textContent = msg; e.className = "msg " + (bad ? "bad" : "ok"); clearTimeout(toast.tm); toast.tm = setTimeout(function(){ e.textContent = ""; }, 4000); }
+function saveDetail(){
+  $("dSave").disabled = true;
+  Promise.resolve(store.update(current, { status: $("dStatus").value, priority: $("dPri").value, assignedTo: clean($("dAssign").value) })).then(function(){ toast(t("saved")); })
+    .catch(function(){ toast(t("err_save"), true); }).then(function(){ $("dSave").disabled = false; });
+}
+function addNote(){
+  var txt = clean($("nText").value); if(!txt){ return; } $("nBtn").disabled = true;
+  Promise.resolve(store.addNote(current, txt)).then(function(){ $("nText").value = ""; }).catch(function(){ $("nMsg").className = "msg bad"; $("nMsg").textContent = t("err_save"); }).then(function(){ $("nBtn").disabled = false; });
+}
+function deleteTicket(){
+  if(!window.confirm(t("del_confirm"))){ return; }
+  Promise.resolve(store.remove(current)).then(function(){ closeDetail(); toast(t("saved")); }).catch(function(){ toast(t("err_save"), true); });
+}
+function csvCell(v){ v = String(v == null ? "" : v); if(/^[=+\-@]/.test(v) && !/^\+?[\d\s().-]+$/.test(v)){ v = "'" + v; } return /[",\n\r;]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function exportCsv(){
+  var cols = ["code", "createdAt", "status", "priority", "category", "name", "phone", "email", "subject", "message", "assignedTo"], rows = [cols.join(",")];
+  filtered().forEach(function(x){ rows.push(cols.map(function(c){ return csvCell(c === "createdAt" ? fmt(x.createdAt) : x[c]); }).join(",")); });
+  var blob = new Blob(["\ufeff" + rows.join("\r\n")], { type: "text/csv;charset=utf-8" }), a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "bss1815-helpdesk-" + todayStr() + ".csv"; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+
+/* ---------------- language, tabs, start ---------------- */
+function applyLanguage(l){
+  if(["en", "fr", "ht"].indexOf(l) === -1){ l = "ht"; } lang = l; document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(function(e){ e.textContent = t(e.getAttribute("data-i18n")); });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function(e){ e.setAttribute("placeholder", t(e.getAttribute("data-i18n-ph"))); });
+  document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-lang") === l); });
+  try{ localStorage.setItem("bss1815Language", l); }catch(e){}
+  fillSelects(); altButtons($("altStatic"), null); refresh();
+}
+function showTab(n){ $("viewReq").classList.toggle("hidden", n !== "req"); $("viewAdmin").classList.toggle("hidden", n !== "admin"); $("tabReq").classList.toggle("active", n === "req"); $("tabAdmin").classList.toggle("active", n === "admin"); }
+function startAdmin(){
+  $("authBox").classList.add("hidden"); $("adminApp").classList.remove("hidden");
+  if(unsubAll){ try{ unsubAll(); }catch(e){} }
+  unsubAll = store.subscribeAll(function(l){ tickets = l; refresh(); }, function(err){ if(err && /permission/i.test((err.code || "") + (err.message || ""))){ showDenied(); } });
+}
+function showAuth(msg, bad){ $("adminApp").classList.add("hidden"); $("authBox").classList.remove("hidden"); $("userBar").classList.add("hidden"); $("authMsg").className = "msg " + (bad ? "bad" : ""); $("authMsg").textContent = msg || ""; }
+function showDenied(){ if(unsubAll){ try{ unsubAll(); }catch(e){} unsubAll = null; } showAuth(t("denied"), true); }
+
+function boot(){
+  $("year").textContent = new Date().getFullYear();
+  var saved = "ht"; try{ saved = localStorage.getItem("bss1815Language") || "ht"; }catch(e){}
+  document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ applyLanguage(b.getAttribute("data-lang")); }); });
+  applyLanguage(saved); showTab("req");
+  $("tabReq").addEventListener("click", function(){ showTab("req"); }); $("tabAdmin").addEventListener("click", function(){ showTab("admin"); });
+  $("reqForm").addEventListener("submit", submitRequest);
+  $("again").addEventListener("click", function(){ $("okBox").classList.add("hidden"); $("reqForm").classList.remove("hidden"); $("reqForm").reset(); $("rMsgBox").textContent = ""; $("altBox").classList.add("hidden"); });
+  ["fSearch"].forEach(function(id){ $(id).addEventListener("input", renderList); }); ["fStatus", "fCat", "fPri"].forEach(function(id){ $(id).addEventListener("change", renderList); });
+  $("exportBtn").addEventListener("click", exportCsv); $("dSave").addEventListener("click", saveDetail); $("nBtn").addEventListener("click", addNote); $("dDelete").addEventListener("click", deleteTicket); $("dClose").addEventListener("click", closeDetail);
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && $("detail").classList.contains("open")){ closeDetail(); } });
+  $("detail").addEventListener("mousedown", function(e){ if(e.target === $("detail")){ closeDetail(); } });
+
+  if(DEMO){ $("demoBanner").classList.remove("hidden"); startAdmin(); return; }
+  showAuth("");
+  FirebaseStore.init().then(function(){
+    FirebaseStore.onAuth(function(user){
+      if(!user){ showAuth(""); return; }
+      $("userBar").classList.remove("hidden"); $("userEmail").textContent = user.email || "";
+      FirebaseStore.probe().then(startAdmin).catch(function(err){ if(err && /permission/i.test((err.code || "") + (err.message || ""))){ showDenied(); } else { startAdmin(); } });
+    });
+  }).catch(function(){ showAuth(t("auth_err"), true); });
+  $("loginForm").addEventListener("submit", function(e){
+    e.preventDefault(); $("authMsg").className = "msg"; $("authMsg").textContent = t("loading"); $("signinBtn").disabled = true;
+    FirebaseStore.signIn(clean($("aEmail").value), $("aPass").value).then(function(){ $("authMsg").textContent = ""; })
+      .catch(function(err){ var bad = err && /invalid|wrong|user-not-found|credential/i.test((err.code || "") + " " + (err.message || "")); $("authMsg").className = "msg bad"; $("authMsg").textContent = bad ? t("auth_bad") : t("auth_err"); })
+      .then(function(){ $("signinBtn").disabled = false; });
+  });
+  $("forgotBtn").addEventListener("click", function(){
+    var em = clean($("aEmail").value); if(!em){ $("authMsg").className = "msg bad"; $("authMsg").textContent = t("reset_need"); return; }
+    FirebaseStore.reset(em).then(function(){ $("authMsg").className = "msg ok"; $("authMsg").textContent = t("reset_sent"); }).catch(function(){ $("authMsg").className = "msg bad"; $("authMsg").textContent = t("auth_err"); });
+  });
+  $("signOutBtn").addEventListener("click", function(){ FirebaseStore.signOut(); });
+}
+boot();
+})();
+
+</script>
+</body>
+</html>
