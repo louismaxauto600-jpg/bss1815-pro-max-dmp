@@ -1,1242 +1,790 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="ht" translate="no">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#000000">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="google" content="notranslate">
-<title>AI Center | BSS1815 PRO-MAX DMP</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000000">
+<title>CRM SYSTEM | BSS1815 PRO-MAX DMP</title>
 <style>
-:root {
-  --orange:#ff7900;
-  --apricot:#ffad4d;
-  --black:#000;
-  --deep:#050200;
-  --soft:#120600;
-  --text:#ffd2a3;
-  --muted:#d89558;
-  --border:rgba(255,121,0,.48);
-  --glow:rgba(255,121,0,.30);
-}
+:root{--black:#000;--orange:#ff7900;--orange3:#ffad4d;--text:#ffc589;--border:rgba(255,121,0,.28);--border2:rgba(255,121,0,.72);--glow:0 0 18px rgba(255,121,0,.35);--ok:#7cff9b;--bad:#ff6b6b}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{min-height:100vh;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at 18% 10%,rgba(255,121,0,.16),transparent 33%),radial-gradient(circle at 82% 70%,rgba(255,121,0,.09),transparent 38%),linear-gradient(180deg,#000 0%,#0b0400 48%,#000 100%)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.container{width:min(1180px,calc(100% - 28px));margin:auto}
+.top-bar{padding:9px 15px;text-align:center;color:#000;background:linear-gradient(90deg,#913700,var(--orange),var(--orange3),var(--orange),#913700);font-size:.68rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.97);border-bottom:1px solid var(--border);box-shadow:0 8px 28px rgba(0,0,0,.55)}
+.header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand strong{display:block;color:var(--orange);font-size:1rem;font-weight:1000}
+.brand span{display:block;margin-top:5px;color:var(--orange3);font-size:.55rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.navlink{padding:9px 12px;border:1px solid var(--border);border-radius:999px;color:var(--orange3);font-size:.62rem;font-weight:1000;text-transform:uppercase}
+.navlink:hover{background:var(--orange);color:#000}
+.lang-switch{display:flex;gap:3px;padding:3px;border:1px solid var(--border);border-radius:999px;background:#000}
+.lang-btn{min-width:42px;padding:8px 9px;border:0;border-radius:999px;color:var(--orange3);background:#000;cursor:pointer;font-size:.61rem;font-weight:1000}
+.lang-btn.active{color:#000;background:var(--orange)}
+.hero{padding:34px 0 10px;text-align:center}
+.hero h1{color:var(--orange);font-size:clamp(2rem,7vw,4rem);line-height:.95;text-transform:uppercase}
+.hero p{max-width:760px;margin:12px auto 0;line-height:1.7;font-size:.92rem}
+.banner{margin:16px 0 0;padding:12px 16px;border:1px solid var(--border2);border-radius:14px;background:linear-gradient(145deg,rgba(255,121,0,.12),#000);color:var(--orange3);font-size:.72rem;font-weight:1000;line-height:1.6;text-align:center}
+.banner.privacy{font-weight:700;border-color:var(--border)}
+.card{padding:22px;border:1px solid var(--border2);border-radius:22px;background:radial-gradient(circle at 80% 10%,rgba(255,121,0,.13),transparent 36%),linear-gradient(135deg,#000,#100500,#000);box-shadow:var(--glow)}
+.login{max-width:440px;margin:26px auto}
+.login h2{color:var(--orange);font-size:1.15rem;text-transform:uppercase;text-align:center}
+.login p{margin:8px 0 16px;text-align:center;font-size:.82rem;line-height:1.6}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{color:var(--orange3);font-size:.62rem;font-weight:1000;letter-spacing:.06em;text-transform:uppercase}
+.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#0a0400;outline:none;font-size:.9rem}
+.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus{border-color:var(--orange)}
+.field textarea{min-height:90px;resize:vertical}
+.btn{min-height:46px;display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:.68rem;font-weight:1000;text-transform:uppercase;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.btn.primary{color:#000;background:var(--orange)}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn.small{min-height:38px;padding:7px 12px;font-size:.6rem}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.msg{margin-top:10px;font-size:.8rem;line-height:1.5;text-align:center;color:var(--orange3)}
+.msg.bad{color:var(--bad)} .msg.ok{color:var(--ok)}
+.linkbtn{background:none;border:0;color:var(--orange3);text-decoration:underline;cursor:pointer;font-size:.78rem}
+.userbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:14px 0 0;font-size:.74rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{padding:16px 10px;border:1px solid var(--border);border-radius:16px;text-align:center;background:radial-gradient(circle at top,rgba(255,121,0,.10),transparent 55%),#050200}
+.stat strong{display:block;color:var(--orange);font-size:1.7rem}
+.stat span{display:block;margin-top:5px;font-size:.6rem;font-weight:900;letter-spacing:.05em}
+.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:10px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.count{margin:6px 2px 12px;color:var(--orange3);font-size:.72rem;font-weight:1000}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.person{padding:14px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,#100500,#000);cursor:pointer;transition:.2s}
+.person:hover{border-color:var(--orange);transform:translateY(-2px)}
+.person h3{color:var(--orange);font-size:1rem;word-break:break-word}
+.person .sub{margin-top:4px;font-size:.74rem;line-height:1.5;word-break:break-word}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.badge{padding:4px 9px;border:1px solid var(--border);border-radius:999px;font-size:.58rem;font-weight:1000;text-transform:uppercase;color:var(--orange3)}
+.badge.active{color:var(--ok);border-color:rgba(124,255,155,.5)} .badge.inactive{color:var(--bad);border-color:rgba(255,107,107,.5)} .badge.pending{color:var(--orange3)}
+.quick{display:flex;gap:6px;margin-top:10px}
+.quick a{flex:1;text-align:center;padding:8px 4px;border:1px solid var(--border);border-radius:10px;font-size:.62rem;font-weight:1000;color:var(--orange)}
+.quick a:hover{background:var(--orange);color:#000}
+.empty{padding:34px 16px;text-align:center;line-height:1.7;font-size:.86rem;border:1px dashed var(--border2);border-radius:16px}
+.overlay{position:fixed;inset:0;z-index:500;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 12px;background:rgba(0,0,0,.86)}
+.overlay.open{display:flex}
+#form{z-index:600}
+.modal{width:min(640px,100%);padding:22px;border:1px solid var(--border2);border-radius:22px;background:linear-gradient(145deg,#100500,#000);box-shadow:var(--glow)}
+.modal h2{color:var(--orange);font-size:1.1rem;text-transform:uppercase;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.checks{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.check{display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;font-size:.74rem;cursor:pointer}
+.check input{accent-color:var(--orange);width:auto}
+.row-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.info{margin:10px 0;font-size:.82rem;line-height:1.8;word-break:break-word}
+.info b{color:var(--orange3)}
+.timeline{margin-top:10px;display:grid;gap:8px}
+.tl{padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#050200;font-size:.78rem;line-height:1.55;word-break:break-word}
+.tl small{display:block;color:var(--orange3);font-weight:1000;font-size:.6rem;letter-spacing:.05em;margin-bottom:3px;text-transform:uppercase}
+.sect{margin:18px 0 6px;color:var(--orange);font-size:.78rem;font-weight:1000;letter-spacing:.06em}
+.hint{margin-top:8px;font-size:.66rem;color:var(--orange3);line-height:1.5}
+footer{margin-top:40px;padding:30px 0;text-align:center;border-top:1px solid var(--border);background:#000;font-size:.68rem;line-height:1.8}
+footer strong{color:var(--orange)}
+.hidden{display:none!important}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}
+@media(max-width:700px){.list{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.header-inner{padding:8px 0}}
 
-* {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html {
-  scroll-behavior:smooth;
-  background:#000;
-  scroll-padding-top:100px;
-}
-
-body {
-  min-height:100vh;
-  font-family:Arial,Helvetica,sans-serif;
-  color:var(--text);
-  background:radial-gradient(circle at 15% 5%,rgba(255,121,0,.12),transparent 25%),radial-gradient(circle at 90% 30%,rgba(255,173,77,.07),transparent 25%),linear-gradient(180deg,#000,#050200 55%,#000);
-}
-
-a {
-  text-decoration:none;
-  color:inherit;
-}
-
-button,input {
-  font:inherit;
-}
-
-.container {
-  width:min(1180px,94%);
-  margin:auto;
-}
-
-.topbar {
-  padding:9px 12px;
-  text-align:center;
-  color:#000;
-  background:linear-gradient(90deg,var(--orange),var(--apricot),var(--orange));
-  font-size:10px;
-  font-weight:1000;
-  letter-spacing:1px;
-}
-
-header {
-  position:sticky;
-  top:0;
-  z-index:1000;
-  border-bottom:1px solid rgba(255,121,0,.30);
-  background:rgba(0,0,0,.96);
-  backdrop-filter:blur(15px);
-}
-
-.header-inner {
-  min-height:86px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-}
-
-.brand {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex:1 1 auto;
-  min-width:0;
-}
-
-.brand-logo {
-  width:64px;
-  height:64px;
-  object-fit:cover;
-  border:2px solid var(--orange);
-  border-radius:18px;
-  box-shadow:0 0 20px var(--glow);
-}
-
-.brand-copy {
-  min-width:0;
-  overflow:hidden;
-}
-
-.brand-copy h1 {
-  color:var(--orange);
-  font-size:15px;
-  font-weight:1000;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.brand-copy p {
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  margin-top:4px;
-  color:var(--apricot);
-  font-size:8px;
-  font-weight:900;
-  letter-spacing:.8px;
-}
-
-.header-actions {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex:0 0 auto;
-}
-
-.languages {
-  display:flex;
-  gap:4px;
-  padding:4px;
-  border:1px solid var(--border);
-  border-radius:999px;
-  background:#080300;
-}
-
-.lang-btn {
-  min-height:36px;
-  padding:6px 11px;
-  border:1px solid transparent;
-  border-radius:999px;
-  color:var(--apricot);
-  background:#000;
-  cursor:pointer;
-  font-size:10px;
-  font-weight:1000;
-}
-
-.lang-btn.active {
-  color:#000;
-  border-color:var(--orange);
-  background:linear-gradient(135deg,var(--orange),var(--apricot));
-}
-
-.menu-btn {
-  width:52px;
-  height:48px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:2px solid var(--orange);
-  border-radius:14px;
-  color:var(--orange);
-  background:#000;
-  font-size:27px;
-  cursor:pointer;
-}
-
-.mobile-menu {
-  display:none;
-  padding:0 0 15px;
-}
-
-.mobile-menu.open {
-  display:block;
-}
-
-.mobile-menu a {
-  display:block;
-  margin-top:7px;
-  padding:13px 15px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  color:var(--apricot);
-  background:#080300;
-  font-size:11px;
-  font-weight:900;
-}
-
-.hero {
-  padding:62px 0 42px;
-  text-align:center;
-}
-
-.hero-badge {
-  display:inline-block;
-  padding:8px 15px;
-  border:1px solid var(--orange);
-  border-radius:999px;
-  color:var(--orange);
-  background:rgba(255,121,0,.06);
-  font-size:10px;
-  font-weight:1000;
-}
-
-.hero h2 {
-  margin-top:20px;
-  color:var(--orange);
-  font-size:clamp(38px,7vw,64px);
-  line-height:1.05;
-  font-weight:1000;
-}
-
-.hero p {
-  max-width:820px;
-  margin:22px auto 0;
-  color:var(--text);
-  font-size:16px;
-  line-height:1.8;
-}
-
-.search-wrap {
-  max-width:760px;
-  margin:30px auto 0;
-}
-
-.search-wrap input {
-  width:100%;
-  min-height:56px;
-  padding:15px 20px;
-  border:2px solid var(--orange);
-  border-radius:999px;
-  outline:none;
-  color:var(--text);
-  background:#050200;
-}
-
-.search-wrap input::placeholder {
-  color:#a66b39;
-}
-
-.no-results {
-  display:none;
-  max-width:760px;
-  margin:18px auto 0;
-  padding:14px 18px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  color:var(--apricot);
-  font-size:12px;
-  text-align:center;
-}
-
-.no-results.show {
-  display:block;
-}
-
-.section {
-  padding:25px 0 60px;
-}
-
-.section-title {
-  margin-bottom:22px;
-}
-
-.section-title small {
-  color:var(--apricot);
-  font-size:10px;
-  font-weight:1000;
-}
-
-.section-title h3 {
-  margin-top:6px;
-  color:var(--orange);
-  font-size:30px;
-  font-weight:1000;
-}
-
-.service-grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-
-.service-card {
-  padding:28px;
-  border:1px solid var(--border);
-  border-radius:28px;
-  background:radial-gradient(circle at 100% 0%,rgba(255,121,0,.09),transparent 35%),linear-gradient(145deg,#0c0400,#000);
-  box-shadow:0 8px 28px rgba(255,121,0,.05);
-}
-
-.service-code {
-  color:var(--orange);
-  font-size:11px;
-  font-weight:1000;
-}
-
-.service-icon {
-  margin-top:24px;
-  font-size:35px;
-}
-
-.service-card h4 {
-  margin-top:22px;
-  color:var(--orange);
-  font-size:21px;
-  font-weight:1000;
-}
-
-.service-card>p {
-  margin-top:16px;
-  color:var(--text);
-  font-size:13px;
-  line-height:1.7;
-}
-
-.forms-box {
-  margin-top:22px;
-  padding-top:18px;
-  border-top:1px solid rgba(255,121,0,.25);
-}
-
-.forms-label {
-  margin-bottom:12px;
-  color:var(--apricot);
-  font-size:10px;
-  font-weight:1000;
-  letter-spacing:.8px;
-}
-
-.form-row {
-  margin-top:10px;
-  padding:14px;
-  border:1px solid rgba(255,121,0,.30);
-  border-radius:16px;
-  background:#050200;
-}
-
-.form-number {
-  color:var(--orange);
-  font-size:15px;
-  font-weight:1000;
-}
-
-.form-name {
-  margin-top:4px;
-  color:var(--text);
-  font-size:10px;
-  line-height:1.4;
-}
-
-.form-actions {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:12px;
-}
-
-.form-actions.single {
-  grid-template-columns:1fr;
-}
-
-.form-btn {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:42px;
-  padding:8px 10px;
-  border:2px solid var(--orange);
-  border-radius:999px;
-  color:var(--orange);
-  background:#000;
-  text-align:center;
-  font-size:9px;
-  font-weight:1000;
-  cursor:pointer;
-}
-
-.form-btn:hover,.form-btn:focus {
-  color:#000;
-  background:linear-gradient(135deg,var(--orange),var(--apricot));
-}
-
-.form-btn.primary {
-  color:#000;
-  background:linear-gradient(135deg,var(--orange),var(--apricot));
-}
-
-.eoir-center {
-  margin-top:20px;
-  padding:25px;
-  border:2px solid var(--orange);
-  border-radius:24px;
-  background:radial-gradient(circle at 50% 0%,rgba(255,121,0,.15),transparent 40%),#000;
-}
-
-.eoir-center h4 {
-  color:var(--orange);
-  font-size:22px;
-}
-
-.eoir-center>p {
-  margin-top:10px;
-  line-height:1.7;
-  font-size:12px;
-}
-
-.eoir-list {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:20px;
-}
-
-.eoir-list .form-row {
-  margin-top:0;
-}
-
-.eoir-all {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:16px;
-}
-
-.notice {
-  margin:0 0 60px;
-  padding:22px;
-  border:1px solid var(--orange);
-  border-radius:20px;
-  background:linear-gradient(145deg,rgba(255,121,0,.08),#000);
-  font-size:11px;
-  line-height:1.7;
-}
-
-.notice strong {
-  color:var(--orange);
-}
-
-footer {
-  padding:40px 15px;
-  border-top:1px solid var(--border);
-  text-align:center;
-  background:#000;
-}
-
-footer strong {
-  color:var(--orange);
-}
-
-footer p {
-  margin-top:7px;
-  color:var(--apricot);
-  font-size:10px;
-}
-
-@media(max-width:800px) {
-  .service-grid,.eoir-list,.eoir-all {
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:600px) {
-  .header-inner {
-    min-height:78px;
-  }
-  .brand-logo {
-    width:52px;
-    height:52px;
-  }
-  .brand-copy h1 {
-    max-width:180px;
-    font-size:11px;
-  }
-  .brand-copy p {
-    font-size:7px;
-  }
-  .lang-btn {
-    min-height:33px;
-    padding:5px 8px;
-    font-size:8px;
-  }
-  .menu-btn {
-    width:48px;
-    height:44px;
-  }
-  .hero {
-    padding-top:52px;
-  }
-  .hero p {
-    font-size:14px;
-  }
-  .service-card {
-    padding:22px;
-  }
-  .form-actions {
-    grid-template-columns:1fr;
-  }
-}
-
-.wrap{max-width:980px;margin:0 auto}
-.warn{margin:0 0 22px;padding:14px 18px;border:2px solid var(--orange);border-radius:16px;background:linear-gradient(145deg,rgba(255,121,0,.12),#000);color:var(--apricot);font-size:12px;font-weight:1000;line-height:1.6;text-align:center}
-.chat{border:2px solid var(--orange);border-radius:26px;background:radial-gradient(circle at 85% 10%,rgba(255,173,77,.10),transparent 35%),linear-gradient(135deg,#100500,#000);box-shadow:0 0 35px rgba(255,121,0,.18);overflow:hidden;margin-bottom:34px}
-.chat-log{height:min(52vh,460px);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px}
-.msg{max-width:88%;padding:12px 15px;border-radius:16px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-wrap:break-word}
-.msg.bot{align-self:flex-start;border:1px solid var(--border);background:#080300;color:var(--text)}
-.msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--orange),var(--apricot));color:#000;font-weight:700}
-.msg .go{margin-top:10px;white-space:normal}
-.msg .go a{display:inline-flex;min-height:40px;padding:8px 14px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:11px;font-weight:1000}
-.msg .go a:hover{color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
-.chat-in{display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px;border-top:1px solid var(--border);background:#030100}
-.chat-in input{width:100%;min-height:50px;padding:12px 16px;border:1px solid var(--border);border-radius:14px;color:var(--text);background:#000;outline:none;font-size:14px}
-.chat-in input:focus{border-color:var(--orange)}
-.chat-in button{min-width:100px;border:2px solid var(--orange);border-radius:14px;color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));font-size:11px;font-weight:1000;cursor:pointer}
-.chat-in button:disabled{opacity:.6}
-.qtitle{margin:0 0 12px;color:var(--orange);font-size:12px;font-weight:1000;letter-spacing:1px;text-align:center}
-.qchips{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-bottom:34px}
-.qchip{min-height:42px;padding:10px 15px;border:1px solid var(--border);border-radius:999px;color:var(--apricot);background:#050200;font-size:11px;font-weight:1000;cursor:pointer}
-.qchip:hover{border-color:var(--orange);color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
-.h3{color:var(--orange);font-size:26px;font-weight:1000;margin:0 0 16px}
-.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px}
-.tool{display:flex;flex-direction:column;gap:8px;padding:20px;border:1px solid var(--border);border-radius:20px;background:linear-gradient(145deg,#100500,#000);transition:.2s}
-.tool:hover{border-color:var(--orange);transform:translateY(-3px)}
-.tool b{color:var(--orange);font-size:14px}
-.tool span{color:var(--text);font-size:12px;line-height:1.6}
-.legal{padding:24px;border:2px solid var(--orange);border-radius:22px;background:#000;margin-bottom:60px}
-.legal h3{color:var(--orange);font-size:16px;margin-bottom:10px}
-.legal p{color:var(--text);font-size:12px;line-height:1.85}
-@media(max-width:800px){.tools{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.tools{grid-template-columns:1fr}.chat-in{grid-template-columns:1fr}.chat-in button{min-height:48px}}
-
-
-.avatar-stage{position:relative;width:100%;background:#000;border-bottom:1px solid var(--border);text-align:center}
-.avatar-stage video,.avatar-stage iframe{display:block;width:100%;max-height:420px;aspect-ratio:16/9;border:0;object-fit:contain;background:#000}
-.avatar-ph{padding:26px 16px;display:flex;flex-direction:column;align-items:center;gap:8px}
-.avatar-ph .ring{width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:54px;border:3px solid var(--orange);background:radial-gradient(circle,rgba(255,121,0,.22),#000);box-shadow:0 0 30px rgba(255,121,0,.4)}
-.avatar-ph b{color:var(--orange);font-size:12px;letter-spacing:1px}
-.avatar-ph small{color:var(--muted);font-size:11px}
-.av-sound{position:absolute;right:12px;bottom:12px;min-height:42px;padding:9px 14px;border:2px solid var(--orange);border-radius:999px;color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));font-size:10px;font-weight:1000;cursor:pointer}
-.contacts{padding:56px 0 50px;border-top:1px solid rgba(255,121,0,.15);background:radial-gradient(circle at 50% 0%,rgba(255,121,0,.08),transparent 55%),#020100;text-align:center}
-.ct-p{color:var(--text);font-size:13px;margin:-6px 0 22px}
-.phones{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
-.phone{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 12px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,#100500,#000);color:var(--text);transition:.2s}
-.phone:hover{border-color:var(--orange);transform:translateY(-3px)}
-.phone .fl{font-size:22px}.phone b{color:var(--orange);font-size:14px;letter-spacing:.3px}
-.socials{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
-.soc{min-height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 8px;border:1px solid rgba(255,121,0,.55);border-radius:18px;background:linear-gradient(145deg,#100500,#000);color:var(--apricot);font-size:10px;font-weight:1000;text-align:center;transition:.2s}
-.soc svg{width:32px;height:32px;fill:var(--orange);transition:.2s}
-.soc:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 0 22px rgba(255,121,0,.3)}
-.soc:hover svg{transform:scale(1.12)}
-.ct-mail{color:var(--apricot);font-size:13px;font-weight:1000}
-@media(max-width:900px){.phones{grid-template-columns:1fr 1fr}.socials{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:520px){.phones{grid-template-columns:1fr}.socials{grid-template-columns:repeat(2,1fr)}}
-
-.chat-in{grid-template-columns:1fr auto auto}
-.chat-in .mic{min-width:54px;color:var(--orange);background:#000}
-.chat-in .mic.listening,.vbtn.listening{color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot));animation:vpulse 1s infinite}
-@keyframes vpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,121,0,.6)}50%{box-shadow:0 0 0 10px rgba(255,121,0,0)}}
-.autoread{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:0 16px 14px;background:#030100;color:var(--text);font-size:12px}
-.autoread label{display:flex;align-items:center;gap:8px;cursor:pointer}
-.autoread input{accent-color:var(--orange);width:18px;height:18px}
-.vstatus{color:var(--apricot);font-size:12px;line-height:1.6}
-.msg .spk{display:inline-flex;align-items:center;justify-content:center;margin:8px 0 0 0;min-width:38px;min-height:34px;padding:4px 10px;border:1px solid var(--border);border-radius:999px;color:var(--orange);background:#000;font-size:14px;cursor:pointer}
-.msg .spk:hover{background:var(--orange);color:#000}
-.avatar-stage.speaking{box-shadow:inset 0 0 40px rgba(255,121,0,.35)}
-.avatar-stage.speaking .ring{animation:vpulse 1s infinite}
-.vp{color:var(--text);font-size:13px;line-height:1.7;margin:-6px 0 18px}
-.voice-panel{padding:22px;border:1px solid var(--border);border-radius:22px;background:linear-gradient(145deg,#100500,#000);margin-bottom:34px}
-.voice-panel textarea{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:14px;color:var(--text);background:#000;font-family:inherit;font-size:14px;outline:none;resize:vertical;min-height:110px}
-.voice-panel textarea:focus{border-color:var(--orange)}
-.vrow{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin:14px 0}
-.vlabel{display:flex;flex-direction:column;gap:6px;color:var(--apricot);font-size:10px;font-weight:1000;letter-spacing:.8px}
-.vlabel select{padding:11px 12px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#0a0400;font-size:13px}
-.vlabel input[type=range]{accent-color:var(--orange);width:100%;margin-top:8px}
-.vbtns{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:12px}
-.vbtn{min-height:44px;padding:9px 16px;border:2px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:11px;font-weight:1000;cursor:pointer}
-.vbtn.primary{color:#000;background:linear-gradient(135deg,var(--orange),var(--apricot))}
-.vbtn:disabled{opacity:.5}
-@media(max-width:520px){.chat-in{grid-template-columns:1fr 1fr}.chat-in input{grid-column:1/-1}.vrow{grid-template-columns:1fr}}
-.av-hint{padding:8px 14px;text-align:center;color:var(--apricot);font-size:11px;border-bottom:1px solid var(--border);background:#000}
-.avatar-stage{cursor:pointer}
-.av-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);border:3px solid var(--orange);color:var(--orange);font-size:34px;padding-left:6px;pointer-events:none;box-shadow:0 0 30px rgba(255,121,0,.5)}
-.mod-h{margin:16px 2px 10px;color:var(--orange);font-size:11px;font-weight:1000;letter-spacing:1px;line-height:1.5}
-.mod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding-bottom:6px}
-.mod-tile{display:flex;align-items:center;gap:10px;min-height:52px;padding:10px 12px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(145deg,#100500,#000);color:var(--text);font-size:11px;font-weight:1000;line-height:1.25;text-transform:uppercase;transition:.2s}
-.mod-tile:hover,.mod-tile:focus{border-color:var(--orange);transform:translateY(-2px);box-shadow:0 0 18px rgba(255,121,0,.25)}
-.mod-tile .mi{font-size:22px;flex:0 0 auto}
-@media(min-width:760px){.mod-grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
-<div class="topbar" data-i18n="top">BSS1815 PRO-MAX DMP • AI CENTER</div>
+
+<div class="top-bar" data-i18n="top">BSS1815 PRO-MAX DMP • CRM SYSTEM</div>
+
 <header>
 <div class="container header-inner">
-<a class="brand" href="../../index.html">
-<div class="brand-copy"><h1>BSS1815 PRO-MAX DMP</h1><p>AI CENTER • DIGITAL MANAGEMENT PLATFORM</p></div>
-</a>
-<div class="header-actions">
-<div class="languages notranslate" translate="no">
-<button type="button" class="lang-btn active" data-lang="en">🇺🇸 ENG</button>
-<button type="button" class="lang-btn" data-lang="fr">🇫🇷 FRA</button>
-<button type="button" class="lang-btn" data-lang="ht">🇭🇹 KRE</button>
-</div>
-<button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
-</div>
-</div>
-<div class="container mobile-menu" id="mobileMenu">
-<a href="../../index.html" data-i18n="home">HOME</a>
-<a href="#chat" data-i18n="m_chat">ASSISTANT</a>
-<a href="#voice" data-i18n="m_voice">VOICE</a>
-<a href="#tools" data-i18n="m_tools">AI TOOLS</a>
-<a href="#contacts" data-i18n="contact">CONTACT CENTER</a>
+  <a class="brand" href="../../index.html">
+    <strong>BSS1815 PRO-MAX DMP</strong>
+    <span data-i18n="tagline">CRM SYSTEM • MEMBERS • CONTACTS • RELATIONSHIPS • RECORDS</span>
+  </a>
+  <div class="header-right">
+    <a class="navlink" href="../../index.html" data-i18n="home">HOME</a>
+    <a class="navlink" href="../ai-center/index.html" data-i18n="ai">AI CENTER</a>
+    <div class="lang-switch notranslate" translate="no">
+      <button type="button" class="lang-btn" data-lang="fr">FRA</button>
+      <button type="button" class="lang-btn" data-lang="en">ENG</button>
+      <button type="button" class="lang-btn active" data-lang="ht">KRE</button>
+    </div>
+  </div>
 </div>
 </header>
-<main>
+
+<main class="container">
+
 <section class="hero">
-<div class="container">
-<div class="hero-badge" id="badge" data-i18n="badge">BSS1815 ASSISTANT • READY</div>
-<h2 data-i18n="title">AI CENTER</h2>
-<p data-i18n="sub">Ask a question and get guided to the right BSS1815 PRO-MAX DMP module — in English, French or Haitian Creole.</p>
-</div>
-</section>
-<div class="container wrap">
-<div class="warn" data-i18n="warn">The assistant only guides you inside the BSS1815 PRO-MAX DMP modules. It does not give legal, financial or medical advice. Never type passwords, ID numbers or card numbers here.</div>
-
-<section id="chat">
-<div class="chat">
-<div class="avatar-stage" id="avatarStage">
-<div class="avatar-ph" id="avatarPh"><div class="ring">🤖</div><b data-i18n="av_label">AI ASSISTANT AVATAR</b><small data-i18n="av_soon">Avatar video coming soon</small></div>
-</div>
-<div class="av-hint" data-i18n="av_tap">Tap the avatar to hear it speak</div>
-<div class="chat-log" id="log" aria-live="polite"></div>
-<div class="chat-in">
-<input id="q" type="text" autocomplete="off" maxlength="800" placeholder="Type what you need..." data-i18n-placeholder="ph">
-<button id="mic" type="button" class="mic" aria-label="Voice input" title="Speak instead of typing">🎤</button>
-<button id="send" type="button" data-i18n="send">SEND</button>
-</div>
-<div class="autoread"><label><input type="checkbox" id="autoRead"> <span data-i18n="v_auto">Read answers aloud</span></label><span id="micStatus" class="vstatus"></span></div>
-</div>
-<div class="qtitle" data-i18n="q_title">QUICK QUESTIONS</div>
-<div class="qchips"><button type="button" class="qchip" data-q="Find a member" data-i18n="q1">Find a member</button><button type="button" class="qchip" data-q="Send an announcement" data-i18n="q2">Send an announcement</button><button type="button" class="qchip" data-q="Create a flyer" data-i18n="q3">Create a flyer</button><button type="button" class="qchip" data-q="See reports" data-i18n="q4">See reports</button><button type="button" class="qchip" data-q="Manage events" data-i18n="q5">Manage events</button><button type="button" class="qchip" data-q="Get help" data-i18n="q6">Get help</button></div>
+  <h1 data-i18n="title">CRM SYSTEM</h1>
+  <p data-i18n="sub">Members, contacts, relationships and records of the BSS1815 community — in one place.</p>
 </section>
 
-<section id="voice">
-<div class="h3" data-i18n="v_h">VOICE</div>
-<p class="vp" data-i18n="v_p">Listen to any text read aloud, or speak instead of typing.</p>
-<div class="voice-panel">
-<textarea id="vText" rows="5" maxlength="4000" data-i18n-placeholder="v_ph" placeholder="Type or paste text here, then press LISTEN…"></textarea>
-<div class="vrow">
-<label class="vlabel"><span data-i18n="v_voice">VOICE</span><select id="vVoice"></select></label>
-<label class="vlabel"><span data-i18n="v_rate">SPEED</span><input id="vRate" type="range" min="0.6" max="1.4" step="0.1" value="0.95"></label>
-<label class="vlabel"><span data-i18n="v_pitch">TONE (low = deeper)</span><input id="vPitch" type="range" min="0.4" max="1.2" step="0.05" value="0.75"></label>
-</div>
-<div class="vbtns">
-<button type="button" id="vListen" class="vbtn primary" data-i18n="v_listen">🔊 LISTEN</button>
-<button type="button" id="vPause" class="vbtn" data-i18n="v_pause">⏸ PAUSE</button>
-<button type="button" id="vStop" class="vbtn" data-i18n="v_stop">⏹ STOP</button>
-<button type="button" id="vDictate" class="vbtn" data-i18n="v_dictate">🎤 DICTATE</button>
-<button type="button" id="vLast" class="vbtn" data-i18n="v_last">USE LAST ANSWER</button>
-</div>
-<div id="vNote" class="vstatus"></div>
-<div id="voiceStatus" class="vstatus" aria-live="polite"></div>
-</div>
+<div class="banner hidden" id="demoBanner" data-i18n="demo">DEMO MODE</div>
+<div class="banner privacy" data-i18n="privacy">Personal data — for authorised administrators only.</div>
+
+<!-- ADMINISTRATOR LOGIN (Firebase mode) -->
+<section class="card login hidden" id="authBox">
+  <h2 data-i18n="login_h">ADMINISTRATOR LOGIN</h2>
+  <p data-i18n="login_p">Sign in with your BSS1815 administrator account.</p>
+  <form id="loginForm" autocomplete="on">
+    <div class="field"><label for="aEmail" data-i18n="email">Email</label><input id="aEmail" type="email" autocomplete="username" required></div>
+    <div class="field"><label for="aPass" data-i18n="password">Password</label><input id="aPass" type="password" autocomplete="current-password" required></div>
+    <button class="btn primary" id="signinBtn" type="submit" style="width:100%" data-i18n="signin">SIGN IN</button>
+  </form>
+  <div style="text-align:center;margin-top:10px"><button class="linkbtn" id="forgotBtn" type="button" data-i18n="forgot">Forgot password?</button></div>
+  <div class="msg" id="authMsg"></div>
 </section>
 
-<section id="tools">
-<div class="h3" data-i18n="tools_h">AI TOOLS</div>
-<div class="tools"><a class="tool" href="../crm/index.html"><b data-i18n="tl1_t">CRM SYSTEM</b><span data-i18n="tl1_d">Members • Contacts • Relationships • Records</span></a><a class="tool" href="../announcements/index.html"><b data-i18n="tl2_t">ANNOUNCEMENT CENTER</b><span data-i18n="tl2_d">Official notices • Community updates • Alerts</span></a><a class="tool" href="../flyer-studio/index.html"><b data-i18n="tl3_t">FLYER STUDIO</b><span data-i18n="tl3_d">Flyers • Notices • Graphics • Media</span></a><a class="tool" href="../reports/index.html"><b data-i18n="tl4_t">REPORTS & ANALYTICS</b><span data-i18n="tl4_d">Statistics • Performance • Reports</span></a><a class="tool" href="../events/index.html"><b data-i18n="tl5_t">EVENT MANAGEMENT</b><span data-i18n="tl5_d">Calendar • Programs • Activities • Meetings</span></a><a class="tool" href="../help-desk/index.html"><b data-i18n="tl6_t">HELP DESK</b><span data-i18n="tl6_d">Support • Requests • Cases • Assistance</span></a></div>
+<!-- THE CRM -->
+<section id="app" class="hidden">
+
+  <div class="userbar hidden" id="userBar">
+    <span>👤 <b id="userEmail"></b></span>
+    <button class="btn small" id="signOutBtn" type="button" data-i18n="signout">SIGN OUT</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong id="sTotal">0</strong><span data-i18n="st_total">TOTAL</span></div>
+    <div class="stat"><strong id="sActive">0</strong><span data-i18n="st_active">ACTIVE</span></div>
+    <div class="stat"><strong id="sNew">0</strong><span data-i18n="st_new">NEW THIS MONTH</span></div>
+    <div class="stat"><strong id="sFollow">0</strong><span data-i18n="st_follow">NEED FOLLOW-UP</span></div>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <input id="fSearch" type="search" data-i18n-ph="search" placeholder="Search…" aria-label="Search">
+      <select id="fType" aria-label="Type"></select>
+      <select id="fStatus" aria-label="Status"></select>
+      <select id="fSort" aria-label="Sort"></select>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="addBtn" type="button" data-i18n="add">+ ADD MEMBER</button>
+      <button class="btn" id="importBtn" type="button" data-i18n="import">⬆ IMPORT CSV</button>
+      <button class="btn" id="exportBtn" type="button" data-i18n="export">⬇ EXPORT CSV</button>
+      <button class="linkbtn" id="templateBtn" type="button" data-i18n="template">Download CSV template</button>
+      <input id="importFile" type="file" accept=".csv,text/csv" class="hidden">
+    </div>
+    <div class="hint" data-i18n="imp_hint"></div>
+    <div class="msg" id="toast" aria-live="polite"></div>
+  </div>
+
+  <div class="count" id="count"></div>
+  <div id="list" class="list"></div>
+  <div style="text-align:center;margin-top:14px"><button class="btn hidden" id="moreBtn" type="button" data-i18n="more">SHOW MORE</button></div>
+
 </section>
 
-<div class="legal"><h3 data-i18n="legal_h">⚖️ IMPORTANT NOTICE</h3><p data-i18n="legal_p">The BSS1815 PRO-MAX DMP assistant only helps you find the right module and use the platform. It does not give legal, financial or medical advice, and it never needs your passwords or ID numbers. Some modules require an administrator login.</p></div>
-</div>
 </main>
 
-<section class="contacts" id="contacts">
-<div class="container wrap">
-<div class="h3" data-i18n="ct_h">CONTACT US</div>
-<p class="ct-p" data-i18n="ct_p">Official phone numbers and social networks.</p>
-<div class="phones">
-<a class="phone" href="tel:+14076405166"><span class="fl">🇺🇸</span><b>(407) 640-5166</b></a>
-<a class="phone" href="tel:+13175381150"><span class="fl">🇺🇸</span><b>(317) 538-1150</b></a>
-<a class="phone" href="tel:+15162168494"><span class="fl">🇺🇸</span><b>(516) 216-8494</b></a>
-<a class="phone" href="tel:+50943437488"><span class="fl">🇭🇹</span><b>+509 4343 7488</b></a>
+<!-- ADD / EDIT -->
+<div class="overlay" id="form" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2 id="formTitle" data-i18n="f_new">NEW MEMBER</h2>
+    <div class="field"><label for="mName" data-i18n="f_name">Full name *</label><input id="mName" type="text" maxlength="120" autocomplete="off"></div>
+    <div class="grid2">
+      <div class="field"><label for="mNick" data-i18n="f_nick">Nickname / alias</label><input id="mNick" type="text" maxlength="80"></div>
+      <div class="field"><label for="mStatus" data-i18n="f_status">Status</label><select id="mStatus"></select></div>
+      <div class="field"><label for="mPhone" data-i18n="f_phone">Phone</label><input id="mPhone" type="tel" maxlength="40" placeholder="+509…"></div>
+      <div class="field"><label for="mWa" data-i18n="f_wa">WhatsApp</label><input id="mWa" type="tel" maxlength="40" placeholder="+509…"></div>
+      <div class="field"><label for="mEmail" data-i18n="f_email">Email</label><input id="mEmail" type="email" maxlength="120"></div>
+      <div class="field"><label for="mJoined" data-i18n="f_joined">Joined on</label><input id="mJoined" type="date"></div>
+      <div class="field"><label for="mCity" data-i18n="f_city">City</label><input id="mCity" type="text" maxlength="80"></div>
+      <div class="field"><label for="mCountry" data-i18n="f_country">Country</label><input id="mCountry" type="text" maxlength="80"></div>
+    </div>
+    <div class="field"><label data-i18n="f_types">Type</label><div class="checks" id="mTypes"></div></div>
+    <div class="field"><label for="mTags" data-i18n="f_tags">Tags</label><input id="mTags" type="text" maxlength="200"></div>
+    <div class="field"><label for="mNotes" data-i18n="f_notes">Notes</label><textarea id="mNotes" maxlength="2000"></textarea></div>
+    <div class="msg" id="formMsg"></div>
+    <div class="row-btns">
+      <button class="btn primary" id="saveBtn" type="button" data-i18n="save">SAVE</button>
+      <button class="btn" id="cancelBtn" type="button" data-i18n="cancel">CANCEL</button>
+      <button class="btn danger hidden" id="deleteBtn" type="button" data-i18n="delete">DELETE</button>
+    </div>
+  </div>
 </div>
-<div class="socials">
-<a class="soc facebook" href="https://www.facebook.com/share/1By3KvYRrM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.973h-1.513c-1.49 0-1.956.931-1.956 1.887v2.261h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg><span>FACEBOOK</span></a>
-<a class="soc whatsapp" href="https://wa.me/50943437488" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.373 0 0 5.373 0 12c0 2.116.552 4.181 1.6 6L0 24l6.153-1.613A11.96 11.96 0 0012.004 24C18.63 24 24 18.627 24 12S18.63 0 12.004 0zm0 21.818a9.78 9.78 0 01-4.99-1.366l-.357-.212-3.65.957.974-3.557-.232-.366A9.77 9.77 0 012.182 12c0-5.414 4.407-9.818 9.822-9.818 5.414 0 9.814 4.404 9.814 9.818s-4.4 9.818-9.814 9.818z"/></svg><span>WHATSAPP</span></a>
-<a class="soc tiktok" href="https://www.tiktok.com/@maximax1960" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.321 5.562a5.124 5.124 0 01-3.005-.96A5.15 5.15 0 0114.323 1H10.5v14.4a3.2 3.2 0 11-2.2-3.038V8.45a7.03 7.03 0 00-1.2-.104A7.1 7.1 0 1014.2 15.4V8.096a8.94 8.94 0 005.121 1.64V5.562z"/></svg><span>TIKTOK</span></a>
-<a class="soc youtube" href="https://www.youtube.com/@BSS1815PROMAXDMP" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.376-.505a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YOUTUBE</span></a>
-<a class="soc telegram" href="#contacts" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.953 4.57a.74.74 0 00-1.017-.267L1.43 12.48c-1.47.59-1.462 1.41-.268 1.776l5.518 1.724 2.114 6.484c.257.71.13.992.878.992.577 0 .831-.264 1.153-.577l2.653-2.58 5.518 4.077c1.016.56 1.748.27 2.001-.943L24 5.585c.322-1.49-.57-2.166-.047-1.015z"/></svg><span>TELEGRAM</span></a>
-<a class="soc spotify" href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.505 17.308a.75.75 0 01-1.032.249c-2.827-1.728-6.386-2.118-10.578-1.16a.75.75 0 11-.334-1.462c4.587-1.049 8.522-.6 11.695 1.34a.75.75 0 01.249 1.033zm1.475-3.282a.94.94 0 01-1.293.31c-3.237-1.988-8.171-2.564-11.998-1.403a.94.94 0 11-.546-1.799c4.376-1.328 9.813-.685 13.527 1.596a.94.94 0 01.31 1.296zm.126-3.417C15.224 8.304 8.819 8.091 5.11 9.212a1.128 1.128 0 11-.652-2.16c4.26-1.288 11.336-1.038 15.8 1.611a1.128 1.128 0 01-1.152 1.946z"/></svg><span>SPOTIFY</span></a>
-<a class="soc instagram" href="https://www.instagram.com/lebaron072/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838A6.162 6.162 0 1012 18.162 6.162 6.162 0 0012 5.838zm0 10.162a4 4 0 110-8 4 4 0 010 8z"/></svg><span>INSTAGRAM</span></a>
-<a class="soc x-twitter" href="https://x.com/w05g2m" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg><span>X / TWITTER</span></a>
-<a class="soc truthsocial" href="https://truthsocial.com/@briyant_soley_1815" target="_blank" rel="noopener noreferrer" aria-label="Truth Social"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v4H14v14h-4V7H3V3zm13 6h5v4h-5V9zm0 6h5v4h-5v-4z"/></svg><span>TRUTH SOCIAL</span></a>
-<a class="soc linkedin" href="https://www.linkedin.com/in/maximax-multi-services-075ba2314" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.371 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.555V9H7.12v11.452z"/></svg><span>LINKEDIN</span></a>
+
+<!-- DETAIL + CONTACT HISTORY -->
+<div class="overlay" id="detail" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2 id="dName"></h2>
+    <div class="badges" id="dBadges"></div>
+    <div class="info" id="dInfo"></div>
+    <div class="row-btns" id="dQuick"></div>
+
+    <div class="sect" data-i18n="h_h">CONTACT HISTORY</div>
+    <div class="grid2">
+      <div class="field"><label for="iType" data-i18n="i_call">Type</label><select id="iType"></select></div>
+      <div class="field"><label for="iDate" data-i18n="i_date">Date</label><input id="iDate" type="date"></div>
+    </div>
+    <div class="field"><textarea id="iText" maxlength="1000" data-i18n-ph="i_text" placeholder="What was said or decided?"></textarea></div>
+    <button class="btn primary small" id="histBtn" type="button" data-i18n="h_add">ADD TO HISTORY</button>
+    <div class="msg" id="histMsg"></div>
+    <div class="timeline" id="timeline"></div>
+
+    <div class="row-btns" style="margin-top:18px"><button class="btn" id="closeDetail" type="button" data-i18n="close">CLOSE</button></div>
+  </div>
 </div>
-<a class="ct-mail" href="mailto:briyantsoleysigno1815@gmail.com">briyantsoleysigno1815@gmail.com</a>
-</div>
-</section>
 
 <footer>
-<strong>BSS1815 PRO-MAX DMP</strong>
-<p>AI CENTER • DIGITAL MANAGEMENT PLATFORM</p>
-<p>briyantsoleysigno1815@gmail.com</p>
-<p>(407) 640-5166 • (317) 538-1150 • (516) 216-8494</p>
-<p>© <span id="year"></span> BSS1815 PRO-MAX DMP</p>
-<p style="opacity:.55">AI CENTER VERSION 2026.09.20-L</p>
+  <strong>BSS1815 PRO-MAX DMP</strong><br>
+  CRM SYSTEM • DIGITAL MANAGEMENT PLATFORM<br>
+  © <span id="year"></span> BSS1815 PRO-MAX DMP<br>
+  <span style="opacity:.55">CRM VERSION 2026.09.20-A</span>
 </footer>
+
 <script>
 (function(){
 "use strict";
-var I18N = {"en": {"part_of": "PART OF BSS1815 PRO-MAX DMP", "home": "HOME", "m_chat": "ASSISTANT", "m_tools": "AI TOOLS", "contact": "CONTACT CENTER", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "BSS1815 ASSISTANT • READY", "title": "AI CENTER", "sub": "Ask a question and get guided to the right BSS1815 PRO-MAX DMP module — in English, French or Haitian Creole.", "warn": "The assistant only guides you inside the BSS1815 PRO-MAX DMP modules. It does not give legal, financial or medical advice. Never type passwords, ID numbers or card numbers here.", "welcome": "My name is Max Louis, alias Le Baron. La seule différence… How may I help you today?", "ph": "Type what you need...", "send": "SEND", "thinking": "Thinking…", "nomatch": "I can only guide you inside the BSS1815 PRO-MAX DMP modules. Open the Help Desk, or contact us and our team will help.", "match": "I found the BSS1815 module that matches your request:", "open": "OPEN", "q_title": "QUICK QUESTIONS", "q1": "Find a member", "q2": "Send an announcement", "q3": "Create a flyer", "q4": "See reports", "q5": "Manage events", "q6": "Get help", "tools_h": "AI TOOLS", "tl1_t": "CRM SYSTEM", "tl1_d": "Members • Contacts • Relationships • Records", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Official notices • Community updates • Alerts", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyers • Notices • Graphics • Media", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistics • Performance • Reports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendar • Programs • Activities • Meetings", "tl6_t": "HELP DESK", "tl6_d": "Support • Requests • Cases • Assistance", "legal_h": "IMPORTANT NOTICE", "legal_p": "The BSS1815 PRO-MAX DMP assistant only helps you find the right module and use the platform. It does not give legal, financial or medical advice, and it never needs your passwords or ID numbers. Some modules require an administrator login."}, "ht": {"part_of": "PATI NAN BSS1815 PRO-MAX DMP", "home": "AKÈY", "m_chat": "ASISTAN", "m_tools": "ZOUTI AI", "contact": "SANT KONTAK", "top": "BSS1815 PRO-MAX DMP • AI CENTER", "badge": "ASISTAN BSS1815 • PARE", "title": "AI CENTER", "sub": "Poze yon kesyon epi jwenn gid pou bon modil BSS1815 PRO-MAX DMP la — an anglè, franse oswa kreyòl ayisyen.", "warn": "Asistan an sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Li pa bay konsèy legal, finansye oswa medikal. Pa janm ekri modpas, nimewo idantite oswa nimewo kat isit la.", "welcome": "Mwen rele Max Louis, alyas Le Baron. Sèl diferans lan… Kijan m ka ede w jodi a?", "ph": "Ekri sa ou bezwen...", "send": "VOYE", "thinking": "Ap panse…", "nomatch": "Mwen ka sèlman gide w andedan modil BSS1815 PRO-MAX DMP yo. Louvri Help Desk la, oswa kontakte nou epi ekip nou an ap ede w.", "match": "Mwen jwenn modil BSS1815 ki koresponn ak demann ou an:", "open": "OUVRI", "q_title": "KESYON RAPID", "q1": "Jwenn yon manm", "q2": "Voye yon anons", "q3": "Kreye yon flyer", "q4": "Wè rapò yo", "q5": "Jere evènman yo", "q6": "Jwenn èd", "tools_h": "ZOUTI AI", "tl1_t": "CRM SYSTEM", "tl1_d": "Manm • Kontak • Relasyon • Dosye", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avi ofisyèl • Nouvèl kominote • Alèt", "tl3_t": "FLYER STUDIO", "tl3_d": "Flyer • Avi • Grafik • Medya", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Estatistik • Pèfòmans • Rapò", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Kalandriye • Pwogram • Aktivite • Reyinyon", "tl6_t": "HELP DESK", "tl6_d": "Sipò • Demann • Ka • Asistans", "legal_h": "AVI ENPÒTAN", "legal_p": "Asistan BSS1815 PRO-MAX DMP la sèlman ede w jwenn bon modil la epi itilize platfòm nan. Li pa bay konsèy legal, finansye oswa medikal, epi li pa janm bezwen modpas ou oswa nimewo idantite ou. Gen modil ki mande yon koneksyon administratè."}, "fr": {"part_of": "FAIT PARTIE DE BSS1815 PRO-MAX DMP", "home": "ACCUEIL", "m_chat": "ASSISTANT", "m_tools": "OUTILS IA", "contact": "CENTRE DE CONTACT", "top": "BSS1815 PRO-MAX DMP • CENTRE IA", "badge": "ASSISTANT BSS1815 • PRÊT", "title": "CENTRE IA", "sub": "Posez une question et soyez guidé vers le bon module BSS1815 PRO-MAX DMP — en anglais, français ou créole haïtien.", "warn": "L'assistant vous guide seulement dans les modules BSS1815 PRO-MAX DMP. Il ne donne pas de conseils juridiques, financiers ou médicaux. N'écrivez jamais de mot de passe, de numéro d'identité ou de carte ici.", "welcome": "Je m'appelle Max Louis, alias Le Baron. La seule différence… Comment puis-je vous aider aujourd'hui ?", "ph": "Écrivez ce dont vous avez besoin...", "send": "ENVOYER", "thinking": "Réflexion…", "nomatch": "Je peux seulement vous guider dans les modules BSS1815 PRO-MAX DMP. Ouvrez le Help Desk, ou contactez-nous et notre équipe vous aidera.", "match": "J'ai trouvé le module BSS1815 qui correspond à votre demande :", "open": "OUVRIR", "q_title": "QUESTIONS RAPIDES", "q1": "Trouver un membre", "q2": "Envoyer une annonce", "q3": "Créer une affiche", "q4": "Voir les rapports", "q5": "Gérer les événements", "q6": "Obtenir de l'aide", "tools_h": "OUTILS IA", "tl1_t": "CRM SYSTEM", "tl1_d": "Membres • Contacts • Relations • Dossiers", "tl2_t": "ANNOUNCEMENT CENTER", "tl2_d": "Avis officiels • Nouvelles de la communauté • Alertes", "tl3_t": "FLYER STUDIO", "tl3_d": "Affiches • Avis • Graphiques • Médias", "tl4_t": "REPORTS & ANALYTICS", "tl4_d": "Statistiques • Performance • Rapports", "tl5_t": "EVENT MANAGEMENT", "tl5_d": "Calendrier • Programmes • Activités • Réunions", "tl6_t": "HELP DESK", "tl6_d": "Support • Demandes • Dossiers • Assistance", "legal_h": "AVIS IMPORTANT", "legal_p": "L'assistant BSS1815 PRO-MAX DMP vous aide seulement à trouver le bon module et à utiliser la plateforme. Il ne donne pas de conseils juridiques, financiers ou médicaux, et n'a jamais besoin de vos mots de passe ni de vos numéros d'identité. Certains modules exigent une connexion administrateur.", "av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux."}};
-var EXTRA = {"en": {"av_label": "AI ASSISTANT AVATAR", "av_soon": "Avatar video coming soon", "ct_h": "CONTACT US", "ct_p": "Official phone numbers and social networks.", "m_voice": "VOICE", "v_h": "VOICE", "v_p": "Listen to any text read aloud, or speak instead of typing.", "v_ph": "Type or paste text here, then press LISTEN…", "v_listen": "🔊 LISTEN", "v_pause": "⏸ PAUSE", "v_resume": "▶ RESUME", "v_stop": "⏹ STOP", "v_dictate": "🎤 DICTATE", "v_last": "USE LAST ANSWER", "v_rate": "SPEED", "v_voice": "VOICE", "v_auto": "Read answers aloud (computer voice)", "v_auto_voice": "Auto (male voice)", "v_mic": "Speak instead of typing", "v_nosupport_tts": "This browser cannot read text aloud.", "v_nosupport_stt": "Voice input is not supported in this browser. Use Chrome on Android or on a computer.", "v_ht_note": "No Haitian Creole voice on this device — a French voice is used (pronunciation is approximate).", "v_ht_stt": "Voice input does not understand Creole yet — speak French or English, or type.", "v_listening": "Listening… speak now", "v_denied": "Microphone blocked. Allow the microphone for this site in the browser settings.", "v_nospeech": "Nothing was heard. Try again.", "v_empty": "Type some text first.", "v_speaking": "Reading aloud…", "av_tap": "Tap the avatar to hear it speak", "av_intro": "My name is Max Louis, alias Le Baron. La seule différence… How may I help you today?", "v_pitch": "TONE (low = deeper)", "av_nosound": "⚠ This avatar video has NO sound (the file is silent). Use a version of the video that has the voice.", "av_novideo": "The avatar video was not found. Put the video file in the site root.", "mod_h": "OPEN A MODULE — or type / speak your question below"}, "ht": {"av_label": "AVATAR ASISTAN AI", "av_soon": "Videyo avatar an ap vini", "ct_h": "KONTAKTE NOU", "ct_p": "Nimewo telefòn ofisyèl ak rezo sosyal yo.", "m_voice": "VWA", "v_h": "VWA", "v_p": "Koute nenpòt tèks li byen fò, oswa pale olye w ekri.", "v_ph": "Ekri oswa kole tèks isit la, epi peze KOUTE…", "v_listen": "🔊 KOUTE", "v_pause": "⏸ PAUZ", "v_resume": "▶ KONTINYE", "v_stop": "⏹ ARÈT", "v_dictate": "🎤 DIKTE", "v_last": "ITILIZE DÈNYE REPONS LAN", "v_rate": "VITÈS", "v_voice": "VWA", "v_auto": "Li repons yo byen fò (vwa òdinatè)", "v_auto_voice": "Oto (vwa gason)", "v_mic": "Pale olye w ekri", "v_nosupport_tts": "Navigatè sa a pa ka li tèks byen fò.", "v_nosupport_stt": "Navigatè sa a pa sipòte antre vwa. Itilize Chrome sou Android oswa sou òdinatè.", "v_ht_note": "Pa gen vwa kreyòl ayisyen sou aparèy sa a — n ap itilize yon vwa franse (pwononsyasyon an apwoksimatif).", "v_ht_stt": "Antre vwa a poko konprann kreyòl — pale franse oswa anglè, oswa ekri.", "v_listening": "Ap koute… pale kounye a", "v_denied": "Mikwo a bloke. Otorize mikwo a pou sit sa a nan paramèt navigatè a.", "v_nospeech": "Pa t tande anyen. Eseye ankò.", "v_empty": "Ekri kèk tèks anvan.", "v_speaking": "Ap li byen fò…", "av_tap": "Peze sou avatar la pou tande l pale", "av_intro": "Mwen rele Max Louis, alyas Le Baron. Sèl diferans lan… Kijan m ka ede w jodi a?", "v_pitch": "TON (ba = pi fon)", "av_nosound": "⚠ Videyo avatar sa a PA gen son (fichye a mèt). Itilize yon vèsyon videyo a ki gen vwa a.", "av_novideo": "Pa jwenn videyo avatar la. Mete fichye videyo a nan rasin sit la.", "mod_h": "OUVRI YON MODIL — oswa ekri / pale kesyon ou anba a"}, "fr": {"av_label": "AVATAR DE L'ASSISTANT IA", "av_soon": "Vidéo de l'avatar bientôt disponible", "ct_h": "CONTACTEZ-NOUS", "ct_p": "Numéros de téléphone officiels et réseaux sociaux.", "m_voice": "VOIX", "v_h": "VOIX", "v_p": "Écoutez n'importe quel texte lu à voix haute, ou parlez au lieu d'écrire.", "v_ph": "Écrivez ou collez du texte ici, puis appuyez sur ÉCOUTER…", "v_listen": "🔊 ÉCOUTER", "v_pause": "⏸ PAUSE", "v_resume": "▶ REPRENDRE", "v_stop": "⏹ ARRÊTER", "v_dictate": "🎤 DICTER", "v_last": "UTILISER LA DERNIÈRE RÉPONSE", "v_rate": "VITESSE", "v_voice": "VOIX", "v_auto": "Lire les réponses à voix haute (voix de l'ordinateur)", "v_auto_voice": "Auto (voix masculine)", "v_mic": "Parler au lieu d'écrire", "v_nosupport_tts": "Ce navigateur ne peut pas lire le texte à voix haute.", "v_nosupport_stt": "La saisie vocale n'est pas prise en charge par ce navigateur. Utilisez Chrome sur Android ou sur ordinateur.", "v_ht_note": "Aucune voix en créole haïtien sur cet appareil — une voix française est utilisée (la prononciation est approximative).", "v_ht_stt": "La saisie vocale ne comprend pas encore le créole — parlez français ou anglais, ou écrivez.", "v_listening": "J'écoute… parlez maintenant", "v_denied": "Micro bloqué. Autorisez le micro pour ce site dans les paramètres du navigateur.", "v_nospeech": "Rien n'a été entendu. Réessayez.", "v_empty": "Écrivez d'abord du texte.", "v_speaking": "Lecture en cours…", "av_tap": "Touchez l'avatar pour l'entendre parler", "av_intro": "Je m'appelle Max Louis, alias Le Baron. La seule différence… Comment puis-je vous aider aujourd'hui ?", "v_pitch": "TON (bas = plus grave)", "av_nosound": "⚠ Cette vidéo d'avatar n'a PAS de son (le fichier est muet). Utilisez une version de la vidéo qui contient la voix.", "av_novideo": "La vidéo de l'avatar est introuvable. Mettez le fichier vidéo à la racine du site.", "mod_h": "OUVRIR UN MODULE — ou écrivez / dites votre question ci-dessous"}};
-for(var _l in EXTRA){ if(!I18N[_l]){ continue; } for(var _k in EXTRA[_l]){ I18N[_l][_k] = EXTRA[_l][_k]; } }
 
-/* ===== AVATAR VIDEO =====
-   Put your avatar video file in the SITE ROOT (the same folder as the home page index.html).
-   The page looks for these names in this order and uses the FIRST one that exists.
-   Tap the avatar = the avatar video plays WITH its own voice. Answers are read aloud while the avatar moves. */
-var AVATAR_VIDEO_CANDIDATES = ["formé-jodi-a.mp4", "forme-jodi-a.mp4", "bati-pou-jodi-a.mp4", "bss1815pro-maxdmp.mp4"];
-var AVATAR_VIDEO_SRC = "";        /* or force one file, for example "../../my-avatar.mp4" */
-var AVATAR_IFRAME_SRC = "";       /* or an embed link (HeyGen, D-ID, YouTube...) */
-/* Parts of the avatar video to skip, in seconds: [from, to]. Example [[53, 91]]. [] = play everything. */
-var AVATAR_SKIP = [];
-/* true = the video rests on its first frame and only moves while the avatar speaks */
-var AVATAR_TALK_ONLY = true;
-/* The avatar recites the intro (av_intro text) when it is tapped, and once automatically on the visitor's first touch.
-   false = recite the text with the browser voice while the avatar moves.  true = play the video's OWN voice instead. */
-var AVATAR_USE_VIDEO_VOICE = true;            /* the intro uses the sound that is IN the avatar video */
-var AVATAR_COMPUTER_VOICE_FALLBACK = false;   /* true = if there is no avatar video, read the intro with the computer voice */
-var AVATAR_INTRO_AUTO = true;
-/* THE AVATAR'S OWN VOICE, lips in sync: one video of the avatar saying the intro, per language.
-   Put these files in the site root. If a language has no file, the main avatar video is played instead. */
-var AVATAR_INTRO_VIDEO = { en: "avatar-intro-en.mp4", fr: "avatar-intro-fr.mp4", ht: "avatar-intro-ht.mp4" };
-var avatarDefaultSrc = null;
-/* OPTIONAL — the avatar's REAL voice: record (or generate) the intro with a male voice, save it as .mp3 files
-   in the site root, and put the file names here. If a file exists it is played instead of the computer voice. */
-var AVATAR_INTRO_AUDIO = { en: "avatar-intro-en.mp3", fr: "avatar-intro-fr.mp3", ht: "avatar-intro-ht.mp3" };
-var introAudioEl = null;
-var avatarVideoEl = null, avatarMsgOn = false, avPlayEl = null;
+/* =====================================================================
+   FIREBASE SETTINGS — paste the web config of the BSS1815 Firebase project here
+   (Firebase console > Project settings > General > Your apps > SDK setup and configuration).
+   Leave apiKey and projectId empty = DEMO MODE (data stays on this device only).
+===================================================================== */
+var FIREBASE_CONFIG = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+var FIREBASE_VERSION = "10.12.2";
+var COLLECTION = "crm_members";
+var FOLLOW_UP_DAYS = 30;
+var PAGE_SIZE = 60;
 
-function avatarMessageStop(){
-  avatarMsgOn = false;
-  vSay("");
-  if(avPlayEl){ avPlayEl.style.display = ""; }
-  if(!avatarVideoEl){ return; }
-  avatarVideoEl.muted = true; avatarVideoEl.loop = true; avatarVideoEl.pause();
-  if(avatarDefaultSrc && avatarVideoEl.getAttribute("src") !== avatarDefaultSrc){
-    avatarVideoEl.setAttribute("src", avatarDefaultSrc); avatarVideoEl.load();
-  }else{
-    try{ avatarVideoEl.currentTime = 0.05; }catch(e){}
-  }
-  if(avatarStageEl){ avatarStageEl.classList.remove("speaking"); }
+var I18N = {"top": {"en": "BSS1815 PRO-MAX DMP • CRM SYSTEM", "fr": "BSS1815 PRO-MAX DMP • SYSTÈME CRM", "ht": "BSS1815 PRO-MAX DMP • SISTÈM CRM"}, "tagline": {"en": "CRM SYSTEM • MEMBERS • CONTACTS • RELATIONSHIPS • RECORDS", "fr": "SYSTÈME CRM • MEMBRES • CONTACTS • RELATIONS • DOSSIERS", "ht": "SISTÈM CRM • MANM • KONTAK • RELASYON • DOSYE"}, "home": {"en": "HOME", "fr": "ACCUEIL", "ht": "AKÈY"}, "ai": {"en": "AI CENTER", "fr": "CENTRE IA", "ht": "AI CENTER"}, "title": {"en": "CRM SYSTEM", "fr": "SYSTÈME CRM", "ht": "SISTÈM CRM"}, "sub": {"en": "Members, contacts, relationships and records of the BSS1815 community — in one place.", "fr": "Membres, contacts, relations et dossiers de la communauté BSS1815 — au même endroit.", "ht": "Manm, kontak, relasyon ak dosye kominote BSS1815 la — nan yon sèl kote."}, "demo": {"en": "DEMO MODE — the data stays on THIS device only. Add your Firebase settings to save for the whole team.", "fr": "MODE DÉMO — les données restent sur CET appareil seulement. Ajoutez vos paramètres Firebase pour enregistrer pour toute l'équipe.", "ht": "MOD DEMO — done yo rete sou aparèy SA A sèlman. Ajoute paramèt Firebase ou yo pou sove pou tout ekip la."}, "privacy": {"en": "Personal data — for authorised administrators only.", "fr": "Données personnelles — réservé aux administrateurs autorisés.", "ht": "Done pèsonèl — pou administratè otorize yo sèlman."}, "login_h": {"en": "ADMINISTRATOR LOGIN", "fr": "CONNEXION ADMINISTRATEUR", "ht": "KONEKSYON ADMINISTRATÈ"}, "login_p": {"en": "Sign in with your BSS1815 administrator account.", "fr": "Connectez-vous avec votre compte administrateur BSS1815.", "ht": "Konekte ak kont administratè BSS1815 ou a."}, "email": {"en": "Email", "fr": "E-mail", "ht": "Imèl"}, "password": {"en": "Password", "fr": "Mot de passe", "ht": "Modpas"}, "signin": {"en": "SIGN IN", "fr": "SE CONNECTER", "ht": "KONEKTE"}, "signout": {"en": "SIGN OUT", "fr": "SE DÉCONNECTER", "ht": "DEKONEKTE"}, "forgot": {"en": "Forgot password?", "fr": "Mot de passe oublié ?", "ht": "Ou bliye modpas?"}, "reset_sent": {"en": "Password reset email sent. Check your inbox.", "fr": "E-mail de réinitialisation envoyé. Vérifiez votre boîte de réception.", "ht": "Imèl pou reyinisyalize modpas la voye. Gade bwat imèl ou."}, "reset_need": {"en": "Type your email first.", "fr": "Écrivez d'abord votre e-mail.", "ht": "Ekri imèl ou anvan."}, "auth_bad": {"en": "Wrong email or password.", "fr": "E-mail ou mot de passe incorrect.", "ht": "Imèl oswa modpas pa bon."}, "auth_err": {"en": "Could not sign in. Try again.", "fr": "Connexion impossible. Réessayez.", "ht": "Pa ka konekte. Eseye ankò."}, "denied": {"en": "Access denied: this account is not an authorised administrator.", "fr": "Accès refusé : ce compte n'est pas un administrateur autorisé.", "ht": "Aksè refize: kont sa a pa yon administratè otorize."}, "loading": {"en": "Loading…", "fr": "Chargement…", "ht": "Ap chaje…"}, "st_total": {"en": "TOTAL", "fr": "TOTAL", "ht": "TOTAL"}, "st_active": {"en": "ACTIVE", "fr": "ACTIFS", "ht": "AKTIF"}, "st_new": {"en": "NEW THIS MONTH", "fr": "NOUVEAUX CE MOIS", "ht": "NOUVO MWA SA A"}, "st_follow": {"en": "NEED FOLLOW-UP", "fr": "À RELANCER", "ht": "BEZWEN SWIVI"}, "search": {"en": "Search name, phone, email, city, tag…", "fr": "Rechercher nom, téléphone, e-mail, ville, tag…", "ht": "Chèche non, telefòn, imèl, vil, tag…"}, "all_types": {"en": "All types", "fr": "Tous les types", "ht": "Tout tip"}, "all_status": {"en": "All statuses", "fr": "Tous les statuts", "ht": "Tout eta"}, "sort_name": {"en": "Sort: name", "fr": "Tri : nom", "ht": "Klase: non"}, "sort_new": {"en": "Sort: newest", "fr": "Tri : plus récents", "ht": "Klase: pi nouvo"}, "sort_contact": {"en": "Sort: longest without contact", "fr": "Tri : sans contact depuis le plus longtemps", "ht": "Klase: pi lontan san kontak"}, "add": {"en": "+ ADD MEMBER", "fr": "+ AJOUTER UN MEMBRE", "ht": "+ AJOUTE YON MANM"}, "import": {"en": "⬆ IMPORT CSV", "fr": "⬆ IMPORTER CSV", "ht": "⬆ ENPÒTE CSV"}, "export": {"en": "⬇ EXPORT CSV", "fr": "⬇ EXPORTER CSV", "ht": "⬇ EKSPÒTE CSV"}, "template": {"en": "Download CSV template", "fr": "Télécharger le modèle CSV", "ht": "Telechaje modèl CSV la"}, "count": {"en": "{n} people", "fr": "{n} personnes", "ht": "{n} moun"}, "more": {"en": "SHOW MORE", "fr": "VOIR PLUS", "ht": "WÈ PLIS"}, "empty": {"en": "No one yet. Press “+ ADD MEMBER” to start, or import a CSV.", "fr": "Personne pour l'instant. Appuyez sur « + AJOUTER UN MEMBRE » pour commencer, ou importez un CSV.", "ht": "Poko gen moun. Peze « + AJOUTE YON MANM » pou kòmanse, oswa enpòte yon CSV."}, "no_match": {"en": "No result for this search.", "fr": "Aucun résultat pour cette recherche.", "ht": "Pa gen rezilta pou rechèch sa a."}, "t_member": {"en": "Member", "fr": "Membre", "ht": "Manm"}, "t_leader": {"en": "Leader", "fr": "Dirigeant", "ht": "Dirijan"}, "t_musician": {"en": "Musician", "fr": "Musicien", "ht": "Mizisyen"}, "t_fan": {"en": "Fan", "fr": "Fan", "ht": "Fanatik"}, "t_merchant": {"en": "Merchant", "fr": "Commerçant", "ht": "Machann"}, "t_volunteer": {"en": "Volunteer", "fr": "Bénévole", "ht": "Volontè"}, "t_donor": {"en": "Donor", "fr": "Donateur", "ht": "Donatè"}, "s_active": {"en": "Active", "fr": "Actif", "ht": "Aktif"}, "s_inactive": {"en": "Inactive", "fr": "Inactif", "ht": "Inaktif"}, "s_pending": {"en": "Pending", "fr": "En attente", "ht": "Annatant"}, "f_new": {"en": "NEW MEMBER", "fr": "NOUVEAU MEMBRE", "ht": "NOUVO MANM"}, "f_edit": {"en": "EDIT MEMBER", "fr": "MODIFIER LE MEMBRE", "ht": "MODIFYE MANM NAN"}, "f_name": {"en": "Full name *", "fr": "Nom complet *", "ht": "Non konplè *"}, "f_nick": {"en": "Nickname / alias", "fr": "Surnom / alias", "ht": "Metsyè / alyas"}, "f_phone": {"en": "Phone (with country code)", "fr": "Téléphone (avec indicatif)", "ht": "Telefòn (ak kòd peyi)"}, "f_wa": {"en": "WhatsApp (with country code)", "fr": "WhatsApp (avec indicatif)", "ht": "WhatsApp (ak kòd peyi)"}, "f_email": {"en": "Email", "fr": "E-mail", "ht": "Imèl"}, "f_city": {"en": "City", "fr": "Ville", "ht": "Vil"}, "f_country": {"en": "Country", "fr": "Pays", "ht": "Peyi"}, "f_types": {"en": "Type (choose one or more)", "fr": "Type (un ou plusieurs)", "ht": "Tip (youn oswa plizyè)"}, "f_status": {"en": "Status", "fr": "Statut", "ht": "Eta"}, "f_tags": {"en": "Tags (comma separated)", "fr": "Tags (séparés par des virgules)", "ht": "Tag (separe ak vigil)"}, "f_joined": {"en": "Joined on", "fr": "Date d'adhésion", "ht": "Dat li antre"}, "f_notes": {"en": "Notes", "fr": "Notes", "ht": "Nòt"}, "save": {"en": "SAVE", "fr": "ENREGISTRER", "ht": "SOVE"}, "cancel": {"en": "CANCEL", "fr": "ANNULER", "ht": "ANILE"}, "delete": {"en": "DELETE", "fr": "SUPPRIMER", "ht": "EFASE"}, "need_name": {"en": "The name is required.", "fr": "Le nom est obligatoire.", "ht": "Non an obligatwa."}, "dup_warn": {"en": "Someone with the same phone or email already exists: {name}. Save anyway?", "fr": "Une personne avec le même téléphone ou e-mail existe déjà : {name}. Enregistrer quand même ?", "ht": "Gen yon moun ki gen menm telefòn oswa imèl la deja: {name}. Sove kanmenm?"}, "del_confirm": {"en": "Delete {name}? This also deletes the contact history and cannot be undone.", "fr": "Supprimer {name} ? Cela supprime aussi l'historique des contacts et ne peut pas être annulé.", "ht": "Efase {name}? Sa efase istorik kontak yo tou epi li pa ka anile."}, "saved": {"en": "Saved.", "fr": "Enregistré.", "ht": "Sove."}, "err_save": {"en": "Could not save. Check your connection and permissions.", "fr": "Enregistrement impossible. Vérifiez la connexion et les autorisations.", "ht": "Pa ka sove. Verifye koneksyon ak otorizasyon yo."}, "d_call": {"en": "CALL", "fr": "APPELER", "ht": "RELE"}, "d_wa": {"en": "WHATSAPP", "fr": "WHATSAPP", "ht": "WHATSAPP"}, "d_mail": {"en": "EMAIL", "fr": "E-MAIL", "ht": "IMÈL"}, "d_edit": {"en": "EDIT", "fr": "MODIFIER", "ht": "MODIFYE"}, "d_since": {"en": "Joined", "fr": "Adhésion", "ht": "Antre"}, "d_last": {"en": "Last contact", "fr": "Dernier contact", "ht": "Dènye kontak"}, "d_never": {"en": "never", "fr": "jamais", "ht": "jamè"}, "h_h": {"en": "CONTACT HISTORY", "fr": "HISTORIQUE DES CONTACTS", "ht": "ISTORIK KONTAK"}, "h_add": {"en": "ADD TO HISTORY", "fr": "AJOUTER À L'HISTORIQUE", "ht": "AJOUTE NAN ISTORIK"}, "h_none": {"en": "No contact recorded yet.", "fr": "Aucun contact enregistré.", "ht": "Poko gen kontak anrejistre."}, "i_call": {"en": "Call", "fr": "Appel", "ht": "Apèl"}, "i_whatsapp": {"en": "WhatsApp", "fr": "WhatsApp", "ht": "WhatsApp"}, "i_email": {"en": "Email", "fr": "E-mail", "ht": "Imèl"}, "i_meeting": {"en": "Meeting", "fr": "Réunion", "ht": "Reyinyon"}, "i_note": {"en": "Note", "fr": "Note", "ht": "Nòt"}, "i_text": {"en": "What was said or decided?", "fr": "Qu'a-t-on dit ou décidé ?", "ht": "Kisa yo di oswa deside?"}, "i_date": {"en": "Date", "fr": "Date", "ht": "Dat"}, "i_need": {"en": "Write a short note.", "fr": "Écrivez une courte note.", "ht": "Ekri yon ti nòt."}, "imp_done": {"en": "Import finished: {a} added, {d} duplicates skipped, {i} invalid rows.", "fr": "Import terminé : {a} ajoutés, {d} doublons ignorés, {i} lignes invalides.", "ht": "Enpòtasyon fini: {a} ajoute, {d} dosye double sote, {i} liy pa valid."}, "imp_bad": {"en": "This file has no readable rows.", "fr": "Ce fichier ne contient aucune ligne lisible.", "ht": "Fichye sa a pa gen okenn liy ki ka li."}, "imp_hint": {"en": "CSV columns: fullName, phone, whatsapp, email, city, country, types, status, tags, joinedAt, notes", "fr": "Colonnes CSV : fullName, phone, whatsapp, email, city, country, types, status, tags, joinedAt, notes", "ht": "Kolòn CSV: fullName, phone, whatsapp, email, city, country, types, status, tags, joinedAt, notes"}, "close": {"en": "CLOSE", "fr": "FERMER", "ht": "FÈMEN"}};
+var TYPES = ["member", "leader", "musician", "fan", "merchant", "volunteer", "donor"];
+var STATUSES = ["active", "inactive", "pending"];
+var INTERACTION_TYPES = ["call", "whatsapp", "email", "meeting", "note"];
+var DEMO = !FIREBASE_CONFIG.apiKey || !FIREBASE_CONFIG.projectId;
+
+var lang = "ht";
+function t(k, vars){
+  var s = (I18N[k] && (I18N[k][lang] || I18N[k].en)) || k;
+  if(vars){ Object.keys(vars).forEach(function(v){ s = s.replace("{" + v + "}", vars[v]); }); }
+  return s;
+}
+function $(id){ return document.getElementById(id); }
+function el(tag, cls, text){ var e = document.createElement(tag); if(cls){ e.className = cls; } if(text !== undefined){ e.textContent = text; } return e; }
+function todayStr(){ var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+function uid(){ return "l" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+function digits(s){ return String(s || "").replace(/\D+/g, ""); }
+function clean(s){ return String(s == null ? "" : s).trim(); }
+
+/* ---------- normalising one person ---------- */
+function toMillis(v){
+  if(!v){ return 0; }
+  if(typeof v === "number"){ return v; }
+  if(typeof v.toMillis === "function"){ return v.toMillis(); }
+  var p = Date.parse(v); return isNaN(p) ? 0 : p;
+}
+function norm(d, id){
+  d = d || {};
+  return {
+    id: id || d.id || "",
+    fullName: clean(d.fullName), nickname: clean(d.nickname), phone: clean(d.phone), whatsapp: clean(d.whatsapp),
+    email: clean(d.email), city: clean(d.city), country: clean(d.country),
+    types: Array.isArray(d.types) ? d.types.filter(function(x){ return TYPES.indexOf(x) !== -1; }) : [],
+    status: STATUSES.indexOf(d.status) !== -1 ? d.status : "active",
+    tags: Array.isArray(d.tags) ? d.tags.map(clean).filter(Boolean) : [],
+    notes: clean(d.notes), joinedAt: clean(d.joinedAt), lastContactAt: clean(d.lastContactAt),
+    createdAt: toMillis(d.createdAt)
+  };
+}
+function payload(m){
+  return { fullName: m.fullName, nickname: m.nickname, phone: m.phone, whatsapp: m.whatsapp, email: m.email, city: m.city, country: m.country,
+           types: m.types, status: m.status, tags: m.tags, notes: m.notes, joinedAt: m.joinedAt, lastContactAt: m.lastContactAt };
 }
 
-function avatarMessageStart(langUrl){
-  if(!avatarVideoEl){ return false; }
-  stopSpeaking();
-  avatarMsgOn = true;
-  if(avPlayEl){ avPlayEl.style.display = "none"; }
-  if(langUrl){
-    if(!avatarDefaultSrc){ avatarDefaultSrc = avatarVideoEl.getAttribute("src"); }
-    avatarVideoEl.setAttribute("src", langUrl);
-  }else{
-    try{ avatarVideoEl.currentTime = 0; }catch(e){}
-  }
-  avatarVideoEl.loop = false; avatarVideoEl.muted = false; avatarVideoEl.volume = 1;
-  var pp = avatarVideoEl.play();
-  if(pp && pp.catch){ pp.catch(function(){ avatarMessageStop(); }); }
-  var vv = avatarVideoEl;
-  setTimeout(function(){
-    if(!avatarMsgOn || vv.paused){ return; }
-    var known = false, has = true;
-    if(typeof vv.webkitAudioDecodedByteCount === "number"){ known = true; has = vv.webkitAudioDecodedByteCount > 0; }
-    else if(typeof vv.mozHasAudio === "boolean"){ known = true; has = vv.mozHasAudio; }
-    else if(vv.audioTracks){ known = true; has = vv.audioTracks.length > 0; }
-    if(known && !has){
-      vSay(t("av_nosound"));
-      if(window.console){ console.warn("Avatar video has no audio track: " + vv.currentSrc); }
-    }
-  }, 1600);
-  if(avatarStageEl){ avatarStageEl.classList.add("speaking"); }
-  return true;
-}
-
-var avatarPending = false;
-function avatarMessageToggle(){
-  if(!avatarVideoEl || avatarPending){ return false; }
-  if(avatarMsgOn){ avatarMessageStop(); return true; }
-  var f = AVATAR_INTRO_VIDEO && AVATAR_INTRO_VIDEO[lang];
-  if(!f || !window.fetch || location.protocol === "file:"){ return avatarMessageStart(null); }
-  var url = "../../" + encodeURI(f) + "?v=20260920";
-  avatarPending = true;
-  fetch(url, { method: "HEAD" }).then(function(r){
-    var ct = (r.headers.get("content-type") || "").toLowerCase();
-    avatarPending = false;
-    avatarMessageStart(r.ok && (ct.indexOf("video") !== -1 || ct.indexOf("octet") !== -1) ? url : null);
-  }).catch(function(){ avatarPending = false; avatarMessageStart(null); });
-  return true;
-}
-
-(function(){
-  var stage = document.getElementById("avatarStage"), ph = document.getElementById("avatarPh");
-  if(!stage) return;
-
-  function mount(src){
-    var v = document.createElement("video"); v.src = src; v.autoplay = !AVATAR_TALK_ONLY; v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute("playsinline",""); v.preload = "auto";
-    var b = document.createElement("button"); b.type = "button"; b.className = "av-sound"; b.textContent = "🔊 SOUND ON";
-    b.addEventListener("click", function(){ v.muted = !v.muted; var p = v.play(); if(p && p.catch) p.catch(function(){}); b.textContent = v.muted ? "🔊 SOUND ON" : "🔇 MUTE"; });
-    ph.style.display = "none"; stage.appendChild(v); stage.appendChild(b);
-    avPlayEl = document.createElement("div"); avPlayEl.className = "av-play"; avPlayEl.textContent = "▶"; stage.appendChild(avPlayEl);
-    avatarVideoEl = v;
-    if(AVATAR_TALK_ONLY){
-      b.style.display = "none";
-      v.addEventListener("loadeddata", function(){ if(!isSpeaking && !avatarMsgOn){ try{ v.currentTime = 0.05; }catch(e){} v.pause(); } });
-    }
-    v.addEventListener("ended", function(){ if(avatarMsgOn){ avatarMessageStop(); } });
-    v.addEventListener("error", function(){ v.remove(); b.remove(); if(avPlayEl){ avPlayEl.remove(); avPlayEl = null; } ph.style.display = ""; avatarVideoEl = null; avatarMsgOn = false; });
-    function skipCheck(){
-      var t0 = v.currentTime;
-      for(var i = 0; i < AVATAR_SKIP.length; i++){
-        var a0 = AVATAR_SKIP[i][0], z0 = AVATAR_SKIP[i][1];
-        if(t0 >= a0 && t0 < z0){ v.currentTime = (v.duration && z0 >= v.duration) ? Math.max(v.duration - 0.05, 0) : z0; return; }
-      }
-    }
-    v.addEventListener("timeupdate", skipCheck);
-    v.addEventListener("seeked", skipCheck);
-    setInterval(function(){ if(!v.paused) skipCheck(); }, 100);
-  }
-
-  function probe(i){
-    if(i >= AVATAR_VIDEO_CANDIDATES.length){ return; }          /* none found: the placeholder stays */
-    var url = "../../" + encodeURI(AVATAR_VIDEO_CANDIDATES[i]) + "?v=20260920";
-    if(!window.fetch || location.protocol === "file:"){ mount(url); return; }
-    fetch(url, { method: "HEAD" }).then(function(r){
-      var ct = (r.headers.get("content-type") || "").toLowerCase();
-      if(r.ok && (ct.indexOf("video") !== -1 || ct.indexOf("octet") !== -1)){ mount(url); } else { probe(i + 1); }
-    }).catch(function(){ probe(i + 1); });
-  }
-
-  if(AVATAR_VIDEO_SRC){ mount(AVATAR_VIDEO_SRC); }
-  else if(AVATAR_IFRAME_SRC && /^https:\/\//.test(AVATAR_IFRAME_SRC)){
-    var f = document.createElement("iframe"); f.src = AVATAR_IFRAME_SRC; f.allow = "autoplay; fullscreen; microphone"; f.setAttribute("allowfullscreen",""); f.title = "AI Assistant avatar";
-    ph.style.display = "none"; stage.appendChild(f);
-  }
-  else{ probe(0); }
+/* =====================================================================
+   STORAGE 1 — this device (demo)
+===================================================================== */
+var LocalStore = (function(){
+  var KEY = "bss1815_crm_members_v1", IKEY = "bss1815_crm_hist_v1_";
+  var members = [], listeners = [], histListeners = {};
+  function load(){ try{ members = JSON.parse(localStorage.getItem(KEY) || "[]"); }catch(e){ members = []; } }
+  function persist(){ try{ localStorage.setItem(KEY, JSON.stringify(members)); }catch(e){} }
+  function emit(){ var copy = members.map(function(m){ return norm(m, m.id); }); listeners.forEach(function(cb){ cb(copy); }); }
+  function loadHist(id){ try{ return JSON.parse(localStorage.getItem(IKEY + id) || "[]"); }catch(e){ return []; } }
+  function saveHist(id, arr){ try{ localStorage.setItem(IKEY + id, JSON.stringify(arr)); }catch(e){} }
+  function emitHist(id){ (histListeners[id] || []).forEach(function(cb){ cb(loadHist(id)); }); }
+  return {
+    subscribe: function(cb, onError){ load(); listeners.push(cb); cb(members.map(function(m){ return norm(m, m.id); })); return function(){ listeners = listeners.filter(function(x){ return x !== cb; }); }; },
+    save: function(m){
+      load(); var p = payload(m);
+      if(m.id){ members = members.map(function(x){ return x.id === m.id ? Object.assign({}, x, p) : x; }); }
+      else{ members.push(Object.assign({ id: uid(), createdAt: Date.now() }, p)); }
+      persist(); emit(); return Promise.resolve();
+    },
+    remove: function(id){ load(); members = members.filter(function(x){ return x.id !== id; }); try{ localStorage.removeItem(IKEY + id); }catch(e){} persist(); emit(); return Promise.resolve(); },
+    history: function(id, cb){ histListeners[id] = (histListeners[id] || []).concat([cb]); cb(loadHist(id)); return function(){ histListeners[id] = (histListeners[id] || []).filter(function(x){ return x !== cb; }); }; },
+    addHistory: function(id, item){
+      var arr = loadHist(id); arr.push(Object.assign({ id: uid(), createdAt: Date.now() }, item)); saveHist(id, arr); emitHist(id);
+      load(); members = members.map(function(x){ return x.id === id ? Object.assign({}, x, { lastContactAt: item.date }) : x; }); persist(); emit(); return Promise.resolve();
+    },
+    bulkAdd: function(list){
+      load(); list.forEach(function(m){ members.push(Object.assign({ id: uid(), createdAt: Date.now() }, payload(m))); });
+      persist(); emit(); return Promise.resolve();
+    },
+    signOut: null
+  };
 })();
-var ROUTES = [{"words": ["admin", "dashboard", "login", "log in", "konekte", "connexion", "se connecter", "administrasyon", "administration", "role", "roles", "permission", "permissions", "firebase", "sekirite", "sécurité", "security"], "page": "../../login.html", "label": "ADMIN DASHBOARD"}, {"words": ["live", "streaming", "radio", "broadcast", "difizyon", "diffusion", "podcast", "direct"], "page": "../live-streaming/index.html", "label": "LIVE STREAMING"}, {"words": ["election", "elections", "vote", "voting", "vòt", "elèksyon", "candidate", "candidates", "candidat", "kandida", "résultats", "rezilta"], "page": "../elections/index.html", "label": "ELECTION MANAGER"}, {"words": ["donation", "donations", "donate", "donor", "donatè", "donateur", "don", "dons", "contribution", "contributions", "kontribisyon"], "page": "../donations/index.html", "label": "DONATION CENTER"}, {"words": ["certificate", "certificates", "sètifika", "certificat", "certificats", "verification", "vérification", "verifikasyon"], "page": "../certificates/index.html", "label": "CERTIFICATE CENTER"}, {"words": ["attendance", "présence", "prezans", "pwesans", "check-in", "checkin", "participation"], "page": "../attendance/index.html", "label": "ATTENDANCE"}, {"words": ["volunteer", "volunteers", "volontè", "volontaire", "volontaires", "bénévole", "bénévoles", "assignment", "assignments"], "page": "../volunteer/index.html", "label": "VOLUNTEER CENTER"}, {"words": ["flyer", "flyers", "affiche", "affiches", "graphic", "graphics", "grafik", "graphique", "poster"], "page": "../flyer-studio/index.html", "label": "FLYER STUDIO"}, {"words": ["registry", "registre", "registres", "musician", "musicians", "mizisyen", "musicien", "musiciens", "fans", "fanatik", "merchant", "merchants", "machann", "marchand", "marchands"], "page": "../registry/index.html", "label": "DIGITAL REGISTRY"}, {"words": ["event", "events", "evènman", "événement", "événements", "calendar", "kalandriye", "calendrier", "program", "programs", "meeting", "meetings", "reyinyon", "réunion", "réunions", "aktivite", "activité", "activités"], "page": "../events/index.html", "label": "EVENT MANAGEMENT"}, {"words": ["announcement", "announcements", "anons", "annonce", "annonces", "official notice", "avi ofisyèl", "avis officiel", "community update"], "page": "../announcements/index.html", "label": "ANNOUNCEMENT CENTER"}, {"words": ["notification", "notifications", "reminder", "reminders", "rapèl", "rappel", "rappels", "alert", "alerts", "alèt", "alerte", "alertes"], "page": "../notifications/index.html", "label": "NOTIFICATIONS"}, {"words": ["communication", "whatsapp", "message", "messages", "mesaj", "sms"], "page": "../communication/index.html", "label": "COMMUNICATION CENTER"}, {"words": ["report", "reports", "rapò", "rapport", "rapports", "statistics", "statistik", "statistiques", "analytics", "performance", "pèfòmans"], "page": "../reports/index.html", "label": "REPORTS & ANALYTICS"}, {"words": ["finance", "treasury", "trezò", "trésorerie", "payment", "payments", "peman", "paiement", "paiements", "money", "lajan", "argent"], "page": "../finance/index.html", "label": "FINANCE / TREASURY"}, {"words": ["media", "gallery", "galri", "galerie", "photo", "photos", "foto", "video", "vidéo", "videyo", "audio", "slideshow"], "page": "../media/index.html", "label": "MEDIA GALLERY"}, {"words": ["document", "documents", "dokiman", "letter", "letters", "lèt", "lettre", "lettres", "archive", "archives", "achiv"], "page": "../documents/index.html", "label": "DOCUMENT CENTER"}, {"words": ["crm", "member", "members", "manm", "membre", "membres", "relationship", "relationships", "relation", "relations", "record", "records", "dosye", "dossier", "dossiers"], "page": "../crm/index.html", "label": "CRM SYSTEM"}, {"words": ["help", "help desk", "support", "sipò", "èd", "aide", "ticket", "tickets", "case", "cases", "request", "requests", "demann", "demande", "demandes", "problem", "pwoblèm", "problème"], "page": "../help-desk/index.html", "label": "HELP DESK"}, {"words": ["community", "kominote", "communauté", "communaute", "heritage", "eritaj", "héritage", "bss1815", "fanmi", "famille", "family", "dirijan", "leaders"], "page": "../../index.html#community", "label": "BSS1815 COMMUNITY"}, {"words": ["contact", "contacts", "kontak", "phone", "telefòn", "telefon", "téléphone", "telephone"], "page": "#contacts", "label": "CONTACT"}];
-var ENDPOINT = "/.netlify/functions/ai-assistant";
-document.getElementById("year").textContent = new Date().getFullYear();
 
-var menuBtn = document.getElementById("menuBtn"), mobileMenu = document.getElementById("mobileMenu");
-function closeMenu(){ mobileMenu.classList.remove("open"); menuBtn.textContent="☰"; menuBtn.setAttribute("aria-expanded","false"); }
-menuBtn.addEventListener("click", function(){ var o = mobileMenu.classList.toggle("open"); menuBtn.textContent = o ? "✕" : "☰"; menuBtn.setAttribute("aria-expanded", o ? "true" : "false"); });
-mobileMenu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
-
-var lang = "en";
-function t(k){ return (I18N[lang] || I18N.en)[k] || I18N.en[k] || ""; }
-var keyed = document.querySelectorAll("[data-i18n]"), keyedPh = document.querySelectorAll("[data-i18n-placeholder]"), langButtons = document.querySelectorAll(".lang-btn"), qchips = document.querySelectorAll(".qchip");
-var log = document.getElementById("log"), input = document.getElementById("q"), sendBtn = document.getElementById("send");
-function setLanguage(l){
-  if(["en","fr","ht"].indexOf(l) === -1) l = "en";
-  lang = l; document.documentElement.lang = l;
-  keyed.forEach(function(el){ var v = t(el.dataset.i18n); if(!v) return; el.textContent = (el.dataset.i18n === "legal_h" ? "⚖️ " : "") + v; });
-  keyedPh.forEach(function(el){ el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder)); });
-  qchips.forEach(function(c){ c.dataset.q = c.textContent; });
-  langButtons.forEach(function(b){ var a = b.dataset.lang === l; b.classList.toggle("active", a); b.setAttribute("aria-pressed", a ? "true" : "false"); });
-  var first = log.querySelector(".msg.welcome"); if(first) first.firstChild.textContent = t("welcome");
-  try{ localStorage.setItem("bss1815Language", l); }catch(e){}
-}
-langButtons.forEach(function(b){ b.addEventListener("click", function(){ setLanguage(b.dataset.lang); }); });
-
-function findRoute(text){
-  var c = String(text || "").toLowerCase().trim(); if(!c) return null;
-  var tokens = c.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-  for(var i = 0; i < ROUTES.length; i++){
-    for(var j = 0; j < ROUTES[i].words.length; j++){
-      var w = ROUTES[i].words[j];
-      if(w.length <= 4 || w.indexOf(" ") === -1 && w.length <= 4){ if(tokens.indexOf(w) !== -1) return ROUTES[i]; }
-      else if(c.indexOf(w) !== -1) return ROUTES[i];
+/* =====================================================================
+   STORAGE 2 — Firebase (Firestore + Auth), loaded only when configured
+===================================================================== */
+var FirebaseStore = (function(){
+  var app, auth, db, F = {}, A = {}, user = null;
+  function base(f){ return "https://www.gstatic.com/firebasejs/" + FIREBASE_VERSION + "/" + f + ".js"; }
+  function col(){ return F.collection(db, COLLECTION); }
+  function stamp(m, isNew){
+    var p = payload(m); p.updatedAt = F.serverTimestamp(); p.updatedBy = user ? user.email : "";
+    if(isNew){ p.createdAt = F.serverTimestamp(); p.createdBy = user ? user.email : ""; }
+    return p;
+  }
+  return {
+    init: function(){
+      return Promise.all([import(base("firebase-app")), import(base("firebase-auth")), import(base("firebase-firestore"))]).then(function(mods){
+        var App = mods[0]; A = mods[1]; F = mods[2];
+        app = App.initializeApp(FIREBASE_CONFIG); auth = A.getAuth(app); db = F.getFirestore(app);
+      });
+    },
+    onAuth: function(cb){ A.onAuthStateChanged(auth, function(u){ user = u; cb(u); }); },
+    signIn: function(email, pass){ return A.signInWithEmailAndPassword(auth, email, pass); },
+    reset: function(email){ return A.sendPasswordResetEmail(auth, email); },
+    signOut: function(){ return A.signOut(auth); },
+    probe: function(){ return F.getDocs(F.query(col(), F.limit(1))); },
+    subscribe: function(cb, onError){
+      return F.onSnapshot(col(), function(snap){
+        var list = []; snap.forEach(function(d){ list.push(norm(d.data(), d.id)); }); cb(list);
+      }, function(err){ if(onError){ onError(err); } });
+    },
+    save: function(m){
+      if(m.id){ return F.updateDoc(F.doc(db, COLLECTION, m.id), stamp(m, false)); }
+      return F.addDoc(col(), stamp(m, true));
+    },
+    remove: function(id){
+      var sub = F.collection(db, COLLECTION, id, "history");
+      return F.getDocs(sub).then(function(snap){
+        var batch = F.writeBatch(db); var n = 0;
+        snap.forEach(function(d){ batch.delete(d.ref); n++; });
+        batch.delete(F.doc(db, COLLECTION, id));
+        return batch.commit();
+      });
+    },
+    history: function(id, cb){
+      return F.onSnapshot(F.collection(db, COLLECTION, id, "history"), function(snap){
+        var arr = []; snap.forEach(function(d){ var x = d.data(); x.id = d.id; x.createdAt = toMillis(x.createdAt); arr.push(x); }); cb(arr);
+      }, function(){ cb([]); });
+    },
+    addHistory: function(id, item){
+      var rec = { type: item.type, text: item.text, date: item.date, by: user ? user.email : "", createdAt: F.serverTimestamp() };
+      return F.addDoc(F.collection(db, COLLECTION, id, "history"), rec).then(function(){
+        return F.updateDoc(F.doc(db, COLLECTION, id), { lastContactAt: item.date, updatedAt: F.serverTimestamp() });
+      });
+    },
+    bulkAdd: function(list){
+      var chunks = [], i; for(i = 0; i < list.length; i += 400){ chunks.push(list.slice(i, i + 400)); }
+      return chunks.reduce(function(p, chunk){
+        return p.then(function(){
+          var batch = F.writeBatch(db);
+          chunk.forEach(function(m){ batch.set(F.doc(col()), stamp(m, true)); });
+          return batch.commit();
+        });
+      }, Promise.resolve());
     }
+  };
+})();
+
+var store = DEMO ? LocalStore : FirebaseStore;
+
+/* =====================================================================
+   STATE + RENDER
+===================================================================== */
+var people = [], shown = PAGE_SIZE, currentId = null, unsubHist = null, unsubList = null;
+
+function daysSince(dateStr){
+  if(!dateStr){ return Infinity; }
+  var d = Date.parse(dateStr); if(isNaN(d)){ return Infinity; }
+  return Math.floor((Date.now() - d) / 86400000);
+}
+function typeLabel(x){ return t("t_" + x); }
+function statusLabel(x){ return t("s_" + x); }
+
+function matches(m, q){
+  if(!q){ return true; }
+  var hay = [m.fullName, m.nickname, m.phone, m.whatsapp, m.email, m.city, m.country, m.tags.join(" "), m.notes].join(" ").toLowerCase();
+  var qd = digits(q);
+  return q.toLowerCase().split(/\s+/).every(function(w){ return hay.indexOf(w) !== -1; }) || (qd.length >= 4 && (digits(m.phone).indexOf(qd) !== -1 || digits(m.whatsapp).indexOf(qd) !== -1));
+}
+
+function filtered(){
+  var q = clean($("fSearch").value), ty = $("fType").value, st = $("fStatus").value, so = $("fSort").value;
+  var list = people.filter(function(m){
+    return matches(m, q) && (!ty || m.types.indexOf(ty) !== -1) && (!st || m.status === st);
+  });
+  list.sort(function(a, b){
+    if(so === "new"){ return (b.createdAt || Date.parse(b.joinedAt) || 0) - (a.createdAt || Date.parse(a.joinedAt) || 0); }
+    if(so === "contact"){ return (Date.parse(a.lastContactAt) || 0) - (Date.parse(b.lastContactAt) || 0); }
+    return a.fullName.localeCompare(b.fullName, undefined, { sensitivity: "base" });
+  });
+  return list;
+}
+
+function renderStats(){
+  var now = new Date(), ym = now.getFullYear() + "-" + ("0" + (now.getMonth() + 1)).slice(-2);
+  $("sTotal").textContent = people.length;
+  $("sActive").textContent = people.filter(function(m){ return m.status === "active"; }).length;
+  $("sNew").textContent = people.filter(function(m){ return (m.joinedAt || "").slice(0, 7) === ym || (!m.joinedAt && m.createdAt && new Date(m.createdAt).toISOString().slice(0, 7) === ym); }).length;
+  $("sFollow").textContent = people.filter(function(m){ return m.status === "active" && daysSince(m.lastContactAt) > FOLLOW_UP_DAYS; }).length;
+}
+
+function quickLink(cls, href, text, ext){
+  var a = el("a", "", text); a.href = href; if(ext){ a.target = "_blank"; a.rel = "noopener noreferrer"; }
+  a.addEventListener("click", function(e){ e.stopPropagation(); }); return a;
+}
+function telHref(p){ var d = digits(p); return d ? "tel:" + (String(p).trim().charAt(0) === "+" ? "+" : "") + d : ""; }
+function waHref(m){ var d = digits(m.whatsapp || m.phone); return d ? "https://wa.me/" + d : ""; }
+
+function renderList(){
+  var list = filtered(), box = $("list"); box.textContent = "";
+  $("count").textContent = t("count", { n: list.length });
+  if(!people.length){ box.className = ""; box.appendChild(el("div", "empty", t("empty"))); $("moreBtn").classList.add("hidden"); return; }
+  if(!list.length){ box.className = ""; box.appendChild(el("div", "empty", t("no_match"))); $("moreBtn").classList.add("hidden"); return; }
+  box.className = "list";
+  list.slice(0, shown).forEach(function(m){
+    var c = el("div", "person"); c.tabIndex = 0;
+    c.appendChild(el("h3", "", m.fullName + (m.nickname ? " “" + m.nickname + "”" : "")));
+    var sub = [m.phone, m.email, [m.city, m.country].filter(Boolean).join(", ")].filter(Boolean).join(" • ");
+    if(sub){ c.appendChild(el("div", "sub", sub)); }
+    var b = el("div", "badges"); b.appendChild(el("span", "badge " + m.status, statusLabel(m.status)));
+    m.types.forEach(function(x){ b.appendChild(el("span", "badge", typeLabel(x))); });
+    m.tags.slice(0, 3).forEach(function(x){ b.appendChild(el("span", "badge", "#" + x)); });
+    c.appendChild(b);
+    var q = el("div", "quick");
+    var th = telHref(m.phone), wh = waHref(m);
+    if(th){ q.appendChild(quickLink("", th, "📞 " + t("d_call"))); }
+    if(wh){ q.appendChild(quickLink("", wh, "💬 " + t("d_wa"), true)); }
+    if(m.email){ q.appendChild(quickLink("", "mailto:" + m.email, "✉️ " + t("d_mail"))); }
+    if(q.children.length){ c.appendChild(q); }
+    c.addEventListener("click", function(){ openDetail(m.id); });
+    c.addEventListener("keydown", function(e){ if(e.key === "Enter"){ openDetail(m.id); } });
+    box.appendChild(c);
+  });
+  $("moreBtn").classList.toggle("hidden", list.length <= shown);
+}
+
+function refresh(){ renderStats(); renderList(); if(currentId && $("detail").classList.contains("open")){ renderDetail(); } }
+
+/* ---------- filters (selects) ---------- */
+function fillSelects(){
+  var ty = $("fType"), st = $("fStatus"), so = $("fSort"), tv = ty.value, sv = st.value, ov = so.value;
+  ty.textContent = ""; st.textContent = ""; so.textContent = "";
+  var o = el("option", "", t("all_types")); o.value = ""; ty.appendChild(o);
+  TYPES.forEach(function(x){ var e = el("option", "", typeLabel(x)); e.value = x; ty.appendChild(e); });
+  var o2 = el("option", "", t("all_status")); o2.value = ""; st.appendChild(o2);
+  STATUSES.forEach(function(x){ var e = el("option", "", statusLabel(x)); e.value = x; st.appendChild(e); });
+  [["name", "sort_name"], ["new", "sort_new"], ["contact", "sort_contact"]].forEach(function(p){ var e = el("option", "", t(p[1])); e.value = p[0]; so.appendChild(e); });
+  ty.value = tv; st.value = sv; so.value = ov || "name";
+  // form controls
+  var fs = $("mStatus"), fv = fs.value; fs.textContent = "";
+  STATUSES.forEach(function(x){ var e = el("option", "", statusLabel(x)); e.value = x; fs.appendChild(e); }); fs.value = fv || "active";
+  var it = $("iType"), iv = it.value; it.textContent = "";
+  INTERACTION_TYPES.forEach(function(x){ var e = el("option", "", t("i_" + x)); e.value = x; it.appendChild(e); }); it.value = iv || "call";
+  var checks = $("mTypes"), sel = Array.prototype.map.call(checks.querySelectorAll("input:checked"), function(i){ return i.value; });
+  checks.textContent = "";
+  TYPES.forEach(function(x){
+    var l = el("label", "check"), i = document.createElement("input"); i.type = "checkbox"; i.value = x; i.checked = sel.indexOf(x) !== -1;
+    l.appendChild(i); l.appendChild(el("span", "", typeLabel(x))); checks.appendChild(l);
+  });
+}
+
+/* ---------- language ---------- */
+function applyLanguage(l){
+  if(["en", "fr", "ht"].indexOf(l) === -1){ l = "ht"; }
+  lang = l; document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(function(e){ e.textContent = t(e.getAttribute("data-i18n")); });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function(e){ e.setAttribute("placeholder", t(e.getAttribute("data-i18n-ph"))); });
+  document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-lang") === l); });
+  try{ localStorage.setItem("bss1815Language", l); }catch(e){}
+  fillSelects(); refresh();
+  if($("form").classList.contains("open")){ $("formTitle").textContent = editingId ? t("f_edit") : t("f_new"); }
+}
+
+/* ---------- message helper ---------- */
+var toastTimer = null;
+function toast(msg, bad){
+  var e = $("toast"); e.textContent = msg; e.className = "msg " + (bad ? "bad" : "ok"); clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ e.textContent = ""; }, 5000);
+}
+
+/* =====================================================================
+   FORM (add / edit)
+===================================================================== */
+var editingId = null;
+function openOverlay(id){ $(id).classList.add("open"); document.body.style.overflow = "hidden"; }
+function closeOverlay(id){ $(id).classList.remove("open"); if(!document.querySelector(".overlay.open")){ document.body.style.overflow = ""; } }
+
+function openForm(m){
+  editingId = m ? m.id : null;
+  $("formTitle").textContent = m ? t("f_edit") : t("f_new");
+  $("mName").value = m ? m.fullName : ""; $("mNick").value = m ? m.nickname : ""; $("mPhone").value = m ? m.phone : ""; $("mWa").value = m ? m.whatsapp : "";
+  $("mEmail").value = m ? m.email : ""; $("mCity").value = m ? m.city : ""; $("mCountry").value = m ? m.country : "";
+  $("mStatus").value = m ? m.status : "active"; $("mTags").value = m ? m.tags.join(", ") : ""; $("mJoined").value = m ? m.joinedAt : todayStr(); $("mNotes").value = m ? m.notes : "";
+  $("mTypes").querySelectorAll("input").forEach(function(i){ i.checked = m ? m.types.indexOf(i.value) !== -1 : i.value === "member"; });
+  $("formMsg").textContent = ""; $("deleteBtn").classList.toggle("hidden", !m);
+  openOverlay("form"); setTimeout(function(){ $("mName").focus(); }, 50);
+}
+
+function readForm(){
+  var types = Array.prototype.map.call($("mTypes").querySelectorAll("input:checked"), function(i){ return i.value; });
+  return norm({
+    id: editingId || "", fullName: $("mName").value, nickname: $("mNick").value, phone: $("mPhone").value, whatsapp: $("mWa").value, email: $("mEmail").value,
+    city: $("mCity").value, country: $("mCountry").value, types: types, status: $("mStatus").value,
+    tags: $("mTags").value.split(","), joinedAt: $("mJoined").value, notes: $("mNotes").value,
+    lastContactAt: editingId ? (people.filter(function(p){ return p.id === editingId; })[0] || {}).lastContactAt : ""
+  }, editingId);
+}
+
+function findDuplicate(m){
+  var pd = digits(m.phone).slice(-8), wd = digits(m.whatsapp).slice(-8), em = m.email.toLowerCase();
+  for(var i = 0; i < people.length; i++){
+    var p = people[i]; if(p.id === m.id){ continue; }
+    if(em && p.email.toLowerCase() === em){ return p; }
+    if(pd.length >= 7 && (digits(p.phone).slice(-8) === pd || digits(p.whatsapp).slice(-8) === pd)){ return p; }
+    if(wd.length >= 7 && (digits(p.phone).slice(-8) === wd || digits(p.whatsapp).slice(-8) === wd)){ return p; }
   }
   return null;
 }
-function addMsg(role, text, route, cls){
-  var m = document.createElement("div"); m.className = "msg " + role + (cls ? " " + cls : "");
-  m.appendChild(document.createTextNode(text));
-  if(route){
-    var g = document.createElement("div"); g.className = "go";
-    var a = document.createElement("a"); a.href = route.page; a.textContent = t("open") + " " + route.label + " →"; g.appendChild(a); m.appendChild(g);
-  }
-  log.appendChild(m); log.scrollTop = log.scrollHeight; return m;
-}
-var history = [];
-function fallback(text){
-  var r = findRoute(text);
-  if(r) return addMsg("bot", t("match"), r);
-  var m = addMsg("bot", t("nomatch"), { page:"../help-desk/index.html", label:"HELP DESK" });
-  var g = m.querySelector(".go"); var a2 = document.createElement("a"); a2.href = "#contacts"; a2.textContent = t("open") + " CONTACT →"; a2.style.marginLeft = "8px"; g.appendChild(a2);
-}
-var busy = false;
-function ask(text){
-  text = String(text || "").trim(); if(!text || busy) return;
-  busy = true; sendBtn.disabled = true;
-  addMsg("user", text); input.value = "";
-  var wait = addMsg("bot", t("thinking"));
-  var done = function(){ busy = false; sendBtn.disabled = false; input.focus(); };
-  if(!window.fetch || location.protocol === "file:"){ wait.remove(); fallback(text); done(); return; }
-  var ctrl = ("AbortController" in window) ? new AbortController() : null; var to = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 20000);
-  fetch(ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ message:text, lang:lang, history:history }), signal: ctrl ? ctrl.signal : undefined })
-    .then(function(r){ if(!r.ok) throw new Error("http " + r.status); return r.json(); })
-    .then(function(d){
-      clearTimeout(to); wait.remove();
-      if(!d || !d.reply) throw new Error("empty");
-      history.push({ role:"user", content:text }, { role:"assistant", content:d.reply }); history = history.slice(-8);
-      addMsg("bot", d.reply, findRoute(text) || findRoute(d.reply));
-      done();
-    })
-    .catch(function(){ clearTimeout(to); wait.remove(); fallback(text); done(); });
-}
-sendBtn.addEventListener("click", function(){ ask(input.value); });
-input.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); ask(input.value); } });
-qchips.forEach(function(c){ c.addEventListener("click", function(){ ask(c.dataset.q || c.textContent); }); });
 
-
-/* ================= VOICE: read aloud + speak instead of typing ================= */
-var synth = window.speechSynthesis || null;
-var SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-var LANG_TAG = { en: "en-US", fr: "fr-FR", ht: "fr-FR" };   /* Creole has no browser voice/recognizer: French is the closest */
-var voices = [], speakToken = 0, isSpeaking = false, isPaused = false, lastBotText = "";
-var micBtn = document.getElementById("mic"), autoRead = document.getElementById("autoRead"), micStatus = document.getElementById("micStatus");
-var vText = document.getElementById("vText"), vVoice = document.getElementById("vVoice"), vRate = document.getElementById("vRate");
-var vListen = document.getElementById("vListen"), vPause = document.getElementById("vPause"), vStop = document.getElementById("vStop");
-var vDictate = document.getElementById("vDictate"), vLast = document.getElementById("vLast"), vNote = document.getElementById("vNote"), vStatus = document.getElementById("voiceStatus");
-var avatarStageEl = document.getElementById("avatarStage");
-
-function vSay(msg){ if(micStatus){ micStatus.textContent = msg || ""; } if(vStatus){ vStatus.textContent = msg || ""; } }
-
-function loadVoices(){ voices = synth ? (synth.getVoices() || []) : []; fillVoiceSelect(); }
-
-function voicePrefixes(l){ return l === "ht" ? ["ht", "fr"] : [l]; }
-
-function voicesForLang(l){
-  var pre = voicePrefixes(l);
-  return voices.filter(function(v){ var vl = (v.lang || "").toLowerCase().replace("_", "-"); return pre.some(function(p){ return vl.indexOf(p) === 0; }); });
+function saveForm(){
+  var m = readForm();
+  if(!m.fullName){ $("formMsg").className = "msg bad"; $("formMsg").textContent = t("need_name"); return; }
+  var dup = findDuplicate(m);
+  if(dup && !window.confirm(t("dup_warn", { name: dup.fullName }))){ return; }
+  $("saveBtn").disabled = true;
+  Promise.resolve(store.save(m)).then(function(){ closeOverlay("form"); toast(t("saved")); })
+    .catch(function(){ $("formMsg").className = "msg bad"; $("formMsg").textContent = t("err_save"); })
+    .then(function(){ $("saveBtn").disabled = false; });
 }
 
-function fillVoiceSelect(){
-  if(!vVoice){ return; }
-  var keep = vVoice.value;
-  vVoice.innerHTML = "";
-  var auto = document.createElement("option"); auto.value = ""; auto.textContent = t("v_auto_voice"); vVoice.appendChild(auto);
-  voicesForLang(lang).forEach(function(v){ var o = document.createElement("option"); o.value = v.name; o.textContent = v.name + " (" + v.lang + ")"; vVoice.appendChild(o); });
-  if(keep){ vVoice.value = keep; }
-  updateVoiceNote();
+function deleteCurrent(){
+  var m = people.filter(function(p){ return p.id === editingId; })[0]; if(!m){ return; }
+  if(!window.confirm(t("del_confirm", { name: m.fullName }))){ return; }
+  Promise.resolve(store.remove(m.id)).then(function(){ closeOverlay("form"); closeDetail(); toast(t("saved")); })
+    .catch(function(){ $("formMsg").className = "msg bad"; $("formMsg").textContent = t("err_save"); });
 }
 
-function hasCreoleVoice(){
-  return voices.some(function(v){ return (v.lang || "").toLowerCase().indexOf("ht") === 0; });
+/* =====================================================================
+   DETAIL + CONTACT HISTORY
+===================================================================== */
+function closeDetail(){ if(unsubHist){ try{ unsubHist(); }catch(e){} unsubHist = null; } currentId = null; closeOverlay("detail"); }
+
+function openDetail(id){
+  currentId = id; renderDetail(); openOverlay("detail");
+  if(unsubHist){ try{ unsubHist(); }catch(e){} }
+  $("iText").value = ""; $("iDate").value = todayStr(); $("histMsg").textContent = "";
+  unsubHist = store.history(id, renderHistory);
 }
 
-function updateVoiceNote(){
-  if(!vNote){ return; }
-  vNote.textContent = (lang === "ht" && synth && !hasCreoleVoice()) ? t("v_ht_note") : "";
+function renderDetail(){
+  var m = people.filter(function(p){ return p.id === currentId; })[0];
+  if(!m){ closeDetail(); return; }
+  $("dName").textContent = m.fullName + (m.nickname ? " “" + m.nickname + "”" : "");
+  var badges = $("dBadges"); badges.textContent = "";
+  badges.appendChild(el("span", "badge " + m.status, statusLabel(m.status)));
+  m.types.forEach(function(x){ badges.appendChild(el("span", "badge", typeLabel(x))); });
+  m.tags.forEach(function(x){ badges.appendChild(el("span", "badge", "#" + x)); });
+  var info = $("dInfo"); info.textContent = "";
+  function line(label, value){ if(!value){ return; } var d = el("div"); d.appendChild(el("b", "", label + ": ")); d.appendChild(document.createTextNode(value)); info.appendChild(d); }
+  line(t("f_phone").replace(/ \(.*\)/, ""), m.phone); line("WhatsApp", m.whatsapp); line(t("f_email"), m.email);
+  line(t("f_city") + " / " + t("f_country"), [m.city, m.country].filter(Boolean).join(", "));
+  line(t("d_since"), m.joinedAt); line(t("d_last"), m.lastContactAt || t("d_never")); line(t("f_notes"), m.notes);
+  var q = $("dQuick"); q.textContent = "";
+  var th = telHref(m.phone), wh = waHref(m);
+  if(th){ var a1 = el("a", "btn small", "📞 " + t("d_call")); a1.href = th; q.appendChild(a1); }
+  if(wh){ var a2 = el("a", "btn small", "💬 " + t("d_wa")); a2.href = wh; a2.target = "_blank"; a2.rel = "noopener noreferrer"; q.appendChild(a2); }
+  if(m.email){ var a3 = el("a", "btn small", "✉️ " + t("d_mail")); a3.href = "mailto:" + m.email; q.appendChild(a3); }
+  var ed = el("button", "btn small primary", "✎ " + t("d_edit")); ed.type = "button"; ed.addEventListener("click", function(){ openForm(m); }); q.appendChild(ed);
 }
 
-var MALE_RE = /\b(male|man|daniel|thomas|david|mark|guy|henri|antoine|paul|george|james|alex|fred|jorge|diego|liam|ryan|jean|claude|bruno|louis|nicolas|pierre|lucas|olivier|sean|arthur|oliver|aaron|gordon|eddy|reed|rocko|jacques|felix|rishi|matthieu|maxime|remy)\b|-x-(iol|iom|tpd|frd|fre|iog)-/i;
-var FEMALE_RE = /\b(female|woman|samantha|susan|zira|hazel|catherine|amelie|amélie|audrey|marie|julie|hortense|aurelie|aurélie|siri|karen|moira|tessa|fiona|victoria|allison|ava|joana|sara|emma|denise|eloise|élodie|celine|céline|virginie)\b|-x-(iob|tpc|tpf|frb|frc|fra)-/i;
-function maleScore(v){ var n = v.name || ""; return (MALE_RE.test(n) ? 2 : 0) - (FEMALE_RE.test(n) ? 2 : 0); }
-
-function pickVoice(force){
-  var L = force || lang;
-  var list = voicesForLang(L), chosen = null;
-  if(!force && vVoice && vVoice.value){ list.forEach(function(v){ if(v.name === vVoice.value){ chosen = v; } }); }
-  if(!chosen && L === "ht"){ list.forEach(function(v){ if(!chosen && (v.lang || "").toLowerCase().indexOf("ht") === 0){ chosen = v; } }); }
-  if(!chosen){ var best = -99; list.forEach(function(v){ var s = maleScore(v); if(s > best){ best = s; chosen = v; } }); }
-  return chosen || list[0] || null;
-}
-
-var PRON_FR = /(le baron|la seule différence|la seule difference)/gi;   /* these words are always spoken with the French voice */
-function segmentize(chunk){
-  var parts = [], last = 0, mt;
-  PRON_FR.lastIndex = 0;
-  while((mt = PRON_FR.exec(chunk))){
-    if(mt.index > last){ parts.push({ t: chunk.slice(last, mt.index), l: null }); }
-    parts.push({ t: mt[0], l: "fr" });
-    last = mt.index + mt[0].length;
-  }
-  if(last < chunk.length){ parts.push({ t: chunk.slice(last), l: null }); }
-  return parts.filter(function(p){ return /[\p{L}\p{N}]/u.test(p.t); });
-}
-
-function chunkText(text){
-  var parts = String(text || "").replace(/\s+/g, " ").trim().match(/[^.!?…]+[.!?…]*/g) || [];
-  var out = [], cur = "";
-  parts.forEach(function(s){
-    if((cur + s).length > 200 && cur){ out.push(cur.trim()); cur = s; } else { cur += s; }
-  });
-  if(cur.trim()){ out.push(cur.trim()); }
-  return out;
-}
-
-function setSpeaking(on){
-  isSpeaking = on; if(!on){ isPaused = false; }
-  if(avatarStageEl){ avatarStageEl.classList.toggle("speaking", on); }
-  if(avPlayEl){ avPlayEl.style.display = on ? "none" : ""; }
-  if(avatarVideoEl && AVATAR_TALK_ONLY){
-    if(on){ var pp = avatarVideoEl.play(); if(pp && pp.catch){ pp.catch(function(){}); } }
-    else{ avatarVideoEl.pause(); try{ avatarVideoEl.currentTime = 0.05; }catch(e){} }
-  }
-  if(vPause){ vPause.textContent = isPaused ? t("v_resume") : t("v_pause"); }
-  if(on){ vSay(t("v_speaking")); } else { vSay(""); }
-}
-
-function stopSpeaking(){
-  speakToken++;
-  if(introAudioEl){ try{ introAudioEl.pause(); }catch(e){} introAudioEl = null; }
-  if(synth){ try{ synth.cancel(); }catch(e){} }
-  setSpeaking(false);
-}
-
-function playIntroAudio(url){
-  stopSpeaking();
-  if(avatarMsgOn){ avatarMessageStop(); }
-  var a = new Audio(url); introAudioEl = a;
-  a.onplay = function(){ setSpeaking(true); };
-  a.onended = function(){ introAudioEl = null; setSpeaking(false); };
-  a.onerror = function(){ introAudioEl = null; setSpeaking(false); speak(t("av_intro")); };
-  var pr = a.play();
-  if(pr && pr.catch){ pr.catch(function(){ introAudioEl = null; setSpeaking(false); speak(t("av_intro")); }); }
-}
-
-function reciteIntroVoice(){
-  var f = AVATAR_INTRO_AUDIO && AVATAR_INTRO_AUDIO[lang];
-  if(!f || !window.fetch || location.protocol === "file:"){ speak(t("av_intro")); return; }
-  var url = "../../" + encodeURI(f) + "?v=20260920";
-  fetch(url, { method: "HEAD" }).then(function(r){
-    var ct = (r.headers.get("content-type") || "").toLowerCase();
-    if(r.ok && (ct.indexOf("audio") !== -1 || ct.indexOf("octet") !== -1)){ playIntroAudio(url); } else { speak(t("av_intro")); }
-  }).catch(function(){ speak(t("av_intro")); });
-}
-
-/* 1) if there is a video of the avatar saying the NEW intro (avatar-intro-xx.mp4) -> play it with its sound (lips in sync)
-   2) otherwise the intro is recited while the avatar moves */
-function reciteIntro(){
-  try{ sessionStorage.setItem("bssIntroDone", "1"); }catch(e){}
-  if(avatarMsgOn){ avatarMessageStop(); return; }
-  if(isSpeaking){ stopSpeaking(); return; }
-  if(avatarPending){ return; }
-  var fallback = function(){
-    if(AVATAR_USE_VIDEO_VOICE && avatarVideoEl){ avatarMessageStart(null); }
-    else if(AVATAR_COMPUTER_VOICE_FALLBACK){ reciteIntroVoice(); }
-    else{ vSay(t("av_novideo")); }
-  };
-  var f = AVATAR_INTRO_VIDEO && AVATAR_INTRO_VIDEO[lang];
-  if(!avatarVideoEl || !f || !window.fetch || location.protocol === "file:"){ fallback(); return; }
-  var url = "../../" + encodeURI(f) + "?v=20260920";
-  avatarPending = true;
-  fetch(url, { method: "HEAD" }).then(function(r){
-    var ct = (r.headers.get("content-type") || "").toLowerCase();
-    avatarPending = false;
-    if(r.ok && (ct.indexOf("video") !== -1 || ct.indexOf("octet") !== -1)){ avatarMessageStart(url); } else { fallback(); }
-  }).catch(function(){ avatarPending = false; fallback(); });
-}
-
-function speak(text){
-  if(!synth || typeof SpeechSynthesisUtterance === "undefined"){ vSay(t("v_nosupport_tts")); return; }
-  var chunks = chunkText(text);
-  if(!chunks.length){ vSay(t("v_empty")); return; }
-  if(avatarMsgOn){ avatarMessageStop(); }
-  stopSpeaking();
-  var items = [];
-  chunks.forEach(function(c){ segmentize(c).forEach(function(s){ items.push(s); }); });
-  var tok = speakToken, idx = 0;
-  setSpeaking(true);
-  function next(){
-    if(tok !== speakToken){ return; }
-    if(idx >= items.length){ setSpeaking(false); return; }
-    var it = items[idx++], L = it.l || lang, voice = pickVoice(it.l);
-    var u = new SpeechSynthesisUtterance(it.t);
-    u.lang = voice ? voice.lang : LANG_TAG[L];
-    if(voice){ u.voice = voice; }
-    u.rate = parseFloat(vRate && vRate.value) || 0.95;
-    u.pitch = parseFloat(vPitch && vPitch.value) || 0.75;
-    u.onend = function(){ next(); };
-    u.onerror = function(){ if(tok === speakToken){ setSpeaking(false); } };
-    synth.speak(u);
-  }
-  setTimeout(next, 60);
-}
-
-/* every bot message gets a small speaker button; optional automatic reading */
-var _addMsg = addMsg;
-addMsg = function(role, text, route, cls){
-  var m = _addMsg(role, text, route, cls);
-  if(role === "bot" && text && text !== t("thinking")){
-    lastBotText = text;
-    var b = document.createElement("button"); b.type = "button"; b.className = "spk"; b.textContent = "🔊"; b.setAttribute("aria-label", "Listen");
-    b.addEventListener("click", function(){ speak(text); });
-    m.appendChild(b);
-    log.scrollTop = log.scrollHeight;
-    if(autoRead && autoRead.checked){ speak(text); }
-  }
-  return m;
-};
-
-if(autoRead){
-  try{ autoRead.checked = localStorage.getItem("bss1815AutoRead") === "1"; }catch(e){ autoRead.checked = false; }
-  autoRead.addEventListener("change", function(){
-    try{ localStorage.setItem("bss1815AutoRead", autoRead.checked ? "1" : "0"); }catch(e){}
-    if(!autoRead.checked){ stopSpeaking(); }
-  });
-}
-if(avatarStageEl){
-  avatarStageEl.addEventListener("click", function(e){
-    if(e.target && e.target.closest && e.target.closest(".av-sound")){ return; }
-    reciteIntro();
+function renderHistory(items){
+  var box = $("timeline"); box.textContent = "";
+  items = (items || []).slice().sort(function(a, b){ return (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0) || (b.createdAt || 0) - (a.createdAt || 0); });
+  if(!items.length){ box.appendChild(el("div", "hint", t("h_none"))); return; }
+  items.forEach(function(x){
+    var d = el("div", "tl"); d.appendChild(el("small", "", (x.date || "") + " • " + t("i_" + x.type) + (x.by ? " • " + x.by : "")));
+    d.appendChild(document.createTextNode(x.text || "")); box.appendChild(d);
   });
 }
 
-if(AVATAR_INTRO_AUTO){
-  var introTouched = false;
-  var introHandler = function(e){
-    if(introTouched){ return; }
-    var el = e.target;
-    if(el && el.closest && el.closest("button, a, input, select, textarea, label, .lang-switch, .languages")){ return; }
-    introTouched = true;
-    if(el && el.closest && el.closest("#avatarStage")){
-      try{ sessionStorage.setItem("bssIntroDone", "1"); }catch(err){}
-      document.removeEventListener("pointerdown", introHandler, true);
-      return;
-    }
-    document.removeEventListener("pointerdown", introHandler, true);
-    var done = false; try{ done = sessionStorage.getItem("bssIntroDone") === "1"; }catch(err){}
-    if(done){ return; }
-    setTimeout(reciteIntro, 60);
-  };
-  document.addEventListener("pointerdown", introHandler, true);
+function addHistory(){
+  var text = clean($("iText").value);
+  if(!text){ $("histMsg").className = "msg bad"; $("histMsg").textContent = t("i_need"); return; }
+  var item = { type: $("iType").value, text: text, date: $("iDate").value || todayStr() };
+  $("histBtn").disabled = true;
+  Promise.resolve(store.addHistory(currentId, item)).then(function(){ $("iText").value = ""; $("histMsg").textContent = ""; })
+    .catch(function(){ $("histMsg").className = "msg bad"; $("histMsg").textContent = t("err_save"); })
+    .then(function(){ $("histBtn").disabled = false; });
 }
 
-if(synth){
-  loadVoices();
-  if("onvoiceschanged" in synth){ synth.onvoiceschanged = loadVoices; }
-}else{
-  if(autoRead && autoRead.parentNode){ autoRead.parentNode.style.display = "none"; }
-  [vListen, vPause, vStop].forEach(function(b){ if(b){ b.disabled = true; } });
+/* =====================================================================
+   CSV export / import
+===================================================================== */
+var CSV_COLS = ["fullName", "nickname", "phone", "whatsapp", "email", "city", "country", "types", "status", "tags", "joinedAt", "lastContactAt", "notes"];
+function csvCell(v){ v = String(v == null ? "" : v); if(/^[=+\-@]/.test(v) && !/^\+?[\d\s().-]+$/.test(v)){ v = "'" + v; } return /[",\n\r;]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function downloadFile(name, text){
+  var blob = new Blob(["\ufeff" + text], { type: "text/csv;charset=utf-8" });
+  var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
-
-if(vListen){ vListen.addEventListener("click", function(){ var txt = vText.value.trim() || lastBotText; if(!txt){ vSay(t("v_empty")); return; } speak(txt); }); }
-if(vStop){ vStop.addEventListener("click", stopSpeaking); }
-if(vPause){ vPause.addEventListener("click", function(){
-  if(!synth || !isSpeaking){ return; }
-  if(isPaused){ synth.resume(); isPaused = false; } else { synth.pause(); isPaused = true; }
-  vPause.textContent = isPaused ? t("v_resume") : t("v_pause");
-}); }
-if(vLast){ vLast.addEventListener("click", function(){ if(lastBotText){ vText.value = lastBotText; } else { vSay(t("v_empty")); } }); }
-var vPitch = document.getElementById("vPitch");
-try{
-  var sv = localStorage.getItem("bssVoiceName"), sp = localStorage.getItem("bssVoicePitch"), sr = localStorage.getItem("bssVoiceRate");
-  if(sp && vPitch){ vPitch.value = sp; } if(sr && vRate){ vRate.value = sr; }
-  if(sv && vVoice){ setTimeout(function(){ if([].some.call(vVoice.options, function(o){ return o.value === sv; })){ vVoice.value = sv; } }, 400); }
-}catch(e){}
-if(vVoice){ vVoice.addEventListener("change", function(){ try{ localStorage.setItem("bssVoiceName", vVoice.value); }catch(e){} }); }
-if(vPitch){ vPitch.addEventListener("change", function(){ try{ localStorage.setItem("bssVoicePitch", vPitch.value); }catch(e){} }); }
-if(vRate){ vRate.addEventListener("change", function(){ try{ localStorage.setItem("bssVoiceRate", vRate.value); }catch(e){} }); }
-
-/* speech recognition (speak instead of typing) */
-var rec = null, listening = false;
-function startListening(target){
-  if(!SR){ vSay(t("v_nosupport_stt")); return; }
-  stopSpeaking();
-  if(listening && rec){ try{ rec.stop(); }catch(e){} return; }
-  var btn = target === "chat" ? micBtn : vDictate, field = target === "chat" ? input : vText, finalText = "";
-  rec = new SR();
-  rec.lang = LANG_TAG[lang]; rec.interimResults = true; rec.continuous = false; rec.maxAlternatives = 1;
-  vSay(lang === "ht" ? t("v_ht_stt") : t("v_listening"));
-  rec.onresult = function(e){
-    var interim = "";
-    for(var i = e.resultIndex; i < e.results.length; i++){
-      var tr = e.results[i][0].transcript;
-      if(e.results[i].isFinal){ finalText += tr; } else { interim += tr; }
-    }
-    field.value = (finalText + " " + interim).trim();
-  };
-  rec.onerror = function(e){
-    if(e.error === "not-allowed" || e.error === "service-not-allowed"){ vSay(t("v_denied")); }
-    else if(e.error === "no-speech"){ vSay(t("v_nospeech")); }
-  };
-  rec.onend = function(){
-    listening = false; if(btn){ btn.classList.remove("listening"); }
-    if(target === "chat" && field.value.trim()){ vSay(""); ask(field.value); }
-    else if(field.value.trim()){ vSay(""); }
-  };
-  try{ rec.start(); listening = true; if(btn){ btn.classList.add("listening"); } }catch(err){ vSay(t("v_nosupport_stt")); }
-}
-if(micBtn){ micBtn.addEventListener("click", function(){ startListening("chat"); }); if(!SR){ micBtn.title = t("v_nosupport_stt"); } }
-if(vDictate){ vDictate.addEventListener("click", function(){ startListening("panel"); }); }
-
-langButtons.forEach(function(b){ b.addEventListener("click", function(){
-  if(micBtn){ micBtn.title = t("v_mic"); }
-  fillVoiceSelect(); setSpeaking(isSpeaking);
-}); });
-
-var w = addMsg("bot", "", null, "welcome");
-
-/* the big box is never empty: all BSS1815 modules as tiles under the intro */
-var BSS_MODULES = [
-  ["👥","CRM SYSTEM","../crm/index.html"],["📢","COMMUNICATION CENTER","../communication/index.html"],["🎨","FLYER STUDIO","../flyer-studio/index.html"],
-  ["📋","DIGITAL REGISTRY","../registry/index.html"],["📅","EVENT MANAGEMENT","../events/index.html"],["📄","DOCUMENT CENTER","../documents/index.html"],
-  ["📣","ANNOUNCEMENT CENTER","../announcements/index.html"],["🤝","DONATION CENTER","../donations/index.html"],["✅","ATTENDANCE","../attendance/index.html"],
-  ["🏆","CERTIFICATE CENTER","../certificates/index.html"],["🗳️","ELECTION MANAGER","../elections/index.html"],["🙋","VOLUNTEER CENTER","../volunteer/index.html"],
-  ["💰","FINANCE / TREASURY","../finance/index.html"],["🎥","MEDIA GALLERY","../media/index.html"],["🔔","NOTIFICATIONS","../notifications/index.html"],
-  ["📊","REPORTS & ANALYTICS","../reports/index.html"],["🎫","HELP DESK","../help-desk/index.html"],["📡","LIVE STREAMING","../live-streaming/index.html"],
-  ["🔐","ADMIN DASHBOARD","../../login.html"]
-];
-(function(){
-  var head = document.createElement("div"); head.className = "mod-h"; head.setAttribute("data-i18n", "mod_h"); head.textContent = t("mod_h");
-  var grid = document.createElement("div"); grid.className = "mod-grid"; grid.id = "modGrid";
-  BSS_MODULES.forEach(function(m){
-    var a = document.createElement("a"); a.className = "mod-tile"; a.href = m[2];
-    var i = document.createElement("span"); i.className = "mi"; i.textContent = m[0];
-    var s = document.createElement("span"); s.textContent = m[1];
-    a.appendChild(i); a.appendChild(s); grid.appendChild(a);
+function exportCsv(){
+  var rows = [CSV_COLS.join(",")];
+  filtered().forEach(function(m){
+    rows.push(CSV_COLS.map(function(c){ var v = m[c]; if(Array.isArray(v)){ v = v.join(c === "types" ? ";" : ";"); } return csvCell(v); }).join(","));
   });
-  log.appendChild(head); log.appendChild(grid);
-  keyed = document.querySelectorAll("[data-i18n]");
+  downloadFile("bss1815-crm-" + todayStr() + ".csv", rows.join("\r\n"));
+}
+function templateCsv(){ downloadFile("bss1815-crm-template.csv", CSV_COLS.join(",") + "\r\n" + 'Jean Baptiste,,+50900000000,+50900000000,jean@example.com,Port-au-Prince,Haiti,member;musician,active,bss1815;fanmi,2026-01-15,,"Example row — delete me"'); }
+
+function parseCsv(text){
+  text = text.replace(/^\ufeff/, "");
+  var first = text.split(/\r?\n/)[0] || "", delim = (first.split(";").length > first.split(",").length) ? ";" : ",";
+  var rows = [], row = [], cur = "", q = false, i, ch;
+  for(i = 0; i < text.length; i++){
+    ch = text[i];
+    if(q){ if(ch === '"'){ if(text[i + 1] === '"'){ cur += '"'; i++; } else { q = false; } } else { cur += ch; } }
+    else if(ch === '"'){ q = true; }
+    else if(ch === delim){ row.push(cur); cur = ""; }
+    else if(ch === "\n" || ch === "\r"){ if(ch === "\r" && text[i + 1] === "\n"){ i++; } row.push(cur); cur = ""; if(row.some(function(c){ return clean(c); })){ rows.push(row); } row = []; }
+    else{ cur += ch; }
+  }
+  row.push(cur); if(row.some(function(c){ return clean(c); })){ rows.push(row); }
+  return rows;
+}
+
+var HEADER_ALIASES = { fullname: "fullName", name: "fullName", "full name": "fullName", nom: "fullName", non: "fullName", nickname: "nickname", alias: "nickname", surnom: "nickname",
+  phone: "phone", telephone: "phone", "téléphone": "phone", telefon: "phone", "telefòn": "phone", whatsapp: "whatsapp", email: "email", "e-mail": "email", "imèl": "email", imel: "email",
+  city: "city", ville: "city", vil: "city", country: "country", pays: "country", peyi: "country", types: "types", type: "types", tip: "types", status: "status", statut: "status", eta: "status",
+  tags: "tags", joinedat: "joinedAt", joined: "joinedAt", lastcontactat: "lastContactAt", notes: "notes", note: "notes", "nòt": "notes" };
+
+function importCsv(file){
+  var reader = new FileReader();
+  reader.onload = function(){
+    var rows = parseCsv(String(reader.result || ""));
+    if(rows.length < 2){ toast(t("imp_bad"), true); return; }
+    var head = rows[0].map(function(h){ return HEADER_ALIASES[clean(h).toLowerCase()] || HEADER_ALIASES[clean(h).toLowerCase().replace(/[\s_]+/g, "")] || ""; });
+    var added = [], dupes = 0, invalid = 0, seenPhone = {}, seenMail = {};
+    rows.slice(1).forEach(function(r){
+      var o = {}; head.forEach(function(h, idx){ if(h){ o[h] = r[idx]; } });
+      var types = clean(o.types).toLowerCase().split(/[;|,]/).map(clean).filter(function(x){ return TYPES.indexOf(x) !== -1; });
+      var m = norm({ fullName: o.fullName, nickname: o.nickname, phone: o.phone, whatsapp: o.whatsapp, email: o.email, city: o.city, country: o.country,
+        types: types.length ? types : ["member"], status: clean(o.status).toLowerCase(), tags: clean(o.tags).split(/[;|,]/), joinedAt: clean(o.joinedAt) || todayStr(),
+        lastContactAt: clean(o.lastContactAt), notes: o.notes });
+      if(!m.fullName){ invalid++; return; }
+      var pd = digits(m.phone).slice(-8), em = m.email.toLowerCase();
+      var dup = findDuplicate(m) || (pd.length >= 7 && seenPhone[pd]) || (em && seenMail[em]);
+      if(dup){ dupes++; return; }
+      if(pd.length >= 7){ seenPhone[pd] = 1; } if(em){ seenMail[em] = 1; }
+      added.push(m);
+    });
+    if(!added.length){ toast(t("imp_done", { a: 0, d: dupes, i: invalid }), true); return; }
+    Promise.resolve(store.bulkAdd(added)).then(function(){ toast(t("imp_done", { a: added.length, d: dupes, i: invalid })); })
+      .catch(function(){ toast(t("err_save"), true); });
+  };
+  reader.readAsText(file);
+}
+
+/* =====================================================================
+   START: demo or Firebase (with login)
+===================================================================== */
+function startApp(){
+  $("authBox").classList.add("hidden"); $("app").classList.remove("hidden");
+  if(unsubList){ try{ unsubList(); }catch(e){} }
+  unsubList = store.subscribe(function(list){ people = list; refresh(); }, function(err){
+    if(err && (err.code === "permission-denied" || /permission/i.test(err.message || ""))){ showDenied(); }
+  });
+}
+
+function showAuth(msg, bad){
+  $("app").classList.add("hidden"); $("authBox").classList.remove("hidden"); $("userBar").classList.add("hidden");
+  $("authMsg").className = "msg " + (bad ? "bad" : ""); $("authMsg").textContent = msg || "";
+}
+function showDenied(){
+  if(unsubList){ try{ unsubList(); }catch(e){} unsubList = null; }
+  showAuth(t("denied"), true);
+}
+
+function boot(){
+  $("year").textContent = new Date().getFullYear();
+  var saved = "ht"; try{ saved = localStorage.getItem("bss1815Language") || "ht"; }catch(e){}
+  document.querySelectorAll(".lang-btn").forEach(function(b){ b.addEventListener("click", function(){ applyLanguage(b.getAttribute("data-lang")); }); });
+  applyLanguage(saved);
+
+  $("fSearch").addEventListener("input", function(){ shown = PAGE_SIZE; renderList(); });
+  ["fType", "fStatus", "fSort"].forEach(function(id){ $(id).addEventListener("change", function(){ shown = PAGE_SIZE; renderList(); }); });
+  $("moreBtn").addEventListener("click", function(){ shown += PAGE_SIZE; renderList(); });
+  $("addBtn").addEventListener("click", function(){ openForm(null); });
+  $("exportBtn").addEventListener("click", exportCsv);
+  $("templateBtn").addEventListener("click", templateCsv);
+  $("importBtn").addEventListener("click", function(){ $("importFile").click(); });
+  $("importFile").addEventListener("change", function(){ if(this.files && this.files[0]){ importCsv(this.files[0]); } this.value = ""; });
+  $("saveBtn").addEventListener("click", saveForm);
+  $("cancelBtn").addEventListener("click", function(){ closeOverlay("form"); });
+  $("deleteBtn").addEventListener("click", deleteCurrent);
+  $("closeDetail").addEventListener("click", closeDetail);
+  $("histBtn").addEventListener("click", addHistory);
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape"){ if($("form").classList.contains("open")){ closeOverlay("form"); } else if($("detail").classList.contains("open")){ closeDetail(); } } });
+  ["form", "detail"].forEach(function(id){ $(id).addEventListener("mousedown", function(e){ if(e.target === $(id)){ if(id === "detail"){ closeDetail(); } else { closeOverlay("form"); } } }); });
+
+  if(DEMO){
+    $("demoBanner").classList.remove("hidden");
+    startApp();
+    return;
+  }
+
+  showAuth(t("loading"));
+  FirebaseStore.init().then(function(){
+    FirebaseStore.onAuth(function(user){
+      if(!user){ showAuth(""); return; }
+      $("userBar").classList.remove("hidden"); $("userEmail").textContent = user.email || "";
+      FirebaseStore.probe().then(startApp).catch(function(err){
+        if(err && (err.code === "permission-denied" || /permission/i.test(err.message || ""))){ showDenied(); }
+        else{ startApp(); }
+      });
+    });
+  }).catch(function(){ showAuth(t("auth_err"), true); });
+
+  $("loginForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var em = clean($("aEmail").value), pw = $("aPass").value;
+    $("authMsg").className = "msg"; $("authMsg").textContent = t("loading"); $("signinBtn").disabled = true;
+    FirebaseStore.signIn(em, pw).then(function(){ $("authMsg").textContent = ""; })
+      .catch(function(err){
+        var bad = err && /invalid|wrong|user-not-found|credential/i.test((err.code || "") + " " + (err.message || ""));
+        $("authMsg").className = "msg bad"; $("authMsg").textContent = bad ? t("auth_bad") : t("auth_err");
+      }).then(function(){ $("signinBtn").disabled = false; });
+  });
+  $("forgotBtn").addEventListener("click", function(){
+    var em = clean($("aEmail").value);
+    if(!em){ $("authMsg").className = "msg bad"; $("authMsg").textContent = t("reset_need"); return; }
+    FirebaseStore.reset(em).then(function(){ $("authMsg").className = "msg ok"; $("authMsg").textContent = t("reset_sent"); })
+      .catch(function(){ $("authMsg").className = "msg bad"; $("authMsg").textContent = t("auth_err"); });
+  });
+  $("signOutBtn").addEventListener("click", function(){ FirebaseStore.signOut(); });
+}
+
+boot();
+
 })();
 
-
-var saved = "en"; try{ saved = localStorage.getItem("bss1815Language") || "en"; }catch(e){}
-try{ var qp = new URLSearchParams(location.search).get("lang"); if(qp === "es"){ qp = "en"; } if(qp) saved = qp; }catch(e){}
-setLanguage(saved);
-if(micBtn){ micBtn.title = t("v_mic"); }
-fillVoiceSelect();
-})();
 </script>
+
 </body>
 </html>
