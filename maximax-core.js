@@ -40,14 +40,10 @@ export const db = getFirestore(app);
 export const HOME_PAGE = "my-maximax.html";
 export const LOGIN_PAGE = "admin-login.html";
 
-// Super Admin ki konnen. Lòt admin yo ajoute nan Firestore: mx_admins/{uid}
-// ak yon chan role: "super" oswa "admin".
-const SUPER_ADMIN_EMAILS = [
-  "briyantsoleysigno1815@gmail.com",
-  "justinbazelais@gmail.com"
-];
+// Wòl yo soti nan sistèm ki la deja: Firestore roles/super_admins ak
+// roles/admins (chan "users" = lis UID). Pa gen lòt lis pou kenbe ajou.
 
-/* Lis kolekson MY MAXIMAX yo (menm lis ak firestore-maximax-additions.rules) */
+/* Lis kolekson MY MAXIMAX yo (menm lis ak firestore.rules) */
 export const COLLECTIONS = [
   {
     "id": "mx_members",
@@ -236,7 +232,7 @@ function fmtDate(ts) {
 
 function explain(err) {
   if (err && err.code === "permission-denied") {
-    return "Firestore refize aksè a. Ajoute règ MY MAXIMAX yo (firestore-maximax-additions.rules) epi konekte ak yon kont admin.";
+    return "Firestore refize aksè a. Verifye ke firestore.rules (ak règ MY MAXIMAX yo) piblye, epi ke ou konekte ak yon kont admin.";
   }
   return (err && err.message) || String(err);
 }
@@ -245,14 +241,18 @@ function explain(err) {
    LOGIN + WÒL
 --------------------------------------------------------------------- */
 async function getRole(user) {
-  const email = (user.email || "").toLowerCase();
-  if (SUPER_ADMIN_EMAILS.includes(email)) return "super";
-  try {
-    const snap = await getDoc(doc(db, "mx_admins", user.uid));
-    if (snap.exists()) return snap.data().role === "super" ? "super" : "admin";
-  } catch (e) {
-    console.warn("MY MAXIMAX: pa ka li mx_admins", e);
-  }
+  const inList = async (docId) => {
+    try {
+      const snap = await getDoc(doc(db, "roles", docId));
+      const users = snap.exists() ? snap.data().users : null;
+      return Array.isArray(users) && users.includes(user.uid);
+    } catch (e) {
+      console.warn("MY MAXIMAX: pa ka li roles/" + docId, e);
+      return false;
+    }
+  };
+  if (await inList("super_admins")) return "super";
+  if (await inList("admins")) return "admin";
   return null;
 }
 
@@ -331,7 +331,7 @@ export async function startModule(cfg) {
 
   const need = cfg.access || "admin";
   if (!role) {
-    body.innerHTML = `<div class="notice err"><strong>Aksè refize.</strong> Kont ${esc(user.email || "")} poko otorize nan MY MAXIMAX. Mande yon Super Admin ajoute w.</div>`;
+    body.innerHTML = `<div class="notice err"><strong>Aksè refize.</strong> Kont ${esc(user.email || "")} pa nan lis admin yo (roles/admins oswa roles/super_admins). Mande yon Super Admin ajoute w.</div>`;
     return;
   }
   if (need === "super" && role !== "super") {
@@ -693,9 +693,10 @@ function backupView(cfg, user) {
         return;
       }
       msg.textContent = "Ap restore…";
-      for (let i = 0; i < plan.length; i += 400) {
+      // Ti pakè 10: Firestore limite kantite verifikasyon règ pa pakè.
+      for (let i = 0; i < plan.length; i += 10) {
         const batch = writeBatch(db);
-        plan.slice(i, i + 400).forEach((p) => batch.set(doc(db, p.colId, p.id), p.data, { merge: true }));
+        plan.slice(i, i + 10).forEach((p) => batch.set(doc(db, p.colId, p.id), p.data, { merge: true }));
         await batch.commit();
       }
       msg.textContent = plan.length + " dokiman restore.";
