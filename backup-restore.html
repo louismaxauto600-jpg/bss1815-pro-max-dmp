@@ -1,0 +1,29 @@
+<!-- FILE: backup-restore.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backup & Restore | MY MAXIMAX</title>
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="maximax.css">
+</head>
+<body>
+
+<div id="app"><p class="boot">Ap chaje…</p></div>
+<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+
+<script type="module">
+import { startModule } from "./maximax-core.js";
+
+startModule({
+  "title": "Backup & Restore",
+  "icon": "💾",
+  "desc": "Sovgad ak restorasyon done sistèm lan.",
+  "access": "super",
+  "kind": "backup"
+});
+</script>
+
+</body>
+</html>
