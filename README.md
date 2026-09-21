@@ -2,7 +2,7 @@
 
 ## Digital Management Platform
 
-**BSS1815 PRO-MAX DMP** se platfòm santral ki rasanble kat gwo pwojè nan yon sèl ekosistèm dijital entèlijan, modèn, sekirize, epi fasil pou devlope.
+**BSS1815 PRO-MAX DMP** se platfòm santral ki rasanble senk gwo pwojè nan yon sèl ekosistèm dijital entèlijan, modèn, sekirize, epi fasil pou devlope.
 
 Platfòm nan pèmèt chak pwojè kenbe pwòp idantite li pandan yo pataje menm teknoloji, menm sistèm jesyon, menm sekirite, ak menm modil entèlijans atifisyèl yo.
 
