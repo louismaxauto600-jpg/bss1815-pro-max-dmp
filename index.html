@@ -1,3 +1,4 @@
+<!-- FICHYE: index.html — BSS1815 PRO-MAX DMP (paj akèy / homepage) -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -1415,6 +1416,35 @@ var videoDuration=8000;
 var step=100;
 var slidePath="./assets/slideshow/";
 
+/* KORIKSYON: si foto yo pa nan ./assets/slideshow/, slideshow a
+   eseye lòt dosye sa yo otomatikman (ansyen chemen yo), epi li
+   kenbe premye dosye ki mache a pou tout lòt foto yo. */
+var slidePaths=[
+  slidePath,
+  "./",
+  "./slideshow/",
+  "./assets/",
+  "./images/",
+  "./img/",
+  "./photos/",
+  "./assets/images/"
+];
+var workingPath=null;
+var pathTry=0;
+var failedInARow=0;
+
+function pathOrder(){
+  if(!workingPath){
+    return slidePaths;
+  }
+
+  return [workingPath].concat(
+    slidePaths.filter(function(path){
+      return path!==workingPath;
+    })
+  );
+}
+
 function isVideo(file){
   return /\.mp4$/i.test(file);
 }
@@ -1470,23 +1500,7 @@ function buildCaptionText(index){
 
 }
 
-function renderSlide(index){
-
-  currentSlide=index;
-  elapsed=0;
-
-  var file=media[currentSlide];
-  var source=slidePath+file;
-
-  counter.textContent=(currentSlide+1)+" / "+media.length;
-  slideTitle.textContent=prettyName(file);
-
-  if(slideMessage){
-    slideMessage.textContent=buildCaptionText(currentSlide);
-  }
-
-  progressBar.style.width="0%";
-
+function loadMedia(file,source){
   if(isVideo(file)){
     slideImage.classList.add("hidden");
     slideVideo.classList.remove("hidden");
@@ -1505,6 +1519,27 @@ function renderSlide(index){
     slideImage.src=source;
     slideImage.alt=prettyName(file);
   }
+}
+
+function renderSlide(index){
+
+  currentSlide=index;
+  elapsed=0;
+  pathTry=0;
+
+  var file=media[currentSlide];
+  var source=pathOrder()[0]+file;
+
+  counter.textContent=(currentSlide+1)+" / "+media.length;
+  slideTitle.textContent=prettyName(file);
+
+  if(slideMessage){
+    slideMessage.textContent=buildCaptionText(currentSlide);
+  }
+
+  progressBar.style.width="0%";
+
+  loadMedia(file,source);
 
   requestAnimationFrame(function(){
     slideImage.classList.remove("fade-out");
@@ -1551,12 +1586,53 @@ function previousSlide(){
   showSlide(currentSlide-1);
 }
 
+/* KORIKSYON: lè yon foto pa chaje, eseye pwochen dosye a anvan
+   w sote l. Sa anpeche slideshow a vire nwa san rete. */
+function mediaFailed(){
+  var file=media[currentSlide];
+  var paths=pathOrder();
+
+  pathTry++;
+
+  if(pathTry<paths.length){
+    loadMedia(file,paths[pathTry]+file);
+    return;
+  }
+
+  failedInARow++;
+
+  if(failedInARow>=media.length){
+    playing=false;
+    slidePlay.textContent="▶ PLAY";
+    slideTitle.textContent="FOTO YO PA JWENN";
+
+    if(slideMessage){
+      slideMessage.textContent=
+        "Pa gen okenn foto nan dosye sa yo sou sèvè a: "+
+        slidePaths.join("  ");
+    }
+
+    return;
+  }
+
+  renderSlide((currentSlide+1)%media.length);
+}
+
+function mediaLoaded(){
+  workingPath=pathOrder()[pathTry];
+  failedInARow=0;
+}
+
 document.getElementById("nextBtn").addEventListener("click",nextSlide);
 document.getElementById("prevBtn").addEventListener("click",previousSlide);
 
 slidePlay.addEventListener("click",function(){
   playing=!playing;
   slidePlay.textContent=playing ? "⏸ PAUSE" : "▶ PLAY";
+
+  if(playing){
+    failedInARow=0;
+  }
 
   if(isVideo(media[currentSlide])){
     if(playing){
@@ -1567,8 +1643,10 @@ slidePlay.addEventListener("click",function(){
   }
 });
 
-slideImage.addEventListener("error",nextSlide);
-slideVideo.addEventListener("error",nextSlide);
+slideImage.addEventListener("error",mediaFailed);
+slideVideo.addEventListener("error",mediaFailed);
+slideImage.addEventListener("load",mediaLoaded);
+slideVideo.addEventListener("loadeddata",mediaLoaded);
 slideVideo.addEventListener("ended",nextSlide);
 
 var touchStart=0;
