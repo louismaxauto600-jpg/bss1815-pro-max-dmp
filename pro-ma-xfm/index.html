@@ -1,0 +1,603 @@
+<!-- FILE: pro-max-fm/index.html -->
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>PRO-MAX FM | BSS1815 PRO-MAX DMP</title>
+
+<meta name="description" content="PRO-MAX FM — Radyo dijital ak medya BSS1815 PRO-MAX DMP: live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya.">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://bss1815pro-maxdmp.com/pro-max-fm/">
+
+<style>
+
+:root{
+--black:#000;
+--orange:#ff7900;
+--orange2:#ff8c1a;
+--orange3:#ffad4d;
+--text:#ffc589;
+--border:rgba(255,121,0,.28);
+--border2:rgba(255,121,0,.72);
+--glow:0 0 18px rgba(255,121,0,.35);
+--glow2:0 0 18px rgba(255,121,0,.68),0 0 48px rgba(255,121,0,.25);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+min-height:100vh;
+overflow-x:hidden;
+font-family:Arial,Helvetica,sans-serif;
+color:var(--text);
+background:
+radial-gradient(circle at 18% 15%,rgba(255,121,0,.16),transparent 33%),
+radial-gradient(circle at 82% 72%,rgba(255,121,0,.09),transparent 38%),
+linear-gradient(180deg,#000 0%,#0b0400 48%,#000 100%);
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+background-image:
+linear-gradient(rgba(255,121,0,.024) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,121,0,.024) 1px,transparent 1px);
+background-size:44px 44px;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+button{
+font:inherit;
+}
+
+.container{
+width:min(1000px,calc(100% - 28px));
+margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(0,0,0,.97);
+border-bottom:1px solid var(--border);
+backdrop-filter:blur(14px);
+box-shadow:0 8px 28px rgba(0,0,0,.55);
+}
+
+.header-inner{
+min-height:86px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:14px;
+flex-wrap:wrap;
+padding:12px 0;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.brand-icon{
+width:56px;
+height:56px;
+display:grid;
+place-items:center;
+flex-shrink:0;
+border:2px solid var(--orange);
+border-radius:17px;
+background:#000;
+box-shadow:var(--glow);
+font-size:1.7rem;
+}
+
+.brand-text strong{
+display:block;
+color:var(--orange);
+font-size:.95rem;
+font-weight:1000;
+}
+
+.brand-text span{
+display:block;
+margin-top:4px;
+color:var(--orange3);
+font-size:.55rem;
+font-weight:900;
+letter-spacing:.08em;
+text-transform:uppercase;
+}
+
+.back-home{
+padding:9px 14px;
+border:1px solid var(--orange);
+border-radius:999px;
+color:var(--orange);
+font-size:.62rem;
+font-weight:1000;
+text-transform:uppercase;
+}
+
+.back-home:hover{
+background:var(--orange);
+color:#000;
+}
+
+.lang-switch{
+display:flex;
+gap:3px;
+padding:3px;
+border:1px solid var(--border);
+border-radius:999px;
+background:#000;
+}
+
+.lang-btn{
+min-width:56px;
+padding:8px 8px;
+border:0;
+border-radius:999px;
+color:var(--orange3);
+background:#000;
+cursor:pointer;
+font-size:.61rem;
+font-weight:1000;
+}
+
+.lang-btn.active{
+color:#000;
+background:var(--orange);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+padding:60px 0 20px;
+text-align:center;
+}
+
+.eyebrow{
+color:var(--orange);
+font-size:.69rem;
+font-weight:1000;
+letter-spacing:.20em;
+text-transform:uppercase;
+}
+
+.hero-icon{
+margin:22px auto 0;
+width:110px;
+height:110px;
+display:grid;
+place-items:center;
+border:2px solid var(--orange);
+border-radius:28px;
+background:#000;
+box-shadow:var(--glow2);
+font-size:3rem;
+}
+
+.hero h1{
+margin-top:26px;
+color:var(--orange);
+font-size:clamp(2.2rem,7vw,4rem);
+line-height:.95;
+text-transform:uppercase;
+}
+
+.hero p{
+max-width:680px;
+margin:16px auto 0;
+line-height:1.75;
+font-size:.94rem;
+}
+
+/* ================= LIVE PLAYER ================= */
+
+.player-box{
+margin:42px auto 0;
+padding:32px 24px;
+max-width:680px;
+border:2px solid var(--orange);
+border-radius:24px;
+background:
+radial-gradient(circle at 80% 20%,rgba(255,121,0,.15),transparent 40%),
+linear-gradient(135deg,#000,#100500,#000);
+box-shadow:var(--glow);
+text-align:center;
+}
+
+.player-status{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:7px 14px;
+border-radius:999px;
+border:1px solid var(--border2);
+color:var(--orange3);
+font-size:.62rem;
+font-weight:1000;
+text-transform:uppercase;
+}
+
+.player-dot{
+width:8px;
+height:8px;
+border-radius:50%;
+background:#777;
+}
+
+.player-title{
+margin-top:18px;
+color:var(--orange);
+font-size:1.5rem;
+font-weight:1000;
+text-transform:uppercase;
+}
+
+.player-sub{
+margin-top:8px;
+font-size:.82rem;
+line-height:1.6;
+}
+
+.player-controls{
+margin-top:26px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:16px;
+}
+
+.play-btn{
+width:64px;
+height:64px;
+display:grid;
+place-items:center;
+border:2px solid var(--orange);
+border-radius:50%;
+color:#000;
+background:var(--orange);
+cursor:not-allowed;
+opacity:.45;
+font-size:1.6rem;
+}
+
+.volume-bar{
+width:120px;
+height:6px;
+border-radius:999px;
+background:rgba(255,121,0,.14);
+overflow:hidden;
+}
+
+.volume-fill{
+width:70%;
+height:100%;
+background:linear-gradient(90deg,#9d3c00,var(--orange));
+}
+
+/* ================= CONTACT ================= */
+
+.section{
+padding:60px 0 90px;
+}
+
+.section-heading{
+max-width:640px;
+margin:0 auto 32px;
+text-align:center;
+}
+
+.section-title{
+margin-top:11px;
+color:var(--orange);
+font-size:clamp(1.8rem,5vw,2.8rem);
+line-height:.95;
+text-transform:uppercase;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.contact-card{
+min-height:130px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+text-align:center;
+border:1px solid var(--border);
+border-radius:16px;
+background:#050200;
+}
+
+.contact-card strong{
+color:var(--orange);
+font-size:.66rem;
+text-transform:uppercase;
+}
+
+.contact-card a{
+margin-top:8px;
+line-height:1.5;
+font-size:.76rem;
+overflow-wrap:anywhere;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+padding:36px 0;
+text-align:center;
+border-top:1px solid var(--border);
+background:#000;
+}
+
+.footer-title{
+color:var(--orange);
+font-weight:1000;
+font-size:.8rem;
+}
+
+.footer-info{
+margin-top:9px;
+line-height:1.75;
+font-size:.68rem;
+}
+
+@media(max-width:640px){
+
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+.header-inner{
+justify-content:center;
+text-align:center;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header-inner">
+
+<a href="../index.html" class="brand">
+<div class="brand-icon">📻</div>
+<div class="brand-text">
+<strong>PRO-MAX FM</strong>
+<span
+data-ht="BSS1815 PRO-MAX DMP"
+data-fr="BSS1815 PRO-MAX DMP"
+data-en="BSS1815 PRO-MAX DMP"
+data-es="BSS1815 PRO-MAX DMP">
+BSS1815 PRO-MAX DMP
+</span>
+</div>
+</a>
+
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+
+<a href="../index.html#promaxfm" class="back-home"
+data-ht="← RETOU AKÈY"
+data-fr="← RETOUR ACCUEIL"
+data-en="← BACK HOME"
+data-es="← VOLVER AL INICIO">
+← RETOU AKÈY
+</a>
+
+<div class="lang-switch">
+<button type="button" class="lang-btn" data-lang="en">🇺🇸 ENG</button>
+<button type="button" class="lang-btn" data-lang="fr">🇫🇷 FRA</button>
+<button type="button" class="lang-btn active" data-lang="ht">🇭🇹 KRE</button>
+<button type="button" class="lang-btn" data-lang="es">🇪🇸 ESP</button>
+</div>
+
+</div>
+
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="container">
+
+<div class="eyebrow">BSS1815 PRO-MAX DMP</div>
+
+<div class="hero-icon">📻</div>
+
+<h1>PRO-MAX FM</h1>
+
+<p
+data-ht="Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya."
+data-fr="La branche radio et média numérique de BSS1815 PRO-MAX DMP pour la radio en direct, les actualités, les podcasts, les interviews, la musique et la production média."
+data-en="The BSS1815 PRO-MAX DMP digital radio and media branch for live radio, news, podcasts, interviews, music and media production."
+data-es="La rama de radio y medios digitales de BSS1815 PRO-MAX DMP para radio en vivo, noticias, podcasts, entrevistas, música y producción de medios.">
+Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya.
+</p>
+
+<div class="player-box">
+
+<div class="player-status">
+<span class="player-dot"></span>
+<span
+data-ht="LIVE STREAM K ap VINI"
+data-fr="LIVE STREAM À VENIR"
+data-en="LIVE STREAM COMING SOON"
+data-es="TRANSMISIÓN EN VIVO PRÓXIMAMENTE">
+LIVE STREAM K ap VINI
+</span>
+</div>
+
+<div class="player-title">PRO-MAX FM</div>
+
+<p class="player-sub"
+data-ht="Player live la ap aktive touswit apre nou konekte flux radyo a (Radio.co, Zeno.fm oswa Shoutcast)."
+data-fr="Le lecteur en direct sera activé dès que le flux radio sera connecté (Radio.co, Zeno.fm ou Shoutcast)."
+data-en="The live player will be activated as soon as the radio stream is connected (Radio.co, Zeno.fm or Shoutcast)."
+data-es="El reproductor en vivo se activará en cuanto se conecte el flujo de radio (Radio.co, Zeno.fm o Shoutcast).">
+Player live la ap aktive touswit apre nou konekte flux radyo a.
+</p>
+
+<div class="player-controls">
+<div class="play-btn">▶</div>
+<div class="volume-bar"><div class="volume-fill"></div></div>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="container">
+
+<div class="section-heading">
+<div class="eyebrow">PRO-MAX FM</div>
+<h2 class="section-title"
+data-ht="KONTAK"
+data-fr="CONTACT"
+data-en="CONTACT"
+data-es="CONTACTO">
+KONTAK
+</h2>
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<strong>✉️ EMAIL</strong>
+<a href="mailto:bss1815promaxdmp@gmail.com">bss1815promaxdmp@gmail.com</a>
+</div>
+
+<div class="contact-card">
+<strong>🌐 WEBSITE</strong>
+<a href="https://bss1815pro-maxdmp.com" target="_blank" rel="noopener noreferrer">bss1815pro-maxdmp.com</a>
+</div>
+
+<div class="contact-card">
+<strong>🇭🇹 HAITI</strong>
+<a href="tel:+50943437488">+509 43 43 7488</a>
+<a href="tel:+50942544447">+509 42 54 4447</a>
+</div>
+
+<div class="contact-card">
+<strong>🇺🇸 UNITED STATES</strong>
+<a href="tel:+13175381150">(317) 538-1150</a>
+<a href="tel:+14076405166">(407) 640-5166</a>
+<a href="tel:+15162168494">(516) 216-8494</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-title">PRO-MAX FM • BSS1815 PRO-MAX DMP</div>
+<div class="footer-info">
+DEVAN DEVAN NÈT™<br>
+© <span id="currentYear"></span> BSS1815 PRO-MAX DMP
+</div>
+</div>
+</footer>
+
+<script>
+
+(function(){
+
+"use strict";
+
+var languageButtons=document.querySelectorAll(".lang-btn");
+
+function setLanguage(language){
+
+document.documentElement.lang=language==="ht" ? "ht" : language;
+
+document.querySelectorAll("[data-"+language+"]").forEach(function(element){
+var translated=element.getAttribute("data-"+language);
+if(translated){
+element.textContent=translated;
+}
+});
+
+languageButtons.forEach(function(button){
+button.classList.toggle("active",button.dataset.lang===language);
+});
+
+try{
+localStorage.setItem("bss1815-language",language);
+}catch(error){}
+
+}
+
+languageButtons.forEach(function(button){
+button.addEventListener("click",function(){
+setLanguage(this.dataset.lang);
+});
+});
+
+var savedLanguage="ht";
+
+try{
+savedLanguage=localStorage.getItem("bss1815-language") || "ht";
+}catch(error){}
+
+if(
+savedLanguage!=="ht" &&
+savedLanguage!=="fr" &&
+savedLanguage!=="en" &&
+savedLanguage!=="es"
+){
+savedLanguage="ht";
+}
+
+setLanguage(savedLanguage);
+
+var year=document.getElementById("currentYear");
+if(year){
+year.textContent=new Date().getFullYear();
+}
+
+})();
+
+</script>
+
+</body>
+</html>
