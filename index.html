@@ -584,6 +584,12 @@ width:100%;
 height:100%;
 object-fit:contain;
 background:#000;
+opacity:0;
+transition:opacity .9s ease;
+}
+
+.tw-visible{
+opacity:1;
 }
 
 .tw-hide{
@@ -666,6 +672,13 @@ left:16px;
 
 .tw-next{
 right:16px;
+}
+
+.tw-sound{
+position:absolute;
+right:14px;
+top:14px;
+z-index:16;
 }
 
 .tw-msg{
@@ -1607,7 +1620,7 @@ BSS1815 COMMUNITY • TEMWAYAJ
 
 <img id="twImg" class="tw-img" alt="">
 
-<video id="twVideo" class="tw-video tw-hide" muted playsinline preload="metadata"></video>
+<video id="twVideo" class="tw-video" muted playsinline preload="metadata"></video>
 
 <div class="tw-fade"></div>
 
@@ -1620,6 +1633,8 @@ BSS1815 COMMUNITY • TEMWAYAJ
 
 <button type="button" class="tw-arrow tw-prev" id="twPrev" aria-label="Previous">‹</button>
 <button type="button" class="tw-arrow tw-next" id="twNext" aria-label="Next">›</button>
+
+<button type="button" class="sound-btn tw-sound" id="twSound">🔇 SON</button>
 
 </div>
 
@@ -2360,7 +2375,7 @@ savedLanguage==="fr"
 ===================================================== */
 
 var TW_PATH="./";
-var TW_MS=6000;
+var TW_MS=10000;
 var TW_STEP=100;
 var TW_LOAD_LIMIT=8000;
 
@@ -2507,6 +2522,8 @@ var twPlaying=true;
 var twElapsed=0;
 var twWaited=0;
 var twWaiting=true;
+var twFadeTimer=null;
+var twSoundOn=false;
 
 var twImg=document.getElementById("twImg");
 var twVideo=document.getElementById("twVideo");
@@ -2590,22 +2607,44 @@ twCount.textContent=(index+1)+" / "+twActive.length;
 twProg.style.width="0%";
 twMsg.classList.add("tw-hide");
 
+twImg.classList.remove("tw-visible");
+twVideo.classList.remove("tw-visible");
+
+if(twFadeTimer){
+clearTimeout(twFadeTimer);
+}
+
+twFadeTimer=setTimeout(function(){
+
 if(twIsVideo(file)){
 
 twImg.classList.add("tw-hide");
 twVideo.classList.remove("tw-hide");
-twVideo.muted=false;
+twVideo.muted=!twSoundOn;
 twVideo.volume=1;
 twVideo.src=src;
 
 if(twPlaying){
 
-twVideo.play().catch(function(){
+twVideo.play().then(function(){
+
+twVideo.classList.add("tw-visible");
+
+}).catch(function(){
 
 twVideo.muted=true;
-twVideo.play().catch(function(){});
+
+twVideo.play().then(function(){
+
+twVideo.classList.add("tw-visible");
+
+}).catch(function(){});
 
 });
+
+}else{
+
+twVideo.classList.add("tw-visible");
 
 }
 
@@ -2622,7 +2661,11 @@ if(twImg.complete && twImg.naturalWidth>0){
 twWaiting=false;
 }
 
+twImg.classList.add("tw-visible");
+
 }
+
+},twActive.length>1 ? 350 : 0);
 
 twPreload(index+1);
 
@@ -2699,6 +2742,26 @@ twNext();
 
 document.getElementById("twNext").addEventListener("click",twNext);
 document.getElementById("twPrev").addEventListener("click",twPrevious);
+
+var twSoundButton=document.getElementById("twSound");
+
+twSoundButton.addEventListener("click",function(){
+
+twSoundOn=!twSoundOn;
+
+this.textContent=twSoundOn ? "🔊 SON" : "🔇 SON";
+
+if(!twVideo.classList.contains("tw-hide")){
+
+twVideo.muted=!twSoundOn;
+
+if(twSoundOn){
+twVideo.play().catch(function(){});
+}
+
+}
+
+});
 
 var twPlayButton=document.getElementById("twPlay");
 
