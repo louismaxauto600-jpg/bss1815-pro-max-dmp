@@ -1,32 +1,21 @@
-<!-- FILE: index.html -->
+<!-- FILE: maximax/index.html -->
 <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>BSS1815 PRO-MAX DMP | Digital Management Platform</title>
+<title>Maximax Multi Services | BSS1815 PRO-MAX DMP</title>
 
-<meta name="description" content="BSS1815 PRO-MAX DMP — Yon sèl platfòm dijital pou kominote, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, AI, medya, administrasyon ak inovasyon.">
-
+<meta name="description" content="Maximax Multi Services — Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman ak asistans administratif, pati BSS1815 PRO-MAX DMP.">
 <meta name="theme-color" content="#000000">
-<meta name="author" content="BSS1815 PRO-MAX DMP">
 <meta name="robots" content="index,follow">
-
-<link rel="canonical" href="https://bss1815pro-maxdmp.com/">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="BSS1815 PRO-MAX DMP">
-<meta property="og:description" content="DEVAN DEVAN NÈT™ — BATI POU JODI A. PARE POU DEMEN.">
-<meta property="og:url" content="https://bss1815pro-maxdmp.com/">
-<meta property="og:image" content="assets/bss1815-pro-max-dmp.jpeg">
+<link rel="canonical" href="https://bss1815pro-maxdmp.com/maximax/">
 
 <style>
 
 :root{
 --black:#000;
---black2:#070200;
---black3:#100500;
 --orange:#ff7900;
 --orange2:#ff8c1a;
 --orange3:#ffad4d;
@@ -79,33 +68,9 @@ button{
 font:inherit;
 }
 
-img,
-video{
-display:block;
-max-width:100%;
-}
-
 .container{
-width:min(1220px,calc(100% - 28px));
+width:min(1100px,calc(100% - 28px));
 margin:auto;
-}
-
-.top-bar{
-padding:9px 15px;
-text-align:center;
-color:#000;
-background:linear-gradient(
-90deg,
-#913700,
-var(--orange),
-var(--orange3),
-var(--orange),
-#913700
-);
-font-size:.68rem;
-font-weight:1000;
-letter-spacing:.08em;
-text-transform:uppercase;
 }
 
 /* ================= HEADER ================= */
@@ -125,7 +90,9 @@ min-height:86px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:18px;
+gap:14px;
+flex-wrap:wrap;
+padding:12px 0;
 }
 
 .brand{
@@ -134,66 +101,49 @@ align-items:center;
 gap:12px;
 }
 
-.brand-video-wrap{
-width:66px;
-height:66px;
-overflow:hidden;
+.brand-icon{
+width:56px;
+height:56px;
+display:grid;
+place-items:center;
 flex-shrink:0;
 border:2px solid var(--orange);
 border-radius:17px;
 background:#000;
 box-shadow:var(--glow);
-}
-
-.brand-video{
-width:100%;
-height:100%;
-object-fit:cover;
+font-size:1.7rem;
 }
 
 .brand-text strong{
 display:block;
 color:var(--orange);
-font-size:1rem;
+font-size:.95rem;
 font-weight:1000;
 }
 
 .brand-text span{
 display:block;
-margin-top:5px;
+margin-top:4px;
 color:var(--orange3);
-font-size:.52rem;
+font-size:.55rem;
 font-weight:900;
 letter-spacing:.08em;
 text-transform:uppercase;
 }
 
-.header-right{
-display:flex;
-align-items:center;
-gap:9px;
-}
-
-.nav{
-display:flex;
-align-items:center;
-gap:3px;
-}
-
-.nav a{
-padding:9px 11px;
+.back-home{
+padding:9px 14px;
+border:1px solid var(--orange);
 border-radius:999px;
-color:var(--orange3);
-font-size:.61rem;
+color:var(--orange);
+font-size:.62rem;
 font-weight:1000;
 text-transform:uppercase;
-transition:.2s;
 }
 
-.nav a:hover,
-.nav-manifestes{
+.back-home:hover{
 background:var(--orange);
-color:#000!important;
+color:#000;
 }
 
 .lang-switch{
@@ -222,29 +172,13 @@ color:#000;
 background:var(--orange);
 }
 
-.menu-toggle{
-display:none;
-width:44px;
-height:42px;
-border:1px solid var(--orange);
-border-radius:11px;
-color:var(--orange);
-background:#000;
-cursor:pointer;
-font-size:1.2rem;
-}
-
 /* ================= HERO ================= */
 
 .hero{
-min-height:calc(100vh - 115px);
-display:flex;
-align-items:center;
-padding:52px 0 76px;
+padding:60px 0 20px;
 text-align:center;
 }
 
-.platform-label,
 .eyebrow{
 color:var(--orange);
 font-size:.69rem;
@@ -253,955 +187,214 @@ letter-spacing:.20em;
 text-transform:uppercase;
 }
 
-.hero-video-frame{
-position:relative;
-width:min(95vw,690px);
-margin:30px auto 0;
-overflow:hidden;
+.hero-icon{
+margin:22px auto 0;
+width:110px;
+height:110px;
+display:grid;
+place-items:center;
 border:2px solid var(--orange);
 border-radius:28px;
 background:#000;
 box-shadow:var(--glow2);
-}
-
-.hero-logo-video{
-width:100%;
-object-fit:contain;
-background:#000;
-}
-
-.hero-video-frame::after{
-content:"";
-position:absolute;
-inset:0;
-pointer-events:none;
-border-radius:26px;
-box-shadow:inset 0 0 50px rgba(255,121,0,.12);
-}
-
-.sound-btn{
-position:absolute;
-right:14px;
-bottom:14px;
-z-index:10;
-padding:10px 14px;
-border:1px solid var(--orange);
-border-radius:999px;
-color:var(--orange);
-background:rgba(0,0,0,.90);
-cursor:pointer;
-font-size:.60rem;
-font-weight:1000;
-text-transform:uppercase;
-}
-
-.sound-btn:hover{
-background:var(--orange);
-color:#000;
+font-size:3rem;
 }
 
 .hero h1{
-margin-top:28px;
+margin-top:26px;
 color:var(--orange);
-font-size:clamp(2.6rem,8vw,6.2rem);
-line-height:.88;
+font-size:clamp(1.9rem,7vw,3.4rem);
+line-height:1;
 text-transform:uppercase;
 }
 
-.hero h2{
-margin-top:17px;
-color:var(--orange3);
-font-size:clamp(1rem,3vw,1.45rem);
-text-transform:uppercase;
-}
-
-.hero-description{
-max-width:850px;
-margin:19px auto 0;
+.hero p{
+max-width:680px;
+margin:16px auto 0;
 line-height:1.75;
-font-size:.96rem;
+font-size:.94rem;
 }
 
-.hero-actions{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:12px;
-margin-top:29px;
-}
-
-.btn{
-min-height:52px;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:12px 22px;
-border:2px solid var(--orange);
-border-radius:999px;
-font-size:.68rem;
-font-weight:1000;
-text-transform:uppercase;
-transition:.25s;
-}
-
-.btn:hover{
-transform:translateY(-3px);
-box-shadow:var(--glow2);
-}
-
-.btn-primary{
-color:#000;
-background:var(--orange);
-}
-
-.btn-outline{
-color:var(--orange);
-background:#000;
-}
-
-.btn-manifestes{
-color:#000;
-background:linear-gradient(
-90deg,
-var(--orange),
-var(--orange3),
-var(--orange)
-);
-box-shadow:var(--glow);
-}
-
-/* ================= STATS ================= */
-
-.stats-grid{
-margin-top:48px;
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:14px;
-}
-
-.stat-card{
-min-height:125px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-padding:17px;
-border:1px solid var(--border);
-border-radius:17px;
-background:
-radial-gradient(circle at top,rgba(255,121,0,.10),transparent 50%),
-#050200;
-}
-
-.stat-card strong{
-color:var(--orange);
-font-size:1.55rem;
-}
-
-.stat-card span{
-margin-top:6px;
-font-size:.63rem;
-font-weight:900;
-text-transform:uppercase;
-}
-
-/* ================= SECTIONS ================= */
+/* ================= SERVICES ================= */
 
 .section{
-padding:88px 0;
+padding:56px 0;
 border-top:1px solid rgba(255,121,0,.10);
 }
 
 .section-heading{
-max-width:790px;
-margin:0 auto 42px;
+max-width:640px;
+margin:0 auto 32px;
 text-align:center;
 }
 
 .section-title{
 margin-top:11px;
 color:var(--orange);
-font-size:clamp(2rem,6vw,4.2rem);
-line-height:.93;
+font-size:clamp(1.7rem,5vw,2.6rem);
+line-height:.95;
 text-transform:uppercase;
 }
 
-.section-desc{
-margin-top:17px;
-line-height:1.75;
-}
-
-.ecosystem-grid,
-.modules-grid{
+.services-grid{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:17px;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
 }
 
-.ecosystem-card,
-.module-card{
-display:flex;
-flex-direction:column;
+.service-card{
+padding:22px;
 border:1px solid var(--border);
+border-radius:18px;
 background:
 radial-gradient(circle at top right,rgba(255,121,0,.12),transparent 36%),
 linear-gradient(145deg,#000,#0b0400);
 transition:.3s;
 }
 
-.ecosystem-card{
-min-height:285px;
-padding:25px;
-border-radius:20px;
-}
-
-.module-card{
-min-height:215px;
-padding:21px;
-border-radius:17px;
-}
-
-.ecosystem-card:hover,
-.module-card:hover{
-transform:translateY(-5px);
+.service-card:hover{
+transform:translateY(-4px);
 border-color:var(--orange);
 box-shadow:var(--glow);
 }
 
-.eco-icon{
-font-size:2rem;
+.service-icon{
+font-size:1.7rem;
 }
 
-.module-icon{
-font-size:1.8rem;
-}
-
-.ecosystem-card h3,
-.module-card h3{
-margin-top:18px;
-color:var(--orange);
-font-size:1rem;
-text-transform:uppercase;
-}
-
-.module-card h3{
+.service-card h3{
 margin-top:14px;
-font-size:.90rem;
+color:var(--orange);
+font-size:.92rem;
+text-transform:uppercase;
 }
 
-.ecosystem-card p{
-margin-top:11px;
-line-height:1.62;
-font-size:.82rem;
-}
-
-.module-card p{
-margin-top:9px;
+.service-card p{
+margin-top:8px;
 line-height:1.55;
-font-size:.75rem;
+font-size:.78rem;
 }
 
-.card-link,
-.module-open{
-margin-top:auto;
-padding-top:20px;
-color:var(--orange);
-font-size:.67rem;
-font-weight:1000;
-text-transform:uppercase;
-}
+/* ================= NOTICE ================= */
 
-.module-open{
-padding-top:17px;
-font-size:.62rem;
-}
-
-/* MY MAXIMAX — BSS1815 INTERNAL CONTROL CENTER */
-
-.my-maximax-card{
-border:2px solid var(--orange);
-background:
-radial-gradient(circle at top right,rgba(255,173,77,.22),transparent 38%),
-linear-gradient(145deg,#000,#170700,#000);
-box-shadow:var(--glow);
-}
-
-.my-maximax-card:hover{
-box-shadow:var(--glow2);
-}
-
-/* ================= PROJECT BOX ================= */
-
-.project-box{
-margin-top:25px;
-padding:38px 28px;
+.notice-box{
+margin-top:32px;
+padding:22px 24px;
 border:1px solid var(--border2);
-border-radius:25px;
-background:
-radial-gradient(circle at 80% 25%,rgba(255,121,0,.17),transparent 34%),
-linear-gradient(135deg,#000,#100500,#000);
-box-shadow:var(--glow);
-}
-
-.project-box h2{
-color:var(--orange);
-font-size:clamp(2rem,6vw,4rem);
-line-height:.94;
-text-transform:uppercase;
-}
-
-.project-box p{
-max-width:780px;
-margin:16px auto 0;
-line-height:1.7;
+border-radius:18px;
+background:#050200;
 text-align:center;
 }
 
-/* ================= SLIDESHOW TEMWAYAJ ================= */
-
-.tw{
-width:min(1100px,100%);
-margin:30px auto 0;
+.notice-box p{
+line-height:1.7;
+font-size:.8rem;
 }
 
-.tw-stage{
-position:relative;
-width:100%;
-height:clamp(430px,62vw,680px);
-overflow:hidden;
+/* ================= AI CENTER LINK ================= */
+
+.ai-box{
+margin-top:20px;
+padding:26px 22px;
 border:2px solid var(--orange);
-border-radius:28px;
-background:#000;
-box-shadow:var(--glow2);
-touch-action:pan-y;
+border-radius:20px;
+background:
+radial-gradient(circle at top right,rgba(255,173,77,.18),transparent 38%),
+linear-gradient(145deg,#000,#170700,#000);
+box-shadow:var(--glow);
+text-align:center;
 }
 
-.tw-img,
-.tw-video{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:contain;
-background:#000;
-opacity:0;
-transition:opacity .9s ease;
+.ai-box h3{
+color:var(--orange);
+font-size:1.1rem;
+text-transform:uppercase;
 }
 
-.tw-visible{
-opacity:1;
+.ai-box p{
+margin-top:10px;
+line-height:1.6;
+font-size:.8rem;
 }
 
-.tw-hide{
-display:none!important;
-}
-
-.tw-badge{
-position:absolute;
-top:18px;
-left:18px;
-z-index:15;
-padding:9px 14px;
+.ai-box a.btn{
+display:inline-flex;
+margin-top:16px;
+padding:11px 20px;
+border:2px solid var(--orange);
 border-radius:999px;
 color:#000;
 background:var(--orange);
-font-size:.60rem;
+font-size:.66rem;
 font-weight:1000;
-}
-
-.tw-fade{
-position:absolute;
-inset:0;
-z-index:8;
-pointer-events:none;
-background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.92) 100%);
-}
-
-.tw-cap{
-position:absolute;
-left:0;
-right:0;
-bottom:0;
-z-index:12;
-padding:60px 70px 26px;
-text-align:left;
-}
-
-.tw-cap h3{
-color:var(--orange);
-font-size:clamp(1.5rem,5vw,3rem);
-line-height:1;
 text-transform:uppercase;
-text-shadow:0 3px 16px #000;
 }
 
-.tw-cap p{
-max-width:760px;
-margin-top:10px;
-line-height:1.55;
-font-size:.86rem;
-color:var(--orange3);
-text-shadow:0 3px 12px #000;
-}
+/* ================= CONTACT ================= */
 
-.tw-arrow{
-position:absolute;
-top:50%;
-z-index:16;
-width:52px;
-height:52px;
-transform:translateY(-50%);
+.contact-grid{
 display:grid;
-place-items:center;
-border:1px solid var(--orange);
-border-radius:50%;
-color:var(--orange);
-background:rgba(0,0,0,.84);
-cursor:pointer;
-font-size:2rem;
-}
-
-.tw-arrow:hover{
-color:#000;
-background:var(--orange);
-}
-
-.tw-prev{
-left:16px;
-}
-
-.tw-next{
-right:16px;
-}
-
-.tw-sound{
-position:absolute;
-right:14px;
-top:14px;
-bottom:auto;
-z-index:16;
-}
-
-.tw-msg{
-position:absolute;
-inset:0;
-z-index:14;
-display:grid;
-place-items:center;
-padding:30px;
-text-align:center;
-color:var(--orange3);
-line-height:1.6;
-}
-
-.tw-bar{
-display:grid;
-grid-template-columns:auto auto 1fr;
-align-items:center;
+grid-template-columns:repeat(2,1fr);
 gap:14px;
-margin-top:14px;
-padding:13px 16px;
+}
+
+.contact-card{
+min-height:130px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+text-align:center;
 border:1px solid var(--border);
 border-radius:16px;
 background:#050200;
 }
 
-.tw-count{
-min-width:90px;
-color:var(--orange);
-text-align:center;
-font-size:.72rem;
-font-weight:1000;
-}
-
-.tw-play{
-padding:8px 14px;
-border:1px solid var(--orange);
-border-radius:999px;
-color:var(--orange);
-background:#000;
-cursor:pointer;
-font-size:.60rem;
-font-weight:1000;
-}
-
-.tw-play:hover{
-color:#000;
-background:var(--orange);
-}
-
-.tw-track{
-height:7px;
-overflow:hidden;
-border-radius:999px;
-background:rgba(255,121,0,.14);
-}
-
-.tw-prog{
-width:0;
-height:100%;
-background:linear-gradient(90deg,#9d3c00,var(--orange),var(--orange3));
-}
-
-@media(max-width:780px){
-
-.tw-stage{
-height:520px;
-}
-
-.tw-cap{
-padding:60px 22px 22px;
-}
-
-}
-
-@media(max-width:570px){
-
-.tw-stage{
-height:450px;
-}
-
-}
-
-/* ================= CONTACT ================= */
-
-.contact-grid,
-.social-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:17px;
-}
-
-.contact-card{
-min-height:155px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:22px;
-text-align:center;
-border:1px solid var(--border);
-border-radius:18px;
-background:#050200;
-}
-
 .contact-card strong{
 color:var(--orange);
-font-size:.68rem;
+font-size:.66rem;
 text-transform:uppercase;
 }
 
 .contact-card a{
-margin-top:9px;
+margin-top:8px;
 line-height:1.5;
-font-size:.78rem;
+font-size:.76rem;
 overflow-wrap:anywhere;
-}
-
-.social-grid{
-gap:13px;
-margin-top:28px;
-}
-
-.social-title{
-margin-top:46px;
-text-align:center;
-}
-
-.social-link{
-min-height:78px;
-display:flex;
-align-items:center;
-gap:13px;
-padding:14px 16px;
-border:1px solid var(--border);
-border-radius:15px;
-background:#030100;
-transition:.25s;
-}
-
-.social-link:hover{
-transform:translateY(-3px);
-border-color:var(--orange);
-box-shadow:var(--glow);
-}
-
-.social-link.social-disabled{
-opacity:.55;
-cursor:default;
-}
-
-.social-link.social-disabled:hover{
-transform:none;
-border-color:var(--border);
-box-shadow:none;
-}
-
-.social-icon{
-width:42px;
-height:42px;
-display:grid;
-place-items:center;
-flex-shrink:0;
-border:1px solid var(--orange);
-border-radius:50%;
-color:var(--orange);
-background:#000;
-font-size:1rem;
-font-weight:1000;
-}
-
-.social-icon svg{
-width:20px;
-height:20px;
 }
 
 /* ================= FOOTER ================= */
 
 footer{
-padding:45px 0;
+padding:36px 0;
 text-align:center;
 border-top:1px solid var(--border);
 background:#000;
-}
-
-.footer-video{
-width:105px;
-height:105px;
-margin:0 auto 17px;
-overflow:hidden;
-border:2px solid var(--orange);
-border-radius:20px;
-background:#000;
-box-shadow:var(--glow);
-}
-
-.footer-video video{
-width:100%;
-height:100%;
-object-fit:cover;
 }
 
 .footer-title{
 color:var(--orange);
 font-weight:1000;
+font-size:.8rem;
 }
 
 .footer-info{
 margin-top:9px;
 line-height:1.75;
-font-size:.70rem;
-}
-
-/* ================= ANIA · AI CENTER ASSISTANT ================= */
-
-.ania-fab{
-position:fixed;
-right:18px;
-bottom:18px;
-z-index:1500;
-width:68px;
-height:68px;
-padding:0;
-overflow:hidden;
-border:2px solid var(--orange);
-border-radius:50%;
-background:#000;
-cursor:pointer;
-box-shadow:var(--glow2);
-}
-
-.ania-fab img,
-.ania-avatar img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.ania-initial{
-width:100%;
-height:100%;
-display:grid;
-place-items:center;
-color:var(--orange);
-font-size:1.5rem;
-font-weight:1000;
-}
-
-.ania-panel{
-position:fixed;
-right:18px;
-bottom:98px;
-z-index:1500;
-width:min(380px,calc(100vw - 28px));
-max-height:min(580px,calc(100vh - 124px));
-display:none;
-flex-direction:column;
-overflow:hidden;
-border:1px solid var(--orange);
-border-radius:20px;
-background:#050200;
-box-shadow:var(--glow2);
-}
-
-.ania-panel.open{
-display:flex;
-}
-
-.ania-head{
-display:flex;
-align-items:center;
-gap:11px;
-padding:13px 15px;
-border-bottom:1px solid var(--border);
-background:#000;
-}
-
-.ania-avatar{
-width:48px;
-height:48px;
-flex-shrink:0;
-overflow:hidden;
-border:2px solid var(--orange);
-border-radius:50%;
-background:#000;
-}
-
-.ania-caption{
-color:var(--orange);
-font-size:.74rem;
-font-weight:1000;
-letter-spacing:.14em;
-}
-
-.ania-name{
-margin-top:3px;
-color:var(--orange3);
 font-size:.68rem;
 }
 
-.ania-close{
-margin-left:auto;
-width:34px;
-height:34px;
-border:1px solid var(--border);
-border-radius:50%;
-color:var(--orange3);
-background:#000;
-cursor:pointer;
+@media(max-width:640px){
+
+.services-grid,
+.contact-grid{
+grid-template-columns:1fr;
 }
-
-.ania-log{
-flex:1;
-min-height:150px;
-overflow-y:auto;
-padding:14px;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.ania-msg{
-max-width:90%;
-padding:10px 13px;
-border-radius:14px;
-font-size:.80rem;
-line-height:1.5;
-overflow-wrap:anywhere;
-}
-
-.ania-msg.bot{
-align-self:flex-start;
-border:1px solid var(--border);
-background:#0b0400;
-color:var(--text);
-}
-
-.ania-msg.me{
-align-self:flex-end;
-background:var(--orange);
-color:#000;
-font-weight:700;
-}
-
-.ania-chips{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-padding:0 14px 10px;
-}
-
-.ania-chip{
-padding:7px 11px;
-border:1px solid var(--border2);
-border-radius:999px;
-color:var(--orange3);
-background:#000;
-cursor:pointer;
-font-size:.66rem;
-font-weight:900;
-}
-
-.ania-chip:hover{
-color:#000;
-background:var(--orange);
-}
-
-.ania-form{
-display:flex;
-gap:8px;
-padding:12px;
-border-top:1px solid var(--border);
-}
-
-.ania-form input{
-flex:1;
-min-width:0;
-padding:11px 13px;
-border:1px solid var(--border);
-border-radius:999px;
-outline:none;
-color:#fff;
-background:#000;
-}
-
-.ania-form input:focus{
-border-color:var(--orange);
-}
-
-.ania-send{
-padding:0 16px;
-border:0;
-border-radius:999px;
-color:#000;
-background:var(--orange);
-cursor:pointer;
-font-weight:1000;
-}
-
-.ania-links{
-display:flex;
-gap:8px;
-padding:0 12px 12px;
-}
-
-.ania-links a{
-flex:1;
-padding:9px;
-border:1px solid var(--border2);
-border-radius:12px;
-text-align:center;
-color:var(--orange);
-font-size:.64rem;
-font-weight:1000;
-text-transform:uppercase;
-}
-
-.ania-links a:hover{
-color:#000;
-background:var(--orange);
-}
-
-:focus-visible{
-outline:2px solid var(--orange3);
-outline-offset:2px;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1050px){
-
-.nav{
-position:absolute;
-top:86px;
-left:14px;
-right:14px;
-display:none;
-flex-direction:column;
-padding:14px;
-border:1px solid var(--orange);
-border-radius:15px;
-background:#000;
-}
-
-.nav.open{
-display:flex;
-}
-
-.nav a{
-width:100%;
-text-align:center;
-}
-
-.menu-toggle{
-display:block;
-}
-
-.ecosystem-grid,
-.modules-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-@media(max-width:780px){
 
 .header-inner{
-min-height:76px;
-}
-
-.brand-video-wrap{
-width:55px;
-height:55px;
-}
-
-.brand-text strong{
-font-size:.78rem;
-}
-
-.lang-btn{
-min-width:35px;
-}
-
-.hero{
-min-height:auto;
-padding-top:38px;
-}
-
-.stats-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.contact-grid,
-.social-grid{
-grid-template-columns:1fr;
-}
-
-}
-
-@media(max-width:570px){
-
-.ecosystem-grid,
-.modules-grid{
-grid-template-columns:1fr;
-}
-
-.hero-actions{
-display:grid;
-grid-template-columns:1fr;
-}
-
-.btn{
-width:100%;
-}
-
-}
-
-@media(prefers-reduced-motion:reduce){
-
-*{
-transition:none!important;
-scroll-behavior:auto!important;
+justify-content:center;
+text-align:center;
 }
 
 }
@@ -1211,87 +404,32 @@ scroll-behavior:auto!important;
 
 <body>
 
-<div class="top-bar"
-data-ht="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥"
-data-fr="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — CONSTRUIT POUR AUJOURD'HUI — PRÊT POUR DEMAIN 🔥"
-data-en="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BUILT FOR TODAY — READY FOR TOMORROW 🔥"
-data-es="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — CONSTRUIDO PARA HOY — LISTO PARA MAÑANA 🔥">
-🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BATI POU JODI A — PARE POU DEMEN 🔥
-</div>
-
 <header>
-
 <div class="container header-inner">
 
-<a href="#home" class="brand">
-
-<div class="brand-video-wrap">
-<video class="brand-video" autoplay muted loop playsinline preload="metadata">
-<source src="./bati-pou-jodi-a.mp4" type="video/mp4">
-</video>
-</div>
-
+<a href="../index.html" class="brand">
+<div class="brand-icon">💼</div>
 <div class="brand-text">
-<strong>BSS1815 PRO-MAX DMP</strong>
+<strong>MAXIMAX MULTI SERVICES</strong>
 <span
-data-ht="PLATFÒM JESYON DIJITAL"
-data-fr="PLATEFORME DE GESTION NUMÉRIQUE"
-data-en="DIGITAL MANAGEMENT PLATFORM"
-data-es="PLATAFORMA DE GESTIÓN DIGITAL">
-PLATFÒM JESYON DIJITAL
+data-ht="BSS1815 PRO-MAX DMP"
+data-fr="BSS1815 PRO-MAX DMP"
+data-en="BSS1815 PRO-MAX DMP"
+data-es="BSS1815 PRO-MAX DMP">
+BSS1815 PRO-MAX DMP
 </span>
 </div>
-
 </a>
 
-<div class="header-right">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
 
-<nav class="nav" id="mainNav">
-
-<a href="#home"
-data-ht="AKÈY"
-data-fr="ACCUEIL"
-data-en="HOME"
-data-es="INICIO">
-AKÈY
+<a href="../index.html#maximax" class="back-home"
+data-ht="← RETOU AKÈY"
+data-fr="← RETOUR ACCUEIL"
+data-en="← BACK HOME"
+data-es="← VOLVER AL INICIO">
+← RETOU AKÈY
 </a>
-
-<a href="#ecosystem"
-data-ht="EKOSISTÈM"
-data-fr="ÉCOSYSTÈME"
-data-en="ECOSYSTEM"
-data-es="ECOSISTEMA">
-EKOSISTÈM
-</a>
-
-<a href="#modules"
-data-ht="MODIL"
-data-fr="MODULES"
-data-en="MODULES"
-data-es="MÓDULOS">
-MODIL
-</a>
-
-<a href="./manifestes/index.html"
-class="nav-manifestes"
-data-ht="📜 MANIFESTE"
-data-fr="📜 MANIFESTES"
-data-en="📜 MANIFESTOS"
-data-es="📜 MANIFIESTOS">
-📜 MANIFESTE
-</a>
-
-<a href="#ddn">DDN</a>
-
-<a href="#contact"
-data-ht="KONTAK"
-data-fr="CONTACT"
-data-en="CONTACT"
-data-es="CONTACTO">
-KONTAK
-</a>
-
-</nav>
 
 <div class="lang-switch">
 <button type="button" class="lang-btn" data-lang="en">🇺🇸 ENG</button>
@@ -1300,566 +438,206 @@ KONTAK
 <button type="button" class="lang-btn" data-lang="es">🇪🇸 ESP</button>
 </div>
 
-<button type="button"
-class="menu-toggle"
-id="menuToggle"
-aria-label="Menu"
-aria-expanded="false">
-☰
-</button>
-
-</div>
 </div>
 
+</div>
 </header>
 
 <main>
 
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
+<section class="hero">
 <div class="container">
 
-<div class="platform-label">
-BRIYANT SOLÈY SIGNO 1815
-</div>
+<div class="eyebrow">BSS1815 PRO-MAX DMP</div>
 
-<div class="hero-video-frame">
+<div class="hero-icon">💼</div>
 
-<video
-class="hero-logo-video"
-id="heroLogoVideo"
-autoplay
-muted
-loop
-playsinline
-preload="auto">
-
-<source src="./bati-pou-jodi-a.mp4" type="video/mp4">
-
-</video>
-
-<button
-type="button"
-class="sound-btn"
-id="soundButton"
-data-ht="🔊 KOUTE SLOGAN AN"
-data-fr="🔊 ÉCOUTER LE SLOGAN"
-data-en="🔊 HEAR THE SLOGAN"
-data-es="🔊 ESCUCHAR EL ESLOGAN">
-🔊 KOUTE SLOGAN AN
-</button>
-
-</div>
-
-<h1>
-BSS1815<br>
-PRO-MAX DMP
-</h1>
-
-<h2
-data-ht="YON SÈL PLATFÒM • YON SÈL VIZYON"
-data-fr="UNE SEULE PLATEFORME • UNE SEULE VISION"
-data-en="ONE PLATFORM • ONE VISION"
-data-es="UNA SOLA PLATAFORMA • UNA SOLA VISIÓN">
-YON SÈL PLATFÒM • YON SÈL VIZYON
-</h2>
-
-<p
-class="hero-description"
-data-ht="BSS1815 PRO-MAX DMP se platfòm santral ki konekte kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administrasyon, teknoloji, medya ak entèlijans atifisyèl nan yon sèl ekosistèm."
-data-fr="BSS1815 PRO-MAX DMP est la plateforme centrale qui relie la communauté BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, l'administration, la technologie, les médias et l'intelligence artificielle dans un seul écosystème."
-data-en="BSS1815 PRO-MAX DMP is the central platform connecting the BSS1815 community, PRO-MAX FM, Maximax Multi Services, PRO-MAX Academy, administration, technology, media and artificial intelligence in one ecosystem."
-data-es="BSS1815 PRO-MAX DMP es la plataforma central que conecta a la comunidad BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administración, tecnología, medios e inteligencia artificial en un solo ecosistema.">
-BSS1815 PRO-MAX DMP se platfòm santral ki konekte tout ekosistèm nan.
-</p>
-
-<div class="hero-actions">
-
-<a href="#ecosystem"
-class="btn btn-primary"
-data-ht="DEKOUVRI PLATFÒM NAN"
-data-fr="DÉCOUVRIR LA PLATEFORME"
-data-en="EXPLORE THE PLATFORM"
-data-es="EXPLORAR LA PLATAFORMA">
-DEKOUVRI PLATFÒM NAN
-</a>
-
-<a href="./ddn/index.html"
-class="btn btn-outline">
-🌎 DEVAN DEVAN NÈT™
-</a>
-
-<a href="./manifestes/index.html"
-class="btn btn-manifestes"
-data-ht="📜 MANIFESTE OFISYÈL YO"
-data-fr="📜 MANIFESTES OFFICIELS"
-data-en="📜 OFFICIAL MANIFESTOS"
-data-es="📜 MANIFIESTOS OFICIALES">
-📜 MANIFESTE OFISYÈL YO
-</a>
-
-</div>
-
-<div class="stats-grid">
-
-<div class="stat-card">
-<strong>4</strong>
-<span
-data-ht="BRANCH PRENSIPAL"
-data-fr="BRANCHES PRINCIPALES"
-data-en="CORE BRANCHES"
-data-es="RAMAS PRINCIPALES">
-BRANCH PRENSIPAL
-</span>
-</div>
-
-<div class="stat-card">
-<strong>AI</strong>
-<span>SMART PLATFORM</span>
-</div>
-
-<div class="stat-card">
-<strong>4</strong>
-<span
-data-ht="LANG"
-data-fr="LANGUES"
-data-en="LANGUAGES"
-data-es="IDIOMAS">
-LANG
-</span>
-</div>
-
-<div class="stat-card">
-<strong>24/7</strong>
-<span
-data-ht="AKSÈ DIJITAL"
-data-fr="ACCÈS NUMÉRIQUE"
-data-en="DIGITAL ACCESS"
-data-es="ACCESO DIGITAL">
-AKSÈ DIJITAL
-</span>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= ECOSYSTEM ================= -->
-
-<section class="section" id="ecosystem">
-
-<div class="container">
-
-<div class="section-heading">
-
-<div class="eyebrow">
-BSS1815 PRO-MAX DMP
-</div>
-
-<h2
-class="section-title"
-data-ht="YON SÈL EKOSISTÈM"
-data-fr="UN SEUL ÉCOSYSTÈME"
-data-en="ONE ECOSYSTEM"
-data-es="UN SOLO ECOSISTEMA">
-YON SÈL EKOSISTÈM
-</h2>
-
-<p
-class="section-desc"
-data-ht="Nou pa kenbe de BSS1815. BSS1815 Community entegre dirèkteman nan BSS1815 PRO-MAX DMP ansanm ak PRO-MAX FM, Maximax Multi Services ak PRO-MAX Académie."
-data-fr="Nous ne maintenons pas deux BSS1815. La communauté BSS1815 est directement intégrée à BSS1815 PRO-MAX DMP avec PRO-MAX FM, Maximax Multi Services et PRO-MAX Académie."
-data-en="There are not two separate BSS1815 platforms. BSS1815 Community is integrated directly into BSS1815 PRO-MAX DMP together with PRO-MAX FM, Maximax Multi Services and PRO-MAX Academy."
-data-es="No mantenemos dos BSS1815. La comunidad BSS1815 está integrada directamente en BSS1815 PRO-MAX DMP junto con PRO-MAX FM, Maximax Multi Services y PRO-MAX Académie.">
-Nou pa kenbe de BSS1815.
-</p>
-
-</div>
-
-<div class="ecosystem-grid">
-
-<a href="#community" class="ecosystem-card">
-<div class="eco-icon">🏛️</div>
-<h3>BSS1815 COMMUNITY</h3>
-<p
-data-ht="Manm, dirijan, mizisyen, fanatik, eritaj, aktivite ak lavi kominotè BSS1815."
-data-fr="Membres, dirigeants, musiciens, fans, patrimoine, activités et vie communautaire BSS1815."
-data-en="Members, leaders, musicians, fans, heritage, activities and BSS1815 community life."
-data-es="Miembros, líderes, músicos, fanáticos, patrimonio, actividades y vida comunitaria de BSS1815.">
-Manm, dirijan, mizisyen, fanatik, eritaj ak kominote.
-</p>
-<div class="card-link">ENTER →</div>
-</a>
-
-<a href="#promaxfm" class="ecosystem-card">
-<div class="eco-icon">📻</div>
-<h3>PRO-MAX FM</h3>
-<p
-data-ht="Radyo dijital, live streaming, mizik, podcast, nouvèl, entèvyou ak pwodiksyon medya."
-data-fr="Radio numérique, streaming, musique, podcasts, actualités, interviews et production média."
-data-en="Digital radio, live streaming, music, podcasts, news, interviews and media production."
-data-es="Radio digital, transmisión en vivo, música, podcasts, noticias, entrevistas y producción de medios.">
-Radyo dijital ak pwodiksyon medya.
-</p>
-<div class="card-link">ENTER →</div>
-</a>
-
-<a href="#maximax" class="ecosystem-card">
-<div class="eco-icon">💼</div>
-<h3>MAXIMAX MULTI SERVICES</h3>
-<p
-data-ht="Imigrasyon, tradiksyon, sèvis administratif, dokiman ak asistans pwofesyonèl."
-data-fr="Immigration, traduction, services administratifs, documents et assistance professionnelle."
-data-en="Immigration, translation, administrative services, documents and professional assistance."
-data-es="Inmigración, traducción, servicios administrativos, documentos y asistencia profesional.">
-Imigrasyon, tradiksyon ak sèvis pwofesyonèl.
-</p>
-<div class="card-link">ENTER →</div>
-</a>
-
-<a href="#academy" class="ecosystem-card">
-<div class="eco-icon">🎓</div>
-<h3>PRO-MAX ACADÉMIE</h3>
-<p
-data-ht="AI, teknoloji, fòmasyon, inovasyon, evalyasyon, Student Portal ak sètifikasyon."
-data-fr="IA, technologie, formation, innovation, évaluations, portail étudiant et certification."
-data-en="AI, technology, training, innovation, assessments, Student Portal and certification."
-data-es="IA, tecnología, formación, innovación, evaluaciones, portal estudiantil y certificación.">
-AI, teknoloji, fòmasyon ak sètifikasyon.
-</p>
-<div class="card-link">ENTER →</div>
-</a>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= CORE MODULES ================= -->
-
-<section class="section" id="modules">
-
-<div class="container">
-
-<div class="section-heading">
-
-<div class="eyebrow">
-DIGITAL MANAGEMENT PLATFORM
-</div>
-
-<h2
-class="section-title"
-data-ht="MODIL PRENSIPAL YO"
-data-fr="MODULES PRINCIPAUX"
-data-en="CORE MODULES"
-data-es="MÓDULOS PRINCIPALES">
-MODIL PRENSIPAL YO
-</h2>
-
-<p
-class="section-desc"
-data-ht="Modil yo konekte operasyon, administrasyon, kominote, dokiman, medya ak teknoloji BSS1815 PRO-MAX DMP."
-data-fr="Les modules relient les opérations, l'administration, la communauté, les documents, les médias et la technologie BSS1815 PRO-MAX DMP."
-data-en="The modules connect operations, administration, community, documents, media and technology across BSS1815 PRO-MAX DMP."
-data-es="Los módulos conectan las operaciones, la administración, la comunidad, los documentos, los medios y la tecnología de BSS1815 PRO-MAX DMP.">
-Tout modil yo travay anba menm platfòm santral la.
-</p>
-
-</div>
-
-<div class="modules-grid" id="modulesGrid"></div>
-
-</div>
-</section>
-
-<!-- ================= COMMUNITY / TEMWAYAJ ================= -->
-
-<section class="section" id="community">
-
-<div class="container">
-
-<div class="section-heading">
-
-<div class="eyebrow">
-BRIYANT SOLÈY SIGNO 1815
-</div>
-
-<h2
-class="section-title"
-data-ht="BSS1815 COMMUNITY"
-data-fr="COMMUNAUTÉ BSS1815"
-data-en="BSS1815 COMMUNITY"
-data-es="COMUNIDAD BSS1815">
-BSS1815 COMMUNITY
-</h2>
-
-<p
-class="section-desc"
-data-ht="Kominote istorik BSS1815 la se yon pati dirèk nan PRO-MAX DMP: manm, dirijan, mizisyen, fanatik, eritaj, evènman ak achiv yo."
-data-fr="La communauté historique BSS1815 fait directement partie de PRO-MAX DMP : membres, dirigeants, musiciens, fans, patrimoine, événements et archives."
-data-en="The historic BSS1815 community is directly part of PRO-MAX DMP: members, leaders, musicians, fans, heritage, events and archives."
-data-es="La comunidad histórica BSS1815 es parte directa de PRO-MAX DMP: miembros, líderes, músicos, fanáticos, patrimonio, eventos y archivos.">
-BSS1815 Community entegre dirèkteman nan sistèm nan.
-</p>
-
-</div>
-
-<div class="tw" id="tw">
-
-<div class="tw-stage" id="twStage" tabindex="0" aria-label="Temwayaj BSS1815 COMMUNITY">
-
-<div class="tw-badge"
-data-ht="BSS1815 COMMUNITY • TEMWAYAJ"
-data-fr="BSS1815 COMMUNITY • TÉMOIGNAGES"
-data-en="BSS1815 COMMUNITY • TESTIMONIALS"
-data-es="BSS1815 COMMUNITY • TESTIMONIOS">
-BSS1815 COMMUNITY • TEMWAYAJ
-</div>
-
-<img id="twImg" class="tw-img" alt="">
-
-<video id="twVideo" class="tw-video" muted playsinline preload="metadata"></video>
-
-<div class="tw-fade"></div>
-
-<div class="tw-cap">
-<h3 id="twName"></h3>
-<p id="twText"></p>
-</div>
-
-<div class="tw-msg tw-hide" id="twMsg"></div>
-
-<button type="button" class="tw-arrow tw-prev" id="twPrev" aria-label="Previous">‹</button>
-<button type="button" class="tw-arrow tw-next" id="twNext" aria-label="Next">›</button>
-
-<button type="button" class="sound-btn tw-sound" id="twSound">🔇 SON</button>
-
-</div>
-
-<div class="tw-bar">
-<div class="tw-count" id="twCount">0 / 0</div>
-<button type="button" class="tw-play" id="twPlay">⏸ PAUSE</button>
-<div class="tw-track"><div class="tw-prog" id="twProg"></div></div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= PRO-MAX FM ================= -->
-
-<section class="section" id="promaxfm">
-
-<div class="container">
-
-<div class="project-box">
-
-<h2>📻 PRO-MAX FM</h2>
-
-<p
-data-ht="Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya."
-data-fr="La branche radio et média numérique de BSS1815 PRO-MAX DMP pour la radio en direct, les actualités, les podcasts, les interviews, la musique et la production média."
-data-en="The BSS1815 PRO-MAX DMP digital radio and media branch for live radio, news, podcasts, interviews, music and media production."
-data-es="La rama de radio y medios digitales de BSS1815 PRO-MAX DMP para radio en vivo, noticias, podcasts, entrevistas, música y producción de medios.">
-Branch radyo ak medya dijital platfòm nan.
-</p>
-
-<div class="hero-actions">
-
-<a
-href="./pro-max-fm/index.html"
-class="btn btn-primary">
-📻 ENTER PRO-MAX FM
-</a>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= MAXIMAX MULTI SERVICES ================= -->
-
-<section class="section" id="maximax">
-
-<div class="container">
-
-<div class="project-box">
-
-<h2>💼 MAXIMAX MULTI SERVICES</h2>
+<h1>MAXIMAX MULTI SERVICES</h1>
 
 <p
 data-ht="Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman, asistans administratif ak lòt sèvis kominotè."
 data-fr="Centre de services professionnels pour l'immigration, la traduction, les documents, l'assistance administrative et d'autres services communautaires."
 data-en="Professional services center for immigration, translation, documents, administrative assistance and other community services."
 data-es="Centro de servicios profesionales para inmigración, traducción, documentos, asistencia administrativa y otros servicios comunitarios.">
-Sant sèvis pwofesyonèl BSS1815 PRO-MAX DMP.
+Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman, asistans administratif ak lòt sèvis kominotè.
 </p>
-
-<div class="hero-actions">
-
-<a
-href="./maximax/index.html"
-class="btn btn-primary">
-💼 ENTER MAXIMAX MULTI SERVICES
-</a>
-
-</div>
-
-</div>
 
 </div>
 </section>
 
-<!-- ================= ACADEMY ================= -->
-
-<section class="section" id="academy">
-
-<div class="container">
-
-<div class="project-box">
-
-<h2
-data-ht="🎓 PRO-MAX ACADÉMIE"
-data-fr="🎓 PRO-MAX ACADÉMIE"
-data-en="🎓 PRO-MAX ACADEMY"
-data-es="🎓 PRO-MAX ACADEMIA">
-🎓 PRO-MAX ACADÉMIE
-</h2>
-
-<p
-data-ht="Sant fòmasyon pou entèlijans atifisyèl, teknoloji, inovasyon, lidèchip, Student Portal, evalyasyon ak sètifikasyon."
-data-fr="Centre de formation pour l'intelligence artificielle, la technologie, l'innovation, le leadership, le portail étudiant, les évaluations et la certification."
-data-en="Training center for artificial intelligence, technology, innovation, leadership, Student Portal, assessments and certification."
-data-es="Centro de formación en inteligencia artificial, tecnología, innovación, liderazgo, portal estudiantil, evaluaciones y certificación.">
-Sant fòmasyon ak sètifikasyon PRO-MAX.
-</p>
-
-<div class="hero-actions">
-
-<a
-href="./pro-max-academie/index.html"
-class="btn btn-primary">
-🎓 ENTER PRO-MAX ACADÉMIE
-</a>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= DDN ================= -->
-
-<section class="section" id="ddn">
-
-<div class="container">
-
-<div class="project-box">
-
-<h2>🌎 DEVAN DEVAN NÈT™</h2>
-
-<p>
-DEVAN DEVAN NÈT™ se yon pati dirèk nan BSS1815 PRO-MAX DMP.
-BATI POU JODI A. PARE POU DEMEN.
-</p>
-
-<div class="hero-actions">
-
-<a
-href="./ddn/index.html"
-class="btn btn-primary">
-🌎 ENTER DDN
-</a>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-
-<section class="section" id="contact">
-
+<section class="section" id="services">
 <div class="container">
 
 <div class="section-heading">
-
-<div class="eyebrow">
-BSS1815 PRO-MAX DMP
+<div class="eyebrow"
+data-ht="SÈVIS NOU YO"
+data-fr="NOS SERVICES"
+data-en="OUR SERVICES"
+data-es="NUESTROS SERVICIOS">
+SÈVIS NOU YO
+</div>
+<h2 class="section-title"
+data-ht="KI SA NOU OFRI"
+data-fr="CE QUE NOUS OFFRONS"
+data-en="WHAT WE OFFER"
+data-es="LO QUE OFRECEMOS">
+KI SA NOU OFRI
+</h2>
 </div>
 
-<h2
-class="section-title"
+<div class="services-grid">
+
+<div class="service-card">
+<div class="service-icon">🛂</div>
+<h3
+data-ht="SÈVIS IMIGRASYON"
+data-fr="SERVICES D'IMMIGRATION"
+data-en="IMMIGRATION SERVICES"
+data-es="SERVICIOS DE INMIGRACIÓN">
+SÈVIS IMIGRASYON
+</h3>
+<p
+data-ht="Asistans pou ranpli fòm ak prepare dosye imigrasyon."
+data-fr="Aide pour remplir les formulaires et préparer les dossiers d'immigration."
+data-en="Assistance filling out forms and preparing immigration paperwork."
+data-es="Asistencia para completar formularios y preparar documentos de inmigración.">
+Asistans pou ranpli fòm ak prepare dosye imigrasyon.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🌐</div>
+<h3
+data-ht="TRADIKSYON"
+data-fr="TRADUCTION"
+data-en="TRANSLATION"
+data-es="TRADUCCIÓN">
+TRADIKSYON
+</h3>
+<p
+data-ht="Tradiksyon dokiman ant Kreyòl, Fransè, Anglè ak Espayòl."
+data-fr="Traduction de documents entre créole, français, anglais et espagnol."
+data-en="Document translation between Haitian Creole, French, English and Spanish."
+data-es="Traducción de documentos entre criollo haitiano, francés, inglés y español.">
+Tradiksyon dokiman ant Kreyòl, Fransè, Anglè ak Espayòl.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">📄</div>
+<h3
+data-ht="PREPARASYON DOKIMAN"
+data-fr="PRÉPARATION DE DOCUMENTS"
+data-en="DOCUMENT PREPARATION"
+data-es="PREPARACIÓN DE DOCUMENTOS">
+PREPARASYON DOKIMAN
+</h3>
+<p
+data-ht="Ranpli, korije ak prepare dokiman ofisyèl ak administratif."
+data-fr="Remplissage, correction et préparation de documents officiels et administratifs."
+data-en="Filling, correcting and preparing official and administrative documents."
+data-es="Llenado, corrección y preparación de documentos oficiales y administrativos.">
+Ranpli, korije ak prepare dokiman ofisyèl ak administratif.
+</p>
+</div>
+
+<div class="service-card">
+<div class="service-icon">🗂️</div>
+<h3
+data-ht="ASISTANS ADMINISTRATIF"
+data-fr="ASSISTANCE ADMINISTRATIVE"
+data-en="ADMINISTRATIVE ASSISTANCE"
+data-es="ASISTENCIA ADMINISTRATIVA">
+ASISTANS ADMINISTRATIF
+</h3>
+<p
+data-ht="Èd pou demach administratif, randevou ak swiv dosye."
+data-fr="Aide pour les démarches administratives, rendez-vous et suivi de dossiers."
+data-en="Help with administrative steps, appointments and case follow-up."
+data-es="Ayuda con trámites administrativos, citas y seguimiento de casos.">
+Èd pou demach administratif, randevou ak swiv dosye.
+</p>
+</div>
+
+</div>
+
+<div class="notice-box">
+<p
+data-ht="⚠️ Ekip Maximax Multi Services PA avoka. Nou ofri sèlman asistans nan sèvis ki make anlè yo — nou pa bay konsèy legal."
+data-fr="⚠️ L'équipe Maximax Multi Services N'EST PAS composée d'avocats. Nous offrons uniquement une assistance pour les services listés ci-dessus — nous ne fournissons pas de conseils juridiques."
+data-en="⚠️ The Maximax Multi Services team are NOT attorneys. We only provide assistance with the services listed above — we do not give legal advice."
+data-es="⚠️ El equipo de Maximax Multi Services NO son abogados. Solo brindamos asistencia con los servicios enumerados arriba — no ofrecemos asesoría legal.">
+⚠️ Ekip Maximax Multi Services PA avoka. Nou ofri sèlman asistans nan sèvis ki make anlè yo — nou pa bay konsèy legal.
+</p>
+</div>
+
+<div class="ai-box">
+<h3
+data-ht="AI CENTER"
+data-fr="AI CENTER"
+data-en="AI CENTER"
+data-es="AI CENTER">
+AI CENTER
+</h3>
+<p
+data-ht="Maximax Multi Services itilize AI Center santral BSS1815 PRO-MAX DMP la pou reponn kesyon."
+data-fr="Maximax Multi Services utilise l'AI Center central de BSS1815 PRO-MAX DMP pour répondre aux questions."
+data-en="Maximax Multi Services uses the central BSS1815 PRO-MAX DMP AI Center to answer questions."
+data-es="Maximax Multi Services utiliza el AI Center central de BSS1815 PRO-MAX DMP para responder preguntas.">
+Maximax Multi Services itilize AI Center santral BSS1815 PRO-MAX DMP la pou reponn kesyon.
+</p>
+<a href="../ai-center.html" class="btn"
+data-ht="🤖 ALE NAN AI CENTER"
+data-fr="🤖 ALLER À L'AI CENTER"
+data-en="🤖 GO TO AI CENTER"
+data-es="🤖 IR AL AI CENTER">
+🤖 ALE NAN AI CENTER
+</a>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="container">
+
+<div class="section-heading">
+<div class="eyebrow">MAXIMAX MULTI SERVICES</div>
+<h2 class="section-title"
 data-ht="KONTAK"
 data-fr="CONTACT"
 data-en="CONTACT"
 data-es="CONTACTO">
 KONTAK
 </h2>
-
 </div>
 
 <div class="contact-grid">
 
 <div class="contact-card">
 <strong>✉️ EMAIL</strong>
-<a href="mailto:bss1815promaxdmp@gmail.com">
-bss1815promaxdmp@gmail.com
-</a>
+<a href="mailto:bss1815promaxdmp@gmail.com">bss1815promaxdmp@gmail.com</a>
 </div>
 
 <div class="contact-card">
 <strong>🌐 WEBSITE</strong>
-<a href="https://bss1815pro-maxdmp.com" target="_blank" rel="noopener noreferrer">
-bss1815pro-maxdmp.com
-</a>
+<a href="https://bss1815pro-maxdmp.com" target="_blank" rel="noopener noreferrer">bss1815pro-maxdmp.com</a>
 </div>
 
 <div class="contact-card">
 <strong>🇭🇹 HAITI</strong>
-<a href="tel:+50943437488">
-+509 43 43 7488
-</a>
-<a href="tel:+50942544447">
-+509 42 54 4447
-</a>
+<a href="tel:+50943437488">+509 43 43 7488</a>
+<a href="tel:+50942544447">+509 42 54 4447</a>
 </div>
 
 <div class="contact-card">
 <strong>🇺🇸 UNITED STATES</strong>
-<a href="tel:+13175381150">
-(317) 538-1150
-</a>
-<a href="tel:+14076405166">
-(407) 640-5166
-</a>
-<a href="tel:+15162168494">
-(516) 216-8494
-</a>
+<a href="tel:+13175381150">(317) 538-1150</a>
+<a href="tel:+14076405166">(407) 640-5166</a>
+<a href="tel:+15162168494">(516) 216-8494</a>
 </div>
 
 </div>
-
-<div class="social-title">
-<div class="eyebrow"
-data-ht="REZO SOSYAL"
-data-fr="RÉSEAUX SOCIAUX"
-data-en="SOCIAL NETWORKS"
-data-es="REDES SOCIALES">
-REZO SOSYAL
-</div>
-</div>
-
-<div class="social-grid" id="socialGrid"></div>
 
 </div>
 </section>
@@ -1867,91 +645,14 @@ REZO SOSYAL
 </main>
 
 <footer>
-
 <div class="container">
-
-<div class="footer-video">
-
-<video
-autoplay
-muted
-loop
-playsinline
-preload="metadata">
-
-<source
-src="./bati-pou-jodi-a.mp4"
-type="video/mp4">
-
-</video>
-
-</div>
-
-<div class="footer-title">
-BSS1815 PRO-MAX DMP
-</div>
-
+<div class="footer-title">MAXIMAX MULTI SERVICES • BSS1815 PRO-MAX DMP</div>
 <div class="footer-info">
-
 DEVAN DEVAN NÈT™<br>
-BATI POU JODI A. PARE POU DEMEN.<br><br>
-
-✉️ bss1815promaxdmp@gmail.com<br>
-🌐 bss1815pro-maxdmp.com<br>
-🇭🇹 +509 43 43 7488 • +509 42 54 4447<br>
-🇺🇸 (317) 538-1150 • (407) 640-5166 • (516) 216-8494
-
-<br><br>
-
-© <span id="currentYear"></span>
-BSS1815 PRO-MAX DMP
-
+© <span id="currentYear"></span> BSS1815 PRO-MAX DMP
 </div>
-
 </div>
-
 </footer>
-
-<!-- ================= ANIA · AI CENTER ================= -->
-
-<button type="button" class="ania-fab" id="aniaFab" aria-label="AI Center — ANIA" aria-expanded="false">
-<img src="./assets/ania-avatar.jpg" alt="ANIA"
-onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ania-initial',textContent:'A'}))">
-</button>
-
-<div class="ania-panel" id="aniaPanel" role="dialog" aria-label="AI Center">
-
-<div class="ania-head">
-
-<div class="ania-avatar">
-<img src="./assets/ania-avatar.jpg" alt="ANIA"
-onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ania-initial',textContent:'A'}))">
-</div>
-
-<div>
-<div class="ania-caption">AI CENTER</div>
-<div class="ania-name">ANIA • BSS1815 PRO-MAX DMP</div>
-</div>
-
-<button type="button" class="ania-close" id="aniaClose" aria-label="Close">✕</button>
-
-</div>
-
-<div class="ania-log" id="aniaLog" aria-live="polite"></div>
-
-<div class="ania-chips" id="aniaChips"></div>
-
-<form class="ania-form" id="aniaForm">
-<input type="text" id="aniaInput" maxlength="200" autocomplete="off" placeholder="…">
-<button type="submit" class="ania-send">➤</button>
-</form>
-
-<div class="ania-links">
-<a href="https://wa.me/50943437488" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-<a href="mailto:bss1815promaxdmp@gmail.com">Email</a>
-</div>
-
-</div>
 
 <script>
 
@@ -1959,297 +660,39 @@ onerror="this.replaceWith(Object.assign(document.createElement('span'),{classNam
 
 "use strict";
 
-/* =====================================================
-   CORE MODULES
-   ORIGINAL MODULES PRESERVED
-   MY MAXIMAX ADDED AS BSS1815 INTERNAL DASHBOARD
-   (module links point to the real pages in the site root;
-    every page behind MY MAXIMAX requires Firebase login)
-===================================================== */
-
-var modules=[
-
-[
-"./my-maximax-dashboard.html",
-"🔐",
-"MY MAXIMAX",
-"Internal BSS1815 • Members • Discipline • Security • Documents • Finance • Operations",
-"SECURED →",
-"my-maximax-card"
-],
-
-[
-"./ai-center.html",
-"🤖",
-"AI CENTER",
-"Assistant • Writer • Voice • Automation",
-"OPEN →"
-],
-
-[
-"./crm.html",
-"👥",
-"CRM SYSTEM",
-"Members • Contacts • Relationships • Records",
-"OPEN →"
-],
-
-[
-"./communication-center.html",
-"📢",
-"COMMUNICATION CENTER",
-"Announcements • Alerts • WhatsApp • Messages",
-"OPEN →"
-],
-
-[
-"./flyer-studio.html",
-"🎨",
-"FLYER STUDIO",
-"Flyers • Notices • Graphics • Media",
-"OPEN →"
-],
-
-[
-"./digital-registry.html",
-"📋",
-"DIGITAL REGISTRY",
-"Members • Musicians • Fans • Merchants",
-"OPEN →"
-],
-
-[
-"./event-center.html",
-"📅",
-"EVENT MANAGEMENT",
-"Calendar • Programs • Activities • Meetings",
-"OPEN →"
-],
-
-[
-"./document-center.html",
-"📄",
-"DOCUMENT CENTER",
-"Letters • Reports • Archives • Files",
-"OPEN →"
-],
-
-[
-"./communication-center.html",
-"📣",
-"ANNOUNCEMENT CENTER",
-"Official Notices • Community Updates • Alerts",
-"OPEN →"
-],
-
-[
-"./donation.html",
-"🤝",
-"DONATION CENTER",
-"Contributions • Records • Donor Management",
-"OPEN →"
-],
-
-[
-"./attendance.html",
-"✅",
-"ATTENDANCE",
-"Check-In • Meetings • Events • Participation",
-"OPEN →"
-],
-
-[
-"./certificate-center.html",
-"🏆",
-"CERTIFICATE CENTER",
-"Certificates • Verification • Records",
-"OPEN →"
-],
-
-[
-"./election.html",
-"🗳️",
-"ELECTION MANAGER",
-"Voting • Candidates • Results • Records",
-"OPEN →"
-],
-
-[
-"./volunteer.html",
-"🙋",
-"VOLUNTEER CENTER",
-"Volunteers • Assignments • Activities",
-"OPEN →"
-],
-
-[
-"./finance.html",
-"💰",
-"FINANCE / TREASURY",
-"Payments • Donations • Treasury • Reports",
-"OPEN →"
-],
-
-[
-"./modules/media/index.html",
-"🎥",
-"MEDIA GALLERY",
-"Photos • Video • Audio • Archives",
-"OPEN →"
-],
-
-[
-"./notifications.html",
-"🔔",
-"NOTIFICATIONS",
-"Alerts • Reminders • Updates • Messages",
-"OPEN →"
-],
-
-[
-"./reports.html",
-"📊",
-"REPORTS & ANALYTICS",
-"Statistics • Performance • Reports",
-"OPEN →"
-],
-
-[
-"./help-desk.html",
-"🎫",
-"HELP DESK",
-"Support • Requests • Cases • Assistance",
-"OPEN →"
-],
-
-[
-"./modules/live-streaming/index.html",
-"📡",
-"LIVE STREAMING",
-"Radio • Video • Live Events • Broadcast",
-"OPEN →"
-],
-
-[
-"./login.html",
-"🔐",
-"ADMIN DASHBOARD",
-"Roles • Permissions • Firebase • Security",
-"LOGIN →"
-]
-
-];
-
-
-/* =====================================================
-   BUILD MODULE CARDS
-===================================================== */
-
-var modulesGrid=
-document.getElementById("modulesGrid");
-
-if(modulesGrid){
-
-modulesGrid.innerHTML=
-modules.map(function(module){
-
-var extraClass=
-module[5] ? " "+module[5] : "";
-
-return (
-
-'<a href="'+module[0]+'" class="module-card'+extraClass+'">'+
-
-'<div class="module-icon">'+
-module[1]+
-'</div>'+
-
-'<h3>'+
-module[2]+
-'</h3>'+
-
-'<p>'+
-module[3]+
-'</p>'+
-
-'<div class="module-open">'+
-module[4]+
-'</div>'+
-
-'</a>'
-
-);
-
-}).join("");
-
-}
-
-
-/* =====================================================
-   LANGUAGE SYSTEM
-===================================================== */
-
-var languageButtons=
-document.querySelectorAll(".lang-btn");
+var languageButtons=document.querySelectorAll(".lang-btn");
 
 function setLanguage(language){
 
-document.documentElement.lang=
-language==="ht" ? "ht" : language;
+document.documentElement.lang=language==="ht" ? "ht" : language;
 
-document.querySelectorAll("[data-"+language+"]")
-.forEach(function(element){
-
-var translated=
-element.getAttribute("data-"+language);
-
+document.querySelectorAll("[data-"+language+"]").forEach(function(element){
+var translated=element.getAttribute("data-"+language);
 if(translated){
 element.textContent=translated;
 }
-
 });
 
 languageButtons.forEach(function(button){
-
-button.classList.toggle(
-"active",
-button.dataset.lang===language
-);
-
+button.classList.toggle("active",button.dataset.lang===language);
 });
 
 try{
-localStorage.setItem(
-"bss1815-language",
-language
-);
+localStorage.setItem("bss1815-language",language);
 }catch(error){}
 
 }
 
 languageButtons.forEach(function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-setLanguage(
-this.dataset.lang
-);
-
+button.addEventListener("click",function(){
+setLanguage(this.dataset.lang);
 });
-
 });
 
 var savedLanguage="ht";
 
 try{
-
-savedLanguage=
-localStorage.getItem(
-"bss1815-language"
-) || "ht";
-
+savedLanguage=localStorage.getItem("bss1815-language") || "ht";
 }catch(error){}
 
 if(
@@ -2258,1016 +701,15 @@ savedLanguage!=="fr" &&
 savedLanguage!=="en" &&
 savedLanguage!=="es"
 ){
-
 savedLanguage="ht";
-
 }
 
 setLanguage(savedLanguage);
 
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-var menuToggle=
-document.getElementById("menuToggle");
-
-var mainNav=
-document.getElementById("mainNav");
-
-if(menuToggle && mainNav){
-
-menuToggle.addEventListener(
-"click",
-function(){
-
-var open=
-mainNav.classList.toggle("open");
-
-menuToggle.setAttribute(
-"aria-expanded",
-open ? "true" : "false"
-);
-
-});
-
-mainNav.querySelectorAll("a")
-.forEach(function(link){
-
-link.addEventListener(
-"click",
-function(){
-
-mainNav.classList.remove("open");
-
-menuToggle.setAttribute(
-"aria-expanded",
-"false"
-);
-
-});
-
-});
-
-}
-
-
-/* =====================================================
-   HERO VIDEO SOUND
-===================================================== */
-
-var heroVideo=
-document.getElementById("heroLogoVideo");
-
-var soundButton=
-document.getElementById("soundButton");
-
-if(heroVideo && soundButton){
-
-soundButton.addEventListener(
-"click",
-function(){
-
-heroVideo.muted=
-!heroVideo.muted;
-
-if(heroVideo.paused){
-
-heroVideo.play()
-.catch(function(){});
-
-}
-
-if(heroVideo.muted){
-
-soundButton.textContent=
-savedLanguage==="fr"
-? "🔊 ÉCOUTER LE SLOGAN"
-: savedLanguage==="en"
-? "🔊 HEAR THE SLOGAN"
-: savedLanguage==="es"
-? "🔊 ESCUCHAR EL ESLOGAN"
-: "🔊 KOUTE SLOGAN AN";
-
-}else{
-
-soundButton.textContent=
-savedLanguage==="fr"
-? "🔇 COUPER LE SON"
-: savedLanguage==="en"
-? "🔇 MUTE"
-: savedLanguage==="es"
-? "🔇 SILENCIAR"
-: "🔇 FÈMEN SON AN";
-
-}
-
-});
-
-}
-
-
-/* =====================================================
-   SLIDESHOW TEMWAYAJ — 113 MEDIA — 6 SEGONN CHAK
-   - Chak foto (oswa videyo) rete 6 segonn epi pase.
-   - Yon foto ki pa jwenn sote otomatikman.
-   - Pou ajoute non ak mesaj yon moun, ranpli TW_TEXT anba a.
-===================================================== */
-
-var TW_PATH="./";
-var TW_MS=10000;
-var TW_STEP=100;
-var TW_LOAD_LIMIT=8000;
-
-/*
-Lis sa a se non EGZAK fichye ki konfime egziste nan rasin repo a
-(verifye dirèkteman sou GitHub.com/louismax... — "First 40 files
-shown" pou .jpg ak pou .mp4). Si w gen plis fichye pase sa (lis la
-te di "See all results"), voye rès non yo pou m ajoute yo.
-*/
-
-var TW_FILES=[
-
-"lebaron.jpg",
-"michel-on-the-move.jpg",
-"brunel.jpg",
-"madina.jpg",
-"stratège.jpg",
-"landry.jpg",
-"sonson-felix.jpg",
-"valery.jpg",
-"maa.jpg",
-"miami-an-aksyon2.jpg",
-"tania-felix.jpg",
-"taniafelix.jpg",
-"le-baron.jpg",
-"max-louis-la-seul-edifference.jpg",
-"bss1815pro-maxdmp.jpg",
-"men-in-black.jpg",
-"change-is-comming.jpg",
-"maximax-in-casual.jpg",
-"bss1815pro-max-media.jpg",
-"san-presyon.jpg",
-"miami-an-aksyon.jpg",
-"the-man-in-green.jpg",
-"vice-president-ernso.jpg",
-"president-arly.jpg",
-"jeff-colin.jpg",
-"sindy-andrevil.jpg",
-"the-man-in-maroon.jpg",
-"max-louis-game-changer.jpg",
-"stratège-l'noubliable.jpg",
-"bss.jpg",
-"max.jpg",
-"alèt.jpg",
-"andy.jpg",
-"dèdè.jpg",
-"maxl.jpg",
-"Ralph.jpg",
-"cols1.jpg",
-"maxl2.jpg",
-"nadou.jpg",
-"tifrè.jpg",
-"doodly.jpg",
-"jq-max.jpg",
-"kendy2.jpg",
-"michel.jpg",
-"nadou2.jpg",
-"ones-g.jpg",
-"roro-8.jpg",
-"rorony.jpg",
-"sosonn.jpg",
-"tania2.jpg",
-"ti-frè.jpg",
-"ti-rat.jpg",
-"yguens.jpg",
-"badin-s.jpg",
-"bouboul.jpg",
-"bss1815.jpg",
-"cange-d.jpg",
-"marassa.jpg",
-"paulema.jpg",
-"sindy-b.jpg",
-"pèrodin.jpg",
-"maximax_multi_services.jpeg",
-"pro-max.jpg",
-
-"montina.mp4",
-"promaxacademie.mp4",
-"promax-academie.mp4",
-"roro-laja.mp4",
-"l'orateur.mp4",
-"la-presentation.mp4",
-"la-confusion.mp4",
-"maximax-multi-services.mp4",
-"devan-devan-nèt.mp4",
-"devan-devan-nèt-II.mp4",
-"confusion-totale.mp4",
-"ersulie-danthor.mp4",
-"one-man-show.mp4",
-"why-me.mp4",
-"why-not-max.mp4",
-"la-force-du-son.mp4",
-"laforce-du-son.mp4",
-"bss1815pro-max-dmp2.mp4",
-"la-seule-difference.mp4",
-"maximax.mp4",
-"the-done.mp4",
-"pro-max-fm.mp4",
-"instructor.mp4",
-"l'orateur2.mp4",
-"the-vision.mp4",
-"yeah-he-is.mp4",
-"pro-max-dmp.mp4",
-"pro-max-dmp%20(1).mp4",
-"ti-marasa-yo.mp4",
-"formé-jodi-a.mp4",
-"max-is-the-man.mp4",
-"pro-max-dmp-II.mp4",
-"pro-max-dmp-II%20(1).mp4",
-"montina-le-prof.mp4",
-"montina-prof.mp4",
-"max-alias-baron.mp4",
-"bati-pou-jodi-a.mp4",
-"pro-max-academie.mp4",
-"pro-max-beat-lab.mp4",
-"insurance-school.mp4",
-"majistra-mauclair.mp4",
-"bss1815pro-maxdmp.mp4",
-"VID-20260919-WA0372.mp4",
-"VID-20260920-WA0465.mp4",
-"VID-20260920-WA0476.mp4",
-"VID-20260920-WA0511.mp4",
-"VID-20260920-WA0559.mp4",
-"fanfan-decoline.jpg",
-"fan-fandecoline.jpg",
-"ti-chery.jpg",
-"jij-mayan.jpg",
-"ralph-florial.webp",
-"majistra-mauc.mp4",
-"promax1.mp4",
-"promax2.mp4",
-"promax3.mp4",
-"promax4.mp4"
-
-];
-
-window.TW_FILES=TW_FILES;
-
-/*
-Non ak mesaj chak moun (opsyonèl). Si yon foto pa la, non an
-soti nan non fichye a. Egzanp:
-
-var TW_TEXT={
-"tania2.jpg":{name:"Tania",message:"Temwayaj li isit la."},
-"papouche.jpg":{name:"Papouche",message:"Temwayaj li isit la."}
-};
-*/
-
-var TW_TEXT={};
-
-var twActive=TW_FILES.slice();
-var twIndex=0;
-var twPlaying=true;
-var twElapsed=0;
-var twWaited=0;
-var twWaiting=true;
-var twFadeTimer=null;
-var twSoundOn=false;
-
-var twImg=document.getElementById("twImg");
-var twVideo=document.getElementById("twVideo");
-var twName=document.getElementById("twName");
-var twText=document.getElementById("twText");
-var twCount=document.getElementById("twCount");
-var twProg=document.getElementById("twProg");
-var twMsg=document.getElementById("twMsg");
-var twStage=document.getElementById("twStage");
-
-function twIsVideo(file){
-return /\.mp4$/i.test(file);
-}
-
-function twPretty(file){
-return file
-.replace(/\.[^.]+$/,"")
-.replace(/[-_]+/g," ")
-.replace(/\b\w/g,function(c){
-return c.toUpperCase();
-});
-}
-
-function twInfo(file){
-var t=TW_TEXT[file] || {};
-return {
-name:t.name || twPretty(file),
-message:t.message || ""
-};
-}
-
-function twPreload(index){
-if(!twActive.length){
-return;
-}
-var next=twActive[index % twActive.length];
-if(next && !twIsVideo(next)){
-var probe=new Image();
-probe.src=TW_PATH+next;
-}
-}
-
-function twEmpty(){
-twImg.classList.add("tw-hide");
-twVideo.classList.add("tw-hide");
-twName.textContent="";
-twText.textContent="";
-twCount.textContent="0 / 0";
-twProg.style.width="0%";
-twMsg.textContent="Foto yo pa jwenn. Verifye ke dosye assets/slideshow/ egziste sou sit la.";
-twMsg.classList.remove("tw-hide");
-}
-
-function twShow(index){
-
-if(!twActive.length){
-twEmpty();
-return;
-}
-
-if(index<0){
-index=twActive.length-1;
-}
-
-if(index>=twActive.length){
-index=0;
-}
-
-twIndex=index;
-twElapsed=0;
-twWaited=0;
-twWaiting=true;
-
-var file=twActive[index];
-var src=TW_PATH+file;
-var info=twInfo(file);
-
-twName.textContent=info.name;
-twText.textContent=info.message ? "\u201c"+info.message+"\u201d" : "";
-twCount.textContent=(index+1)+" / "+twActive.length;
-twProg.style.width="0%";
-twMsg.classList.add("tw-hide");
-
-twImg.classList.remove("tw-visible");
-twVideo.classList.remove("tw-visible");
-
-if(twFadeTimer){
-clearTimeout(twFadeTimer);
-}
-
-twFadeTimer=setTimeout(function(){
-
-if(twIsVideo(file)){
-
-twImg.classList.add("tw-hide");
-twVideo.classList.remove("tw-hide");
-twVideo.muted=!twSoundOn;
-twVideo.volume=1;
-twVideo.src=src;
-
-if(twPlaying){
-
-twVideo.play().then(function(){
-
-twVideo.classList.add("tw-visible");
-
-}).catch(function(){
-
-twVideo.muted=true;
-
-twVideo.play().then(function(){
-
-twVideo.classList.add("tw-visible");
-
-}).catch(function(){});
-
-});
-
-}else{
-
-twVideo.classList.add("tw-visible");
-
-}
-
-}else{
-
-twVideo.pause();
-twVideo.removeAttribute("src");
-twVideo.classList.add("tw-hide");
-twImg.classList.remove("tw-hide");
-twImg.alt=info.name;
-twImg.src=src;
-
-if(twImg.complete && twImg.naturalWidth>0){
-twWaiting=false;
-}
-
-twImg.classList.add("tw-visible");
-
-}
-
-},twActive.length>1 ? 350 : 0);
-
-twPreload(index+1);
-
-}
-
-function twNext(){
-twShow(twIndex+1);
-}
-
-function twPrevious(){
-twShow(twIndex-1);
-}
-
-function twDrop(){
-
-console.warn("Slideshow: foto pa jwenn:",twActive[twIndex]);
-
-twActive.splice(twIndex,1);
-
-if(!twActive.length){
-twEmpty();
-return;
-}
-
-twShow(twIndex>=twActive.length ? 0 : twIndex);
-
-}
-
-twImg.addEventListener("load",function(){
-twWaiting=false;
-});
-
-twImg.addEventListener("error",twDrop);
-
-twVideo.addEventListener("loadeddata",function(){
-twWaiting=false;
-});
-
-twVideo.addEventListener("error",twDrop);
-
-twVideo.addEventListener("ended",function(){
-if(twPlaying){
-twNext();
-}
-});
-
-function twTick(){
-
-if(!twPlaying || !twActive.length){
-return;
-}
-
-if(twWaiting){
-
-twWaited+=TW_STEP;
-
-if(twWaited>=TW_LOAD_LIMIT){
-twNext();
-}
-
-return;
-
-}
-
-twElapsed+=TW_STEP;
-
-twProg.style.width=Math.min(100,(twElapsed/TW_MS)*100)+"%";
-
-if(twElapsed>=TW_MS){
-twNext();
-}
-
-}
-
-document.getElementById("twNext").addEventListener("click",twNext);
-document.getElementById("twPrev").addEventListener("click",twPrevious);
-
-var twSoundButton=document.getElementById("twSound");
-
-twSoundButton.addEventListener("click",function(){
-
-twSoundOn=!twSoundOn;
-
-this.textContent=twSoundOn ? "🔊 SON" : "🔇 SON";
-
-if(!twVideo.classList.contains("tw-hide")){
-
-twVideo.muted=!twSoundOn;
-
-if(twSoundOn){
-twVideo.play().catch(function(){});
-}
-
-}
-
-});
-
-var twPlayButton=document.getElementById("twPlay");
-
-twPlayButton.addEventListener("click",function(){
-
-twPlaying=!twPlaying;
-
-this.textContent=twPlaying ? "⏸ PAUSE" : "▶ PLAY";
-
-if(!twVideo.classList.contains("tw-hide")){
-
-if(twPlaying){
-twVideo.play().catch(function(){});
-}else{
-twVideo.pause();
-}
-
-}
-
-});
-
-twStage.addEventListener("keydown",function(event){
-
-if(event.key==="ArrowLeft"){
-twPrevious();
-}
-
-if(event.key==="ArrowRight"){
-twNext();
-}
-
-});
-
-var twTouchX=0;
-
-twStage.addEventListener("touchstart",function(event){
-twTouchX=event.changedTouches[0].screenX;
-},{passive:true});
-
-twStage.addEventListener("touchend",function(event){
-
-var distance=event.changedTouches[0].screenX-twTouchX;
-
-if(Math.abs(distance)<45){
-return;
-}
-
-if(distance>0){
-twPrevious();
-}else{
-twNext();
-}
-
-},{passive:true});
-
-setInterval(twTick,TW_STEP);
-
-twShow(0);
-
-
-/* =====================================================
-   CURRENT YEAR
-===================================================== */
-
-var year=
-document.getElementById("currentYear");
-
+var year=document.getElementById("currentYear");
 if(year){
-
-year.textContent=
-new Date().getFullYear();
-
+year.textContent=new Date().getFullYear();
 }
-
-})();
-
-</script>
-
-
-<script>
-
-/* =====================================================
-   SOCIAL NETWORKS
-   Lòd la: WhatsApp, Facebook, TikTok, YouTube, Spotify,
-   Instagram, X/Twitter, Truth Social, Telegram, LinkedIn.
-   Chak rezo parèt AK senbòl li menm si li poko gen lyen —
-   ranpli lyen an ant guimè yo pou li vin klikab.
-===================================================== */
-
-(function(){
-
-"use strict";
-
-var ICONS={
-
-whatsapp:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.55 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>',
-
-facebook:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>',
-
-tiktok:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-3.2v13.4a3 3 0 1 1-2.13-2.87V9.3a6.2 6.2 0 1 0 5.33 6.14V8.3c1.14.83 2.55 1.32 4.07 1.32V6.4c-2.2 0-3.87-1.72-4.07-4.4z"/></svg>',
-
-youtube:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5s-.23-1.63-.94-2.35c-.9-.94-1.9-.95-2.36-1C16.9 3 12 3 12 3h-.01s-4.89 0-8.2.15c-.46.05-1.46.06-2.36 1C.72 4.87.5 6.5.5 6.5S.27 8.4.27 10.32v1.35C.27 13.6.5 15.5.5 15.5s.23 1.63.93 2.35c.9.94 2.08.91 2.6 1.01 1.9.18 8.06.15 8.06.15s4.9-.01 8.21-.16c.46-.05 1.46-.06 2.36-1 .71-.72.94-2.35.94-2.35s.23-1.9.23-3.82v-1.35c0-1.92-.23-3.82-.23-3.82zM9.7 14.6V8.4l6 3.1-6 3.1z"/></svg>',
-
-spotify:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.59 14.44a.62.62 0 0 1-.86.21c-2.36-1.44-5.32-1.77-8.81-.97a.62.62 0 1 1-.28-1.22c3.82-.87 7.1-.5 9.74 1.12.3.18.4.57.21.86zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.7-1.66-6.82-2.14-10.02-1.17a.78.78 0 1 1-.45-1.49c3.65-1.1 8.18-.57 11.28 1.33.37.23.49.72.26 1.07zm.1-2.83C14.7 8.9 9.35 8.7 6.24 9.67a.93.93 0 1 1-.55-1.78c3.58-1.1 9.4-.87 13.1 1.36a.93.93 0 1 1-.98 1.58z"/></svg>',
-
-instagram:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.05-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38A5.85 5.85 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.66.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.13-1.38.66-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 0 0-1.38-2.13A5.85 5.85 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>',
-
-x:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2h3.28l-7.17 8.19L22.8 22h-6.62l-5.18-6.78L5.06 22H1.78l7.67-8.77L1.2 2h6.79l4.68 6.2L18.24 2zm-1.15 18.03h1.82L7.02 3.87H5.06l12.03 16.16z"/></svg>',
-
-truth:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 2 7v6c0 5.25 3.75 9.74 10 11 6.25-1.26 10-5.75 10-11V7l-10-5zm0 2.24 8 4v4.76c0 4.24-2.9 7.85-8 8.98-5.1-1.13-8-4.74-8-8.98V8.24l8-4zM10.9 15.5l6.1-6.1-1.4-1.4-4.7 4.7-1.9-1.9L7.6 12.2l3.3 3.3z"/></svg>',
-
-telegram:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.64 6.8-1.67 7.88c-.13.56-.46.7-.93.44l-2.56-1.89-1.24 1.19c-.14.14-.25.25-.51.25l.18-2.6 4.73-4.27c.21-.18-.05-.28-.32-.1l-5.85 3.68-2.52-.79c-.55-.17-.56-.55.11-.81l9.84-3.79c.46-.17.86.1.71.81z"/></svg>',
-
-linkedin:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>'
-
-};
-
-var social=[
-
-["WhatsApp","whatsapp","https://wa.me/50943437488"],
-["Facebook","facebook",""],
-["TikTok","tiktok",""],
-["YouTube","youtube",""],
-["Spotify","spotify",""],
-["Instagram","instagram",""],
-["X / Twitter","x",""],
-["Truth Social","truth",""],
-["Telegram","telegram",""],
-["LinkedIn","linkedin",""]
-
-];
-
-var grid=
-document.getElementById("socialGrid");
-
-if(!grid){
-return;
-}
-
-social.forEach(function(item){
-
-var hasLink=
-/^https?:\/\//i.test(item[2]);
-
-var link=
-document.createElement(hasLink ? "a" : "div");
-
-link.className=
-hasLink ? "social-link" : "social-link social-disabled";
-
-if(hasLink){
-link.href=item[2];
-link.target="_blank";
-link.rel="noopener noreferrer";
-}
-
-var icon=document.createElement("span");
-
-icon.className="social-icon";
-icon.innerHTML=ICONS[item[1]] || "";
-
-var label=document.createElement("span");
-
-label.textContent=item[0];
-
-link.appendChild(icon);
-link.appendChild(label);
-
-grid.appendChild(link);
-
-});
-
-})();
-
-</script>
-
-
-<script>
-
-/* =====================================================
-   ANIA — ASISTAN AI CENTER
-   Reponn kesyon sou platfòm nan (baz konesans lokal).
-===================================================== */
-
-(function(){
-
-"use strict";
-
-var fab=document.getElementById("aniaFab");
-var panel=document.getElementById("aniaPanel");
-var closeBtn=document.getElementById("aniaClose");
-var log=document.getElementById("aniaLog");
-var chips=document.getElementById("aniaChips");
-var form=document.getElementById("aniaForm");
-var input=document.getElementById("aniaInput");
-
-if(!fab || !panel){
-return;
-}
-
-var greeted=false;
-
-function lang(){
-
-var l=document.documentElement.lang;
-
-return (l==="fr" || l==="en" || l==="es") ? l : "ht";
-
-}
-
-var UI={
-
-hello:{
-ht:"Bonjou! Mwen se ANIA, asistan AI Center BSS1815 PRO-MAX DMP. Kijan m ka ede w?",
-fr:"Bonjour ! Je suis ANIA, l'assistante AI Center de BSS1815 PRO-MAX DMP. Comment puis-je vous aider ?",
-en:"Hello! I'm ANIA, the AI Center assistant of BSS1815 PRO-MAX DMP. How can I help you?",
-es:"¡Hola! Soy ANIA, la asistente del AI Center de BSS1815 PRO-MAX DMP. ¿Cómo puedo ayudarte?"
-},
-
-placeholder:{
-ht:"Poze yon kesyon…",
-fr:"Posez une question…",
-en:"Ask a question…",
-es:"Haz una pregunta…"
-},
-
-fallback:{
-ht:"Mwen pa gen repons pou kesyon sa a. Mwen ka pale de platfòm nan, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, DDN ak kontak nou. Ou ka ekri nou tou sou WhatsApp oswa imèl.",
-fr:"Je n'ai pas de réponse à cette question. Je peux parler de la plateforme, de PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, DDN et de nos contacts. Vous pouvez aussi nous écrire sur WhatsApp ou par e-mail.",
-en:"I don't have an answer to that question. I can talk about the platform, PRO-MAX FM, Maximax Multi Services, PRO-MAX Academy, DDN and our contacts. You can also write to us on WhatsApp or by email.",
-es:"No tengo una respuesta para esa pregunta. Puedo hablar sobre la plataforma, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, DDN y nuestros contactos. También puedes escribirnos por WhatsApp o correo electrónico."
-},
-
-chips:{
-ht:["Kisa BSS1815 PRO-MAX DMP ye?","PRO-MAX Académie","Maximax Multi Services","Kontak"],
-fr:["Qu'est-ce que BSS1815 PRO-MAX DMP ?","PRO-MAX Académie","Maximax Multi Services","Contact"],
-en:["What is BSS1815 PRO-MAX DMP?","PRO-MAX Academy","Maximax Multi Services","Contact"],
-es:["¿Qué es BSS1815 PRO-MAX DMP?","PRO-MAX Académie","Maximax Multi Services","Contacto"]
-}
-
-};
-
-var KB=[
-
-{
-k:["my maximax","admin","dashboard","login","konekte","connexion"],
-a:{
-ht:"MY MAXIMAX se sant kontwòl entèn BSS1815 PRO-MAX DMP. Se sèlman administratè otorize ki ka antre la, apre yo fin konekte.",
-fr:"MY MAXIMAX est le centre de contrôle interne de BSS1815 PRO-MAX DMP. Seuls les administrateurs autorisés y accèdent, après connexion.",
-en:"MY MAXIMAX is the internal control center of BSS1815 PRO-MAX DMP. Only authorized administrators can enter, after signing in.",
-es:"MY MAXIMAX es el centro de control interno de BSS1815 PRO-MAX DMP. Solo los administradores autorizados pueden entrar, tras iniciar sesión."
-}
-},
-
-{
-k:["maximax","imigrasyon","immigration","tradiksyon","traduction","translation"],
-a:{
-ht:"Maximax Multi Services se sant sèvis pwofesyonèl la: imigrasyon, tradiksyon, dokiman ak asistans administratif.",
-fr:"Maximax Multi Services est le centre de services professionnels : immigration, traduction, documents et assistance administrative.",
-en:"Maximax Multi Services is the professional services center: immigration, translation, documents and administrative assistance.",
-es:"Maximax Multi Services es el centro de servicios profesionales: inmigración, traducción, documentos y asistencia administrativa."
-}
-},
-
-{
-k:["radyo","radio","fm","podcast","mizik","music","musique"],
-a:{
-ht:"PRO-MAX FM se branch radyo ak medya dijital la: live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya.",
-fr:"PRO-MAX FM est la branche radio et média numérique : radio en direct, actualités, podcasts, interviews, musique et production média.",
-en:"PRO-MAX FM is the digital radio and media branch: live radio, news, podcasts, interviews, music and media production.",
-es:"PRO-MAX FM es la rama de radio y medios digitales: radio en vivo, noticias, podcasts, entrevistas, música y producción de medios."
-}
-},
-
-{
-k:["academi","academie","academy","akademi","fomasyon","formation","training","student","etidyan","sertifikasyon","certification"],
-a:{
-ht:"PRO-MAX Académie se sant fòmasyon an: entèlijans atifisyèl, teknoloji, inovasyon, lidèchip, Student Portal, evalyasyon ak sètifikasyon.",
-fr:"PRO-MAX Académie est le centre de formation : intelligence artificielle, technologie, innovation, leadership, portail étudiant, évaluations et certification.",
-en:"PRO-MAX Academy is the training center: artificial intelligence, technology, innovation, leadership, Student Portal, assessments and certification.",
-es:"PRO-MAX Académie es el centro de formación: inteligencia artificial, tecnología, innovación, liderazgo, portal estudiantil, evaluaciones y certificación."
-}
-},
-
-{
-k:["ddn","devan"],
-a:{
-ht:"DEVAN DEVAN NÈT™ (DDN) se yon pati dirèk nan BSS1815 PRO-MAX DMP. BATI POU JODI A. PARE POU DEMEN.",
-fr:"DEVAN DEVAN NÈT™ (DDN) fait directement partie de BSS1815 PRO-MAX DMP. CONSTRUIT POUR AUJOURD'HUI. PRÊT POUR DEMAIN.",
-en:"DEVAN DEVAN NÈT™ (DDN) is a direct part of BSS1815 PRO-MAX DMP. BUILT FOR TODAY. READY FOR TOMORROW.",
-es:"DEVAN DEVAN NÈT™ (DDN) es parte directa de BSS1815 PRO-MAX DMP. CONSTRUIDO PARA HOY. LISTO PARA MAÑANA."
-}
-},
-
-{
-k:["kontak","contact","contacto","telefon","telephone","phone","telefono","nimewo","numero","number","email","imel","mail","correo","whatsapp","rele","appeler","call","llamar","website","sit","sitio"],
-a:{
-ht:"Imèl: bss1815promaxdmp@gmail.com. Sit wèb: bss1815pro-maxdmp.com. Ayiti: +509 43 43 7488 ak +509 42 54 4447. Etazini: (317) 538-1150, (407) 640-5166 ak (516) 216-8494. Ou ka ekri nou sou WhatsApp tou.",
-fr:"E-mail : bss1815promaxdmp@gmail.com. Site web : bss1815pro-maxdmp.com. Haïti : +509 43 43 7488 et +509 42 54 4447. États-Unis : (317) 538-1150, (407) 640-5166 et (516) 216-8494. Vous pouvez aussi nous écrire sur WhatsApp.",
-en:"Email: bss1815promaxdmp@gmail.com. Website: bss1815pro-maxdmp.com. Haiti: +509 43 43 7488 and +509 42 54 4447. United States: (317) 538-1150, (407) 640-5166 and (516) 216-8494. You can also message us on WhatsApp.",
-es:"Correo: bss1815promaxdmp@gmail.com. Sitio web: bss1815pro-maxdmp.com. Haití: +509 43 43 7488 y +509 42 54 4447. Estados Unidos: (317) 538-1150, (407) 640-5166 y (516) 216-8494. También puedes escribirnos por WhatsApp."
-}
-},
-
-{
-k:["bss1815","platfom","platform","plateforme","dmp","kisa","what","quoi","community","kominote","communaute"],
-a:{
-ht:"BSS1815 PRO-MAX DMP se yon sèl platfòm dijital ki konekte kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administrasyon, teknoloji, medya ak entèlijans atifisyèl.",
-fr:"BSS1815 PRO-MAX DMP est une plateforme numérique unique qui relie la communauté BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, l'administration, la technologie, les médias et l'intelligence artificielle.",
-en:"BSS1815 PRO-MAX DMP is one digital platform connecting the BSS1815 community, PRO-MAX FM, Maximax Multi Services, PRO-MAX Academy, administration, technology, media and artificial intelligence.",
-es:"BSS1815 PRO-MAX DMP es una sola plataforma digital que conecta a la comunidad BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administración, tecnología, medios e inteligencia artificial."
-}
-},
-
-{
-k:["bonjou","bonjour","hello","salut","alo","hi","hey","bonswa","bonsoir","hola","buenas"],
-a:UI.hello
-}
-
-];
-
-function norm(text){
-
-return String(text)
-.toLowerCase()
-.normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"");
-
-}
-
-function matches(tokens,text,word){
-
-word=norm(word);
-
-if(word.indexOf(" ")>-1){
-return text.indexOf(word)>-1;
-}
-
-return tokens.some(function(token){
-
-return word.length<=3
-? token===word
-: token.indexOf(word)===0;
-
-});
-
-}
-
-function answer(question){
-
-var text=norm(question);
-var tokens=text.split(/[^a-z0-9]+/);
-
-for(var i=0;i<KB.length;i++){
-
-var hit=KB[i].k.some(function(word){
-return matches(tokens,text,word);
-});
-
-if(hit){
-return KB[i].a[lang()];
-}
-
-}
-
-return UI.fallback[lang()];
-
-}
-
-function addMessage(text,who){
-
-var message=document.createElement("div");
-
-message.className="ania-msg "+who;
-message.textContent=text;
-
-log.appendChild(message);
-
-log.scrollTop=log.scrollHeight;
-
-}
-
-function renderChips(){
-
-chips.innerHTML="";
-
-UI.chips[lang()].forEach(function(label){
-
-var chip=document.createElement("button");
-
-chip.type="button";
-chip.className="ania-chip";
-chip.textContent=label;
-
-chip.addEventListener(
-"click",
-function(){
-ask(label);
-}
-);
-
-chips.appendChild(chip);
-
-});
-
-}
-
-function ask(question){
-
-question=question.trim();
-
-if(!question){
-return;
-}
-
-addMessage(question,"me");
-
-setTimeout(function(){
-addMessage(answer(question),"bot");
-},350);
-
-}
-
-function openPanel(){
-
-panel.classList.add("open");
-
-fab.setAttribute("aria-expanded","true");
-
-input.placeholder=UI.placeholder[lang()];
-
-renderChips();
-
-if(!greeted){
-
-greeted=true;
-
-addMessage(UI.hello[lang()],"bot");
-
-}
-
-input.focus();
-
-}
-
-function closePanel(){
-
-panel.classList.remove("open");
-
-fab.setAttribute("aria-expanded","false");
-
-fab.focus();
-
-}
-
-fab.addEventListener(
-"click",
-function(){
-
-if(panel.classList.contains("open")){
-closePanel();
-}else{
-openPanel();
-}
-
-});
-
-closeBtn.addEventListener(
-"click",
-closePanel
-);
-
-panel.addEventListener(
-"keydown",
-function(event){
-
-if(event.key==="Escape"){
-closePanel();
-}
-
-});
-
-form.addEventListener(
-"submit",
-function(event){
-
-event.preventDefault();
-
-var value=input.value;
-
-input.value="";
-
-ask(value);
-
-});
 
 })();
 
