@@ -10,7 +10,6 @@
 <meta name="description" content="Maximax Multi Services — Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman ak asistans administratif, pati BSS1815 PRO-MAX DMP.">
 <meta name="theme-color" content="#000000">
 <meta name="robots" content="index,follow">
-
 <link rel="canonical" href="https://bss1815pro-maxdmp.com/maximax/">
 
 <style>
@@ -132,34 +131,17 @@ letter-spacing:.08em;
 text-transform:uppercase;
 }
 
-.header-actions{
-display:flex;
-align-items:center;
-gap:10px;
-flex-wrap:wrap;
-}
-
-.back-home,
-.customer-link{
+.back-home{
 padding:9px 14px;
 border:1px solid var(--orange);
 border-radius:999px;
 color:var(--orange);
-background:#000;
 font-size:.62rem;
 font-weight:1000;
 text-transform:uppercase;
-transition:.25s;
 }
 
-.back-home:hover,
-.customer-link:hover{
-background:var(--orange);
-color:#000;
-box-shadow:var(--glow);
-}
-
-.customer-link{
+.back-home:hover{
 background:var(--orange);
 color:#000;
 }
@@ -175,7 +157,7 @@ background:#000;
 
 .lang-btn{
 min-width:56px;
-padding:8px;
+padding:8px 8px;
 border:0;
 border-radius:999px;
 color:var(--orange3);
@@ -233,7 +215,7 @@ line-height:1.75;
 font-size:.94rem;
 }
 
-/* ================= GENERAL SECTION ================= */
+/* ================= SERVICES ================= */
 
 .section{
 padding:56px 0;
@@ -241,7 +223,7 @@ border-top:1px solid rgba(255,121,0,.10);
 }
 
 .section-heading{
-max-width:700px;
+max-width:640px;
 margin:0 auto 32px;
 text-align:center;
 }
@@ -254,14 +236,6 @@ line-height:.95;
 text-transform:uppercase;
 }
 
-.section-description{
-margin-top:15px;
-line-height:1.7;
-font-size:.85rem;
-}
-
-/* ================= SERVICES ================= */
-
 .services-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -269,6 +243,7 @@ gap:16px;
 }
 
 .service-card{
+display:block;
 padding:22px;
 border:1px solid var(--border);
 border-radius:18px;
@@ -276,6 +251,7 @@ background:
 radial-gradient(circle at top right,rgba(255,121,0,.12),transparent 36%),
 linear-gradient(145deg,#000,#0b0400);
 transition:.3s;
+cursor:pointer;
 }
 
 .service-card:hover{
@@ -317,7 +293,7 @@ line-height:1.7;
 font-size:.8rem;
 }
 
-/* ================= AI CENTER ================= */
+/* ================= AI CENTER LINK ================= */
 
 .ai-box{
 margin-top:20px;
@@ -354,275 +330,6 @@ background:var(--orange);
 font-size:.66rem;
 font-weight:1000;
 text-transform:uppercase;
-}
-
-/* ================= CUSTOMER SERVICE ================= */
-
-.customer-service-section{
-position:relative;
-overflow:hidden;
-}
-
-.customer-service-section::before{
-content:"";
-position:absolute;
-width:420px;
-height:420px;
-top:40px;
-left:50%;
-transform:translateX(-50%);
-border-radius:50%;
-background:rgba(255,121,0,.10);
-filter:blur(100px);
-pointer-events:none;
-}
-
-.customer-service-center{
-position:relative;
-display:grid;
-grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-gap:22px;
-align-items:stretch;
-}
-
-.professor-card,
-.customer-help-card{
-overflow:hidden;
-border:2px solid var(--orange);
-border-radius:24px;
-background:
-radial-gradient(circle at top right,rgba(255,121,0,.14),transparent 38%),
-linear-gradient(145deg,#000,#130600,#000);
-box-shadow:var(--glow2);
-}
-
-.professor-header{
-min-height:68px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
-padding:16px 18px;
-border-bottom:1px solid var(--border);
-background:#030100;
-}
-
-.professor-name{
-color:var(--orange);
-font-size:.86rem;
-font-weight:1000;
-letter-spacing:.08em;
-text-transform:uppercase;
-}
-
-.professor-status{
-display:flex;
-align-items:center;
-gap:7px;
-color:var(--orange3);
-font-size:.67rem;
-font-weight:900;
-text-transform:uppercase;
-}
-
-.status-dot{
-width:10px;
-height:10px;
-border-radius:50%;
-background:var(--orange);
-box-shadow:0 0 13px var(--orange);
-animation:statusPulse 1.5s infinite;
-}
-
-@keyframes statusPulse{
-50%{
-transform:scale(1.35);
-opacity:.55;
-}
-}
-
-.professor-video-box{
-position:relative;
-width:100%;
-aspect-ratio:16/10;
-overflow:hidden;
-background:#000;
-}
-
-.professor-video{
-width:100%;
-height:100%;
-display:block;
-object-fit:cover;
-background:#000;
-}
-
-.video-label{
-position:absolute;
-left:14px;
-bottom:14px;
-padding:8px 12px;
-border:1px solid var(--orange);
-border-radius:999px;
-color:var(--orange3);
-background:rgba(0,0,0,.88);
-font-size:.62rem;
-font-weight:1000;
-text-transform:uppercase;
-box-shadow:var(--glow);
-pointer-events:none;
-}
-
-.video-error{
-display:none;
-padding:14px;
-color:var(--orange3);
-background:#100500;
-border-top:1px solid var(--border);
-text-align:center;
-font-size:.75rem;
-line-height:1.6;
-}
-
-.video-controls{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-padding:16px;
-}
-
-.video-button{
-min-height:46px;
-padding:11px 15px;
-border:1px solid var(--orange);
-border-radius:999px;
-color:#000;
-background:var(--orange);
-cursor:pointer;
-font-size:.68rem;
-font-weight:1000;
-text-transform:uppercase;
-transition:.25s;
-}
-
-.video-button.secondary{
-color:var(--orange);
-background:#000;
-}
-
-.video-button:hover{
-transform:translateY(-2px);
-box-shadow:var(--glow);
-}
-
-.customer-help-card{
-padding:26px;
-}
-
-.customer-help-icon{
-width:68px;
-height:68px;
-display:grid;
-place-items:center;
-border:2px solid var(--orange);
-border-radius:20px;
-background:#000;
-box-shadow:var(--glow);
-font-size:2rem;
-}
-
-.customer-help-card h3{
-margin-top:20px;
-color:var(--orange);
-font-size:1.35rem;
-line-height:1.1;
-text-transform:uppercase;
-}
-
-.customer-help-card > p{
-margin-top:12px;
-line-height:1.7;
-font-size:.82rem;
-}
-
-.customer-topics{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:20px;
-}
-
-.customer-topic{
-padding:13px 10px;
-border:1px solid var(--border);
-border-radius:13px;
-color:var(--orange3);
-background:#070200;
-text-align:center;
-font-size:.68rem;
-font-weight:900;
-}
-
-.customer-message-box{
-margin-top:20px;
-padding:16px;
-border:1px solid var(--border2);
-border-radius:16px;
-background:#030100;
-}
-
-.customer-message-box label{
-display:block;
-color:var(--orange);
-font-size:.7rem;
-font-weight:1000;
-text-transform:uppercase;
-}
-
-.customer-message-box textarea{
-width:100%;
-min-height:105px;
-margin-top:10px;
-padding:13px;
-resize:vertical;
-outline:none;
-border:1px solid var(--border);
-border-radius:13px;
-color:var(--text);
-background:#000;
-font-family:inherit;
-font-size:.78rem;
-}
-
-.customer-message-box textarea:focus{
-border-color:var(--orange);
-box-shadow:0 0 0 3px rgba(255,121,0,.12);
-}
-
-.customer-send{
-width:100%;
-margin-top:10px;
-min-height:45px;
-border:0;
-border-radius:999px;
-color:#000;
-background:linear-gradient(135deg,var(--orange3),var(--orange));
-cursor:pointer;
-font-size:.7rem;
-font-weight:1000;
-text-transform:uppercase;
-}
-
-.customer-response{
-display:none;
-margin-top:12px;
-padding:12px;
-border:1px solid var(--border);
-border-radius:12px;
-color:var(--orange3);
-background:#100500;
-font-size:.74rem;
-line-height:1.55;
 }
 
 /* ================= CONTACT ================= */
@@ -680,16 +387,6 @@ line-height:1.75;
 font-size:.68rem;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:820px){
-
-.customer-service-center{
-grid-template-columns:1fr;
-}
-
-}
-
 @media(max-width:640px){
 
 .services-grid,
@@ -700,23 +397,6 @@ grid-template-columns:1fr;
 .header-inner{
 justify-content:center;
 text-align:center;
-}
-
-.header-actions{
-justify-content:center;
-}
-
-.customer-topics{
-grid-template-columns:1fr;
-}
-
-.video-controls{
-grid-template-columns:1fr;
-}
-
-.professor-header{
-align-items:flex-start;
-flex-direction:column;
 }
 
 }
@@ -730,12 +410,9 @@ flex-direction:column;
 <div class="container header-inner">
 
 <a href="../index.html" class="brand">
-
 <div class="brand-icon">💼</div>
-
 <div class="brand-text">
 <strong>MAXIMAX MULTI SERVICES</strong>
-
 <span
 data-ht="BSS1815 PRO-MAX DMP"
 data-fr="BSS1815 PRO-MAX DMP"
@@ -743,15 +420,12 @@ data-en="BSS1815 PRO-MAX DMP"
 data-es="BSS1815 PRO-MAX DMP">
 BSS1815 PRO-MAX DMP
 </span>
-
 </div>
 </a>
 
-<div class="header-actions">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
 
-<a
-href="../index.html#maximax"
-class="back-home"
+<a href="../index.html#maximax" class="back-home"
 data-ht="← RETOU AKÈY"
 data-fr="← RETOUR ACCUEIL"
 data-en="← BACK HOME"
@@ -759,58 +433,28 @@ data-es="← VOLVER AL INICIO">
 ← RETOU AKÈY
 </a>
 
-<a
-href="#customer-service"
-class="customer-link"
-data-ht="🎓 CUSTOMER SERVICE"
-data-fr="🎓 SERVICE CLIENT"
-data-en="🎓 CUSTOMER SERVICE"
-data-es="🎓 SERVICIO AL CLIENTE">
-🎓 CUSTOMER SERVICE
-</a>
-
 <div class="lang-switch">
-
-<button type="button" class="lang-btn" data-lang="en">
-🇺🇸 ENG
-</button>
-
-<button type="button" class="lang-btn" data-lang="fr">
-🇫🇷 FRA
-</button>
-
-<button type="button" class="lang-btn active" data-lang="ht">
-🇭🇹 KRE
-</button>
-
-<button type="button" class="lang-btn" data-lang="es">
-🇪🇸 ESP
-</button>
-
+<button type="button" class="lang-btn" data-lang="en">🇺🇸 ENG</button>
+<button type="button" class="lang-btn" data-lang="fr">🇫🇷 FRA</button>
+<button type="button" class="lang-btn active" data-lang="ht">🇭🇹 KRE</button>
+<button type="button" class="lang-btn" data-lang="es">🇪🇸 ESP</button>
 </div>
 
 </div>
+
 </div>
 </header>
 
 <main>
 
-<!-- ================= HERO ================= -->
-
 <section class="hero">
 <div class="container">
 
-<div class="eyebrow">
-BSS1815 PRO-MAX DMP
-</div>
+<div class="eyebrow">BSS1815 PRO-MAX DMP</div>
 
-<div class="hero-icon">
-💼
-</div>
+<div class="hero-icon">💼</div>
 
-<h1>
-MAXIMAX MULTI SERVICES
-</h1>
+<h1>MAXIMAX MULTI SERVICES</h1>
 
 <p
 data-ht="Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman, asistans administratif ak lòt sèvis kominotè."
@@ -823,41 +467,30 @@ Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman, asistans administr
 </div>
 </section>
 
-<!-- ================= SERVICES ================= -->
-
 <section class="section" id="services">
 <div class="container">
 
 <div class="section-heading">
-
-<div
-class="eyebrow"
+<div class="eyebrow"
 data-ht="SÈVIS NOU YO"
 data-fr="NOS SERVICES"
 data-en="OUR SERVICES"
 data-es="NUESTROS SERVICIOS">
 SÈVIS NOU YO
 </div>
-
-<h2
-class="section-title"
+<h2 class="section-title"
 data-ht="KI SA NOU OFRI"
 data-fr="CE QUE NOUS OFFRONS"
 data-en="WHAT WE OFFER"
 data-es="LO QUE OFRECEMOS">
 KI SA NOU OFRI
 </h2>
-
 </div>
 
 <div class="services-grid">
 
-<div class="service-card">
-
-<div class="service-icon">
-🛂
-</div>
-
+<a class="service-card" href="pages/immigration-services.html">
+<div class="service-icon">🛂</div>
 <h3
 data-ht="SÈVIS IMIGRASYON"
 data-fr="SERVICES D'IMMIGRATION"
@@ -865,7 +498,6 @@ data-en="IMMIGRATION SERVICES"
 data-es="SERVICIOS DE INMIGRACIÓN">
 SÈVIS IMIGRASYON
 </h3>
-
 <p
 data-ht="Asistans pou ranpli fòm ak prepare dosye imigrasyon."
 data-fr="Aide pour remplir les formulaires et préparer les dossiers d'immigration."
@@ -873,15 +505,10 @@ data-en="Assistance filling out forms and preparing immigration paperwork."
 data-es="Asistencia para completar formularios y preparar documentos de inmigración.">
 Asistans pou ranpli fòm ak prepare dosye imigrasyon.
 </p>
+</a>
 
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-🌐
-</div>
-
+<a class="service-card" href="pages/translation-services.html">
+<div class="service-icon">🌐</div>
 <h3
 data-ht="TRADIKSYON"
 data-fr="TRADUCTION"
@@ -889,7 +516,6 @@ data-en="TRANSLATION"
 data-es="TRADUCCIÓN">
 TRADIKSYON
 </h3>
-
 <p
 data-ht="Tradiksyon dokiman ant Kreyòl, Fransè, Anglè ak Espayòl."
 data-fr="Traduction de documents entre créole, français, anglais et espagnol."
@@ -897,15 +523,10 @@ data-en="Document translation between Haitian Creole, French, English and Spanis
 data-es="Traducción de documentos entre criollo haitiano, francés, inglés y español.">
 Tradiksyon dokiman ant Kreyòl, Fransè, Anglè ak Espayòl.
 </p>
+</a>
 
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-📄
-</div>
-
+<a class="service-card" href="pages/document-preparation.html">
+<div class="service-icon">📄</div>
 <h3
 data-ht="PREPARASYON DOKIMAN"
 data-fr="PRÉPARATION DE DOCUMENTS"
@@ -913,7 +534,6 @@ data-en="DOCUMENT PREPARATION"
 data-es="PREPARACIÓN DE DOCUMENTOS">
 PREPARASYON DOKIMAN
 </h3>
-
 <p
 data-ht="Ranpli, korije ak prepare dokiman ofisyèl ak administratif."
 data-fr="Remplissage, correction et préparation de documents officiels et administratifs."
@@ -921,15 +541,10 @@ data-en="Filling, correcting and preparing official and administrative documents
 data-es="Llenado, corrección y preparación de documentos oficiales y administrativos.">
 Ranpli, korije ak prepare dokiman ofisyèl ak administratif.
 </p>
+</a>
 
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-🗂️
-</div>
-
+<a class="service-card" href="pages/administrative-assistance.html">
+<div class="service-icon">🗂️</div>
 <h3
 data-ht="ASISTANS ADMINISTRATIF"
 data-fr="ASSISTANCE ADMINISTRATIVE"
@@ -937,7 +552,6 @@ data-en="ADMINISTRATIVE ASSISTANCE"
 data-es="ASISTENCIA ADMINISTRATIVA">
 ASISTANS ADMINISTRATIF
 </h3>
-
 <p
 data-ht="Èd pou demach administratif, randevou ak swiv dosye."
 data-fr="Aide pour les démarches administratives, rendez-vous et suivi de dossiers."
@@ -945,13 +559,11 @@ data-en="Help with administrative steps, appointments and case follow-up."
 data-es="Ayuda con trámites administrativos, citas y seguimiento de casos.">
 Èd pou demach administratif, randevou ak swiv dosye.
 </p>
-
-</div>
+</a>
 
 </div>
 
 <div class="notice-box">
-
 <p
 data-ht="⚠️ Ekip Maximax Multi Services PA avoka. Nou ofri sèlman asistans nan sèvis ki make anlè yo — nou pa bay konsèy legal."
 data-fr="⚠️ L'équipe Maximax Multi Services N'EST PAS composée d'avocats. Nous offrons uniquement une assistance pour les services listés ci-dessus — nous ne fournissons pas de conseils juridiques."
@@ -959,15 +571,16 @@ data-en="⚠️ The Maximax Multi Services team are NOT attorneys. We only provi
 data-es="⚠️ El equipo de Maximax Multi Services NO son abogados. Solo brindamos asistencia con los servicios enumerados arriba — no ofrecemos asesoría legal.">
 ⚠️ Ekip Maximax Multi Services PA avoka. Nou ofri sèlman asistans nan sèvis ki make anlè yo — nou pa bay konsèy legal.
 </p>
-
 </div>
 
 <div class="ai-box">
-
-<h3>
+<h3
+data-ht="AI CENTER"
+data-fr="AI CENTER"
+data-en="AI CENTER"
+data-es="AI CENTER">
 AI CENTER
 </h3>
-
 <p
 data-ht="Maximax Multi Services itilize AI Center santral BSS1815 PRO-MAX DMP la pou reponn kesyon."
 data-fr="Maximax Multi Services utilise l'AI Center central de BSS1815 PRO-MAX DMP pour répondre aux questions."
@@ -975,357 +588,55 @@ data-en="Maximax Multi Services uses the central BSS1815 PRO-MAX DMP AI Center t
 data-es="Maximax Multi Services utiliza el AI Center central de BSS1815 PRO-MAX DMP para responder preguntas.">
 Maximax Multi Services itilize AI Center santral BSS1815 PRO-MAX DMP la pou reponn kesyon.
 </p>
-
-<a
-href="../ai-center.html"
-class="btn"
+<a href="../ai-center.html" class="btn"
 data-ht="🤖 ALE NAN AI CENTER"
 data-fr="🤖 ALLER À L'AI CENTER"
 data-en="🤖 GO TO AI CENTER"
 data-es="🤖 IR AL AI CENTER">
 🤖 ALE NAN AI CENTER
 </a>
-
 </div>
 
 </div>
 </section>
-
-<!-- ================= CUSTOMER SERVICE ================= -->
-
-<section class="section customer-service-section" id="customer-service">
-<div class="container">
-
-<div class="section-heading">
-
-<div
-class="eyebrow"
-data-ht="ASISTANS PWOFESYONÈL"
-data-fr="ASSISTANCE PROFESSIONNELLE"
-data-en="PROFESSIONAL SUPPORT"
-data-es="ASISTENCIA PROFESIONAL">
-ASISTANS PWOFESYONÈL
-</div>
-
-<h2
-class="section-title"
-data-ht="CUSTOMER SERVICE CENTER"
-data-fr="CENTRE DE SERVICE CLIENT"
-data-en="CUSTOMER SERVICE CENTER"
-data-es="CENTRO DE SERVICIO AL CLIENTE">
-CUSTOMER SERVICE CENTER
-</h2>
-
-<p
-class="section-description"
-data-ht="Prof Avatar Maximax la disponib pou akeyi ou, prezante sèvis yo epi ede ou jwenn asistans ou bezwen an."
-data-fr="Le Professeur Avatar Maximax est disponible pour vous accueillir, présenter nos services et vous aider à trouver l'assistance dont vous avez besoin."
-data-en="The Maximax Professor Avatar is available to welcome you, explain our services and help you find the assistance you need."
-data-es="El Profesor Avatar de Maximax está disponible para recibirle, explicar nuestros servicios y ayudarle a encontrar la asistencia que necesita.">
-Prof Avatar Maximax la disponib pou akeyi ou, prezante sèvis yo epi ede ou jwenn asistans ou bezwen an.
-</p>
-
-</div>
-
-<div class="customer-service-center">
-
-<div class="professor-card">
-
-<div class="professor-header">
-
-<div
-class="professor-name"
-data-ht="PROF AVATAR CUSTOMER SERVICE"
-data-fr="PROFESSEUR AVATAR — SERVICE CLIENT"
-data-en="CUSTOMER SERVICE PROFESSOR AVATAR"
-data-es="PROFESOR AVATAR — SERVICIO AL CLIENTE">
-PROF AVATAR CUSTOMER SERVICE
-</div>
-
-<div class="professor-status">
-
-<span class="status-dot"></span>
-
-<span
-data-ht="DISPONIB"
-data-fr="DISPONIBLE"
-data-en="AVAILABLE"
-data-es="DISPONIBLE">
-DISPONIB
-</span>
-
-</div>
-</div>
-
-<div class="professor-video-box">
-
-<video
-id="customerServiceVideo"
-class="professor-video"
-controls
-playsinline
-preload="auto"
-autoplay
-muted
-loop>
-
-<source
-src="../video-prof-avatar.mp4"
-type="video/mp4">
-
-Navigatè ou a pa sipòte videyo HTML5.
-
-</video>
-
-<div
-class="video-label"
-data-ht="GID OFISYÈL MAXIMAX"
-data-fr="GUIDE OFFICIEL MAXIMAX"
-data-en="OFFICIAL MAXIMAX GUIDE"
-data-es="GUÍA OFICIAL MAXIMAX">
-GID OFISYÈL MAXIMAX
-</div>
-
-</div>
-
-<div class="video-error" id="videoError">
-
-<span
-data-ht="Videyo a pa chaje. Verifye fichye video-prof-avatar.mp4 la nan rasin repo a."
-data-fr="La vidéo ne s'est pas chargée. Vérifiez le fichier video-prof-avatar.mp4 à la racine du dépôt."
-data-en="The video did not load. Verify video-prof-avatar.mp4 in the repository root."
-data-es="El video no se cargó. Verifique video-prof-avatar.mp4 en la raíz del repositorio.">
-Videyo a pa chaje. Verifye fichye video-prof-avatar.mp4 la nan rasin repo a.
-</span>
-
-</div>
-
-<div class="video-controls">
-
-<button
-type="button"
-class="video-button"
-id="playVideoButton"
-data-ht="▶ JWE VIDEYO A"
-data-fr="▶ LIRE LA VIDÉO"
-data-en="▶ PLAY VIDEO"
-data-es="▶ REPRODUCIR VIDEO">
-▶ JWE VIDEYO A
-</button>
-
-<button
-type="button"
-class="video-button secondary"
-id="soundVideoButton"
-data-ht="🔊 AKTIVE SON"
-data-fr="🔊 ACTIVER LE SON"
-data-en="🔊 TURN ON SOUND"
-data-es="🔊 ACTIVAR SONIDO">
-🔊 AKTIVE SON
-</button>
-
-</div>
-
-</div>
-
-<div class="customer-help-card">
-
-<div class="customer-help-icon">
-🎓
-</div>
-
-<h3
-data-ht="KIJAN NOU KA EDE OU?"
-data-fr="COMMENT POUVONS-NOUS VOUS AIDER ?"
-data-en="HOW CAN WE HELP YOU?"
-data-es="¿CÓMO PODEMOS AYUDARLE?">
-KIJAN NOU KA EDE OU?
-</h3>
-
-<p
-data-ht="Customer Service Center la ede ou jwenn bon sèvis la, konprann etap yo epi kontakte ekip Maximax la."
-data-fr="Le Centre de Service Client vous aide à trouver le bon service, à comprendre les étapes et à contacter l'équipe Maximax."
-data-en="The Customer Service Center helps you find the right service, understand the steps and contact the Maximax team."
-data-es="El Centro de Servicio al Cliente le ayuda a encontrar el servicio correcto, comprender los pasos y contactar al equipo Maximax.">
-Customer Service Center la ede ou jwenn bon sèvis la, konprann etap yo epi kontakte ekip Maximax la.
-</p>
-
-<div class="customer-topics">
-
-<div
-class="customer-topic"
-data-ht="🛂 IMIGRASYON"
-data-fr="🛂 IMMIGRATION"
-data-en="🛂 IMMIGRATION"
-data-es="🛂 INMIGRACIÓN">
-🛂 IMIGRASYON
-</div>
-
-<div
-class="customer-topic"
-data-ht="🌐 TRADIKSYON"
-data-fr="🌐 TRADUCTION"
-data-en="🌐 TRANSLATION"
-data-es="🌐 TRADUCCIÓN">
-🌐 TRADIKSYON
-</div>
-
-<div
-class="customer-topic"
-data-ht="📄 DOKIMAN"
-data-fr="📄 DOCUMENTS"
-data-en="📄 DOCUMENTS"
-data-es="📄 DOCUMENTOS">
-📄 DOKIMAN
-</div>
-
-<div
-class="customer-topic"
-data-ht="🗂️ ASISTANS"
-data-fr="🗂️ ASSISTANCE"
-data-en="🗂️ ASSISTANCE"
-data-es="🗂️ ASISTENCIA">
-🗂️ ASISTANS
-</div>
-
-</div>
-
-<div class="customer-message-box">
-
-<label
-for="customerQuestion"
-data-ht="EKRI KESYON OU"
-data-fr="ÉCRIVEZ VOTRE QUESTION"
-data-en="WRITE YOUR QUESTION"
-data-es="ESCRIBA SU PREGUNTA">
-EKRI KESYON OU
-</label>
-
-<textarea
-id="customerQuestion"
-data-placeholder-ht="Ekri non ou ak sèvis ou bezwen an..."
-data-placeholder-fr="Écrivez votre nom et le service dont vous avez besoin..."
-data-placeholder-en="Enter your name and the service you need..."
-data-placeholder-es="Escriba su nombre y el servicio que necesita..."
-placeholder="Ekri non ou ak sèvis ou bezwen an..."></textarea>
-
-<button
-type="button"
-class="customer-send"
-id="customerSendButton"
-data-ht="VOYE DEMANN NAN"
-data-fr="ENVOYER LA DEMANDE"
-data-en="SEND REQUEST"
-data-es="ENVIAR SOLICITUD">
-VOYE DEMANN NAN
-</button>
-
-<div class="customer-response" id="customerResponse">
-
-<span
-data-ht="✅ Demann ou prepare. Pou asistans dirèk, kontakte ekip Maximax la nan seksyon kontak ki anba a."
-data-fr="✅ Votre demande est prête. Pour une assistance directe, contactez l'équipe Maximax dans la section Contact ci-dessous."
-data-en="✅ Your request is ready. For direct assistance, contact the Maximax team in the Contact section below."
-data-es="✅ Su solicitud está lista. Para asistencia directa, contacte al equipo Maximax en la sección de Contacto abajo.">
-✅ Demann ou prepare. Pou asistans dirèk, kontakte ekip Maximax la nan seksyon kontak ki anba a.
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= CONTACT ================= -->
 
 <section class="section" id="contact">
 <div class="container">
 
 <div class="section-heading">
-
-<div class="eyebrow">
-MAXIMAX MULTI SERVICES
-</div>
-
-<h2
-class="section-title"
+<div class="eyebrow">MAXIMAX MULTI SERVICES</div>
+<h2 class="section-title"
 data-ht="KONTAK"
 data-fr="CONTACT"
 data-en="CONTACT"
 data-es="CONTACTO">
 KONTAK
 </h2>
-
 </div>
 
 <div class="contact-grid">
 
 <div class="contact-card">
-
-<strong>
-✉️ EMAIL
-</strong>
-
-<a href="mailto:bss1815promaxdmp@gmail.com">
-bss1815promaxdmp@gmail.com
-</a>
-
+<strong>✉️ EMAIL</strong>
+<a href="mailto:bss1815promaxdmp@gmail.com">bss1815promaxdmp@gmail.com</a>
 </div>
 
 <div class="contact-card">
-
-<strong>
-🌐 WEBSITE
-</strong>
-
-<a
-href="https://bss1815pro-maxdmp.com"
-target="_blank"
-rel="noopener noreferrer">
-bss1815pro-maxdmp.com
-</a>
-
+<strong>🌐 WEBSITE</strong>
+<a href="https://bss1815pro-maxdmp.com" target="_blank" rel="noopener noreferrer">bss1815pro-maxdmp.com</a>
 </div>
 
 <div class="contact-card">
-
-<strong>
-🇭🇹 HAITI
-</strong>
-
-<a href="tel:+50943437488">
-+509 43 43 7488
-</a>
-
-<a href="tel:+50942544447">
-+509 42 54 4447
-</a>
-
+<strong>🇭🇹 HAITI</strong>
+<a href="tel:+50943437488">+509 43 43 7488</a>
+<a href="tel:+50942544447">+509 42 54 4447</a>
 </div>
 
 <div class="contact-card">
-
-<strong>
-🇺🇸 UNITED STATES
-</strong>
-
-<a href="tel:+13175381150">
-(317) 538-1150
-</a>
-
-<a href="tel:+14076405166">
-(407) 640-5166
-</a>
-
-<a href="tel:+15162168494">
-(516) 216-8494
-</a>
-
+<strong>🇺🇸 UNITED STATES</strong>
+<a href="tel:+13175381150">(317) 538-1150</a>
+<a href="tel:+14076405166">(407) 640-5166</a>
+<a href="tel:+15162168494">(516) 216-8494</a>
 </div>
 
 </div>
@@ -1336,21 +647,13 @@ bss1815pro-maxdmp.com
 </main>
 
 <footer>
-
 <div class="container">
-
-<div class="footer-title">
-MAXIMAX MULTI SERVICES • BSS1815 PRO-MAX DMP
-</div>
-
+<div class="footer-title">MAXIMAX MULTI SERVICES • BSS1815 PRO-MAX DMP</div>
 <div class="footer-info">
-DEVAN DEVAN NÈT™
-<br>
+DEVAN DEVAN NÈT™<br>
 © <span id="currentYear"></span> BSS1815 PRO-MAX DMP
 </div>
-
 </div>
-
 </footer>
 
 <script>
@@ -1360,68 +663,38 @@ DEVAN DEVAN NÈT™
 "use strict";
 
 var languageButtons=document.querySelectorAll(".lang-btn");
-var customerQuestion=document.getElementById("customerQuestion");
 
 function setLanguage(language){
 
 document.documentElement.lang=language==="ht" ? "ht" : language;
 
 document.querySelectorAll("[data-"+language+"]").forEach(function(element){
-
 var translated=element.getAttribute("data-"+language);
-
 if(translated){
 element.textContent=translated;
 }
-
 });
 
-if(customerQuestion){
-
-var placeholder=
-customerQuestion.getAttribute("data-placeholder-"+language);
-
-if(placeholder){
-customerQuestion.placeholder=placeholder;
-}
-
-}
-
 languageButtons.forEach(function(button){
-
-button.classList.toggle(
-"active",
-button.dataset.lang===language
-);
-
+button.classList.toggle("active",button.dataset.lang===language);
 });
 
 try{
-localStorage.setItem(
-"bss1815-language",
-language
-);
+localStorage.setItem("bss1815-language",language);
 }catch(error){}
 
 }
 
 languageButtons.forEach(function(button){
-
 button.addEventListener("click",function(){
-
 setLanguage(this.dataset.lang);
-
 });
-
 });
 
 var savedLanguage="ht";
 
 try{
-
-savedLanguage=
-localStorage.getItem("bss1815-language") || "ht";
-
+savedLanguage=localStorage.getItem("bss1815-language") || "ht";
 }catch(error){}
 
 if(
@@ -1435,179 +708,7 @@ savedLanguage="ht";
 
 setLanguage(savedLanguage);
 
-/* ================= VIDEO CONTROLS ================= */
-
-var customerVideo=
-document.getElementById("customerServiceVideo");
-
-var playVideoButton=
-document.getElementById("playVideoButton");
-
-var soundVideoButton=
-document.getElementById("soundVideoButton");
-
-var videoError=
-document.getElementById("videoError");
-
-if(customerVideo){
-
-customerVideo.addEventListener("loadeddata",function(){
-
-if(videoError){
-videoError.style.display="none";
-}
-
-});
-
-customerVideo.addEventListener("error",function(){
-
-if(videoError){
-videoError.style.display="block";
-}
-
-});
-
-customerVideo.play().catch(function(){
-
-/*
-Navigatè mobil ka bloke autoplay.
-Videyo a toujou parèt epi bouton JWE a ap travay.
-*/
-
-});
-
-}
-
-if(playVideoButton && customerVideo){
-
-playVideoButton.addEventListener("click",function(){
-
-if(customerVideo.paused){
-
-customerVideo.play().catch(function(){});
-
-var language=
-document.documentElement.lang==="ht"
-? "ht"
-: document.documentElement.lang;
-
-var playText={
-ht:"⏸ POZE VIDEYO A",
-fr:"⏸ METTRE EN PAUSE",
-en:"⏸ PAUSE VIDEO",
-es:"⏸ PAUSAR VIDEO"
-};
-
-playVideoButton.textContent=
-playText[language] || playText.ht;
-
-}else{
-
-customerVideo.pause();
-
-var language=
-document.documentElement.lang==="ht"
-? "ht"
-: document.documentElement.lang;
-
-var pauseText={
-ht:"▶ JWE VIDEYO A",
-fr:"▶ LIRE LA VIDÉO",
-en:"▶ PLAY VIDEO",
-es:"▶ REPRODUCIR VIDEO"
-};
-
-playVideoButton.textContent=
-pauseText[language] || pauseText.ht;
-
-}
-
-});
-
-}
-
-if(soundVideoButton && customerVideo){
-
-soundVideoButton.addEventListener("click",function(){
-
-customerVideo.muted=!customerVideo.muted;
-
-var language=
-document.documentElement.lang==="ht"
-? "ht"
-: document.documentElement.lang;
-
-var soundOnText={
-ht:"🔊 AKTIVE SON",
-fr:"🔊 ACTIVER LE SON",
-en:"🔊 TURN ON SOUND",
-es:"🔊 ACTIVAR SONIDO"
-};
-
-var soundOffText={
-ht:"🔇 FÈMEN SON",
-fr:"🔇 COUPER LE SON",
-en:"🔇 MUTE SOUND",
-es:"🔇 SILENCIAR"
-};
-
-soundVideoButton.textContent=
-customerVideo.muted
-? soundOnText[language] || soundOnText.ht
-: soundOffText[language] || soundOffText.ht;
-
-});
-
-}
-
-/* ================= CUSTOMER MESSAGE ================= */
-
-var customerSendButton=
-document.getElementById("customerSendButton");
-
-var customerResponse=
-document.getElementById("customerResponse");
-
-if(customerSendButton){
-
-customerSendButton.addEventListener("click",function(){
-
-if(!customerQuestion){
-return;
-}
-
-var message=
-customerQuestion.value.trim();
-
-if(!message){
-
-customerQuestion.focus();
-
-customerQuestion.style.borderColor="#ff7900";
-
-return;
-
-}
-
-customerQuestion.style.borderColor="";
-
-if(customerResponse){
-customerResponse.style.display="block";
-}
-
-document.getElementById("contact").scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-
-});
-
-}
-
-/* ================= CURRENT YEAR ================= */
-
 var year=document.getElementById("currentYear");
-
 if(year){
 year.textContent=new Date().getFullYear();
 }
