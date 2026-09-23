@@ -22,6 +22,7 @@
   --orange:#ff7900;
   --orange2:#ff8c1a;
   --apricot:#ffad4d;
+  --orange3:#ffad4d;
   --text:#ffc589;
   --border:rgba(255,121,0,.30);
   --border2:rgba(255,121,0,.72);
@@ -550,11 +551,38 @@ header{
   line-height:1.7;
 }
 
-/* SLIDESHOW */
+.hidden{
+  display:none!important;
+}
+
+/* ===== IKÒN KONTAK (menm gwosè ak tout lòt ikòn yo) ===== */
+
+.contact-head{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+.contact-icon{
+  width:44px;
+  height:44px;
+  flex-shrink:0;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.contact-icon svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+/* BSS1815 COMMUNITY SLIDESHOW — NOUVO (10 segonn chak foto, fondu) */
 
 .bss-slideshow{
   width:min(1100px,100%);
-  margin:auto;
+  margin:24px auto 0;
 }
 
 .bss-stage{
@@ -568,26 +596,55 @@ header{
   box-shadow:var(--glow2);
 }
 
-.bss-stage img,
-.bss-stage video{
+.bss-layer{
   position:absolute;
   inset:0;
+  z-index:1;
+  opacity:0;
+  background:#000;
+  transition:opacity 1.2s ease-in-out;
+}
+
+.bss-layer.show{
+  z-index:2;
+  opacity:1;
+}
+
+.bss-layer img,
+.bss-layer video{
+  display:block;
   width:100%;
   height:100%;
+  max-width:none;
   object-fit:contain;
   background:#000;
 }
 
-.hidden{
-  display:none!important;
+.bss-loading{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  text-align:center;
+  color:var(--orange3);
+  font-size:.8rem;
+  font-weight:900;
+  pointer-events:none;
 }
 
-.bss-badge{
+.bss-loading.hidden{
+  display:none;
+}
+
+.bss-slide-badge{
   position:absolute;
-  top:17px;
-  left:17px;
-  z-index:10;
-  padding:9px 13px;
+  top:18px;
+  left:18px;
+  z-index:12;
+  padding:9px 14px;
   border-radius:999px;
   color:#000;
   background:var(--orange);
@@ -595,74 +652,144 @@ header{
   font-weight:1000;
 }
 
-.bss-overlay{
+.bss-missing-btn{
+  position:absolute;
+  top:18px;
+  right:18px;
+  z-index:14;
+  display:none;
+  padding:8px 12px;
+  border:0;
+  border-radius:999px;
+  color:#fff;
+  background:rgba(190,30,30,.85);
+  cursor:pointer;
+  font-size:.58rem;
+  font-weight:1000;
+}
+
+.bss-missing-panel{
+  position:absolute;
+  top:58px;
+  right:18px;
+  left:18px;
+  z-index:15;
+  display:none;
+  max-width:420px;
+  max-height:60%;
+  margin-left:auto;
+  overflow-y:auto;
+  padding:14px 16px;
+  border:1px solid var(--orange);
+  border-radius:14px;
+  background:rgba(0,0,0,.95);
+  font-size:.75rem;
+  line-height:1.5;
+}
+
+.bss-missing-panel.open{
+  display:block;
+}
+
+.bss-missing-panel strong{
+  display:block;
+  margin-bottom:6px;
+  color:var(--orange);
+}
+
+.bss-missing-panel ul{
+  padding-left:18px;
+}
+
+.bss-missing-panel li{
+  overflow-wrap:anywhere;
+}
+
+.bss-slide-overlay{
   position:absolute;
   inset:0;
-  z-index:5;
+  z-index:7;
   pointer-events:none;
   background:linear-gradient(
-    transparent 45%,
-    rgba(0,0,0,.15) 62%,
-    rgba(0,0,0,.95)
+    180deg,
+    transparent 42%,
+    rgba(0,0,0,.15) 60%,
+    rgba(0,0,0,.93) 100%
   );
 }
 
-.bss-caption{
+.bss-slide-caption{
   position:absolute;
   left:0;
   right:0;
   bottom:0;
-  z-index:7;
-  padding:75px 68px 28px;
+  z-index:10;
+  padding:70px 70px 28px;
+  text-align:left;
+  pointer-events:none;
 }
 
-.bss-caption small{
-  color:var(--apricot);
+.bss-slide-caption small{
+  color:var(--orange3);
   font-size:.60rem;
   font-weight:1000;
-  letter-spacing:.15em;
+  letter-spacing:.16em;
+  text-transform:uppercase;
 }
 
-.bss-caption h3{
+.bss-slide-caption h3{
   margin-top:8px;
   color:var(--orange);
   font-size:clamp(1.6rem,5vw,3.2rem);
   line-height:1;
+  text-transform:uppercase;
+  text-shadow:0 3px 14px #000;
 }
 
-.bss-caption p{
+.bss-slide-caption p{
+  max-width:760px;
   margin-top:10px;
-  color:var(--apricot);
+  color:var(--orange3);
+  font-size:.78rem;
+  line-height:1.6;
+  text-shadow:0 3px 12px #000;
 }
 
 .bss-arrow{
   position:absolute;
   top:50%;
-  z-index:12;
+  z-index:13;
+  transform:translateY(-50%);
   width:50px;
   height:50px;
-  transform:translateY(-50%);
+  display:grid;
+  place-items:center;
   border:1px solid var(--orange);
   border-radius:50%;
+  background:rgba(0,0,0,.82);
   color:var(--orange);
-  background:rgba(0,0,0,.85);
-  cursor:pointer;
   font-size:2rem;
+  cursor:pointer;
+}
+
+.bss-arrow:hover{
+  background:var(--orange);
+  color:#000;
 }
 
 .bss-prev{
-  left:15px;
+  left:16px;
 }
 
 .bss-next{
-  right:15px;
+  right:16px;
 }
 
 .bss-controls{
   display:grid;
   grid-template-columns:auto auto auto 1fr;
   align-items:center;
-  gap:13px;
+  gap:14px;
   margin-top:14px;
   padding:13px 16px;
   border:1px solid var(--border);
@@ -671,14 +798,14 @@ header{
 }
 
 .bss-counter{
-  min-width:90px;
+  min-width:88px;
   color:var(--orange);
   font-size:.72rem;
   font-weight:1000;
   text-align:center;
 }
 
-.bss-control{
+.bss-play{
   padding:8px 14px;
   border:1px solid var(--orange);
   border-radius:999px;
@@ -689,18 +816,34 @@ header{
   font-weight:1000;
 }
 
+.bss-play:hover{
+  background:var(--orange);
+  color:#000;
+}
+
 .bss-progress{
   height:7px;
   overflow:hidden;
   border-radius:999px;
-  background:rgba(255,121,0,.15);
+  background:rgba(255,121,0,.14);
 }
 
-.bss-progress span{
-  display:block;
-  width:0;
+.bss-progress-bar{
+  width:0%;
   height:100%;
-  background:linear-gradient(90deg,var(--orange),var(--apricot));
+  background:linear-gradient(
+    90deg,
+    #9d3c00,
+    var(--orange),
+    var(--orange3)
+  );
+  box-shadow:0 0 12px rgba(255,121,0,.55);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .bss-layer{
+    transition:none;
+  }
 }
 
 .ddn-box{
@@ -752,6 +895,154 @@ header{
 .social-card span{
   margin-top:8px;
   font-size:.76rem;
+  overflow-wrap:anywhere;
+}
+
+.contact-card{
+  min-height:155px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:22px;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#050200;
+}
+
+.contact-card strong{
+  color:var(--orange);
+  font-size:.68rem;
+  text-transform:uppercase;
+}
+
+.contact-card a{
+  margin-top:9px;
+  line-height:1.5;
+  font-size:.78rem;
+  overflow-wrap:anywhere;
+}
+
+.contact-card a:hover{
+  color:var(--orange);
+}
+
+/* ===== TELEFÒN AK DRAPO PEYI ===== */
+
+.contact-card.phones{
+  grid-column:1/-1;
+  align-items:stretch;
+}
+
+.contact-card.phones > .contact-head{
+  margin-bottom:6px;
+}
+
+.phone-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:10px;
+  margin-top:8px;
+}
+
+.contact-card .phone-row{
+  margin-top:0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:#000;
+  text-align:left;
+  font-size:.9rem;
+  font-weight:900;
+  color:var(--text);
+  transition:.2s;
+}
+
+.contact-card .phone-row:hover{
+  border-color:var(--orange);
+  color:var(--orange);
+  box-shadow:var(--glow);
+}
+
+.flag{
+  width:30px;
+  height:20px;
+  flex-shrink:0;
+  border-radius:3px;
+  overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.25);
+}
+
+.phone-row .phone-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.25;
+}
+
+.phone-row .phone-name{
+  color:var(--orange3);
+  font-size:.62rem;
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.social-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+  margin-top:28px;
+}
+
+.social-link{
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px 16px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:#030100;
+  transition:.25s;
+}
+
+.social-link:hover{
+  transform:translateY(-3px);
+  border-color:var(--orange);
+  box-shadow:var(--glow);
+}
+
+.social-icon{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.social-icon svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.social-link strong{
+  display:block;
+  color:var(--orange);
+  font-size:.72rem;
+  text-transform:uppercase;
+}
+
+.social-link span{
+  display:block;
+  margin-top:3px;
+  font-size:.57rem;
   overflow-wrap:anywhere;
 }
 
@@ -845,6 +1136,24 @@ footer strong{
     height:520px;
   }
 
+  .bss-slide-caption{
+    padding:80px 56px 25px;
+  }
+
+  .bss-arrow{
+    width:42px;
+    height:42px;
+    font-size:1.6rem;
+  }
+
+  .bss-prev{
+    left:8px;
+  }
+
+  .bss-next{
+    right:8px;
+  }
+
   .bss-controls{
     grid-template-columns:auto auto auto;
   }
@@ -875,7 +1184,13 @@ footer strong{
     border-radius:20px;
   }
 
-  .bss-caption{
+  .bss-slide-badge{
+    top:10px;
+    left:10px;
+    font-size:.50rem;
+  }
+
+  .bss-slide-caption{
     padding:75px 47px 22px;
   }
 }
@@ -883,6 +1198,36 @@ footer strong{
 </head>
 
 <body>
+
+<!-- DRAPO YO (yo itilize plizyè fwa pi ba a) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="flag-us" viewBox="0 0 30 20">
+<rect width="30" height="20" fill="#fff"/>
+<rect y="0" width="30" height="1.54" fill="#B22234"/>
+<rect y="3.08" width="30" height="1.54" fill="#B22234"/>
+<rect y="6.15" width="30" height="1.54" fill="#B22234"/>
+<rect y="9.23" width="30" height="1.54" fill="#B22234"/>
+<rect y="12.31" width="30" height="1.54" fill="#B22234"/>
+<rect y="15.38" width="30" height="1.54" fill="#B22234"/>
+<rect y="18.46" width="30" height="1.54" fill="#B22234"/>
+<rect width="12" height="10.77" fill="#3C3B6E"/>
+<g fill="#fff">
+<circle cx="2" cy="1.8" r=".55"/><circle cx="5" cy="1.8" r=".55"/><circle cx="8" cy="1.8" r=".55"/><circle cx="11" cy="1.8" r=".55"/>
+<circle cx="3.5" cy="3.9" r=".55"/><circle cx="6.5" cy="3.9" r=".55"/><circle cx="9.5" cy="3.9" r=".55"/>
+<circle cx="2" cy="6" r=".55"/><circle cx="5" cy="6" r=".55"/><circle cx="8" cy="6" r=".55"/><circle cx="11" cy="6" r=".55"/>
+<circle cx="3.5" cy="8.1" r=".55"/><circle cx="6.5" cy="8.1" r=".55"/><circle cx="9.5" cy="8.1" r=".55"/>
+</g>
+</symbol>
+<symbol id="flag-ht" viewBox="0 0 30 20">
+<rect width="30" height="10" fill="#00209F"/>
+<rect y="10" width="30" height="10" fill="#D21034"/>
+<rect x="10.5" y="6.5" width="9" height="7" fill="#fff"/>
+<rect x="13.2" y="8.6" width="3.6" height="3.4" fill="#016A16"/>
+<rect x="14.6" y="7.2" width=".8" height="2" fill="#016A16"/>
+</symbol>
+</defs>
+</svg>
 
 <div
 class="top-bar"
@@ -1195,36 +1540,72 @@ BSS1815 Community entegre dirèkteman nan sistèm nan.
 
 <div class="bss-slideshow">
 
-<div class="bss-stage" id="bssStage" tabindex="0">
+<div
+class="bss-stage"
+id="bssStage"
+tabindex="0">
 
-<div class="bss-badge">
-BSS1815 COMMUNITY
+<div class="bss-layer" id="bssLayerA"></div>
+<div class="bss-layer" id="bssLayerB"></div>
+
+<div
+class="bss-loading"
+id="bssLoading"
+data-ht="Chajman..."
+data-fr="Chargement..."
+data-en="Loading...">
+Chajman...
 </div>
 
-<img
-id="bssImage"
-src="./assets/slideshow/tania2.jpg"
-alt="BSS1815 Community">
+<div
+class="bss-slide-badge"
+data-ht="5 PWOJÈ • YON SÈL PLATFÒM"
+data-fr="5 PROJETS • UNE SEULE PLATEFORME"
+data-en="5 PROJECTS • ONE PLATFORM">
+5 PWOJÈ • YON SÈL PLATFÒM
+</div>
 
-<video
-id="bssVideo"
-class="hidden"
-playsinline
-preload="metadata">
-</video>
+<button
+type="button"
+class="bss-missing-btn"
+id="bssMissingBtn">
+⚠ 0
+</button>
 
-<div class="bss-overlay"></div>
+<div
+class="bss-missing-panel"
+id="bssMissingPanel">
+<strong
+data-ht="Fichye sit la pa jwenn (tcheke non yo sou GitHub):"
+data-fr="Fichiers introuvables (vérifiez les noms sur GitHub) :"
+data-en="Files not found (check the names on GitHub):">
+Fichye sit la pa jwenn (tcheke non yo sou GitHub):
+</strong>
+<ul id="bssMissingList"></ul>
+</div>
 
-<div class="bss-caption">
-<small>FANMI • ERITAJ • KOMINOTE</small>
-<h3 id="bssTitle">TANIA2</h3>
+<div class="bss-slide-overlay"></div>
+
+<div class="bss-slide-caption">
+
+<small
+data-ht="BSS1815 PRO-MAX DMP • 5 PWOJÈ NAN YON SÈL PLATFÒM"
+data-fr="BSS1815 PRO-MAX DMP • 5 PROJETS DANS UNE SEULE PLATEFORME"
+data-en="BSS1815 PRO-MAX DMP • 5 PROJECTS IN ONE PLATFORM">
+BSS1815 PRO-MAX DMP • 5 PWOJÈ NAN YON SÈL PLATFÒM
+</small>
+
+<h3 id="bssSlideTitle">
+BSS1815
+</h3>
 
 <p
 data-ht="MOUVMAN SA A SE POU NOU TOUT. Chak figi se yon pati nan istwa ak eritaj BSS1815."
-data-fr="CE MOUVEMENT EST POUR NOUS TOUS. Chaque visage fait partie de l’histoire et de l’héritage BSS1815."
-data-en="THIS MOVEMENT IS FOR ALL OF US. Every face is part of BSS1815 history and heritage.">
+data-fr="CE MOUVEMENT EST POUR NOUS TOUS. Chaque visage fait partie de l’histoire et de l’héritage de BSS1815."
+data-en="THIS MOVEMENT IS FOR ALL OF US. Every face is part of the history and heritage of BSS1815.">
 MOUVMAN SA A SE POU NOU TOUT.
 </p>
+
 </div>
 
 <button
@@ -1247,26 +1628,31 @@ aria-label="Next">
 
 <div class="bss-controls">
 
-<div class="bss-counter" id="bssCounter">
+<div
+class="bss-counter"
+id="bssCounter">
 1 / 202
 </div>
 
 <button
 type="button"
-class="bss-control"
-id="bssPlay">
+class="bss-play"
+id="bssPlayPause">
 ⏸ PAUSE
 </button>
 
 <button
 type="button"
-class="bss-control"
+class="bss-play"
 id="bssSound">
 🔇 SON
 </button>
 
 <div class="bss-progress">
-<span id="bssProgress"></span>
+<div
+class="bss-progress-bar"
+id="bssProgressBar">
+</div>
 </div>
 
 </div>
@@ -1451,7 +1837,10 @@ DEVAN DEVAN NÈT™ se mouvman inovasyon ak AI platfòm nan.
 <div class="container">
 
 <div class="section-heading">
-<div class="eyebrow">STAY CONNECTED</div>
+
+<div class="eyebrow">
+STAY CONNECTED
+</div>
 
 <h2
 class="section-title"
@@ -1460,119 +1849,358 @@ data-fr="CONTACT & RÉSEAUX SOCIAUX"
 data-en="CONTACT & SOCIAL NETWORKS">
 KONTAK & REZO SOSYAL
 </h2>
+
 </div>
 
 <div class="contact-grid">
 
-<div class="card contact-card">
-<strong>📞 TELEPHONE</strong>
-<a href="tel:+15162168494">🇺🇸 (516) 216-8494</a>
-<a href="tel:+13175381150">🇺🇸 (317) 538-1150</a>
-<a href="tel:+14076405166">🇺🇸 (407) 640-5166</a>
-<a href="tel:+50943437488">🇭🇹 Cange +509 4343-7488</a>
-<a href="tel:+50942544447">🇭🇹 Adan +509 4254-4447</a>
+<div class="contact-card phones">
+
+<div class="contact-head">
+<div class="contact-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#ff7900"/>
+<path fill="#000" transform="translate(4.4 4.4) scale(.63)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+</svg>
+</div>
+<strong>
+TELEPHONE
+</strong>
 </div>
 
-<div class="card contact-card">
-<strong>📧 EMAIL</strong>
+<div class="phone-list">
+
+<a href="tel:+15162168494" class="phone-row">
+<svg class="flag" role="img" aria-label="USA"><use href="#flag-us"/></svg>
+<span class="phone-text">
+<span class="phone-name">USA</span>
+(516) 216-8494
+</span>
+</a>
+
+<a href="tel:+13175381150" class="phone-row">
+<svg class="flag" role="img" aria-label="USA"><use href="#flag-us"/></svg>
+<span class="phone-text">
+<span class="phone-name">USA</span>
+(317) 538-1150
+</span>
+</a>
+
+<a href="tel:+14076405166" class="phone-row">
+<svg class="flag" role="img" aria-label="USA"><use href="#flag-us"/></svg>
+<span class="phone-text">
+<span class="phone-name">USA</span>
+(407) 640-5166
+</span>
+</a>
+
+<a href="tel:+50943437488" class="phone-row">
+<svg class="flag" role="img" aria-label="Ayiti"><use href="#flag-ht"/></svg>
+<span class="phone-text">
+<span class="phone-name">Ayiti • Cange</span>
++509 4343-7488
+</span>
+</a>
+
+<a href="tel:+50942544447" class="phone-row">
+<svg class="flag" role="img" aria-label="Ayiti"><use href="#flag-ht"/></svg>
+<span class="phone-text">
+<span class="phone-name">Ayiti • Adan</span>
++509 4254-4447
+</span>
+</a>
+
+</div>
+
+</div>
+
+<div class="contact-card">
+
+<div class="contact-head">
+<div class="contact-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#ff7900"/>
+<rect x="4.5" y="7" width="15" height="10.5" rx="1.6" fill="#000"/>
+<path fill="none" stroke="#ff7900" stroke-width="1.5" stroke-linejoin="round" d="M5.3 8l6.7 5.2L18.7 8"/>
+</svg>
+</div>
+<strong>
+EMAIL
+</strong>
+</div>
+
 <a href="mailto:briyantsoleysigno1815@gmail.com">
 briyantsoleysigno1815@gmail.com
 </a>
+
 </div>
 
-<div class="card contact-card">
-<strong>🌐 WEBSITE</strong>
+<div class="contact-card">
+
+<div class="contact-head">
+<div class="contact-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#ff7900"/>
+<g fill="none" stroke="#000" stroke-width="1.5">
+<circle cx="12" cy="12" r="7.2"/>
+<ellipse cx="12" cy="12" rx="3.2" ry="7.2"/>
+<path d="M4.8 12h14.4M6 8.2h12M6 15.8h12"/>
+</g>
+</svg>
+</div>
+<strong>
+WEBSITE
+</strong>
+</div>
+
 <a
 href="https://www.briyantsoleysigno1815.com"
 target="_blank"
 rel="noopener noreferrer">
 www.briyantsoleysigno1815.com
 </a>
+
 </div>
 
 </div>
 
 <div class="social-grid">
 
-<a
-href="https://wa.me/50943437488"
-target="_blank"
-rel="noopener noreferrer"
-class="card social-card">
-<strong>WHATSAPP</strong>
-<span>+509 4343-7488</span>
-</a>
-
+<!-- FACEBOOK -->
 <a
 href="https://www.facebook.com/share/1By3KvYRrM/"
 target="_blank"
 rel="noopener noreferrer"
-class="card social-card">
-<strong>FACEBOOK</strong>
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#1877F2"/>
+<path fill="#fff" d="M13.4 21v-7.3h2.4l.4-2.9h-2.8V9c0-.8.3-1.4 1.4-1.4h1.5V5.1c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8v2.9h2.4V21z"/>
+</svg>
+</div>
+
+<div>
+<strong>Facebook</strong>
 <span>BSS1815 PRO-MAX DMP</span>
+</div>
+
 </a>
 
+<!-- WHATSAPP -->
+<a
+href="https://wa.me/50943437488"
+target="_blank"
+rel="noopener noreferrer"
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#25D366"/>
+<path fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" d="M12 4.6a7.3 7.3 0 0 0-6.3 11l-1 3.8 3.9-1a7.3 7.3 0 1 0 3.4-13.8z"/>
+<path fill="#fff" d="M9.3 8.2c.2-.2.5-.2.7 0l.9 1.6c.1.2.1.5-.1.7l-.5.5c.4.9 1.4 1.9 2.3 2.3l.5-.5c.2-.2.5-.2.7-.1l1.6.9c.2.1.3.4.2.6-.3.8-1 1.4-1.8 1.3-2.4-.3-4.9-2.8-5.2-5.2-.1-.8.4-1.6 1.2-1.9z"/>
+</svg>
+</div>
+
+<div>
+<strong>WhatsApp</strong>
+<span>+509 4343-7488</span>
+</div>
+
+</a>
+
+<!-- YOUTUBE -->
 <a
 href="https://www.youtube.com/@BSS1815PROMAXDMP"
 target="_blank"
 rel="noopener noreferrer"
-class="card social-card">
-<strong>YOUTUBE</strong>
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#fff"/>
+<rect x="3" y="6" width="18" height="12.5" rx="3.6" fill="#FF0000"/>
+<path fill="#fff" d="M10.2 9.2v6l5.2-3z"/>
+</svg>
+</div>
+
+<div>
+<strong>YouTube</strong>
 <span>@BSS1815PROMAXDMP</span>
+</div>
+
 </a>
 
+<!-- SPOTIFY -->
 <a
 href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici"
 target="_blank"
 rel="noopener noreferrer"
-class="card social-card">
-<strong>SPOTIFY</strong>
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#000"/>
+<circle cx="12" cy="12" r="8.5" fill="#1DB954"/>
+<path fill="none" stroke="#000" stroke-width="1.7" stroke-linecap="round" d="M7.3 9.6c3.2-1 6.9-.7 9.6.8"/>
+<path fill="none" stroke="#000" stroke-width="1.45" stroke-linecap="round" d="M7.8 12.4c2.7-.8 5.7-.5 7.9.8"/>
+<path fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" d="M8.3 15c2.2-.6 4.4-.4 6.2.6"/>
+</svg>
+</div>
+
+<div>
+<strong>Spotify</strong>
 <span>MAXIMAX</span>
+</div>
+
 </a>
 
+<!-- TIKTOK -->
 <a
 href="https://www.tiktok.com/@maximax1960"
 target="_blank"
 rel="noopener noreferrer"
-class="card social-card">
-<strong>TIKTOK</strong>
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#000"/>
+<path fill="#25F4EE" d="M12.3 4.5h2.4c.2 1.8 1.4 3.1 3.2 3.3v2.4c-1.2 0-2.3-.4-3.2-1v5.1a4.3 4.3 0 1 1-4.3-4.3h.4v2.5h-.4a1.8 1.8 0 1 0 1.9 1.8z" transform="translate(-.7 -.5)"/>
+<path fill="#FE2C55" d="M12.3 4.5h2.4c.2 1.8 1.4 3.1 3.2 3.3v2.4c-1.2 0-2.3-.4-3.2-1v5.1a4.3 4.3 0 1 1-4.3-4.3h.4v2.5h-.4a1.8 1.8 0 1 0 1.9 1.8z" transform="translate(.7 .5)"/>
+<path fill="#fff" d="M12.3 4.5h2.4c.2 1.8 1.4 3.1 3.2 3.3v2.4c-1.2 0-2.3-.4-3.2-1v5.1a4.3 4.3 0 1 1-4.3-4.3h.4v2.5h-.4a1.8 1.8 0 1 0 1.9 1.8z"/>
+</svg>
+</div>
+
+<div>
+<strong>TikTok</strong>
 <span>@maximax1960</span>
+</div>
+
 </a>
 
+<!-- TELEGRAM (mete lyen an nan href lè w genyen l) -->
 <a
-href="https://www.instagram.com/lebaron072/"
-target="_blank"
-rel="noopener noreferrer"
-class="card social-card">
-<strong>INSTAGRAM</strong>
-<span>@lebaron072</span>
+href="#contact"
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#26A5E4"/>
+<path fill="#fff" d="M5.2 11.7l12-4.6c.6-.2 1.1.1.9 1l-2 9.6c-.1.7-.6.8-1.1.5l-3.1-2.3-1.5 1.4c-.2.2-.3.3-.6.3l.2-3.2 5.8-5.2c.3-.2-.1-.4-.4-.2l-7.1 4.5-3.1-1c-.7-.2-.7-.7.1-1z"/>
+</svg>
+</div>
+
+<div>
+<strong>Telegram</strong>
+<span
+data-ht="Lyen ap vini"
+data-fr="Lien à venir"
+data-en="Link coming soon">
+Lyen ap vini
+</span>
+</div>
+
 </a>
 
+<!-- LINKEDIN -->
 <a
 href="https://www.linkedin.com/in/maximax-multi-services-075ba2314"
 target="_blank"
 rel="noopener noreferrer"
-class="card social-card">
-<strong>LINKEDIN</strong>
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#0A66C2"/>
+<rect x="5.6" y="9.8" width="2.8" height="8.4" fill="#fff"/>
+<circle cx="7" cy="6.9" r="1.6" fill="#fff"/>
+<path fill="#fff" d="M10.4 9.8h2.7V11c.4-.7 1.4-1.5 2.8-1.5 2.9 0 3.4 1.9 3.4 4.3v4.4h-2.8v-3.9c0-.9 0-2.1-1.3-2.1s-1.5 1-1.5 2.1v3.9h-2.8z"/>
+</svg>
+</div>
+
+<div>
+<strong>LinkedIn</strong>
 <span>Maximax Multi Services</span>
+</div>
+
 </a>
 
+<!-- TRUTH SOCIAL -->
 <a
 href="https://truthsocial.com/@briyant_soley_1815"
 target="_blank"
 rel="noopener noreferrer"
-class="card social-card">
-<strong>TRUTH SOCIAL</strong>
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#5448EE"/>
+<rect x="5.5" y="6" width="10" height="3" fill="#fff"/>
+<rect x="9" y="6" width="3" height="12" fill="#fff"/>
+<rect x="14.8" y="15" width="3" height="3" fill="#6BE3A0"/>
+</svg>
+</div>
+
+<div>
+<strong>Truth Social</strong>
 <span>@briyant_soley_1815</span>
+</div>
+
 </a>
 
+<!-- X / TWITTER -->
 <a
 href="https://x.com/w05g2m"
 target="_blank"
 rel="noopener noreferrer"
-class="card social-card">
-<strong>X / TWITTER</strong>
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect width="24" height="24" rx="6" fill="#000" stroke="#333" stroke-width=".6"/>
+<path fill="#fff" d="M5.5 5.5h4.1l8.9 13h-4.1z"/>
+<path fill="#000" d="M7.3 6.5h1.8l7.6 11h-1.8z"/>
+<path fill="none" stroke="#fff" stroke-width="1.5" d="M17.8 5.5l-5.2 5.9M11 13.2l-5 5.3"/>
+</svg>
+</div>
+
+<div>
+<strong>X / Twitter</strong>
 <span>@w05g2m</span>
+</div>
+
+</a>
+
+<!-- INSTAGRAM -->
+<a
+href="https://www.instagram.com/lebaron072/"
+target="_blank"
+rel="noopener noreferrer"
+class="social-link">
+
+<div class="social-icon">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<defs>
+<radialGradient id="igGrad" cx="30%" cy="107%" r="150%">
+<stop offset="0" stop-color="#FDF497"/>
+<stop offset=".08" stop-color="#FDF497"/>
+<stop offset=".45" stop-color="#FD5949"/>
+<stop offset=".6" stop-color="#D6249F"/>
+<stop offset=".9" stop-color="#285AEB"/>
+</radialGradient>
+</defs>
+<rect width="24" height="24" rx="6" fill="url(#igGrad)"/>
+<rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.7"/>
+<circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/>
+<circle cx="15.9" cy="8.1" r=".95" fill="#fff"/>
+</svg>
+</div>
+
+<div>
+<strong>Instagram</strong>
+<span>@lebaron072</span>
+</div>
+
 </a>
 
 </div>
@@ -1962,7 +2590,15 @@ if(modulesGrid){
 
 }
 
-/* BSS1815 COMMUNITY MEDIA */
+/* ================= SLIDESHOW ================= */
+/* Nouvo slideshow: chak foto 10 segonn, fondu nan pwochen an,
+   videyo yo jwe nèt, bouton son, fichye ki manke yo sote. */
+
+var BSS_PHOTO_TIME=10000;
+var BSS_FADE_TIME=1200;
+var BSS_STEP=100;
+var BSS_LOAD_LIMIT=15000;
+var BSS_BASES=["./","./assets/slideshow/"];
 
 var bssFiles=[
 "bss.jpg",
@@ -2169,289 +2805,425 @@ var bssFiles=[
 "system-akayik2.jpg"
 ];
 
-/* RETIRE DOUBLON */
-
+/* Retire doublon yo si yon non parèt de fwa */
 (function(){
-
-  var seen={};
-
-  bssFiles=bssFiles.filter(function(file){
-
-    var key=file.toLowerCase();
-
-    if(seen[key]){
-      return false;
-    }
-
-    seen[key]=true;
-
-    return true;
-
-  });
-
+var seen={};
+bssFiles=bssFiles.filter(function(file){
+var key=file.toLowerCase();
+if(seen[key]){return false;}
+seen[key]=true;
+return true;
+});
 })();
 
-var bssImage=document.getElementById("bssImage");
-var bssVideo=document.getElementById("bssVideo");
-var bssTitle=document.getElementById("bssTitle");
-var bssCounter=document.getElementById("bssCounter");
-var bssProgress=document.getElementById("bssProgress");
-var bssPrev=document.getElementById("bssPrev");
-var bssNext=document.getElementById("bssNext");
-var bssPlay=document.getElementById("bssPlay");
-var bssSound=document.getElementById("bssSound");
-var bssStage=document.getElementById("bssStage");
-
-var bssIndex=0;
-var bssPlaying=true;
-var bssSoundOn=false;
-var bssElapsed=0;
-
-var BSS_PHOTO_TIME=10000;
-var BSS_STEP=100;
-var BSS_BASE="./assets/slideshow/";
-
 function bssIsVideo(file){
-
-  return /\.(mp4|webm|mov|m4v)$/i.test(file);
-
+return /\.(mp4|mov|webm|m4v)$/i.test(file);
 }
 
 function bssPretty(file){
-
-  return file
-  .replace(/\.[^.]+$/,"")
-  .replace(/[-_.]+/g," ")
-  .replace(/\b\w/g,function(letter){
-
-    return letter.toUpperCase();
-
-  });
-
+return file
+.replace(/\.[^.]+$/,"")
+.replace(/[-_.]+/g," ")
+.replace(/(^|\s)(\S)/g,function(all,space,letter){
+return space+letter.toUpperCase();
+});
 }
 
-function bssShow(index){
+/* Tout fason yon non ka ekri sou sèvè a:
+   .jpg / .JPG / .jpeg, aksan telefòn, ak de dosye posib */
+function bssNames(file){
+var dot=file.lastIndexOf(".");
+var base=dot>-1?file.slice(0,dot):file;
+var ext=dot>-1?file.slice(dot+1):"";
+var low=ext.toLowerCase();
+var exts=[ext,low,ext.toUpperCase()];
+if(low==="jpg"){exts.push("jpeg","JPEG");}
+if(low==="jpeg"){exts.push("jpg","JPG");}
+var bases=[base];
+if(base.normalize){
+bases.push(base.normalize("NFC"),base.normalize("NFD"));
+}
+var names=[];
+bases.forEach(function(b){
+exts.forEach(function(e){
+var n=b+"."+e;
+if(names.indexOf(n)===-1){names.push(n);}
+});
+});
+return names;
+}
 
-  if(index<0){
-    index=bssFiles.length-1;
-  }
+var bssGoodBase=null;
 
-  if(index>=bssFiles.length){
-    index=0;
-  }
+function bssUrls(item){
+if(item.good){return [{base:item.goodBase,url:item.good}];}
+var bases=BSS_BASES.slice();
+if(bssGoodBase){
+bases.splice(bases.indexOf(bssGoodBase),1);
+bases.unshift(bssGoodBase);
+}
+var urls=[];
+bases.forEach(function(b){
+item.names.forEach(function(n){
+urls.push({base:b,url:b+encodeURI(n).replace(/#/g,"%23")});
+});
+});
+return urls;
+}
 
-  bssIndex=index;
-  bssElapsed=0;
+var bssItems=bssFiles.map(function(file){
+return{
+file:file,
+video:bssIsVideo(file),
+names:bssNames(file),
+good:null,
+goodBase:null,
+broken:false
+};
+});
 
-  var file=bssFiles[bssIndex];
-  var source=BSS_BASE+file;
+var bssLayers=[
+document.getElementById("bssLayerA"),
+document.getElementById("bssLayerB")
+];
+var bssFront=0;
+var bssTitle=document.getElementById("bssSlideTitle");
+var bssCounter=document.getElementById("bssCounter");
+var bssProgress=document.getElementById("bssProgressBar");
+var bssPrev=document.getElementById("bssPrev");
+var bssNext=document.getElementById("bssNext");
+var bssPlay=document.getElementById("bssPlayPause");
+var bssSoundBtn=document.getElementById("bssSound");
+var bssStage=document.getElementById("bssStage");
+var bssLoading=document.getElementById("bssLoading");
+var bssMissingBtn=document.getElementById("bssMissingBtn");
+var bssMissingPanel=document.getElementById("bssMissingPanel");
+var bssMissingList=document.getElementById("bssMissingList");
 
-  bssCounter.textContent=
-  (bssIndex+1)+" / "+bssFiles.length;
+var bssIndex=-1;
+var bssPlaying=true;
+var bssSoundOn=false;
+var bssElapsed=0;
+var bssReady=false;
+var bssToken=0;
+var bssCurrentVideo=null;
+var bssVideoBlocked=false;
+var bssLastTime=-1;
+var bssStall=0;
+var bssMissingCount=0;
 
-  bssTitle.textContent=bssPretty(file);
+function bssOkCount(){
+return bssItems.filter(function(i){return !i.broken;}).length;
+}
 
-  bssProgress.style.width="0%";
+function bssUpdateCounter(){
+if(!bssCounter){return;}
+var ok=bssItems.filter(function(i){return !i.broken;});
+var pos=ok.indexOf(bssItems[bssIndex])+1;
+bssCounter.textContent=(pos>0?pos:1)+" / "+ok.length;
+}
 
-  if(bssIsVideo(file)){
+function bssMarkBroken(item){
+if(item.broken){return;}
+item.broken=true;
+bssMissingCount++;
+if(bssMissingList){
+var li=document.createElement("li");
+li.textContent=item.file;
+bssMissingList.appendChild(li);
+}
+if(bssMissingBtn){
+bssMissingBtn.style.display="block";
+bssMissingBtn.textContent="⚠ "+bssMissingCount;
+}
+bssUpdateCounter();
+}
 
-    bssImage.classList.add("hidden");
+function bssNextIndex(from,step){
+var total=bssItems.length;
+for(var k=1;k<=total;k++){
+var idx=((from+step*k)%total+total)%total;
+if(!bssItems[idx].broken){return idx;}
+}
+return -1;
+}
 
-    bssVideo.classList.remove("hidden");
+/* Chaje yon foto oswa yon videyo, eseye chak non posib */
+function bssLoad(item,done,fail){
+var urls=bssUrls(item);
+var tryIndex=0;
+var finished=false;
+var limit=null;
+var el;
 
-    bssVideo.pause();
-    bssVideo.src=source;
-    bssVideo.currentTime=0;
-    bssVideo.loop=false;
-    bssVideo.muted=!bssSoundOn;
+if(item.video){
+el=document.createElement("video");
+el.muted=!bssSoundOn;
+el.playsInline=true;
+el.setAttribute("playsinline","");
+el.setAttribute("webkit-playsinline","");
+el.preload="auto";
+}else{
+el=document.createElement("img");
+el.alt=bssPretty(item.file);
+el.decoding="async";
+}
 
-    if(bssPlaying){
+function success(){
+if(finished){return;}
+finished=true;
+clearTimeout(limit);
+item.good=urls[tryIndex].url;
+item.goodBase=urls[tryIndex].base;
+bssGoodBase=urls[tryIndex].base;
+done(el);
+}
 
-      bssVideo
-      .play()
-      .catch(function(){});
+function tryNext(){
+if(finished){return;}
+tryIndex++;
+if(tryIndex<urls.length){
+el.src=urls[tryIndex].url;
+}else{
+finished=true;
+clearTimeout(limit);
+fail(true);
+}
+}
 
-    }
+el.addEventListener("error",tryNext);
 
-  }else{
+if(item.video){
+el.addEventListener("loadeddata",success);
+}else{
+el.addEventListener("load",success);
+}
 
-    bssVideo.pause();
-    bssVideo.removeAttribute("src");
-    bssVideo.load();
-    bssVideo.classList.add("hidden");
+limit=setTimeout(function(){
+if(finished){return;}
+finished=true;
+fail(false);
+},BSS_LOAD_LIMIT);
 
-    bssImage.classList.remove("hidden");
-    bssImage.src=source;
-    bssImage.alt=bssPretty(file);
+el.src=urls[0].url;
+return el;
+}
 
-  }
+function bssPlayVideo(video){
+video.muted=!bssSoundOn;
+var promise=video.play();
+if(promise && promise.catch){
+promise.catch(function(){
+video.muted=true;
+bssSoundOn=false;
+bssUpdateSoundBtn();
+var again=video.play();
+if(again && again.catch){
+again.catch(function(){
+bssVideoBlocked=true;
+});
+}
+});
+}
+}
 
+function bssShow(index,step){
+step=step||1;
+
+if(bssOkCount()===0){
+if(bssLoading){
+bssLoading.classList.remove("hidden");
+bssLoading.textContent="⚠ 0 / "+bssItems.length;
+}
+if(bssMissingPanel){bssMissingPanel.classList.add("open");}
+return;
+}
+
+if(index<0 || bssItems[index].broken){
+index=bssNextIndex(index<0?-1:index,step);
+if(index===-1){return;}
+}
+
+var token=++bssToken;
+var item=bssItems[index];
+bssReady=false;
+
+bssLoad(item,function(el){
+
+if(token!==bssToken){return;}
+
+var oldLayer=bssLayers[bssFront];
+bssFront=1-bssFront;
+var newLayer=bssLayers[bssFront];
+
+newLayer.innerHTML="";
+newLayer.appendChild(el);
+
+void newLayer.offsetWidth;
+newLayer.classList.add("show");
+oldLayer.classList.remove("show");
+
+var oldVideo=oldLayer.querySelector("video");
+if(oldVideo){oldVideo.pause();}
+setTimeout(function(){
+if(!oldLayer.classList.contains("show")){
+var v=oldLayer.querySelector("video");
+if(v){v.pause();v.removeAttribute("src");v.load();}
+oldLayer.innerHTML="";
+}
+},BSS_FADE_TIME+100);
+
+if(bssLoading){bssLoading.classList.add("hidden");}
+
+bssIndex=index;
+bssElapsed=0;
+bssVideoBlocked=false;
+bssLastTime=-1;
+bssStall=0;
+bssCurrentVideo=item.video?el:null;
+
+if(bssTitle){bssTitle.textContent=bssPretty(item.file);}
+if(bssProgress){bssProgress.style.width="0%";}
+bssUpdateCounter();
+
+if(bssCurrentVideo){
+bssCurrentVideo.addEventListener("ended",function(){
+if(token===bssToken && bssPlaying){bssGoNext();}
+});
+if(bssPlaying){bssPlayVideo(bssCurrentVideo);}
+}
+
+bssReady=true;
+bssPreload();
+
+},function(missing){
+
+if(token!==bssToken){return;}
+if(missing){bssMarkBroken(item);}
+var nextIdx=bssNextIndex(index,step);
+if(nextIdx===-1 || nextIdx===index){
+bssShow(-1,1);
+return;
+}
+bssShow(nextIdx,step);
+
+});
+}
+
+/* Prepare pwochen foto a pou fondu a pa rete nwa */
+function bssPreload(){
+var n=bssNextIndex(bssIndex,1);
+if(n===-1){return;}
+var item=bssItems[n];
+if(item.video || item.good){return;}
+bssLoad(item,function(){},function(missing){
+if(missing){bssMarkBroken(item);}
+});
 }
 
 function bssGoNext(){
-
-  bssShow(bssIndex+1);
-
+bssShow(bssNextIndex(bssIndex,1),1);
 }
 
-function bssGoPrevious(){
-
-  bssShow(bssIndex-1);
-
+function bssGoPrev(){
+bssShow(bssNextIndex(bssIndex,-1),-1);
 }
 
-bssNext.addEventListener("click",bssGoNext);
-bssPrev.addEventListener("click",bssGoPrevious);
+function bssUpdateSoundBtn(){
+if(bssSoundBtn){
+bssSoundBtn.textContent=bssSoundOn?"🔊 SON":"🔇 SON";
+}
+}
 
+if(bssNext){bssNext.addEventListener("click",bssGoNext);}
+if(bssPrev){bssPrev.addEventListener("click",bssGoPrev);}
+
+if(bssPlay){
 bssPlay.addEventListener("click",function(){
-
-  bssPlaying=!bssPlaying;
-
-  bssPlay.textContent=
-  bssPlaying ? "⏸ PAUSE" : "▶ PLAY";
-
-  if(bssIsVideo(bssFiles[bssIndex])){
-
-    if(bssPlaying){
-
-      bssVideo
-      .play()
-      .catch(function(){});
-
-    }else{
-
-      bssVideo.pause();
-
-    }
-
-  }
-
+bssPlaying=!bssPlaying;
+bssPlay.textContent=bssPlaying?"⏸ PAUSE":"▶ PLAY";
+if(bssCurrentVideo){
+if(bssPlaying){bssPlayVideo(bssCurrentVideo);}
+else{bssCurrentVideo.pause();}
+}
 });
+}
 
-bssSound.addEventListener("click",function(){
-
-  bssSoundOn=!bssSoundOn;
-
-  bssSound.textContent=
-  bssSoundOn ? "🔊 SON" : "🔇 SON";
-
-  bssVideo.muted=!bssSoundOn;
-
-  if(
-    bssPlaying &&
-    bssIsVideo(bssFiles[bssIndex])
-  ){
-
-    bssVideo
-    .play()
-    .catch(function(){});
-
-  }
-
+if(bssSoundBtn){
+bssSoundBtn.addEventListener("click",function(){
+bssSoundOn=!bssSoundOn;
+bssUpdateSoundBtn();
+if(bssCurrentVideo){
+bssCurrentVideo.muted=!bssSoundOn;
+if(bssPlaying){bssCurrentVideo.play().catch(function(){});}
+}
 });
+}
 
-bssImage.addEventListener("error",bssGoNext);
-bssVideo.addEventListener("error",bssGoNext);
-bssVideo.addEventListener("ended",bssGoNext);
+if(bssMissingBtn && bssMissingPanel){
+bssMissingBtn.addEventListener("click",function(){
+bssMissingPanel.classList.toggle("open");
+});
+}
 
 var touchStartX=0;
 
-bssStage.addEventListener(
-  "touchstart",
-  function(event){
+if(bssStage){
 
-    touchStartX=
-    event.changedTouches[0].screenX;
+bssStage.addEventListener("touchstart",function(event){
+touchStartX=event.changedTouches[0].screenX;
+},{passive:true});
 
-  },
-  {passive:true}
-);
-
-bssStage.addEventListener(
-  "touchend",
-  function(event){
-
-    var difference=
-    touchStartX-
-    event.changedTouches[0].screenX;
-
-    if(difference>55){
-
-      bssGoNext();
-
-    }else if(difference<-55){
-
-      bssGoPrevious();
-
-    }
-
-  },
-  {passive:true}
-);
+bssStage.addEventListener("touchend",function(event){
+var difference=touchStartX-event.changedTouches[0].screenX;
+if(difference>55){bssGoNext();}
+else if(difference<-55){bssGoPrev();}
+},{passive:true});
 
 bssStage.addEventListener("keydown",function(event){
-
-  if(event.key==="ArrowRight"){
-
-    bssGoNext();
-
-  }else if(event.key==="ArrowLeft"){
-
-    bssGoPrevious();
-
-  }
-
+if(event.key==="ArrowRight"){bssGoNext();}
+else if(event.key==="ArrowLeft"){bssGoPrev();}
 });
 
+}
+
+/* Revèy: foto = 10 segonn; videyo = jiskaske li fini */
 setInterval(function(){
 
-  if(
-    !bssPlaying ||
-    document.hidden
-  ){
-    return;
-  }
+if(!bssPlaying || !bssReady || document.hidden){return;}
 
-  if(bssIsVideo(bssFiles[bssIndex])){
+var v=bssCurrentVideo;
 
-    if(
-      bssVideo.duration &&
-      isFinite(bssVideo.duration)
-    ){
+if(v && !bssVideoBlocked){
 
-      bssProgress.style.width=
-      Math.min(
-        100,
-        bssVideo.currentTime/
-        bssVideo.duration*
-        100
-      )+"%";
+if(v.duration && isFinite(v.duration) && bssProgress){
+bssProgress.style.width=Math.min(100,(v.currentTime/v.duration)*100)+"%";
+}
 
-    }
+/* Si videyo a bloke plis pase 15 segonn, pase nan pwochen an */
+if(v.currentTime===bssLastTime){
+bssStall+=BSS_STEP;
+if(bssStall>=BSS_LOAD_LIMIT){bssGoNext();}
+}else{
+bssStall=0;
+bssLastTime=v.currentTime;
+}
+return;
 
-    return;
+}
 
-  }
+bssElapsed+=BSS_STEP;
 
-  bssElapsed+=BSS_STEP;
+if(bssProgress){
+bssProgress.style.width=Math.min(100,(bssElapsed/BSS_PHOTO_TIME)*100)+"%";
+}
 
-  bssProgress.style.width=
-  Math.min(
-    100,
-    bssElapsed/
-    BSS_PHOTO_TIME*
-    100
-  )+"%";
-
-  if(bssElapsed>=BSS_PHOTO_TIME){
-
-    bssGoNext();
-
-  }
+if(bssElapsed>=BSS_PHOTO_TIME){bssGoNext();}
 
 },BSS_STEP);
 
-bssShow(0);
+if(bssCounter){bssCounter.textContent="1 / "+bssItems.length;}
+bssShow(0,1);
 
 /* RESPONSIVE MENU RESET */
 
@@ -2479,4 +3251,4 @@ window.addEventListener("resize",function(){
 </script>
 
 </body>
-         </html>
+</html>
