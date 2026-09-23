@@ -7,31 +7,26 @@
 
 <title>BSS1815 PRO-MAX DMP | Digital Management Platform</title>
 
-<meta name="description" content="BSS1815 PRO-MAX DMP — Yon sèl platfòm dijital pou kominote, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, AI, medya, administrasyon ak inovasyon.">
+<meta name="description" content="BSS1815 PRO-MAX DMP — Yon sèl platfòm dijital pou kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, AI, medya, administrasyon ak inovasyon.">
 <meta name="theme-color" content="#000000">
 <meta name="author" content="BSS1815 PRO-MAX DMP">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://www.briyantsoleysigno1815.com/">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="BSS1815 PRO-MAX DMP">
-<meta property="og:description" content="DEVAN DEVAN NÈT™ — BATI POU JODI A. PARE POU DEMEN.">
-<meta property="og:url" content="https://www.briyantsoleysigno1815.com/">
-<meta property="og:image" content="assets/bss1815-pro-max-dmp.jpeg">
+<link rel="canonical" href="https://www.briyantsoleysigno1815.com/">
 
 <style>
 :root{
   --black:#000;
-  --black2:#070200;
-  --black3:#100500;
+  --deep:#080300;
+  --panel:#120600;
   --orange:#ff7900;
   --orange2:#ff8c1a;
-  --orange3:#ffad4d;
+  --apricot:#ffad4d;
   --text:#ffc589;
-  --border:rgba(255,121,0,.28);
+  --border:rgba(255,121,0,.30);
   --border2:rgba(255,121,0,.72);
-  --glow:0 0 18px rgba(255,121,0,.35);
-  --glow2:0 0 18px rgba(255,121,0,.68),0 0 48px rgba(255,121,0,.25);
+  --glow:0 0 18px rgba(255,121,0,.40);
+  --glow2:0 0 18px rgba(255,121,0,.70),0 0 48px rgba(255,121,0,.25);
 }
 
 *{
@@ -62,8 +57,8 @@ body::before{
   z-index:-1;
   pointer-events:none;
   background-image:
-    linear-gradient(rgba(255,121,0,.024) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,121,0,.024) 1px,transparent 1px);
+    linear-gradient(rgba(255,121,0,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,121,0,.025) 1px,transparent 1px);
   background-size:44px 44px;
 }
 
@@ -95,7 +90,7 @@ video{
     90deg,
     #913700,
     var(--orange),
-    var(--orange3),
+    var(--apricot),
     var(--orange),
     #913700
   );
@@ -156,7 +151,7 @@ header{
 .brand-text span{
   display:block;
   margin-top:5px;
-  color:var(--orange3);
+  color:var(--apricot);
   font-size:.52rem;
   font-weight:900;
   letter-spacing:.08em;
@@ -178,7 +173,7 @@ header{
 .nav a{
   padding:9px 11px;
   border-radius:999px;
-  color:var(--orange3);
+  color:var(--apricot);
   font-size:.61rem;
   font-weight:1000;
   text-transform:uppercase;
@@ -186,8 +181,8 @@ header{
 }
 
 .nav a:hover{
-  background:var(--orange);
   color:#000;
+  background:var(--orange);
 }
 
 .lang-switch{
@@ -204,7 +199,7 @@ header{
   padding:8px 9px;
   border:0;
   border-radius:999px;
-  color:var(--orange3);
+  color:var(--apricot);
   background:#000;
   cursor:pointer;
   font-size:.61rem;
@@ -236,11 +231,12 @@ header{
   text-align:center;
 }
 
-.platform-label{
+.platform-label,
+.eyebrow{
   color:var(--orange);
-  font-size:.69rem;
+  font-size:.68rem;
   font-weight:1000;
-  letter-spacing:.20em;
+  letter-spacing:.18em;
   text-transform:uppercase;
 }
 
@@ -261,15 +257,6 @@ header{
   background:#000;
 }
 
-.hero-video-frame::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  border-radius:26px;
-  box-shadow:inset 0 0 50px rgba(255,121,0,.12);
-}
-
 .sound-btn{
   position:absolute;
   right:14px;
@@ -279,16 +266,10 @@ header{
   border:1px solid var(--orange);
   border-radius:999px;
   color:var(--orange);
-  background:rgba(0,0,0,.90);
+  background:rgba(0,0,0,.92);
   cursor:pointer;
   font-size:.60rem;
   font-weight:1000;
-  text-transform:uppercase;
-}
-
-.sound-btn:hover{
-  background:var(--orange);
-  color:#000;
 }
 
 .hero h1{
@@ -301,7 +282,7 @@ header{
 
 .hero h2{
   margin-top:17px;
-  color:var(--orange3);
+  color:var(--apricot);
   font-size:clamp(1rem,3vw,1.45rem);
   text-transform:uppercase;
 }
@@ -313,7 +294,7 @@ header{
   font-size:.96rem;
 }
 
-.hero-actions{
+.actions{
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
@@ -329,25 +310,23 @@ header{
   padding:12px 22px;
   border:2px solid var(--orange);
   border-radius:999px;
+  color:#000;
+  background:var(--orange);
+  cursor:pointer;
   font-size:.68rem;
   font-weight:1000;
   text-transform:uppercase;
   transition:.25s;
 }
 
+.btn.outline{
+  color:var(--orange);
+  background:#000;
+}
+
 .btn:hover{
   transform:translateY(-3px);
   box-shadow:var(--glow2);
-}
-
-.btn-primary{
-  color:#000;
-  background:var(--orange);
-}
-
-.btn-outline{
-  color:var(--orange);
-  background:#000;
 }
 
 .stats-grid{
@@ -380,26 +359,17 @@ header{
   margin-top:6px;
   font-size:.63rem;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .section{
   padding:88px 0;
-  border-top:1px solid rgba(255,121,0,.10);
+  border-top:1px solid rgba(255,121,0,.11);
 }
 
 .section-heading{
   max-width:790px;
   margin:0 auto 42px;
   text-align:center;
-}
-
-.eyebrow{
-  color:var(--orange);
-  font-size:.68rem;
-  font-weight:1000;
-  letter-spacing:.18em;
-  text-transform:uppercase;
 }
 
 .section-title{
@@ -415,436 +385,176 @@ header{
   line-height:1.75;
 }
 
-.ecosystem-grid{
+/* PROF AVATAR CUSTOMER SERVICE */
+
+.prof-avatar-box{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:17px;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  overflow:hidden;
+  border:2px solid var(--orange);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at top left,rgba(255,121,0,.17),transparent 38%),
+    linear-gradient(145deg,#000,#160700,#000);
+  box-shadow:var(--glow2);
 }
 
-.ecosystem-card{
-  min-height:285px;
+.prof-avatar-media{
+  position:relative;
+  min-height:430px;
+  background:#000;
+}
+
+.prof-avatar-media video{
+  width:100%;
+  height:100%;
+  min-height:430px;
+  object-fit:contain;
+  background:#000;
+}
+
+.prof-avatar-badge{
+  position:absolute;
+  left:15px;
+  bottom:15px;
+  z-index:5;
+  padding:9px 13px;
+  border:1px solid var(--orange);
+  border-radius:999px;
+  color:var(--apricot);
+  background:rgba(0,0,0,.92);
+  font-size:.60rem;
+  font-weight:1000;
+}
+
+.prof-avatar-content{
   display:flex;
   flex-direction:column;
-  padding:25px;
-  border:1px solid var(--border);
-  border-radius:20px;
-  background:
-    radial-gradient(circle at top right,rgba(255,121,0,.12),transparent 36%),
-    linear-gradient(145deg,#000,#0b0400);
-  transition:.3s;
+  justify-content:center;
+  padding:36px;
 }
 
-.ecosystem-card:hover{
-  transform:translateY(-5px);
-  border-color:var(--orange);
-  box-shadow:var(--glow);
-}
-
-.eco-icon{
-  font-size:2rem;
-}
-
-.ecosystem-card h3{
-  margin-top:18px;
+.prof-avatar-content h2{
+  margin-top:12px;
   color:var(--orange);
-  font-size:1rem;
+  font-size:clamp(2rem,5vw,3.8rem);
+  line-height:.92;
   text-transform:uppercase;
 }
 
-.ecosystem-card p{
-  margin-top:11px;
-  line-height:1.62;
-  font-size:.82rem;
+.prof-avatar-content p{
+  margin-top:17px;
+  line-height:1.72;
 }
 
-.card-link{
-  margin-top:auto;
-  padding-top:20px;
-  color:var(--orange);
-  font-size:.67rem;
-  font-weight:1000;
-  text-transform:uppercase;
+.prof-avatar-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:11px;
+  margin-top:23px;
+}
+
+.ecosystem-grid,
+.modules-grid,
+.news-grid,
+.contact-grid,
+.social-grid{
+  display:grid;
+  gap:16px;
+}
+
+.ecosystem-grid{
+  grid-template-columns:repeat(4,1fr);
 }
 
 .modules-grid{
-  display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
 }
 
-.module-card{
-  min-height:215px;
+.news-grid,
+.contact-grid,
+.social-grid{
+  grid-template-columns:repeat(3,1fr);
+}
+
+.card{
   display:flex;
   flex-direction:column;
-  padding:21px;
+  padding:23px;
   border:1px solid var(--border);
-  border-radius:17px;
-  background:linear-gradient(145deg,#050200,#000);
+  border-radius:19px;
+  background:
+    radial-gradient(circle at top right,rgba(255,121,0,.11),transparent 38%),
+    linear-gradient(145deg,#070200,#000);
   transition:.25s;
 }
 
-.module-card:hover{
+.card:hover{
   transform:translateY(-4px);
   border-color:var(--orange);
   box-shadow:var(--glow);
 }
 
-.module-icon{
-  font-size:1.8rem;
+.ecosystem-card{
+  min-height:285px;
 }
 
-.module-card h3{
-  margin-top:14px;
+.module-card{
+  min-height:215px;
+}
+
+.card-icon{
+  font-size:2rem;
+}
+
+.card h3{
+  margin-top:15px;
   color:var(--orange);
-  font-size:.90rem;
+  font-size:.93rem;
   text-transform:uppercase;
 }
 
-.module-card p{
-  margin-top:9px;
-  line-height:1.55;
-  font-size:.75rem;
+.card p{
+  margin-top:10px;
+  line-height:1.58;
+  font-size:.78rem;
 }
 
-.module-open{
+.card-open{
   margin-top:auto;
-  padding-top:17px;
+  padding-top:19px;
   color:var(--orange);
-  font-size:.62rem;
+  font-size:.64rem;
   font-weight:1000;
-  text-transform:uppercase;
 }
 
 .project-box{
-  margin-top:25px;
-  padding:38px 28px;
+  padding:42px 28px;
   border:1px solid var(--border2);
   border-radius:25px;
   background:
     radial-gradient(circle at 80% 25%,rgba(255,121,0,.17),transparent 34%),
     linear-gradient(135deg,#000,#100500,#000);
   box-shadow:var(--glow);
+  text-align:center;
 }
 
 .project-box h2{
   color:var(--orange);
   font-size:clamp(2rem,6vw,4rem);
-  line-height:.94;
-  text-transform:uppercase;
-  text-align:center;
 }
 
 .project-box p{
   max-width:780px;
   margin:16px auto 0;
   line-height:1.7;
-  text-align:center;
 }
 
-.news-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:17px;
-}
-
-.news-card{
-  min-height:260px;
-  display:flex;
-  flex-direction:column;
-  padding:24px;
-  border:1px solid var(--border2);
-  border-radius:19px;
-  background:
-    radial-gradient(circle at top,rgba(255,121,0,.11),transparent 43%),
-    #050200;
-}
-
-.news-label{
-  width:max-content;
-  padding:7px 11px;
-  border-radius:999px;
-  color:#000;
-  background:var(--orange);
-  font-size:.61rem;
-  font-weight:1000;
-}
-
-.news-card h3{
-  margin-top:17px;
-  color:var(--orange);
-  font-size:1.08rem;
-}
-
-.news-card p{
-  margin-top:10px;
-  flex:1;
-  line-height:1.6;
-  font-size:.80rem;
-}
-
-.news-btn{
-  margin-top:19px;
-  padding:11px;
-  text-align:center;
-  border:1px solid var(--orange);
-  border-radius:999px;
-  color:var(--orange);
-  font-size:.65rem;
-  font-weight:1000;
-}
-
-.news-btn:hover{
-  background:var(--orange);
-  color:#000;
-}
-
-.ddn-box{
-  padding:50px 28px;
-  border:2px solid var(--orange);
-  border-radius:28px;
-  text-align:center;
-  background:
-    radial-gradient(circle at center,rgba(255,121,0,.16),transparent 50%),
-    #000;
-  box-shadow:var(--glow2);
-}
-
-.ddn-box h2{
-  color:var(--orange);
-  font-size:clamp(2.8rem,9vw,6.7rem);
-  line-height:.87;
-}
-
-.ddn-box h3{
-  margin-top:18px;
-  color:var(--orange3);
-  font-size:clamp(.9rem,2.6vw,1.3rem);
-  text-transform:uppercase;
-}
-
-.ddn-box p{
-  max-width:790px;
-  margin:19px auto 0;
-  line-height:1.72;
-}
-
-.contact-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.contact-card{
-  min-height:155px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:22px;
-  text-align:center;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:#050200;
-}
-
-.contact-card strong{
-  color:var(--orange);
-  font-size:.68rem;
-  text-transform:uppercase;
-}
-
-.contact-card a{
-  margin-top:9px;
-  line-height:1.5;
-  font-size:.78rem;
-  overflow-wrap:anywhere;
-}
-
-.contact-card a:hover{
-  color:var(--orange);
-}
-
-/* ===== TELEFÒN AK DRAPO PEYI ===== */
-
-.contact-card.phones{
-  grid-column:1/-1;
-  align-items:stretch;
-}
-
-.contact-card.phones > .contact-head{
-  margin-bottom:6px;
-}
-
-.phone-list{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:10px;
-  margin-top:8px;
-}
-
-.contact-card .phone-row{
-  margin-top:0;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 14px;
-  border:1px solid var(--border);
-  border-radius:13px;
-  background:#000;
-  text-align:left;
-  font-size:.9rem;
-  font-weight:900;
-  color:var(--text);
-  transition:.2s;
-}
-
-.contact-card .phone-row:hover{
-  border-color:var(--orange);
-  color:var(--orange);
-  box-shadow:var(--glow);
-}
-
-.flag{
-  width:30px;
-  height:20px;
-  flex-shrink:0;
-  border-radius:3px;
-  overflow:hidden;
-  box-shadow:0 0 0 1px rgba(255,255,255,.25);
-}
-
-.phone-row .phone-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.25;
-}
-
-.phone-row .phone-name{
-  color:var(--orange3);
-  font-size:.62rem;
-  font-weight:1000;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-.social-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
-  margin-top:28px;
-}
-
-.social-link{
-  min-height:78px;
-  display:flex;
-  align-items:center;
-  gap:13px;
-  padding:14px 16px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  background:#030100;
-  transition:.25s;
-}
-
-.social-link:hover{
-  transform:translateY(-3px);
-  border-color:var(--orange);
-  box-shadow:var(--glow);
-}
-
-.social-icon{
-  width:44px;
-  height:44px;
-  display:grid;
-  place-items:center;
-  flex-shrink:0;
-  border-radius:12px;
-  overflow:hidden;
-}
-
-.social-icon svg{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-.social-link strong{
-  display:block;
-  color:var(--orange);
-  font-size:.72rem;
-  text-transform:uppercase;
-}
-
-.social-link span{
-  display:block;
-  margin-top:3px;
-  font-size:.57rem;
-  overflow-wrap:anywhere;
-}
-
-footer{
-  padding:45px 0;
-  text-align:center;
-  border-top:1px solid var(--border);
-  background:#000;
-}
-
-.footer-video{
-  width:105px;
-  height:105px;
-  margin:0 auto 17px;
-  overflow:hidden;
-  border:2px solid var(--orange);
-  border-radius:20px;
-  background:#000;
-  box-shadow:var(--glow);
-}
-
-.footer-video video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.footer-title{
-  color:var(--orange);
-  font-weight:1000;
-}
-
-.footer-info{
-  margin-top:9px;
-  line-height:1.75;
-  font-size:.70rem;
-}
-
-/* ===== IKÒN KONTAK (menm gwosè ak tout lòt ikòn yo) ===== */
-
-.contact-head{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-}
-
-.contact-icon{
-  width:44px;
-  height:44px;
-  flex-shrink:0;
-  border-radius:12px;
-  overflow:hidden;
-}
-
-.contact-icon svg{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-/* BSS1815 COMMUNITY SLIDESHOW — NOUVO (10 segonn chak foto, fondu) */
+/* SLIDESHOW */
 
 .bss-slideshow{
   width:min(1100px,100%);
-  margin:24px auto 0;
+  margin:auto;
 }
 
 .bss-stage{
@@ -858,55 +568,26 @@ footer{
   box-shadow:var(--glow2);
 }
 
-.bss-layer{
+.bss-stage img,
+.bss-stage video{
   position:absolute;
   inset:0;
-  z-index:1;
-  opacity:0;
-  background:#000;
-  transition:opacity 1.2s ease-in-out;
-}
-
-.bss-layer.show{
-  z-index:2;
-  opacity:1;
-}
-
-.bss-layer img,
-.bss-layer video{
-  display:block;
   width:100%;
   height:100%;
-  max-width:none;
   object-fit:contain;
   background:#000;
 }
 
-.bss-loading{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-  text-align:center;
-  color:var(--orange3);
-  font-size:.8rem;
-  font-weight:900;
-  pointer-events:none;
+.hidden{
+  display:none!important;
 }
 
-.bss-loading.hidden{
-  display:none;
-}
-
-.bss-slide-badge{
+.bss-badge{
   position:absolute;
-  top:18px;
-  left:18px;
-  z-index:12;
-  padding:9px 14px;
+  top:17px;
+  left:17px;
+  z-index:10;
+  padding:9px 13px;
   border-radius:999px;
   color:#000;
   background:var(--orange);
@@ -914,144 +595,74 @@ footer{
   font-weight:1000;
 }
 
-.bss-missing-btn{
-  position:absolute;
-  top:18px;
-  right:18px;
-  z-index:14;
-  display:none;
-  padding:8px 12px;
-  border:0;
-  border-radius:999px;
-  color:#fff;
-  background:rgba(190,30,30,.85);
-  cursor:pointer;
-  font-size:.58rem;
-  font-weight:1000;
-}
-
-.bss-missing-panel{
-  position:absolute;
-  top:58px;
-  right:18px;
-  left:18px;
-  z-index:15;
-  display:none;
-  max-width:420px;
-  max-height:60%;
-  margin-left:auto;
-  overflow-y:auto;
-  padding:14px 16px;
-  border:1px solid var(--orange);
-  border-radius:14px;
-  background:rgba(0,0,0,.95);
-  font-size:.75rem;
-  line-height:1.5;
-}
-
-.bss-missing-panel.open{
-  display:block;
-}
-
-.bss-missing-panel strong{
-  display:block;
-  margin-bottom:6px;
-  color:var(--orange);
-}
-
-.bss-missing-panel ul{
-  padding-left:18px;
-}
-
-.bss-missing-panel li{
-  overflow-wrap:anywhere;
-}
-
-.bss-slide-overlay{
+.bss-overlay{
   position:absolute;
   inset:0;
-  z-index:7;
+  z-index:5;
   pointer-events:none;
   background:linear-gradient(
-    180deg,
-    transparent 42%,
-    rgba(0,0,0,.15) 60%,
-    rgba(0,0,0,.93) 100%
+    transparent 45%,
+    rgba(0,0,0,.15) 62%,
+    rgba(0,0,0,.95)
   );
 }
 
-.bss-slide-caption{
+.bss-caption{
   position:absolute;
   left:0;
   right:0;
   bottom:0;
-  z-index:10;
-  padding:70px 70px 28px;
-  text-align:left;
-  pointer-events:none;
+  z-index:7;
+  padding:75px 68px 28px;
 }
 
-.bss-slide-caption small{
-  color:var(--orange3);
+.bss-caption small{
+  color:var(--apricot);
   font-size:.60rem;
   font-weight:1000;
-  letter-spacing:.16em;
-  text-transform:uppercase;
+  letter-spacing:.15em;
 }
 
-.bss-slide-caption h3{
+.bss-caption h3{
   margin-top:8px;
   color:var(--orange);
   font-size:clamp(1.6rem,5vw,3.2rem);
   line-height:1;
-  text-transform:uppercase;
-  text-shadow:0 3px 14px #000;
 }
 
-.bss-slide-caption p{
-  max-width:760px;
+.bss-caption p{
   margin-top:10px;
-  color:var(--orange3);
-  font-size:.78rem;
-  line-height:1.6;
-  text-shadow:0 3px 12px #000;
+  color:var(--apricot);
 }
 
 .bss-arrow{
   position:absolute;
   top:50%;
-  z-index:13;
-  transform:translateY(-50%);
+  z-index:12;
   width:50px;
   height:50px;
-  display:grid;
-  place-items:center;
+  transform:translateY(-50%);
   border:1px solid var(--orange);
   border-radius:50%;
-  background:rgba(0,0,0,.82);
   color:var(--orange);
-  font-size:2rem;
+  background:rgba(0,0,0,.85);
   cursor:pointer;
-}
-
-.bss-arrow:hover{
-  background:var(--orange);
-  color:#000;
+  font-size:2rem;
 }
 
 .bss-prev{
-  left:16px;
+  left:15px;
 }
 
 .bss-next{
-  right:16px;
+  right:15px;
 }
 
 .bss-controls{
   display:grid;
   grid-template-columns:auto auto auto 1fr;
   align-items:center;
-  gap:14px;
+  gap:13px;
   margin-top:14px;
   padding:13px 16px;
   border:1px solid var(--border);
@@ -1060,14 +671,14 @@ footer{
 }
 
 .bss-counter{
-  min-width:88px;
+  min-width:90px;
   color:var(--orange);
   font-size:.72rem;
   font-weight:1000;
   text-align:center;
 }
 
-.bss-play{
+.bss-control{
   padding:8px 14px;
   border:1px solid var(--orange);
   border-radius:999px;
@@ -1078,38 +689,88 @@ footer{
   font-weight:1000;
 }
 
-.bss-play:hover{
-  background:var(--orange);
-  color:#000;
-}
-
 .bss-progress{
   height:7px;
   overflow:hidden;
   border-radius:999px;
-  background:rgba(255,121,0,.14);
+  background:rgba(255,121,0,.15);
 }
 
-.bss-progress-bar{
-  width:0%;
+.bss-progress span{
+  display:block;
+  width:0;
   height:100%;
-  background:linear-gradient(
-    90deg,
-    #9d3c00,
-    var(--orange),
-    var(--orange3)
-  );
-  box-shadow:0 0 12px rgba(255,121,0,.55);
+  background:linear-gradient(90deg,var(--orange),var(--apricot));
 }
 
-@media(prefers-reduced-motion:reduce){
-  .bss-layer{
-    transition:none;
-  }
+.ddn-box{
+  padding:50px 28px;
+  border:2px solid var(--orange);
+  border-radius:28px;
+  text-align:center;
+  background:
+    radial-gradient(circle,rgba(255,121,0,.16),transparent 52%),
+    #000;
+  box-shadow:var(--glow2);
+}
+
+.ddn-box h2{
+  color:var(--orange);
+  font-size:clamp(2.8rem,9vw,6.7rem);
+  line-height:.87;
+}
+
+.ddn-box h3{
+  margin-top:18px;
+  color:var(--apricot);
+}
+
+.ddn-box p{
+  max-width:790px;
+  margin:19px auto 0;
+  line-height:1.72;
+}
+
+.contact-card,
+.social-card,
+.news-card{
+  min-height:150px;
+  justify-content:center;
+  text-align:center;
+}
+
+.news-card{
+  min-height:235px;
+}
+
+.contact-card strong,
+.social-card strong{
+  color:var(--orange);
+}
+
+.contact-card a,
+.social-card span{
+  margin-top:8px;
+  font-size:.76rem;
+  overflow-wrap:anywhere;
+}
+
+footer{
+  padding:43px 15px;
+  border-top:1px solid var(--border);
+  color:var(--apricot);
+  background:#000;
+  text-align:center;
+  line-height:1.75;
+  font-size:.70rem;
+}
+
+footer strong{
+  color:var(--orange);
+  font-size:.88rem;
 }
 
 @media(max-width:1050px){
-
   .nav{
     position:absolute;
     top:86px;
@@ -1121,7 +782,6 @@ footer{
     border:1px solid var(--orange);
     border-radius:15px;
     background:#000;
-    box-shadow:0 20px 50px rgba(0,0,0,.7);
   }
 
   .nav.open{
@@ -1144,23 +804,17 @@ footer{
 }
 
 @media(max-width:780px){
-
-  .header-inner{
-    min-height:76px;
-  }
-
   .brand-video-wrap{
-    width:55px;
-    height:55px;
-    border-radius:14px;
+    width:54px;
+    height:54px;
   }
 
   .brand-text strong{
-    font-size:.78rem;
+    font-size:.76rem;
   }
 
   .brand-text span{
-    font-size:.44rem;
+    font-size:.43rem;
   }
 
   .lang-btn{
@@ -1168,21 +822,13 @@ footer{
     padding:7px 6px;
   }
 
-  .hero{
-    min-height:auto;
-    padding-top:38px;
+  .prof-avatar-box{
+    grid-template-columns:1fr;
   }
 
-  .hero-video-frame{
-    width:min(97vw,640px);
-    border-radius:20px;
-  }
-
-  .sound-btn{
-    right:8px;
-    bottom:8px;
-    padding:7px 9px;
-    font-size:.52rem;
+  .prof-avatar-media,
+  .prof-avatar-media video{
+    min-height:300px;
   }
 
   .stats-grid{
@@ -1199,24 +845,6 @@ footer{
     height:520px;
   }
 
-  .bss-slide-caption{
-    padding:80px 56px 25px;
-  }
-
-  .bss-arrow{
-    width:42px;
-    height:42px;
-    font-size:1.6rem;
-  }
-
-  .bss-prev{
-    left:8px;
-  }
-
-  .bss-next{
-    right:8px;
-  }
-
   .bss-controls{
     grid-template-columns:auto auto auto;
   }
@@ -1227,15 +855,15 @@ footer{
 }
 
 @media(max-width:570px){
-
   .ecosystem-grid,
-  .modules-grid{
+  .modules-grid,
+  .stats-grid{
     grid-template-columns:1fr;
   }
 
-  .hero-actions{
+  .actions,
+  .prof-avatar-controls{
     display:grid;
-    grid-template-columns:1fr;
   }
 
   .btn{
@@ -1247,50 +875,14 @@ footer{
     border-radius:20px;
   }
 
-  .bss-slide-badge{
-    top:10px;
-    left:10px;
-    font-size:.50rem;
-  }
-
-  .bss-slide-caption{
-    padding:76px 46px 22px;
+  .bss-caption{
+    padding:75px 47px 22px;
   }
 }
 </style>
 </head>
 
 <body>
-
-<!-- DRAPO YO (yo itilize plizyè fwa pi ba a) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<defs>
-<symbol id="flag-us" viewBox="0 0 30 20">
-<rect width="30" height="20" fill="#fff"/>
-<rect y="0" width="30" height="1.54" fill="#B22234"/>
-<rect y="3.08" width="30" height="1.54" fill="#B22234"/>
-<rect y="6.15" width="30" height="1.54" fill="#B22234"/>
-<rect y="9.23" width="30" height="1.54" fill="#B22234"/>
-<rect y="12.31" width="30" height="1.54" fill="#B22234"/>
-<rect y="15.38" width="30" height="1.54" fill="#B22234"/>
-<rect y="18.46" width="30" height="1.54" fill="#B22234"/>
-<rect width="12" height="10.77" fill="#3C3B6E"/>
-<g fill="#fff">
-<circle cx="2" cy="1.8" r=".55"/><circle cx="5" cy="1.8" r=".55"/><circle cx="8" cy="1.8" r=".55"/><circle cx="11" cy="1.8" r=".55"/>
-<circle cx="3.5" cy="3.9" r=".55"/><circle cx="6.5" cy="3.9" r=".55"/><circle cx="9.5" cy="3.9" r=".55"/>
-<circle cx="2" cy="6" r=".55"/><circle cx="5" cy="6" r=".55"/><circle cx="8" cy="6" r=".55"/><circle cx="11" cy="6" r=".55"/>
-<circle cx="3.5" cy="8.1" r=".55"/><circle cx="6.5" cy="8.1" r=".55"/><circle cx="9.5" cy="8.1" r=".55"/>
-</g>
-</symbol>
-<symbol id="flag-ht" viewBox="0 0 30 20">
-<rect width="30" height="10" fill="#00209F"/>
-<rect y="10" width="30" height="10" fill="#D21034"/>
-<rect x="10.5" y="6.5" width="9" height="7" fill="#fff"/>
-<rect x="13.2" y="8.6" width="3.6" height="3.4" fill="#016A16"/>
-<rect x="14.6" y="7.2" width=".8" height="2" fill="#016A16"/>
-</symbol>
-</defs>
-</svg>
 
 <div
 class="top-bar"
@@ -1304,97 +896,39 @@ data-en="🔥 BSS1815 PRO-MAX DMP — DEVAN DEVAN NÈT™ — BUILT FOR TODAY �
 <div class="container header-inner">
 
 <a href="#home" class="brand">
-
 <div class="brand-video-wrap">
-<video
-class="brand-video"
-autoplay
-muted
-loop
-playsinline
-preload="metadata">
+<video class="brand-video" autoplay muted loop playsinline preload="metadata">
 <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
 </video>
 </div>
 
 <div class="brand-text">
 <strong>BSS1815 PRO-MAX DMP</strong>
-
 <span
 data-ht="PLATFÒM JESYON DIJITAL"
 data-fr="PLATEFORME DE GESTION NUMÉRIQUE"
 data-en="DIGITAL MANAGEMENT PLATFORM">
 PLATFÒM JESYON DIJITAL
 </span>
-
 </div>
 </a>
 
 <div class="header-right">
 
 <nav class="nav" id="mainNav">
-
-<a
-href="#home"
-data-ht="AKÈY"
-data-fr="ACCUEIL"
-data-en="HOME">
-AKÈY
-</a>
-
-<a
-href="#ecosystem"
-data-ht="EKOSISTÈM"
-data-fr="ÉCOSYSTÈME"
-data-en="ECOSYSTEM">
-EKOSISTÈM
-</a>
-
-<a
-href="#modules"
-data-ht="MODIL"
-data-fr="MODULES"
-data-en="MODULES">
-MODIL
-</a>
-
-<a href="#ddn">
-DDN
-</a>
-
-<a
-href="#contact"
-data-ht="KONTAK"
-data-fr="CONTACT"
-data-en="CONTACT">
-KONTAK
-</a>
-
+<a href="#home" data-ht="AKÈY" data-fr="ACCUEIL" data-en="HOME">AKÈY</a>
+<a href="#customer-service" data-ht="CUSTOMER SERVICE" data-fr="SERVICE CLIENT" data-en="CUSTOMER SERVICE">CUSTOMER SERVICE</a>
+<a href="#ecosystem" data-ht="EKOSISTÈM" data-fr="ÉCOSYSTÈME" data-en="ECOSYSTEM">EKOSISTÈM</a>
+<a href="#modules" data-ht="MODIL" data-fr="MODULES" data-en="MODULES">MODIL</a>
+<a href="#community">COMMUNITY</a>
+<a href="#ddn">DDN</a>
+<a href="#contact" data-ht="KONTAK" data-fr="CONTACT" data-en="CONTACT">KONTAK</a>
 </nav>
 
 <div class="lang-switch">
-
-<button
-type="button"
-class="lang-btn"
-data-lang="fr">
-FRA
-</button>
-
-<button
-type="button"
-class="lang-btn"
-data-lang="en">
-ENG
-</button>
-
-<button
-type="button"
-class="lang-btn active"
-data-lang="ht">
-KRE
-</button>
-
+<button type="button" class="lang-btn" data-lang="fr">FRA</button>
+<button type="button" class="lang-btn" data-lang="en">ENG</button>
+<button type="button" class="lang-btn active" data-lang="ht">KRE</button>
 </div>
 
 <button
@@ -1430,9 +964,7 @@ loop
 playsinline
 preload="auto">
 
-<source
-src="./bati-pou-jodi-a.mp4"
-type="video/mp4">
+<source src="./bati-pou-jodi-a.mp4" type="video/mp4">
 
 </video>
 
@@ -1469,62 +1001,115 @@ data-en="BSS1815 PRO-MAX DMP is the central platform connecting the BSS1815 comm
 BSS1815 PRO-MAX DMP se platfòm santral ki konekte tout ekosistèm nan.
 </p>
 
-<div class="hero-actions">
-
+<div class="actions">
 <a
 href="#ecosystem"
-class="btn btn-primary"
+class="btn"
 data-ht="DEKOUVRI PLATFÒM NAN"
 data-fr="DÉCOUVRIR LA PLATEFORME"
 data-en="EXPLORE THE PLATFORM">
 DEKOUVRI PLATFÒM NAN
 </a>
 
-<a
-href="./ddn/index.html"
-class="btn btn-outline">
+<a href="./ddn/index.html" class="btn outline">
 🌎 DEVAN DEVAN NÈT™
 </a>
-
 </div>
 
 <div class="stats-grid">
-
-<div class="stat-card">
-<strong>4</strong>
-<span
-data-ht="BRANCH PRENSIPAL"
-data-fr="BRANCHES PRINCIPALES"
-data-en="CORE BRANCHES">
-BRANCH PRENSIPAL
-</span>
+<div class="stat-card"><strong>5</strong><span data-ht="PWOJÈ" data-fr="PROJETS" data-en="PROJECTS">PWOJÈ</span></div>
+<div class="stat-card"><strong>AI</strong><span>SMART PLATFORM</span></div>
+<div class="stat-card"><strong>3</strong><span data-ht="LANG" data-fr="LANGUES" data-en="LANGUAGES">LANG</span></div>
+<div class="stat-card"><strong>24/7</strong><span data-ht="AKSÈ DIJITAL" data-fr="ACCÈS NUMÉRIQUE" data-en="DIGITAL ACCESS">AKSÈ DIJITAL</span></div>
 </div>
 
-<div class="stat-card">
-<strong>AI</strong>
-<span>SMART PLATFORM</span>
+</div>
+</section>
+
+<!-- PROF AVATAR CUSTOMER SERVICE -->
+
+<section class="section" id="customer-service">
+<div class="container">
+
+<div class="prof-avatar-box">
+
+<div class="prof-avatar-media">
+
+<video
+id="profAvatarVideo"
+controls
+playsinline
+preload="metadata">
+
+<source
+src="./video-prof-avatar.mp4"
+type="video/mp4">
+
+Navigatè ou a pa sipòte videyo HTML5.
+</video>
+
+<div class="prof-avatar-badge">
+BSS1815 • CUSTOMER SERVICE
 </div>
 
-<div class="stat-card">
-<strong>3</strong>
-<span
-data-ht="LANG"
-data-fr="LANGUES"
-data-en="LANGUAGES">
-LANG
-</span>
 </div>
 
-<div class="stat-card">
-<strong>24/7</strong>
-<span
-data-ht="AKSÈ DIJITAL"
-data-fr="ACCÈS NUMÉRIQUE"
-data-en="DIGITAL ACCESS">
-AKSÈ DIJITAL
-</span>
+<div class="prof-avatar-content">
+
+<div
+class="eyebrow"
+data-ht="ASISTANS OFISYÈL BSS1815"
+data-fr="ASSISTANCE OFFICIELLE BSS1815"
+data-en="OFFICIAL BSS1815 SUPPORT">
+ASISTANS OFISYÈL BSS1815
 </div>
 
+<h2
+data-ht="PROF AVATAR CUSTOMER SERVICE"
+data-fr="PROF AVATAR — SERVICE CLIENT"
+data-en="CUSTOMER SERVICE PROFESSOR AVATAR">
+PROF AVATAR CUSTOMER SERVICE
+</h2>
+
+<p
+data-ht="Prof Avatar la akeyi vizitè yo, prezante platfòm nan epi gide yo pou jwenn pwojè, modil ak sèvis yo bezwen an."
+data-fr="Le Prof Avatar accueille les visiteurs, présente la plateforme et les guide vers les projets, modules et services dont ils ont besoin."
+data-en="The Professor Avatar welcomes visitors, presents the platform and guides them to the projects, modules and services they need.">
+Prof Avatar la akeyi vizitè yo epi gide yo nan platfòm nan.
+</p>
+
+<div class="prof-avatar-controls">
+
+<button
+type="button"
+class="btn"
+id="profAvatarPlay"
+data-ht="▶ JWE VIDEYO A"
+data-fr="▶ LIRE LA VIDÉO"
+data-en="▶ PLAY VIDEO">
+▶ JWE VIDEYO A
+</button>
+
+<button
+type="button"
+class="btn outline"
+id="profAvatarRestart"
+data-ht="↻ REKÒMANSE"
+data-fr="↻ RECOMMENCER"
+data-en="↻ RESTART">
+↻ REKÒMANSE
+</button>
+
+</div>
+
+<p
+data-ht="Videyo Prof Avatar la jwe yon sèl fwa. Li pa repete otomatikman."
+data-fr="La vidéo du Prof Avatar est lue une seule fois. Elle ne se répète pas automatiquement."
+data-en="The Professor Avatar video plays once. It does not repeat automatically.">
+Videyo Prof Avatar la jwe yon sèl fwa. Li pa repete otomatikman.
+</p>
+
+</div>
 </div>
 </div>
 </section>
@@ -1533,10 +1118,7 @@ AKSÈ DIJITAL
 <div class="container">
 
 <div class="section-heading">
-
-<div class="eyebrow">
-BSS1815 PRO-MAX DMP
-</div>
+<div class="eyebrow">BSS1815 PRO-MAX DMP</div>
 
 <h2
 class="section-title"
@@ -1548,109 +1130,15 @@ YON SÈL EKOSISTÈM
 
 <p
 class="section-desc"
-data-ht="Nou pa kenbe de BSS1815. BSS1815 Community entegre dirèkteman nan BSS1815 PRO-MAX DMP ansanm ak PRO-MAX FM, Maximax Multi Services ak PRO-MAX Académie."
-data-fr="Nous ne maintenons pas deux BSS1815. La communauté BSS1815 est directement intégrée à BSS1815 PRO-MAX DMP avec PRO-MAX FM, Maximax Multi Services et PRO-MAX Académie."
-data-en="There are not two separate BSS1815 platforms. BSS1815 Community is integrated directly into BSS1815 PRO-MAX DMP together with PRO-MAX FM, Maximax Multi Services and PRO-MAX Academy.">
-Nou pa kenbe de BSS1815.
+data-ht="BSS1815 Community, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie ak PRO-MAX Beat Lab konekte dirèkteman nan menm platfòm santral la."
+data-fr="La communauté BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie et PRO-MAX Beat Lab sont reliés directement à la même plateforme centrale."
+data-en="BSS1815 Community, PRO-MAX FM, Maximax Multi Services, PRO-MAX Academy and PRO-MAX Beat Lab are connected directly through one central platform.">
+Tout pwojè yo konekte nan menm platfòm santral la.
 </p>
-
 </div>
 
-<div class="ecosystem-grid">
+<div class="ecosystem-grid" id="ecosystemGrid"></div>
 
-<a href="#community" class="ecosystem-card">
-
-<div class="eco-icon">
-🏛️
-</div>
-
-<h3>
-BSS1815 COMMUNITY
-</h3>
-
-<p
-data-ht="Manm, dirijan, mizisyen, fanatik, eritaj, aktivite ak lavi kominotè BSS1815."
-data-fr="Membres, dirigeants, musiciens, fans, patrimoine, activités et vie communautaire BSS1815."
-data-en="Members, leaders, musicians, fans, heritage, activities and BSS1815 community life.">
-Manm, dirijan, mizisyen, fanatik, eritaj ak kominote.
-</p>
-
-<div class="card-link">
-ENTER →
-</div>
-
-</a>
-
-<a href="#promaxfm" class="ecosystem-card">
-
-<div class="eco-icon">
-📻
-</div>
-
-<h3>
-PRO-MAX FM
-</h3>
-
-<p
-data-ht="Radyo dijital, live streaming, mizik, podcast, nouvèl, entèvyou ak pwodiksyon medya."
-data-fr="Radio numérique, streaming, musique, podcasts, actualités, interviews et production média."
-data-en="Digital radio, live streaming, music, podcasts, news, interviews and media production.">
-Radyo dijital ak pwodiksyon medya.
-</p>
-
-<div class="card-link">
-ENTER →
-</div>
-
-</a>
-
-<a href="#maximax" class="ecosystem-card">
-
-<div class="eco-icon">
-💼
-</div>
-
-<h3>
-MAXIMAX MULTI SERVICES
-</h3>
-
-<p
-data-ht="Imigrasyon, tradiksyon, sèvis administratif, dokiman ak asistans pwofesyonèl."
-data-fr="Immigration, traduction, services administratifs, documents et assistance professionnelle."
-data-en="Immigration, translation, administrative services, documents and professional assistance.">
-Imigrasyon, tradiksyon ak sèvis pwofesyonèl.
-</p>
-
-<div class="card-link">
-ENTER →
-</div>
-
-</a>
-
-<a href="#academy" class="ecosystem-card">
-
-<div class="eco-icon">
-🎓
-</div>
-
-<h3>
-PRO-MAX ACADÉMIE
-</h3>
-
-<p
-data-ht="AI, teknoloji, fòmasyon, inovasyon, evalyasyon, Student Portal ak sètifikasyon."
-data-fr="IA, technologie, formation, innovation, évaluations, portail étudiant et certification."
-data-en="AI, technology, training, innovation, assessments, Student Portal and certification.">
-AI, teknoloji, fòmasyon ak sètifikasyon.
-</p>
-
-<div class="card-link">
-ENTER →
-</div>
-
-</a>
-
-</div>
 </div>
 </section>
 
@@ -1658,10 +1146,7 @@ ENTER →
 <div class="container">
 
 <div class="section-heading">
-
-<div class="eyebrow">
-DIGITAL MANAGEMENT PLATFORM
-</div>
+<div class="eyebrow">DIGITAL MANAGEMENT PLATFORM</div>
 
 <h2
 class="section-title"
@@ -1674,156 +1159,14 @@ MODIL PRENSIPAL YO
 <p
 class="section-desc"
 data-ht="Modil yo konekte operasyon, administrasyon, kominote, dokiman, medya ak teknoloji BSS1815 PRO-MAX DMP."
-data-fr="Les modules relient les opérations, l’administration, la communauté, les documents, les médias et la technologie BSS1815 PRO-MAX DMP."
-data-en="The modules connect operations, administration, community, documents, media and technology across BSS1815 PRO-MAX DMP.">
+data-fr="Les modules relient les opérations, l’administration, la communauté, les documents, les médias et la technologie."
+data-en="The modules connect operations, administration, community, documents, media and technology.">
 Tout modil yo travay anba menm platfòm santral la.
 </p>
-
 </div>
 
-<div class="modules-grid">
+<div class="modules-grid" id="modulesGrid"></div>
 
-<a href="./modules/ai-center/index.html" class="module-card">
-<div class="module-icon">🤖</div>
-<h3>AI CENTER</h3>
-<p>Assistant • Writer • Voice • Automation</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/crm/index.html" class="module-card">
-<div class="module-icon">👥</div>
-<h3>CRM SYSTEM</h3>
-<p>Members • Contacts • Relationships • Records</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/communication/index.html" class="module-card">
-<div class="module-icon">📢</div>
-<h3>COMMUNICATION CENTER</h3>
-<p>Announcements • Alerts • WhatsApp • Messages</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/flyer-studio/index.html" class="module-card">
-<div class="module-icon">🎨</div>
-<h3>FLYER STUDIO</h3>
-<p>Flyers • Notices • Graphics • Media</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/registry/index.html" class="module-card">
-<div class="module-icon">📋</div>
-<h3>DIGITAL REGISTRY</h3>
-<p>Members • Musicians • Fans • Merchants</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/events/index.html" class="module-card">
-<div class="module-icon">📅</div>
-<h3>EVENT MANAGEMENT</h3>
-<p>Calendar • Programs • Activities • Meetings</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/documents/index.html" class="module-card">
-<div class="module-icon">📄</div>
-<h3>DOCUMENT CENTER</h3>
-<p>Letters • Reports • Archives • Files</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/announcements/index.html" class="module-card">
-<div class="module-icon">📣</div>
-<h3>ANNOUNCEMENT CENTER</h3>
-<p>Official Notices • Community Updates • Alerts</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/donations/index.html" class="module-card">
-<div class="module-icon">🤝</div>
-<h3>DONATION CENTER</h3>
-<p>Contributions • Records • Donor Management</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/attendance/index.html" class="module-card">
-<div class="module-icon">✅</div>
-<h3>ATTENDANCE</h3>
-<p>Check-In • Meetings • Events • Participation</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/certificates/index.html" class="module-card">
-<div class="module-icon">🏆</div>
-<h3>CERTIFICATE CENTER</h3>
-<p>Certificates • Verification • Records</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/elections/index.html" class="module-card">
-<div class="module-icon">🗳️</div>
-<h3>ELECTION MANAGER</h3>
-<p>Voting • Candidates • Results • Records</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/volunteer/index.html" class="module-card">
-<div class="module-icon">🙋</div>
-<h3>VOLUNTEER CENTER</h3>
-<p>Volunteers • Assignments • Activities</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/finance/index.html" class="module-card">
-<div class="module-icon">💰</div>
-<h3>FINANCE / TREASURY</h3>
-<p>Payments • Donations • Treasury • Reports</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/media/index.html" class="module-card">
-<div class="module-icon">🎥</div>
-<h3>MEDIA GALLERY</h3>
-<p>Photos • Video • Audio • Archives</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/notifications/index.html" class="module-card">
-<div class="module-icon">🔔</div>
-<h3>NOTIFICATIONS</h3>
-<p>Alerts • Reminders • Updates • Messages</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/reports/index.html" class="module-card">
-<div class="module-icon">📊</div>
-<h3>REPORTS & ANALYTICS</h3>
-<p>Statistics • Performance • Reports</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/help-desk/index.html" class="module-card">
-<div class="module-icon">🎫</div>
-<h3>HELP DESK</h3>
-<p>Support • Requests • Cases • Assistance</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./modules/live-streaming/index.html" class="module-card">
-<div class="module-icon">📡</div>
-<h3>LIVE STREAMING</h3>
-<p>Radio • Video • Live Events • Broadcast</p>
-<div class="module-open">OPEN →</div>
-</a>
-
-<a href="./login.html" class="module-card">
-<div class="module-icon">🔐</div>
-<h3>ADMIN DASHBOARD</h3>
-<p>Roles • Permissions • Firebase • Security</p>
-<div class="module-open">LOGIN →</div>
-</a>
-
-</div>
 </div>
 </section>
 
@@ -1831,10 +1174,7 @@ Tout modil yo travay anba menm platfòm santral la.
 <div class="container">
 
 <div class="section-heading">
-
-<div class="eyebrow">
-BRIYANT SOLÈY SIGNO 1815
-</div>
+<div class="eyebrow">BRIYANT SOLÈY SIGNO 1815</div>
 
 <h2
 class="section-title"
@@ -1846,82 +1186,45 @@ BSS1815 COMMUNITY
 
 <p
 class="section-desc"
-data-ht="Kominote istorik BSS1815 la se yon pati dirèk nan PRO-MAX DMP: manm, dirijan, mizisyen, fanatik, eritaj, evènman ak achiv yo."
-data-fr="La communauté historique BSS1815 fait directement partie de PRO-MAX DMP : membres, dirigeants, musiciens, fans, patrimoine, événements et archives."
-data-en="The historic BSS1815 community is directly part of PRO-MAX DMP: members, leaders, musicians, fans, heritage, events and archives.">
+data-ht="Manm, dirijan, mizisyen, fanatik, evènman ak eritaj BSS1815 yo rete yon pati pèmanan nan homepage la."
+data-fr="Les membres, dirigeants, musiciens, fans, événements et le patrimoine BSS1815 restent une partie permanente de la page d’accueil."
+data-en="Members, leaders, musicians, fans, events and BSS1815 heritage remain a permanent part of the homepage.">
 BSS1815 Community entegre dirèkteman nan sistèm nan.
 </p>
-
 </div>
 
 <div class="bss-slideshow">
 
-<div
-class="bss-stage"
-id="bssStage"
-tabindex="0">
+<div class="bss-stage" id="bssStage" tabindex="0">
 
-<div class="bss-layer" id="bssLayerA"></div>
-<div class="bss-layer" id="bssLayerB"></div>
-
-<div
-class="bss-loading"
-id="bssLoading"
-data-ht="Chajman..."
-data-fr="Chargement..."
-data-en="Loading...">
-Chajman...
+<div class="bss-badge">
+BSS1815 COMMUNITY
 </div>
 
-<div
-class="bss-slide-badge"
-data-ht="5 PWOJÈ • YON SÈL PLATFÒM"
-data-fr="5 PROJETS • UNE SEULE PLATEFORME"
-data-en="5 PROJECTS • ONE PLATFORM">
-5 PWOJÈ • YON SÈL PLATFÒM
-</div>
+<img
+id="bssImage"
+src="./assets/slideshow/tania2.jpg"
+alt="BSS1815 Community">
 
-<button
-type="button"
-class="bss-missing-btn"
-id="bssMissingBtn">
-⚠ 0
-</button>
+<video
+id="bssVideo"
+class="hidden"
+playsinline
+preload="metadata">
+</video>
 
-<div
-class="bss-missing-panel"
-id="bssMissingPanel">
-<strong
-data-ht="Fichye sit la pa jwenn (tcheke non yo sou GitHub):"
-data-fr="Fichiers introuvables (vérifiez les noms sur GitHub) :"
-data-en="Files not found (check the names on GitHub):">
-Fichye sit la pa jwenn (tcheke non yo sou GitHub):
-</strong>
-<ul id="bssMissingList"></ul>
-</div>
+<div class="bss-overlay"></div>
 
-<div class="bss-slide-overlay"></div>
-
-<div class="bss-slide-caption">
-
-<small
-data-ht="BSS1815 PRO-MAX DMP • 5 PWOJÈ NAN YON SÈL PLATFÒM"
-data-fr="BSS1815 PRO-MAX DMP • 5 PROJETS DANS UNE SEULE PLATEFORME"
-data-en="BSS1815 PRO-MAX DMP • 5 PROJECTS IN ONE PLATFORM">
-BSS1815 PRO-MAX DMP • 5 PWOJÈ NAN YON SÈL PLATFÒM
-</small>
-
-<h3 id="bssSlideTitle">
-BSS1815
-</h3>
+<div class="bss-caption">
+<small>FANMI • ERITAJ • KOMINOTE</small>
+<h3 id="bssTitle">TANIA2</h3>
 
 <p
 data-ht="MOUVMAN SA A SE POU NOU TOUT. Chak figi se yon pati nan istwa ak eritaj BSS1815."
-data-fr="CE MOUVEMENT EST POUR NOUS TOUS. Chaque visage fait partie de l’histoire et de l’héritage de BSS1815."
-data-en="THIS MOVEMENT IS FOR ALL OF US. Every face is part of the history and heritage of BSS1815.">
+data-fr="CE MOUVEMENT EST POUR NOUS TOUS. Chaque visage fait partie de l’histoire et de l’héritage BSS1815."
+data-en="THIS MOVEMENT IS FOR ALL OF US. Every face is part of BSS1815 history and heritage.">
 MOUVMAN SA A SE POU NOU TOUT.
 </p>
-
 </div>
 
 <button
@@ -1944,31 +1247,26 @@ aria-label="Next">
 
 <div class="bss-controls">
 
-<div
-class="bss-counter"
-id="bssCounter">
+<div class="bss-counter" id="bssCounter">
 1 / 202
 </div>
 
 <button
 type="button"
-class="bss-play"
-id="bssPlayPause">
+class="bss-control"
+id="bssPlay">
 ⏸ PAUSE
 </button>
 
 <button
 type="button"
-class="bss-play"
+class="bss-control"
 id="bssSound">
 🔇 SON
 </button>
 
 <div class="bss-progress">
-<div
-class="bss-progress-bar"
-id="bssProgressBar">
-</div>
+<span id="bssProgress"></span>
 </div>
 
 </div>
@@ -1980,26 +1278,21 @@ id="bssProgressBar">
 <div class="container">
 <div class="project-box">
 
-<h2>
-📻 PRO-MAX FM
-</h2>
+<h2>📻 PRO-MAX FM</h2>
 
 <p
 data-ht="Branch radyo ak medya dijital BSS1815 PRO-MAX DMP pou live radio, nouvèl, podcast, entèvyou, mizik ak pwodiksyon medya."
-data-fr="La branche radio et média numérique de BSS1815 PRO-MAX DMP pour la radio en direct, les actualités, les podcasts, les interviews, la musique et la production média."
-data-en="The BSS1815 PRO-MAX DMP digital radio and media branch for live radio, news, podcasts, interviews, music and media production.">
+data-fr="Branche radio et média numérique pour la radio en direct, les actualités, les podcasts, les interviews et la musique."
+data-en="Digital radio and media branch for live radio, news, podcasts, interviews and music.">
 Branch radyo ak medya dijital platfòm nan.
 </p>
 
-<div class="hero-actions">
-
-<a
-href="./pro-max-fm/index.html"
-class="btn btn-primary">
+<div class="actions">
+<a href="./pro-max-fm/index.html" class="btn">
 📻 ENTER PRO-MAX FM
 </a>
-
 </div>
+
 </div>
 </div>
 </section>
@@ -2008,26 +1301,21 @@ class="btn btn-primary">
 <div class="container">
 <div class="project-box">
 
-<h2>
-💼 MAXIMAX MULTI SERVICES
-</h2>
+<h2>💼 MAXIMAX MULTI SERVICES</h2>
 
 <p
 data-ht="Sant sèvis pwofesyonèl pou imigrasyon, tradiksyon, dokiman, asistans administratif ak lòt sèvis kominotè."
-data-fr="Centre de services professionnels pour l’immigration, la traduction, les documents, l’assistance administrative et d’autres services communautaires."
-data-en="Professional services center for immigration, translation, documents, administrative assistance and other community services.">
+data-fr="Centre de services professionnels pour l’immigration, la traduction, les documents et l’assistance administrative."
+data-en="Professional services center for immigration, translation, documents and administrative assistance.">
 Sant sèvis pwofesyonèl BSS1815 PRO-MAX DMP.
 </p>
 
-<div class="hero-actions">
-
-<a
-href="./maximax/index.html"
-class="btn btn-primary">
+<div class="actions">
+<a href="./maximax/index.html" class="btn">
 💼 ENTER MAXIMAX MULTI SERVICES
 </a>
-
 </div>
+
 </div>
 </div>
 </section>
@@ -2036,29 +1324,44 @@ class="btn btn-primary">
 <div class="container">
 <div class="project-box">
 
-<h2
-data-ht="🎓 PRO-MAX ACADÉMIE"
-data-fr="🎓 PRO-MAX ACADÉMIE"
-data-en="🎓 PRO-MAX ACADEMY">
-🎓 PRO-MAX ACADÉMIE
-</h2>
+<h2>🎓 PRO-MAX ACADÉMIE</h2>
 
 <p
 data-ht="Sant fòmasyon pou entèlijans atifisyèl, teknoloji, inovasyon, lidèchip, Student Portal, evalyasyon ak sètifikasyon."
-data-fr="Centre de formation pour l’intelligence artificielle, la technologie, l’innovation, le leadership, le portail étudiant, les évaluations et la certification."
-data-en="Training center for artificial intelligence, technology, innovation, leadership, Student Portal, assessments and certification.">
+data-fr="Centre de formation pour l’intelligence artificielle, la technologie, l’innovation et la certification."
+data-en="Training center for artificial intelligence, technology, innovation and certification.">
 Sant fòmasyon AI ak teknoloji.
 </p>
 
-<div class="hero-actions">
-
-<a
-href="./academy/index.html"
-class="btn btn-primary">
+<div class="actions">
+<a href="./academy/index.html" class="btn">
 🎓 ENTER PRO-MAX ACADÉMIE
 </a>
+</div>
 
 </div>
+</div>
+</section>
+
+<section class="section" id="beat-lab">
+<div class="container">
+<div class="project-box">
+
+<h2>🎹 PRO-MAX BEAT LAB</h2>
+
+<p
+data-ht="Beat Maker, melodi, mizik, aranjman, piano ak pwodiksyon son dijital."
+data-fr="Beat Maker, mélodies, musique, arrangements, piano et production sonore numérique."
+data-en="Beat Maker, melodies, music, arrangements, piano and digital sound production.">
+Sant kreyasyon mizik ak pwodiksyon son.
+</p>
+
+<div class="actions">
+<a href="./pro-max-beat-lab/index.html" class="btn">
+🎹 OPEN BEAT LAB
+</a>
+</div>
+
 </div>
 </div>
 </section>
@@ -2067,11 +1370,7 @@ class="btn btn-primary">
 <div class="container">
 
 <div class="section-heading">
-
-<div class="eyebrow">
-INTERNATIONAL NEWS
-</div>
-
+<div class="eyebrow">INTERNATIONAL NEWS</div>
 <h2
 class="section-title"
 data-ht="SOUS NOUVÈL"
@@ -2079,91 +1378,39 @@ data-fr="SOURCES D’INFORMATION"
 data-en="NEWS SOURCES">
 SOUS NOUVÈL
 </h2>
-
 </div>
 
 <div class="news-grid">
-
-<article class="news-card">
-
-<div class="news-label">
-CNN
-</div>
-
-<h3>
-CNN International
-</h3>
-
-<p
-data-ht="Nouvèl entènasyonal, politik, ekonomi, teknoloji ak dènye devlopman mondyal."
-data-fr="Actualités internationales, politique, économie, technologie et développements mondiaux."
-data-en="International news, politics, economics, technology and global developments.">
-Nouvèl entènasyonal.
-</p>
 
 <a
 href="https://www.cnn.com/"
 target="_blank"
 rel="noopener noreferrer"
-class="news-btn">
-OPEN CNN ↗
+class="card news-card">
+<h3>CNN INTERNATIONAL</h3>
+<p>Nouvèl entènasyonal, politik, ekonomi ak teknoloji.</p>
+<div class="card-open">OPEN CNN ↗</div>
 </a>
-
-</article>
-
-<article class="news-card">
-
-<div class="news-label">
-MIAMI HERALD
-</div>
-
-<h3>
-Miami Herald
-</h3>
-
-<p
-data-ht="Miami, Florid, Ayiti, Karayib ak kominote entènasyonal."
-data-fr="Miami, Floride, Haïti, Caraïbes et communauté internationale."
-data-en="Miami, Florida, Haiti, the Caribbean and international community.">
-Miami, Florid, Ayiti ak Karayib.
-</p>
 
 <a
 href="https://www.miamiherald.com/"
 target="_blank"
 rel="noopener noreferrer"
-class="news-btn">
-OPEN MIAMI HERALD ↗
+class="card news-card">
+<h3>MIAMI HERALD</h3>
+<p>Miami, Florid, Ayiti, Karayib ak kominote entènasyonal.</p>
+<div class="card-open">OPEN MIAMI HERALD ↗</div>
 </a>
-
-</article>
-
-<article class="news-card">
-
-<div class="news-label">
-RFI
-</div>
-
-<h3>
-Radio France Internationale
-</h3>
-
-<p
-data-ht="Nouvèl mondyal, analiz, Lafrans, Lafrik, Karayib ak emisyon entènasyonal."
-data-fr="Actualités mondiales, analyses, France, Afrique, Caraïbes et émissions internationales."
-data-en="World news, analysis, France, Africa, Caribbean and international programming.">
-Nouvèl mondyal ak analiz.
-</p>
 
 <a
 href="https://www.rfi.fr/"
 target="_blank"
 rel="noopener noreferrer"
-class="news-btn">
-OPEN RFI ↗
+class="card news-card">
+<h3>RFI</h3>
+<p>Nouvèl mondyal, Lafrans, Lafrik, Karayib ak analiz.</p>
+<div class="card-open">OPEN RFI ↗</div>
 </a>
-
-</article>
 
 </div>
 </div>
@@ -2174,9 +1421,7 @@ OPEN RFI ↗
 
 <div class="ddn-box">
 
-<h2>
-DEVAN DEVAN NÈT™
-</h2>
+<h2>DEVAN DEVAN NÈT™</h2>
 
 <h3
 data-ht="BATI POU JODI A • PARE POU DEMEN"
@@ -2187,20 +1432,17 @@ BATI POU JODI A • PARE POU DEMEN
 
 <p
 data-ht="DEVAN DEVAN NÈT™ se vizyon teknoloji ak entèlijans atifisyèl ki ankouraje nou aprann, òganize, kreye, inove epi toujou avanse."
-data-fr="DEVAN DEVAN NÈT™ est la vision technologique et d’intelligence artificielle qui nous encourage à apprendre, organiser, créer, innover et toujours progresser."
-data-en="DEVAN DEVAN NÈT™ is the technology and artificial intelligence vision encouraging us to learn, organize, create, innovate and always move forward.">
+data-fr="DEVAN DEVAN NÈT™ est la vision technologique et d’intelligence artificielle qui nous encourage à apprendre, organiser, créer, innover et progresser."
+data-en="DEVAN DEVAN NÈT™ is the technology and artificial-intelligence vision encouraging us to learn, organize, create, innovate and move forward.">
 DEVAN DEVAN NÈT™ se mouvman inovasyon ak AI platfòm nan.
 </p>
 
-<div class="hero-actions">
-
-<a
-href="./ddn/index.html"
-class="btn btn-primary">
+<div class="actions">
+<a href="./ddn/index.html" class="btn">
 🌎 ENTER DEVAN DEVAN NÈT™
 </a>
-
 </div>
+
 </div>
 </div>
 </section>
@@ -2209,10 +1451,7 @@ class="btn btn-primary">
 <div class="container">
 
 <div class="section-heading">
-
-<div class="eyebrow">
-STAY CONNECTED
-</div>
+<div class="eyebrow">STAY CONNECTED</div>
 
 <h2
 class="section-title"
@@ -2221,358 +1460,119 @@ data-fr="CONTACT & RÉSEAUX SOCIAUX"
 data-en="CONTACT & SOCIAL NETWORKS">
 KONTAK & REZO SOSYAL
 </h2>
-
 </div>
 
 <div class="contact-grid">
 
-<div class="contact-card phones">
-
-<div class="contact-head">
-<div class="contact-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#ff7900"/>
-<path fill="#000" transform="translate(4.4 4.4) scale(.63)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-</svg>
-</div>
-<strong>
-TELEPHONE
-</strong>
+<div class="card contact-card">
+<strong>📞 TELEPHONE</strong>
+<a href="tel:+15162168494">🇺🇸 (516) 216-8494</a>
+<a href="tel:+13175381150">🇺🇸 (317) 538-1150</a>
+<a href="tel:+14076405166">🇺🇸 (407) 640-5166</a>
+<a href="tel:+50943437488">🇭🇹 Cange +509 4343-7488</a>
+<a href="tel:+50942544447">🇭🇹 Adan +509 4254-4447</a>
 </div>
 
-<div class="phone-list">
-
-<a href="tel:+15162168494" class="phone-row">
-<svg class="flag" role="img" aria-label="USA"><use href="#flag-us"/></svg>
-<span class="phone-text">
-<span class="phone-name">USA</span>
-(516) 216-8494
-</span>
-</a>
-
-<a href="tel:+13175381150" class="phone-row">
-<svg class="flag" role="img" aria-label="USA"><use href="#flag-us"/></svg>
-<span class="phone-text">
-<span class="phone-name">USA</span>
-(317) 538-1150
-</span>
-</a>
-
-<a href="tel:+14076405166" class="phone-row">
-<svg class="flag" role="img" aria-label="USA"><use href="#flag-us"/></svg>
-<span class="phone-text">
-<span class="phone-name">USA</span>
-(407) 640-5166
-</span>
-</a>
-
-<a href="tel:+50943437488" class="phone-row">
-<svg class="flag" role="img" aria-label="Ayiti"><use href="#flag-ht"/></svg>
-<span class="phone-text">
-<span class="phone-name">Ayiti • Cange</span>
-+509 4343-7488
-</span>
-</a>
-
-<a href="tel:+50942544447" class="phone-row">
-<svg class="flag" role="img" aria-label="Ayiti"><use href="#flag-ht"/></svg>
-<span class="phone-text">
-<span class="phone-name">Ayiti • Adan</span>
-+509 4254-4447
-</span>
-</a>
-
-</div>
-
-</div>
-
-<div class="contact-card">
-
-<div class="contact-head">
-<div class="contact-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#ff7900"/>
-<rect x="4.5" y="7" width="15" height="10.5" rx="1.6" fill="#000"/>
-<path fill="none" stroke="#ff7900" stroke-width="1.5" stroke-linejoin="round" d="M5.3 8l6.7 5.2L18.7 8"/>
-</svg>
-</div>
-<strong>
-EMAIL
-</strong>
-</div>
-
+<div class="card contact-card">
+<strong>📧 EMAIL</strong>
 <a href="mailto:briyantsoleysigno1815@gmail.com">
 briyantsoleysigno1815@gmail.com
 </a>
-
 </div>
 
-<div class="contact-card">
-
-<div class="contact-head">
-<div class="contact-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#ff7900"/>
-<g fill="none" stroke="#000" stroke-width="1.5">
-<circle cx="12" cy="12" r="7.2"/>
-<ellipse cx="12" cy="12" rx="3.2" ry="7.2"/>
-<path d="M4.8 12h14.4M6 8.2h12M6 15.8h12"/>
-</g>
-</svg>
-</div>
-<strong>
-WEBSITE
-</strong>
-</div>
-
+<div class="card contact-card">
+<strong>🌐 WEBSITE</strong>
 <a
 href="https://www.briyantsoleysigno1815.com"
 target="_blank"
 rel="noopener noreferrer">
 www.briyantsoleysigno1815.com
 </a>
-
 </div>
 
 </div>
 
 <div class="social-grid">
 
-<!-- FACEBOOK -->
-<a
-href="https://www.facebook.com/share/1By3KvYRrM/"
-target="_blank"
-rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#1877F2"/>
-<path fill="#fff" d="M13.4 21v-7.3h2.4l.4-2.9h-2.8V9c0-.8.3-1.4 1.4-1.4h1.5V5.1c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2H8v2.9h2.4V21z"/>
-</svg>
-</div>
-
-<div>
-<strong>Facebook</strong>
-<span>BSS1815 PRO-MAX DMP</span>
-</div>
-
-</a>
-
-<!-- WHATSAPP -->
 <a
 href="https://wa.me/50943437488"
 target="_blank"
 rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#25D366"/>
-<path fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" d="M12 4.6a7.3 7.3 0 0 0-6.3 11l-1 3.8 3.9-1a7.3 7.3 0 1 0 3.4-13.8z"/>
-<path fill="#fff" d="M9.3 8.2c.2-.2.5-.2.7 0l.9 1.6c.1.2.1.5-.1.7l-.5.5c.4.9 1.4 1.9 2.3 2.3l.5-.5c.2-.2.5-.2.7-.1l1.6.9c.2.1.3.4.2.6-.3.8-1 1.4-1.8 1.3-2.4-.3-4.9-2.8-5.2-5.2-.1-.8.4-1.6 1.2-1.9z"/>
-</svg>
-</div>
-
-<div>
-<strong>WhatsApp</strong>
+class="card social-card">
+<strong>WHATSAPP</strong>
 <span>+509 4343-7488</span>
-</div>
-
 </a>
 
-<!-- YOUTUBE -->
+<a
+href="https://www.facebook.com/share/1By3KvYRrM/"
+target="_blank"
+rel="noopener noreferrer"
+class="card social-card">
+<strong>FACEBOOK</strong>
+<span>BSS1815 PRO-MAX DMP</span>
+</a>
+
 <a
 href="https://www.youtube.com/@BSS1815PROMAXDMP"
 target="_blank"
 rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#fff"/>
-<rect x="3" y="6" width="18" height="12.5" rx="3.6" fill="#FF0000"/>
-<path fill="#fff" d="M10.2 9.2v6l5.2-3z"/>
-</svg>
-</div>
-
-<div>
-<strong>YouTube</strong>
+class="card social-card">
+<strong>YOUTUBE</strong>
 <span>@BSS1815PROMAXDMP</span>
-</div>
-
 </a>
 
-<!-- SPOTIFY -->
 <a
 href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici"
 target="_blank"
 rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#000"/>
-<circle cx="12" cy="12" r="8.5" fill="#1DB954"/>
-<path fill="none" stroke="#000" stroke-width="1.7" stroke-linecap="round" d="M7.3 9.6c3.2-1 6.9-.7 9.6.8"/>
-<path fill="none" stroke="#000" stroke-width="1.45" stroke-linecap="round" d="M7.8 12.4c2.7-.8 5.7-.5 7.9.8"/>
-<path fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" d="M8.3 15c2.2-.6 4.4-.4 6.2.6"/>
-</svg>
-</div>
-
-<div>
-<strong>Spotify</strong>
+class="card social-card">
+<strong>SPOTIFY</strong>
 <span>MAXIMAX</span>
-</div>
-
 </a>
 
-<!-- TIKTOK -->
 <a
 href="https://www.tiktok.com/@maximax1960"
 target="_blank"
 rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#000"/>
-<path fill="#25F4EE" d="M12.3 4.5h2.4c.2 1.8 1.4 3.1 3.2 3.3v2.4c-1.2 0-2.3-.4-3.2-1v5.1a4.3 4.3 0 1 1-4.3-4.3h.4v2.5h-.4a1.8 1.8 0 1 0 1.9 1.8z" transform="translate(-.7 -.5)"/>
-<path fill="#FE2C55" d="M12.3 4.5h2.4c.2 1.8 1.4 3.1 3.2 3.3v2.4c-1.2 0-2.3-.4-3.2-1v5.1a4.3 4.3 0 1 1-4.3-4.3h.4v2.5h-.4a1.8 1.8 0 1 0 1.9 1.8z" transform="translate(.7 .5)"/>
-<path fill="#fff" d="M12.3 4.5h2.4c.2 1.8 1.4 3.1 3.2 3.3v2.4c-1.2 0-2.3-.4-3.2-1v5.1a4.3 4.3 0 1 1-4.3-4.3h.4v2.5h-.4a1.8 1.8 0 1 0 1.9 1.8z"/>
-</svg>
-</div>
-
-<div>
-<strong>TikTok</strong>
+class="card social-card">
+<strong>TIKTOK</strong>
 <span>@maximax1960</span>
-</div>
-
 </a>
 
-<!-- TELEGRAM (mete lyen an nan href lè w genyen l) -->
-<a
-href="#contact"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#26A5E4"/>
-<path fill="#fff" d="M5.2 11.7l12-4.6c.6-.2 1.1.1.9 1l-2 9.6c-.1.7-.6.8-1.1.5l-3.1-2.3-1.5 1.4c-.2.2-.3.3-.6.3l.2-3.2 5.8-5.2c.3-.2-.1-.4-.4-.2l-7.1 4.5-3.1-1c-.7-.2-.7-.7.1-1z"/>
-</svg>
-</div>
-
-<div>
-<strong>Telegram</strong>
-<span
-data-ht="Lyen ap vini"
-data-fr="Lien à venir"
-data-en="Link coming soon">
-Lyen ap vini
-</span>
-</div>
-
-</a>
-
-<!-- LINKEDIN -->
-<a
-href="https://www.linkedin.com/in/maximax-multi-services-075ba2314"
-target="_blank"
-rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#0A66C2"/>
-<rect x="5.6" y="9.8" width="2.8" height="8.4" fill="#fff"/>
-<circle cx="7" cy="6.9" r="1.6" fill="#fff"/>
-<path fill="#fff" d="M10.4 9.8h2.7V11c.4-.7 1.4-1.5 2.8-1.5 2.9 0 3.4 1.9 3.4 4.3v4.4h-2.8v-3.9c0-.9 0-2.1-1.3-2.1s-1.5 1-1.5 2.1v3.9h-2.8z"/>
-</svg>
-</div>
-
-<div>
-<strong>LinkedIn</strong>
-<span>Maximax Multi Services</span>
-</div>
-
-</a>
-
-<!-- TRUTH SOCIAL -->
-<a
-href="https://truthsocial.com/@briyant_soley_1815"
-target="_blank"
-rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#5448EE"/>
-<rect x="5.5" y="6" width="10" height="3" fill="#fff"/>
-<rect x="9" y="6" width="3" height="12" fill="#fff"/>
-<rect x="14.8" y="15" width="3" height="3" fill="#6BE3A0"/>
-</svg>
-</div>
-
-<div>
-<strong>Truth Social</strong>
-<span>@briyant_soley_1815</span>
-</div>
-
-</a>
-
-<!-- X / TWITTER -->
-<a
-href="https://x.com/w05g2m"
-target="_blank"
-rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect width="24" height="24" rx="6" fill="#000" stroke="#333" stroke-width=".6"/>
-<path fill="#fff" d="M5.5 5.5h4.1l8.9 13h-4.1z"/>
-<path fill="#000" d="M7.3 6.5h1.8l7.6 11h-1.8z"/>
-<path fill="none" stroke="#fff" stroke-width="1.5" d="M17.8 5.5l-5.2 5.9M11 13.2l-5 5.3"/>
-</svg>
-</div>
-
-<div>
-<strong>X / Twitter</strong>
-<span>@w05g2m</span>
-</div>
-
-</a>
-
-<!-- INSTAGRAM -->
 <a
 href="https://www.instagram.com/lebaron072/"
 target="_blank"
 rel="noopener noreferrer"
-class="social-link">
-
-<div class="social-icon">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<defs>
-<radialGradient id="igGrad" cx="30%" cy="107%" r="150%">
-<stop offset="0" stop-color="#FDF497"/>
-<stop offset=".08" stop-color="#FDF497"/>
-<stop offset=".45" stop-color="#FD5949"/>
-<stop offset=".6" stop-color="#D6249F"/>
-<stop offset=".9" stop-color="#285AEB"/>
-</radialGradient>
-</defs>
-<rect width="24" height="24" rx="6" fill="url(#igGrad)"/>
-<rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.7"/>
-<circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.7"/>
-<circle cx="15.9" cy="8.1" r=".95" fill="#fff"/>
-</svg>
-</div>
-
-<div>
-<strong>Instagram</strong>
+class="card social-card">
+<strong>INSTAGRAM</strong>
 <span>@lebaron072</span>
-</div>
+</a>
 
+<a
+href="https://www.linkedin.com/in/maximax-multi-services-075ba2314"
+target="_blank"
+rel="noopener noreferrer"
+class="card social-card">
+<strong>LINKEDIN</strong>
+<span>Maximax Multi Services</span>
+</a>
+
+<a
+href="https://truthsocial.com/@briyant_soley_1815"
+target="_blank"
+rel="noopener noreferrer"
+class="card social-card">
+<strong>TRUTH SOCIAL</strong>
+<span>@briyant_soley_1815</span>
+</a>
+
+<a
+href="https://x.com/w05g2m"
+target="_blank"
+rel="noopener noreferrer"
+class="card social-card">
+<strong>X / TWITTER</strong>
+<span>@w05g2m</span>
 </a>
 
 </div>
@@ -2582,31 +1582,8 @@ class="social-link">
 </main>
 
 <footer>
-<div class="container">
-
-<div class="footer-video">
-
-<video
-autoplay
-muted
-loop
-playsinline
-preload="metadata">
-
-<source
-src="./bati-pou-jodi-a.mp4"
-type="video/mp4">
-
-</video>
-
-</div>
-
-<div class="footer-title">
-BSS1815 PRO-MAX DMP
-</div>
-
-<div class="footer-info">
-
+<strong>BSS1815 PRO-MAX DMP</strong>
+<br>
 DEVAN DEVAN NÈT™
 <br>
 
@@ -2620,22 +1597,10 @@ BATI POU JODI A • PARE POU DEMEN
 <br><br>
 
 briyantsoleysigno1815@gmail.com
-<br>
-
-🇺🇸 (516) 216-8494 •
-🇺🇸 (317) 538-1150 •
-🇺🇸 (407) 640-5166
-<br>
-🇭🇹 Cange +509 4343-7488 •
-🇭🇹 Adan +509 4254-4447
 
 <br><br>
 
-© <span id="currentYear"></span>
-BSS1815 PRO-MAX DMP
-
-</div>
-</div>
+© <span id="currentYear"></span> BSS1815 PRO-MAX DMP
 </footer>
 
 <script>
@@ -2643,257 +1608,361 @@ BSS1815 PRO-MAX DMP
 
 "use strict";
 
-var currentYear=
-document.getElementById("currentYear");
+/* YEAR */
+
+var currentYear=document.getElementById("currentYear");
 
 if(currentYear){
-currentYear.textContent=
-new Date().getFullYear();
+  currentYear.textContent=new Date().getFullYear();
 }
 
-var menuToggle=
-document.getElementById("menuToggle");
+/* MENU */
 
-var mainNav=
-document.getElementById("mainNav");
+var menuToggle=document.getElementById("menuToggle");
+var mainNav=document.getElementById("mainNav");
 
 if(menuToggle && mainNav){
 
-menuToggle.addEventListener(
-"click",
-function(){
+  menuToggle.addEventListener("click",function(){
 
-var open=
-mainNav.classList.toggle("open");
+    var opened=mainNav.classList.toggle("open");
 
-menuToggle.textContent=
-open ? "✕" : "☰";
+    menuToggle.textContent=opened ? "✕" : "☰";
 
-menuToggle.setAttribute(
-"aria-expanded",
-String(open)
-);
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(opened)
+    );
 
-}
-);
+  });
 
-mainNav
-.querySelectorAll("a")
-.forEach(function(link){
+  mainNav.querySelectorAll("a").forEach(function(link){
 
-link.addEventListener(
-"click",
-function(){
+    link.addEventListener("click",function(){
 
-mainNav.classList.remove("open");
+      mainNav.classList.remove("open");
 
-menuToggle.textContent="☰";
+      menuToggle.textContent="☰";
 
-menuToggle.setAttribute(
-"aria-expanded",
-"false"
-);
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    });
+
+  });
 
 }
-);
 
-});
-
-}
+/* LANGUAGES */
 
 var languageButtons=
-document.querySelectorAll(
-".lang-btn[data-lang]"
-);
+document.querySelectorAll(".lang-btn[data-lang]");
 
 var currentLanguage="ht";
 
-function applyLanguage(lang){
+function applyLanguage(language){
 
-if(
-["ht","fr","en"].indexOf(lang)===-1
-){
-lang="ht";
+  if(
+    language!=="ht" &&
+    language!=="fr" &&
+    language!=="en"
+  ){
+    language="ht";
+  }
+
+  currentLanguage=language;
+
+  document.documentElement.lang=language;
+
+  document
+  .querySelectorAll("[data-ht][data-fr][data-en]")
+  .forEach(function(element){
+
+    var translation=
+    element.getAttribute("data-"+language);
+
+    if(translation!==null){
+      element.textContent=translation;
+    }
+
+  });
+
+  languageButtons.forEach(function(button){
+
+    button.classList.toggle(
+      "active",
+      button.dataset.lang===language
+    );
+
+  });
+
+  try{
+    localStorage.setItem(
+      "bss1815-language",
+      language
+    );
+  }catch(error){}
+
+  updateHeroSoundButton();
+
 }
 
-currentLanguage=lang;
-document.documentElement.lang=lang;
+languageButtons.forEach(function(button){
 
-document
-.querySelectorAll(
-"[data-ht][data-fr][data-en]"
-)
-.forEach(function(element){
+  button.addEventListener("click",function(){
 
-var translation=
-element.getAttribute(
-"data-"+lang
-);
+    applyLanguage(this.dataset.lang);
 
-if(translation!==null){
-element.textContent=translation;
-}
+  });
 
 });
-
-languageButtons.forEach(
-function(button){
-
-button.classList.toggle(
-"active",
-button.getAttribute("data-lang")===lang
-);
-
-}
-);
-
-try{
-
-localStorage.setItem(
-"bss1815Language",
-lang
-);
-
-}catch(error){}
-
-updateSoundButton();
-
-}
-
-languageButtons.forEach(
-function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-applyLanguage(
-this.getAttribute("data-lang")
-);
-
-}
-);
-
-}
-);
 
 var savedLanguage="ht";
 
 try{
 
-savedLanguage=
-localStorage.getItem(
-"bss1815Language"
-) || "ht";
+  savedLanguage=
+  localStorage.getItem("bss1815-language") || "ht";
 
 }catch(error){}
 
 applyLanguage(savedLanguage);
 
+/* BACKGROUND VIDEOS */
+
 document
-.querySelectorAll("video")
+.querySelectorAll("video:not(#profAvatarVideo):not(#bssVideo)")
 .forEach(function(video){
 
-video.muted=true;
-video.loop=true;
-video.playsInline=true;
+  video.muted=true;
+  video.loop=true;
+  video.playsInline=true;
 
-var promise=video.play();
+  var playPromise=video.play();
 
-if(promise){
-
-promise.catch(
-function(){}
-);
-
-}
+  if(playPromise){
+    playPromise.catch(function(){});
+  }
 
 });
 
+/* HERO SOUND */
+
 var heroVideo=
-document.getElementById(
-"heroLogoVideo"
-);
+document.getElementById("heroLogoVideo");
 
 var soundButton=
-document.getElementById(
-"soundButton"
-);
+document.getElementById("soundButton");
 
-function updateSoundButton(){
+function updateHeroSoundButton(){
 
-if(!soundButton){
-return;
-}
+  if(!soundButton){
+    return;
+  }
 
-if(
-heroVideo &&
-!heroVideo.muted
-){
+  if(heroVideo && !heroVideo.muted){
 
-soundButton.textContent=
-"🔇 MUTE";
+    soundButton.textContent="🔇 MUTE";
+    return;
 
-return;
+  }
 
-}
+  if(currentLanguage==="fr"){
 
-if(currentLanguage==="fr"){
+    soundButton.textContent="🔊 ÉCOUTER LE SLOGAN";
 
-soundButton.textContent=
-"🔊 ÉCOUTER LE SLOGAN";
+  }else if(currentLanguage==="en"){
 
-}else if(currentLanguage==="en"){
+    soundButton.textContent="🔊 HEAR THE SLOGAN";
 
-soundButton.textContent=
-"🔊 HEAR THE SLOGAN";
+  }else{
 
-}else{
+    soundButton.textContent="🔊 KOUTE SLOGAN AN";
 
-soundButton.textContent=
-"🔊 KOUTE SLOGAN AN";
-
-}
+  }
 
 }
 
 if(heroVideo && soundButton){
 
-soundButton.addEventListener(
-"click",
-function(){
+  soundButton.addEventListener("click",function(){
 
-if(heroVideo.muted){
+    heroVideo.muted=!heroVideo.muted;
 
-heroVideo.muted=false;
-heroVideo.currentTime=0;
+    if(!heroVideo.muted){
+      heroVideo.currentTime=0;
+    }
 
-heroVideo
-.play()
-.catch(function(){});
+    heroVideo.play().catch(function(){});
 
-}else{
+    updateHeroSoundButton();
 
-heroVideo.muted=true;
+  });
 
 }
 
-updateSoundButton();
+/* PROF AVATAR CUSTOMER SERVICE */
+
+var profAvatarVideo=
+document.getElementById("profAvatarVideo");
+
+var profAvatarPlay=
+document.getElementById("profAvatarPlay");
+
+var profAvatarRestart=
+document.getElementById("profAvatarRestart");
+
+if(profAvatarVideo){
+
+  profAvatarVideo.autoplay=false;
+  profAvatarVideo.loop=false;
+  profAvatarVideo.playsInline=true;
 
 }
-);
+
+if(profAvatarVideo && profAvatarPlay){
+
+  profAvatarPlay.addEventListener("click",function(){
+
+    if(profAvatarVideo.paused){
+
+      profAvatarVideo.muted=false;
+
+      profAvatarVideo
+      .play()
+      .catch(function(){});
+
+    }else{
+
+      profAvatarVideo.pause();
+
+    }
+
+  });
 
 }
 
-/* ================= SLIDESHOW ================= */
-/* Nouvo slideshow: chak foto 10 segonn, fondu nan pwochen an,
-   videyo yo jwe nèt, bouton son, fichye ki manke yo sote. */
+if(profAvatarVideo && profAvatarRestart){
 
-var BSS_PHOTO_TIME=10000;
-var BSS_FADE_TIME=1200;
-var BSS_STEP=100;
-var BSS_LOAD_LIMIT=15000;
-var BSS_BASES=["./","./assets/slideshow/"];
+  profAvatarRestart.addEventListener("click",function(){
+
+    profAvatarVideo.pause();
+    profAvatarVideo.currentTime=0;
+    profAvatarVideo.muted=false;
+
+    profAvatarVideo
+    .play()
+    .catch(function(){});
+
+  });
+
+}
+
+/* ECOSYSTEM */
+
+var ecosystemProjects=[
+  [
+    "🏛️",
+    "BSS1815 COMMUNITY",
+    "Manm, dirijan, mizisyen, fanatik, eritaj ak lavi kominotè.",
+    "#community"
+  ],
+  [
+    "📻",
+    "PRO-MAX FM",
+    "Radyo dijital, live streaming, mizik, podcast, nouvèl ak medya.",
+    "#promaxfm"
+  ],
+  [
+    "💼",
+    "MAXIMAX MULTI SERVICES",
+    "Imigrasyon, tradiksyon, dokiman ak sèvis pwofesyonèl.",
+    "#maximax"
+  ],
+  [
+    "🎓",
+    "PRO-MAX ACADÉMIE",
+    "Teknoloji, AI, kou, evalyasyon, Student Portal ak sètifika.",
+    "#academy"
+  ],
+  [
+    "🎹",
+    "PRO-MAX BEAT LAB",
+    "Beat Maker, melodi, piano, aranjman ak pwodiksyon mizik.",
+    "#beat-lab"
+  ]
+];
+
+var ecosystemGrid=
+document.getElementById("ecosystemGrid");
+
+if(ecosystemGrid){
+
+  ecosystemGrid.innerHTML=
+  ecosystemProjects.map(function(project){
+
+    return(
+      '<a href="'+project[3]+'" class="card ecosystem-card">'+
+      '<div class="card-icon">'+project[0]+'</div>'+
+      '<h3>'+project[1]+'</h3>'+
+      '<p>'+project[2]+'</p>'+
+      '<div class="card-open">ENTER →</div>'+
+      '</a>'
+    );
+
+  }).join("");
+
+}
+
+/* MODULES */
+
+var modules=[
+  ["🤖","AI CENTER","Assistant • Writer • Voice • Automation","./modules/ai-center/index.html"],
+  ["👥","CRM SYSTEM","Members • Contacts • Relationships • Records","./modules/crm/index.html"],
+  ["📢","COMMUNICATION CENTER","Announcements • Alerts • WhatsApp • Messages","./modules/communication/index.html"],
+  ["🎨","FLYER STUDIO","Flyers • Notices • Graphics • Media","./modules/flyer-studio/index.html"],
+  ["📋","DIGITAL REGISTRY","Members • Musicians • Fans • Merchants","./modules/registry/index.html"],
+  ["📅","EVENT MANAGEMENT","Calendar • Programs • Activities • Meetings","./modules/events/index.html"],
+  ["📄","DOCUMENT CENTER","Letters • Reports • Archives • Files","./modules/documents/index.html"],
+  ["📣","ANNOUNCEMENT CENTER","Official Notices • Community Updates • Alerts","./modules/announcements/index.html"],
+  ["🤝","DONATION CENTER","Contributions • Records • Donors","./modules/donations/index.html"],
+  ["✅","ATTENDANCE","Check-In • Meetings • Events","./modules/attendance/index.html"],
+  ["🏆","CERTIFICATE CENTER","Certificates • Verification • Records","./modules/certificates/index.html"],
+  ["🗳️","ELECTION MANAGER","Voting • Candidates • Results","./modules/elections/index.html"],
+  ["🙋","VOLUNTEER CENTER","Volunteers • Assignments • Activities","./modules/volunteer/index.html"],
+  ["💰","FINANCE / TREASURY","Payments • Donations • Reports","./modules/finance/index.html"],
+  ["🎥","MEDIA GALLERY","Photos • Video • Audio • Archives","./modules/media/index.html"],
+  ["🔔","NOTIFICATIONS","Alerts • Reminders • Updates","./modules/notifications/index.html"],
+  ["📊","REPORTS & ANALYTICS","Statistics • Performance • Reports","./modules/reports/index.html"],
+  ["🎫","HELP DESK","Support • Requests • Cases","./modules/help-desk/index.html"],
+  ["📡","LIVE STREAMING","Radio • Video • Live Events","./modules/live-streaming/index.html"],
+  ["🔐","ADMIN DASHBOARD","Roles • Permissions • Firebase • Security","./login.html"]
+];
+
+var modulesGrid=
+document.getElementById("modulesGrid");
+
+if(modulesGrid){
+
+  modulesGrid.innerHTML=
+  modules.map(function(module){
+
+    return(
+      '<a href="'+module[3]+'" class="card module-card">'+
+      '<div class="card-icon">'+module[0]+'</div>'+
+      '<h3>'+module[1]+'</h3>'+
+      '<p>'+module[2]+'</p>'+
+      '<div class="card-open">OPEN →</div>'+
+      '</a>'
+    );
+
+  }).join("");
+
+}
+
+/* BSS1815 COMMUNITY MEDIA */
 
 var bssFiles=[
 "bss.jpg",
@@ -3100,457 +2169,314 @@ var bssFiles=[
 "system-akayik2.jpg"
 ];
 
-/* Retire doublon yo si yon non parèt de fwa */
+/* RETIRE DOUBLON */
+
 (function(){
-var seen={};
-bssFiles=bssFiles.filter(function(file){
-var key=file.toLowerCase();
-if(seen[key]){return false;}
-seen[key]=true;
-return true;
-});
+
+  var seen={};
+
+  bssFiles=bssFiles.filter(function(file){
+
+    var key=file.toLowerCase();
+
+    if(seen[key]){
+      return false;
+    }
+
+    seen[key]=true;
+
+    return true;
+
+  });
+
 })();
 
-function bssIsVideo(file){
-return /\.(mp4|mov|webm|m4v)$/i.test(file);
-}
-
-function bssPretty(file){
-return file
-.replace(/\.[^.]+$/,"")
-.replace(/[-_.]+/g," ")
-.replace(/(^|\s)(\S)/g,function(all,space,letter){
-return space+letter.toUpperCase();
-});
-}
-
-/* Tout fason yon non ka ekri sou sèvè a:
-   .jpg / .JPG / .jpeg, aksan telefòn, ak de dosye posib */
-function bssNames(file){
-var dot=file.lastIndexOf(".");
-var base=dot>-1?file.slice(0,dot):file;
-var ext=dot>-1?file.slice(dot+1):"";
-var low=ext.toLowerCase();
-var exts=[ext,low,ext.toUpperCase()];
-if(low==="jpg"){exts.push("jpeg","JPEG");}
-if(low==="jpeg"){exts.push("jpg","JPG");}
-var bases=[base];
-if(base.normalize){
-bases.push(base.normalize("NFC"),base.normalize("NFD"));
-}
-var names=[];
-bases.forEach(function(b){
-exts.forEach(function(e){
-var n=b+"."+e;
-if(names.indexOf(n)===-1){names.push(n);}
-});
-});
-return names;
-}
-
-var bssGoodBase=null;
-
-function bssUrls(item){
-if(item.good){return [{base:item.goodBase,url:item.good}];}
-var bases=BSS_BASES.slice();
-if(bssGoodBase){
-bases.splice(bases.indexOf(bssGoodBase),1);
-bases.unshift(bssGoodBase);
-}
-var urls=[];
-bases.forEach(function(b){
-item.names.forEach(function(n){
-urls.push({base:b,url:b+encodeURI(n).replace(/#/g,"%23")});
-});
-});
-return urls;
-}
-
-var bssItems=bssFiles.map(function(file){
-return{
-file:file,
-video:bssIsVideo(file),
-names:bssNames(file),
-good:null,
-goodBase:null,
-broken:false
-};
-});
-
-var bssLayers=[
-document.getElementById("bssLayerA"),
-document.getElementById("bssLayerB")
-];
-var bssFront=0;
-var bssTitle=document.getElementById("bssSlideTitle");
+var bssImage=document.getElementById("bssImage");
+var bssVideo=document.getElementById("bssVideo");
+var bssTitle=document.getElementById("bssTitle");
 var bssCounter=document.getElementById("bssCounter");
-var bssProgress=document.getElementById("bssProgressBar");
+var bssProgress=document.getElementById("bssProgress");
 var bssPrev=document.getElementById("bssPrev");
 var bssNext=document.getElementById("bssNext");
-var bssPlay=document.getElementById("bssPlayPause");
-var bssSoundBtn=document.getElementById("bssSound");
+var bssPlay=document.getElementById("bssPlay");
+var bssSound=document.getElementById("bssSound");
 var bssStage=document.getElementById("bssStage");
-var bssLoading=document.getElementById("bssLoading");
-var bssMissingBtn=document.getElementById("bssMissingBtn");
-var bssMissingPanel=document.getElementById("bssMissingPanel");
-var bssMissingList=document.getElementById("bssMissingList");
 
-var bssIndex=-1;
+var bssIndex=0;
 var bssPlaying=true;
 var bssSoundOn=false;
 var bssElapsed=0;
-var bssReady=false;
-var bssToken=0;
-var bssCurrentVideo=null;
-var bssVideoBlocked=false;
-var bssLastTime=-1;
-var bssStall=0;
-var bssMissingCount=0;
 
-function bssOkCount(){
-return bssItems.filter(function(i){return !i.broken;}).length;
+var BSS_PHOTO_TIME=10000;
+var BSS_STEP=100;
+var BSS_BASE="./assets/slideshow/";
+
+function bssIsVideo(file){
+
+  return /\.(mp4|webm|mov|m4v)$/i.test(file);
+
 }
 
-function bssUpdateCounter(){
-if(!bssCounter){return;}
-var ok=bssItems.filter(function(i){return !i.broken;});
-var pos=ok.indexOf(bssItems[bssIndex])+1;
-bssCounter.textContent=(pos>0?pos:1)+" / "+ok.length;
+function bssPretty(file){
+
+  return file
+  .replace(/\.[^.]+$/,"")
+  .replace(/[-_.]+/g," ")
+  .replace(/\b\w/g,function(letter){
+
+    return letter.toUpperCase();
+
+  });
+
 }
 
-function bssMarkBroken(item){
-if(item.broken){return;}
-item.broken=true;
-bssMissingCount++;
-if(bssMissingList){
-var li=document.createElement("li");
-li.textContent=item.file;
-bssMissingList.appendChild(li);
-}
-if(bssMissingBtn){
-bssMissingBtn.style.display="block";
-bssMissingBtn.textContent="⚠ "+bssMissingCount;
-}
-bssUpdateCounter();
-}
+function bssShow(index){
 
-function bssNextIndex(from,step){
-var total=bssItems.length;
-for(var k=1;k<=total;k++){
-var idx=((from+step*k)%total+total)%total;
-if(!bssItems[idx].broken){return idx;}
-}
-return -1;
-}
+  if(index<0){
+    index=bssFiles.length-1;
+  }
 
-/* Chaje yon foto oswa yon videyo, eseye chak non posib */
-function bssLoad(item,done,fail){
-var urls=bssUrls(item);
-var tryIndex=0;
-var finished=false;
-var limit=null;
-var el;
+  if(index>=bssFiles.length){
+    index=0;
+  }
 
-if(item.video){
-el=document.createElement("video");
-el.muted=!bssSoundOn;
-el.playsInline=true;
-el.setAttribute("playsinline","");
-el.setAttribute("webkit-playsinline","");
-el.preload="auto";
-}else{
-el=document.createElement("img");
-el.alt=bssPretty(item.file);
-el.decoding="async";
-}
+  bssIndex=index;
+  bssElapsed=0;
 
-function success(){
-if(finished){return;}
-finished=true;
-clearTimeout(limit);
-item.good=urls[tryIndex].url;
-item.goodBase=urls[tryIndex].base;
-bssGoodBase=urls[tryIndex].base;
-done(el);
-}
+  var file=bssFiles[bssIndex];
+  var source=BSS_BASE+file;
 
-function tryNext(){
-if(finished){return;}
-tryIndex++;
-if(tryIndex<urls.length){
-el.src=urls[tryIndex].url;
-}else{
-finished=true;
-clearTimeout(limit);
-fail(true);
-}
-}
+  bssCounter.textContent=
+  (bssIndex+1)+" / "+bssFiles.length;
 
-el.addEventListener("error",tryNext);
+  bssTitle.textContent=bssPretty(file);
 
-if(item.video){
-el.addEventListener("loadeddata",success);
-}else{
-el.addEventListener("load",success);
-}
+  bssProgress.style.width="0%";
 
-limit=setTimeout(function(){
-if(finished){return;}
-finished=true;
-fail(false);
-},BSS_LOAD_LIMIT);
+  if(bssIsVideo(file)){
 
-el.src=urls[0].url;
-return el;
-}
+    bssImage.classList.add("hidden");
 
-function bssPlayVideo(video){
-video.muted=!bssSoundOn;
-var promise=video.play();
-if(promise && promise.catch){
-promise.catch(function(){
-video.muted=true;
-bssSoundOn=false;
-bssUpdateSoundBtn();
-var again=video.play();
-if(again && again.catch){
-again.catch(function(){
-bssVideoBlocked=true;
-});
-}
-});
-}
-}
+    bssVideo.classList.remove("hidden");
 
-function bssShow(index,step){
-step=step||1;
+    bssVideo.pause();
+    bssVideo.src=source;
+    bssVideo.currentTime=0;
+    bssVideo.loop=false;
+    bssVideo.muted=!bssSoundOn;
 
-if(bssOkCount()===0){
-if(bssLoading){
-bssLoading.classList.remove("hidden");
-bssLoading.textContent="⚠ 0 / "+bssItems.length;
-}
-if(bssMissingPanel){bssMissingPanel.classList.add("open");}
-return;
-}
+    if(bssPlaying){
 
-if(index<0 || bssItems[index].broken){
-index=bssNextIndex(index<0?-1:index,step);
-if(index===-1){return;}
-}
+      bssVideo
+      .play()
+      .catch(function(){});
 
-var token=++bssToken;
-var item=bssItems[index];
-bssReady=false;
+    }
 
-bssLoad(item,function(el){
+  }else{
 
-if(token!==bssToken){return;}
+    bssVideo.pause();
+    bssVideo.removeAttribute("src");
+    bssVideo.load();
+    bssVideo.classList.add("hidden");
 
-var oldLayer=bssLayers[bssFront];
-bssFront=1-bssFront;
-var newLayer=bssLayers[bssFront];
+    bssImage.classList.remove("hidden");
+    bssImage.src=source;
+    bssImage.alt=bssPretty(file);
 
-newLayer.innerHTML="";
-newLayer.appendChild(el);
+  }
 
-void newLayer.offsetWidth;
-newLayer.classList.add("show");
-oldLayer.classList.remove("show");
-
-var oldVideo=oldLayer.querySelector("video");
-if(oldVideo){oldVideo.pause();}
-setTimeout(function(){
-if(!oldLayer.classList.contains("show")){
-var v=oldLayer.querySelector("video");
-if(v){v.pause();v.removeAttribute("src");v.load();}
-oldLayer.innerHTML="";
-}
-},BSS_FADE_TIME+100);
-
-if(bssLoading){bssLoading.classList.add("hidden");}
-
-bssIndex=index;
-bssElapsed=0;
-bssVideoBlocked=false;
-bssLastTime=-1;
-bssStall=0;
-bssCurrentVideo=item.video?el:null;
-
-if(bssTitle){bssTitle.textContent=bssPretty(item.file);}
-if(bssProgress){bssProgress.style.width="0%";}
-bssUpdateCounter();
-
-if(bssCurrentVideo){
-bssCurrentVideo.addEventListener("ended",function(){
-if(token===bssToken && bssPlaying){bssGoNext();}
-});
-if(bssPlaying){bssPlayVideo(bssCurrentVideo);}
-}
-
-bssReady=true;
-bssPreload();
-
-},function(missing){
-
-if(token!==bssToken){return;}
-if(missing){bssMarkBroken(item);}
-var nextIdx=bssNextIndex(index,step);
-if(nextIdx===-1 || nextIdx===index){
-bssShow(-1,1);
-return;
-}
-bssShow(nextIdx,step);
-
-});
-}
-
-/* Prepare pwochen foto a pou fondu a pa rete nwa */
-function bssPreload(){
-var n=bssNextIndex(bssIndex,1);
-if(n===-1){return;}
-var item=bssItems[n];
-if(item.video || item.good){return;}
-bssLoad(item,function(){},function(missing){
-if(missing){bssMarkBroken(item);}
-});
 }
 
 function bssGoNext(){
-bssShow(bssNextIndex(bssIndex,1),1);
+
+  bssShow(bssIndex+1);
+
 }
 
-function bssGoPrev(){
-bssShow(bssNextIndex(bssIndex,-1),-1);
+function bssGoPrevious(){
+
+  bssShow(bssIndex-1);
+
 }
 
-function bssUpdateSoundBtn(){
-if(bssSoundBtn){
-bssSoundBtn.textContent=bssSoundOn?"🔊 SON":"🔇 SON";
-}
-}
+bssNext.addEventListener("click",bssGoNext);
+bssPrev.addEventListener("click",bssGoPrevious);
 
-if(bssNext){bssNext.addEventListener("click",bssGoNext);}
-if(bssPrev){bssPrev.addEventListener("click",bssGoPrev);}
-
-if(bssPlay){
 bssPlay.addEventListener("click",function(){
-bssPlaying=!bssPlaying;
-bssPlay.textContent=bssPlaying?"⏸ PAUSE":"▶ PLAY";
-if(bssCurrentVideo){
-if(bssPlaying){bssPlayVideo(bssCurrentVideo);}
-else{bssCurrentVideo.pause();}
-}
-});
-}
 
-if(bssSoundBtn){
-bssSoundBtn.addEventListener("click",function(){
-bssSoundOn=!bssSoundOn;
-bssUpdateSoundBtn();
-if(bssCurrentVideo){
-bssCurrentVideo.muted=!bssSoundOn;
-if(bssPlaying){bssCurrentVideo.play().catch(function(){});}
-}
-});
-}
+  bssPlaying=!bssPlaying;
 
-if(bssMissingBtn && bssMissingPanel){
-bssMissingBtn.addEventListener("click",function(){
-bssMissingPanel.classList.toggle("open");
+  bssPlay.textContent=
+  bssPlaying ? "⏸ PAUSE" : "▶ PLAY";
+
+  if(bssIsVideo(bssFiles[bssIndex])){
+
+    if(bssPlaying){
+
+      bssVideo
+      .play()
+      .catch(function(){});
+
+    }else{
+
+      bssVideo.pause();
+
+    }
+
+  }
+
 });
-}
+
+bssSound.addEventListener("click",function(){
+
+  bssSoundOn=!bssSoundOn;
+
+  bssSound.textContent=
+  bssSoundOn ? "🔊 SON" : "🔇 SON";
+
+  bssVideo.muted=!bssSoundOn;
+
+  if(
+    bssPlaying &&
+    bssIsVideo(bssFiles[bssIndex])
+  ){
+
+    bssVideo
+    .play()
+    .catch(function(){});
+
+  }
+
+});
+
+bssImage.addEventListener("error",bssGoNext);
+bssVideo.addEventListener("error",bssGoNext);
+bssVideo.addEventListener("ended",bssGoNext);
 
 var touchStartX=0;
 
-if(bssStage){
+bssStage.addEventListener(
+  "touchstart",
+  function(event){
 
-bssStage.addEventListener("touchstart",function(event){
-touchStartX=event.changedTouches[0].screenX;
-},{passive:true});
+    touchStartX=
+    event.changedTouches[0].screenX;
 
-bssStage.addEventListener("touchend",function(event){
-var difference=touchStartX-event.changedTouches[0].screenX;
-if(difference>55){bssGoNext();}
-else if(difference<-55){bssGoPrev();}
-},{passive:true});
+  },
+  {passive:true}
+);
+
+bssStage.addEventListener(
+  "touchend",
+  function(event){
+
+    var difference=
+    touchStartX-
+    event.changedTouches[0].screenX;
+
+    if(difference>55){
+
+      bssGoNext();
+
+    }else if(difference<-55){
+
+      bssGoPrevious();
+
+    }
+
+  },
+  {passive:true}
+);
 
 bssStage.addEventListener("keydown",function(event){
-if(event.key==="ArrowRight"){bssGoNext();}
-else if(event.key==="ArrowLeft"){bssGoPrev();}
+
+  if(event.key==="ArrowRight"){
+
+    bssGoNext();
+
+  }else if(event.key==="ArrowLeft"){
+
+    bssGoPrevious();
+
+  }
+
 });
 
-}
-
-/* Revèy: foto = 10 segonn; videyo = jiskaske li fini */
 setInterval(function(){
 
-if(!bssPlaying || !bssReady || document.hidden){return;}
+  if(
+    !bssPlaying ||
+    document.hidden
+  ){
+    return;
+  }
 
-var v=bssCurrentVideo;
+  if(bssIsVideo(bssFiles[bssIndex])){
 
-if(v && !bssVideoBlocked){
+    if(
+      bssVideo.duration &&
+      isFinite(bssVideo.duration)
+    ){
 
-if(v.duration && isFinite(v.duration) && bssProgress){
-bssProgress.style.width=Math.min(100,(v.currentTime/v.duration)*100)+"%";
-}
+      bssProgress.style.width=
+      Math.min(
+        100,
+        bssVideo.currentTime/
+        bssVideo.duration*
+        100
+      )+"%";
 
-/* Si videyo a bloke plis pase 15 segonn, pase nan pwochen an */
-if(v.currentTime===bssLastTime){
-bssStall+=BSS_STEP;
-if(bssStall>=BSS_LOAD_LIMIT){bssGoNext();}
-}else{
-bssStall=0;
-bssLastTime=v.currentTime;
-}
-return;
+    }
 
-}
+    return;
 
-bssElapsed+=BSS_STEP;
+  }
 
-if(bssProgress){
-bssProgress.style.width=Math.min(100,(bssElapsed/BSS_PHOTO_TIME)*100)+"%";
-}
+  bssElapsed+=BSS_STEP;
 
-if(bssElapsed>=BSS_PHOTO_TIME){bssGoNext();}
+  bssProgress.style.width=
+  Math.min(
+    100,
+    bssElapsed/
+    BSS_PHOTO_TIME*
+    100
+  )+"%";
+
+  if(bssElapsed>=BSS_PHOTO_TIME){
+
+    bssGoNext();
+
+  }
 
 },BSS_STEP);
 
-if(bssCounter){bssCounter.textContent="1 / "+bssItems.length;}
-bssShow(0,1);
+bssShow(0);
 
-window.addEventListener(
-"resize",
-function(){
+/* RESPONSIVE MENU RESET */
 
-if(
-window.innerWidth>1050 &&
-mainNav
-){
+window.addEventListener("resize",function(){
 
-mainNav.classList.remove(
-"open"
-);
+  if(
+    window.innerWidth>1050 &&
+    mainNav
+  ){
 
-if(menuToggle){
+    mainNav.classList.remove("open");
 
-menuToggle.textContent="☰";
+    menuToggle.textContent="☰";
 
-menuToggle.setAttribute(
-"aria-expanded",
-"false"
-);
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
 
-}
+  }
 
-}
-
-}
-);
+});
 
 })();
 </script>
 
 </body>
-</html>
+         </html>
