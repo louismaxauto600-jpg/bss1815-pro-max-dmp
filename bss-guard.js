@@ -14,7 +14,7 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10
 
 /* ===== KONFIG FIREBASE =====
    Menm konfig ak paj Super Admin nan (pwojè briyant-soley-signo-1815).
-   Gad la eseye chak apiKey nan lis la epi li pran sa ki gen moun konekte a. */
+   Menm kle ak admin-login.html. */
 const BASE_CONFIG = {
   authDomain: "briyant-soley-signo-1815.firebaseapp.com",
   projectId: "briyant-soley-signo-1815",
@@ -23,17 +23,12 @@ const BASE_CONFIG = {
   appId: "1:873317957685:web:1bb4bb30831a058399717c"
 };
 
-const API_KEYS = [
-  "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
-  "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokelJCtDuY",
-  "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokelCtDuY",
-  "AIzaSyDenkzhQh5rHMoZYDXrM8zSSCCoX4gBcYY"
-];
+const API_KEY = "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY";
 
 /* Super Admin prensipal la toujou gen aksè */
 const ROOT_SUPER_ADMIN = "briyantsoleysigno1815@gmail.com";
 
-const LOGIN_PAGE = "./login.html";
+const LOGIN_PAGE = "./admin-login.html";
 const HOME_PAGE = "./index.html";
 
 /* Dokiman Firestore ki gen UID Super Admin ak Admin yo */
@@ -193,25 +188,15 @@ const timer = setTimeout(function () {
   ]);
 }, 15000);
 
-/* Chèche ki apiKey ki gen moun konekte a */
+/* Yon sèl aplikasyon Firebase, sou non pa defo a ([DEFAULT]),
+   menm jan ak admin-login.html, pou n jwenn menm sesyon an */
 async function findSignedIn() {
-  const existing = getApps();
-  const candidates = existing.slice();
-  API_KEYS.forEach(function (key, index) {
-    try {
-      candidates.push(initializeApp(Object.assign({}, BASE_CONFIG, { apiKey: key }), "bss-guard-" + index));
-    } catch (e) {}
-  });
-  for (const app of candidates) {
-    try {
-      const auth = getAuth(app);
-      await auth.authStateReady();
-      if (auth.currentUser) {
-        return { app: app, auth: auth, user: auth.currentUser };
-      }
-    } catch (e) {}
-  }
-  return null;
+  const app = getApps().length
+    ? getApps()[0]
+    : initializeApp(Object.assign({}, BASE_CONFIG, { apiKey: API_KEY }));
+  const auth = getAuth(app);
+  await auth.authStateReady();
+  return auth.currentUser ? { app: app, auth: auth, user: auth.currentUser } : null;
 }
 
 (async function () {
