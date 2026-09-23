@@ -1,406 +1,863 @@
+<!-- admin-login.html -->
 <!DOCTYPE html>
-<html lang="ht">
-
+<html lang="ht" translate="no" class="notranslate">
 <head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080604">
+  <meta name="robots" content="noindex,nofollow">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSS1815 | Admin Login</title>
 
-<title>Admin Dashboard | PRO-MAX FM</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<link rel="stylesheet" href="style.css">
+    :root {
+      --orange: #ff7518;
+      --apricot: #ffb16a;
+      --black: #050403;
+      --danger: #ff4545;
+      --success: #45d483;
+    }
 
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--apricot);
+      background:
+        radial-gradient(
+          circle at top,
+          #5a2100 0%,
+          #180b04 42%,
+          #000 82%
+        );
+    }
+
+    .login-card {
+      width: min(100%, 520px);
+      overflow: hidden;
+      border: 2px solid var(--orange);
+      border-radius: 24px;
+      background: var(--black);
+      box-shadow:
+        0 0 30px rgba(255, 117, 24, 0.23),
+        0 22px 70px #000;
+    }
+
+    .login-image {
+      display: block;
+      width: 100%;
+      max-height: 510px;
+      object-fit: cover;
+      object-position: top center;
+      border-bottom: 2px solid var(--orange);
+    }
+
+    .login-area {
+      padding: 26px 22px 30px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      color: var(--orange);
+      font-size: clamp(28px, 7vw, 40px);
+      text-align: center;
+    }
+
+    .subtitle {
+      margin-bottom: 25px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin: 17px 0 8px;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .password-area {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      min-height: 58px;
+      padding: 15px 52px 15px 16px;
+      color: var(--apricot);
+      font-size: 17px;
+      outline: none;
+      border: 2px solid var(--orange);
+      border-radius: 13px;
+      background: #080604;
+    }
+
+    input::placeholder {
+      color: #a96c40;
+    }
+
+    input:focus {
+      box-shadow: 0 0 0 4px rgba(255, 117, 24, 0.18);
+    }
+
+    #showPassword {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      padding: 8px;
+      color: var(--orange);
+      font-size: 19px;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+    }
+
+    .main-button,
+    .reset-button {
+      width: 100%;
+      min-height: 57px;
+      border-radius: 13px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .main-button {
+      margin-top: 23px;
+      color: #080503;
+      border: 2px solid var(--orange);
+      background:
+        linear-gradient(
+          135deg,
+          var(--apricot),
+          var(--orange)
+        );
+    }
+
+    .reset-button {
+      margin-top: 13px;
+      color: var(--orange);
+      border: 1px solid var(--orange);
+      background: transparent;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    #message {
+      display: none;
+      margin-top: 17px;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    #message.error {
+      display: block;
+      color: #ffd0d0;
+      border: 1px solid var(--danger);
+      background: rgba(255, 69, 69, 0.12);
+    }
+
+    #message.success {
+      display: block;
+      color: #caffe0;
+      border: 1px solid var(--success);
+      background: rgba(69, 212, 131, 0.12);
+    }
+
+    .security-note {
+      margin-top: 20px;
+      color: #c9824c;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .home-link {
+      display: block;
+      margin-top: 14px;
+      color: var(--apricot);
+      font-size: 13px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .home-link:hover {
+      color: var(--orange);
+    }
+  </style>
 </head>
 
-<body>
+<body translate="no">
+
+  <main class="login-card">
 
-<header class="header">
+    <img
+      class="login-image"
+      src="./bss_admin_login.png"
+      alt="BSS1815 Admin"
+    >
+
+    <section class="login-area">
 
-<div class="logo">
+      <h1>ADMIN LOGIN</h1>
+
+      <p class="subtitle">
+        BSS1815 PRO-MAX DMP<br>
+        Administratè otorize sèlman
+      </p>
 
-<a href="dashboard.html">
-<img src="pro-max-fm-dmp.jpg" alt="PRO-MAX FM Logo">
-</a>
+      <form id="loginForm">
 
-<h1>PRO-MAX FM ADMIN</h1>
+        <label for="email">EMAIL</label>
 
-</div>
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          placeholder="Antre imel Admin lan"
+          required
+        >
 
-<nav>
+        <label for="password">PASSWORD</label>
 
-<ul>
+        <div class="password-area">
 
-<li><a href="dashboard.html">DASHBOARD</a></li>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Antre modpas Admin lan"
+            minlength="6"
+            required
+          >
 
-<li><a href="admin-dashboard.html" class="active">ADMIN</a></li>
+          <button
+            id="showPassword"
+            type="button"
+            aria-label="Montre modpas"
+          >
+            👁
+          </button>
 
-<li><a href="profile.html">PROFILE</a></li>
+        </div>
 
-<li><a href="settings.html">SETTINGS</a></li>
+        <button
+          id="loginButton"
+          class="main-button"
+          type="submit"
+        >
+          ANTRE NAN ADMIN DASHBOARD
+        </button>
 
-<li><a href="login.html">LOGOUT</a></li>
+        <button
+          id="resetButton"
+          class="reset-button"
+          type="button"
+        >
+          RESET PASSWORD
+        </button>
 
-</ul>
+        <div id="message" role="alert"></div>
 
-</nav>
+      </form>
 
-</header>
+      <p class="security-note">
+        Firebase Authentication • Aksè Admin pwoteje
+      </p>
 
-<section class="page-banner">
+      <a href="./index.html" class="home-link">← Retounen sou paj akèy la</a>
 
-<div class="overlay">
+    </section>
 
-<h1>SUPER ADMIN CONTROL CENTER</h1>
+  </main>
 
-<p>
 
-Byenvini nan sant kontwòl PRO-MAX FM.
-Jere tout sistèm nan depi yon sèl kote.
+  <script type="module">
 
-</p>
+    import {
+      initializeApp
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-</div>
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      setPersistence,
+      browserLocalPersistence,
+      signOut
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-</section>
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-<section class="content">
 
-<div class="gallery-grid">
+    /* =====================================================
+       FIREBASE
+    ===================================================== */
 
-<div class="gallery-card">
+    const firebaseConfig = {
 
-<img src="pro-max-fm-dmp.jpg">
+      apiKey:
+        "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
 
-<h2>USER MANAGEMENT</h2>
+      authDomain:
+        "briyant-soley-signo-1815.firebaseapp.com",
 
-<p>Jere tout itilizatè yo.</p>
+      projectId:
+        "briyant-soley-signo-1815",
 
-<a href="users-manager.html" class="button">OPEN</a>
+      storageBucket:
+        "briyant-soley-signo-1815.firebasestorage.app",
 
-</div>
+      messagingSenderId:
+        "873317957685",
 
-<div class="gallery-card">
+      appId:
+        "1:873317957685:web:1bb4bb30831a058399717c",
 
-<img src="pro-max-fm-dmp.jpg">
+      measurementId:
+        "G-QLDJNN876H"
+    };
 
-<h2>NEWS MANAGER</h2>
 
-<p>Ajoute, modifye ak efase nouvèl.</p>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-<a href="news-manager.html" class="button">OPEN</a>
 
-</div>
+    /* =====================================================
+       SUPER ADMIN PRENSIPAL
+       (toujou gen aksè, pa imèl OSWA pa UID)
+    ===================================================== */
 
-<div class="gallery-card">
+    const SUPER_ADMIN_EMAIL =
+      "briyantsoleysigno1815@gmail.com";
 
-<img src="pro-max-fm-dmp.jpg">
+    const SUPER_ADMIN_UID =
+      "I7n4gtwXAtMVe3YOjEMm1h7DJ3B3";
 
-<h2>LIVE STUDIO</h2>
 
-<p>Kontwole Live Streaming.</p>
+    /* =====================================================
+       KOTE POU ALE APRE KONEKSYON AN
+       - si moun nan te soti sou yon modil fèmen (?next=...),
+         li retounen la;
+       - sinon li ale sou Super Admin Dashboard BSS1815 la.
+    ===================================================== */
 
-<a href="live-studio.html" class="button">OPEN</a>
+    const DEFAULT_AFTER_LOGIN =
+      "./super-admin-dashboard.html";
 
-</div>
+    function destination() {
 
-<div class="gallery-card">
+      const next =
+        new URLSearchParams(location.search).get("next");
 
-<img src="pro-max-fm-dmp.jpg">
+      if (
+        next &&
+        next.startsWith("/") &&
+        !next.startsWith("//") &&
+        !next.includes("login")
+      ) {
+        return next;
+      }
 
-<h2>PODCAST MANAGER</h2>
+      return DEFAULT_AFTER_LOGIN;
 
-<p>Jere tout Podcast yo.</p>
+    }
 
-<a href="podcast-manager.html" class="button">OPEN</a>
 
-</div>
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
-<div class="gallery-card">
+    const loginForm =
+      document.getElementById("loginForm");
 
-<img src="pro-max-fm-dmp.jpg">
+    const emailInput =
+      document.getElementById("email");
 
-<h2>VIDEO MANAGER</h2>
+    const passwordInput =
+      document.getElementById("password");
 
-<p>Jere videyo yo.</p>
+    const loginButton =
+      document.getElementById("loginButton");
 
-<a href="video-manager.html" class="button">OPEN</a>
+    const resetButton =
+      document.getElementById("resetButton");
 
-</div>
+    const showPassword =
+      document.getElementById("showPassword");
 
-<div class="gallery-card">
+    const message =
+      document.getElementById("message");
 
-<img src="pro-max-fm-dmp.jpg">
 
-<h2>GALLERY MANAGER</h2>
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
 
-<p>Jere galeri foto yo.</p>
+    function displayMessage(text, type) {
 
-<a href="gallery-manager.html" class="button">OPEN</a>
+      message.textContent = text;
+      message.className = type;
 
-</div>
+    }
 
-<div class="gallery-card">
 
-<img src="pro-max-fm-dmp.jpg">
+    function clearMessage() {
 
-<h2>MUSIC MANAGER</h2>
+      message.textContent = "";
+      message.className = "";
 
-<p>Ajoute mizik ak playlist.</p>
+    }
 
-<a href="music-manager.html" class="button">OPEN</a>
 
-</div>
+    /* =====================================================
+       ACCESS STORAGE
+       (sèlman pou afichaj; sekirite a se Firebase ki fè l)
+    ===================================================== */
 
-<div class="gallery-card">
+    function clearStoredAccess() {
 
-<img src="pro-max-fm-dmp.jpg">
+      const keys = [
+        "bss1815Role",
+        "bss1815Email",
+        "bss1815Uid",
+        "bss1815Authenticated"
+      ];
 
-<h2>ARTIST MANAGER</h2>
+      keys.forEach((key) => {
 
-<p>Jere pwofil atis yo.</p>
+        sessionStorage.removeItem(key);
+        localStorage.removeItem(key);
 
-<a href="artist-manager.html" class="button">OPEN</a>
+      });
 
-</div>
+    }
 
-<div class="gallery-card">
 
-<img src="pro-max-fm-dmp.jpg">
+    function saveAccess(role, user) {
 
-<h2>EVENT MANAGER</h2>
+      const values = {
 
-<p>Jere tout evènman yo.</p>
+        bss1815Role: role,
 
-<a href="event-manager.html" class="button">OPEN</a>
+        bss1815Email:
+          user.email || "",
 
-</div>
+        bss1815Uid:
+          user.uid,
 
-<div class="gallery-card">
+        bss1815Authenticated:
+          "true"
 
-<img src="pro-max-fm-dmp.jpg">
+      };
 
-<h2>ADVERTISE MANAGER</h2>
 
-<p>Jere tout piblisite yo.</p>
+      Object.entries(values).forEach(
+        ([key, value]) => {
 
-<a href="advertise-manager.html" class="button">OPEN</a>
+          sessionStorage.setItem(
+            key,
+            value
+          );
 
-</div>
+          localStorage.setItem(
+            key,
+            value
+          );
 
-<div class="gallery-card">
+        }
+      );
 
-<img src="pro-max-fm-dmp.jpg">
+    }
 
-<h2>ACADEMY MANAGER</h2>
 
-<p>Jere kou ak elèv yo.</p>
+    /* =====================================================
+       WÒL YO (Firestore: roles/super_admins, roles/admins)
+    ===================================================== */
 
-<a href="academy-manager.html" class="button">OPEN</a>
+    function normalize(value) {
 
-</div>
+      return String(value || "")
+        .trim()
+        .toLowerCase();
 
-<div class="gallery-card">
+    }
 
-<img src="pro-max-fm-dmp.jpg">
 
-<h2>SPORTS MANAGER</h2>
+    function listHas(snapshot, user) {
 
-<p>Jere tout kontni espò.</p>
+      if (!snapshot.exists()) {
+        return false;
+      }
 
-<a href="sports-manager.html" class="button">OPEN</a>
+      const users =
+        Array.isArray(snapshot.data().users)
+          ? snapshot.data().users.map(normalize)
+          : [];
 
-</div>
+      return (
+        users.includes(normalize(user.email)) ||
+        users.includes(normalize(user.uid))
+      );
 
-<div class="gallery-card">
+    }
 
-<img src="pro-max-fm-dmp.jpg">
 
-<h2>WEATHER MANAGER</h2>
+    async function getRole(user) {
 
-<p>Mete meteyo ajou.</p>
+      if (
+        normalize(user.email) === SUPER_ADMIN_EMAIL ||
+        user.uid === SUPER_ADMIN_UID
+      ) {
+        return "SUPER_ADMIN";
+      }
 
-<a href="weather-manager.html" class="button">OPEN</a>
+      const superSnap =
+        await getDoc(doc(db, "roles", "super_admins"));
 
-</div>
+      if (listHas(superSnap, user)) {
+        return "SUPER_ADMIN";
+      }
 
-<div class="gallery-card">
+      const adminSnap =
+        await getDoc(doc(db, "roles", "admins"));
 
-<img src="pro-max-fm-dmp.jpg">
+      if (listHas(adminSnap, user)) {
+        return "ADMIN";
+      }
 
-<h2>BUSINESS DIRECTORY</h2>
+      return null;
 
-<p>Jere lis biznis yo.</p>
+    }
 
-<a href="business-manager.html" class="button">OPEN</a>
 
-</div>
+    /* =====================================================
+       ERROR MESSAGES
+    ===================================================== */
 
-<div class="gallery-card">
+    function getErrorMessage(code) {
 
-<img src="pro-max-fm-dmp.jpg">
+      const errors = {
 
-<h2>AN MEMWA</h2>
+        "auth/invalid-credential":
+          "Imel oswa modpas la pa kòrèk.",
 
-<p>Jere Memorial Hall la.</p>
+        "auth/invalid-login-credentials":
+          "Imel oswa modpas la pa kòrèk.",
 
-<a href="an-memwa-manager.html" class="button">OPEN</a>
+        "auth/wrong-password":
+          "Modpas la pa kòrèk.",
 
-</div>
+        "auth/user-not-found":
+          "Firebase pa jwenn kont sa a.",
 
-<div class="gallery-card">
+        "auth/invalid-email":
+          "Adrès imel la pa valab.",
 
-<img src="pro-max-fm-dmp.jpg">
+        "auth/user-disabled":
+          "Kont sa a dezaktive.",
 
-<h2>ADVERTISEMENT REQUESTS</h2>
+        "auth/too-many-requests":
+          "Twòp tantativ. Tann yon ti moman.",
 
-<p>Nouvo demann piblisite.</p>
+        "auth/network-request-failed":
+          "Verifye koneksyon entènèt la.",
 
-<a href="#" class="button">OPEN</a>
+        "auth/missing-password":
+          "Antre modpas la.",
 
-</div>
+        "permission-denied":
+          "Règ Firestore yo pa kite nou li wòl yo. Kontakte Super Admin nan."
 
-<div class="gallery-card">
+      };
 
-<img src="pro-max-fm-dmp.jpg">
 
-<h2>CONTACT REQUESTS</h2>
+      return (
+        errors[code] ||
+        "Login lan pa reyisi."
+      );
 
-<p>Mesaj ki soti nan Contact Form.</p>
+    }
 
-<a href="#" class="button">OPEN</a>
 
-</div>
+    /* =====================================================
+       SHOW / HIDE PASSWORD
+    ===================================================== */
 
-<div class="gallery-card">
+    showPassword.addEventListener(
+      "click",
+      () => {
 
-<img src="pro-max-fm-dmp.jpg">
+        const hidden =
+          passwordInput.type === "password";
 
-<h2>NOTIFICATION CENTER</h2>
+        passwordInput.type =
+          hidden
+            ? "text"
+            : "password";
 
-<p>Jere notifikasyon yo.</p>
+        showPassword.textContent =
+          hidden
+            ? "🙈"
+            : "👁";
 
-<a href="#" class="button">OPEN</a>
+      }
+    );
 
-</div>
 
-<div class="gallery-card">
+    /* =====================================================
+       LOGIN
+    ===================================================== */
 
-<img src="pro-max-fm-dmp.jpg">
+    loginForm.addEventListener(
+      "submit",
+      async (event) => {
 
-<h2>SYSTEM SETTINGS</h2>
+        event.preventDefault();
 
-<p>Konfigirasyon sistèm lan.</p>
+        clearMessage();
+        clearStoredAccess();
 
-<a href="settings.html" class="button">OPEN</a>
 
-</div>
+        const email =
+          emailInput.value
+            .trim()
+            .toLowerCase();
 
-<div class="gallery-card">
+        const password =
+          passwordInput.value;
 
-<img src="pro-max-fm-dmp.jpg">
 
-<h2>REPORTS & ANALYTICS</h2>
+        if (!email || !password) {
 
-<p>Statistik ak rapò sistèm lan.</p>
+          displayMessage(
+            "Antre imel ak modpas la.",
+            "error"
+          );
 
-<a href="#" class="button">OPEN</a>
+          return;
 
-</div>
+        }
 
-</div>
 
-</section>
+        loginButton.disabled = true;
+        resetButton.disabled = true;
 
-<section class="schedule">
+        loginButton.textContent =
+          "VERIFIKASYON...";
 
-<h2>ADMIN OVERVIEW</h2>
+        let success = false;
 
-<table>
 
-<tr>
+        try {
 
-<th>MODULE</th>
+          await setPersistence(
+            auth,
+            browserLocalPersistence
+          );
 
-<th>STATUS</th>
 
-<th>ACCESS</th>
+          const credential =
+            await signInWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
 
-</tr>
 
-<tr>
+          const user =
+            credential.user;
 
-<td>User Management</td>
 
-<td>Active</td>
+          /* Verifye wòl la nan Firestore */
 
-<td>Super Admin</td>
+          const role =
+            await getRole(user);
 
-</tr>
 
-<tr>
+          if (!role) {
 
-<td>Media Center</td>
+            await signOut(auth);
 
-<td>Active</td>
+            clearStoredAccess();
 
-<td>Admin</td>
+            displayMessage(
+              "Kont sa a pa gen aksè administratif.",
+              "error"
+            );
 
-</tr>
+            return;
 
-<tr>
+          }
 
-<td>News Center</td>
 
-<td>Active</td>
+          saveAccess(
+            role,
+            user
+          );
 
-<td>Editor</td>
+          success = true;
 
-</tr>
 
-<tr>
+          displayMessage(
+            (role === "SUPER_ADMIN" ? "SUPER ADMIN" : "ADMIN") +
+            " VERIFYE — DASHBOARD AP OUVRI...",
+            "success"
+          );
 
-<td>Live Studio</td>
 
-<td>Ready</td>
+          window.setTimeout(
+            () => {
 
-<td>Host</td>
+              window.location.href =
+                destination();
 
-</tr>
+            },
+            500
+          );
 
-<tr>
 
-<td>Analytics</td>
+        } catch (error) {
 
-<td>Ready</td>
+          console.error(
+            "BSS1815 LOGIN ERROR:",
+            error
+          );
 
-<td>Super Admin</td>
 
-</tr>
+          clearStoredAccess();
 
-</table>
 
-</section>
+          displayMessage(
+            getErrorMessage(
+              error.code
+            ),
+            "error"
+          );
 
-<footer>
+        } finally {
 
-<img src="pro-max-fm-dmp.jpg" alt="PRO-MAX FM">
+          if (!success) {
 
-<h3>PRO-MAX FM</h3>
+            loginButton.disabled = false;
 
-<p>POWERING THE FUTURE OF DIGITAL RADIO</p>
+            resetButton.disabled = false;
 
-<p>SUPER ADMIN CONTROL CENTER</p>
+            loginButton.textContent =
+              "ANTRE NAN ADMIN DASHBOARD";
 
-<p>EMAIL: promaxfmdmp@gmail.com</p>
+          }
 
-<p>WEBSITE: PRO-MAXFM.COM</p>
+        }
 
-<p>TEL: (407) 640-5166</p>
+      }
+    );
 
-<p>© 2026 PRO-MAX FM. ALL RIGHTS RESERVED.</p>
 
-</footer>
+    /* =====================================================
+       RESET PASSWORD
+    ===================================================== */
+
+    resetButton.addEventListener(
+      "click",
+      async () => {
+
+        clearMessage();
+
+
+        const email =
+          emailInput.value
+            .trim()
+            .toLowerCase();
+
+
+        if (!email) {
+
+          displayMessage(
+            "Antre imel la anvan.",
+            "error"
+          );
+
+          emailInput.focus();
+
+          return;
+
+        }
+
+
+        resetButton.disabled = true;
+        loginButton.disabled = true;
+
+        resetButton.textContent =
+          "AP VOYE...";
+
+
+        try {
+
+          await sendPasswordResetEmail(
+            auth,
+            email
+          );
+
+
+          displayMessage(
+            "Firebase voye lyen reset modpas la. Itilize sèlman dènye lyen an.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          displayMessage(
+            getErrorMessage(
+              error.code
+            ),
+            "error"
+          );
+
+
+        } finally {
+
+          resetButton.disabled = false;
+
+          loginButton.disabled = false;
+
+          resetButton.textContent =
+            "RESET PASSWORD";
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
-
 </html>
