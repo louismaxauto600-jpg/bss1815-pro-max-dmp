@@ -614,7 +614,7 @@ header{
   z-index:1;
   opacity:0;
   background:#000;
-  transition:opacity 1.2s ease-in-out;
+  transition:opacity 3s ease-in-out;
 }
 
 .bss-layer.show{
@@ -799,7 +799,7 @@ header{
 
 .bss-controls{
   display:grid;
-  grid-template-columns:auto auto auto 1fr;
+  grid-template-columns:auto auto auto auto 1fr;
   align-items:center;
   gap:14px;
   margin-top:14px;
@@ -1173,11 +1173,13 @@ footer strong{
   }
 
   .bss-controls{
-    grid-template-columns:auto auto auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
   }
 
   .bss-progress{
-    grid-column:1/-1;
+    flex-basis:100%;
   }
 }
 
@@ -1669,6 +1671,13 @@ type="button"
 class="bss-play"
 id="bssSound">
 🔇 SON
+</button>
+
+<button
+type="button"
+class="bss-play"
+id="bssMusic">
+🎷 MIZIK
 </button>
 
 <div class="bss-progress">
@@ -2643,7 +2652,7 @@ applyLanguage(currentLanguage);
    videyo yo jwe nèt, bouton son, fichye ki manke yo sote. */
 
 var BSS_PHOTO_TIME=10000;
-var BSS_FADE_TIME=1200;
+var BSS_FADE_TIME=3000;
 var BSS_STEP=100;
 var BSS_LOAD_LIMIT=15000;
 var BSS_BASES=["./","./assets/slideshow/"];
@@ -3129,6 +3138,7 @@ bssVideoBlocked=false;
 bssLastTime=-1;
 bssStall=0;
 bssCurrentVideo=item.video?el:null;
+bssUpdateMusic();
 
 if(bssTitle){bssTitle.textContent=bssPretty(item.file);}
 if(bssProgress){bssProgress.style.width="0%";}
@@ -3190,10 +3200,89 @@ if(bssPlay){
 bssPlay.addEventListener("click",function(){
 bssPlaying=!bssPlaying;
 bssPlay.textContent=bssPlaying?"⏸ PAUSE":"▶ PLAY";
+bssUpdateMusic();
 if(bssCurrentVideo){
 if(bssPlaying){bssPlayVideo(bssCurrentVideo);}
 else{bssCurrentVideo.pause();}
 }
+});
+}
+
+/* ===== MIZIK SLIDESHOW: jwe sèlman pandan FOTO yo ===== */
+/* Mete fichye mizik la nan rasin repo a ak youn nan non sa yo */
+var BSS_MUSIC_FILES=["./slideshow-music.mp3","./smooth-jazz.mp3","./slideshow-music.m4a"];
+var BSS_MUSIC_VOLUME=0.45;
+var bssMusicBtn=document.getElementById("bssMusic");
+var bssMusicOn=false;
+var bssMusic=null;
+var bssMusicFileIndex=0;
+var bssMusicFade=null;
+var bssMusicMissing=false;
+
+function bssMakeMusic(){
+if(bssMusic){return bssMusic;}
+bssMusic=new Audio();
+bssMusic.loop=true;
+bssMusic.preload="auto";
+bssMusic.volume=0;
+bssMusic.addEventListener("error",function(){
+bssMusicFileIndex++;
+if(bssMusicFileIndex<BSS_MUSIC_FILES.length){
+bssMusic.src=BSS_MUSIC_FILES[bssMusicFileIndex];
+if(bssMusicOn){bssUpdateMusic();}
+}else{
+bssMusicMissing=true;
+bssMusicOn=false;
+if(bssMusicBtn){bssMusicBtn.textContent="🎷 ⚠";}
+}
+});
+bssMusic.src=BSS_MUSIC_FILES[0];
+return bssMusic;
+}
+
+function bssFadeMusic(target,done){
+if(!bssMusic){return;}
+clearInterval(bssMusicFade);
+bssMusicFade=setInterval(function(){
+var v=bssMusic.volume;
+var step=0.03;
+if(Math.abs(v-target)<=step){
+bssMusic.volume=target;
+clearInterval(bssMusicFade);
+if(done){done();}
+return;
+}
+bssMusic.volume=Math.max(0,Math.min(1,v+(target>v?step:-step)));
+},60);
+}
+
+/* Mizik la jwe si: bouton an limen + slideshow ap jwe + se yon FOTO */
+function bssUpdateMusic(){
+if(!bssMusicOn || bssMusicMissing){
+if(bssMusic && !bssMusic.paused){
+bssFadeMusic(0,function(){bssMusic.pause();});
+}
+return;
+}
+var wantPlay=bssPlaying && !bssCurrentVideo;
+var m=bssMakeMusic();
+if(wantPlay){
+if(m.paused){
+var p=m.play();
+if(p && p.catch){p.catch(function(){});}
+}
+bssFadeMusic(BSS_MUSIC_VOLUME);
+}else if(!m.paused){
+bssFadeMusic(0,function(){m.pause();});
+}
+}
+
+if(bssMusicBtn){
+bssMusicBtn.addEventListener("click",function(){
+if(bssMusicMissing){return;}
+bssMusicOn=!bssMusicOn;
+bssMusicBtn.textContent=bssMusicOn?"🎷 MIZIK ✓":"🎷 MIZIK";
+bssUpdateMusic();
 });
 }
 
