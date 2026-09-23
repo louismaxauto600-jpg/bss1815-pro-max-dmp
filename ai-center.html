@@ -1,56 +1,252 @@
-<!-- FILE: ai-center.html -->
+<!-- ai-center.html -->
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="ht" translate="no" class="notranslate">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Center | MY MAXIMAX</title>
-<meta name="theme-color" content="#000000">
-<link rel="stylesheet" href="maximax.css">
+<style id="bss-guard-hide">body{visibility:hidden}</style>
+<script type="module" src="./bss-guard.js"></script>
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>AI Center — BSS1815 PRO-MAX DMP</title>
+<style>
+:root{--orange:#ff7900;--apricot:#ffad4d;--text:#ffc589;--border:rgba(255,121,0,.30);--glow:0 0 18px rgba(255,121,0,.40);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{display:flex;flex-direction:column;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at 20% 10%,rgba(255,121,0,.16),transparent 35%),linear-gradient(180deg,#000,#0b0400 50%,#000);}
+a{color:inherit;text-decoration:none;}
+button,input,textarea{font:inherit;}
+header{flex-shrink:0;border-bottom:1px solid var(--border);background:rgba(0,0,0,.96);}
+.bar{width:min(980px,calc(100% - 24px));margin:auto;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:8px 0;}
+.bar strong{color:var(--orange);font-size:1rem;}
+.bar small{display:block;margin-top:3px;color:var(--apricot);font-size:.58rem;letter-spacing:.12em;}
+.bar-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.pill{padding:8px 12px;border:1px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:.62rem;font-weight:900;cursor:pointer;}
+.pill:hover{background:var(--orange);color:#000;}
+.lang-switch{display:flex;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;}
+.lang-btn{display:inline-flex;align-items:center;gap:4px;padding:7px 8px;border:0;border-radius:999px;background:#000;color:var(--apricot);font-size:.58rem;font-weight:900;cursor:pointer;}
+.lang-btn.active{background:var(--orange);color:#000;}
+.lang-flag{width:16px;height:11px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.3);}
+main{flex:1;display:flex;flex-direction:column;width:min(980px,calc(100% - 24px));margin:auto;min-height:0;}
+.intro{text-align:center;padding:22px 0 10px;}
+.intro h1{color:var(--orange);font-size:clamp(1.6rem,6vw,2.6rem);}
+.intro p{margin-top:8px;font-size:.85rem;line-height:1.6;}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
+.chip{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#050200;color:var(--text);font-size:.72rem;cursor:pointer;}
+.chip:hover{border-color:var(--orange);color:var(--orange);}
+.messages{flex:1;overflow-y:auto;padding:14px 2px;display:flex;flex-direction:column;gap:12px;min-height:200px;}
+.msg{max-width:88%;padding:12px 14px;border-radius:16px;line-height:1.6;font-size:.9rem;white-space:pre-wrap;overflow-wrap:anywhere;}
+.msg.user{align-self:flex-end;background:var(--orange);color:#000;border-bottom-right-radius:4px;}
+.msg.model{align-self:flex-start;background:#0a0400;border:1px solid var(--border);border-bottom-left-radius:4px;}
+.msg.error{align-self:center;background:#3b0d0d;border:1px solid #ff5c5c;color:#ffb3b3;font-size:.8rem;}
+.msg .copy{display:block;margin-top:8px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:#000;color:var(--apricot);font-size:.62rem;font-weight:900;cursor:pointer;}
+.typing{align-self:flex-start;color:var(--apricot);font-size:.8rem;padding:6px 4px;}
+form{flex-shrink:0;display:flex;gap:8px;align-items:flex-end;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border);}
+textarea{flex:1;min-height:48px;max-height:160px;padding:12px;border:1px solid var(--orange);border-radius:14px;background:#000;color:#fff;resize:none;font-size:16px;}
+.send{min-width:56px;min-height:48px;padding:0 16px;border:0;border-radius:14px;background:var(--orange);color:#000;font-weight:900;cursor:pointer;}
+.send:disabled{opacity:.5;cursor:wait;}
+</style>
 </head>
-<body>
+<body translate="no">
 
-<div id="app"><p class="boot">Ap chaje…</p></div>
-<noscript><p class="boot">JavaScript dwe aktive pou paj sa a mache.</p></noscript>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="flag-us" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><g fill="#B22234"><rect width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="12" height="10.77" fill="#3C3B6E"/></symbol>
+<symbol id="flag-fr" viewBox="0 0 30 20"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></symbol>
+<symbol id="flag-ht" viewBox="0 0 30 20"><rect width="30" height="10" fill="#00209F"/><rect y="10" width="30" height="10" fill="#D21034"/><rect x="10.5" y="6.5" width="9" height="7" fill="#fff"/><rect x="13.2" y="8.6" width="3.6" height="3.4" fill="#016A16"/></symbol>
+</defs>
+</svg>
 
-<script type="module">
-import { startModule } from "./maximax-core.js";
+<header>
+<div class="bar">
+<div>
+<strong>🤖 AI CENTER</strong>
+<small>BSS1815 PRO-MAX DMP • ADMIN</small>
+</div>
+<div class="bar-right">
+<div class="lang-switch">
+<button type="button" class="lang-btn" data-lang="fr"><svg class="lang-flag"><use href="#flag-fr"/></svg>FRA</button>
+<button type="button" class="lang-btn" data-lang="en"><svg class="lang-flag"><use href="#flag-us"/></svg>ENG</button>
+<button type="button" class="lang-btn active" data-lang="ht"><svg class="lang-flag"><use href="#flag-ht"/></svg>KRE</button>
+</div>
+<button type="button" class="pill" id="newChat" data-t="newChat">＋ NOUVO</button>
+<a href="./super-admin-dashboard.html" class="pill" data-t="back">← DASHBOARD</a>
+</div>
+</div>
+</header>
 
-startModule({
-  "title": "AI Center",
-  "icon": "🤖",
-  "desc": "Zouti AI BSS1815 PRO-MAX DMP.",
-  "collection": "mx_ai_notes",
-  "fields": [
-    {
-      "key": "toolName",
-      "label": "Non zouti / fonksyon",
-      "required": true
+<main>
+<div class="intro" id="intro">
+<h1 data-t="title">Kijan m ka ede w jodi a?</h1>
+<p data-t="subtitle">Asistan prive pou Super Admin ak Admin. Ekri nan lang ou vle: kreyòl, fransè, angle oswa panyòl.</p>
+<div class="chips" id="chips"></div>
+</div>
+
+<div class="messages" id="messages" aria-live="polite"></div>
+
+<form id="chatForm">
+<textarea id="question" rows="1" data-tp="placeholder" placeholder="Ekri kesyon ou la a..."></textarea>
+<button type="submit" class="send" id="sendBtn" aria-label="Voye">➤</button>
+</form>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var TEXT = {
+    ht: {
+      title: "Kijan m ka ede w jodi a?",
+      subtitle: "Asistan prive pou Super Admin ak Admin. Ekri nan lang ou vle: kreyòl, fransè, angle oswa panyòl.",
+      placeholder: "Ekri kesyon ou la a...",
+      newChat: "＋ NOUVO", back: "← DASHBOARD", copy: "📋 KOPYE", copied: "✓ KOPYE",
+      typing: "AI Center ap ekri...",
+      notReady: "Ap verifye aksè ou, tann yon ti moman...",
+      network: "Pa gen koneksyon ak AI Center la. Tcheke entènèt ou.",
+      chips: ["Ekri yon anons pou yon reyinyon manm", "Ekri yon mesaj WhatsApp pou fanatik yo", "Ekri yon lèt ofisyèl", "Tradui yon tèks an angle"]
     },
-    {
-      "key": "purpose",
-      "label": "Objektif"
+    fr: {
+      title: "Comment puis-je vous aider aujourd’hui ?",
+      subtitle: "Assistant privé pour Super Admins et Admins. Écrivez dans la langue de votre choix : créole, français, anglais ou espagnol.",
+      placeholder: "Écrivez votre question ici...",
+      newChat: "＋ NOUVEAU", back: "← TABLEAU DE BORD", copy: "📋 COPIER", copied: "✓ COPIÉ",
+      typing: "AI Center écrit...",
+      notReady: "Vérification de votre accès, un instant...",
+      network: "Pas de connexion avec l’AI Center. Vérifiez votre internet.",
+      chips: ["Rédiger une annonce pour une réunion des membres", "Rédiger un message WhatsApp pour les fans", "Rédiger une lettre officielle", "Traduire un texte en anglais"]
     },
-    {
-      "key": "prompt",
-      "label": "Prompt / Enstriksyon",
-      "type": "textarea"
-    },
-    {
-      "key": "status",
-      "label": "Estati",
-      "type": "select",
-      "options": [
-        "Lide",
-        "Ap konstwi",
-        "Aktif"
-      ]
+    en: {
+      title: "How can I help you today?",
+      subtitle: "Private assistant for Super Admins and Admins. Write in any language: Haitian Creole, French, English or Spanish.",
+      placeholder: "Type your question here...",
+      newChat: "＋ NEW", back: "← DASHBOARD", copy: "📋 COPY", copied: "✓ COPIED",
+      typing: "AI Center is typing...",
+      notReady: "Checking your access, one moment...",
+      network: "Can’t reach the AI Center. Check your internet.",
+      chips: ["Write an announcement for a members meeting", "Write a WhatsApp message for the fans", "Write an official letter", "Translate a text into English"]
     }
-  ],
-  "badge": "status",
-  "note": "Sa a se rejis zouti AI yo ak prompts yo. Koneksyon ak Gemini oswa HeyGen poko fèt."
-});
-</script>
+  };
 
+  var lang = "ht";
+  try { lang = localStorage.getItem("bss1815-language") || "ht"; } catch (e) {}
+  if (!TEXT[lang]) { lang = "ht"; }
+
+  var messagesEl = document.getElementById("messages");
+  var form = document.getElementById("chatForm");
+  var input = document.getElementById("question");
+  var sendBtn = document.getElementById("sendBtn");
+  var intro = document.getElementById("intro");
+  var chipsEl = document.getElementById("chips");
+  var history = [];
+  var busy = false;
+
+  function applyLanguage(l) {
+    lang = TEXT[l] ? l : "ht";
+    var t = TEXT[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-t]").forEach(function (el) {
+      var k = el.getAttribute("data-t");
+      if (t[k]) { el.textContent = t[k]; }
+    });
+    input.placeholder = t.placeholder;
+    chipsEl.innerHTML = "";
+    t.chips.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = c;
+      b.addEventListener("click", function () { input.value = c; input.focus(); autoGrow(); });
+      chipsEl.appendChild(b);
+    });
+    document.querySelectorAll(".lang-btn").forEach(function (b) { b.classList.toggle("active", b.dataset.lang === lang); });
+    document.querySelectorAll(".msg .copy").forEach(function (b) { b.textContent = t.copy; });
+    try { localStorage.setItem("bss1815-language", lang); } catch (e) {}
+  }
+  document.querySelectorAll(".lang-btn").forEach(function (b) {
+    b.addEventListener("click", function () { applyLanguage(b.dataset.lang); });
+  });
+  applyLanguage(lang);
+
+  function scrollDown() { messagesEl.scrollTop = messagesEl.scrollHeight; }
+
+  function addMessage(role, text) {
+    intro.style.display = "none";
+    var div = document.createElement("div");
+    div.className = "msg " + role;
+    div.textContent = text;
+    if (role === "model") {
+      var copy = document.createElement("button");
+      copy.type = "button"; copy.className = "copy"; copy.textContent = TEXT[lang].copy;
+      copy.addEventListener("click", function () {
+        navigator.clipboard.writeText(text).then(function () {
+          copy.textContent = TEXT[lang].copied;
+          setTimeout(function () { copy.textContent = TEXT[lang].copy; }, 1800);
+        }).catch(function () {});
+      });
+      div.appendChild(copy);
+    }
+    messagesEl.appendChild(div);
+    scrollDown();
+    return div;
+  }
+
+  function autoGrow() {
+    input.style.height = "auto";
+    input.style.height = Math.min(input.scrollHeight, 160) + "px";
+  }
+  input.addEventListener("input", autoGrow);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !e.shiftKey && window.matchMedia("(pointer:fine)").matches) {
+      e.preventDefault(); form.requestSubmit();
+    }
+  });
+
+  document.getElementById("newChat").addEventListener("click", function () {
+    history = [];
+    messagesEl.innerHTML = "";
+    intro.style.display = "";
+  });
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    if (!q || busy) { return; }
+
+    var user = window.BSS_ADMIN_USER;
+    if (!user) { addMessage("error", TEXT[lang].notReady); return; }
+
+    busy = true; sendBtn.disabled = true;
+    input.value = ""; autoGrow();
+    addMessage("user", q);
+    history.push({ role: "user", text: q });
+
+    var typing = document.createElement("div");
+    typing.className = "typing"; typing.textContent = TEXT[lang].typing;
+    messagesEl.appendChild(typing); scrollDown();
+
+    try {
+      var token = await user.getIdToken();
+      var res = await fetch("/.netlify/functions/ai-center", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+        body: JSON.stringify({ messages: history })
+      });
+      var data = await res.json().catch(function () { return {}; });
+      typing.remove();
+      if (!res.ok || !data.reply) {
+        history.pop();
+        addMessage("error", data.error || ("Erè " + res.status));
+      } else {
+        history.push({ role: "model", text: data.reply });
+        addMessage("model", data.reply);
+      }
+    } catch (err) {
+      typing.remove();
+      history.pop();
+      addMessage("error", TEXT[lang].network);
+    } finally {
+      busy = false; sendBtn.disabled = false; input.focus();
+    }
+  });
+})();
+</script>
 </body>
 </html>
