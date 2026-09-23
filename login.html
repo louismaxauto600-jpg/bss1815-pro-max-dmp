@@ -1,7 +1,9 @@
+<!-- login.html -->
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="ht" translate="no" class="notranslate">
 <head>
 <meta charset="UTF-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login — Admin Dashboard</title>
 <style>
@@ -73,11 +75,28 @@
     border-radius: 8px;
     cursor: pointer;
   }
+  .btn-primary:disabled {
+    opacity: .6;
+    cursor: wait;
+  }
   .error-msg {
     color: #ff5c5c;
     font-size: 13px;
     margin-top: 12px;
     min-height: 16px;
+  }
+  .ok-msg {
+    color: #7dffa0;
+  }
+  .home-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: #ffb366;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .home-link:hover {
+    color: #ff7a00;
   }
 </style>
 </head>
@@ -100,11 +119,124 @@
     </form>
 
     <div class="error-msg" id="errorMsg"></div>
+
+    <a href="./index.html" class="home-link">← Retounen sou paj akèy la</a>
   </div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="login.js"></script>
+<script>
+/* Koneksyon Admin — BSS1815 PRO-MAX DMP
+   Apre koneksyon an:
+   - si moun nan te soti sou yon modil ki fèmen (?next=...), li retounen sou modil sa a;
+   - sinon li ale sou paj Super Admin nan (DEFAULT_AFTER_LOGIN). */
+
+(function () {
+  "use strict";
+
+  /* Paj pou louvri apre koneksyon si pa gen "next" */
+  var DEFAULT_AFTER_LOGIN = "./super-admin-dashboard.html";
+
+  var BASE_CONFIG = {
+    authDomain: "briyant-soley-signo-1815.firebaseapp.com",
+    projectId: "briyant-soley-signo-1815",
+    storageBucket: "briyant-soley-signo-1815.firebasestorage.app",
+    messagingSenderId: "873317957685",
+    appId: "1:873317957685:web:1bb4bb30831a058399717c"
+  };
+
+  /* Menm lis ak bss-guard.js */
+  var API_KEYS = [
+    "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
+    "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokelJCtDuY",
+    "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokelCtDuY",
+    "AIzaSyDenkzhQh5rHMoZYDXrM8zSSCCoX4gBcYY"
+  ];
+
+  var form = document.getElementById("loginForm");
+  var emailInput = document.getElementById("email");
+  var passwordInput = document.getElementById("password");
+  var loginBtn = document.getElementById("loginBtn");
+  var errorMsg = document.getElementById("errorMsg");
+
+  /* Destinasyon an: sèlman yon paj sou menm sit la */
+  function destination() {
+    var params = new URLSearchParams(location.search);
+    var next = params.get("next");
+    if (next && next.charAt(0) === "/" && next.charAt(1) !== "/" && next.indexOf("login.html") === -1) {
+      return next;
+    }
+    return DEFAULT_AFTER_LOGIN;
+  }
+
+  function appFor(index) {
+    var name = "bss-login-" + index;
+    var existing = firebase.apps.filter(function (a) { return a.name === name; })[0];
+    if (existing) { return existing; }
+    var config = Object.assign({}, BASE_CONFIG, { apiKey: API_KEYS[index] });
+    return firebase.initializeApp(config, name);
+  }
+
+  function isKeyProblem(error) {
+    var text = String((error && (error.code + " " + error.message)) || "").toLowerCase();
+    return text.indexOf("api-key") !== -1 || text.indexOf("api key") !== -1;
+  }
+
+  function message(error) {
+    var code = error && error.code;
+    var map = {
+      "auth/invalid-credential": "Imèl oswa modpas la pa bon.",
+      "auth/wrong-password": "Modpas la pa bon.",
+      "auth/user-not-found": "Pa gen kont ak imèl sa a.",
+      "auth/invalid-email": "Adrès imèl la pa valab.",
+      "auth/too-many-requests": "Twòp tantativ. Tann yon ti moman epi eseye ankò.",
+      "auth/network-request-failed": "Pa gen koneksyon entènèt. Tcheke entènèt ou.",
+      "auth/user-disabled": "Kont sa a bloke."
+    };
+    return map[code] || "Koneksyon an pa reyisi. Eseye ankò.";
+  }
+
+  async function signIn(email, password) {
+    var lastError = null;
+    for (var i = 0; i < API_KEYS.length; i++) {
+      try {
+        var auth = appFor(i).auth();
+        await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+        await auth.signInWithEmailAndPassword(email, password);
+        return;
+      } catch (error) {
+        lastError = error;
+        if (!isKeyProblem(error)) { throw error; }
+      }
+    }
+    throw lastError;
+  }
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    errorMsg.textContent = "";
+    errorMsg.classList.remove("ok-msg");
+
+    var email = emailInput.value.trim();
+    var password = passwordInput.value;
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = "Ap konekte...";
+
+    try {
+      await signIn(email, password);
+      errorMsg.classList.add("ok-msg");
+      errorMsg.textContent = "Koneksyon reyisi. Ap louvri...";
+      location.href = destination();
+    } catch (error) {
+      console.error("Login error:", error);
+      errorMsg.textContent = message(error);
+      loginBtn.disabled = false;
+      loginBtn.textContent = "Konekte";
+    }
+  });
+})();
+</script>
 </body>
 </html>
