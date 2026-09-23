@@ -427,6 +427,57 @@ header{
   outline-offset:4px;
 }
 
+.admin-access-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  width:min(100%,960px);
+  margin:0 auto 40px;
+}
+
+.admin-access-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:18px;
+  box-shadow:0 0 0 1px rgba(255,150,54,.55),0 14px 40px rgba(0,0,0,.55),0 0 26px rgba(255,126,28,.2);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+
+.admin-access-btn img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.admin-access-btn:hover,
+.admin-access-btn:focus-visible{
+  transform:translateY(-4px);
+  box-shadow:0 0 0 1px #ffb366,0 18px 48px rgba(0,0,0,.6),0 0 38px rgba(255,126,28,.45);
+}
+
+.admin-access-btn:focus-visible{
+  outline:3px solid #ffe0aa;
+  outline-offset:4px;
+}
+
+.admin-access-text{
+  display:block;
+  width:100%;
+  padding:26px 16px;
+  background:linear-gradient(135deg,#ffc16f,#ff8818 52%,#f26400);
+  color:#1b0901;
+  font:900 15px/1.2 Arial,sans-serif;
+  text-align:center;
+}
+
+@media(max-width:600px){
+  .admin-access-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 .bss-private-card[hidden]{
   display:none;
 }
@@ -1748,6 +1799,18 @@ Tout modil yo travay anba menm platfòm santral la.
   loading="lazy"
   onerror="document.getElementById('bssPrivateBanner').style.display='none';document.getElementById('bssPrivateFallback').hidden=false;">
 </a>
+
+<!-- 2 BOUTON: ADMIN ak SUPER ADMIN -->
+<div class="admin-access-grid">
+  <a class="admin-access-btn" href="./login.html" aria-label="Admin — Log in">
+    <img src="./admin.webp" alt="BSS1815 PRO-MAX DMP — Admin — Log in" loading="lazy"
+    onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'admin-access-text',textContent:'🔐 ADMIN — LOG IN'}))">
+  </a>
+  <a class="admin-access-btn" href="./login.html" aria-label="Super Admin — Log in">
+    <img src="./superadmin.webp" alt="BSS1815 PRO-MAX DMP — Super Admin — Log in" loading="lazy"
+    onerror="if(!this.dataset.retry){this.dataset.retry='1';this.src='./superadmin_webp.webp';}else{this.replaceWith(Object.assign(document.createElement('span'),{className:'admin-access-text',textContent:'👑 SUPER ADMIN — LOG IN'}))}">
+  </a>
+</div>
 
 <!-- Kat sa a parèt sèlman si imaj private-zone.webp la pa chaje -->
 <section class="bss-private-card" id="bssPrivateFallback" hidden aria-labelledby="bss-private-title">
