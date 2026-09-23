@@ -1,651 +1,841 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="ht" translate="no" class="notranslate">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080604">
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#080604">
 
-  <title>BSS1815 | Admin Login</title>
+<title>BSS1815 | Admin Login</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    :root {
-      --orange: #ff7518;
-      --apricot: #ffb16a;
-      --black: #050403;
-      --danger: #ff4545;
-      --success: #45d483;
-    }
+:root{
+  --orange:#ff7518;
+  --apricot:#ffb16a;
+  --black:#050403;
+  --danger:#ff4545;
+  --success:#45d483;
+}
 
-    body {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 20px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--apricot);
-      background:
-        radial-gradient(
-          circle at top,
-          #5a2100 0%,
-          #180b04 42%,
-          #000 82%
-        );
-    }
+body{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--apricot);
+  background:
+    radial-gradient(circle at top,#5a2100 0%,#180b04 42%,#000 82%);
+}
 
-    .login-card {
-      width: min(100%, 520px);
-      overflow: hidden;
-      border: 2px solid var(--orange);
-      border-radius: 24px;
-      background: var(--black);
-      box-shadow:
-        0 0 30px rgba(255, 117, 24, 0.23),
-        0 22px 70px #000;
-    }
+.login-card{
+  width:min(100%,520px);
+  overflow:hidden;
+  border:2px solid var(--orange);
+  border-radius:24px;
+  background:var(--black);
+  box-shadow:
+    0 0 30px rgba(255,117,24,.23),
+    0 22px 70px #000;
+}
 
-    .login-image {
-      display: block;
-      width: 100%;
-      max-height: 510px;
-      object-fit: cover;
-      object-position: top center;
-      border-bottom: 2px solid var(--orange);
-    }
+.login-image{
+  display:block;
+  width:100%;
+  max-height:510px;
+  object-fit:cover;
+  object-position:top center;
+  border-bottom:2px solid var(--orange);
+}
 
-    .login-area {
-      padding: 26px 22px 30px;
-    }
+.login-area{
+  padding:26px 22px 30px;
+}
 
-    h1 {
-      margin-bottom: 8px;
-      color: var(--orange);
-      font-size: clamp(28px, 7vw, 40px);
-      text-align: center;
-    }
+h1{
+  margin-bottom:8px;
+  color:var(--orange);
+  font-size:clamp(28px,7vw,40px);
+  text-align:center;
+}
 
-    .subtitle {
-      margin-bottom: 25px;
-      text-align: center;
-      line-height: 1.5;
-    }
+.subtitle{
+  margin-bottom:25px;
+  text-align:center;
+  line-height:1.5;
+}
 
-    label {
-      display: block;
-      margin: 17px 0 8px;
-      color: var(--orange);
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
+label{
+  display:block;
+  margin:17px 0 8px;
+  color:var(--orange);
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:1px;
+}
 
-    .password-area {
-      position: relative;
-    }
+.password-area{
+  position:relative;
+}
 
-    input {
-      width: 100%;
-      min-height: 58px;
-      padding: 15px 52px 15px 16px;
-      color: var(--apricot);
-      font-size: 17px;
-      outline: none;
-      border: 2px solid var(--orange);
-      border-radius: 13px;
-      background: #080604;
-    }
+input{
+  width:100%;
+  min-height:58px;
+  padding:15px 52px 15px 16px;
+  color:var(--apricot);
+  font-size:17px;
+  outline:none;
+  border:2px solid var(--orange);
+  border-radius:13px;
+  background:#080604;
+}
 
-    input::placeholder {
-      color: #a96c40;
-    }
+input::placeholder{
+  color:#a96c40;
+}
 
-    input:focus {
-      box-shadow:
-        0 0 0 4px rgba(255, 117, 24, 0.18);
-    }
+input:focus{
+  box-shadow:0 0 0 4px rgba(255,117,24,.18);
+}
 
-    #showPassword {
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translateY(-50%);
-      padding: 8px;
-      color: var(--orange);
-      font-size: 19px;
-      cursor: pointer;
-      border: 0;
-      background: transparent;
-    }
+#showPassword{
+  position:absolute;
+  top:50%;
+  right:12px;
+  transform:translateY(-50%);
+  padding:8px;
+  color:var(--orange);
+  font-size:19px;
+  cursor:pointer;
+  border:0;
+  background:transparent;
+}
 
-    .main-button,
-    .reset-button {
-      width: 100%;
-      min-height: 57px;
-      border-radius: 13px;
-      font-size: 16px;
-      font-weight: 900;
-      cursor: pointer;
-    }
+.main-button,
+.reset-button{
+  width:100%;
+  min-height:57px;
+  border-radius:13px;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+}
 
-    .main-button {
-      margin-top: 23px;
-      color: #080503;
-      border: 2px solid var(--orange);
-      background:
-        linear-gradient(
-          135deg,
-          var(--apricot),
-          var(--orange)
-        );
-    }
+.main-button{
+  margin-top:23px;
+  color:#080503;
+  border:2px solid var(--orange);
+  background:linear-gradient(
+    135deg,
+    var(--apricot),
+    var(--orange)
+  );
+}
 
-    .reset-button {
-      margin-top: 13px;
-      color: var(--orange);
-      border: 1px solid var(--orange);
-      background: transparent;
-    }
+.reset-button{
+  margin-top:13px;
+  color:var(--orange);
+  border:1px solid var(--orange);
+  background:transparent;
+}
 
-    button:disabled {
-      cursor: wait;
-      opacity: 0.65;
-    }
+button:disabled{
+  cursor:wait;
+  opacity:.65;
+}
 
-    #message {
-      display: none;
-      margin-top: 17px;
-      padding: 13px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.45;
-      text-align: center;
-    }
+#message{
+  display:none;
+  margin-top:17px;
+  padding:13px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.45;
+  text-align:center;
+}
 
-    #message.error {
-      display: block;
-      color: #ffd0d0;
-      border: 1px solid var(--danger);
-      background: rgba(255, 69, 69, 0.12);
-    }
+#message.error{
+  display:block;
+  color:#ffd0d0;
+  border:1px solid var(--danger);
+  background:rgba(255,69,69,.12);
+}
 
-    #message.success {
-      display: block;
-      color: #caffe0;
-      border: 1px solid var(--success);
-      background: rgba(69, 212, 131, 0.12);
-    }
+#message.success{
+  display:block;
+  color:#caffe0;
+  border:1px solid var(--success);
+  background:rgba(69,212,131,.12);
+}
 
-    .security-note {
-      margin-top: 20px;
-      color: #c9824c;
-      font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
-    }
-  </style>
+.security-note{
+  margin-top:20px;
+  color:#c9824c;
+  font-size:12px;
+  line-height:1.5;
+  text-align:center;
+}
+</style>
 </head>
 
 <body>
-  <main class="login-card">
-    <img
-      class="login-image"
-      src="./bss_admin_login.png"
-      alt="BSS1815 Admin"
-    >
 
-    <section class="login-area">
-      <h1>ADMIN LOGIN</h1>
+<main class="login-card">
 
-      <p class="subtitle">
-        BSS1815 PRO-MAX DMP<br>
-        Administratè otorize sèlman
-      </p>
+  <img
+    class="login-image"
+    src="./bss_admin_login.png"
+    alt="BSS1815 Admin"
+  >
 
-      <form id="loginForm">
-        <label for="email">EMAIL</label>
+  <section class="login-area">
+
+    <h1>ADMIN LOGIN</h1>
+
+    <p class="subtitle">
+      BSS1815 PRO-MAX DMP<br>
+      Administratè otorize sèlman
+    </p>
+
+    <form id="loginForm">
+
+      <label for="email">EMAIL</label>
+
+      <input
+        id="email"
+        type="email"
+        autocomplete="username"
+        placeholder="Antre imel Admin lan"
+        required
+      >
+
+      <label for="password">PASSWORD</label>
+
+      <div class="password-area">
 
         <input
-          id="email"
-          type="email"
-          autocomplete="username"
-          placeholder="Antre imel Admin lan"
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Antre modpas Admin lan"
+          minlength="6"
           required
         >
 
-        <label for="password">PASSWORD</label>
-
-        <div class="password-area">
-          <input
-            id="password"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Antre modpas Admin lan"
-            minlength="6"
-            required
-          >
-
-          <button
-            id="showPassword"
-            type="button"
-            aria-label="Montre modpas"
-          >
-            👁
-          </button>
-        </div>
-
         <button
-          id="loginButton"
-          class="main-button"
-          type="submit"
-        >
-          ANTRE NAN ADMIN DASHBOARD
-        </button>
-
-        <button
-          id="resetButton"
-          class="reset-button"
+          id="showPassword"
           type="button"
+          aria-label="Montre modpas"
         >
-          RESET PASSWORD
+          👁
         </button>
 
-        <div id="message" role="alert"></div>
-      </form>
+      </div>
 
-      <p class="security-note">
-        Firebase Authentication • Aksè Admin pwoteje
-      </p>
-    </section>
-  </main>
+      <button
+        id="loginButton"
+        class="main-button"
+        type="submit"
+      >
+        ANTRE NAN ADMIN DASHBOARD
+      </button>
 
-  <script type="module">
-    import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+      <button
+        id="resetButton"
+        class="reset-button"
+        type="button"
+      >
+        RESET PASSWORD
+      </button>
 
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      sendPasswordResetEmail,
-      setPersistence,
-      browserLocalPersistence,
-      signOut
-    } from
-      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+      <div id="message" role="alert"></div>
 
-    const firebaseConfig = {
-      apiKey:
-        "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
+    </form>
 
-      authDomain:
-        "briyant-soley-signo-1815.firebaseapp.com",
+    <p class="security-note">
+      Firebase Authentication • Aksè Admin pwoteje
+    </p>
 
-      projectId:
-        "briyant-soley-signo-1815",
+  </section>
 
-      storageBucket:
-        "briyant-soley-signo-1815.firebasestorage.app",
+</main>
 
-      messagingSenderId:
-        "873317957685",
 
-      appId:
-        "1:873317957685:web:1bb4bb30831a058399717c",
+<script type="module">
 
-      measurementId:
-        "G-QLDJNN876H"
-    };
+/* =========================================================
+   BSS1815 PRO-MAX DMP
+   ADMIN / SUPER ADMIN LOGIN
+   ========================================================= */
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+import {
+  initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-    const MAX_LOUIS_EMAIL =
-      "briyantsoleysigno1815@gmail.com";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  setPersistence,
+  browserLocalPersistence,
+  onAuthStateChanged,
+  signOut
+} from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-    const MAX_LOUIS_UID =
-      "I7n4gtwXAtMVe3YOjEMm1h7DJ3B3";
 
-    const loginForm =
-      document.getElementById("loginForm");
+/* =========================================================
+   FIREBASE
+   ========================================================= */
 
-    const emailInput =
-      document.getElementById("email");
+const firebaseConfig = {
 
-    const passwordInput =
-      document.getElementById("password");
+  apiKey:
+    "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
 
-    const loginButton =
-      document.getElementById("loginButton");
+  authDomain:
+    "briyant-soley-signo-1815.firebaseapp.com",
 
-    const resetButton =
-      document.getElementById("resetButton");
+  projectId:
+    "briyant-soley-signo-1815",
 
-    const showPassword =
-      document.getElementById("showPassword");
+  storageBucket:
+    "briyant-soley-signo-1815.firebasestorage.app",
 
-    const message =
-      document.getElementById("message");
+  messagingSenderId:
+    "873317957685",
 
-    function displayMessage(text, type) {
-      message.textContent = text;
-      message.className = type;
-    }
+  appId:
+    "1:873317957685:web:1bb4bb30831a058399717c",
 
-    function clearMessage() {
-      message.textContent = "";
-      message.className = "";
-    }
+  measurementId:
+    "G-QLDJNN876H"
+};
 
-    function clearStoredAccess() {
-      sessionStorage.removeItem("bss1815Role");
-      sessionStorage.removeItem("bss1815Email");
-      sessionStorage.removeItem("bss1815Uid");
-      sessionStorage.removeItem(
-        "bss1815Authenticated"
-      );
 
-      localStorage.removeItem("bss1815Role");
-      localStorage.removeItem("bss1815Email");
-      localStorage.removeItem("bss1815Uid");
-      localStorage.removeItem(
-        "bss1815Authenticated"
-      );
-    }
+const app = initializeApp(firebaseConfig);
 
-    function saveAccess(role, email, uid) {
+const auth = getAuth(app);
+
+
+/* =========================================================
+   ROOT SUPER ADMIN
+   ========================================================= */
+
+const ROOT_SUPER_ADMIN_EMAIL =
+  "briyantsoleysigno1815@gmail.com";
+
+const ROOT_SUPER_ADMIN_UID =
+  "I7n4gtwXAtMVe3YOjEMm1h7DJ3B3";
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const emailInput =
+  document.getElementById("email");
+
+const passwordInput =
+  document.getElementById("password");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const resetButton =
+  document.getElementById("resetButton");
+
+const showPassword =
+  document.getElementById("showPassword");
+
+const message =
+  document.getElementById("message");
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function normalize(value){
+
+  return String(value || "")
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function displayMessage(text,type){
+
+  message.textContent = text;
+  message.className = type;
+
+}
+
+
+function clearMessage(){
+
+  message.textContent = "";
+  message.className = "";
+
+}
+
+
+/* =========================================================
+   LOCAL ACCESS CACHE
+   Firebase remains the actual authentication source.
+   ========================================================= */
+
+function clearStoredAccess(){
+
+  const keys = [
+
+    "bss1815Role",
+    "bss1815Email",
+    "bss1815Uid",
+    "bss1815Authenticated"
+
+  ];
+
+  keys.forEach(key => {
+
+    sessionStorage.removeItem(key);
+    localStorage.removeItem(key);
+
+  });
+
+}
+
+
+function saveAccess(role,email,uid){
+
+  const values = {
+
+    bss1815Role:role,
+    bss1815Email:email,
+    bss1815Uid:uid,
+    bss1815Authenticated:"true"
+
+  };
+
+  Object.entries(values).forEach(
+    ([key,value]) => {
+
       sessionStorage.setItem(
-        "bss1815Role",
-        role
-      );
-
-      sessionStorage.setItem(
-        "bss1815Email",
-        email
-      );
-
-      sessionStorage.setItem(
-        "bss1815Uid",
-        uid
-      );
-
-      sessionStorage.setItem(
-        "bss1815Authenticated",
-        "true"
+        key,
+        value
       );
 
       localStorage.setItem(
-        "bss1815Role",
-        role
+        key,
+        value
       );
 
-      localStorage.setItem(
-        "bss1815Email",
-        email
-      );
-
-      localStorage.setItem(
-        "bss1815Uid",
-        uid
-      );
-
-      localStorage.setItem(
-        "bss1815Authenticated",
-        "true"
-      );
     }
+  );
 
-    function getErrorMessage(code) {
-      const errors = {
-        "auth/invalid-credential":
-          "Imel oswa modpas la pa kòrèk.",
+}
 
-        "auth/invalid-login-credentials":
-          "Imel oswa modpas la pa kòrèk.",
 
-        "auth/wrong-password":
-          "Modpas la pa kòrèk.",
+/* =========================================================
+   SUPER ADMIN CHECK
+   ========================================================= */
 
-        "auth/user-not-found":
-          "Firebase pa jwenn kont sa a.",
+function isRootSuperAdmin(user){
 
-        "auth/invalid-email":
-          "Adrès imel la pa valab.",
+  if(!user){
+    return false;
+  }
 
-        "auth/user-disabled":
-          "Kont sa a dezaktive nan Firebase.",
+  const email =
+    normalize(user.email);
 
-        "auth/too-many-requests":
-          "Twòp tantativ fèt. Tann yon ti moman.",
+  const uid =
+    String(user.uid || "").trim();
 
-        "auth/network-request-failed":
-          "Verifye koneksyon entènèt la.",
+  return (
 
-        "auth/missing-password":
-          "Antre modpas la."
-      };
+    email ===
+      normalize(ROOT_SUPER_ADMIN_EMAIL)
 
-      return errors[code] ||
-        "Login lan pa reyisi. Eseye ankò.";
-    }
+    &&
 
-    showPassword.addEventListener(
-      "click",
-      () => {
-        const hidden =
-          passwordInput.type === "password";
+    uid ===
+      ROOT_SUPER_ADMIN_UID
 
-        passwordInput.type =
-          hidden ? "text" : "password";
+  );
 
-        showPassword.textContent =
-          hidden ? "🙈" : "👁";
+}
 
-        showPassword.setAttribute(
-          "aria-label",
-          hidden
-            ? "Kache modpas"
-            : "Montre modpas"
-        );
-      }
+
+/* =========================================================
+   REDIRECT
+   ========================================================= */
+
+function openDashboard(user){
+
+  if(isRootSuperAdmin(user)){
+
+    saveAccess(
+      "SUPER_ADMIN",
+      normalize(user.email),
+      user.uid
     );
 
-    loginForm.addEventListener(
-      "submit",
-      async (event) => {
-        event.preventDefault();
-        clearMessage();
-        clearStoredAccess();
+    window.location.replace(
+      "./super-admin-dashboard.html"
+    );
 
-        const email =
-          emailInput.value
-            .trim()
-            .toLowerCase();
+    return;
 
-        const password =
-          passwordInput.value;
+  }
 
-        if (!email || !password) {
-          displayMessage(
-            "Antre imel ak modpas la.",
-            "error"
-          );
-          return;
-        }
+  saveAccess(
+    "ADMIN",
+    normalize(user.email),
+    user.uid
+  );
 
-        loginButton.disabled = true;
-        resetButton.disabled = true;
+  window.location.replace(
+    "./admin-dashboard.html"
+  );
 
-        loginButton.textContent =
-          "VERIFIKASYON...";
+}
 
-        try {
-          await setPersistence(
-            auth,
-            browserLocalPersistence
-          );
 
-          const credential =
-            await signInWithEmailAndPassword(
-              auth,
-              email,
-              password
-            );
+/* =========================================================
+   FIREBASE ERROR
+   ========================================================= */
 
-          const firebaseUser =
-            credential.user;
+function getErrorMessage(code){
 
-          const connectedEmail =
-            firebaseUser.email
-              ?.trim()
-              .toLowerCase() || "";
+  const errors = {
 
-          const connectedUid =
-            firebaseUser.uid || "";
+    "auth/invalid-credential":
+      "Imel oswa modpas la pa kòrèk.",
 
-          const isMaxLouis =
-            connectedEmail ===
-              MAX_LOUIS_EMAIL &&
-            connectedUid ===
-              MAX_LOUIS_UID;
+    "auth/invalid-login-credentials":
+      "Imel oswa modpas la pa kòrèk.",
 
-          const emailIsMax =
-            connectedEmail ===
-              MAX_LOUIS_EMAIL;
+    "auth/wrong-password":
+      "Modpas la pa kòrèk.",
 
-          const uidIsMax =
-            connectedUid ===
-              MAX_LOUIS_UID;
+    "auth/user-not-found":
+      "Firebase pa jwenn kont sa a.",
 
-          if (emailIsMax && !uidIsMax) {
-            await signOut(auth);
-            clearStoredAccess();
+    "auth/invalid-email":
+      "Adrès imel la pa valab.",
 
-            displayMessage(
-              "UID kont Max Louis la pa koresponn ak UID Super Admin lan.",
-              "error"
-            );
-            return;
-          }
+    "auth/user-disabled":
+      "Kont sa a dezaktive nan Firebase.",
 
-          if (uidIsMax && !emailIsMax) {
-            await signOut(auth);
-            clearStoredAccess();
+    "auth/too-many-requests":
+      "Twòp tantativ fèt. Tann yon ti moman.",
 
-            displayMessage(
-              "Imel Super Admin lan pa koresponn ak UID otorize a.",
-              "error"
-            );
-            return;
-          }
+    "auth/network-request-failed":
+      "Verifye koneksyon entènèt la.",
 
-          const role =
-            isMaxLouis
-              ? "SUPER_ADMIN"
-              : "ADMIN";
+    "auth/missing-password":
+      "Antre modpas la."
 
-          saveAccess(
-            role,
-            connectedEmail,
-            connectedUid
-          );
+  };
 
-          if (isMaxLouis) {
-            displayMessage(
-              "Super Admin Max Louis verifye. N ap ouvri Dashboard la...",
-              "success"
-            );
-          } else {
-            displayMessage(
-              "Admin verifye. N ap ouvri Dashboard la...",
-              "success"
-            );
-          }
+  return (
+    errors[code] ||
+    "Login lan pa reyisi. Eseye ankò."
+  );
 
-          setTimeout(() => {
-            window.location.replace(
-              "./admin-dashboard.html"
-            );
-          }, 700);
+}
 
-        } catch (error) {
-          console.error(
-            "BSS1815 LOGIN ERROR:",
-            error
-          );
+
+/* =========================================================
+   PASSWORD SHOW / HIDE
+   ========================================================= */
+
+showPassword.addEventListener(
+  "click",
+  () => {
+
+    const hidden =
+      passwordInput.type === "password";
+
+    passwordInput.type =
+      hidden ? "text" : "password";
+
+    showPassword.textContent =
+      hidden ? "🙈" : "👁";
+
+    showPassword.setAttribute(
+      "aria-label",
+      hidden
+        ? "Kache modpas"
+        : "Montre modpas"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+loginForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    clearMessage();
+
+    const email =
+      normalize(emailInput.value);
+
+    const password =
+      passwordInput.value;
+
+    if(!email || !password){
+
+      displayMessage(
+        "Antre imel ak modpas la.",
+        "error"
+      );
+
+      return;
+
+    }
+
+    loginButton.disabled = true;
+    resetButton.disabled = true;
+
+    loginButton.textContent =
+      "VERIFIKASYON...";
+
+    try{
+
+      /*
+       * IMPORTANT:
+       * Persistence is established BEFORE authentication.
+       */
+
+      await setPersistence(
+        auth,
+        browserLocalPersistence
+      );
+
+
+      /*
+       * Firebase authenticates the account.
+       */
+
+      const credential =
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      const user =
+        credential.user;
+
+
+      /*
+       * ROOT SUPER ADMIN:
+       * both email AND UID must match.
+       */
+
+      if(
+        normalize(user.email) ===
+          normalize(ROOT_SUPER_ADMIN_EMAIL)
+      ){
+
+        if(
+          user.uid !==
+          ROOT_SUPER_ADMIN_UID
+        ){
+
+          await signOut(auth);
 
           clearStoredAccess();
 
           displayMessage(
-            getErrorMessage(error.code),
-            "error"
-          );
-        } finally {
-          loginButton.disabled = false;
-          resetButton.disabled = false;
-
-          loginButton.textContent =
-            "ANTRE NAN ADMIN DASHBOARD";
-        }
-      }
-    );
-
-    resetButton.addEventListener(
-      "click",
-      async () => {
-        clearMessage();
-
-        const email =
-          emailInput.value
-            .trim()
-            .toLowerCase();
-
-        if (!email) {
-          displayMessage(
-            "Antre imel la anvan.",
+            "UID kont Super Admin prensipal la pa koresponn.",
             "error"
           );
 
-          emailInput.focus();
           return;
+
         }
 
-        resetButton.disabled = true;
-        loginButton.disabled = true;
+        saveAccess(
+          "SUPER_ADMIN",
+          normalize(user.email),
+          user.uid
+        );
 
-        resetButton.textContent =
-          "AP VOYE...";
+        displayMessage(
+          "Super Admin verifye. N ap ouvri Control Panel la...",
+          "success"
+        );
 
-        try {
-          await sendPasswordResetEmail(
-            auth,
-            email
-          );
+        setTimeout(
+          () => {
 
-          displayMessage(
-            "Firebase voye yon nouvo lyen reset modpas. Itilize sèlman dènye lyen an.",
-            "success"
-          );
+            window.location.replace(
+              "./super-admin-dashboard.html"
+            );
 
-        } catch (error) {
-          displayMessage(
-            getErrorMessage(error.code),
-            "error"
-          );
+          },
+          400
+        );
 
-        } finally {
-          resetButton.disabled = false;
-          loginButton.disabled = false;
+        return;
 
-          resetButton.textContent =
-            "RESET PASSWORD";
-        }
       }
-    );
-  </script>
+
+
+      /*
+       * OTHER FIREBASE USER
+       *
+       * Dashboard itself must still verify
+       * that this account is in the Admin role list.
+       */
+
+      saveAccess(
+        "ADMIN_PENDING",
+        normalize(user.email),
+        user.uid
+      );
+
+      displayMessage(
+        "Kont verifye. N ap verifye aksè Admin lan...",
+        "success"
+      );
+
+      setTimeout(
+        () => {
+
+          window.location.replace(
+            "./admin-dashboard.html"
+          );
+
+        },
+        400
+      );
+
+    }
+    catch(error){
+
+      console.error(
+        "BSS1815 LOGIN ERROR:",
+        error
+      );
+
+      clearStoredAccess();
+
+      displayMessage(
+        getErrorMessage(error.code),
+        "error"
+      );
+
+    }
+    finally{
+
+      loginButton.disabled = false;
+      resetButton.disabled = false;
+
+      loginButton.textContent =
+        "ANTRE NAN ADMIN DASHBOARD";
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   PASSWORD RESET
+   ========================================================= */
+
+resetButton.addEventListener(
+  "click",
+  async () => {
+
+    clearMessage();
+
+    const email =
+      normalize(emailInput.value);
+
+    if(!email){
+
+      displayMessage(
+        "Antre imel la anvan.",
+        "error"
+      );
+
+      emailInput.focus();
+
+      return;
+
+    }
+
+    resetButton.disabled = true;
+    loginButton.disabled = true;
+
+    resetButton.textContent =
+      "AP VOYE...";
+
+    try{
+
+      await sendPasswordResetEmail(
+        auth,
+        email
+      );
+
+      displayMessage(
+        "Firebase voye lyen reset modpas la. Itilize sèlman dènye lyen ou resevwa a.",
+        "success"
+      );
+
+    }
+    catch(error){
+
+      console.error(
+        "PASSWORD RESET ERROR:",
+        error
+      );
+
+      displayMessage(
+        getErrorMessage(error.code),
+        "error"
+      );
+
+    }
+    finally{
+
+      resetButton.disabled = false;
+      loginButton.disabled = false;
+
+      resetButton.textContent =
+        "RESET PASSWORD";
+
+    }
+
+  }
+);
+
+</script>
+
 </body>
 </html>
