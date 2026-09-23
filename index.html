@@ -398,6 +398,37 @@ header{
   line-height:1.75;
 }
 
+/* ZÒN ADMIN (modil yo fèmen) */
+
+.admin-lock-box{
+  max-width:720px;
+  margin:auto;
+  padding:40px 26px;
+  border:2px solid var(--orange);
+  border-radius:26px;
+  text-align:center;
+  background:
+    radial-gradient(circle at top,rgba(255,121,0,.16),transparent 55%),
+    #000;
+  box-shadow:var(--glow2);
+}
+
+.admin-lock-icon{
+  font-size:3rem;
+}
+
+.admin-lock-box h3{
+  margin-top:12px;
+  color:var(--orange);
+  font-size:clamp(1.2rem,4vw,1.9rem);
+}
+
+.admin-lock-box p{
+  max-width:560px;
+  margin:14px auto 0;
+  line-height:1.7;
+}
+
 /* PROF AVATAR CUSTOMER SERVICE */
 
 .prof-avatar-box{
@@ -1535,7 +1566,33 @@ Tout modil yo travay anba menm platfòm santral la.
 </p>
 </div>
 
-<div class="modules-grid" id="modulesGrid"></div>
+<!-- Modil yo pa parèt pou piblik la. Lis modil yo rete nan kòd la (var modules),
+     men yo pa afiche sou paj akèy la. Admin ak Super Admin antre pa login.html. -->
+<div class="admin-lock-box">
+<div class="admin-lock-icon">🔐</div>
+<h3
+data-ht="ZÒN PRIVE • ADMIN SÈLMAN"
+data-fr="ZONE PRIVÉE • ADMIN SEULEMENT"
+data-en="PRIVATE AREA • ADMIN ONLY">
+ZÒN PRIVE • ADMIN SÈLMAN
+</h3>
+<p
+data-ht="Modil yo rezève pou Super Admin ak Admin BSS1815 PRO-MAX DMP. Konekte ak kont ou pou w jwenn aksè."
+data-fr="Les modules sont réservés aux Super Admins et Admins de BSS1815 PRO-MAX DMP. Connectez-vous avec votre compte pour y accéder."
+data-en="The modules are reserved for BSS1815 PRO-MAX DMP Super Admins and Admins. Sign in with your account to access them.">
+Modil yo rezève pou Super Admin ak Admin BSS1815 PRO-MAX DMP.
+</p>
+<div class="actions">
+<a
+href="./login.html"
+class="btn"
+data-ht="🔐 KONEKTE"
+data-fr="🔐 SE CONNECTER"
+data-en="🔐 SIGN IN">
+🔐 KONEKTE
+</a>
+</div>
+</div>
 
 </div>
 </section>
