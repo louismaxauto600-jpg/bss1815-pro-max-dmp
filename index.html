@@ -195,7 +195,18 @@ header{
   background:#000;
 }
 
+.lang-flag{
+  width:18px;
+  height:12px;
+  flex-shrink:0;
+  border-radius:2px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.3);
+}
+
 .lang-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
   min-width:42px;
   padding:8px 9px;
   border:0;
@@ -465,7 +476,7 @@ header{
 }
 
 .ecosystem-grid{
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
 }
 
 .modules-grid{
@@ -1111,6 +1122,12 @@ footer strong{
   .lang-btn{
     min-width:35px;
     padding:7px 6px;
+    gap:3px;
+  }
+
+  .lang-flag{
+    width:15px;
+    height:10px;
   }
 
   .prof-avatar-box{
@@ -1219,6 +1236,11 @@ footer strong{
 <circle cx="3.5" cy="8.1" r=".55"/><circle cx="6.5" cy="8.1" r=".55"/><circle cx="9.5" cy="8.1" r=".55"/>
 </g>
 </symbol>
+<symbol id="flag-fr" viewBox="0 0 30 20">
+<rect width="10" height="20" fill="#002395"/>
+<rect x="10" width="10" height="20" fill="#fff"/>
+<rect x="20" width="10" height="20" fill="#ED2939"/>
+</symbol>
 <symbol id="flag-ht" viewBox="0 0 30 20">
 <rect width="30" height="10" fill="#00209F"/>
 <rect y="10" width="30" height="10" fill="#D21034"/>
@@ -1271,9 +1293,9 @@ PLATFÒM JESYON DIJITAL
 </nav>
 
 <div class="lang-switch">
-<button type="button" class="lang-btn" data-lang="fr">FRA</button>
-<button type="button" class="lang-btn" data-lang="en">ENG</button>
-<button type="button" class="lang-btn active" data-lang="ht">KRE</button>
+<button type="button" class="lang-btn" data-lang="fr"><svg class="lang-flag" aria-hidden="true"><use href="#flag-fr"/></svg>FRA</button>
+<button type="button" class="lang-btn" data-lang="en"><svg class="lang-flag" aria-hidden="true"><use href="#flag-us"/></svg>ENG</button>
+<button type="button" class="lang-btn active" data-lang="ht"><svg class="lang-flag" aria-hidden="true"><use href="#flag-ht"/></svg>KRE</button>
 </div>
 
 <button
@@ -2491,37 +2513,59 @@ if(profAvatarVideo && profAvatarRestart){
 /* ECOSYSTEM */
 
 var ecosystemProjects=[
-  [
-    "🏛️",
-    "BSS1815 COMMUNITY",
-    "Manm, dirijan, mizisyen, fanatik, eritaj ak lavi kominotè.",
-    "#community"
-  ],
-  [
-    "📻",
-    "PRO-MAX FM",
-    "Radyo dijital, live streaming, mizik, podcast, nouvèl ak medya.",
-    "#promaxfm"
-  ],
-  [
-    "💼",
-    "MAXIMAX MULTI SERVICES",
-    "Imigrasyon, tradiksyon, dokiman ak sèvis pwofesyonèl.",
-    "#maximax"
-  ],
-  [
-    "🎓",
-    "PRO-MAX ACADÉMIE",
-    "Teknoloji, AI, kou, evalyasyon, Student Portal ak sètifika.",
-    "#academy"
-  ],
-  [
-    "🎹",
-    "PRO-MAX BEAT LAB",
-    "Beat Maker, melodi, piano, aranjman ak pwodiksyon mizik.",
-    "#beat-lab"
-  ]
+  {
+    icon:"🏛️",
+    title:"BSS1815 COMMUNITY",
+    ht:"Manm, dirijan, mizisyen, fanatik, eritaj ak lavi kominotè.",
+    fr:"Membres, dirigeants, musiciens, fans, patrimoine et vie communautaire.",
+    en:"Members, leaders, musicians, fans, heritage and community life.",
+    link:"#community"
+  },
+  {
+    icon:"📻",
+    title:"PRO-MAX FM",
+    ht:"Radyo dijital, live streaming, mizik, podcast, nouvèl ak medya.",
+    fr:"Radio numérique, streaming en direct, musique, podcasts, actualités et médias.",
+    en:"Digital radio, live streaming, music, podcasts, news and media.",
+    link:"#promaxfm"
+  },
+  {
+    icon:"💼",
+    title:"MAXIMAX MULTI SERVICES",
+    ht:"Imigrasyon, tradiksyon, dokiman ak sèvis pwofesyonèl.",
+    fr:"Immigration, traduction, documents et services professionnels.",
+    en:"Immigration, translation, documents and professional services.",
+    link:"#maximax"
+  },
+  {
+    icon:"🎓",
+    title:"PRO-MAX ACADÉMIE",
+    ht:"Teknoloji, AI, kou, evalyasyon, Student Portal ak sètifika.",
+    fr:"Technologie, IA, cours, évaluations, portail étudiant et certificats.",
+    en:"Technology, AI, courses, assessments, Student Portal and certificates.",
+    link:"#academy"
+  },
+  {
+    icon:"🎹",
+    title:"PRO-MAX BEAT LAB",
+    ht:"Beat Maker, melodi, piano, aranjman ak pwodiksyon mizik.",
+    fr:"Beat Maker, mélodies, piano, arrangements et production musicale.",
+    en:"Beat Maker, melodies, piano, arrangements and music production.",
+    link:"#beat-lab"
+  },
+  {
+    icon:"🌎",
+    title:"DEVAN DEVAN NÈT™",
+    ht:"Vizyon teknoloji ak AI: aprann, òganize, kreye, inove epi toujou avanse.",
+    fr:"Vision technologique et IA : apprendre, organiser, créer, innover et toujours avancer.",
+    en:"Technology and AI vision: learn, organize, create, innovate and always move forward.",
+    link:"#ddn"
+  }
 ];
+
+function escapeAttr(text){
+  return String(text).replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+}
 
 var ecosystemGrid=
 document.getElementById("ecosystemGrid");
@@ -2532,11 +2576,11 @@ if(ecosystemGrid){
   ecosystemProjects.map(function(project){
 
     return(
-      '<a href="'+project[3]+'" class="card ecosystem-card">'+
-      '<div class="card-icon">'+project[0]+'</div>'+
-      '<h3>'+project[1]+'</h3>'+
-      '<p>'+project[2]+'</p>'+
-      '<div class="card-open">ENTER →</div>'+
+      '<a href="'+project.link+'" class="card ecosystem-card">'+
+      '<div class="card-icon">'+project.icon+'</div>'+
+      '<h3>'+project.title+'</h3>'+
+      '<p data-ht="'+escapeAttr(project.ht)+'" data-fr="'+escapeAttr(project.fr)+'" data-en="'+escapeAttr(project.en)+'">'+project.ht+'</p>'+
+      '<div class="card-open" data-ht="ANTRE →" data-fr="ENTRER →" data-en="ENTER →">ANTRE →</div>'+
       '</a>'
     );
 
@@ -2582,13 +2626,16 @@ if(modulesGrid){
       '<div class="card-icon">'+module[0]+'</div>'+
       '<h3>'+module[1]+'</h3>'+
       '<p>'+module[2]+'</p>'+
-      '<div class="card-open">OPEN →</div>'+
+      '<div class="card-open" data-ht="LOUVRI →" data-fr="OUVRIR →" data-en="OPEN →">LOUVRI →</div>'+
       '</a>'
     );
 
   }).join("");
 
 }
+
+/* Aplike lang lan ankò sou kat ki fèk kreye yo */
+applyLanguage(currentLanguage);
 
 /* ================= SLIDESHOW ================= */
 /* Nouvo slideshow: chak foto 10 segonn, fondu nan pwochen an,
