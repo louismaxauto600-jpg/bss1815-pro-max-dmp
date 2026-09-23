@@ -84,7 +84,7 @@ footer{padding:30px 15px;text-align:center;border-top:1px solid var(--border);fo
 <div class="screen-card">
 <h2 id="deniedTitle">⛔ AKSÈ REFIZE</h2>
 <p id="deniedText">Paj sa a rezève pou Super Admin ak Admin.</p>
-<a href="./login.html?next=%2Fsuper-admin-dashboard.html" class="btn" id="deniedLogin">🔐 KONEKTE</a>
+<a href="./admin-login.html?next=%2Fsuper-admin-dashboard.html" class="btn" id="deniedLogin">🔐 KONEKTE</a>
 </div>
 </div>
 
@@ -149,12 +149,7 @@ const BASE_CONFIG = {
   messagingSenderId: "873317957685",
   appId: "1:873317957685:web:1bb4bb30831a058399717c"
 };
-const API_KEYS = [
-  "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY",
-  "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokelJCtDuY",
-  "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokelCtDuY",
-  "AIzaSyDenkzhQh5rHMoZYDXrM8zSSCCoX4gBcYY"
-];
+const API_KEY = "AIzaSyB24Sbq_ud2qSFtdHwRhiKelokeIjCtDuY";
 
 const ROOT_SUPER_ADMIN = "briyantsoleysigno1815@gmail.com";
 
@@ -221,20 +216,14 @@ $("modulesGrid").innerHTML = MODULES.map((m) =>
   '<div class="open">LOUVRI →</div></a>'
 ).join("");
 
-/* Jwenn apiKey ki gen moun konekte a */
+/* Yon sèl aplikasyon Firebase, sou non pa defo a ([DEFAULT]) */
 async function findSignedIn() {
-  const candidates = getApps().slice();
-  API_KEYS.forEach((key, i) => {
-    try { candidates.push(initializeApp(Object.assign({}, BASE_CONFIG, { apiKey: key }), "bss-admin-" + i)); } catch (e) {}
-  });
-  for (const app of candidates) {
-    try {
-      const auth = getAuth(app);
-      await auth.authStateReady();
-      if (auth.currentUser) { return { app, auth, user: auth.currentUser }; }
-    } catch (e) {}
-  }
-  return null;
+  const app = getApps().length
+    ? getApps()[0]
+    : initializeApp(Object.assign({}, BASE_CONFIG, { apiKey: API_KEY }));
+  const auth = getAuth(app);
+  await auth.authStateReady();
+  return auth.currentUser ? { app, auth, user: auth.currentUser } : null;
 }
 
 function listHas(data, user) {
@@ -278,7 +267,7 @@ function renderList(el, users, roleRef, isSuper) {
 
   $("whoAmI").textContent = user.email || user.uid;
   $("logoutBtn").classList.remove("hidden");
-  $("logoutBtn").addEventListener("click", () => signOut(auth).then(() => { location.href = "./login.html"; }));
+  $("logoutBtn").addEventListener("click", () => signOut(auth).then(() => { location.href = "./admin-login.html"; }));
 
   let isSuper = normalize(user.email) === ROOT_SUPER_ADMIN;
   let isAdmin = false;
@@ -309,7 +298,7 @@ function renderList(el, users, roleRef, isSuper) {
     $("deniedLogin").textContent = "↩ DEKONEKTE";
     $("deniedLogin").addEventListener("click", (ev) => {
       ev.preventDefault();
-      signOut(auth).then(() => { location.href = "./login.html"; });
+      signOut(auth).then(() => { location.href = "./admin-login.html"; });
     });
     return;
   }
