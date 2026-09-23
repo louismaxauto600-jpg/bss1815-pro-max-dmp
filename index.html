@@ -653,6 +653,33 @@ header{
   }
 }
 
+/* VIDEYO DEVAN DEVAN NÈT */
+
+.ddn-video-frame{
+  position:relative;
+  width:min(100%,960px);
+  margin:0 auto 30px;
+  overflow:hidden;
+  border:2px solid var(--orange);
+  border-radius:28px;
+  background:#000;
+  box-shadow:var(--glow2);
+}
+
+.ddn-video-frame video{
+  display:block;
+  width:100%;
+  max-height:75vh;
+  object-fit:contain;
+  background:#000;
+}
+
+@media(max-width:600px){
+  .ddn-video-frame{
+    border-radius:20px;
+  }
+}
+
 /* PROF AVATAR CUSTOMER SERVICE */
 
 .prof-avatar-box{
@@ -2166,6 +2193,28 @@ class="card news-card">
 <section class="section" id="ddn">
 <div class="container">
 
+<!-- VIDEYO DEVAN DEVAN NÈT (ranpli espas vid la) -->
+<div class="ddn-video-frame" id="ddnVideoFrame">
+<video
+id="ddnVideo"
+autoplay
+muted
+loop
+playsinline
+preload="metadata">
+<source
+src="./wowwww.mp4"
+type="video/mp4"
+onerror="document.getElementById('ddnVideoFrame').style.display='none';">
+</video>
+<button
+type="button"
+class="sound-btn"
+id="ddnSound">
+🔇 SON
+</button>
+</div>
+
 <div class="ddn-box">
 
 <h2>DEVAN DEVAN NÈT™</h2>
@@ -2771,6 +2820,33 @@ function updateHeroSoundButton(){
     soundButton.textContent="🔊 KOUTE SLOGAN AN";
 
   }
+
+}
+
+/* SON VIDEYO DEVAN DEVAN NÈT */
+
+var ddnVideo=
+document.getElementById("ddnVideo");
+
+var ddnSound=
+document.getElementById("ddnSound");
+
+if(ddnVideo && ddnSound){
+
+  ddnSound.addEventListener("click",function(){
+
+    ddnVideo.muted=!ddnVideo.muted;
+
+    if(!ddnVideo.muted){
+      ddnVideo.currentTime=0;
+    }
+
+    ddnVideo.play().catch(function(){});
+
+    ddnSound.textContent=
+    ddnVideo.muted ? "🔇 SON" : "🔊 SON";
+
+  });
 
 }
 
