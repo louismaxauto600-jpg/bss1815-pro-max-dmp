@@ -742,6 +742,80 @@ header{
   line-height:1.72;
 }
 
+.prof-ai{
+  margin-top:22px;
+  padding:18px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#050200;
+}
+
+.prof-talk-btn{
+  width:100%;
+}
+
+.prof-talk-btn.listening{
+  animation:profPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes profPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,121,0,.6);}
+  50%{box-shadow:0 0 0 12px rgba(255,121,0,0);}
+}
+
+.prof-ask{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.prof-ask input{
+  flex:1;
+  min-width:0;
+  min-height:48px;
+  padding:12px 14px;
+  border:1px solid var(--orange);
+  border-radius:14px;
+  background:#000;
+  color:#fff;
+  font-size:16px;
+}
+
+.prof-send{
+  min-width:52px;
+  border:0;
+  border-radius:14px;
+  background:var(--orange);
+  color:#000;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.prof-status{
+  margin-top:12px;
+  color:var(--apricot);
+  font-size:.8rem;
+  font-weight:900;
+  min-height:1.2em;
+}
+
+.prof-answer{
+  margin-top:12px;
+  padding:14px;
+  border-left:3px solid var(--orange);
+  border-radius:10px;
+  background:#0a0400;
+  line-height:1.6;
+  font-size:.9rem;
+  white-space:pre-wrap;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .prof-talk-btn.listening{
+    animation:none;
+  }
+}
+
 .prof-avatar-controls{
   display:flex;
   flex-wrap:wrap;
@@ -1751,6 +1825,32 @@ data-fr="↻ RECOMMENCER"
 data-en="↻ RESTART">
 ↻ REKÒMANSE
 </button>
+
+</div>
+
+<!-- PROF AVATAR AI: PALE OSWA EKRI (prof-avatar-ai.js) -->
+<div class="prof-ai">
+
+<button
+type="button"
+class="btn prof-talk-btn"
+id="talkToProfessor">
+🎤 PALE AK PWOFESÈ A
+</button>
+
+<form class="prof-ask" id="profAskForm">
+<input
+type="text"
+id="profQuestion"
+maxlength="600"
+autocomplete="off"
+placeholder="Ekri kesyon ou pou pwofesè a...">
+<button type="submit" class="prof-send" aria-label="Voye">➤</button>
+</form>
+
+<div class="prof-status" id="profStatus" aria-live="polite"></div>
+
+<div class="prof-answer" id="profAnswer" hidden aria-live="polite"></div>
 
 </div>
 
@@ -3801,6 +3901,9 @@ window.addEventListener("resize",function(){
 
 })();
 </script>
+
+<!-- PROF AVATAR AI -->
+<script src="./prof-avatar-ai.js" defer></script>
 
 </body>
 </html>
