@@ -7,19 +7,19 @@
    MICROPHONE / TEXT
    ↓
    NETLIFY FUNCTION
+   /.netlify/functions/professor
    ↓
    GEMINI
    ↓
    PROFESSOR VOICE
 
-   FIXES:
-   - Microphone pa rete kole sou "M AP KOUTE"
-   - Timeout otomatik
-   - onend reset
-   - Button listening animation
-   - Text form travay kòm fallback
-   - Pi bon language selection
-   - Pi bon error messages
+   DIAGNOSTIC VERSION
+   - Shows exact HTTP/backend error
+   - Detects 404 / 403 / 429 / 500
+   - Detects network/fetch failure
+   - Keeps microphone working
+   - Keeps text test available
+   - Does NOT expose API key
    ========================================================= */
 
 (function () {
@@ -49,6 +49,15 @@
 
 
   /* ======================================================
+     NETLIFY FUNCTION
+     ====================================================== */
+
+  var PROFESSOR_FUNCTION =
+    window.location.origin +
+    "/.netlify/functions/professor";
+
+
+  /* ======================================================
      SPEECH RECOGNITION
      ====================================================== */
 
@@ -72,20 +81,42 @@
      ====================================================== */
 
   function setStatus(text) {
-
     if (professorStatus) {
       professorStatus.textContent = text;
     }
-
   }
 
 
   function getPageLanguage() {
 
+    var activeButton =
+      document.querySelector(
+        ".lang-btn.active[data-lang]"
+      );
+
+    if (activeButton) {
+
+      var selected =
+        String(
+          activeButton.dataset.lang || ""
+        ).toLowerCase();
+
+      if (
+        selected === "fr" ||
+        selected === "en" ||
+        selected === "ht"
+      ) {
+        return selected;
+      }
+
+    }
+
+
     var lang =
       String(
         document.documentElement.lang || "ht"
       ).toLowerCase();
+
 
     if (lang.indexOf("fr") === 0) {
       return "fr";
@@ -96,32 +127,23 @@
     }
 
     return "ht";
-
   }
 
 
   function getRecognitionLanguage() {
 
-    var pageLanguage =
+    var language =
       getPageLanguage();
 
-    /*
-      Android / Chrome pa toujou byen sipòte ht-HT
-      nan Web Speech API.
-
-      Kreyòl la eseye ht-HT dabò.
-    */
-
-    if (pageLanguage === "fr") {
+    if (language === "fr") {
       return "fr-FR";
     }
 
-    if (pageLanguage === "en") {
+    if (language === "en") {
       return "en-US";
     }
 
     return "ht-HT";
-
   }
 
 
@@ -139,7 +161,6 @@
     }
 
     return "🎤 PALE AK PWOFESÈ A";
-
   }
 
 
@@ -157,7 +178,6 @@
 
     talkButton.textContent =
       getButtonDefaultText();
-
   }
 
 
@@ -170,9 +190,7 @@
       );
 
       listenTimer = null;
-
     }
-
   }
 
 
@@ -196,9 +214,7 @@
       talkButton.classList.remove(
         "listening"
       );
-
     }
-
   }
 
 
@@ -211,6 +227,7 @@
     var value =
       String(text || "")
         .toLowerCase();
+
 
     var creoleWords = [
       "mwen",
@@ -227,11 +244,9 @@
       "reponn",
       "eksplike",
       "pwofesè",
-      "tanpri",
-      "sa",
-      "ki",
-      "ou"
+      "tanpri"
     ];
+
 
     var frenchWords = [
       "bonjour",
@@ -242,11 +257,10 @@
       "explique",
       "quelle",
       "quel",
-      "est-ce",
       "professeur",
-      "merci",
-      "pouvez"
+      "merci"
     ];
+
 
     var spanishWords = [
       "hola",
@@ -254,60 +268,52 @@
       "cómo",
       "porque",
       "por qué",
-      "explica",
       "profesor",
       "gracias"
     ];
 
+
     if (
-      creoleWords.some(
-        function (word) {
-          return value.indexOf(word) !== -1;
-        }
-      )
+      creoleWords.some(function (word) {
+        return value.indexOf(word) !== -1;
+      })
     ) {
       return "ht-HT";
     }
 
+
     if (
-      frenchWords.some(
-        function (word) {
-          return value.indexOf(word) !== -1;
-        }
-      )
+      frenchWords.some(function (word) {
+        return value.indexOf(word) !== -1;
+      })
     ) {
       return "fr-FR";
     }
 
+
     if (
-      spanishWords.some(
-        function (word) {
-          return value.indexOf(word) !== -1;
-        }
-      )
+      spanishWords.some(function (word) {
+        return value.indexOf(word) !== -1;
+      })
     ) {
       return "es-US";
     }
 
-    if (
-      getPageLanguage() === "fr"
-    ) {
+
+    if (getPageLanguage() === "fr") {
       return "fr-FR";
     }
 
-    if (
-      getPageLanguage() === "ht"
-    ) {
+    if (getPageLanguage() === "ht") {
       return "ht-HT";
     }
 
     return "en-US";
-
   }
 
 
   /* ======================================================
-     VOICE SELECTION
+     VOICE
      ====================================================== */
 
   function findVoice(language) {
@@ -318,52 +324,49 @@
       return null;
     }
 
+
     var voices =
       window.speechSynthesis.getVoices();
+
 
     if (!voices.length) {
       return null;
     }
+
 
     var prefix =
       language
         .split("-")[0]
         .toLowerCase();
 
+
     var voice =
-      voices.find(
-        function (item) {
+      voices.find(function (item) {
 
-          return (
-            String(item.lang)
-              .toLowerCase() ===
-            language.toLowerCase()
-          );
+        return (
+          String(item.lang)
+            .toLowerCase() ===
+          language.toLowerCase()
+        );
 
-        }
-      );
+      });
+
 
     if (!voice) {
 
       voice =
-        voices.find(
-          function (item) {
+        voices.find(function (item) {
 
-            return (
-              String(item.lang)
-                .toLowerCase()
-                .indexOf(prefix) === 0
-            );
+          return (
+            String(item.lang)
+              .toLowerCase()
+              .indexOf(prefix) === 0
+          );
 
-          }
-        );
+        });
 
     }
 
-    /*
-      Sou anpil Android pa gen vwa Kreyòl.
-      French sèvi kòm fallback.
-    */
 
     if (
       !voice &&
@@ -371,39 +374,36 @@
     ) {
 
       voice =
-        voices.find(
-          function (item) {
+        voices.find(function (item) {
 
-            return (
-              String(item.lang)
-                .toLowerCase()
-                .indexOf("fr") === 0
-            );
+          return (
+            String(item.lang)
+              .toLowerCase()
+              .indexOf("fr") === 0
+          );
 
-          }
-        );
+        });
 
     }
+
 
     if (!voice) {
 
       voice =
-        voices.find(
-          function (item) {
+        voices.find(function (item) {
 
-            return (
-              String(item.lang)
-                .toLowerCase()
-                .indexOf("en") === 0
-            );
+          return (
+            String(item.lang)
+              .toLowerCase()
+              .indexOf("en") === 0
+          );
 
-          }
-        );
+        });
 
     }
 
-    return voice || voices[0];
 
+    return voice || voices[0];
   }
 
 
@@ -421,28 +421,32 @@
     ) {
 
       setStatus(
-        "⚠️ NAVIGATÈ SA A PA GEN SISTÈM VWA."
+        "⚠️ VOICE SYSTEM PA DISPONIB."
       );
 
       resetButton();
-
       return;
     }
 
+
     window.speechSynthesis.cancel();
+
 
     var speech =
       new SpeechSynthesisUtterance(
         answer
       );
 
+
     speech.lang = language;
     speech.rate = 0.92;
     speech.pitch = 1;
     speech.volume = 1;
 
+
     var voice =
       findVoice(language);
+
 
     if (voice) {
       speech.voice = voice;
@@ -458,14 +462,15 @@
           "🔊 PWOFESÈ A AP REPONN..."
         );
 
+
         if (talkButton) {
 
           talkButton.disabled = true;
 
           talkButton.textContent =
             "🔊 PWOFESÈ A AP PALE...";
-
         }
+
 
         if (professorVideo) {
 
@@ -479,8 +484,10 @@
 
             professorVideo.loop = true;
 
+
             var playPromise =
               professorVideo.play();
+
 
             if (
               playPromise &&
@@ -490,7 +497,6 @@
               playPromise.catch(
                 function () {}
               );
-
             }
 
           } catch (error) {
@@ -499,11 +505,8 @@
               "Professor video error:",
               error
             );
-
           }
-
         }
-
       };
 
 
@@ -512,6 +515,7 @@
 
         isSpeaking = false;
 
+
         if (professorVideo) {
 
           professorVideo.pause();
@@ -519,15 +523,15 @@
           professorVideo.currentTime = 0;
 
           professorVideo.loop = false;
-
         }
+
 
         setStatus(
           "🎤 POZE YON LÒT KESYON"
         );
 
-        resetButton();
 
+        resetButton();
       };
 
 
@@ -539,22 +543,24 @@
           event
         );
 
+
         isSpeaking = false;
+
 
         if (professorVideo) {
 
           professorVideo.pause();
 
           professorVideo.loop = false;
-
         }
+
 
         setStatus(
           "⚠️ PWOBLÈM AK VWA PWOFESÈ A."
         );
 
-        resetButton();
 
+        resetButton();
       };
 
 
@@ -571,19 +577,120 @@
         error
       );
 
+
       setStatus(
         "⚠️ PWOFESÈ A PA RIVE PALE."
       );
 
+
       resetButton();
-
     }
-
   }
 
 
   /* ======================================================
-     SEND QUESTION TO GEMINI
+     DISPLAY PRECISE CONNECTION ERROR
+     ====================================================== */
+
+  function showProfessorError(
+    status,
+    message
+  ) {
+
+    message =
+      String(message || "")
+        .trim();
+
+
+    if (status === 404) {
+
+      setStatus(
+        "⚠️ HTTP 404 — FUNCTION professor PA JWENN."
+      );
+
+      return;
+    }
+
+
+    if (status === 401) {
+
+      setStatus(
+        "⚠️ HTTP 401 — GEMINI AUTHORIZATION REFIZE."
+      );
+
+      return;
+    }
+
+
+    if (status === 403) {
+
+      setStatus(
+        "⚠️ HTTP 403 — GEMINI KEY / PERMISSION REFIZE."
+      );
+
+      return;
+    }
+
+
+    if (status === 429) {
+
+      setStatus(
+        "⚠️ HTTP 429 — GEMINI QUOTA / RATE LIMIT."
+      );
+
+      return;
+    }
+
+
+    if (status === 500) {
+
+      if (
+        message.indexOf(
+          "GEMINI_API_KEY"
+        ) !== -1
+      ) {
+
+        setStatus(
+          "⚠️ HTTP 500 — NETLIFY PA JWENN GEMINI_API_KEY."
+        );
+
+      } else {
+
+        setStatus(
+          "⚠️ HTTP 500 — " +
+          (message || "BACKEND ERROR.")
+        );
+      }
+
+      return;
+    }
+
+
+    if (status === 502) {
+
+      setStatus(
+        "⚠️ HTTP 502 — " +
+        (message || "GEMINI BACKEND ERROR.")
+      );
+
+      return;
+    }
+
+
+    setStatus(
+      "⚠️ HTTP " +
+      status +
+      " — " +
+      (
+        message ||
+        "PROFESSOR CONNECTION ERROR."
+      )
+    );
+  }
+
+
+  /* ======================================================
+     SEND QUESTION
      ====================================================== */
 
   async function askGemini(
@@ -593,6 +700,7 @@
     question =
       String(question || "")
         .trim();
+
 
     if (!question) {
 
@@ -608,8 +716,9 @@
 
     stopRecognition();
 
+
     setStatus(
-      "🧠 PWOFESÈ A AP REFLECHI..."
+      "🧠 KONEKSYON AK PWOFESÈ A..."
     );
 
 
@@ -618,96 +727,160 @@
       talkButton.disabled = true;
 
       talkButton.textContent =
-        "🧠 AP REFLECHI...";
-
+        "🧠 AP KONEKTE...";
     }
+
+
+    console.log(
+      "BSS1815 PROFESSOR ENDPOINT:",
+      PROFESSOR_FUNCTION
+    );
+
+
+    console.log(
+      "BSS1815 QUESTION:",
+      question
+    );
 
 
     try {
 
       var response =
         await fetch(
-          "/.netlify/functions/professor",
+          PROFESSOR_FUNCTION,
           {
-            method:"POST",
+            method: "POST",
 
-            headers:{
+            headers: {
               "Content-Type":
+                "application/json",
+
+              "Accept":
                 "application/json"
             },
 
-            body:JSON.stringify({
-              question:question
+            cache: "no-store",
+
+            credentials: "same-origin",
+
+            body: JSON.stringify({
+              question: question,
+              source: "bss1815-prof-avatar",
+              timestamp: Date.now()
             })
           }
         );
 
 
-      var text =
+      console.log(
+        "BSS1815 PROFESSOR HTTP:",
+        response.status
+      );
+
+
+      var responseText =
         await response.text();
 
 
-      var data;
+      console.log(
+        "BSS1815 PROFESSOR RAW RESPONSE:",
+        responseText
+      );
 
-      try {
 
-        data =
-          JSON.parse(text);
+      var data = null;
 
-      } catch (error) {
 
-        console.error(
-          "SERVER RESPONSE:",
-          text
-        );
+      if (responseText) {
 
-        throw new Error(
-          "Server la pa retounen JSON."
-        );
+        try {
 
+          data =
+            JSON.parse(
+              responseText
+            );
+
+        } catch (jsonError) {
+
+          console.error(
+            "PROFESSOR JSON ERROR:",
+            jsonError
+          );
+        }
       }
 
 
       if (!response.ok) {
 
-        throw new Error(
+        var backendMessage =
+
           data &&
           data.error
+
             ? data.error
-            : "Gemini connection failed."
+
+            : responseText ||
+              response.statusText ||
+              "Backend error";
+
+
+        console.error(
+          "PROFESSOR BACKEND ERROR:",
+          response.status,
+          backendMessage
         );
 
+
+        showProfessorError(
+          response.status,
+          backendMessage
+        );
+
+
+        resetButton();
+        return;
       }
 
 
       if (
         !data ||
+        data.success !== true ||
         !data.answer
       ) {
 
-        throw new Error(
-          "Gemini pa retounen okenn repons."
+        console.error(
+          "INVALID PROFESSOR RESPONSE:",
+          data
         );
 
+
+        setStatus(
+          "⚠️ HTTP " +
+          response.status +
+          " — BACKEND PA RETOUNEN REPONS PWOFESÈ A."
+        );
+
+
+        resetButton();
+        return;
       }
 
 
-      var language =
-        detectLanguage(question);
+      console.log(
+        "BSS1815 GEMINI SUCCESS"
+      );
 
-
-      /*
-        Repons lan pa bezwen parèt kòm tèks.
-        Nou kite answerBox hidden.
-      */
 
       if (answerBox) {
 
         answerBox.hidden = true;
 
         answerBox.textContent = "";
-
       }
+
+
+      var language =
+        detectLanguage(question);
 
 
       professorSpeak(
@@ -719,42 +892,41 @@
     } catch (error) {
 
       console.error(
-        "PROFESSOR AI ERROR:",
+        "PROFESSOR FETCH ERROR:",
         error
       );
 
-      var message =
+
+      var errorMessage =
         String(
           error &&
           error.message
             ? error.message
-            : ""
+            : error
         );
 
 
       if (
-        message.indexOf(
-          "GEMINI_API_KEY"
-        ) !== -1
+        errorMessage
+          .toLowerCase()
+          .indexOf("failed to fetch") !== -1
       ) {
 
         setStatus(
-          "⚠️ GEMINI API KEY PA DISPONIB SOU NETLIFY."
+          "⚠️ NETWORK ERROR — REQUEST LA PA RIVE NAN NETLIFY FUNCTION."
         );
 
       } else {
 
         setStatus(
-          "⚠️ PWOFESÈ A PA RIVE KONEKTE AK GEMINI."
+          "⚠️ FETCH ERROR — " +
+          errorMessage
         );
-
       }
 
 
       resetButton();
-
     }
-
   }
 
 
@@ -771,22 +943,19 @@
       ) {
 
         window.speechSynthesis.cancel();
-
       }
 
       isSpeaking = false;
-
     }
 
 
     if (!SpeechRecognition) {
 
       setStatus(
-        "⚠️ NAVIGATÈ SA A PA SIPÒTE MICROPHONE VOICE RECOGNITION."
+        "⚠️ NAVIGATÈ SA A PA SIPÒTE VOICE RECOGNITION."
       );
 
       resetButton();
-
       return;
     }
 
@@ -800,7 +969,6 @@
       );
 
       resetButton();
-
       return;
     }
 
@@ -816,11 +984,16 @@
       getRecognitionLanguage();
 
 
-    recognition.continuous = false;
+    recognition.continuous =
+      false;
 
-    recognition.interimResults = false;
 
-    recognition.maxAlternatives = 3;
+    recognition.interimResults =
+      false;
+
+
+    recognition.maxAlternatives =
+      3;
 
 
     recognition.onstart =
@@ -830,6 +1003,7 @@
 
         receivedResult = false;
 
+
         setStatus(
           "🎤 M AP KOUTE KESYON OU..."
         );
@@ -837,7 +1011,8 @@
 
         if (talkButton) {
 
-          talkButton.disabled = false;
+          talkButton.disabled =
+            false;
 
           talkButton.classList.add(
             "listening"
@@ -845,7 +1020,6 @@
 
           talkButton.textContent =
             "🎤 M AP KOUTE...";
-
         }
 
 
@@ -864,17 +1038,15 @@
                 stopRecognition();
 
                 setStatus(
-                  "🎤 MWEN PA T TANDE KESYON AN. PEZE MICROPHONE LA E ESEYE ANKÒ."
+                  "🎤 MWEN PA T TANDE KESYON AN. ESEYE ANKÒ."
                 );
 
                 resetButton();
-
               }
 
             },
             LISTEN_TIMEOUT
           );
-
       };
 
 
@@ -882,9 +1054,8 @@
       function () {
 
         setStatus(
-          "🎙️ MWEN TANDE W. KONTINYE PALE..."
+          "🎙️ MWEN TANDE W..."
         );
-
       };
 
 
@@ -892,6 +1063,7 @@
       function (event) {
 
         receivedResult = true;
+
 
         stopListenTimer();
 
@@ -919,11 +1091,8 @@
                 event.results[i][0]
                   .transcript +
                 " ";
-
             }
-
           }
-
         }
 
 
@@ -942,20 +1111,17 @@
           stopRecognition();
 
           setStatus(
-            "🎤 MWEN PA T KONPRANN KESYON AN. ESEYE ANKÒ."
+            "🎤 MWEN PA T KONPRANN KESYON AN."
           );
 
           resetButton();
-
           return;
-
         }
 
 
         askGemini(
           transcript
         );
-
       };
 
 
@@ -979,8 +1145,9 @@
         ) {
 
           setStatus(
-            "🎤 BAY SIT LA PÈMISYON POU ITILIZE MICROPHONE LA."
+            "🎤 BAY SIT LA PÈMISYON MICROPHONE."
           );
+
 
         } else if (
           event.error ===
@@ -988,8 +1155,9 @@
         ) {
 
           setStatus(
-            "⚠️ MICROPHONE LA PA DISPONIB SOU APARÈY LA."
+            "⚠️ MICROPHONE LA PA DISPONIB."
           );
+
 
         } else if (
           event.error ===
@@ -997,8 +1165,9 @@
         ) {
 
           setStatus(
-            "🎤 MWEN PA T TANDE KESYON AN. ESEYE ANKÒ."
+            "🎤 MWEN PA T TANDE KESYON AN."
           );
+
 
         } else if (
           event.error ===
@@ -1006,8 +1175,9 @@
         ) {
 
           setStatus(
-            "⚠️ VOICE RECOGNITION PA RIVE KONEKTE AK REZO A."
+            "⚠️ VOICE RECOGNITION NETWORK ERROR."
           );
+
 
         } else if (
           event.error ===
@@ -1015,29 +1185,20 @@
         ) {
 
           setStatus(
-            "⚠️ LANG MICROPHONE SA A PA SIPÒTE. CHWAZI ENG OSWA FRA E ESEYE ANKÒ."
+            "⚠️ LANG MICROPHONE SA A PA SIPÒTE. ESEYE ENG OSWA FRA."
           );
 
-        } else if (
-          event.error ===
-          "aborted"
-        ) {
-
-          setStatus(
-            "🎤 MICROPHONE LA KANPE."
-          );
 
         } else {
 
           setStatus(
-            "⚠️ MICROPHONE LA PA RIVE TANDE KESYON AN."
+            "⚠️ MICROPHONE ERROR — " +
+            event.error
           );
-
         }
 
 
         resetButton();
-
       };
 
 
@@ -1054,36 +1215,13 @@
           talkButton.classList.remove(
             "listening"
           );
-
         }
 
-
-        /*
-          FIX PRINCIPAL:
-          Ansyen kòd la te kite bouton an
-          kole sou M AP KOUTE si pa gen result.
-        */
 
         if (!receivedResult) {
 
-          if (
-            professorStatus &&
-            professorStatus.textContent
-              .indexOf(
-                "AP REFLECHI"
-              ) === -1
-          ) {
-
-            setStatus(
-              "🎤 PEZE MICROPHONE LA POU POZE KESYON OU."
-            );
-
-          }
-
           resetButton();
-
         }
-
       };
 
 
@@ -1098,16 +1236,17 @@
         error
       );
 
+
       isListening = false;
 
+
       setStatus(
-        "⚠️ MICROPHONE LA PA KAPAB KÒMANSE. ESEYE ANKÒ."
+        "⚠️ MICROPHONE LA PA KAPAB KÒMANSE."
       );
 
+
       resetButton();
-
     }
-
   }
 
 
@@ -1119,18 +1258,13 @@
 
     talkButton.addEventListener(
       "click",
-      function () {
-
-        startListening();
-
-      }
+      startListening
     );
-
   }
 
 
   /* ======================================================
-     TEXT FALLBACK
+     TEXT TEST
      ====================================================== */
 
   if (
@@ -1154,26 +1288,23 @@
         if (!question) {
 
           setStatus(
-            "Ekri oswa pale yon kestyon."
+            "Ekri yon kestyon pou teste koneksyon an."
           );
 
           return;
-
         }
 
 
         askGemini(
           question
         );
-
       }
     );
-
   }
 
 
   /* ======================================================
-     LOAD AVAILABLE VOICES
+     VOICES
      ====================================================== */
 
   if (
@@ -1190,9 +1321,7 @@
 
         window.speechSynthesis
           .getVoices();
-
       };
-
   }
 
 
@@ -1204,11 +1333,18 @@
     "🎤 PEZE MICROPHONE LA POU PALE AK PWOFESÈ A."
   );
 
+
   resetButton();
 
 
   console.log(
     "BSS1815 PROF AVATAR AI READY"
+  );
+
+
+  console.log(
+    "PROFESSOR FUNCTION:",
+    PROFESSOR_FUNCTION
   );
 
 })();
