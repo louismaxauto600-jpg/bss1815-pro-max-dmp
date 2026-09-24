@@ -4,95 +4,236 @@
    FILE: prof-avatar-ai.js
 
    FLOW:
-   MICROPHONE → GEMINI → VOICE
+   MICROPHONE / TEXT
+   ↓
+   NETLIFY FUNCTION
+   ↓
+   GEMINI
+   ↓
+   PROFESSOR VOICE
+
+   FIXES:
+   - Microphone pa rete kole sou "M AP KOUTE"
+   - Timeout otomatik
+   - onend reset
+   - Button listening animation
+   - Text form travay kòm fallback
+   - Pi bon language selection
+   - Pi bon error messages
    ========================================================= */
 
-(() => {
+(function () {
   "use strict";
 
-  /* =======================================================
+  /* ======================================================
      ELEMENTS
-     ======================================================= */
+     ====================================================== */
 
-  const professorVideo =
+  var professorVideo =
     document.getElementById("profAvatarVideo");
 
-  const talkButton =
+  var talkButton =
     document.getElementById("talkToProfessor");
 
-  const professorStatus =
+  var professorStatus =
     document.getElementById("profStatus");
 
+  var askForm =
+    document.getElementById("profAskForm");
 
-  /* =======================================================
-     BROWSER SPEECH RECOGNITION
-     ======================================================= */
+  var questionInput =
+    document.getElementById("profQuestion");
 
-  const SpeechRecognition =
+  var answerBox =
+    document.getElementById("profAnswer");
+
+
+  /* ======================================================
+     SPEECH RECOGNITION
+     ====================================================== */
+
+  var SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
+  var recognition = null;
 
-  let recognition = null;
+  var isListening = false;
+  var isSpeaking = false;
+  var receivedResult = false;
 
-  let isListening = false;
+  var listenTimer = null;
 
-  let isSpeaking = false;
+  var LISTEN_TIMEOUT = 15000;
 
 
-  /* =======================================================
-     STATUS
-     ======================================================= */
+  /* ======================================================
+     HELPERS
+     ====================================================== */
 
   function setStatus(text) {
+
     if (professorStatus) {
       professorStatus.textContent = text;
     }
+
   }
 
 
-  /* =======================================================
-     BUTTON
-     ======================================================= */
+  function getPageLanguage() {
+
+    var lang =
+      String(
+        document.documentElement.lang || "ht"
+      ).toLowerCase();
+
+    if (lang.indexOf("fr") === 0) {
+      return "fr";
+    }
+
+    if (lang.indexOf("en") === 0) {
+      return "en";
+    }
+
+    return "ht";
+
+  }
+
+
+  function getRecognitionLanguage() {
+
+    var pageLanguage =
+      getPageLanguage();
+
+    /*
+      Android / Chrome pa toujou byen sipòte ht-HT
+      nan Web Speech API.
+
+      Kreyòl la eseye ht-HT dabò.
+    */
+
+    if (pageLanguage === "fr") {
+      return "fr-FR";
+    }
+
+    if (pageLanguage === "en") {
+      return "en-US";
+    }
+
+    return "ht-HT";
+
+  }
+
+
+  function getButtonDefaultText() {
+
+    var language =
+      getPageLanguage();
+
+    if (language === "fr") {
+      return "🎤 PARLER AU PROFESSEUR";
+    }
+
+    if (language === "en") {
+      return "🎤 TALK TO THE PROFESSOR";
+    }
+
+    return "🎤 PALE AK PWOFESÈ A";
+
+  }
+
 
   function resetButton() {
+
     if (!talkButton) {
       return;
     }
 
     talkButton.disabled = false;
 
+    talkButton.classList.remove(
+      "listening"
+    );
+
     talkButton.textContent =
-      "🎤 PALE AK PWOFESÈ A";
+      getButtonDefaultText();
+
   }
 
 
-  /* =======================================================
+  function stopListenTimer() {
+
+    if (listenTimer) {
+
+      clearTimeout(
+        listenTimer
+      );
+
+      listenTimer = null;
+
+    }
+
+  }
+
+
+  function stopRecognition() {
+
+    stopListenTimer();
+
+    if (recognition) {
+
+      try {
+        recognition.stop();
+      } catch (error) {}
+
+    }
+
+    recognition = null;
+    isListening = false;
+
+    if (talkButton) {
+
+      talkButton.classList.remove(
+        "listening"
+      );
+
+    }
+
+  }
+
+
+  /* ======================================================
      LANGUAGE DETECTION
-     ======================================================= */
+     ====================================================== */
 
   function detectLanguage(text) {
-    const value =
-      String(text || "").toLowerCase();
 
+    var value =
+      String(text || "")
+        .toLowerCase();
 
-    const creoleWords = [
+    var creoleWords = [
       "mwen",
       "kisa",
       "kijan",
       "poukisa",
       "eske",
+      "èske",
       "pou",
       "avèk",
       "kote",
       "nan",
       "yon",
       "reponn",
-      "eksplike"
+      "eksplike",
+      "pwofesè",
+      "tanpri",
+      "sa",
+      "ki",
+      "ou"
     ];
 
-
-    const frenchWords = [
+    var frenchWords = [
       "bonjour",
       "comment",
       "pourquoi",
@@ -102,11 +243,12 @@
       "quelle",
       "quel",
       "est-ce",
-      "professeur"
+      "professeur",
+      "merci",
+      "pouvez"
     ];
 
-
-    const spanishWords = [
+    var spanishWords = [
       "hola",
       "como",
       "cómo",
@@ -117,114 +259,157 @@
       "gracias"
     ];
 
-
     if (
       creoleWords.some(
-        word => value.includes(word)
+        function (word) {
+          return value.indexOf(word) !== -1;
+        }
       )
     ) {
       return "ht-HT";
     }
 
-
     if (
       frenchWords.some(
-        word => value.includes(word)
+        function (word) {
+          return value.indexOf(word) !== -1;
+        }
       )
     ) {
       return "fr-FR";
     }
 
-
     if (
       spanishWords.some(
-        word => value.includes(word)
+        function (word) {
+          return value.indexOf(word) !== -1;
+        }
       )
     ) {
       return "es-US";
     }
 
+    if (
+      getPageLanguage() === "fr"
+    ) {
+      return "fr-FR";
+    }
+
+    if (
+      getPageLanguage() === "ht"
+    ) {
+      return "ht-HT";
+    }
 
     return "en-US";
+
   }
 
 
-  /* =======================================================
-     FIND VOICE
-     ======================================================= */
+  /* ======================================================
+     VOICE SELECTION
+     ====================================================== */
 
   function findVoice(language) {
-    const voices =
-      window.speechSynthesis.getVoices();
 
+    if (
+      !("speechSynthesis" in window)
+    ) {
+      return null;
+    }
+
+    var voices =
+      window.speechSynthesis.getVoices();
 
     if (!voices.length) {
       return null;
     }
 
-
-    const languagePrefix =
+    var prefix =
       language
         .split("-")[0]
         .toLowerCase();
 
-
-    let voice =
+    var voice =
       voices.find(
-        item =>
-          item.lang
-            .toLowerCase() ===
-          language.toLowerCase()
+        function (item) {
+
+          return (
+            String(item.lang)
+              .toLowerCase() ===
+            language.toLowerCase()
+          );
+
+        }
       );
 
-
     if (!voice) {
+
       voice =
         voices.find(
-          item =>
-            item.lang
-              .toLowerCase()
-              .startsWith(
-                languagePrefix
-              )
+          function (item) {
+
+            return (
+              String(item.lang)
+                .toLowerCase()
+                .indexOf(prefix) === 0
+            );
+
+          }
         );
+
     }
 
-
     /*
-      FALLBACK POU KREYÒL
+      Sou anpil Android pa gen vwa Kreyòl.
+      French sèvi kòm fallback.
     */
 
     if (
       !voice &&
       language === "ht-HT"
     ) {
+
       voice =
         voices.find(
-          item =>
-            item.lang
-              .toLowerCase()
-              .startsWith("fr")
+          function (item) {
+
+            return (
+              String(item.lang)
+                .toLowerCase()
+                .indexOf("fr") === 0
+            );
+
+          }
         );
+
     }
-
-
-    /*
-      FINAL FALLBACK
-    */
 
     if (!voice) {
-      voice = voices[0];
+
+      voice =
+        voices.find(
+          function (item) {
+
+            return (
+              String(item.lang)
+                .toLowerCase()
+                .indexOf("en") === 0
+            );
+
+          }
+        );
+
     }
 
+    return voice || voices[0];
 
-    return voice;
   }
 
 
-  /* =======================================================
-     PROFESSOR SPEAK
-     ======================================================= */
+  /* ======================================================
+     PROFESSOR SPEAKS
+     ====================================================== */
 
   function professorSpeak(
     answer,
@@ -234,8 +419,185 @@
     if (
       !("speechSynthesis" in window)
     ) {
+
       setStatus(
-        "Vwa pa disponib sou navigatè sa a."
+        "⚠️ NAVIGATÈ SA A PA GEN SISTÈM VWA."
+      );
+
+      resetButton();
+
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    var speech =
+      new SpeechSynthesisUtterance(
+        answer
+      );
+
+    speech.lang = language;
+    speech.rate = 0.92;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    var voice =
+      findVoice(language);
+
+    if (voice) {
+      speech.voice = voice;
+    }
+
+
+    speech.onstart =
+      function () {
+
+        isSpeaking = true;
+
+        setStatus(
+          "🔊 PWOFESÈ A AP REPONN..."
+        );
+
+        if (talkButton) {
+
+          talkButton.disabled = true;
+
+          talkButton.textContent =
+            "🔊 PWOFESÈ A AP PALE...";
+
+        }
+
+        if (professorVideo) {
+
+          try {
+
+            professorVideo.pause();
+
+            professorVideo.currentTime = 0;
+
+            professorVideo.muted = true;
+
+            professorVideo.loop = true;
+
+            var playPromise =
+              professorVideo.play();
+
+            if (
+              playPromise &&
+              playPromise.catch
+            ) {
+
+              playPromise.catch(
+                function () {}
+              );
+
+            }
+
+          } catch (error) {
+
+            console.log(
+              "Professor video error:",
+              error
+            );
+
+          }
+
+        }
+
+      };
+
+
+    speech.onend =
+      function () {
+
+        isSpeaking = false;
+
+        if (professorVideo) {
+
+          professorVideo.pause();
+
+          professorVideo.currentTime = 0;
+
+          professorVideo.loop = false;
+
+        }
+
+        setStatus(
+          "🎤 POZE YON LÒT KESYON"
+        );
+
+        resetButton();
+
+      };
+
+
+    speech.onerror =
+      function (event) {
+
+        console.error(
+          "VOICE ERROR:",
+          event
+        );
+
+        isSpeaking = false;
+
+        if (professorVideo) {
+
+          professorVideo.pause();
+
+          professorVideo.loop = false;
+
+        }
+
+        setStatus(
+          "⚠️ PWOBLÈM AK VWA PWOFESÈ A."
+        );
+
+        resetButton();
+
+      };
+
+
+    try {
+
+      window.speechSynthesis.speak(
+        speech
+      );
+
+    } catch (error) {
+
+      console.error(
+        "SPEECH ERROR:",
+        error
+      );
+
+      setStatus(
+        "⚠️ PWOFESÈ A PA RIVE PALE."
+      );
+
+      resetButton();
+
+    }
+
+  }
+
+
+  /* ======================================================
+     SEND QUESTION TO GEMINI
+     ====================================================== */
+
+  async function askGemini(
+    question
+  ) {
+
+    question =
+      String(question || "")
+        .trim();
+
+    if (!question) {
+
+      setStatus(
+        "🎤 MWEN PA JWENN KESYON AN."
       );
 
       resetButton();
@@ -244,145 +606,7 @@
     }
 
 
-    window.speechSynthesis.cancel();
-
-
-    const speech =
-      new SpeechSynthesisUtterance(
-        answer
-      );
-
-
-    speech.lang = language;
-
-    speech.rate = 0.92;
-
-    speech.pitch = 1;
-
-    speech.volume = 1;
-
-
-    const voice =
-      findVoice(language);
-
-
-    if (voice) {
-      speech.voice = voice;
-    }
-
-
-    speech.onstart = async () => {
-
-      isSpeaking = true;
-
-
-      setStatus(
-        "🔊 PWOFESÈ A AP REPONN..."
-      );
-
-
-      if (talkButton) {
-        talkButton.disabled = true;
-
-        talkButton.textContent =
-          "🔊 PWOFESÈ A AP PALE...";
-      }
-
-
-      /*
-        JWE VIDEO AVATAR LA
-        PANDAN REPONS LAN AP PALE
-      */
-
-      if (professorVideo) {
-
-        try {
-
-          professorVideo.currentTime = 0;
-
-          professorVideo.muted = true;
-
-          professorVideo.loop = true;
-
-          await professorVideo.play();
-
-        } catch (error) {
-
-          console.log(
-            "Professor video:",
-            error
-          );
-
-        }
-
-      }
-
-    };
-
-
-    speech.onend = () => {
-
-      isSpeaking = false;
-
-
-      if (professorVideo) {
-
-        professorVideo.pause();
-
-        professorVideo.currentTime = 0;
-
-      }
-
-
-      setStatus(
-        "🎤 POZE YON LÒT KESYON"
-      );
-
-
-      resetButton();
-
-    };
-
-
-    speech.onerror = event => {
-
-      isSpeaking = false;
-
-
-      console.error(
-        "VOICE ERROR:",
-        event
-      );
-
-
-      if (professorVideo) {
-        professorVideo.pause();
-      }
-
-
-      setStatus(
-        "⚠️ PWOBLÈM AK VWA A."
-      );
-
-
-      resetButton();
-
-    };
-
-
-    window.speechSynthesis.speak(
-      speech
-    );
-  }
-
-
-  /* =======================================================
-     SEND QUESTION TO GEMINI
-     ======================================================= */
-
-  async function askGemini(
-    question
-  ) {
+    stopRecognition();
 
     setStatus(
       "🧠 PWOFESÈ A AP REFLECHI..."
@@ -401,33 +625,41 @@
 
     try {
 
-      const response =
+      var response =
         await fetch(
           "/.netlify/functions/professor",
           {
-            method: "POST",
+            method:"POST",
 
-            headers: {
+            headers:{
               "Content-Type":
                 "application/json"
             },
 
-            body: JSON.stringify({
-              question: question
+            body:JSON.stringify({
+              question:question
             })
           }
         );
 
 
-      let data;
+      var text =
+        await response.text();
 
+
+      var data;
 
       try {
 
         data =
-          await response.json();
+          JSON.parse(text);
 
-      } catch {
+      } catch (error) {
+
+        console.error(
+          "SERVER RESPONSE:",
+          text
+        );
 
         throw new Error(
           "Server la pa retounen JSON."
@@ -439,36 +671,44 @@
       if (!response.ok) {
 
         throw new Error(
-          data?.error ||
-          "Gemini connection failed."
+          data &&
+          data.error
+            ? data.error
+            : "Gemini connection failed."
         );
 
       }
 
 
-      if (!data.answer) {
+      if (
+        !data ||
+        !data.answer
+      ) {
 
         throw new Error(
-          "Gemini pa retounen repons."
+          "Gemini pa retounen okenn repons."
         );
 
       }
 
 
-      /*
-        DETEKTE LANG KESYON AN
-      */
-
-      const language =
+      var language =
         detectLanguage(question);
 
 
       /*
-        REPONS LAN PA PARÈT
-        KÒM TÈKS.
-
-        LI ALE DIRÈK NAN VWA.
+        Repons lan pa bezwen parèt kòm tèks.
+        Nou kite answerBox hidden.
       */
+
+      if (answerBox) {
+
+        answerBox.hidden = true;
+
+        answerBox.textContent = "";
+
+      }
+
 
       professorSpeak(
         data.answer,
@@ -483,10 +723,32 @@
         error
       );
 
+      var message =
+        String(
+          error &&
+          error.message
+            ? error.message
+            : ""
+        );
 
-      setStatus(
-        "⚠️ PWOFESÈ A PA RIVE KONEKTE AK GEMINI."
-      );
+
+      if (
+        message.indexOf(
+          "GEMINI_API_KEY"
+        ) !== -1
+      ) {
+
+        setStatus(
+          "⚠️ GEMINI API KEY PA DISPONIB SOU NETLIFY."
+        );
+
+      } else {
+
+        setStatus(
+          "⚠️ PWOFESÈ A PA RIVE KONEKTE AK GEMINI."
+        );
+
+      }
 
 
       resetButton();
@@ -496,15 +758,21 @@
   }
 
 
-  /* =======================================================
+  /* ======================================================
      START MICROPHONE
-     ======================================================= */
+     ====================================================== */
 
   function startListening() {
 
     if (isSpeaking) {
 
-      window.speechSynthesis.cancel();
+      if (
+        "speechSynthesis" in window
+      ) {
+
+        window.speechSynthesis.cancel();
+
+      }
 
       isSpeaking = false;
 
@@ -517,126 +785,192 @@
         "⚠️ NAVIGATÈ SA A PA SIPÒTE MICROPHONE VOICE RECOGNITION."
       );
 
+      resetButton();
+
       return;
     }
 
 
     if (isListening) {
+
+      stopRecognition();
+
+      setStatus(
+        "🎤 MICROPHONE LA KANPE."
+      );
+
+      resetButton();
+
       return;
     }
+
+
+    receivedResult = false;
 
 
     recognition =
       new SpeechRecognition();
 
 
-    /*
-      DEFAULT MICROPHONE LANGUAGE.
-
-      Gemini ap reponn nan lang
-      kestyon an.
-    */
-
     recognition.lang =
-      document.documentElement.lang === "fr"
-        ? "fr-FR"
-        : document.documentElement.lang === "en"
-          ? "en-US"
-          : "ht-HT";
+      getRecognitionLanguage();
 
 
     recognition.continuous = false;
 
     recognition.interimResults = false;
 
-    recognition.maxAlternatives = 1;
+    recognition.maxAlternatives = 3;
 
 
-    recognition.onstart = () => {
+    recognition.onstart =
+      function () {
 
-      isListening = true;
+        isListening = true;
+
+        receivedResult = false;
+
+        setStatus(
+          "🎤 M AP KOUTE KESYON OU..."
+        );
 
 
-      setStatus(
-        "🎤 M AP KOUTE KESYON OU..."
-      );
+        if (talkButton) {
+
+          talkButton.disabled = false;
+
+          talkButton.classList.add(
+            "listening"
+          );
+
+          talkButton.textContent =
+            "🎤 M AP KOUTE...";
+
+        }
 
 
-      if (talkButton) {
+        stopListenTimer();
 
-        talkButton.disabled = true;
 
-        talkButton.textContent =
-          "🎤 M AP KOUTE...";
+        listenTimer =
+          setTimeout(
+            function () {
 
-      }
+              if (
+                isListening &&
+                !receivedResult
+              ) {
 
-    };
+                stopRecognition();
+
+                setStatus(
+                  "🎤 MWEN PA T TANDE KESYON AN. PEZE MICROPHONE LA E ESEYE ANKÒ."
+                );
+
+                resetButton();
+
+              }
+
+            },
+            LISTEN_TIMEOUT
+          );
+
+      };
+
+
+    recognition.onspeechstart =
+      function () {
+
+        setStatus(
+          "🎙️ MWEN TANDE W. KONTINYE PALE..."
+        );
+
+      };
 
 
     recognition.onresult =
-      event => {
+      function (event) {
 
-        isListening = false;
+        receivedResult = true;
 
-
-        const result =
-          event.results[0];
+        stopListenTimer();
 
 
-        if (!result) {
+        var transcript = "";
 
-          setStatus(
-            "Mwen pa t tande kestyon an."
-          );
 
-          resetButton();
+        if (
+          event.results &&
+          event.results.length
+        ) {
 
-          return;
+          for (
+            var i = 0;
+            i < event.results.length;
+            i++
+          ) {
+
+            if (
+              event.results[i] &&
+              event.results[i][0]
+            ) {
+
+              transcript +=
+                event.results[i][0]
+                  .transcript +
+                " ";
+
+            }
+
+          }
+
         }
 
 
-        const question =
-          result[0]
-            .transcript
-            .trim();
-
-
-        if (!question) {
-
-          setStatus(
-            "Mwen pa t tande kestyon an."
-          );
-
-          resetButton();
-
-          return;
-        }
+        transcript =
+          transcript.trim();
 
 
         console.log(
           "STUDENT QUESTION:",
-          question
+          transcript
         );
 
 
+        if (!transcript) {
+
+          stopRecognition();
+
+          setStatus(
+            "🎤 MWEN PA T KONPRANN KESYON AN. ESEYE ANKÒ."
+          );
+
+          resetButton();
+
+          return;
+
+        }
+
+
         askGemini(
-          question
+          transcript
         );
 
       };
 
 
     recognition.onerror =
-      event => {
-
-        isListening = false;
-
+      function (event) {
 
         console.error(
           "MICROPHONE ERROR:",
           event.error
         );
+
+
+        stopListenTimer();
+
+        isListening = false;
 
 
         if (
@@ -648,9 +982,16 @@
             "🎤 BAY SIT LA PÈMISYON POU ITILIZE MICROPHONE LA."
           );
 
-        }
+        } else if (
+          event.error ===
+          "audio-capture"
+        ) {
 
-        else if (
+          setStatus(
+            "⚠️ MICROPHONE LA PA DISPONIB SOU APARÈY LA."
+          );
+
+        } else if (
           event.error ===
           "no-speech"
         ) {
@@ -659,12 +1000,37 @@
             "🎤 MWEN PA T TANDE KESYON AN. ESEYE ANKÒ."
           );
 
-        }
-
-        else {
+        } else if (
+          event.error ===
+          "network"
+        ) {
 
           setStatus(
-            "⚠️ MICROPHONE LA PA T KAPAB TANDE KESYON AN."
+            "⚠️ VOICE RECOGNITION PA RIVE KONEKTE AK REZO A."
+          );
+
+        } else if (
+          event.error ===
+          "language-not-supported"
+        ) {
+
+          setStatus(
+            "⚠️ LANG MICROPHONE SA A PA SIPÒTE. CHWAZI ENG OSWA FRA E ESEYE ANKÒ."
+          );
+
+        } else if (
+          event.error ===
+          "aborted"
+        ) {
+
+          setStatus(
+            "🎤 MICROPHONE LA KANPE."
+          );
+
+        } else {
+
+          setStatus(
+            "⚠️ MICROPHONE LA PA RIVE TANDE KESYON AN."
           );
 
         }
@@ -675,11 +1041,50 @@
       };
 
 
-    recognition.onend = () => {
+    recognition.onend =
+      function () {
 
-      isListening = false;
+        stopListenTimer();
 
-    };
+        isListening = false;
+
+
+        if (talkButton) {
+
+          talkButton.classList.remove(
+            "listening"
+          );
+
+        }
+
+
+        /*
+          FIX PRINCIPAL:
+          Ansyen kòd la te kite bouton an
+          kole sou M AP KOUTE si pa gen result.
+        */
+
+        if (!receivedResult) {
+
+          if (
+            professorStatus &&
+            professorStatus.textContent
+              .indexOf(
+                "AP REFLECHI"
+              ) === -1
+          ) {
+
+            setStatus(
+              "🎤 PEZE MICROPHONE LA POU POZE KESYON OU."
+            );
+
+          }
+
+          resetButton();
+
+        }
+
+      };
 
 
     try {
@@ -693,9 +1098,11 @@
         error
       );
 
-
       isListening = false;
 
+      setStatus(
+        "⚠️ MICROPHONE LA PA KAPAB KÒMANSE. ESEYE ANKÒ."
+      );
 
       resetButton();
 
@@ -704,23 +1111,70 @@
   }
 
 
-  /* =======================================================
-     CONNECT BUTTON
-     ======================================================= */
+  /* ======================================================
+     MICROPHONE BUTTON
+     ====================================================== */
 
   if (talkButton) {
 
     talkButton.addEventListener(
       "click",
-      startListening
+      function () {
+
+        startListening();
+
+      }
     );
 
   }
 
 
-  /* =======================================================
-     LOAD DEVICE VOICES
-     ======================================================= */
+  /* ======================================================
+     TEXT FALLBACK
+     ====================================================== */
+
+  if (
+    askForm &&
+    questionInput
+  ) {
+
+    askForm.addEventListener(
+      "submit",
+      function (event) {
+
+        event.preventDefault();
+
+
+        var question =
+          String(
+            questionInput.value || ""
+          ).trim();
+
+
+        if (!question) {
+
+          setStatus(
+            "Ekri oswa pale yon kestyon."
+          );
+
+          return;
+
+        }
+
+
+        askGemini(
+          question
+        );
+
+      }
+    );
+
+  }
+
+
+  /* ======================================================
+     LOAD AVAILABLE VOICES
+     ====================================================== */
 
   if (
     "speechSynthesis" in window
@@ -731,7 +1185,8 @@
 
 
     window.speechSynthesis
-      .onvoiceschanged = () => {
+      .onvoiceschanged =
+      function () {
 
         window.speechSynthesis
           .getVoices();
@@ -741,13 +1196,15 @@
   }
 
 
-  /* =======================================================
-     READY
-     ======================================================= */
+  /* ======================================================
+     INITIAL STATE
+     ====================================================== */
 
   setStatus(
-    "🎤 PALE AK PWOFESÈ A"
+    "🎤 PEZE MICROPHONE LA POU PALE AK PWOFESÈ A."
   );
+
+  resetButton();
 
 
   console.log(
