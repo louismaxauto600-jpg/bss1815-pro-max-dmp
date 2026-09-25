@@ -1,1350 +1,400 @@
-/* =========================================================
+/* prof-avatar-ai.js
+   =========================================================
    BSS1815 PRO-MAX DMP
-   PROF AVATAR AI
-   FILE: prof-avatar-ai.js
-
-   FLOW:
-   MICROPHONE / TEXT
-   ↓
-   NETLIFY FUNCTION
-   /.netlify/functions/professor
-   ↓
-   GEMINI
-   ↓
-   PROFESSOR VOICE
-
-   DIAGNOSTIC VERSION
-   - Shows exact HTTP/backend error
-   - Detects 404 / 403 / 429 / 500
-   - Detects network/fetch failure
-   - Keeps microphone working
-   - Keeps text test available
-   - Does NOT expose API key
+   PROF AVATAR AI — VOICE TO VOICE (+ ekri pou kreyòl)
    ========================================================= */
 
 (function () {
   "use strict";
 
-  /* ======================================================
+  const BSS_PROF_AI = {
+    videoId: "profAvatarVideo",
+    talkButtonId: "talkToProfessor",
+    statusId: "profStatus",
+    formId: "profAskForm",
+    inputId: "profQuestion",
+    answerId: "profAnswer",
+
+    // Fonksyon Netlify: netlify/functions/professor.js
+    endpoint: "/.netlify/functions/professor",
+
+    listening: false,
+    busy: false,
+    recognition: null,
+    synth: window.speechSynthesis || null
+  };
+
+
+  /* =========================================================
      ELEMENTS
-     ====================================================== */
+     ========================================================= */
 
-  var professorVideo =
-    document.getElementById("profAvatarVideo");
-
-  var talkButton =
-    document.getElementById("talkToProfessor");
-
-  var professorStatus =
-    document.getElementById("profStatus");
-
-  var askForm =
-    document.getElementById("profAskForm");
-
-  var questionInput =
-    document.getElementById("profQuestion");
-
-  var answerBox =
-    document.getElementById("profAnswer");
+  const profVideo = document.getElementById(BSS_PROF_AI.videoId);
+  const talkButton = document.getElementById(BSS_PROF_AI.talkButtonId);
+  const profStatus = document.getElementById(BSS_PROF_AI.statusId);
+  const askForm = document.getElementById(BSS_PROF_AI.formId);
+  const askInput = document.getElementById(BSS_PROF_AI.inputId);
+  const answerBox = document.getElementById(BSS_PROF_AI.answerId);
 
 
-  /* ======================================================
-     NETLIFY FUNCTION
-     ====================================================== */
+  /* =========================================================
+     LANG SIT LA (KRE / FRA / ENG)
+     ========================================================= */
 
-  var PROFESSOR_FUNCTION =
-    window.location.origin +
-    "/.netlify/functions/professor";
+  const VOICE_LANG = { ht: "ht-HT", fr: "fr-FR", en: "en-US", es: "es-ES" };
+
+  const TEXT = {
+    ht: {
+      ready: "🎤 Tape bouton an oswa ekri kesyon ou",
+      readyType: "✍️ Ekri kesyon ou anba a",
+      listening: "🎤 Pwofesè a ap koute...",
+      thinking: "🧠 Pwofesè a ap reflechi...",
+      speaking: "👨🏽‍🏫 Pwofesè a ap reponn...",
+      again: "🎤 Poze pwofesè a yon lòt kesyon",
+      noSpeech: "Mwen pa tande kesyon an. Eseye ankò.",
+      micDenied: "Fò w bay sit la pèmisyon pou mikwofòn nan.",
+      micError: "Pwoblèm mikwofòn. Eseye ankò.",
+      noVoiceSupport: "Navigatè sa a pa ka koute vwa. Ekri kesyon ou anba a.",
+      unavailable: "Pwofesè a pa disponib kounye a. Eseye ankò pita.",
+      talk: "🎤 PALE AK PWOFESÈ A",
+      listeningBtn: "🎤 AP KOUTE... (TAPE POU KANPE)",
+      speakingBtn: "🔊 PWOFESÈ A AP PALE...",
+      creoleNote: "An kreyòl, ekri kesyon ou: telefòn yo poko ka tande kreyòl.",
+      placeholder: "Ekri kesyon ou pou pwofesè a..."
+    },
+    fr: {
+      ready: "🎤 Touchez le bouton ou écrivez votre question",
+      readyType: "✍️ Écrivez votre question ci-dessous",
+      listening: "🎤 Le professeur écoute...",
+      thinking: "🧠 Le professeur réfléchit...",
+      speaking: "👨🏽‍🏫 Le professeur répond...",
+      again: "🎤 Posez une autre question",
+      noSpeech: "Je n’ai pas entendu de question. Réessayez.",
+      micDenied: "Autorisez le microphone pour ce site.",
+      micError: "Erreur du microphone. Réessayez.",
+      noVoiceSupport: "Ce navigateur ne peut pas écouter. Écrivez votre question ci-dessous.",
+      unavailable: "Le professeur n’est pas disponible pour le moment.",
+      talk: "🎤 PARLER AU PROFESSEUR",
+      listeningBtn: "🎤 ÉCOUTE... (TOUCHER POUR ARRÊTER)",
+      speakingBtn: "🔊 LE PROFESSEUR PARLE...",
+      creoleNote: "",
+      placeholder: "Écrivez votre question au professeur..."
+    },
+    en: {
+      ready: "🎤 Tap the button or type your question",
+      readyType: "✍️ Type your question below",
+      listening: "🎤 The professor is listening...",
+      thinking: "🧠 The professor is thinking...",
+      speaking: "👨🏽‍🏫 The professor is answering...",
+      again: "🎤 Ask the professor another question",
+      noSpeech: "I did not hear a question. Try again.",
+      micDenied: "Please allow microphone access for this site.",
+      micError: "Microphone error. Try again.",
+      noVoiceSupport: "This browser can’t listen. Type your question below.",
+      unavailable: "The professor is temporarily unavailable.",
+      talk: "🎤 TALK TO THE PROFESSOR",
+      listeningBtn: "🎤 LISTENING... (TAP TO STOP)",
+      speakingBtn: "🔊 PROFESSOR SPEAKING...",
+      creoleNote: "",
+      placeholder: "Type your question for the professor..."
+    }
+  };
+
+  function siteLang() {
+    let lang = "ht";
+    try { lang = localStorage.getItem("bss1815-language") || document.documentElement.lang || "ht"; } catch (e) {}
+    return TEXT[lang] ? lang : "ht";
+  }
+
+  function t(key) { return TEXT[siteLang()][key]; }
 
 
-  /* ======================================================
+  /* =========================================================
+     STATUS
+     ========================================================= */
+
+  function setProfessorStatus(message) {
+    if (profStatus) { profStatus.textContent = message; }
+  }
+
+  function showAnswerText(text) {
+    if (!answerBox) { return; }
+    answerBox.textContent = text;
+    answerBox.hidden = !text;
+  }
+
+
+  /* =========================================================
      SPEECH RECOGNITION
-     ====================================================== */
+     (kreyòl pa sipòte: vizitè a ekri pito)
+     ========================================================= */
 
-  var SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  var recognition = null;
-
-  var isListening = false;
-  var isSpeaking = false;
-  var receivedResult = false;
-
-  var listenTimer = null;
-
-  var LISTEN_TIMEOUT = 15000;
-
-
-  /* ======================================================
-     HELPERS
-     ====================================================== */
-
-  function setStatus(text) {
-    if (professorStatus) {
-      professorStatus.textContent = text;
-    }
+  function canListen() {
+    return !!SpeechRecognition && siteLang() !== "ht";
   }
 
+  if (SpeechRecognition) {
 
-  function getPageLanguage() {
+    BSS_PROF_AI.recognition = new SpeechRecognition();
+    BSS_PROF_AI.recognition.continuous = false;
+    BSS_PROF_AI.recognition.interimResults = false;
+    BSS_PROF_AI.recognition.maxAlternatives = 1;
 
-    var activeButton =
-      document.querySelector(
-        ".lang-btn.active[data-lang]"
-      );
-
-    if (activeButton) {
-
-      var selected =
-        String(
-          activeButton.dataset.lang || ""
-        ).toLowerCase();
-
-      if (
-        selected === "fr" ||
-        selected === "en" ||
-        selected === "ht"
-      ) {
-        return selected;
+    BSS_PROF_AI.recognition.onstart = () => {
+      BSS_PROF_AI.listening = true;
+      setProfessorStatus(t("listening"));
+      if (talkButton) {
+        talkButton.classList.add("listening");
+        talkButton.textContent = t("listeningBtn");
       }
+    };
 
-    }
+    BSS_PROF_AI.recognition.onresult = async (event) => {
+      const question = event.results[0][0].transcript.trim();
+      if (!question) { resetProfessorButton(); return; }
+      await askProfessor(question);
+    };
 
+    BSS_PROF_AI.recognition.onerror = (event) => {
+      console.error("Speech Recognition Error:", event.error);
+      if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+        setProfessorStatus(t("micDenied"));
+      } else if (event.error === "no-speech") {
+        setProfessorStatus(t("noSpeech"));
+      } else if (event.error !== "aborted") {
+        setProfessorStatus(t("micError"));
+      }
+      resetProfessorButton();
+    };
 
-    var lang =
-      String(
-        document.documentElement.lang || "ht"
-      ).toLowerCase();
-
-
-    if (lang.indexOf("fr") === 0) {
-      return "fr";
-    }
-
-    if (lang.indexOf("en") === 0) {
-      return "en";
-    }
-
-    return "ht";
+    /* Korije: bouton an pa rete bloke sou "LISTENING" */
+    BSS_PROF_AI.recognition.onend = () => {
+      BSS_PROF_AI.listening = false;
+      if (!BSS_PROF_AI.busy) { resetProfessorButton(); }
+    };
   }
 
 
-  function getRecognitionLanguage() {
+  /* =========================================================
+     START LISTENING
+     ========================================================= */
 
-    var language =
-      getPageLanguage();
+  function startProfessorConversation() {
 
-    if (language === "fr") {
-      return "fr-FR";
-    }
+    if (BSS_PROF_AI.busy) { return; }
 
-    if (language === "en") {
-      return "en-US";
-    }
-
-    return "ht-HT";
-  }
-
-
-  function getButtonDefaultText() {
-
-    var language =
-      getPageLanguage();
-
-    if (language === "fr") {
-      return "🎤 PARLER AU PROFESSEUR";
-    }
-
-    if (language === "en") {
-      return "🎤 TALK TO THE PROFESSOR";
-    }
-
-    return "🎤 PALE AK PWOFESÈ A";
-  }
-
-
-  function resetButton() {
-
-    if (!talkButton) {
+    if (!canListen()) {
+      setProfessorStatus(siteLang() === "ht" ? t("creoleNote") : t("noVoiceSupport"));
+      if (askInput) { askInput.focus(); }
       return;
     }
 
-    talkButton.disabled = false;
+    if (BSS_PROF_AI.synth && BSS_PROF_AI.synth.speaking) {
+      BSS_PROF_AI.synth.cancel();
+    }
 
-    talkButton.classList.remove(
-      "listening"
-    );
+    if (BSS_PROF_AI.listening) {
+      BSS_PROF_AI.recognition.stop();
+      return;
+    }
 
-    talkButton.textContent =
-      getButtonDefaultText();
-  }
-
-
-  function stopListenTimer() {
-
-    if (listenTimer) {
-
-      clearTimeout(
-        listenTimer
-      );
-
-      listenTimer = null;
+    try {
+      BSS_PROF_AI.recognition.lang = VOICE_LANG[siteLang()];
+      BSS_PROF_AI.recognition.start();
+    } catch (error) {
+      console.error("Microphone start error:", error);
+      resetProfessorButton();
     }
   }
 
 
-  function stopRecognition() {
+  /* =========================================================
+     SEND QUESTION TO AI
+     ========================================================= */
 
-    stopListenTimer();
+  async function askProfessor(question) {
 
-    if (recognition) {
+    BSS_PROF_AI.busy = true;
+    showAnswerText("");
+    setProfessorStatus(t("thinking"));
+    if (talkButton) { talkButton.disabled = true; }
 
-      try {
-        recognition.stop();
-      } catch (error) {}
-
-    }
-
-    recognition = null;
-    isListening = false;
-
-    if (talkButton) {
-
-      talkButton.classList.remove(
-        "listening"
-      );
-    }
-  }
-
-
-  /* ======================================================
-     LANGUAGE DETECTION
-     ====================================================== */
-
-  function detectLanguage(text) {
-
-    var value =
-      String(text || "")
-        .toLowerCase();
-
-
-    var creoleWords = [
-      "mwen",
-      "kisa",
-      "kijan",
-      "poukisa",
-      "eske",
-      "èske",
-      "pou",
-      "avèk",
-      "kote",
-      "nan",
-      "yon",
-      "reponn",
-      "eksplike",
-      "pwofesè",
-      "tanpri"
-    ];
-
-
-    var frenchWords = [
-      "bonjour",
-      "comment",
-      "pourquoi",
-      "avec",
-      "dans",
-      "explique",
-      "quelle",
-      "quel",
-      "professeur",
-      "merci"
-    ];
-
-
-    var spanishWords = [
-      "hola",
-      "como",
-      "cómo",
-      "porque",
-      "por qué",
-      "profesor",
-      "gracias"
-    ];
-
-
-    if (
-      creoleWords.some(function (word) {
-        return value.indexOf(word) !== -1;
-      })
-    ) {
-      return "ht-HT";
-    }
-
-
-    if (
-      frenchWords.some(function (word) {
-        return value.indexOf(word) !== -1;
-      })
-    ) {
-      return "fr-FR";
-    }
-
-
-    if (
-      spanishWords.some(function (word) {
-        return value.indexOf(word) !== -1;
-      })
-    ) {
-      return "es-US";
-    }
-
-
-    if (getPageLanguage() === "fr") {
-      return "fr-FR";
-    }
-
-    if (getPageLanguage() === "ht") {
-      return "ht-HT";
-    }
-
-    return "en-US";
-  }
-
-
-  /* ======================================================
-     VOICE
-     ====================================================== */
-
-  function findVoice(language) {
-
-    if (
-      !("speechSynthesis" in window)
-    ) {
-      return null;
-    }
-
-
-    var voices =
-      window.speechSynthesis.getVoices();
-
-
-    if (!voices.length) {
-      return null;
-    }
-
-
-    var prefix =
-      language
-        .split("-")[0]
-        .toLowerCase();
-
-
-    var voice =
-      voices.find(function (item) {
-
-        return (
-          String(item.lang)
-            .toLowerCase() ===
-          language.toLowerCase()
-        );
-
+    try {
+      const response = await fetch(BSS_PROF_AI.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: question, lang: siteLang() })
       });
 
+      const data = await response.json().catch(() => ({}));
 
-    if (!voice) {
-
-      voice =
-        voices.find(function (item) {
-
-          return (
-            String(item.lang)
-              .toLowerCase()
-              .indexOf(prefix) === 0
-          );
-
-        });
-
-    }
-
-
-    if (
-      !voice &&
-      language === "ht-HT"
-    ) {
-
-      voice =
-        voices.find(function (item) {
-
-          return (
-            String(item.lang)
-              .toLowerCase()
-              .indexOf("fr") === 0
-          );
-
-        });
-
-    }
-
-
-    if (!voice) {
-
-      voice =
-        voices.find(function (item) {
-
-          return (
-            String(item.lang)
-              .toLowerCase()
-              .indexOf("en") === 0
-          );
-
-        });
-
-    }
-
-
-    return voice || voices[0];
-  }
-
-
-  /* ======================================================
-     PROFESSOR SPEAKS
-     ====================================================== */
-
-  function professorSpeak(
-    answer,
-    language
-  ) {
-
-    if (
-      !("speechSynthesis" in window)
-    ) {
-
-      setStatus(
-        "⚠️ VOICE SYSTEM PA DISPONIB."
-      );
-
-      resetButton();
-      return;
-    }
-
-
-    window.speechSynthesis.cancel();
-
-
-    var speech =
-      new SpeechSynthesisUtterance(
-        answer
-      );
-
-
-    speech.lang = language;
-    speech.rate = 0.92;
-    speech.pitch = 1;
-    speech.volume = 1;
-
-
-    var voice =
-      findVoice(language);
-
-
-    if (voice) {
-      speech.voice = voice;
-    }
-
-
-    speech.onstart =
-      function () {
-
-        isSpeaking = true;
-
-        setStatus(
-          "🔊 PWOFESÈ A AP REPONN..."
-        );
-
-
-        if (talkButton) {
-
-          talkButton.disabled = true;
-
-          talkButton.textContent =
-            "🔊 PWOFESÈ A AP PALE...";
-        }
-
-
-        if (professorVideo) {
-
-          try {
-
-            professorVideo.pause();
-
-            professorVideo.currentTime = 0;
-
-            professorVideo.muted = true;
-
-            professorVideo.loop = true;
-
-
-            var playPromise =
-              professorVideo.play();
-
-
-            if (
-              playPromise &&
-              playPromise.catch
-            ) {
-
-              playPromise.catch(
-                function () {}
-              );
-            }
-
-          } catch (error) {
-
-            console.log(
-              "Professor video error:",
-              error
-            );
-          }
-        }
-      };
-
-
-    speech.onend =
-      function () {
-
-        isSpeaking = false;
-
-
-        if (professorVideo) {
-
-          professorVideo.pause();
-
-          professorVideo.currentTime = 0;
-
-          professorVideo.loop = false;
-        }
-
-
-        setStatus(
-          "🎤 POZE YON LÒT KESYON"
-        );
-
-
-        resetButton();
-      };
-
-
-    speech.onerror =
-      function (event) {
-
-        console.error(
-          "VOICE ERROR:",
-          event
-        );
-
-
-        isSpeaking = false;
-
-
-        if (professorVideo) {
-
-          professorVideo.pause();
-
-          professorVideo.loop = false;
-        }
-
-
-        setStatus(
-          "⚠️ PWOBLÈM AK VWA PWOFESÈ A."
-        );
-
-
-        resetButton();
-      };
-
-
-    try {
-
-      window.speechSynthesis.speak(
-        speech
-      );
-
-    } catch (error) {
-
-      console.error(
-        "SPEECH ERROR:",
-        error
-      );
-
-
-      setStatus(
-        "⚠️ PWOFESÈ A PA RIVE PALE."
-      );
-
-
-      resetButton();
-    }
-  }
-
-
-  /* ======================================================
-     DISPLAY PRECISE CONNECTION ERROR
-     ====================================================== */
-
-  function showProfessorError(
-    status,
-    message
-  ) {
-
-    message =
-      String(message || "")
-        .trim();
-
-
-    if (status === 404) {
-
-      setStatus(
-        "⚠️ HTTP 404 — FUNCTION professor PA JWENN."
-      );
-
-      return;
-    }
-
-
-    if (status === 401) {
-
-      setStatus(
-        "⚠️ HTTP 401 — GEMINI AUTHORIZATION REFIZE."
-      );
-
-      return;
-    }
-
-
-    if (status === 403) {
-
-      setStatus(
-        "⚠️ HTTP 403 — GEMINI KEY / PERMISSION REFIZE."
-      );
-
-      return;
-    }
-
-
-    if (status === 429) {
-
-      setStatus(
-        "⚠️ HTTP 429 — GEMINI QUOTA / RATE LIMIT."
-      );
-
-      return;
-    }
-
-
-    if (status === 500) {
-
-      if (
-        message.indexOf(
-          "GEMINI_API_KEY"
-        ) !== -1
-      ) {
-
-        setStatus(
-          "⚠️ HTTP 500 — NETLIFY PA JWENN GEMINI_API_KEY."
-        );
-
-      } else {
-
-        setStatus(
-          "⚠️ HTTP 500 — " +
-          (message || "BACKEND ERROR.")
-        );
+      if (!data.answer) {
+        throw new Error("Professor API error: " + response.status);
       }
 
-      return;
+      speakProfessorAnswer(data.answer, data.language || VOICE_LANG[siteLang()]);
+
+    } catch (error) {
+      console.error("PROFESSOR AI ERROR:", error);
+      setProfessorStatus(t("unavailable"));
+      BSS_PROF_AI.busy = false;
+      resetProfessorButton();
     }
-
-
-    if (status === 502) {
-
-      setStatus(
-        "⚠️ HTTP 502 — " +
-        (message || "GEMINI BACKEND ERROR.")
-      );
-
-      return;
-    }
-
-
-    setStatus(
-      "⚠️ HTTP " +
-      status +
-      " — " +
-      (
-        message ||
-        "PROFESSOR CONNECTION ERROR."
-      )
-    );
   }
 
 
-  /* ======================================================
-     SEND QUESTION
-     ====================================================== */
+  /* =========================================================
+     PROFESSOR VOICE
+     - kreyòl: repons lan parèt an tèks (pa gen vwa kreyòl)
+     - lòt lang: vwa, divize an fraz pou Chrome pa koupe l
+     ========================================================= */
 
-  async function askGemini(
-    question
-  ) {
+  function findVoice(language) {
+    if (!BSS_PROF_AI.synth) { return null; }
+    const voices = BSS_PROF_AI.synth.getVoices();
+    const want = language.toLowerCase();
+    return (
+      voices.find((v) => v.lang.toLowerCase() === want) ||
+      voices.find((v) => v.lang.toLowerCase().startsWith(want.substring(0, 2))) ||
+      null
+    );
+  }
 
-    question =
-      String(question || "")
-        .trim();
+  function startVideo() {
+    if (!profVideo) { return; }
+    try { profVideo.currentTime = 0; } catch (e) {}
+    profVideo.muted = true;
+    profVideo.loop = true;
+    profVideo.play().catch(() => {});
+  }
 
+  function stopVideo() {
+    if (!profVideo) { return; }
+    profVideo.pause();
+    profVideo.loop = false;
+    try { profVideo.currentTime = 0; } catch (e) {}
+  }
 
-    if (!question) {
+  function finishAnswer() {
+    stopVideo();
+    BSS_PROF_AI.busy = false;
+    setProfessorStatus(t("again"));
+    resetProfessorButton();
+  }
 
-      setStatus(
-        "🎤 MWEN PA JWENN KESYON AN."
-      );
+  function speakProfessorAnswer(answer, language) {
 
-      resetButton();
+    const voice = findVoice(language);
 
+    /* Pa gen vwa pou lang sa a (kreyòl): montre tèks la */
+    if (!BSS_PROF_AI.synth || !voice || language.toLowerCase().startsWith("ht")) {
+      showAnswerText(answer);
+      setProfessorStatus(t("speaking"));
+      startVideo();
+      const readTime = Math.min(20000, Math.max(4000, answer.length * 60));
+      setTimeout(finishAnswer, readTime);
       return;
     }
 
+    BSS_PROF_AI.synth.cancel();
 
-    stopRecognition();
+    const sentences = answer.match(/[^.!?…]+[.!?…]*/g) || [answer];
+    let index = 0;
 
-
-    setStatus(
-      "🧠 KONEKSYON AK PWOFESÈ A..."
-    );
-
-
+    setProfessorStatus(t("speaking"));
+    startVideo();
     if (talkButton) {
-
       talkButton.disabled = true;
-
-      talkButton.textContent =
-        "🧠 AP KONEKTE...";
+      talkButton.textContent = t("speakingBtn");
     }
 
-
-    console.log(
-      "BSS1815 PROFESSOR ENDPOINT:",
-      PROFESSOR_FUNCTION
-    );
-
-
-    console.log(
-      "BSS1815 QUESTION:",
-      question
-    );
-
-
-    try {
-
-      var response =
-        await fetch(
-          PROFESSOR_FUNCTION,
-          {
-            method: "POST",
-
-            headers: {
-              "Content-Type":
-                "application/json",
-
-              "Accept":
-                "application/json"
-            },
-
-            cache: "no-store",
-
-            credentials: "same-origin",
-
-            body: JSON.stringify({
-              question: question,
-              source: "bss1815-prof-avatar",
-              timestamp: Date.now()
-            })
-          }
-        );
-
-
-      console.log(
-        "BSS1815 PROFESSOR HTTP:",
-        response.status
-      );
-
-
-      var responseText =
-        await response.text();
-
-
-      console.log(
-        "BSS1815 PROFESSOR RAW RESPONSE:",
-        responseText
-      );
-
-
-      var data = null;
-
-
-      if (responseText) {
-
-        try {
-
-          data =
-            JSON.parse(
-              responseText
-            );
-
-        } catch (jsonError) {
-
-          console.error(
-            "PROFESSOR JSON ERROR:",
-            jsonError
-          );
-        }
-      }
-
-
-      if (!response.ok) {
-
-        var backendMessage =
-
-          data &&
-          data.error
-
-            ? data.error
-
-            : responseText ||
-              response.statusText ||
-              "Backend error";
-
-
-        console.error(
-          "PROFESSOR BACKEND ERROR:",
-          response.status,
-          backendMessage
-        );
-
-
-        showProfessorError(
-          response.status,
-          backendMessage
-        );
-
-
-        resetButton();
-        return;
-      }
-
-
-      if (
-        !data ||
-        data.success !== true ||
-        !data.answer
-      ) {
-
-        console.error(
-          "INVALID PROFESSOR RESPONSE:",
-          data
-        );
-
-
-        setStatus(
-          "⚠️ HTTP " +
-          response.status +
-          " — BACKEND PA RETOUNEN REPONS PWOFESÈ A."
-        );
-
-
-        resetButton();
-        return;
-      }
-
-
-      console.log(
-        "BSS1815 GEMINI SUCCESS"
-      );
-
-
-      if (answerBox) {
-
-        answerBox.hidden = true;
-
-        answerBox.textContent = "";
-      }
-
-
-      var language =
-        detectLanguage(question);
-
-
-      professorSpeak(
-        data.answer,
-        language
-      );
-
-
-    } catch (error) {
-
-      console.error(
-        "PROFESSOR FETCH ERROR:",
-        error
-      );
-
-
-      var errorMessage =
-        String(
-          error &&
-          error.message
-            ? error.message
-            : error
-        );
-
-
-      if (
-        errorMessage
-          .toLowerCase()
-          .indexOf("failed to fetch") !== -1
-      ) {
-
-        setStatus(
-          "⚠️ NETWORK ERROR — REQUEST LA PA RIVE NAN NETLIFY FUNCTION."
-        );
-
-      } else {
-
-        setStatus(
-          "⚠️ FETCH ERROR — " +
-          errorMessage
-        );
-      }
-
-
-      resetButton();
+    function speakNext() {
+      if (index >= sentences.length) { finishAnswer(); return; }
+      const part = sentences[index++].trim();
+      if (!part) { speakNext(); return; }
+
+      const speech = new SpeechSynthesisUtterance(part);
+      speech.lang = language;
+      speech.voice = voice;
+      speech.rate = 0.92;
+      speech.pitch = 1;
+      speech.volume = 1;
+      speech.onend = speakNext;
+      speech.onerror = () => {
+        showAnswerText(answer);
+        finishAnswer();
+      };
+      BSS_PROF_AI.synth.speak(speech);
     }
+
+    speakNext();
   }
 
 
-  /* ======================================================
-     START MICROPHONE
-     ====================================================== */
-
-  function startListening() {
-
-    if (isSpeaking) {
-
-      if (
-        "speechSynthesis" in window
-      ) {
-
-        window.speechSynthesis.cancel();
-      }
-
-      isSpeaking = false;
-    }
-
-
-    if (!SpeechRecognition) {
-
-      setStatus(
-        "⚠️ NAVIGATÈ SA A PA SIPÒTE VOICE RECOGNITION."
-      );
-
-      resetButton();
-      return;
-    }
-
-
-    if (isListening) {
-
-      stopRecognition();
-
-      setStatus(
-        "🎤 MICROPHONE LA KANPE."
-      );
-
-      resetButton();
-      return;
-    }
-
-
-    receivedResult = false;
-
-
-    recognition =
-      new SpeechRecognition();
-
-
-    recognition.lang =
-      getRecognitionLanguage();
-
-
-    recognition.continuous =
-      false;
-
-
-    recognition.interimResults =
-      false;
-
-
-    recognition.maxAlternatives =
-      3;
-
-
-    recognition.onstart =
-      function () {
-
-        isListening = true;
-
-        receivedResult = false;
-
-
-        setStatus(
-          "🎤 M AP KOUTE KESYON OU..."
-        );
-
-
-        if (talkButton) {
-
-          talkButton.disabled =
-            false;
-
-          talkButton.classList.add(
-            "listening"
-          );
-
-          talkButton.textContent =
-            "🎤 M AP KOUTE...";
-        }
-
-
-        stopListenTimer();
-
-
-        listenTimer =
-          setTimeout(
-            function () {
-
-              if (
-                isListening &&
-                !receivedResult
-              ) {
-
-                stopRecognition();
-
-                setStatus(
-                  "🎤 MWEN PA T TANDE KESYON AN. ESEYE ANKÒ."
-                );
-
-                resetButton();
-              }
-
-            },
-            LISTEN_TIMEOUT
-          );
-      };
-
-
-    recognition.onspeechstart =
-      function () {
-
-        setStatus(
-          "🎙️ MWEN TANDE W..."
-        );
-      };
-
-
-    recognition.onresult =
-      function (event) {
-
-        receivedResult = true;
-
-
-        stopListenTimer();
-
-
-        var transcript = "";
-
-
-        if (
-          event.results &&
-          event.results.length
-        ) {
-
-          for (
-            var i = 0;
-            i < event.results.length;
-            i++
-          ) {
-
-            if (
-              event.results[i] &&
-              event.results[i][0]
-            ) {
-
-              transcript +=
-                event.results[i][0]
-                  .transcript +
-                " ";
-            }
-          }
-        }
-
-
-        transcript =
-          transcript.trim();
-
-
-        console.log(
-          "STUDENT QUESTION:",
-          transcript
-        );
-
-
-        if (!transcript) {
-
-          stopRecognition();
-
-          setStatus(
-            "🎤 MWEN PA T KONPRANN KESYON AN."
-          );
-
-          resetButton();
-          return;
-        }
-
-
-        askGemini(
-          transcript
-        );
-      };
-
-
-    recognition.onerror =
-      function (event) {
-
-        console.error(
-          "MICROPHONE ERROR:",
-          event.error
-        );
-
-
-        stopListenTimer();
-
-        isListening = false;
-
-
-        if (
-          event.error ===
-          "not-allowed"
-        ) {
-
-          setStatus(
-            "🎤 BAY SIT LA PÈMISYON MICROPHONE."
-          );
-
-
-        } else if (
-          event.error ===
-          "audio-capture"
-        ) {
-
-          setStatus(
-            "⚠️ MICROPHONE LA PA DISPONIB."
-          );
-
-
-        } else if (
-          event.error ===
-          "no-speech"
-        ) {
-
-          setStatus(
-            "🎤 MWEN PA T TANDE KESYON AN."
-          );
-
-
-        } else if (
-          event.error ===
-          "network"
-        ) {
-
-          setStatus(
-            "⚠️ VOICE RECOGNITION NETWORK ERROR."
-          );
-
-
-        } else if (
-          event.error ===
-          "language-not-supported"
-        ) {
-
-          setStatus(
-            "⚠️ LANG MICROPHONE SA A PA SIPÒTE. ESEYE ENG OSWA FRA."
-          );
-
-
-        } else {
-
-          setStatus(
-            "⚠️ MICROPHONE ERROR — " +
-            event.error
-          );
-        }
-
-
-        resetButton();
-      };
-
-
-    recognition.onend =
-      function () {
-
-        stopListenTimer();
-
-        isListening = false;
-
-
-        if (talkButton) {
-
-          talkButton.classList.remove(
-            "listening"
-          );
-        }
-
-
-        if (!receivedResult) {
-
-          resetButton();
-        }
-      };
-
-
-    try {
-
-      recognition.start();
-
-    } catch (error) {
-
-      console.error(
-        "START MICROPHONE ERROR:",
-        error
-      );
-
-
-      isListening = false;
-
-
-      setStatus(
-        "⚠️ MICROPHONE LA PA KAPAB KÒMANSE."
-      );
-
-
-      resetButton();
-    }
+  /* =========================================================
+     RESET BUTTON
+     ========================================================= */
+
+  function resetProfessorButton() {
+    BSS_PROF_AI.listening = false;
+    if (askInput) { askInput.placeholder = t("placeholder"); }
+    if (!talkButton) { return; }
+    talkButton.disabled = BSS_PROF_AI.busy;
+    talkButton.classList.remove("listening");
+    talkButton.textContent = t("talk");
   }
 
 
-  /* ======================================================
-     MICROPHONE BUTTON
-     ====================================================== */
+  /* =========================================================
+     BOUTON AK FÒM EKRI A
+     ========================================================= */
 
   if (talkButton) {
-
-    talkButton.addEventListener(
-      "click",
-      startListening
-    );
+    talkButton.addEventListener("click", startProfessorConversation);
   }
 
+  if (askForm && askInput) {
+    askForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const question = askInput.value.trim();
+      if (!question || BSS_PROF_AI.busy) { return; }
+      if (BSS_PROF_AI.listening && BSS_PROF_AI.recognition) { BSS_PROF_AI.recognition.stop(); }
+      askInput.value = "";
+      askProfessor(question);
+    });
+  }
 
-  /* ======================================================
-     TEXT TEST
-     ====================================================== */
-
-  if (
-    askForm &&
-    questionInput
-  ) {
-
-    askForm.addEventListener(
-      "submit",
-      function (event) {
-
-        event.preventDefault();
-
-
-        var question =
-          String(
-            questionInput.value || ""
-          ).trim();
-
-
-        if (!question) {
-
-          setStatus(
-            "Ekri yon kestyon pou teste koneksyon an."
-          );
-
-          return;
+  /* Lè vizitè a chanje lang, mete tèks yo ajou */
+  document.querySelectorAll(".lang-btn[data-lang]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setTimeout(() => {
+        if (!BSS_PROF_AI.busy) {
+          resetProfessorButton();
+          setProfessorStatus(canListen() ? t("ready") : t("readyType"));
         }
+      }, 50);
+    });
+  });
 
 
-        askGemini(
-          question
-        );
-      }
-    );
-  }
-
-
-  /* ======================================================
+  /* =========================================================
      VOICES
-     ====================================================== */
+     ========================================================= */
 
-  if (
-    "speechSynthesis" in window
-  ) {
-
-    window.speechSynthesis
-      .getVoices();
-
-
-    window.speechSynthesis
-      .onvoiceschanged =
-      function () {
-
-        window.speechSynthesis
-          .getVoices();
-      };
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+    window.speechSynthesis.getVoices();
   }
 
 
-  /* ======================================================
-     INITIAL STATE
-     ====================================================== */
+  /* =========================================================
+     READY
+     ========================================================= */
 
-  setStatus(
-    "🎤 PEZE MICROPHONE LA POU PALE AK PWOFESÈ A."
-  );
-
-
-  resetButton();
-
-
-  console.log(
-    "BSS1815 PROF AVATAR AI READY"
-  );
-
-
-  console.log(
-    "PROFESSOR FUNCTION:",
-    PROFESSOR_FUNCTION
-  );
+  resetProfessorButton();
+  setProfessorStatus(canListen() ? t("ready") : t("readyType"));
+  console.log("BSS1815 PROF AVATAR AI READY");
 
 })();
