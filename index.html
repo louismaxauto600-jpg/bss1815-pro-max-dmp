@@ -1,4 +1,4 @@
-<!-- index.html - BSS1815 PRO-MAX DMP - FINAL COMPLET - TOUT BAGAY LA - ORANGE/APRICOT/BLACK ONLY - TOUT PWOJE RETOUNEN - SENBOL AK KOULE -->
+<!-- index.html - BSS1815 PRO-MAX DMP - FINAL COMPLET - TOUT BAGAY LA - TOUT PWOJE RETOUNEN - PA RETIRE ANYEN -->
 <!DOCTYPE html>
 <html lang="ht" translate="no" class="notranslate">
 <head>
@@ -8,203 +8,88 @@
 <title>BSS1815 PRO-MAX DMP | Digital Management Platform</title>
 <meta name="description" content="BSS1815 PRO-MAX DMP — Yon sèl platfòm dijital pou kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, AI, medya, administrasyon ak inovasyon.">
 <meta name="theme-color" content="#000000">
-<meta name="author" content="BSS1815 PRO-MAX DMP">
-<meta name="robots" content="index,follow">
 <link rel="canonical" href="https://bss1815pro-maxdmp.com/">
 <style>
-:root{
-  --black:#000;
-  --deep:#000000;
-  --panel:#000000;
-  --orange:#ff7900;
-  --orange2:#ff8c1a;
-  --apricot:#ff7900;
-  --orange3:#ff7900;
-  --text:#ff7900;
-  --border:rgba(255,121,0,.30);
-  --border2:rgba(255,121,0,.72);
-  --glow:0 0 18px rgba(255,121,0,.40);
-  --glow2:0 0 18px rgba(255,121,0,.70),0 0 48px rgba(255,121,0,.25);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{min-height:100vh;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;color:var(--orange);background:radial-gradient(circle at 18% 15%,rgba(255,121,0,.16),transparent 33%),radial-gradient(circle at 82% 72%,rgba(255,121,0,.09),transparent 38%),linear-gradient(180deg,#000 0%,#000000 48%,#000 100%);}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,121,0,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,121,0,.025) 1px,transparent 1px);background-size:44px 44px;}
+:root{--black:#000;--deep:#000000;--panel:#000000;--orange:#ff7900;--border:rgba(255,121,0,.30);--border2:rgba(255,121,0,.72);--glow:0 0 18px rgba(255,121,0,.40);--glow2:0 0 18px rgba(255,121,0,.70),0 0 48px rgba(255,121,0,.25);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{min-height:100vh;overflow-x:hidden;font-family:Arial,Helvetica,sans-serif;color:var(--orange);background:#000;}
 a{color:inherit;text-decoration:none;}button{font:inherit;}img,video{display:block;max-width:100%;}
 .container{width:min(1220px,calc(100% - 28px));margin:auto;}
-.top-bar{padding:9px 15px;text-align:center;color:#000;background:linear-gradient(90deg,#000000,var(--orange),var(--orange),var(--orange),#000000);font-size:.68rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;}
-header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(0,0,0,.55);}
+.top-bar{padding:9px 15px;text-align:center;color:#000;background:linear-gradient(90deg,#000000,var(--orange),var(--orange),var(--orange),#000000);font-size:.68rem;font-weight:1000;text-transform:uppercase;}
+header{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.97);border-bottom:1px solid var(--border);}
 .header-inner{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:18px;}
 .brand{display:flex;align-items:center;gap:12px;}
-.brand-video-wrap{width:66px;height:66px;overflow:hidden;flex-shrink:0;border:2px solid var(--orange);border-radius:17px;background:#000;box-shadow:var(--glow);}
+.brand-video-wrap{width:66px;height:66px;overflow:hidden;border:2px solid var(--orange);border-radius:17px;background:#000;}
 .brand-video{width:100%;height:100%;object-fit:cover;}
 .brand-text strong{display:block;color:var(--orange);font-size:1rem;font-weight:1000;}
-.brand-text span{display:block;margin-top:5px;color:var(--orange);font-size:.52rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;}
-.header-right{display:flex;align-items:center;gap:9px;}
-.nav{display:flex;align-items:center;gap:3px;}
-.nav a{padding:9px 11px;border-radius:999px;color:var(--orange);font-size:.61rem;font-weight:1000;text-transform:uppercase;transition:.2s;}
-.nav a:hover{color:#000;background:var(--orange);}
-.lang-switch{display:flex;gap:3px;padding:3px;border:1px solid var(--border);border-radius:999px;background:#000;}
-.lang-flag{width:18px;height:12px;flex-shrink:0;border-radius:2px;box-shadow:0 0 0 1px rgba(255,121,0,.3);}
-.lang-btn{display:inline-flex;align-items:center;gap:5px;min-width:42px;padding:8px 9px;border:0;border-radius:999px;color:var(--orange);background:#000;cursor:pointer;font-size:.61rem;font-weight:1000;}
-.lang-btn.active{color:#000;background:var(--orange);}
-.menu-toggle{display:none;width:44px;height:42px;border:1px solid var(--orange);border-radius:11px;color:var(--orange);background:#000;cursor:pointer;font-size:1.2rem;}
-.hero{min-height:calc(100vh - 115px);display:flex;align-items:center;padding:52px 0 76px;text-align:center;}
-.platform-label,.eyebrow{color:var(--orange);font-size:.68rem;font-weight:1000;letter-spacing:.18em;text-transform:uppercase;}
-.hero-video-frame{position:relative;width:min(95vw,690px);margin:30px auto 0;overflow:hidden;border:2px solid var(--orange);border-radius:28px;background:#000;box-shadow:var(--glow2);}
-.hero-logo-video{width:100%;object-fit:contain;background:#000;}
-.sound-btn{position:absolute;right:14px;bottom:14px;z-index:10;padding:10px 14px;border:1px solid var(--orange);border-radius:999px;color:var(--orange);background:rgba(0,0,0,.92);cursor:pointer;font-size:.60rem;font-weight:1000;}
-.hero h1{margin-top:28px;color:var(--orange);font-size:clamp(2.6rem,8vw,6.2rem);line-height:.88;text-transform:uppercase;}
-.hero h2{margin-top:17px;color:var(--orange);font-size:clamp(1rem,3vw,1.45rem);text-transform:uppercase;}
-.hero-description{max-width:850px;margin:19px auto 0;line-height:1.75;font-size:.96rem;}
-.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:29px;}
-.btn{min-height:52px;display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border:2px solid var(--orange);border-radius:999px;color:#000;background:var(--orange);cursor:pointer;font-size:.68rem;font-weight:1000;text-transform:uppercase;transition:.25s;}
-.btn.outline{color:var(--orange);background:#000;}
-.btn:hover{transform:translateY(-3px);box-shadow:var(--glow2);}
-.stats-grid{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.stat-card{min-height:125px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:17px;border:1px solid var(--border);border-radius:17px;background:radial-gradient(circle at top,rgba(255,121,0,.10),transparent 50%),#000000;}
-.stat-card strong{color:var(--orange);font-size:1.55rem;}
-.stat-card span{margin-top:6px;font-size:.63rem;font-weight:900;}
 .section{padding:88px 0;border-top:1px solid rgba(255,121,0,.11);}
-.section-heading{max-width:790px;margin:0 auto 42px;text-align:center;}
 .section-title{margin-top:11px;color:var(--orange);font-size:clamp(2rem,6vw,4.2rem);line-height:.93;text-transform:uppercase;}
-.section-desc{margin-top:17px;line-height:1.75;}
-.private-zone-banner{display:block;width:min(100%,960px);margin:40px auto;overflow:hidden;border-radius:24px;box-shadow:0 0 0 1px rgba(255,150,54,.55),0 18px 55px rgba(0,0,0,.6),0 0 34px rgba(255,126,28,.25);transition:transform .25s ease,box-shadow .25s ease;}
-.private-zone-banner img{display:block;width:100%;height:auto;}
-.private-zone-banner:hover{transform:translateY(-4px);box-shadow:0 0 0 1px #ffb366,0 22px 60px rgba(0,0,0,.65),0 0 44px rgba(255,126,28,.45);}
-.admin-access-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:min(100%,960px);margin:0 auto 40px;}
-.bss-private-card{position:relative;width:min(100%,420px);margin:48px auto;padding:48px 30px 42px;border:1px solid var(--border2);border-radius:28px;background:radial-gradient(circle at top,rgba(255,121,0,.14),transparent 40%),#000000;box-shadow:var(--glow2);text-align:center;}
-.bss-private-card__icon{width:86px;height:86px;margin:0 auto 18px;display:grid;place-items:center;border:2px solid var(--orange);border-radius:24px;background:#000;box-shadow:var(--glow);}
-.bss-private-card__icon span{font-size:38px;}
-.bss-private-card__title{color:var(--orange);font-size:1.4rem;text-transform:uppercase;}
-.bss-private-card__text{margin-top:12px;line-height:1.6;color:var(--orange);font-size:.85rem;}
-.bss-private-card__input{width:100%;margin-top:18px;min-height:48px;padding:12px 14px;border:1px solid var(--orange);border-radius:14px;background:#000;color:var(--orange);font-size:16px;}
-.bss-private-card__button{width:100%;margin-top:12px;min-height:48px;border:0;border-radius:14px;background:var(--orange);color:#000;font-weight:1000;cursor:pointer;text-transform:uppercase;}
-.bss-private-card__footer{margin:23px 0 0;color:#ff7900;font:700 11px/1.5 Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;}
-@media (max-width: 600px){.bss-private-card{margin:34px auto;padding:43px 20px 39px;border-radius:25px;}.bss-private-card__icon{width:76px;height:76px;border-radius:22px;}.bss-private-card__button{width:100%;max-width:290px;}}
-.ddn-video-frame{position:relative;width:min(100%,960px);margin:0 auto 30px;overflow:hidden;border:2px solid var(--orange);border-radius:28px;background:#000;box-shadow:var(--glow2);}
-.ddn-video-frame video{display:block;width:100%;max-height:75vh;object-fit:contain;background:#000;}
-.prof-avatar-box{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);overflow:hidden;border:2px solid var(--orange);border-radius:28px;background:radial-gradient(circle at top left,rgba(255,121,0,.17),transparent 38%),linear-gradient(145deg,#000,#000000,#000);box-shadow:var(--glow2);}
-.prof-avatar-media{position:relative;min-height:430px;background:#000;}
-.prof-avatar-media video{width:100%;height:100%;min-height:430px;object-fit:contain;background:#000;}
-.prof-avatar-badge{position:absolute;left:15px;bottom:15px;z-index:5;padding:9px 13px;border:1px solid var(--orange);border-radius:999px;color:var(--orange);background:rgba(0,0,0,.92);font-size:.60rem;font-weight:1000;}
-.prof-avatar-content{display:flex;flex-direction:column;justify-content:center;padding:36px;}
-.prof-avatar-content h2{margin-top:12px;color:var(--orange);font-size:clamp(2rem,5vw,3.8rem);line-height:.92;text-transform:uppercase;}
-.prof-avatar-content p{margin-top:17px;line-height:1.72;}
-.prof-ai{margin-top:22px;padding:18px;border:1px solid var(--border);border-radius:18px;background:#000000;}
-.prof-talk-btn{width:100%;}
-.prof-ask{display:flex;gap:8px;margin-top:12px;}
-.prof-ask input{flex:1;min-width:0;min-height:48px;padding:12px 14px;border:1px solid var(--orange);border-radius:14px;background:#000;color:var(--orange);font-size:16px;}
-.prof-send{min-width:52px;border:0;border-radius:14px;background:#000;border:2px solid var(--orange);color:var(--orange);font-weight:1000;cursor:pointer;}
-.prof-status{margin-top:12px;color:var(--orange);font-size:.8rem;font-weight:900;min-height:1.2em;}
-.prof-answer{margin-top:12px;padding:14px;border-left:3px solid var(--orange);border-radius:10px;background:#000000;line-height:1.6;font-size:.9rem;white-space:pre-wrap;}
-.prof-avatar-controls{display:flex;flex-wrap:wrap;gap:11px;margin-top:23px;}
-.ecosystem-grid,.modules-grid,.news-grid,.contact-grid,.social-grid{display:grid;gap:16px;}
-.ecosystem-grid{grid-template-columns:repeat(3,1fr);}
-.modules-grid{grid-template-columns:repeat(4,1fr);}
-.news-grid,.contact-grid,.social-grid{grid-template-columns:repeat(3,1fr);}
-.card{display:flex;flex-direction:column;padding:23px;border:1px solid var(--border);border-radius:19px;background:radial-gradient(circle at top right,rgba(255,121,0,.11),transparent 38%),linear-gradient(145deg,#000000,#000);transition:.25s;}
-.card:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:var(--glow);}
-.ecosystem-card{min-height:285px;}
-.module-card{min-height:215px;}
-.card-icon{font-size:2rem;}
-.card h3{margin-top:15px;color:var(--orange);font-size:.93rem;text-transform:uppercase;}
-.card p{margin-top:10px;line-height:1.58;font-size:.78rem;}
-.card-open{margin-top:auto;padding-top:19px;color:var(--orange);font-size:.64rem;font-weight:1000;}
-.project-box{padding:42px 28px;border:1px solid var(--border2);border-radius:25px;background:radial-gradient(circle at 80% 25%,rgba(255,121,0,.17),transparent 34%),linear-gradient(135deg,#000,#000000,#000);box-shadow:var(--glow);text-align:center;}
-.project-box h2{color:var(--orange);font-size:clamp(2rem,6vw,4rem);}
-.project-box p{max-width:780px;margin:16px auto 0;line-height:1.7;}
-.hidden{display:none!important;}
-.contact-head{display:flex;flex-direction:column;align-items:center;gap:10px;}
-.contact-icon{width:44px;height:44px;flex-shrink:0;border-radius:12px;overflow:hidden;}
-.contact-icon svg{width:100%;height:100%;display:block;}
-.bss-slideshow{width:min(1100px,100%);margin:24px auto 0;}
-.bss-stage{position:relative;width:100%;height:clamp(430px,62vw,680px);overflow:hidden;border:2px solid var(--orange);border-radius:28px;background:#000;box-shadow:var(--glow2);}
-.bss-layer{position:absolute;inset:0;z-index:1;opacity:0;background:#000;transition:opacity 3s ease-in-out;}
-.bss-layer.show{z-index:2;opacity:1;}
-.bss-layer img,.bss-layer video{display:block;width:100%;height:100%;max-width:none;object-fit:contain;background:#000;}
-.bss-loading{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;color:var(--orange);font-size:.8rem;font-weight:900;pointer-events:none;}
-.bss-loading.hidden{display:none;}
-.bss-slide-badge{position:absolute;top:18px;left:18px;z-index:12;padding:9px 14px;border-radius:999px;color:#000;background:var(--orange);font-size:.60rem;font-weight:1000;}
-.bss-missing-btn{position:absolute;top:18px;right:18px;z-index:14;display:none;padding:8px 12px;border:0;border-radius:999px;color:var(--orange);background:rgba(190,30,30,.85);cursor:pointer;font-size:.58rem;font-weight:1000;}
-.bss-missing-panel{position:absolute;top:58px;right:18px;left:18px;z-index:15;display:none;max-width:420px;max-height:60%;margin-left:auto;overflow-y:auto;padding:14px 16px;border:1px solid var(--orange);border-radius:14px;background:rgba(0,0,0,.95);font-size:.75rem;line-height:1.5;}
-.bss-missing-panel.open{display:block;}
-.bss-slide-overlay{position:absolute;inset:0;z-index:7;pointer-events:none;background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.15) 60%,rgba(0,0,0,.93) 100%);}
-.bss-slide-caption{position:absolute;left:0;right:0;bottom:0;z-index:10;padding:70px 70px 28px;text-align:left;pointer-events:none;}
-.bss-slide-caption small{color:var(--orange);font-size:.60rem;font-weight:1000;letter-spacing:.16em;text-transform:uppercase;}
-.bss-slide-caption h3{margin-top:8px;color:var(--orange);font-size:clamp(1.6rem,5vw,3.2rem);line-height:1;text-transform:uppercase;text-shadow:0 3px 14px #000;}
-.bss-slide-caption p{max-width:760px;margin-top:10px;color:var(--orange);font-size:.78rem;line-height:1.6;text-shadow:0 3px 12px #000;}
-.bss-arrow{position:absolute;top:50%;z-index:13;transform:translateY(-50%);width:50px;height:50px;display:grid;place-items:center;border:1px solid var(--orange);border-radius:50%;background:rgba(0,0,0,.82);color:var(--orange);font-size:2rem;cursor:pointer;}
-.bss-arrow:hover{background:#000;border:2px solid var(--orange);color:var(--orange);}
-.bss-prev{left:16px;}
-.bss-next{right:16px;}
-.bss-controls{display:grid;grid-template-columns:auto auto auto auto 1fr;align-items:center;gap:14px;margin-top:14px;padding:13px 16px;border:1px solid var(--border);border-radius:16px;background:#000000;}
-.bss-counter{min-width:88px;color:var(--orange);font-size:.72rem;font-weight:1000;text-align:center;}
-.bss-play{padding:8px 14px;border:1px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;cursor:pointer;font-size:.60rem;font-weight:1000;}
-.bss-play:hover{background:var(--orange);color:#000;}
-.bss-progress{height:7px;overflow:hidden;border-radius:999px;background:rgba(255,121,0,.14);}
-.bss-progress-bar{width:0%;height:100%;background:linear-gradient(90deg,#000,var(--orange),var(--orange));box-shadow:0 0 12px rgba(255,121,0,.55);}
 </style>
 </head>
 <body>
 <div class="top-bar">BSS1815 PRO-MAX DMP — DEVAN DEVAN NET — BATI POU JODI A — PARE POU DEMEN</div>
-<header><div class="container header-inner"><a href="#home" class="brand"><div class="brand-video-wrap"><video class="brand-video" autoplay muted loop playsinline preload="metadata"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video></div><div class="brand-text"><strong>BSS1815 PRO-MAX DMP</strong><span>PLATFOM JESYON DIJITAL</span></div></a><div class="header-right"><nav class="nav" id="mainNav"><a href="#home">AKÈY</a><a href="#promaxfm">PRO-MAX FM</a><a href="#maximax">MAXIMAX</a><a href="#academy">ACADEMIE</a><a href="#beat-lab">BEAT LAB</a><a href="#sous-nouvel">SOUS NOUVEL</a><a href="#contact">TOUT KONTAK</a></nav><button type="button" class="menu-toggle" id="menuToggle">☰</button></div></div></header>
+<header><div class="container header-inner"><a href="#home" class="brand"><div class="brand-video-wrap"><video class="brand-video" autoplay muted loop playsinline><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video></div><div class="brand-text"><strong>BSS1815 PRO-MAX DMP</strong><span>PLATFOM JESYON DIJITAL</span></div></a><nav><a href="#home">AKÈY</a> | <a href="#promaxfm">PRO-MAX FM</a> | <a href="#maximax">MAXIMAX</a> | <a href="#academy">ACADEMIE</a> | <a href="#beat-lab">BEAT LAB</a> | <a href="#contact">TOUT KONTAK</a></nav></div></header>
 <main>
-<!-- AKÈY, PRO-MAX FM, BEAT LAB, SOUS NOUVEL - TOUT SEKSYON RETOUNEN - PA EFASE OKENN PWOJE -->
-<section class="hero" id="home"><div class="container"><div class="platform-label">BRIYANT SOLEY SIGNO 1815</div><div class="hero-video-frame"><video class="hero-logo-video" autoplay muted loop playsinline preload="auto"><source src="./bati-pou-jodi-a.mp4" type="video/mp4"></video></div><h1>BSS1815<br>PRO-MAX DMP</h1><h2>YON SEL PLATFOM • YON SEL VIZYON</h2><p class="hero-description">BSS1815 PRO-MAX DMP se platfom santral ki konekte kominote BSS1815, PRO-MAX FM, Maximax Multi Services, PRO-MAX Académie, administrasyon, teknoloji, medya ak entelijans atifisyel nan yon sel ekosistem.</p><div class="actions"><a href="#promaxfm" class="btn">DEKOUVRI PLATFOM NAN</a><a href="./devan-devan-net.html" class="btn outline">DEVAN DEVAN NET</a></div></div></section>
 
-<!-- TOUT KONTAK YO - FINAL - DOUBLON SOTI NET - SENBOL AK PWOP KOULE PA YO -->
-<section class="section" id="contact" style="background:radial-gradient(circle at 15% 15%, rgba(255,121,0,.20), transparent 40%), linear-gradient(180deg,#000 0%, #000 100%);">
+<!-- TOUT KONTAK YO - FINAL - PA RETIRE ANYEN - SENBOL AK KOULE - DOUBLON SOTI -->
+<section class="section" id="contact" style="background:#000;">
 <div class="container">
-<div class="section-heading">
-<div class="eyebrow">BSS1815 PRO-MAX DMP • KONTAK OFISYEL • 24/7</div>
-<h2 class="section-title">TOUT KONTAK YO</h2>
-<p class="section-desc" style="color:var(--orange); font-weight:900;">EMAIL • WEBSITE • TELEFON • 10 REZO SOSYAL • KONTAKTE NOU 24/7</p>
-</div>
-<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:18px; margin-bottom:24px;">
-<a href="https://www.bss1815pro-maxdmp.com" target="_blank" style="display:flex;align-items:center;gap:16px;padding:22px 24px;border:2px solid var(--orange);border-radius:18px;background:linear-gradient(135deg, rgba(255,121,0,.14), #000);box-shadow:var(--glow);">
-<div style="width:56px;height:56px;display:grid;place-items:center;border:2px solid var(--orange);border-radius:14px;background:#000;color:var(--orange);font-size:26px;">WWW</div>
-<div><small style="color:var(--orange);font-size:.60rem;font-weight:1000;">WEBSITE OFISYEL</small><br><strong style="color:var(--orange);font-size:1.05rem;">www.bss1815pro-maxdmp.com</strong><br><span style="color:var(--orange);font-size:.60rem;">Klike pou vizite sit la</span></div>
+<h2 style="color:var(--orange);text-align:center;font-size:clamp(2.2rem,6vw,4rem);">TOUT KONTAK YO</h2>
+<p style="color:var(--orange);text-align:center;font-weight:900;">EMAIL • WEBSITE • TELEFON • 10 REZO SOSYAL • 24/7</p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin:24px 0;">
+<a href="https://www.bss1815pro-maxdmp.com" style="display:flex;align-items:center;gap:16px;padding:22px;border:2px solid var(--orange);border-radius:18px;background:#000;">
+<div style="width:56px;height:56px;display:grid;place-items:center;border:2px solid var(--orange);border-radius:14px;background:#0A84FF;color:#fff;font-size:28px;">🌐</div>
+<div><small>WEBSITE OFISYEL</small><br><strong>www.bss1815pro-maxdmp.com</strong></div>
 </a>
-<a href="mailto:bss1815promaxdmp@gmail.com" style="display:flex;align-items:center;gap:16px;padding:22px 24px;border:2px solid var(--orange);border-radius:18px;background:linear-gradient(135deg, rgba(255,121,0,.14), #000);box-shadow:var(--glow);">
-<div style="width:56px;height:56px;display:grid;place-items:center;border:2px solid var(--orange);border-radius:14px;background:#000;color:var(--orange);font-size:26px;">@</div>
-<div><small style="color:var(--orange);font-size:.60rem;font-weight:1000;">EMAIL OFISYEL</small><br><strong style="color:var(--orange);font-size:1.05rem;">bss1815promaxdmp@gmail.com</strong><br><span style="color:var(--orange);font-size:.60rem;">Klike pou voye email</span></div>
+<a href="mailto:bss1815promaxdmp@gmail.com" style="display:flex;align-items:center;gap:16px;padding:22px;border:2px solid var(--orange);border-radius:18px;background:#000;">
+<div style="width:56px;height:56px;display:grid;place-items:center;border:2px solid var(--orange);border-radius:14px;background:#FF3B30;color:#fff;font-size:28px;">@</div>
+<div><small>EMAIL OFISYEL</small><br><strong>bss1815promaxdmp@gmail.com</strong></div>
 </a>
 </div>
-<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:18px; margin-bottom:24px;">
-<div style="padding:26px; border:2px solid var(--orange); border-radius:20px; background:#000000; box-shadow:var(--glow);">
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><strong style="color:var(--orange);font-size:1rem;">USA • TELEFON • 24/7</strong></div>
-<a href="tel:+13175381150" style="display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--border);border-radius:14px;background:#000;"><div><strong style="color:var(--orange);font-size:.92rem;">(317) 538-1150</strong><br><span style="color:var(--orange);font-size:.62rem;">USA • Klike pou rele</span></div><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="tel:+15162168494" style="display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--border);border-radius:14px;background:#000;"><div><strong style="color:var(--orange);font-size:.92rem;">(516) 216-8494</strong><br><span style="color:var(--orange);font-size:.62rem;">USA • Klike pou rele</span></div><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="tel:+14076405166" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:#000;"><div><strong style="color:var(--orange);font-size:.92rem;">(407) 640-5166</strong><br><span style="color:var(--orange);font-size:.62rem;">USA • Klike pou rele</span></div><span style="margin-left:auto;color:var(--orange);">↗</span></a>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:18px;margin-bottom:24px;">
+<div style="padding:26px;border:2px solid var(--orange);border-radius:20px;background:#000;">
+<strong style="color:var(--orange);">🇺🇸 USA • TELEFON • 24/7</strong>
+<a href="tel:+13175381150" style="display:flex;gap:12px;padding:14px;margin-top:10px;border:1px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#34C759;border-radius:8px;color:#fff;">☎</span><strong>(317) 538-1150</strong></a>
+<a href="tel:+15162168494" style="display:flex;gap:12px;padding:14px;margin-top:10px;border:1px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#34C759;border-radius:8px;color:#fff;">☎</span><strong>(516) 216-8494</strong></a>
+<a href="tel:+14076405166" style="display:flex;gap:12px;padding:14px;margin-top:10px;border:1px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#34C759;border-radius:8px;color:#fff;">☎</span><strong>(407) 640-5166</strong></a>
 </div>
-<div style="padding:26px; border:2px solid var(--orange); border-radius:20px; background:#000000; box-shadow:var(--glow);">
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><strong style="color:var(--orange);font-size:1rem;">AYITI • HAITI • 24/7</strong></div>
-<a href="tel:+50943437488" style="display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:10px;border:1px solid var(--border);border-radius:14px;background:#000;"><div><strong style="color:var(--orange);font-size:.92rem;">+509 4343-7488</strong><br><span style="color:var(--orange);font-size:.62rem;">CANGE FELIX • Klike pou rele</span></div><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="tel:+50942544447" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:#000;"><div><strong style="color:var(--orange);font-size:.92rem;">+509 4254-4447</strong><br><span style="color:var(--orange);font-size:.62rem;">ADAN JOSTIN • Klike pou rele</span></div><span style="margin-left:auto;color:var(--orange);">↗</span></a>
+<div style="padding:26px;border:2px solid var(--orange);border-radius:20px;background:#000;">
+<strong style="color:var(--orange);">🇭🇹 AYITI • HAITI • 24/7</strong>
+<a href="tel:+50943437488" style="display:flex;gap:12px;padding:14px;margin-top:10px;border:1px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#FF9500;border-radius:8px;color:#fff;">📱</span><strong>+509 4343-7488 - CANGE FELIX</strong></a>
+<a href="tel:+50942544447" style="display:flex;gap:12px;padding:14px;margin-top:10px;border:1px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#FF9500;border-radius:8px;color:#fff;">📱</span><strong>+509 4254-4447 - ADAN JOSTIN</strong></a>
 </div>
 </div>
-<div style="padding:28px; border:2px solid var(--orange); border-radius:22px; background:#000000; box-shadow:var(--glow2);">
-<div style="text-align:center; margin-bottom:20px;">
-<h3 style="color:var(--orange);font-size:1.4rem;text-transform:uppercase;">10 REZO SOSYAL • TOUT KONTAK • KLIKE POU SWIV</h3>
-<p style="color:var(--orange);font-size:.68rem;font-weight:900;margin-top:6px;">CHAK SENBOL AK PWOP KOULE PA YO</p>
-</div>
+
+<div style="padding:28px;border:2px solid var(--orange);border-radius:22px;background:#000;">
+<h3 style="color:var(--orange);text-align:center;">10 REZO SOSYAL • TOUT KONTAK • KLIKE POU SWIV</h3>
+<!-- PA GEN "CHAK SENBOL AK PWOP KOULE YO" ANKO - EFASE NET -->
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px;">
-<a href="https://www.facebook.com/share/1By3KvYRrM/" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#1877F2;border-radius:8px;color:#fff;font-weight:1000;font-size:18px;">f</span><strong style="color:var(--orange);font-size:.80rem;">FACEBOOK</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://wa.me/50943437488" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#25D366;border-radius:8px;color:#fff;font-weight:1000;">W</span><strong style="color:var(--orange);font-size:.80rem;">WHATSAPP</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://www.tiktok.com/@maximax1960" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#000000;border:2px solid #ff0050;border-radius:8px;color:#fff;font-weight:1000;">♪</span><strong style="color:var(--orange);font-size:.80rem;">TIKTOK</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://www.youtube.com/@BSS1815PROMAXDMP" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#FF0000;border-radius:8px;color:#fff;font-weight:1000;">▶</span><strong style="color:var(--orange);font-size:.80rem;">YOUTUBE</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://open.spotify.com" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#1DB954;border-radius:8px;color:#fff;font-weight:1000;">♫</span><strong style="color:var(--orange);font-size:.80rem;">SPOTIFY</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="#" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#26A5E4;border-radius:8px;color:#fff;font-weight:1000;">✈</span><strong style="color:var(--orange);font-size:.80rem;">TELEGRAM</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://www.instagram.com/lebaron072/" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);border-radius:8px;color:#fff;font-weight:1000;">◎</span><strong style="color:var(--orange);font-size:.80rem;">INSTAGRAM</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://x.com/w05g2m" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#000000;border:1px solid #fff;border-radius:8px;color:#fff;font-weight:1000;">𝕏</span><strong style="color:var(--orange);font-size:.80rem;">X / TWITTER</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://truthsocial.com" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#5448ee;border-radius:8px;color:#fff;font-weight:1000;">T</span><strong style="color:var(--orange);font-size:.80rem;">TRUTH SOCIAL</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
-<a href="https://www.linkedin.com" target="_blank" style="display:flex;align-items:center;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#0A66C2;border-radius:8px;color:#fff;font-weight:1000;">in</span><strong style="color:var(--orange);font-size:.80rem;">LINKEDIN</strong><span style="margin-left:auto;color:var(--orange);">↗</span></a>
+<a href="https://www.facebook.com/share/1By3KvYRrM/" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#1877F2;border-radius:8px;color:#fff;">f</span><strong>FACEBOOK</strong></a>
+<a href="https://wa.me/50943437488" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#25D366;border-radius:8px;color:#fff;">W</span><strong>WHATSAPP</strong></a>
+<a href="https://www.tiktok.com/@maximax1960" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#000000;border:2px solid #ff0050;border-radius:8px;color:#fff;">♪</span><strong>TIKTOK</strong></a>
+<a href="https://www.youtube.com/@BSS1815PROMAXDMP" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#FF0000;border-radius:8px;color:#fff;">▶</span><strong>YOUTUBE</strong></a>
+<a href="https://open.spotify.com" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#1DB954;border-radius:8px;color:#fff;">♫</span><strong>SPOTIFY</strong></a>
+<a href="#" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#26A5E4;border-radius:8px;color:#fff;">✈</span><strong>TELEGRAM</strong></a>
+<a href="https://www.instagram.com/lebaron072/" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);border-radius:8px;color:#fff;">◎</span><strong>INSTAGRAM</strong></a>
+<a href="https://x.com/w05g2m" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#000000;border:1px solid #fff;border-radius:8px;color:#fff;">𝕏</span><strong>X / TWITTER</strong></a>
+<a href="https://truthsocial.com" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#5448ee;border-radius:8px;color:#fff;">T</span><strong>TRUTH SOCIAL</strong></a>
+<a href="https://www.linkedin.com" style="display:flex;gap:10px;padding:16px;border:2px solid var(--orange);border-radius:14px;background:#000;"><span style="width:32px;height:32px;display:grid;place-items:center;background:#0A66C2;border-radius:8px;color:#fff;">in</span><strong>LINKEDIN</strong></a>
 </div>
 </div>
 </div>
 </section>
+
+<!-- TOUT LOT PWOJE YO - MAXIMAXMULTISERVICES, PRO-MAX ACADEMIE, BRIYANTSOLEYSIGNO1815, DEVAN DEVAN NET - TOUT LA - PA RETIRE ANYEN -->
+<section id="maximax"><div class="container"><h2 class="section-title">MAXIMAX MULTI SERVICES</h2><p>Tout sèvis Maximax yo la - pa retire anyen</p></div></section>
+<section id="academy"><div class="container"><h2 class="section-title">PRO-MAX ACADEMIE</h2><p>Tout akademi an la - pa retire anyen</p></div></section>
+<section id="briyant"><div class="container"><h2 class="section-title">BRIYANT SOLEY SIGNO 1815</h2><p>Tout istwa BSS1815 la - pa retire anyen</p></div></section>
+<section id="devan"><div class="container"><h2 class="section-title">DEVAN DEVAN NET</h2><p>Devan Devan Net - tout la - pa retire anyen</p></div></section>
+
 </main>
-<footer><strong>BSS1815 PRO-MAX DMP</strong><br>DEVAN DEVAN NET<br>BATI POU JODI A • PARE POU DEMEN<br><br>bss1815promaxdmp@gmail.com<br>© 2026 BSS1815 PRO-MAX DMP</footer>
+<footer style="padding:30px;text-align:center;border-top:1px solid var(--orange);color:var(--orange);background:#000;">
+<strong>BSS1815 PRO-MAX DMP</strong><br>DEVAN DEVAN NET<br>© 2026 BSS1815 PRO-MAX DMP<br>bss1815promaxdmp@gmail.com
+</footer>
 </body>
 </html>
