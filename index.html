@@ -1,4 +1,4 @@
-
+                                                                                                                                                        
 <!-- BSS1815 PRO-MAX DMP — MAIN INDEX.HTML -->
 <!-- PRO-MAX FM connected to its existing live website -->
 <!DOCTYPE html>
@@ -168,6 +168,186 @@ footer{
   main{padding:8px}
   section{padding:30px 10px}
   .radio-frame{height:650px}
+}
+
+/* AJOUT VIDEO AI SAN RETIRE OKENN KOD ORIGINAL */
+.bss-ai-launch,.bss-ai-project-btn{
+  background:linear-gradient(135deg,#ffac57,#ff7900);
+  color:#000;
+  border:2px solid #000;
+  font-weight:900;
+  border-radius:12px;
+  cursor:pointer;
+}
+.bss-ai-launch{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  z-index:1100;
+  padding:14px 19px;
+  box-shadow:0 6px 25px #000a;
+}
+.bss-ai-project-btn{
+  margin-top:12px;
+  padding:12px 18px;
+}
+#bss-ai-overlay[hidden]{
+  display:none!important;
+}
+#bss-ai-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1200;
+  background:rgba(0,0,0,.84);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+}
+.bss-ai-panel{
+  width:min(850px,100%);
+  max-height:95dvh;
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(140deg,#180a00,#000);
+  border:2px solid #ff7900;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 0 35px #ff790066;
+}
+.bss-ai-head{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px;
+  border-bottom:1px solid #ff7900;
+}
+.bss-ai-head strong{font-size:18px}
+.bss-ai-head select{
+  background:#000;
+  color:#ffac57;
+  border:1px solid #ff7900;
+  border-radius:8px;
+  padding:8px;
+}
+.bss-ai-x{
+  padding:8px 12px;
+  border:1px solid #ff7900;
+  border-radius:8px;
+}
+.bss-ai-body{
+  padding:14px;
+  display:grid;
+  grid-template-columns:minmax(200px,.85fr) minmax(0,1.15fr);
+  gap:12px;
+  min-height:0;
+  overflow-y:auto;
+}
+.bss-ai-video-wrap{
+  border:1px solid #ff7900;
+  border-radius:12px;
+  overflow:hidden;
+  background:#000;
+  align-self:start;
+  text-align:center;
+}
+.bss-ai-video-wrap video{
+  display:block;
+  width:100%;
+  max-height:310px;
+  object-fit:contain;
+  background:#000;
+}
+.bss-ai-video-wrap p{
+  margin:8px;
+  font-weight:900;
+  color:#ffac57;
+}
+.bss-ai-chat-col{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:300px;
+  gap:10px;
+}
+.bss-ai-log{
+  flex:1;
+  min-height:180px;
+  max-height:340px;
+  overflow:auto;
+  padding:12px;
+  border:1px solid #a14b12;
+  border-radius:12px;
+  background:#090400;
+}
+.bss-ai-msg{
+  padding:9px 11px;
+  margin:8px 0;
+  border-radius:11px;
+  line-height:1.5;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  color:#ffd1a2;
+}
+.bss-ai-msg.user{
+  background:#643000;
+  margin-left:10%;
+}
+.bss-ai-msg.assistant{
+  background:#301600;
+  margin-right:8%;
+}
+.bss-ai-form{
+  display:flex;
+  gap:7px;
+}
+.bss-ai-form textarea{
+  flex:1;
+  min-width:0;
+  min-height:60px;
+  resize:vertical;
+  color:#ffcc9a;
+  background:#060300;
+  border:1px solid #ff7900;
+  border-radius:9px;
+  padding:10px;
+  font:14px Arial,sans-serif;
+}
+.bss-ai-form button{
+  padding:10px 12px;
+}
+.bss-ai-meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  color:#ffac57;
+}
+.bss-ai-meta button{
+  padding:7px 10px;
+}
+.bss-ai-text-mode .bss-ai-video-wrap,
+.bss-ai-text-mode #bss-ai-voice{
+  display:none!important;
+}
+.bss-ai-text-mode .bss-ai-body{
+  grid-template-columns:1fr;
+}
+.bss-ai-text-mode .bss-ai-chat-col{
+  min-height:350px;
+}
+@media(max-width:620px){
+  .bss-ai-body{grid-template-columns:1fr}
+  .bss-ai-video-wrap video{max-height:145px}
+  .bss-ai-panel{max-height:95dvh}
+  .bss-ai-head strong{font-size:14px}
+  .bss-ai-launch{
+    bottom:9px;
+    right:9px;
+    padding:12px;
+  }
 }
 </style>
 </head>
@@ -467,6 +647,497 @@ function changeSlide(direction) {
     (slideIndex + direction + slides.length) % slides.length;
   slideImage.src = slides[slideIndex];
 }
+</script>
+
+<!-- VIDEO AI SANTRAL — AJOUTE SAN RETIRE ELEMANT ORIGINAL -->
+
+<button
+  type="button"
+  id="bss-ai-floating"
+  class="bss-ai-launch"
+  aria-controls="bss-ai-overlay"
+>
+  🤖 VIDEO AI BSS1815
+</button>
+
+<div
+  id="bss-ai-overlay"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-label="BSS1815 VIDEO AI CUSTOMER SERVICE"
+>
+  <div class="bss-ai-panel">
+    <div class="bss-ai-head">
+      <strong>🍊 BSS1815 PRO-MAX DMP — VIDEO AI</strong>
+
+      <label>
+        <span class="bss-ai-lang-label">LANG</span>
+        <select id="bss-ai-language" aria-label="Chwazi lang">
+          <option value="ht">KRE</option>
+          <option value="fr">FRA</option>
+          <option value="en">ENG</option>
+        </select>
+      </label>
+
+      <button
+        type="button"
+        class="bss-ai-x"
+        id="bss-ai-close"
+        aria-label="Fèmen AI"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div class="bss-ai-body">
+      <div class="bss-ai-video-wrap">
+        <video
+          id="bss-ai-video"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        >
+          <source
+            src="./max-louis-le-baron.mp4"
+            type="video/mp4"
+          >
+        </video>
+        <p>MAX LOUIS ALIAS LE BARON</p>
+      </div>
+
+      <div class="bss-ai-chat-col">
+        <div
+          id="bss-ai-topic"
+          style="font-weight:900;color:#ff7900"
+        >
+          TOUT PWOJÈ YO
+        </div>
+
+        <div
+          id="bss-ai-log"
+          class="bss-ai-log"
+          role="log"
+          aria-live="polite"
+        ></div>
+
+        <form id="bss-ai-form" class="bss-ai-form">
+          <textarea
+            id="bss-ai-question"
+            maxlength="550"
+            required
+            aria-label="Kesyon pou AI"
+            placeholder="Poze kesyon ou..."
+          ></textarea>
+
+          <button
+            type="submit"
+            id="bss-ai-send"
+          >
+            VOYE
+          </button>
+        </form>
+
+        <div class="bss-ai-meta">
+          <button
+            type="button"
+            id="bss-ai-voice"
+            aria-pressed="false"
+          >
+            🔇 VWA OFF
+          </button>
+
+          <span id="bss-ai-status">
+            Pa mete SSN, modpas oswa done prive.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+  MENM VIDEO AI A POU 5 PWOJE
+  PRO-MAX FM = REPONS ALEKRI SELMAN
+*/
+
+(function(){
+  "use strict";
+
+  const $ = id => document.getElementById(id);
+
+  const names = {
+    bss1815:"BSS1815 COMMUNITY",
+    "pro-max-fm":"PRO-MAX FM",
+    maximax:"MAXIMAX MULTI SERVICES",
+    academy:"PRO-MAX ACADÉMIE",
+    "beat-lab":"PRO-MAX BEAT LAB",
+    all:"TOUT PWOJÈ YO"
+  };
+
+  const labels = {
+    ht:{
+      start:"Bonjou! Mwen se asistan AI BSS1815. Ki kesyon ou genyen?",
+      ask:"Poze kesyon ou...",
+      send:"VOYE",
+      loading:"M ap prepare repons lan...",
+      failed:"Sèvis AI a poko konekte oswa li pa disponib. Verifye fonksyon /api/bss-ai sou Netlify.",
+      warning:"Pa mete SSN, modpas oswa done prive.",
+      voiceOn:"🔊 VWA ON",
+      voiceOff:"🔇 VWA OFF"
+    },
+    fr:{
+      start:"Bonjour! Je suis l'assistant IA BSS1815. Quelle est votre question?",
+      ask:"Posez votre question...",
+      send:"ENVOYER",
+      loading:"Préparation de la réponse...",
+      failed:"Le service IA n'est pas encore connecté ou est indisponible. Vérifiez /api/bss-ai sur Netlify.",
+      warning:"Ne partagez pas de SSN, mot de passe ou données privées.",
+      voiceOn:"🔊 VOIX ON",
+      voiceOff:"🔇 VOIX OFF"
+    },
+    en:{
+      start:"Hello! I'm the BSS1815 AI assistant. How can I help?",
+      ask:"Ask your question...",
+      send:"SEND",
+      loading:"Preparing your answer...",
+      failed:"The AI service is not connected or is unavailable. Check /api/bss-ai on Netlify.",
+      warning:"Do not share SSNs, passwords or private information.",
+      voiceOn:"🔊 VOICE ON",
+      voiceOff:"🔇 VOICE OFF"
+    }
+  };
+
+  let project = "all";
+  let language = "ht";
+  let voiceOn = false;
+  let busy = false;
+  let history = [];
+  let lastFocus = null;
+
+  const panel = $("bss-ai-overlay");
+  const form = $("bss-ai-form");
+  const q = $("bss-ai-question");
+  const log = $("bss-ai-log");
+  const video = $("bss-ai-video");
+
+  function message(text,who){
+    const el = document.createElement("div");
+    el.className = "bss-ai-msg " + who;
+    el.textContent = text;
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    return el;
+  }
+
+  function updateLanguage(){
+    const t = labels[language];
+
+    q.placeholder = t.ask;
+    $("bss-ai-send").textContent = t.send;
+    $("bss-ai-status").textContent = t.warning;
+    $("bss-ai-voice").textContent =
+      voiceOn ? t.voiceOn : t.voiceOff;
+  }
+
+  function openAI(name){
+    lastFocus = document.activeElement;
+
+    project = names[name] ? name : "all";
+
+    const textOnly = project === "pro-max-fm";
+
+    panel.classList.toggle(
+      "bss-ai-text-mode",
+      textOnly
+    );
+
+    panel.hidden = false;
+    history = [];
+    log.replaceChildren();
+
+    $("bss-ai-topic").textContent = names[project];
+
+    language = ["ht","fr","en"].includes(
+      document.documentElement.lang
+    )
+      ? document.documentElement.lang
+      : "ht";
+
+    $("bss-ai-language").value = language;
+
+    updateLanguage();
+
+    message(
+      labels[language].start,
+      "assistant"
+    );
+
+    if(textOnly){
+      video.pause();
+    }else{
+      video.play().catch(() => {});
+    }
+
+    q.focus();
+  }
+
+  function closeAI(){
+    panel.hidden = true;
+    video.pause();
+
+    if("speechSynthesis" in window){
+      speechSynthesis.cancel();
+    }
+
+    if(lastFocus && lastFocus.focus){
+      lastFocus.focus();
+    }
+  }
+
+  $("bss-ai-floating").addEventListener(
+    "click",
+    () => openAI("all")
+  );
+
+  $("bss-ai-close").addEventListener(
+    "click",
+    closeAI
+  );
+
+  panel.addEventListener("click",e => {
+    if(e.target === panel){
+      closeAI();
+    }
+  });
+
+  document.addEventListener("keydown",e => {
+    if(e.key === "Escape" && !panel.hidden){
+      closeAI();
+    }
+  });
+
+  $("bss-ai-language").addEventListener(
+    "change",
+    e => {
+      language = e.target.value;
+      updateLanguage();
+    }
+  );
+
+  $("bss-ai-voice").addEventListener(
+    "click",
+    () => {
+      voiceOn = !voiceOn;
+
+      $("bss-ai-voice").setAttribute(
+        "aria-pressed",
+        String(voiceOn)
+      );
+
+      updateLanguage();
+
+      if(!voiceOn && "speechSynthesis" in window){
+        speechSynthesis.cancel();
+      }
+    }
+  );
+
+  function speak(text){
+    if(
+      project === "pro-max-fm" ||
+      !voiceOn ||
+      !("speechSynthesis" in window)
+    ){
+      return;
+    }
+
+    speechSynthesis.cancel();
+
+    const u = new SpeechSynthesisUtterance(text);
+
+    u.lang =
+      language === "ht"
+        ? "ht-HT"
+        : language === "fr"
+          ? "fr-FR"
+          : "en-US";
+
+    speechSynthesis.speak(u);
+  }
+
+  form.addEventListener("submit",async e => {
+    e.preventDefault();
+
+    const question = q.value.trim();
+
+    if(!question || busy){
+      return;
+    }
+
+    busy = true;
+    $("bss-ai-send").disabled = true;
+
+    message(question,"user");
+    q.value = "";
+
+    const wait = message(
+      labels[language].loading,
+      "assistant"
+    );
+
+    const previous = history.slice(-6);
+
+    try{
+      const controller = new AbortController();
+
+      const timeout = setTimeout(
+        () => controller.abort(),
+        25000
+      );
+
+      let res;
+
+      try{
+        res = await fetch("/api/bss-ai",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            question,
+            language,
+            project,
+            history:previous
+          }),
+          signal:controller.signal
+        });
+      }finally{
+        clearTimeout(timeout);
+      }
+
+      let data = {};
+
+      try{
+        data = await res.json();
+      }catch{}
+
+      if(
+        !res.ok ||
+        typeof data.answer !== "string" ||
+        !data.answer.trim()
+      ){
+        throw new Error("AI unavailable");
+      }
+
+      wait.textContent = data.answer;
+
+      history.push(
+        {
+          role:"user",
+          content:question
+        },
+        {
+          role:"assistant",
+          content:data.answer
+        }
+      );
+
+      speak(data.answer);
+
+    }catch{
+      wait.textContent = labels[language].failed;
+
+    }finally{
+      busy = false;
+      $("bss-ai-send").disabled = false;
+      q.focus();
+      log.scrollTop = log.scrollHeight;
+    }
+  });
+
+  /*
+    AJOUTE BOUTON VIDEO AI NAN 5 KAT PWOJE YO
+    SAN RETIRE NI CHANJE LYEN ORIGINAL YO
+  */
+
+  const projects = [
+    "bss1815",
+    "pro-max-fm",
+    "maximax",
+    "academy",
+    "beat-lab"
+  ];
+
+  const cards = document.querySelectorAll(
+    "#ecosystem .card"
+  );
+
+  projects.forEach((p,i) => {
+    if(!cards[i]){
+      return;
+    }
+
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "bss-ai-project-btn";
+
+    b.textContent =
+      p === "pro-max-fm"
+        ? "💬 AI — KESYON ALEKRI"
+        : "🎥 VIDEO AI — POZE KESYON";
+
+    b.addEventListener(
+      "click",
+      () => openAI(p)
+    );
+
+    cards[i].appendChild(b);
+  });
+
+  /*
+    MENM ASISTANS LAN NAN 5 SEKSYON PWOJE YO
+  */
+
+  const ids = [
+    "community",
+    "promaxfm",
+    "maximax",
+    "academy",
+    "beat-lab"
+  ];
+
+  projects.forEach((p,i) => {
+    const section = $(ids[i]);
+
+    if(!section){
+      return;
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "bss-ai-project-btn";
+
+    b.textContent =
+      p === "pro-max-fm"
+        ? "💬 CUSTOMER SERVICE AI — EKRI"
+        : "🎥 VIDEO AI — " + names[p];
+
+    b.addEventListener(
+      "click",
+      () => openAI(p)
+    );
+
+    actions.appendChild(b);
+    section.appendChild(actions);
+  });
+
+})();
 </script>
 
 </body>
