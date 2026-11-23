@@ -1,11 +1,13 @@
 
 <!-- =========================================================
  BSS1815 PRO-MAX DMP — MAIN INDEX.HTML
- LOGO: bss1815-promax-logo-2026.jpg
- PROF AVATAR: promax-dmp.mp4
- ORIGINAL MODULES AND AI CENTER PRESERVED
- ORANGE / APRICOT / BLACK ONLY
+ LOGO GITHUB DIRECT + LOCAL FALLBACK
+ NO WHITE HEADER
+ HERO VIDEO UNCHANGED
+ PROF AVATAR UNCHANGED
+ ALL MODULES PRESERVED
  ========================================================= -->
+
 <!DOCTYPE html>
 <html lang="ht" translate="no">
 <head>
@@ -27,27 +29,39 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+
 body{
   margin:0;
   background:linear-gradient(140deg,#000,#1b0b00,#000);
   color:var(--orange);
   font-family:Arial,Helvetica,sans-serif;
 }
+
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer}
+
 header{
   padding:22px;
   border-bottom:2px solid var(--orange);
   text-align:center;
   background:linear-gradient(180deg,#000,#190900,#000);
 }
+
 header h1{
   margin:8px 0;
   font-size:clamp(32px,6vw,60px);
 }
-header p{font-weight:bold;letter-spacing:2px}
 
-/* MAIN LOGO — NO WHITE HEADER */
+header p{
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+/* ========================================
+   MAIN LOGO — GITHUB DIRECT
+   BLACK / ORANGE ONLY
+   ======================================== */
+
 .main-logo{
   display:flex;
   justify-content:center;
@@ -56,9 +70,10 @@ header p{font-weight:bold;letter-spacing:2px}
   margin:12px auto 24px;
   background:transparent;
 }
+
 .main-logo img{
   display:block;
-  width:min(100%,460px);
+  width:min(100%,800px);
   height:auto;
   object-fit:contain;
   border:2px solid var(--orange);
@@ -74,6 +89,7 @@ nav{
   gap:9px;
   padding:16px;
 }
+
 nav a,.btn,button{
   display:inline-block;
   padding:12px 18px;
@@ -83,37 +99,57 @@ nav a,.btn,button{
   color:var(--orange);
   font-weight:bold;
 }
+
 nav a:hover,.btn:hover,button:hover{
   background:var(--orange);
   color:#000;
 }
-main{max-width:1250px;margin:auto;padding:20px}
+
+main{
+  max-width:1250px;
+  margin:auto;
+  padding:20px;
+}
+
 section{
   padding:45px 16px;
   border-bottom:1px solid var(--border);
 }
-h2{text-align:center;font-size:clamp(25px,4vw,40px)}
+
+h2{
+  text-align:center;
+  font-size:clamp(25px,4vw,40px);
+}
+
 .intro{
   max-width:800px;
   margin:12px auto 26px;
   text-align:center;
   line-height:1.7;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:18px;
 }
+
 .card{
   background:linear-gradient(140deg,#241000,#050505);
   padding:24px;
   border:1px solid var(--border);
   border-radius:17px;
 }
+
 .card h3{margin-top:0}
 .card p{line-height:1.7;color:var(--apricot)}
 .card .btn{margin-top:15px}
-.hero{text-align:center;padding:55px 18px}
+
+.hero{
+  text-align:center;
+  padding:55px 18px;
+}
+
 .hero video{
   display:block;
   width:min(100%,680px);
@@ -121,8 +157,13 @@ h2{text-align:center;font-size:clamp(25px,4vw,40px)}
   border:2px solid var(--orange);
   border-radius:22px;
 }
-.hero h2{font-size:clamp(24px,5vw,44px)}
+
+.hero h2{
+  font-size:clamp(24px,5vw,44px);
+}
+
 .center{text-align:center}
+
 .actions{
   display:flex;
   justify-content:center;
@@ -130,18 +171,22 @@ h2{text-align:center;font-size:clamp(25px,4vw,40px)}
   gap:12px;
   margin-top:22px;
 }
+
 .radio-panel{
   border:2px solid var(--orange);
   border-radius:20px;
   overflow:hidden;
   background:#000;
 }
+
 .radio-panel-header{
   padding:25px;
   text-align:center;
   background:linear-gradient(130deg,#281000,#000);
 }
+
 .radio-panel-header h3{font-size:30px}
+
 .radio-frame{
   width:100%;
   min-height:600px;
@@ -150,6 +195,7 @@ h2{text-align:center;font-size:clamp(25px,4vw,40px)}
   display:block;
   background:#000;
 }
+
 .avatar-video{
   width:min(100%,700px);
   display:block;
@@ -158,11 +204,13 @@ h2{text-align:center;font-size:clamp(25px,4vw,40px)}
   border-radius:18px;
   background:#000;
 }
+
 .slideshow{
   max-width:1000px;
   margin:auto;
   text-align:center;
 }
+
 .slideshow img{
   display:block;
   max-width:100%;
@@ -172,17 +220,20 @@ h2{text-align:center;font-size:clamp(25px,4vw,40px)}
   border:2px solid var(--orange);
   border-radius:15px;
 }
+
 .lang-switch{
   display:flex;
   justify-content:center;
   gap:10px;
   margin:15px;
 }
+
 .socials{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:12px;
 }
+
 .socials a{
   display:block;
   padding:15px;
@@ -192,6 +243,7 @@ h2{text-align:center;font-size:clamp(25px,4vw,40px)}
   font-weight:bold;
   text-align:center;
 }
+
 footer{
   padding:35px 18px;
   background:#000;
@@ -199,28 +251,38 @@ footer{
   text-align:center;
   line-height:1.8;
 }
+
 @media(max-width:650px){
   main{padding:8px}
   section{padding:30px 10px}
   .radio-frame{height:650px}
-  .main-logo img{width:min(100%,340px)}
+  .main-logo img{width:100%}
 }
 </style>
 </head>
 
 <body>
 
+<!-- ========================================
+     HEADER — NEW MAIN LOGO
+     ======================================== -->
+
 <header id="home">
 
-  <!-- VERIFIED GITHUB FILENAME -->
   <div class="main-logo">
+
     <img
-      src="./bss1815-promax-logo-2026.jpg"
+      id="bssMainLogo"
+      src="https://raw.githubusercontent.com/louismaxauto600-jpg/bss1815-pro-max-dmp/main/bss1815-promax-logo-2026.jpg?v=20261123"
       alt="BSS1815 PRO-MAX DMP — ONE MAN ONE VISION"
-      loading="eager">
+      loading="eager"
+      decoding="async"
+      onerror="this.onerror=null;this.src='./bss1815-promax-logo-2026.jpg?v=20261123';">
+
   </div>
 
   <h1>BSS1815 PRO-MAX DMP</h1>
+
   <p>DEVAN DEVAN NÈT™</p>
   <p>BATI POU JODI A • PARE POU DEMEN</p>
 
@@ -245,15 +307,29 @@ footer{
     <a href="#ddn">DDN</a>
     <a href="#contact">KONTAK</a>
   </nav>
+
 </header>
 
 <main>
 
+<!-- ========================================
+     HERO — ORIGINAL VIDEO UNCHANGED
+     ======================================== -->
+
 <section class="hero">
+
   <h2>YON SÈL PLATFÒM • YON SÈL VIZYON</h2>
 
-  <video id="heroVideo" autoplay muted loop playsinline controls>
-    <source src="./bati-pou-jodi-a.mp4" type="video/mp4">
+  <video
+    id="heroVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    controls>
+    <source
+      src="./bati-pou-jodi-a.mp4"
+      type="video/mp4">
   </video>
 
   <p class="intro">
@@ -264,171 +340,425 @@ footer{
   </p>
 
   <div class="actions">
-    <a class="btn" href="#ecosystem">DEKOUVRI PLATFÒM NAN</a>
-    <a class="btn" href="#promaxfm">📻 PRO-MAX FM 106.5 FM LIVE</a>
+    <a class="btn" href="#ecosystem">
+      DEKOUVRI PLATFÒM NAN
+    </a>
+
+    <a class="btn" href="#promaxfm">
+      📻 PRO-MAX FM 106.5 FM LIVE
+    </a>
   </div>
+
 </section>
 
+<!-- ========================================
+     CUSTOMER SERVICE — UNCHANGED
+     ======================================== -->
+
 <section id="customer-service">
+
   <h2>PROF AVATAR — CUSTOMER SERVICE</h2>
+
   <p class="intro">
-    Asistans ak oryantasyon pou vizitè platfòm BSS1815 la.
+    Asistans ak oryantasyon pou vizitè
+    platfòm BSS1815 la.
   </p>
 
-  <video id="profAvatarMain" class="avatar-video" controls playsinline preload="metadata">
-    <source src="./promax-dmp.mp4" type="video/mp4">
+  <video
+    id="profAvatarMain"
+    class="avatar-video"
+    controls
+    playsinline
+    preload="metadata">
+    <source
+      src="./promax-dmp.mp4"
+      type="video/mp4">
   </video>
 
   <div class="center">
-    <p>Pou asistans, kontakte ekip BSS1815 PRO-MAX DMP la.</p>
-    <a class="btn" href="#contact">CONTACT CUSTOMER SERVICE</a>
-    <a class="btn" href="#ai-center">🤖 PALE AK AI CENTER — PROF AVATAR</a>
-  </div>
-</section>
 
-<section id="ai-center">
-  <h2>🤖 BSS1815 PRO-MAX DMP — AI CENTER</h2>
-  <p class="intro">
-    1 SÈL AI • 5 PWOJÈ • MENM MEMWA.
-    Chwazi yon pwojè. Menm AI a reponn pou tout pwojè yo.
-  </p>
-
-  <div style="max-width:900px;margin:auto;background:linear-gradient(140deg,#241000,#050505);border:2px solid var(--orange);border-radius:20px;padding:24px;text-align:center">
-    <h3 style="margin:0">BSS1815 PRO-MAX DMP — AI CENTER</h3>
-    <p style="color:var(--apricot);font-size:13px">
-      1 sèl AI • 5 Pwojè • Menm Memwa • PRO-MAX ACADÉMIE: 1 Paran, 3 Lekòl Anba l
+    <p>
+      Pou asistans, kontakte ekip
+      BSS1815 PRO-MAX DMP la.
     </p>
 
-    <video id="aiProfAvatar" class="avatar-video" controls playsinline preload="metadata" style="width:min(100%,560px)">
-      <source src="./promax-dmp.mp4" type="video/mp4">
+    <a class="btn" href="#contact">
+      CONTACT CUSTOMER SERVICE
+    </a>
+
+    <a class="btn" href="#ai-center">
+      🤖 PALE AK AI CENTER — PROF AVATAR
+    </a>
+
+  </div>
+
+</section>
+
+<!-- ========================================
+     AI CENTER — PRESERVED
+     ======================================== -->
+
+<section id="ai-center">
+
+  <h2>🤖 BSS1815 PRO-MAX DMP — AI CENTER</h2>
+
+  <p class="intro">
+    1 SÈL AI • 5 PWOJÈ • MENM MEMWA.
+    Chwazi yon pwojè. Menm AI a reponn
+    pou tout pwojè yo.
+  </p>
+
+  <div style="
+    max-width:900px;
+    margin:auto;
+    background:linear-gradient(140deg,#241000,#050505);
+    border:2px solid var(--orange);
+    border-radius:20px;
+    padding:24px;
+    text-align:center">
+
+    <h3 style="margin:0">
+      BSS1815 PRO-MAX DMP — AI CENTER
+    </h3>
+
+    <p style="color:var(--apricot);font-size:13px">
+      1 sèl AI • 5 Pwojè • Menm Memwa •
+      PRO-MAX ACADÉMIE:
+      1 Paran, 3 Lekòl Anba l
+    </p>
+
+    <video
+      id="aiProfAvatar"
+      class="avatar-video"
+      controls
+      playsinline
+      preload="metadata"
+      style="width:min(100%,560px)">
+      <source
+        src="./promax-dmp.mp4"
+        type="video/mp4">
     </video>
 
-    <p style="color:var(--apricot);font-size:13px;font-weight:bold">
+    <p style="
+      color:var(--apricot);
+      font-size:13px;
+      font-weight:bold">
       👤 PROF AVATAR — FIGI AI CENTER A
     </p>
 
-    <div class="actions" style="margin-top:0;margin-bottom:16px">
-      <button type="button" id="aiAvatarPlay">▶ JWE PROF AVATAR</button>
-      <a class="btn" href="#customer-service">ALE NAN PROF AVATAR</a>
+    <div
+      class="actions"
+      style="margin-top:0;margin-bottom:16px">
+
+      <button type="button" id="aiAvatarPlay">
+        ▶ JWE PROF AVATAR
+      </button>
+
+      <a class="btn" href="#customer-service">
+        ALE NAN PROF AVATAR
+      </a>
+
     </div>
 
-    <div style="display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:16px 0">
-      <button type="button" class="ai-proj" data-proj="community">BSS1815 COMMUNITY</button>
-      <button type="button" class="ai-proj" data-proj="fm">PRO-MAX FM 106.5 FM</button>
-      <button type="button" class="ai-proj" data-proj="maximax">MAXIMAX MULTI SERVICES</button>
-      <button type="button" class="ai-proj" data-proj="academie-parent">PRO-MAX ACADÉMIE ▼</button>
-      <button type="button" class="ai-proj" data-proj="leogane">LÉOGÂNE INFO</button>
+    <div style="
+      display:flex;
+      gap:9px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin:16px 0">
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="community">
+        BSS1815 COMMUNITY
+      </button>
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="fm">
+        PRO-MAX FM 106.5 FM
+      </button>
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="maximax">
+        MAXIMAX MULTI SERVICES
+      </button>
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="academie-parent">
+        PRO-MAX ACADÉMIE ▼
+      </button>
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="leogane">
+        LÉOGÂNE INFO
+      </button>
+
     </div>
 
-    <div id="ecolesAcademie" style="display:none;gap:9px;flex-wrap:wrap;justify-content:center;margin:0 0 16px">
-      <button type="button" class="ai-proj" data-proj="academie">LEKÒL 1: ACADÉMIE — Fòmasyon Jeneral</button>
-      <button type="button" class="ai-proj" data-proj="beatmaker">LEKÒL 2: BEAT MAKER — Mizik &amp; Beat</button>
-      <button type="button" class="ai-proj" data-proj="journalisme">LEKÒL 3: JOURNALISME — Jounalis &amp; Radyo</button>
+    <div
+      id="ecolesAcademie"
+      style="
+        display:none;
+        gap:9px;
+        flex-wrap:wrap;
+        justify-content:center;
+        margin:0 0 16px">
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="academie">
+        LEKÒL 1: ACADÉMIE — Fòmasyon Jeneral
+      </button>
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="beatmaker">
+        LEKÒL 2: BEAT MAKER — Mizik &amp; Beat
+      </button>
+
+      <button
+        type="button"
+        class="ai-proj"
+        data-proj="journalisme">
+        LEKÒL 3: JOURNALISME — Jounalis &amp; Radyo
+      </button>
+
     </div>
 
-    <div id="aiChat" style="background:#000;border:2px solid var(--orange);border-radius:12px;padding:16px;min-height:180px;text-align:left;color:var(--apricot);font-size:14px;line-height:1.7;overflow-y:auto">
+    <div
+      id="aiChat"
+      style="
+        background:#000;
+        border:2px solid var(--orange);
+        border-radius:12px;
+        padding:16px;
+        min-height:180px;
+        text-align:left;
+        color:var(--apricot);
+        font-size:14px;
+        line-height:1.7;
+        overflow-y:auto">
+
       Bonjou! Mwen se AI BSS1815 PRO-MAX DMP.
-      Chwazi yon pwojè anwo a, epi poze m kesyon ou.
-      Mwen sonje tout 5 pwojè yo.
+      Chwazi yon pwojè anwo a, epi poze m
+      kesyon ou. Mwen sonje tout 5 pwojè yo.
       PRO-MAX ACADÉMIE gen 3 lekòl anba l:
       ACADÉMIE, BEAT MAKER, JOURNALISME.
+
     </div>
 
-    <div style="display:flex;gap:9px;margin-top:14px">
-      <input id="aiInput" placeholder="Poze kesyon ou la..." style="flex:1;min-width:0;padding:12px;border-radius:10px;border:1px solid var(--orange);background:#000;color:var(--apricot)">
-      <button type="button" id="aiSend">VOYE ▶</button>
+    <div style="
+      display:flex;
+      gap:9px;
+      margin-top:14px">
+
+      <input
+        id="aiInput"
+        placeholder="Poze kesyon ou la..."
+        style="
+          flex:1;
+          min-width:0;
+          padding:12px;
+          border-radius:10px;
+          border:1px solid var(--orange);
+          background:#000;
+          color:var(--apricot)">
+
+      <button type="button" id="aiSend">
+        VOYE ▶
+      </button>
+
     </div>
 
     <p style="font-size:12px;color:var(--apricot)">
       DEVAN DEVAN NÈT™ — ONE MAN • ONE VISION
     </p>
+
   </div>
+
 </section>
 
+<!-- ========================================
+     ECOSYSTEM
+     ======================================== -->
+
 <section id="ecosystem">
+
   <h2>YON SÈL EKOSISTÈM</h2>
-  <p class="intro">Pwojè BSS1815 PRO-MAX DMP yo.</p>
+
+  <p class="intro">
+    Pwojè BSS1815 PRO-MAX DMP yo.
+  </p>
 
   <div class="grid">
+
     <article class="card">
       <h3>🏛️ BSS1815 COMMUNITY</h3>
-      <p>Manm, dirijan, mizisyen, fanatik, eritaj ak kominote.</p>
+      <p>
+        Manm, dirijan, mizisyen, fanatik,
+        eritaj ak kominote.
+      </p>
       <a href="#community" class="btn">ANTRE</a>
     </article>
 
     <article class="card">
       <h3>📻 PRO-MAX FM 106.5 FM</h3>
-      <p>Radyo LIVE, nouvèl, mizik, podcast ak medya dijital.</p>
-      <a href="https://pro-maxfm.com/" class="btn">ENTER PRO-MAX FM</a>
+      <p>
+        Radyo LIVE, nouvèl, mizik,
+        podcast ak medya dijital.
+      </p>
+      <a href="https://pro-maxfm.com/" class="btn">
+        ENTER PRO-MAX FM
+      </a>
     </article>
 
     <article class="card">
       <h3>💼 MAXIMAX MULTI SERVICES</h3>
-      <p>Imigrasyon, sèvis administratif ak asistans pwofesyonèl.</p>
+      <p>
+        Imigrasyon, sèvis administratif
+        ak asistans pwofesyonèl.
+      </p>
       <a href="#maximax" class="btn">ANTRE</a>
     </article>
 
     <article class="card">
       <h3>🎓 PRO-MAX ACADÉMIE</h3>
-      <p>Fòmasyon, teknoloji, AI ak sètifikasyon.</p>
+      <p>
+        Fòmasyon, teknoloji, AI
+        ak sètifikasyon.
+      </p>
       <a href="#academy" class="btn">ANTRE</a>
     </article>
 
     <article class="card">
       <h3>🎹 PRO-MAX BEAT LAB</h3>
-      <p>Beat Maker, piano, aranjman ak pwodiksyon mizik.</p>
+      <p>
+        Beat Maker, piano, aranjman
+        ak pwodiksyon mizik.
+      </p>
       <a href="#beat-lab" class="btn">ANTRE</a>
     </article>
 
     <article class="card">
       <h3>📰 LÉOGÂNE INFO</h3>
-      <p>PON ANT FLORID AK LAKAY. Nouvèl, kominote, jounalis ak enfòmasyon.</p>
+      <p>
+        PON ANT FLORID AK LAKAY.
+        Nouvèl, kominote, jounalis
+        ak enfòmasyon.
+      </p>
       <a href="#leogane-info" class="btn">ANTRE</a>
     </article>
+
   </div>
+
 </section>
+
+<!-- ========================================
+     MODULES
+     ======================================== -->
 
 <section id="modules">
   <h2>MODIL PRENSIPAL YO</h2>
   <div class="grid" id="modulesGrid"></div>
 </section>
 
+<!-- ========================================
+     COMMUNITY
+     ======================================== -->
+
 <section id="community">
+
   <h2>BRIYANT SOLÈY SIGNO 1815</h2>
-  <p class="intro">Istwa, eritaj ak kominote BSS1815.</p>
-
-  <div class="slideshow">
-    <img src="./bss1815.jpg" id="slideImage" alt="BSS1815 Community">
-
-    <div class="actions">
-      <button type="button" onclick="changeSlide(-1)">◀ PREVIOUS</button>
-      <button type="button" onclick="changeSlide(1)">NEXT ▶</button>
-    </div>
-  </div>
-</section>
-
-<section id="promaxfm">
-  <h2>📻 PRO-MAX FM 106.5 FM — LA FORCE DU SON</h2>
 
   <p class="intro">
-    Radyo LIVE PRO-MAX FM 106.5 FM konekte ak platfòm
-    BSS1815 PRO-MAX DMP.
-    Vizitè yo kapab antre nan sit radyo a ki deja disponib.
+    Istwa, eritaj ak kominote BSS1815.
+  </p>
+
+  <div class="slideshow">
+
+    <img
+      src="./bss1815.jpg"
+      id="slideImage"
+      alt="BSS1815 Community">
+
+    <div class="actions">
+
+      <button
+        type="button"
+        onclick="changeSlide(-1)">
+        ◀ PREVIOUS
+      </button>
+
+      <button
+        type="button"
+        onclick="changeSlide(1)">
+        NEXT ▶
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ========================================
+     PRO-MAX FM 106.5 FM
+     ======================================== -->
+
+<section id="promaxfm">
+
+  <h2>
+    📻 PRO-MAX FM 106.5 FM — LA FORCE DU SON
+  </h2>
+
+  <p class="intro">
+    Radyo LIVE PRO-MAX FM 106.5 FM konekte
+    ak platfòm BSS1815 PRO-MAX DMP.
+    Vizitè yo kapab antre nan sit radyo a
+    ki deja disponib.
   </p>
 
   <div class="radio-panel">
+
     <div class="radio-panel-header">
+
       <h3>● ON AIR — PRO-MAX FM 106.5 FM</h3>
-      <p>LA RADIO DE TOUS, PARTOUT ET TOUJOURS.</p>
+
+      <p>
+        LA RADIO DE TOUS, PARTOUT ET TOUJOURS.
+      </p>
 
       <div class="actions">
-        <a class="btn" href="https://pro-maxfm.com/" target="_blank" rel="noopener noreferrer">
+
+        <a
+          class="btn"
+          href="https://pro-maxfm.com/"
+          target="_blank"
+          rel="noopener noreferrer">
           📻 ENTER PRO-MAX FM
         </a>
-        <a class="btn" href="https://pro-maxfm.com/#live" target="_blank" rel="noopener noreferrer">
+
+        <a
+          class="btn"
+          href="https://pro-maxfm.com/#live"
+          target="_blank"
+          rel="noopener noreferrer">
           ▶ ÉCOUTER EN DIRECT
         </a>
+
       </div>
+
     </div>
 
     <iframe
@@ -439,42 +769,88 @@ footer{
       allow="autoplay; fullscreen"
       referrerpolicy="strict-origin-when-cross-origin">
     </iframe>
+
   </div>
+
 </section>
+
+<!-- ========================================
+     MAXIMAX MULTI SERVICES
+     ======================================== -->
 
 <section id="maximax">
+
   <h2>💼 MAXIMAX MULTI SERVICES</h2>
+
   <p class="intro">
-    Immigration, Notary, Taxes, Insurance, Real Estate,
-    Business, Translation, Travel ak lòt sèvis pwofesyonèl.
+    Immigration, Notary, Taxes, Insurance,
+    Real Estate, Business, Translation,
+    Travel ak lòt sèvis pwofesyonèl.
   </p>
+
   <div class="center">
-    <a href="./maximax/index.html" class="btn">ENTER MAXIMAX MULTI SERVICES</a>
+    <a
+      href="./maximax/index.html"
+      class="btn">
+      ENTER MAXIMAX MULTI SERVICES
+    </a>
   </div>
+
 </section>
+
+<!-- ========================================
+     PRO-MAX ACADÉMIE
+     ======================================== -->
 
 <section id="academy">
+
   <h2>🎓 PRO-MAX ACADÉMIE</h2>
+
   <p class="intro">
     Sant fòmasyon, Real Estate School,
-    Insurance School, Journalism School ak teknoloji AI.
+    Insurance School, Journalism School
+    ak teknoloji AI.
   </p>
+
   <div class="center">
-    <a href="./academy/index.html" class="btn">ENTER PRO-MAX ACADÉMIE</a>
+    <a
+      href="./academy/index.html"
+      class="btn">
+      ENTER PRO-MAX ACADÉMIE
+    </a>
   </div>
+
 </section>
+
+<!-- ========================================
+     PRO-MAX BEAT LAB
+     ======================================== -->
 
 <section id="beat-lab">
+
   <h2>🎹 PRO-MAX BEAT LAB</h2>
+
   <p class="intro">
-    Espas pou Beat Maker, melodi, piano, mixaj ak pwodiksyon mizik.
+    Espas pou Beat Maker, melodi,
+    piano, mixaj ak pwodiksyon mizik.
   </p>
+
   <div class="center">
-    <a href="./pro-max-beat-lab.html" class="btn">ENTER BEAT LAB</a>
+    <a
+      href="./pro-max-beat-lab.html"
+      class="btn">
+      ENTER BEAT LAB
+    </a>
   </div>
+
 </section>
 
+<!-- ========================================
+     LÉOGÂNE INFO
+     ======================================== -->
+
 <section id="leogane-info">
+
   <h2>📰 LÉOGÂNE INFO</h2>
 
   <p class="intro">
@@ -483,49 +859,101 @@ footer{
   </p>
 
   <div class="grid">
+
     <article class="card">
       <h3>SE PA ONFOS, SE INFO</h3>
-      <p>Enfòmasyon, nouvèl, repòtaj ak lavi kominotè.</p>
+      <p>
+        Enfòmasyon, nouvèl,
+        repòtaj ak lavi kominotè.
+      </p>
     </article>
 
     <article class="card">
       <h3>SE PA VEVWA, SE VWA</h3>
-      <p>Yon medya ki pote vwa kominote a pi lwen.</p>
+      <p>
+        Yon medya ki pote vwa
+        kominote a pi lwen.
+      </p>
     </article>
 
     <article class="card">
       <h3>PON ANT FLORID AK LAKAY</h3>
-      <p>Léogâne, Florid, Ayiti ak dyaspora a ansanm.</p>
+      <p>
+        Léogâne, Florid, Ayiti
+        ak dyaspora a ansanm.
+      </p>
     </article>
+
   </div>
 
   <div class="actions">
-    <a href="./leogane-info/index.html" class="btn">ENTER LÉOGÂNE INFO</a>
+    <a
+      href="./leogane-info/index.html"
+      class="btn">
+      ENTER LÉOGÂNE INFO
+    </a>
   </div>
+
 </section>
+
+<!-- ========================================
+     DEVAN DEVAN NÈT
+     ======================================== -->
 
 <section id="ddn">
+
   <h2>🌎 DEVAN DEVAN NÈT™</h2>
-  <p class="intro">BATI POU JODI A • PARE POU DEMEN.</p>
+
+  <p class="intro">
+    BATI POU JODI A • PARE POU DEMEN.
+  </p>
+
   <div class="center">
-    <a href="./devan-devan-net.html" class="btn">ENTER DEVAN DEVAN NÈT</a>
+    <a
+      href="./devan-devan-net.html"
+      class="btn">
+      ENTER DEVAN DEVAN NÈT
+    </a>
   </div>
+
 </section>
 
+<!-- ========================================
+     CONTACT
+     ======================================== -->
+
 <section id="contact">
+
   <h2>KONTAK & REZO SOSYAL</h2>
 
   <div class="grid">
+
     <div class="card">
       <h3>🇺🇸 USA</h3>
-      <p><a href="tel:+14076405166">(407) 640-5166</a></p>
-      <p><a href="tel:+13175381150">(317) 538-1150</a></p>
+      <p>
+        <a href="tel:+14076405166">
+          (407) 640-5166
+        </a>
+      </p>
+      <p>
+        <a href="tel:+13175381150">
+          (317) 538-1150
+        </a>
+      </p>
     </div>
 
     <div class="card">
       <h3>🇭🇹 HAÏTI</h3>
-      <p><a href="tel:+50942544447">+509 4254 4447</a></p>
-      <p><a href="tel:+50943437488">+509 4343 7488</a></p>
+      <p>
+        <a href="tel:+50942544447">
+          +509 4254 4447
+        </a>
+      </p>
+      <p>
+        <a href="tel:+50943437488">
+          +509 4343 7488
+        </a>
+      </p>
     </div>
 
     <div class="card">
@@ -536,32 +964,81 @@ footer{
         </a>
       </p>
     </div>
+
   </div>
 
   <h2>10 REZO SOSYAL</h2>
 
   <div class="socials">
-    <a href="https://www.facebook.com/share/1By3KvYRrM/">Facebook</a>
-    <a href="https://wa.me/50943437488">WhatsApp</a>
-    <a href="https://www.tiktok.com/@maximax1960">TikTok</a>
-    <a href="https://www.instagram.com/lebaron072/">Instagram</a>
-    <a href="https://t.me/bss1815dmp">Telegram</a>
-    <a href="https://www.youtube.com/@BSS1815PROMAXDMP">YouTube</a>
-    <a href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici">Spotify</a>
-    <a href="https://x.com/w05g2m">X / Twitter</a>
-    <a href="https://truthsocial.com/@briyant_soley_1815">Truth Social</a>
-    <a href="https://www.linkedin.com/in/maximax-multi-services-075ba2314">LinkedIn</a>
+
+    <a href="https://www.facebook.com/share/1By3KvYRrM/">
+      Facebook
+    </a>
+
+    <a href="https://wa.me/50943437488">
+      WhatsApp
+    </a>
+
+    <a href="https://www.tiktok.com/@maximax1960">
+      TikTok
+    </a>
+
+    <a href="https://www.instagram.com/lebaron072/">
+      Instagram
+    </a>
+
+    <a href="https://t.me/bss1815dmp">
+      Telegram
+    </a>
+
+    <a href="https://www.youtube.com/@BSS1815PROMAXDMP">
+      YouTube
+    </a>
+
+    <a href="https://open.spotify.com/user/31tjmtdar45qgcpjpiwps5rqrici">
+      Spotify
+    </a>
+
+    <a href="https://x.com/w05g2m">
+      X / Twitter
+    </a>
+
+    <a href="https://truthsocial.com/@briyant_soley_1815">
+      Truth Social
+    </a>
+
+    <a href="https://www.linkedin.com/in/maximax-multi-services-075ba2314">
+      LinkedIn
+    </a>
+
   </div>
+
 </section>
 
 </main>
 
+<!-- ========================================
+     FOOTER
+     ======================================== -->
+
 <footer>
+
   <strong>BSS1815 PRO-MAX DMP</strong>
+
   <p>DEVAN DEVAN NÈT™</p>
+
   <p>BATI POU JODI A • PARE POU DEMEN</p>
-  <p>© <span id="year"></span> BSS1815 PRO-MAX DMP</p>
+
+  <p>
+    © <span id="year"></span>
+    BSS1815 PRO-MAX DMP
+  </p>
+
 </footer>
+
+<!-- ========================================
+     MAIN JAVASCRIPT
+     ======================================== -->
 
 <script>
 "use strict";
@@ -591,9 +1068,11 @@ const moduleData = [
   ["📰","LÉOGÂNE INFO","#leogane-info"]
 ];
 
-const modulesGrid = document.getElementById("modulesGrid");
+const modulesGrid =
+  document.getElementById("modulesGrid");
 
 moduleData.forEach(([icon,name,url])=>{
+
   const a = document.createElement("a");
   a.href = url;
   a.className = "card";
@@ -606,7 +1085,9 @@ moduleData.forEach(([icon,name,url])=>{
 
   a.appendChild(h3);
   a.appendChild(p);
+
   modulesGrid.appendChild(a);
+
 });
 
 const slides = [
@@ -618,36 +1099,72 @@ const slides = [
 ];
 
 let slideIndex = 0;
-const slideImage = document.getElementById("slideImage");
+
+const slideImage =
+  document.getElementById("slideImage");
 
 function changeSlide(direction){
+
   slideIndex =
-    (slideIndex + direction + slides.length) % slides.length;
+    (slideIndex + direction + slides.length)
+    % slides.length;
+
   slideImage.src = slides[slideIndex];
+
 }
 </script>
+
+<!-- ========================================
+     AI CENTER JAVASCRIPT — PRESERVED
+     ======================================== -->
 
 <script>
 "use strict";
 
-/* BSS1815 AI CENTER + PROF AVATAR */
-
 const BSS_AI = {
+
   current:"community",
+
   memory:[],
+
   knowledge:{
-    community:"BSS1815 COMMUNITY: Kominote BRIYANT SOLEY SIGNO 1815, Léogâne, depi 1815. Inite, fanmi, sipò, aktivite, fan club, team backup, team angrenay. Devise: Devan Devan Nèt.",
-    fm:"PRO-MAX FM 106.5 FM: Radyo BSS1815. Mizik, enfòmasyon, divètisman, kominote. Antre nan https://pro-maxfm.com/ . La Force Du Son.",
-    maximax:"MAXIMAX MULTI SERVICES: Imigrasyon I-130, N-400, notary, tradiksyon, tax, LLC, asirans, DMV. Tel: (407) 640-5166 / (516) 216-8494. Pine Hills, FL.",
-    "academie-parent":"PRO-MAX ACADÉMIE — PARAN: 1 Paran, 3 Lekòl Anba l. Klike sou yon lekòl anba a: LEKÒL 1 ACADÉMIE, LEKÒL 2 BEAT MAKER, LEKÒL 3 JOURNALISME.",
-    academie:"PRO-MAX ACADÉMIE — LEKÒL 1: Fòmasyon Jeneral. Kou, atelye, devlopman pèsonèl ak pwofesyonèl. Edikasyon pou tout kominote BSS1815.",
-    beatmaker:"PRO-MAX BEAT MAKER — LEKÒL 2 ANBA ACADÉMIE: Lekòl mizik ak pwodiksyon. Beat, Rara, Kompa, melodi, aranjman, studio, mix. Aprann fè beat, aprann pwodui mizik. Beat Lab BSS1815.",
-    journalisme:"SCHOOL OF JOURNALISME — LEKÒL 3 ANBA ACADÉMIE: Lekòl jounalis. Ekri nouvèl, pale nan radyo, fè entèvyou, verifye enfòmasyon, prezante emisyon. Pou PRO-MAX FM 106.5 FM ak LÉOGÂNE INFO. Jounalis ak etik, verite anvan tout.",
-    leogane:"LÉOGÂNE INFO: Nouvèl Léogâne, Ayiti. Enfòmasyon lokal, kilti, istwa, evènman kominotè."
+
+    community:
+      "BSS1815 COMMUNITY: Kominote BRIYANT SOLEY SIGNO 1815, Léogâne, depi 1815. Inite, fanmi, sipò, aktivite, fan club, team backup, team angrenay. Devise: Devan Devan Nèt.",
+
+    fm:
+      "PRO-MAX FM 106.5 FM: Radyo BSS1815. Mizik, enfòmasyon, divètisman, kominote. Antre nan https://pro-maxfm.com/ . La Force Du Son.",
+
+    maximax:
+      "MAXIMAX MULTI SERVICES: Imigrasyon I-130, N-400, notary, tradiksyon, tax, LLC, asirans, DMV. Tel: (407) 640-5166 / (516) 216-8494. Pine Hills, FL.",
+
+    "academie-parent":
+      "PRO-MAX ACADÉMIE — PARAN: 1 Paran, 3 Lekòl Anba l. Klike sou yon lekòl anba a: LEKÒL 1 ACADÉMIE, LEKÒL 2 BEAT MAKER, LEKÒL 3 JOURNALISME.",
+
+    academie:
+      "PRO-MAX ACADÉMIE — LEKÒL 1: Fòmasyon Jeneral. Kou, atelye, devlopman pèsonèl ak pwofesyonèl. Edikasyon pou tout kominote BSS1815.",
+
+    beatmaker:
+      "PRO-MAX BEAT MAKER — LEKÒL 2 ANBA ACADÉMIE: Lekòl mizik ak pwodiksyon. Beat, Rara, Kompa, melodi, aranjman, studio, mix. Aprann fè beat, aprann pwodui mizik. Beat Lab BSS1815.",
+
+    journalisme:
+      "SCHOOL OF JOURNALISME — LEKÒL 3 ANBA ACADÉMIE: Lekòl jounalis. Ekri nouvèl, pale nan radyo, fè entèvyou, verifye enfòmasyon, prezante emisyon. Pou PRO-MAX FM 106.5 FM ak LÉOGÂNE INFO. Jounalis ak etik, verite anvan tout.",
+
+    leogane:
+      "LÉOGÂNE INFO: Nouvèl Léogâne, Ayiti. Enfòmasyon lokal, kilti, istwa, evènman kominotè."
+
   },
+
   ask:function(q){
-    this.memory.push({proj:this.current,q:q});
-    const k = this.knowledge[this.current] || this.knowledge.community;
+
+    this.memory.push({
+      proj:this.current,
+      q:q
+    });
+
+    const k =
+      this.knowledge[this.current]
+      || this.knowledge.community;
 
     return "🤖 <b>BSS1815 AI — " +
       this.current.toUpperCase() +
@@ -655,93 +1172,169 @@ const BSS_AI = {
       k +
       "<br><br>Kesyon ou: <i>" +
       q +
-      "</i><br><br>Mwen se menm AI ki sèvi tout 5 pwojè yo. Mwen sonje " +
+      "</i><br><br>" +
+      "Mwen se menm AI ki sèvi tout 5 pwojè yo. " +
+      "Mwen sonje " +
       this.memory.length +
-      " kesyon ou te poze deja nan tout pwojè yo. Pou repons konplè, kontakte nou: (407) 640-5166 — bss1815promaxdmp@gmail.com";
+      " kesyon ou te poze deja nan tout pwojè yo. " +
+      "Pou repons konplè, kontakte nou: " +
+      "(407) 640-5166 — " +
+      "bss1815promaxdmp@gmail.com";
+
   }
+
 };
 
+/* PROF AVATAR */
+
 function playProfAvatar(){
-  const v = document.getElementById("aiProfAvatar");
+
+  const v =
+    document.getElementById("aiProfAvatar");
+
   if(v){
+
     v.muted = false;
+
     const result = v.play();
+
     if(result && typeof result.catch === "function"){
       result.catch(function(){});
     }
+
   }
+
 }
 
-document.querySelectorAll(".ai-proj").forEach(function(b){
-  b.addEventListener("click",function(){
-    const proj = b.getAttribute("data-proj");
+/* PROJECT SELECTOR */
 
-    if(proj === "academie-parent"){
-      const box = document.getElementById("ecolesAcademie");
-      box.style.display =
-        (box.style.display === "none" || box.style.display === "")
-        ? "flex" : "none";
+document.querySelectorAll(".ai-proj").forEach(
+  function(b){
 
-      document.getElementById("aiChat").innerHTML =
-        "Ou nan <b>PRO-MAX ACADÉMIE — PARAN</b>. Chwazi youn nan 3 lekòl anba l: <b>LEKÒL 1 ACADÉMIE, LEKÒL 2 BEAT MAKER, LEKÒL 3 JOURNALISME.</b>";
-      return;
-    }
+    b.addEventListener("click",function(){
 
-    BSS_AI.current = proj;
+      const proj =
+        b.getAttribute("data-proj");
 
-    document.getElementById("aiChat").textContent =
-      "Ou kounye a nan " + b.textContent.trim() +
-      ". Menm AI a, menm memwa. Poze kesyon ou.";
+      if(proj === "academie-parent"){
 
-    playProfAvatar();
-  });
-});
+        const box =
+          document.getElementById("ecolesAcademie");
+
+        box.style.display =
+          (box.style.display === "none"
+          || box.style.display === "")
+          ? "flex"
+          : "none";
+
+        document.getElementById("aiChat").innerHTML =
+          "Ou nan <b>PRO-MAX ACADÉMIE — PARAN</b>. " +
+          "Chwazi youn nan 3 lekòl anba l: " +
+          "<b>LEKÒL 1 ACADÉMIE, " +
+          "LEKÒL 2 BEAT MAKER, " +
+          "LEKÒL 3 JOURNALISME.</b>";
+
+        return;
+      }
+
+      BSS_AI.current = proj;
+
+      document.getElementById("aiChat").textContent =
+        "Ou kounye a nan " +
+        b.textContent.trim() +
+        ". Menm AI a, menm memwa. " +
+        "Poze kesyon ou.";
+
+      playProfAvatar();
+
+    });
+
+  }
+);
+
+/* SEND MESSAGE */
 
 function sendBSSAI(){
-  const inp = document.getElementById("aiInput");
-  const q = inp.value.trim();
+
+  const inp =
+    document.getElementById("aiInput");
+
+  const q =
+    inp.value.trim();
+
   if(!q) return;
 
   playProfAvatar();
 
-  const chat = document.getElementById("aiChat");
+  const chat =
+    document.getElementById("aiChat");
 
-  const userMessage = document.createElement("p");
-  const userLabel = document.createElement("strong");
+  const userMessage =
+    document.createElement("p");
+
+  const userLabel =
+    document.createElement("strong");
+
   userLabel.textContent = "OU: ";
+
   userMessage.appendChild(userLabel);
-  userMessage.appendChild(document.createTextNode(q));
+
+  userMessage.appendChild(
+    document.createTextNode(q)
+  );
+
   chat.appendChild(userMessage);
 
-  const safeQ = q.replace(/[<>&"']/g,function(c){
-    return {
-      "<":"&lt;",
-      ">":"&gt;",
-      "&":"&amp;",
-      '"':"&quot;",
-      "'":"&#39;"
-    }[c];
-  });
+  const safeQ =
+    q.replace(/[<>&"']/g,function(c){
+      return {
+        "<":"&lt;",
+        ">":"&gt;",
+        "&":"&amp;",
+        '"':"&quot;",
+        "'":"&#39;"
+      }[c];
+    });
 
-  const response = document.createElement("div");
-  response.innerHTML = BSS_AI.ask(safeQ);
+  const response =
+    document.createElement("div");
+
+  response.innerHTML =
+    BSS_AI.ask(safeQ);
+
   chat.appendChild(response);
 
   inp.value = "";
-  chat.scrollTop = chat.scrollHeight;
+
+  chat.scrollTop =
+    chat.scrollHeight;
+
 }
 
 document.getElementById("aiSend")
-  .addEventListener("click",sendBSSAI);
+  .addEventListener(
+    "click",
+    sendBSSAI
+  );
 
 document.getElementById("aiInput")
-  .addEventListener("keydown",function(e){
-    if(e.key === "Enter") sendBSSAI();
-  });
+  .addEventListener(
+    "keydown",
+    function(e){
+      if(e.key === "Enter"){
+        sendBSSAI();
+      }
+    }
+  );
 
-const avatarBtn = document.getElementById("aiAvatarPlay");
+const avatarBtn =
+  document.getElementById("aiAvatarPlay");
+
 if(avatarBtn){
-  avatarBtn.addEventListener("click",playProfAvatar);
+  avatarBtn.addEventListener(
+    "click",
+    playProfAvatar
+  );
 }
 </script>
 
