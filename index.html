@@ -36,29 +36,33 @@ header h1{
   font-size:clamp(32px,6vw,60px)
 }
 header p{font-weight:bold;letter-spacing:2px}
+
+/* LOGO — VISUAL CROP ONLY */
 .main-logo{
   width:min(100%,800px);
   margin:12px auto 24px;
-  background:#000
-}
-.main-logo img{
-  display:block;
-  width:100%;
-  height:auto;
-  object-fit:contain;
+  aspect-ratio:800 / 650;
+  overflow:hidden;
+  position:relative;
   border:2px solid var(--orange);
   border-radius:20px;
   box-shadow:0 0 28px rgba(255,121,0,.35);
   background:#000
 }
-.logo-fallback{
-  display:none;
-  border:2px solid var(--orange);
-  padding:28px;
-  border-radius:20px;
-  color:var(--apricot);
-  font-weight:bold
+.main-logo img{
+  display:block;
+  position:absolute;
+  width:100%;
+  height:auto;
+  max-width:none;
+  top:50%;
+  left:0;
+  transform:translateY(-50%);
+  border:0;
+  border-radius:0;
+  box-shadow:none
 }
+
 nav{
   display:flex;
   flex-wrap:wrap;
@@ -205,14 +209,13 @@ footer{
 <div class="main-logo">
   <img
     id="bssMainLogo"
-    src="./bss1815-pro-max-logo-2026.jpg"
-    alt="BSS1815 PRO-MAX DMP — ONE MAN ONE VISION"
+    src="/bss1815-promax-logo-2026.jpg"
+    alt=""
     loading="eager"
+    decoding="async"
     fetchpriority="high"
+    width="800"
   >
-  <div class="logo-fallback" id="logoFallback">
-    BSS1815 PRO-MAX DMP — ONE MAN ONE VISION
-  </div>
 </div>
 
 <h1>BSS1815 PRO-MAX DMP</h1>
@@ -289,7 +292,7 @@ footer{
     <p>
       Pou asistans, kontakte ekip BSS1815 PRO-MAX DMP la.
     </p>
-    <a class="btn" href="#contact">
+    <a class="btn" href="#contact" >
       CONTACT CUSTOMER SERVICE
     </a>
     <a class="btn" href="#ai-center">
@@ -714,31 +717,6 @@ footer{
 
 <script>
 "use strict";
-
-/*
-  LOGO:
-  Premye chemen: fichye lokal nan Netlify.
-  Dezyèm chemen: fichye GitHub.
-*/
-(function(){
-  const logo = document.getElementById("bssMainLogo");
-  const fallback = document.getElementById("logoFallback");
-  const backupUrl = "https://raw.githubusercontent.com/louismaxauto600-jpg/bss1815-pro-max-dmp/main/bss1815-pro-max-logo-2026.jpg";
-
-  function handleLogoError(){
-    if(logo.src !== backupUrl){
-      logo.src = backupUrl;
-    }else{
-      logo.style.display = "none";
-      fallback.style.display = "block";
-    }
-  }
-
-  logo.addEventListener("error", handleLogoError);
-  if(logo.complete && logo.naturalWidth === 0){
-    handleLogoError();
-  }
-})();
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
