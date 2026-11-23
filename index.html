@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ht" translate="no">
 <head>
@@ -38,6 +37,25 @@ header h1{
   font-size:clamp(32px,6vw,60px);
 }
 header p{font-weight:bold;letter-spacing:2px}
+
+/* MAIN LOGO — RESTORED */
+.main-logo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  margin:12px auto 24px;
+}
+.main-logo img{
+  display:block;
+  width:min(100%,460px);
+  height:auto;
+  object-fit:contain;
+  border:2px solid var(--orange);
+  border-radius:20px;
+  box-shadow:0 0 28px rgba(255,121,0,.35);
+}
+
 nav{
   display:flex;
   flex-wrap:wrap;
@@ -195,6 +213,7 @@ footer{
   main{padding:8px}
   section{padding:30px 10px}
   .radio-frame{height:650px}
+  .main-logo img{width:min(100%,340px)}
 }
 </style>
 </head>
@@ -202,6 +221,15 @@ footer{
 <body>
 
 <header id="home">
+
+  <!-- OFFICIAL MAIN LOGO -->
+  <div class="main-logo">
+    <img
+      src="./one_man_one_vision.jpg"
+      alt="BSS1815 PRO-MAX DMP — One Man One Vision"
+      loading="eager">
+  </div>
+
   <h1>BSS1815 PRO-MAX DMP</h1>
   <p>DEVAN DEVAN NÈT™</p>
   <p>BATI POU JODI A • PARE POU DEMEN</p>
@@ -473,7 +501,7 @@ footer{
   </div>
 </section>
 
-<!-- BEAT LAB: PRESERVED -->
+<!-- BEAT LAB — PRESERVED -->
 <section id="beat-lab">
   <h2>🎹 PRO-MAX BEAT LAB</h2>
 
@@ -489,7 +517,7 @@ footer{
   </div>
 </section>
 
-<!-- LEOGANE INFO: ADDED -->
+<!-- LEOGANE INFO -->
 <section id="leogane-info">
   <h2>📰 LÉOGÂNE INFO</h2>
 
@@ -647,7 +675,7 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
-/* PRESERVED MODULES + LEOGANE INFO ADDED */
+/* MODULES PRESERVED */
 const moduleData = [
   ["🤖","AI CENTER","./modules/ai-center/index.html"],
   ["👥","CRM SYSTEM","./modules/crm/index.html"],
@@ -684,7 +712,7 @@ moduleData.forEach(([icon,name,url]) => {
   modulesGrid.appendChild(a);
 });
 
-/* PRESERVED SLIDESHOW */
+/* SLIDESHOW PRESERVED */
 const slides = [
   "./bss1815.jpg",
   "./bss.jpg",
@@ -702,7 +730,7 @@ function changeSlide(direction) {
   slideImage.src = slides[slideIndex];
 }
 
-/* PROF AVATAR VIDEO CONTROLS */
+/* PROF AVATAR VIDEO */
 const avatarVideo = document.getElementById("profAvatarVideo");
 const avatarStatus = document.getElementById("avatarStatus");
 const avatarPlay = document.getElementById("avatarPlay");
