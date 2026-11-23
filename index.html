@@ -205,7 +205,7 @@ footer{
 <div class="main-logo">
   <img
     id="bssMainLogo"
-    src="/bss1815-promax-logo-2026.jpg?v=20261123"
+    src="./bss1815-pro-max-logo-2026.jpg"
     alt="BSS1815 PRO-MAX DMP — ONE MAN ONE VISION"
     loading="eager"
     fetchpriority="high"
@@ -719,29 +719,25 @@ footer{
   LOGO:
   Premye chemen: fichye lokal nan Netlify.
   Dezyèm chemen: fichye GitHub.
-  Lòt medya yo pa modifye.
 */
 (function(){
   const logo = document.getElementById("bssMainLogo");
   const fallback = document.getElementById("logoFallback");
+  const backupUrl = "https://raw.githubusercontent.com/louismaxauto600-jpg/bss1815-pro-max-dmp/main/bss1815-pro-max-logo-2026.jpg";
 
-  const sources = [
-    "/bss1815-promax-logo-2026.jpg?v=20261123",
-    "https://raw.githubusercontent.com/louismaxauto600-jpg/bss1815-pro-max-dmp/main/bss1815-promax-logo-2026.jpg?v=20261123"
-  ];
-
-  let attempt = 0;
-
-  logo.onerror = function(){
-    attempt++;
-
-    if(attempt < sources.length){
-      logo.src = sources[attempt];
+  function handleLogoError(){
+    if(logo.src !== backupUrl){
+      logo.src = backupUrl;
     }else{
       logo.style.display = "none";
       fallback.style.display = "block";
     }
-  };
+  }
+
+  logo.addEventListener("error", handleLogoError);
+  if(logo.complete && logo.naturalWidth === 0){
+    handleLogoError();
+  }
 })();
 
 document.getElementById("year").textContent =
