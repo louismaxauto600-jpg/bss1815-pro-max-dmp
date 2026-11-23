@@ -1,4 +1,3 @@
-
 <!-- BSS1815 PRO-MAX DMP — MAIN INDEX.HTML -->
 <!-- PRO-MAX FM connected to its existing live website -->
 <!DOCTYPE html>
@@ -185,6 +184,7 @@ footer{
   <nav>
     <a href="#home">AKÈY</a>
     <a href="#customer-service">CUSTOMER SERVICE</a>
+    <a href="#ai-center">AI CENTER</a>
     <a href="#ecosystem">EKOSISTÈM</a>
     <a href="#modules">MODIL</a>
     <a href="#community">COMMUNITY</a>
@@ -227,6 +227,36 @@ footer{
   <div class="center">
     <p>Pou asistans, kontakte ekip BSS1815 PRO-MAX DMP la.</p>
     <a class="btn" href="#contact">CONTACT CUSTOMER SERVICE</a>
+  </div>
+</section>
+
+<section id="ai-center">
+  <h2>🤖 BSS1815 PRO-MAX DMP — AI CENTER</h2>
+  <p class="intro">
+    1 SÈL AI • 5 PWOJÈ • MENM MEMWA.<br>
+    Chwazi yon pwojè. Menm AI a reponn pou tout pwojè yo.
+  </p>
+  <div style="max-width:900px;margin:auto;background:linear-gradient(140deg,#241000,#050505);border:2px solid var(--orange);border-radius:20px;padding:24px;text-align:center">
+    <h3 style="margin:0">BSS1815 PRO-MAX DMP — AI CENTER</h3>
+    <p style="color:var(--apricot);font-size:13px">1 sèl AI • 5 Pwojè • Menm Memwa • PRO-MAX ACADÉMIE: 1 Paran, 3 Lekòl Anba l</p>
+    <div style="display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:16px 0">
+      <button type="button" class="ai-proj" data-proj="community">BSS1815 COMMUNITY</button>
+      <button type="button" class="ai-proj" data-proj="fm">PRO-MAX FM 106.5 FM</button>
+      <button type="button" class="ai-proj" data-proj="maximax">MAXIMAX MULTI SERVICES</button>
+      <button type="button" class="ai-proj" data-proj="academie-parent">PRO-MAX ACADÉMIE ▼</button>
+      <button type="button" class="ai-proj" data-proj="leogane">LÉOGÂNE INFO</button>
+    </div>
+    <div id="ecolesAcademie" style="display:none;gap:9px;flex-wrap:wrap;justify-content:center;margin:0 0 16px">
+      <button type="button" class="ai-proj" data-proj="academie">LEKÒL 1: ACADÉMIE — Fòmasyon Jeneral</button>
+      <button type="button" class="ai-proj" data-proj="beatmaker">LEKÒL 2: BEAT MAKER — Mizik &amp; Beat</button>
+      <button type="button" class="ai-proj" data-proj="journalisme">LEKÒL 3: JOURNALISME — Jounalis &amp; Radyo</button>
+    </div>
+    <div id="aiChat" style="background:#000;border:2px solid var(--orange);border-radius:12px;padding:16px;min-height:180px;text-align:left;color:var(--apricot);font-size:14px;line-height:1.7;overflow-y:auto">Bonjou! Mwen se AI BSS1815 PRO-MAX DMP. Chwazi yon pwojè anwo a, epi poze m kesyon ou. Mwen sonje tout 5 pwojè yo. PRO-MAX ACADÉMIE gen 3 lekòl anba l: ACADÉMIE, BEAT MAKER, JOURNALISME.</div>
+    <div style="display:flex;gap:9px;margin-top:14px">
+      <input id="aiInput" placeholder="Poze kesyon ou la..." style="flex:1;padding:12px;border-radius:10px;border:1px solid var(--orange);background:#000;color:var(--apricot)">
+      <button type="button" id="aiSend">VOYE ▶</button>
+    </div>
+    <p style="font-size:12px;color:var(--apricot)">DEVAN DEVAN NÈT™ — ONE MAN • ONE VISION</p>
   </div>
 </section>
 
@@ -467,6 +497,53 @@ function changeSlide(direction) {
     (slideIndex + direction + slides.length) % slides.length;
   slideImage.src = slides[slideIndex];
 }
+</script>
+
+<script>
+"use strict";
+/* BSS1815 AI CENTER - AJOUTE SELMAN - PA MANYEN LOT KOD LA */
+const BSS_AI = {
+  current: "community",
+  memory: [],
+  knowledge: {
+    community: "BSS1815 COMMUNITY: Kominote BRIYANT SOLEY SIGNO 1815, Léogâne, depi 1815. Inite, fanmi, sipò, aktivite, fan club, team backup, team angrenay. Devise: Devan Devan Nèt.",
+    fm: "PRO-MAX FM 106.5 FM: Radyo BSS1815. Mizik, enfòmasyon, divètisman, kominote. Antre nan https://pro-maxfm.com/ . La Force Du Son.",
+    maximax: "MAXIMAX MULTI SERVICES: Imigrasyon I-130, N-400, notary, tradiksyon, tax, LLC, asirans, DMV. Tel: (407) 640-5166 / (516) 216-8494. Pine Hills, FL.",
+    "academie-parent": "PRO-MAX ACADÉMIE — PARAN: 1 Paran, 3 Lekòl Anba l. Klike sou yon lekòl anba a: LEKÒL 1 ACADÉMIE, LEKÒL 2 BEAT MAKER, LEKÒL 3 JOURNALISME.",
+    academie: "PRO-MAX ACADÉMIE — LEKÒL 1: Fòmasyon Jeneral. Kou, atelye, devlopman pèsonèl ak pwofesyonèl. Edikasyon pou tout kominote BSS1815.",
+    beatmaker: "PRO-MAX BEAT MAKER — LEKÒL 2 ANBA ACADÉMIE: Lekòl mizik ak pwodiksyon. Beat, Rara, Kompa, melodi, aranjman, studio, mix. Aprann fè beat, aprann pwodui mizik. Beat Lab BSS1815.",
+    journalisme: "SCHOOL OF JOURNALISME — LEKÒL 3 ANBA ACADÉMIE: Lekòl jounalis. Ekri nouvèl, pale nan radyo, fè entèvyou, verifye enfòmasyon, prezante emisyon. Pou PRO-MAX FM 106.5 FM ak LÉOGÂNE INFO. Jounalis ak etik, verite anvan tout.",
+    leogane: "LÉOGÂNE INFO: Nouvèl Léogâne, Ayiti. Enfòmasyon lokal, kilti, istwa, evènman kominotè."
+  },
+  ask: function(q){
+    this.memory.push({proj:this.current, q:q});
+    var k = this.knowledge[this.current] || this.knowledge.community;
+    return "🤖 <b>BSS1815 AI — " + this.current.toUpperCase() + "</b><br><br>" + k + "<br><br>Kesyon ou: <i>" + q + "</i><br><br>Mwen se menm AI ki sèvi tout 5 pwojè yo. Mwen sonje " + this.memory.length + " kesyon ou te poze deja nan tout pwojè yo. Pou repons konplè, kontakte nou: (407) 640-5166 — bss1815promaxdmp@gmail.com";
+  }
+};
+document.querySelectorAll(".ai-proj").forEach(function(b){
+  b.addEventListener("click", function(){
+    var proj = b.getAttribute("data-proj");
+    if(proj === "academie-parent"){
+      var box = document.getElementById("ecolesAcademie");
+      box.style.display = (box.style.display === "none" || box.style.display === "") ? "flex" : "none";
+      document.getElementById("aiChat").innerHTML = "Ou nan <b>PRO-MAX ACADÉMIE — PARAN</b>. Chwazi youn nan 3 lekòl anba l: <b>LEKÒL 1 ACADÉMIE, LEKÒL 2 BEAT MAKER, LEKÒL 3 JOURNALISME.</b>";
+      return;
+    }
+    BSS_AI.current = proj;
+    document.getElementById("aiChat").innerHTML = "Ou kounye a nan <b>" + b.textContent + "</b>. Menm AI a, menm memwa. Poze kesyon ou.";
+  });
+});
+function sendBSSAI(){
+  var inp = document.getElementById("aiInput");
+  var q = inp.value.trim();
+  if(!q) return;
+  document.getElementById("aiChat").innerHTML += "<br><br><b>OU:</b> " + q + "<br><br>" + BSS_AI.ask(q);
+  inp.value = "";
+  document.getElementById("aiChat").scrollTop = document.getElementById("aiChat").scrollHeight;
+}
+document.getElementById("aiSend").addEventListener("click", sendBSSAI);
+document.getElementById("aiInput").addEventListener("keydown", function(e){ if(e.key==="Enter") sendBSSAI(); });
 </script>
 
 </body>
