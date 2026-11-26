@@ -1,252 +1,1792 @@
-<!-- ai-center.html -->
 <!DOCTYPE html>
-<html lang="ht" translate="no" class="notranslate">
+<html lang="ht" translate="no">
 <head>
 <meta charset="UTF-8">
-<style id="bss-guard-hide">body{visibility:hidden}</style>
-<script type="module" src="./bss-guard.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
 <meta name="google" content="notranslate">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="robots" content="noindex,nofollow">
-<title>AI Center — BSS1815 PRO-MAX DMP</title>
+
+<title>BSS1815 PRO-MAX DMP — CENTRAL AI CENTER</title>
+
 <style>
-:root{--orange:#ff7900;--apricot:#ffad4d;--text:#ffc589;--border:rgba(255,121,0,.30);--glow:0 0 18px rgba(255,121,0,.40);}
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;}
-body{display:flex;flex-direction:column;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at 20% 10%,rgba(255,121,0,.16),transparent 35%),linear-gradient(180deg,#000,#0b0400 50%,#000);}
-a{color:inherit;text-decoration:none;}
-button,input,textarea{font:inherit;}
-header{flex-shrink:0;border-bottom:1px solid var(--border);background:rgba(0,0,0,.96);}
-.bar{width:min(980px,calc(100% - 24px));margin:auto;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:8px 0;}
-.bar strong{color:var(--orange);font-size:1rem;}
-.bar small{display:block;margin-top:3px;color:var(--apricot);font-size:.58rem;letter-spacing:.12em;}
-.bar-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.pill{padding:8px 12px;border:1px solid var(--orange);border-radius:999px;color:var(--orange);background:#000;font-size:.62rem;font-weight:900;cursor:pointer;}
-.pill:hover{background:var(--orange);color:#000;}
-.lang-switch{display:flex;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;}
-.lang-btn{display:inline-flex;align-items:center;gap:4px;padding:7px 8px;border:0;border-radius:999px;background:#000;color:var(--apricot);font-size:.58rem;font-weight:900;cursor:pointer;}
-.lang-btn.active{background:var(--orange);color:#000;}
-.lang-flag{width:16px;height:11px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.3);}
-main{flex:1;display:flex;flex-direction:column;width:min(980px,calc(100% - 24px));margin:auto;min-height:0;}
-.intro{text-align:center;padding:22px 0 10px;}
-.intro h1{color:var(--orange);font-size:clamp(1.6rem,6vw,2.6rem);}
-.intro p{margin-top:8px;font-size:.85rem;line-height:1.6;}
-.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
-.chip{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#050200;color:var(--text);font-size:.72rem;cursor:pointer;}
-.chip:hover{border-color:var(--orange);color:var(--orange);}
-.messages{flex:1;overflow-y:auto;padding:14px 2px;display:flex;flex-direction:column;gap:12px;min-height:200px;}
-.msg{max-width:88%;padding:12px 14px;border-radius:16px;line-height:1.6;font-size:.9rem;white-space:pre-wrap;overflow-wrap:anywhere;}
-.msg.user{align-self:flex-end;background:var(--orange);color:#000;border-bottom-right-radius:4px;}
-.msg.model{align-self:flex-start;background:#0a0400;border:1px solid var(--border);border-bottom-left-radius:4px;}
-.msg.error{align-self:center;background:#3b0d0d;border:1px solid #ff5c5c;color:#ffb3b3;font-size:.8rem;}
-.msg .copy{display:block;margin-top:8px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:#000;color:var(--apricot);font-size:.62rem;font-weight:900;cursor:pointer;}
-.typing{align-self:flex-start;color:var(--apricot);font-size:.8rem;padding:6px 4px;}
-form{flex-shrink:0;display:flex;gap:8px;align-items:flex-end;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border);}
-textarea{flex:1;min-height:48px;max-height:160px;padding:12px;border:1px solid var(--orange);border-radius:14px;background:#000;color:#fff;resize:none;font-size:16px;}
-.send{min-width:56px;min-height:48px;padding:0 16px;border:0;border-radius:14px;background:var(--orange);color:#000;font-weight:900;cursor:pointer;}
-.send:disabled{opacity:.5;cursor:wait;}
+:root{
+  --orange:#ff7900;
+  --apricot:#ffb36b;
+  --black:#000000;
+  --panel:#160b03;
+  --border:#673000;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:var(--apricot);
+  background:radial-gradient(
+    ellipse at top,
+    #351500,
+    #090400 45%,
+    #000000 85%
+  );
+  min-height:100vh;
+}
+
+header{
+  padding:25px 16px;
+  text-align:center;
+  border-bottom:2px solid var(--orange);
+  background:linear-gradient(135deg,#291000,#000);
+}
+
+h1,h2,h3{
+  color:var(--orange);
+}
+
+h1{
+  font-size:clamp(22px,4vw,38px);
+  margin:12px 0;
+}
+
+button,select,textarea,a{
+  font-family:inherit;
+}
+
+button,.btn,select{
+  border:1px solid var(--orange);
+  background:linear-gradient(135deg,#351500,#000);
+  color:var(--apricot);
+  border-radius:10px;
+  padding:12px 18px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+button:hover,.btn:hover,
+button.active{
+  background:var(--orange);
+  color:var(--black);
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+  outline:3px solid var(--apricot);
+  outline-offset:3px;
+}
+
+.language{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin:15px 0;
+}
+
+main{
+  width:min(1200px,94%);
+  margin:auto;
+}
+
+.panel{
+  background:linear-gradient(145deg,#201000,#030100);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+  margin:24px 0;
+  box-shadow:0 0 24px #ff790012;
+}
+
+.center{
+  text-align:center;
+}
+
+.badge{
+  display:inline-block;
+  border:1px solid var(--orange);
+  padding:8px 15px;
+  border-radius:30px;
+  font-size:12px;
+  letter-spacing:1px;
+}
+
+.avatar{
+  width:min(100%,650px);
+  border:2px solid var(--orange);
+  border-radius:18px;
+  background:#000;
+  box-shadow:0 0 30px #ff790033;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin:16px 0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(
+    auto-fit,minmax(180px,1fr)
+  );
+  gap:12px;
+}
+
+.project-card,.tool-card{
+  min-height:80px;
+}
+
+.project-card strong,
+.tool-card strong{
+  display:block;
+  margin-top:8px;
+}
+
+.icon{
+  font-size:27px;
+}
+
+.field{
+  margin:15px 0;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+select{
+  width:100%;
+}
+
+select option{
+  background:#100600;
+  color:var(--apricot);
+}
+
+textarea{
+  width:100%;
+  min-height:150px;
+  resize:vertical;
+  background:#050200;
+  color:var(--apricot);
+  border:1px solid var(--orange);
+  border-radius:12px;
+  padding:16px;
+  font-size:16px;
+  line-height:1.6;
+}
+
+textarea::placeholder{
+  color:#b87942;
+}
+
+.response{
+  min-height:180px;
+  padding:20px;
+  background:#050200;
+  border:1px solid var(--border);
+  border-radius:12px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  line-height:1.8;
+}
+
+.status{
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin:15px 0;
+  text-align:center;
+}
+
+.status.success{
+  border-color:var(--orange);
+}
+
+.status.error{
+  border:2px dashed var(--orange);
+}
+
+.history-item{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px;
+  margin:10px 0;
+  overflow-wrap:anywhere;
+}
+
+.history-item button{
+  margin-top:10px;
+}
+
+small{
+  line-height:1.6;
+}
+
+[hidden]{
+  display:none!important;
+}
+
+footer{
+  text-align:center;
+  padding:35px 15px;
+  border-top:2px solid var(--orange);
+  background:#000;
+}
+
+@media(max-width:600px){
+  .panel{
+    padding:16px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  button,.btn{
+    padding:10px;
+  }
+}
 </style>
 </head>
-<body translate="no">
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<defs>
-<symbol id="flag-us" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><g fill="#B22234"><rect width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="12" height="10.77" fill="#3C3B6E"/></symbol>
-<symbol id="flag-fr" viewBox="0 0 30 20"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></symbol>
-<symbol id="flag-ht" viewBox="0 0 30 20"><rect width="30" height="10" fill="#00209F"/><rect y="10" width="30" height="10" fill="#D21034"/><rect x="10.5" y="6.5" width="9" height="7" fill="#fff"/><rect x="13.2" y="8.6" width="3.6" height="3.4" fill="#016A16"/></symbol>
-</defs>
-</svg>
+<body>
 
 <header>
-<div class="bar">
-<div>
-<strong>🤖 AI CENTER</strong>
-<small>BSS1815 PRO-MAX DMP • ADMIN</small>
-</div>
-<div class="bar-right">
-<div class="lang-switch">
-<button type="button" class="lang-btn" data-lang="fr"><svg class="lang-flag"><use href="#flag-fr"/></svg>FRA</button>
-<button type="button" class="lang-btn" data-lang="en"><svg class="lang-flag"><use href="#flag-us"/></svg>ENG</button>
-<button type="button" class="lang-btn active" data-lang="ht"><svg class="lang-flag"><use href="#flag-ht"/></svg>KRE</button>
-</div>
-<button type="button" class="pill" id="newChat" data-t="newChat">＋ NOUVO</button>
-<a href="./super-admin-dashboard.html" class="pill" data-t="back">← DASHBOARD</a>
-</div>
-</div>
+
+  <div class="badge">
+    BSS1815 PRO-MAX DMP
+  </div>
+
+  <h1>CENTRAL AI CENTER</h1>
+
+  <p data-i18n="subtitle">
+    YON SÈL MOTÈ AI — TOUT PWOJÈ YO
+  </p>
+
+  <div class="language">
+    <button type="button" data-lang="fr">FRA</button>
+    <button type="button" data-lang="en">ENG</button>
+    <button type="button" data-lang="ht">KRE</button>
+  </div>
+
+  <div class="actions">
+    <a href="./index.html" class="btn" data-i18n="home">
+      AKÈY
+    </a>
+  </div>
+
 </header>
 
 <main>
-<div class="intro" id="intro">
-<h1 data-t="title">Kijan m ka ede w jodi a?</h1>
-<p data-t="subtitle">Asistan prive pou Super Admin ak Admin. Ekri nan lang ou vle: kreyòl, fransè, angle oswa panyòl.</p>
-<div class="chips" id="chips"></div>
-</div>
 
-<div class="messages" id="messages" aria-live="polite"></div>
+<!-- =========================================
+     PROF AVATAR
+========================================== -->
 
-<form id="chatForm">
-<textarea id="question" rows="1" data-tp="placeholder" placeholder="Ekri kesyon ou la a..."></textarea>
-<button type="submit" class="send" id="sendBtn" aria-label="Voye">➤</button>
-</form>
+<section class="panel center">
+
+  <h2>PROF AVATAR</h2>
+
+  <p data-i18n="avatarIntro">
+    Figi ofisyèl CENTRAL AI CENTER
+  </p>
+
+  <video
+    id="aiProfAvatar"
+    class="avatar"
+    controls
+    playsinline
+    preload="metadata"
+  >
+    <source
+      src="./promax-dmp.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+  <div class="actions">
+
+    <button
+      type="button"
+      id="aiAvatarPlay"
+      data-i18n="play"
+    >
+      ▶ JWE VIDEYO
+    </button>
+
+    <button
+      type="button"
+      id="aiAvatarStop"
+      data-i18n="stop"
+    >
+      ■ KANPE
+    </button>
+
+  </div>
+
+  <small data-i18n="avatarNote">
+    Videyo prezantasyon ofisyèl ki deja gen vwa.
+  </small>
+
+</section>
+
+<!-- =========================================
+     PROJECT SELECTOR
+========================================== -->
+
+<section class="panel">
+
+  <h2 class="center" data-i18n="projects">
+    EKOSISTÈM AI
+  </h2>
+
+  <div class="grid" id="projectGrid">
+
+    <button
+      type="button"
+      class="project-card"
+      data-project="bss1815"
+    >
+      <span class="icon">🏛️</span>
+      <strong>BSS1815 COMMUNITY</strong>
+    </button>
+
+    <button
+      type="button"
+      class="project-card"
+      data-project="pro-max-fm"
+    >
+      <span class="icon">📻</span>
+      <strong>PRO-MAX FM 106.5 FM</strong>
+    </button>
+
+    <button
+      type="button"
+      class="project-card"
+      data-project="maximax"
+    >
+      <span class="icon">🏢</span>
+      <strong>MAXIMAX MULTI SERVICES</strong>
+    </button>
+
+    <button
+      type="button"
+      class="project-card"
+      data-project="academy"
+    >
+      <span class="icon">🎓</span>
+      <strong>PRO-MAX ACADÉMIE</strong>
+    </button>
+
+    <button
+      type="button"
+      class="project-card"
+      data-project="beat-lab"
+    >
+      <span class="icon">🎵</span>
+      <strong>PRO-MAX BEAT LAB</strong>
+    </button>
+
+    <button
+      type="button"
+      class="project-card"
+      data-project="leogane-info"
+    >
+      <span class="icon">📰</span>
+      <strong>LÉOGÂNE INFO</strong>
+    </button>
+
+    <button
+      type="button"
+      class="project-card"
+      data-project="ddn"
+    >
+      <span class="icon">🌐</span>
+      <strong>DEVAN DEVAN NÈT</strong>
+    </button>
+
+  </div>
+
+  <div class="field" id="schoolField" hidden>
+
+    <label for="school" data-i18n="school">
+      CHWAZI LEKÒL
+    </label>
+
+    <select id="school">
+
+      <option value="General Academy">
+        PRO-MAX ACADÉMIE
+      </option>
+
+      <option value="Real Estate School">
+        REAL ESTATE SCHOOL
+      </option>
+
+      <option value="Insurance School">
+        INSURANCE SCHOOL
+      </option>
+
+      <option value="Journalism School">
+        ÉCOLE DE JOURNALISME
+      </option>
+
+      <option value="Beat Maker AI School">
+        BEAT MAKER AI SCHOOL
+      </option>
+
+    </select>
+
+  </div>
+
+  <p class="center">
+    <span data-i18n="activeProject">
+      PWOJÈ AKTIF
+    </span>
+    :
+    <strong id="activeProject"></strong>
+  </p>
+
+</section>
+
+<!-- =========================================
+     CENTRAL AI TOOLS
+========================================== -->
+
+<section class="panel">
+
+  <h2 class="center" data-i18n="tools">
+    ZOUTI CENTRAL AI
+  </h2>
+
+  <div class="grid" id="toolGrid"></div>
+
+</section>
+
+<!-- =========================================
+     AI WORKSPACE
+========================================== -->
+
+<section class="panel">
+
+  <h2 class="center">AI WORKSPACE</h2>
+
+  <div class="field">
+
+    <label for="provider" data-i18n="engine">
+      CHWAZI MOTÈ AI
+    </label>
+
+    <select id="provider">
+
+      <option value="openai">
+        OPENAI
+      </option>
+
+      <option value="gemini">
+        GOOGLE GEMINI
+      </option>
+
+      <option value="professor">
+        PROF AVATAR — AI PROFESSOR
+      </option>
+
+    </select>
+
+  </div>
+
+  <p>
+    <span data-i18n="activeTool">
+      ZOUTI AKTIF
+    </span>
+    :
+    <strong id="activeTool"></strong>
+  </p>
+
+  <form id="centralAIForm">
+
+    <label for="aiPrompt" data-i18n="question">
+      KESYON OU
+    </label>
+
+    <textarea
+      id="aiPrompt"
+      maxlength="8000"
+      required
+    ></textarea>
+
+    <div class="actions">
+
+      <button
+        type="submit"
+        id="sendAI"
+        data-i18n="send"
+      >
+        VOYE BAY AI
+      </button>
+
+      <button
+        type="button"
+        id="clearAI"
+        data-i18n="clear"
+      >
+        EFASE
+      </button>
+
+    </div>
+
+  </form>
+
+  <div
+    id="aiStatus"
+    class="status"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+  <h3 data-i18n="answer">
+    REPONS AI
+  </h3>
+
+  <div
+    id="aiResponse"
+    class="response"
+    aria-live="polite"
+  ></div>
+
+  <div class="actions">
+
+    <button
+      type="button"
+      id="copyAI"
+      data-i18n="copy"
+    >
+      KOPYE
+    </button>
+
+    <button
+      type="button"
+      id="retryAI"
+      data-i18n="retry"
+    >
+      ESEYE ANKÒ
+    </button>
+
+  </div>
+
+  <p>
+    PROVIDER:
+    <strong id="activeProvider">—</strong>
+  </p>
+
+  <small data-i18n="privacy">
+    Pa antre modpas, nimewo sekirite sosyal,
+    enfòmasyon bankè oswa lòt done konfidansyèl.
+  </small>
+
+</section>
+
+<!-- =========================================
+     SESSION HISTORY
+========================================== -->
+
+<section class="panel">
+
+  <h2 data-i18n="history">
+    ISTWA SESYON AI
+  </h2>
+
+  <div id="aiHistory"></div>
+
+  <div class="actions">
+
+    <button
+      type="button"
+      id="clearHistory"
+      data-i18n="clearHistory"
+    >
+      EFASE ISTWA
+    </button>
+
+  </div>
+
+</section>
+
 </main>
 
-<script>
-(function () {
-  "use strict";
+<footer>
 
-  var TEXT = {
-    ht: {
-      title: "Kijan m ka ede w jodi a?",
-      subtitle: "Asistan prive pou Super Admin ak Admin. Ekri nan lang ou vle: kreyòl, fransè, angle oswa panyòl.",
-      placeholder: "Ekri kesyon ou la a...",
-      newChat: "＋ NOUVO", back: "← DASHBOARD", copy: "📋 KOPYE", copied: "✓ KOPYE",
-      typing: "AI Center ap ekri...",
-      notReady: "Ap verifye aksè ou, tann yon ti moman...",
-      network: "Pa gen koneksyon ak AI Center la. Tcheke entènèt ou.",
-      chips: ["Ekri yon anons pou yon reyinyon manm", "Ekri yon mesaj WhatsApp pou fanatik yo", "Ekri yon lèt ofisyèl", "Tradui yon tèks an angle"]
+  <h3>BSS1815 PRO-MAX DMP</h3>
+
+  <p>ONE PLATFORM — ONE AI CENTER</p>
+
+  <p>BATI POU JODI A, PARE POU DEMEN.</p>
+
+  <strong>DEVAN DEVAN NÈT.</strong>
+
+  <p>
+    © <span id="year"></span>
+    BSS1815 PRO-MAX DMP
+  </p>
+
+</footer>
+
+<script>
+"use strict";
+
+(function(){
+
+/* =========================================
+   CENTRAL AI CONFIGURATION
+========================================= */
+
+const CONFIG = Object.freeze({
+
+  endpoints:{
+
+    openai:"/.netlify/functions/ai",
+
+    gemini:"/.netlify/functions/professor",
+
+    professor:"/.netlify/functions/professor"
+
+  },
+
+  timeout:45000,
+
+  maxHistory:20
+
+});
+
+/* =========================================
+   PROJECT CONTEXT
+========================================= */
+
+const PROJECTS = {
+
+  bss1815:{
+
+    name:"BSS1815 COMMUNITY",
+
+    context:
+      "Community management, heritage, culture, "+
+      "events and organizational assistance."
+
+  },
+
+  "pro-max-fm":{
+
+    name:"PRO-MAX FM 106.5 FM",
+
+    context:
+      "Radio broadcasting, programming, podcasts, "+
+      "Haitian music, news and radio scripts."
+
+  },
+
+  maximax:{
+
+    name:"MAXIMAX MULTI SERVICES",
+
+    context:
+      "Immigration document assistance, taxes, "+
+      "notary, insurance, real estate, business "+
+      "and administrative services. "+
+      "Do not claim to be an attorney."
+
+  },
+
+  academy:{
+
+    name:"PRO-MAX ACADÉMIE",
+
+    context:
+      "Education, tutoring, lessons, quizzes, "+
+      "professional training and student support."
+
+  },
+
+  "beat-lab":{
+
+    name:"PRO-MAX BEAT LAB",
+
+    context:
+      "Music composition, lyrics, rhythm, "+
+      "production guidance and creative prompts."
+
+  },
+
+  "leogane-info":{
+
+    name:"LÉOGÂNE INFO",
+
+    context:
+      "Journalism, community reporting, interviews "+
+      "and fact checking. Do not invent news."
+
+  },
+
+  ddn:{
+
+    name:"DEVAN DEVAN NÈT",
+
+    context:
+      "Digital communication, information, "+
+      "innovation and platform assistance."
+
+  }
+
+};
+
+/* =========================================
+   LANGUAGES
+========================================= */
+
+const I18N = {
+
+  ht:{
+
+    subtitle:"YON SÈL MOTÈ AI — TOUT PWOJÈ YO",
+    home:"AKÈY",
+    avatarIntro:"Figi ofisyèl CENTRAL AI CENTER",
+    avatarNote:"Videyo ofisyèl ki deja gen vwa.",
+    play:"▶ JWE VIDEYO",
+    stop:"■ KANPE",
+    projects:"EKOSISTÈM AI",
+    school:"CHWAZI LEKÒL",
+    activeProject:"PWOJÈ AKTIF",
+    tools:"ZOUTI CENTRAL AI",
+    engine:"CHWAZI MOTÈ AI",
+    activeTool:"ZOUTI AKTIF",
+    question:"KESYON OU",
+    placeholder:"Ekri kesyon ou isit la...",
+    send:"VOYE BAY AI",
+    clear:"EFASE",
+    answer:"REPONS AI",
+    copy:"KOPYE",
+    retry:"ESEYE ANKÒ",
+    history:"ISTWA SESYON AI",
+    clearHistory:"EFASE ISTWA",
+    privacy:"Pa antre modpas oswa done konfidansyèl.",
+    ready:"PARE POU VOYE YON KESYON",
+    processing:"AI AP TRETE KESYON AN...",
+    success:"REPONS AI RESEVWA",
+    error:"KONEKSYON AI ECHWE",
+    empty:"Tanpri ekri yon kesyon.",
+    noHistory:"Pa gen istwa pou sesyon sa a.",
+    copied:"REPONS LAN KOPYE",
+    restore:"RELOUVRI",
+    avatarError:"Videyo PROF AVATAR la pa chaje.",
+    noAnswer:"API a pa retounen yon repons tèks.",
+    timeout:"Tan koneksyon an ekspire."
+
+  },
+
+  fr:{
+
+    subtitle:"UN SEUL MOTEUR IA — TOUS LES PROJETS",
+    home:"ACCUEIL",
+    avatarIntro:"Le visage officiel du CENTRAL AI CENTER",
+    avatarNote:"Vidéo officielle avec voix intégrée.",
+    play:"▶ LIRE LA VIDÉO",
+    stop:"■ ARRÊTER",
+    projects:"ÉCOSYSTÈME IA",
+    school:"CHOISIR UNE ÉCOLE",
+    activeProject:"PROJET ACTIF",
+    tools:"OUTILS IA",
+    engine:"CHOISIR LE MOTEUR IA",
+    activeTool:"OUTIL ACTIF",
+    question:"VOTRE QUESTION",
+    placeholder:"Écrivez votre question ici...",
+    send:"ENVOYER",
+    clear:"EFFACER",
+    answer:"RÉPONSE IA",
+    copy:"COPIER",
+    retry:"RÉESSAYER",
+    history:"HISTORIQUE DE SESSION",
+    clearHistory:"EFFACER L’HISTORIQUE",
+    privacy:"Ne saisissez aucun mot de passe ni donnée confidentielle.",
+    ready:"PRÊT À ENVOYER UNE QUESTION",
+    processing:"TRAITEMENT EN COURS...",
+    success:"RÉPONSE IA REÇUE",
+    error:"ÉCHEC DE CONNEXION IA",
+    empty:"Veuillez écrire une question.",
+    noHistory:"Aucun historique pour cette session.",
+    copied:"RÉPONSE COPIÉE",
+    restore:"ROUVRIR",
+    avatarError:"La vidéo PROF AVATAR ne se charge pas.",
+    noAnswer:"L’API n’a retourné aucun texte.",
+    timeout:"Le délai de connexion a expiré."
+
+  },
+
+  en:{
+
+    subtitle:"ONE AI ENGINE — ALL PROJECTS",
+    home:"HOME",
+    avatarIntro:"The official face of CENTRAL AI CENTER",
+    avatarNote:"Official video with prerecorded voice.",
+    play:"▶ PLAY VIDEO",
+    stop:"■ STOP",
+    projects:"AI ECOSYSTEM",
+    school:"SELECT SCHOOL",
+    activeProject:"ACTIVE PROJECT",
+    tools:"CENTRAL AI TOOLS",
+    engine:"SELECT AI ENGINE",
+    activeTool:"ACTIVE TOOL",
+    question:"YOUR QUESTION",
+    placeholder:"Enter your question here...",
+    send:"SEND TO AI",
+    clear:"CLEAR",
+    answer:"AI RESPONSE",
+    copy:"COPY",
+    retry:"TRY AGAIN",
+    history:"SESSION HISTORY",
+    clearHistory:"CLEAR HISTORY",
+    privacy:"Do not enter passwords or confidential data.",
+    ready:"READY TO SEND A QUESTION",
+    processing:"AI IS PROCESSING...",
+    success:"AI RESPONSE RECEIVED",
+    error:"AI CONNECTION FAILED",
+    empty:"Please enter a question.",
+    noHistory:"No history for this session.",
+    copied:"RESPONSE COPIED",
+    restore:"REOPEN",
+    avatarError:"The PROF AVATAR video could not load.",
+    noAnswer:"The API returned no text response.",
+    timeout:"The connection timed out."
+
+  }
+
+};
+
+/* =========================================
+   AI TOOLS
+========================================= */
+
+const TOOLS = {
+
+  assistant:{
+
+    icon:"🤖",
+
+    name:{
+      ht:"ASISTAN AI",
+      fr:"ASSISTANT IA",
+      en:"AI ASSISTANT"
     },
-    fr: {
-      title: "Comment puis-je vous aider aujourd’hui ?",
-      subtitle: "Assistant privé pour Super Admins et Admins. Écrivez dans la langue de votre choix : créole, français, anglais ou espagnol.",
-      placeholder: "Écrivez votre question ici...",
-      newChat: "＋ NOUVEAU", back: "← TABLEAU DE BORD", copy: "📋 COPIER", copied: "✓ COPIÉ",
-      typing: "AI Center écrit...",
-      notReady: "Vérification de votre accès, un instant...",
-      network: "Pas de connexion avec l’AI Center. Vérifiez votre internet.",
-      chips: ["Rédiger une annonce pour une réunion des membres", "Rédiger un message WhatsApp pour les fans", "Rédiger une lettre officielle", "Traduire un texte en anglais"]
+
+    instruction:"Provide helpful project-specific assistance."
+
+  },
+
+  writer:{
+
+    icon:"✍️",
+
+    name:{
+      ht:"EKRIVEN AI",
+      fr:"RÉDACTEUR IA",
+      en:"AI WRITER"
     },
-    en: {
-      title: "How can I help you today?",
-      subtitle: "Private assistant for Super Admins and Admins. Write in any language: Haitian Creole, French, English or Spanish.",
-      placeholder: "Type your question here...",
-      newChat: "＋ NEW", back: "← DASHBOARD", copy: "📋 COPY", copied: "✓ COPIED",
-      typing: "AI Center is typing...",
-      notReady: "Checking your access, one moment...",
-      network: "Can’t reach the AI Center. Check your internet.",
-      chips: ["Write an announcement for a members meeting", "Write a WhatsApp message for the fans", "Write an official letter", "Translate a text into English"]
-    }
+
+    instruction:"Draft professional written content."
+
+  },
+
+  translator:{
+
+    icon:"🌐",
+
+    name:{
+      ht:"TRADIKSYON AI",
+      fr:"TRADUCTION IA",
+      en:"AI TRANSLATOR"
+    },
+
+    instruction:"Translate accurately into the requested language."
+
+  },
+
+  voice:{
+
+    icon:"🎙️",
+
+    name:{
+      ht:"SCRIPT VWA",
+      fr:"SCRIPT VOCAL",
+      en:"VOICE SCRIPT"
+    },
+
+    instruction:
+      "Prepare narration and voice scripts. "+
+      "Do not claim to generate audio files."
+
+  },
+
+  image:{
+
+    icon:"🎨",
+
+    name:{
+      ht:"PROMPT IMAJ",
+      fr:"PROMPT IMAGE",
+      en:"IMAGE PROMPT"
+    },
+
+    instruction:
+      "Prepare image generation prompts. "+
+      "Do not claim to generate image files."
+
+  },
+
+  analytics:{
+
+    icon:"📊",
+
+    name:{
+      ht:"ANALIZ AI",
+      fr:"ANALYSE IA",
+      en:"AI ANALYTICS"
+    },
+
+    instruction:
+      "Analyze provided information without inventing data."
+
+  },
+
+  tutor:{
+
+    icon:"🎓",
+
+    name:{
+      ht:"PROFESÈ AI",
+      fr:"PROFESSEUR IA",
+      en:"AI PROFESSOR"
+    },
+
+    instruction:
+      "Teach clearly with explanations and examples."
+
+  }
+
+};
+
+/* =========================================
+   APPLICATION STATE
+========================================= */
+
+const state = {
+
+  language:"ht",
+
+  project:"bss1815",
+
+  tool:"assistant",
+
+  provider:"openai",
+
+  busy:false,
+
+  history:[],
+
+  lastRequest:null,
+
+  statusKey:"ready",
+
+  statusDetail:"",
+
+  statusType:""
+
+};
+
+const $ = id => document.getElementById(id);
+
+function t(key){
+
+  return I18N[state.language][key] || key;
+
+}
+
+function setStatus(key,type="",detail=""){
+
+  state.statusKey=key;
+
+  state.statusType=type;
+
+  state.statusDetail=detail;
+
+  $("aiStatus").className="status "+type;
+
+  $("aiStatus").textContent=
+    t(key)+(detail ? " — "+detail : "");
+
+}
+
+/* =========================================
+   LANGUAGE CONTROLLER
+========================================= */
+
+function setLanguage(language){
+
+  if(!I18N[language]) return;
+
+  state.language=language;
+
+  document.documentElement.lang=language;
+
+  document.querySelectorAll("[data-i18n]")
+    .forEach(element=>{
+
+      element.textContent=t(element.dataset.i18n);
+
+    });
+
+  document.querySelectorAll("[data-lang]")
+    .forEach(button=>{
+
+      const active=button.dataset.lang===language;
+
+      button.classList.toggle("active",active);
+
+      button.setAttribute("aria-pressed",String(active));
+
+    });
+
+  $("aiPrompt").placeholder=t("placeholder");
+
+  renderTools();
+
+  renderHistory();
+
+  setStatus(
+    state.statusKey,
+    state.statusType,
+    state.statusDetail
+  );
+
+}
+
+/* =========================================
+   PROJECT CONTROLLER
+========================================= */
+
+function selectProject(project){
+
+  if(!PROJECTS[project]) return;
+
+  state.project=project;
+
+  $("activeProject").textContent=
+    PROJECTS[project].name;
+
+  $("schoolField").hidden=
+    project!=="academy";
+
+  document.querySelectorAll("[data-project]")
+    .forEach(button=>{
+
+      const active=
+        button.dataset.project===project;
+
+      button.classList.toggle("active",active);
+
+      button.setAttribute(
+        "aria-pressed",
+        String(active)
+      );
+
+    });
+
+}
+
+/* =========================================
+   TOOL CONTROLLER
+========================================= */
+
+function renderTools(){
+
+  const grid=$("toolGrid");
+
+  grid.replaceChildren();
+
+  Object.entries(TOOLS).forEach(([id,tool])=>{
+
+    const button=document.createElement("button");
+
+    button.type="button";
+
+    button.className="tool-card";
+
+    button.dataset.tool=id;
+
+    const icon=document.createElement("span");
+
+    icon.className="icon";
+
+    icon.textContent=tool.icon;
+
+    const title=document.createElement("strong");
+
+    title.textContent=tool.name[state.language];
+
+    button.append(icon,title);
+
+    button.classList.toggle(
+      "active",
+      state.tool===id
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(state.tool===id)
+    );
+
+    button.addEventListener("click",()=>{
+
+      state.tool=id;
+
+      if(id==="tutor"){
+
+        state.provider="professor";
+
+        $("provider").value="professor";
+
+      }
+
+      renderTools();
+
+    });
+
+    grid.appendChild(button);
+
+  });
+
+  $("activeTool").textContent=
+    TOOLS[state.tool].name[state.language];
+
+}
+
+/* =========================================
+   CENTRAL AI REQUEST
+========================================= */
+
+function createRequest(prompt){
+
+  return {
+
+    prompt:prompt.trim(),
+
+    project:state.project,
+
+    tool:state.tool,
+
+    language:state.language,
+
+    provider:state.provider,
+
+    school:state.project==="academy"
+      ? $("school").value
+      : ""
+
   };
 
-  var lang = "ht";
-  try { lang = localStorage.getItem("bss1815-language") || "ht"; } catch (e) {}
-  if (!TEXT[lang]) { lang = "ht"; }
+}
 
-  var messagesEl = document.getElementById("messages");
-  var form = document.getElementById("chatForm");
-  var input = document.getElementById("question");
-  var sendBtn = document.getElementById("sendBtn");
-  var intro = document.getElementById("intro");
-  var chipsEl = document.getElementById("chips");
-  var history = [];
-  var busy = false;
+function buildMessage(request){
 
-  function applyLanguage(l) {
-    lang = TEXT[l] ? l : "ht";
-    var t = TEXT[lang];
-    document.documentElement.lang = lang;
-    document.querySelectorAll("[data-t]").forEach(function (el) {
-      var k = el.getAttribute("data-t");
-      if (t[k]) { el.textContent = t[k]; }
+  const project=PROJECTS[request.project];
+
+  const tool=TOOLS[request.tool];
+
+  const languages={
+
+    ht:"Haitian Creole",
+
+    fr:"French",
+
+    en:"English"
+
+  };
+
+  return [
+
+    "Platform: BSS1815 PRO-MAX DMP",
+
+    "Project: "+project.name,
+
+    "Context: "+project.context,
+
+    "School: "+(request.school || "Not applicable"),
+
+    "Tool: "+request.tool,
+
+    "Task: "+tool.instruction,
+
+    "Preferred language: "+languages[request.language],
+
+    "Do not invent facts or completed external actions.",
+
+    "User question:",
+
+    request.prompt
+
+  ].join("\n");
+
+}
+
+/* =========================================
+   OPENAI + GEMINI CONNECTION
+========================================= */
+
+async function requestAI(request){
+
+  const endpoint=CONFIG.endpoints[request.provider];
+
+  if(!endpoint){
+
+    throw new Error("Unknown AI provider.");
+
+  }
+
+  const controller=new AbortController();
+
+  const timer=setTimeout(
+    ()=>controller.abort(),
+    CONFIG.timeout
+  );
+
+  try{
+
+    const response=await fetch(endpoint,{
+
+      method:"POST",
+
+      headers:{
+
+        "Content-Type":"application/json"
+
+      },
+
+      signal:controller.signal,
+
+      body:JSON.stringify({
+
+        message:buildMessage(request),
+
+        language:request.language,
+
+        mode:request.tool
+
+      })
+
     });
-    input.placeholder = t.placeholder;
-    chipsEl.innerHTML = "";
-    t.chips.forEach(function (c) {
-      var b = document.createElement("button");
-      b.type = "button"; b.className = "chip"; b.textContent = c;
-      b.addEventListener("click", function () { input.value = c; input.focus(); autoGrow(); });
-      chipsEl.appendChild(b);
+
+    const raw=await response.text();
+
+    let data;
+
+    try{
+
+      data=JSON.parse(raw);
+
+    }catch{
+
+      throw new Error(
+        "Invalid API response — HTTP "+response.status
+      );
+
+    }
+
+    if(!response.ok || data.success===false){
+
+      const detail=
+        typeof data.error==="string"
+          ? data.error
+          : data.error?.message;
+
+      throw new Error(
+        detail || "HTTP "+response.status
+      );
+
+    }
+
+    const answer=[
+
+      data.answer,
+
+      data.reply,
+
+      data.response,
+
+      data.content,
+
+      data.text,
+
+      data.message
+
+    ].find(value=>
+
+      typeof value==="string" && value.trim()
+
+    );
+
+    if(!answer){
+
+      throw new Error(t("noAnswer"));
+
+    }
+
+    return {
+
+      answer:answer,
+
+      provider:data.provider ||
+        (
+          request.provider==="openai"
+            ? "OpenAI"
+            : "Google Gemini"
+        ),
+
+      model:data.model || "",
+
+      date:new Date().toISOString()
+
+    };
+
+  }catch(error){
+
+    if(error.name==="AbortError"){
+
+      throw new Error(t("timeout"));
+
+    }
+
+    throw error;
+
+  }finally{
+
+    clearTimeout(timer);
+
+  }
+
+}
+
+/* =========================================
+   AI WORKSPACE EXECUTION
+========================================= */
+
+async function executeRequest(request){
+
+  if(state.busy) return;
+
+  if(!request.prompt){
+
+    setStatus("empty","error");
+
+    return;
+
+  }
+
+  state.busy=true;
+
+  state.lastRequest={...request};
+
+  $("sendAI").disabled=true;
+
+  $("retryAI").disabled=true;
+
+  $("clearAI").disabled=true;
+
+  $("aiResponse").textContent="";
+
+  $("activeProvider").textContent="—";
+
+  setStatus("processing");
+
+  try{
+
+    const result=await requestAI(request);
+
+    $("aiResponse").textContent=result.answer;
+
+    $("activeProvider").textContent=
+      result.provider+
+      (result.model ? " / "+result.model : "");
+
+    state.history.unshift({
+
+      request:{...request},
+
+      result:result
+
     });
-    document.querySelectorAll(".lang-btn").forEach(function (b) { b.classList.toggle("active", b.dataset.lang === lang); });
-    document.querySelectorAll(".msg .copy").forEach(function (b) { b.textContent = t.copy; });
-    try { localStorage.setItem("bss1815-language", lang); } catch (e) {}
+
+    state.history=state.history.slice(
+      0,
+      CONFIG.maxHistory
+    );
+
+    renderHistory();
+
+    setStatus("success","success");
+
+  }catch(error){
+
+    $("aiResponse").textContent="";
+
+    setStatus(
+      "error",
+      "error",
+      error.message
+    );
+
+  }finally{
+
+    state.busy=false;
+
+    $("sendAI").disabled=false;
+
+    $("retryAI").disabled=false;
+
+    $("clearAI").disabled=false;
+
   }
-  document.querySelectorAll(".lang-btn").forEach(function (b) {
-    b.addEventListener("click", function () { applyLanguage(b.dataset.lang); });
-  });
-  applyLanguage(lang);
 
-  function scrollDown() { messagesEl.scrollTop = messagesEl.scrollHeight; }
+}
 
-  function addMessage(role, text) {
-    intro.style.display = "none";
-    var div = document.createElement("div");
-    div.className = "msg " + role;
-    div.textContent = text;
-    if (role === "model") {
-      var copy = document.createElement("button");
-      copy.type = "button"; copy.className = "copy"; copy.textContent = TEXT[lang].copy;
-      copy.addEventListener("click", function () {
-        navigator.clipboard.writeText(text).then(function () {
-          copy.textContent = TEXT[lang].copied;
-          setTimeout(function () { copy.textContent = TEXT[lang].copy; }, 1800);
-        }).catch(function () {});
-      });
-      div.appendChild(copy);
-    }
-    messagesEl.appendChild(div);
-    scrollDown();
-    return div;
+/* =========================================
+   SESSION HISTORY
+========================================= */
+
+function renderHistory(){
+
+  const container=$("aiHistory");
+
+  container.replaceChildren();
+
+  if(!state.history.length){
+
+    container.textContent=t("noHistory");
+
+    return;
+
   }
 
-  function autoGrow() {
-    input.style.height = "auto";
-    input.style.height = Math.min(input.scrollHeight, 160) + "px";
-  }
-  input.addEventListener("input", autoGrow);
-  input.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && !e.shiftKey && window.matchMedia("(pointer:fine)").matches) {
-      e.preventDefault(); form.requestSubmit();
-    }
-  });
+  state.history.forEach(item=>{
 
-  document.getElementById("newChat").addEventListener("click", function () {
-    history = [];
-    messagesEl.innerHTML = "";
-    intro.style.display = "";
-  });
+    const card=document.createElement("div");
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    var q = input.value.trim();
-    if (!q || busy) { return; }
+    card.className="history-item";
 
-    var user = window.BSS_ADMIN_USER;
-    if (!user) { addMessage("error", TEXT[lang].notReady); return; }
+    const title=document.createElement("strong");
 
-    busy = true; sendBtn.disabled = true;
-    input.value = ""; autoGrow();
-    addMessage("user", q);
-    history.push({ role: "user", text: q });
+    title.textContent=
+      PROJECTS[item.request.project].name;
 
-    var typing = document.createElement("div");
-    typing.className = "typing"; typing.textContent = TEXT[lang].typing;
-    messagesEl.appendChild(typing); scrollDown();
+    const question=document.createElement("p");
 
-    try {
-      var token = await user.getIdToken();
-      var res = await fetch("/.netlify/functions/ai-center", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
-        body: JSON.stringify({ messages: history })
-      });
-      var data = await res.json().catch(function () { return {}; });
-      typing.remove();
-      if (!res.ok || !data.reply) {
-        history.pop();
-        addMessage("error", data.error || ("Erè " + res.status));
-      } else {
-        history.push({ role: "model", text: data.reply });
-        addMessage("model", data.reply);
+    question.textContent=
+      item.request.prompt.slice(0,200);
+
+    const date=document.createElement("small");
+
+    date.textContent=
+      new Date(item.result.date).toLocaleString();
+
+    const button=document.createElement("button");
+
+    button.type="button";
+
+    button.textContent=t("restore");
+
+    button.addEventListener("click",()=>{
+
+      if(state.busy) return;
+
+      setLanguage(item.request.language);
+
+      selectProject(item.request.project);
+
+      state.tool=item.request.tool;
+
+      state.provider=item.request.provider;
+
+      $("provider").value=state.provider;
+
+      if(item.request.school){
+
+        $("school").value=item.request.school;
+
       }
-    } catch (err) {
-      typing.remove();
-      history.pop();
-      addMessage("error", TEXT[lang].network);
-    } finally {
-      busy = false; sendBtn.disabled = false; input.focus();
-    }
+
+      renderTools();
+
+      $("aiPrompt").value=item.request.prompt;
+
+      $("aiResponse").textContent=
+        item.result.answer;
+
+      $("activeProvider").textContent=
+        item.result.provider;
+
+      state.lastRequest={...item.request};
+
+      setStatus("success","success");
+
+      $("centralAIForm").scrollIntoView({
+
+        behavior:"smooth"
+
+      });
+
+    });
+
+    card.append(title,question,date);
+
+    card.appendChild(document.createElement("br"));
+
+    card.appendChild(button);
+
+    container.appendChild(card);
+
   });
+
+}
+
+/* =========================================
+   PROF AVATAR — EXISTING VIDEO
+========================================= */
+
+const avatar=$("aiProfAvatar");
+
+$("aiAvatarPlay").addEventListener("click",async()=>{
+
+  try{
+
+    await avatar.play();
+
+  }catch{
+
+    setStatus("avatarError","error");
+
+  }
+
+});
+
+$("aiAvatarStop").addEventListener("click",()=>{
+
+  avatar.pause();
+
+  avatar.currentTime=0;
+
+});
+
+avatar.addEventListener("error",()=>{
+
+  setStatus("avatarError","error");
+
+});
+
+/* =========================================
+   EVENT CONNECTIONS
+========================================= */
+
+document.querySelectorAll("[data-lang]")
+  .forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+      setLanguage(button.dataset.lang);
+
+    });
+
+  });
+
+document.querySelectorAll("[data-project]")
+  .forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+      selectProject(button.dataset.project);
+
+    });
+
+  });
+
+$("provider").addEventListener("change",event=>{
+
+  state.provider=event.target.value;
+
+});
+
+$("centralAIForm").addEventListener(
+  "submit",
+  event=>{
+
+    event.preventDefault();
+
+    executeRequest(
+      createRequest($("aiPrompt").value)
+    );
+
+  }
+);
+
+$("clearAI").addEventListener("click",()=>{
+
+  if(state.busy) return;
+
+  $("aiPrompt").value="";
+
+  $("aiResponse").textContent="";
+
+  $("activeProvider").textContent="—";
+
+  state.lastRequest=null;
+
+  setStatus("ready");
+
+});
+
+$("retryAI").addEventListener("click",()=>{
+
+  if(state.lastRequest){
+
+    executeRequest({...state.lastRequest});
+
+  }else{
+
+    executeRequest(
+      createRequest($("aiPrompt").value)
+    );
+
+  }
+
+});
+
+$("copyAI").addEventListener("click",async()=>{
+
+  const answer=$("aiResponse").textContent;
+
+  if(!answer) return;
+
+  try{
+
+    await navigator.clipboard.writeText(answer);
+
+    setStatus("copied","success");
+
+  }catch{
+
+    const range=document.createRange();
+
+    range.selectNodeContents($("aiResponse"));
+
+    const selection=window.getSelection();
+
+    selection.removeAllRanges();
+
+    selection.addRange(range);
+
+  }
+
+});
+
+$("clearHistory").addEventListener("click",()=>{
+
+  state.history=[];
+
+  renderHistory();
+
+});
+
+/* =========================================
+   SHARED CENTRAL AI INTERFACE
+========================================= */
+
+window.BSS1815_CENTRAL_AI=Object.freeze({
+
+  ask:async function(options={}){
+
+    const request={
+
+      prompt:String(options.prompt || "").trim(),
+
+      project:options.project || state.project,
+
+      tool:options.tool || "assistant",
+
+      language:options.language || state.language,
+
+      provider:options.provider || "openai",
+
+      school:String(options.school || "")
+
+    };
+
+    if(!request.prompt){
+
+      throw new Error("Prompt required.");
+
+    }
+
+    if(!PROJECTS[request.project]){
+
+      throw new Error("Unknown project.");
+
+    }
+
+    if(!TOOLS[request.tool]){
+
+      throw new Error("Unknown AI tool.");
+
+    }
+
+    if(!I18N[request.language]){
+
+      throw new Error("Unsupported language.");
+
+    }
+
+    return requestAI(request);
+
+  },
+
+  selectProject:selectProject,
+
+  setLanguage:setLanguage
+
+});
+
+/* =========================================
+   INITIALIZATION
+========================================= */
+
+$("year").textContent=new Date().getFullYear();
+
+selectProject("bss1815");
+
+setLanguage("ht");
+
+setStatus("ready");
+
 })();
+
 </script>
+
 </body>
 </html>
