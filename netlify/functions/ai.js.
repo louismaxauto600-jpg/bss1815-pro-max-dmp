@@ -1,0 +1,2058 @@
+/* =========================================================
+   BSS1815 PRO-MAX DMP
+   CENTRAL AI CENTER CONTROLLER
+   VERSION: 1.1.0
+   DEVAN DEVAN NÈT
+   ========================================================= */
+
+"use strict";
+
+const PRO_MAX_AI_CENTER = {
+  version: "1.1.0",
+
+  endpoint: "/.netlify/functions/ai",
+
+  storageKeys: {
+    activeProject: "proMaxActiveProject",
+    activeTool: "proMaxActiveAITool",
+    history: "proMaxAIHistory",
+    settings: "proMaxAISettings"
+  },
+
+  projects: {
+    bss1815: {
+      id: "bss1815",
+      name: "Briyant Solèy Signo 1815",
+      icon: "🏛️"
+    },
+
+    "pro-max-fm": {
+      id: "pro-max-fm",
+      name: "PRO-MAX FM 106.5 FM",
+      icon: "📻"
+    },
+
+    maximax: {
+      id: "maximax",
+      name: "MAXIMAX MULTI SERVICES",
+      icon: "🏢"
+    },
+
+    academy: {
+      id: "academy",
+      name: "PRO-MAX ACADÉMIE",
+      icon: "🎓"
+    },
+
+    "beat-lab": {
+      id: "beat-lab",
+      name: "PRO-MAX BEAT LAB",
+      icon: "🎵"
+    },
+
+    "leogane-info": {
+      id: "leogane-info",
+      name: "LÉOGÂNE INFO",
+      icon: "📰"
+    }
+  },
+
+  tools: [
+    {
+      id: "assistant",
+      icon: "🤖",
+
+      name: {
+        ht: "Asistan AI",
+        fr: "Assistant IA",
+        en: "AI Assistant"
+      },
+
+      description: {
+        ht: "Poze kesyon epi jwenn asistans selon pwojè w ap itilize a.",
+        fr: "Posez des questions et obtenez une assistance adaptée au projet utilisé.",
+        en: "Ask questions and receive assistance adapted to the active project."
+      }
+    },
+
+    {
+      id: "writer",
+      icon: "✍️",
+
+      name: {
+        ht: "AI Writer",
+        fr: "Rédacteur IA",
+        en: "AI Writer"
+      },
+
+      description: {
+        ht: "Kreye lèt, anons, script, rapò ak lòt dokiman.",
+        fr: "Créez des lettres, annonces, scripts, rapports et autres documents.",
+        en: "Create letters, announcements, scripts, reports, and other documents."
+      }
+    },
+
+    {
+      id: "translator",
+      icon: "🌐",
+
+      name: {
+        ht: "Tradiktè AI",
+        fr: "Traducteur IA",
+        en: "AI Translator"
+      },
+
+      description: {
+        ht: "Tradui kontni ant Kreyòl, Fransè ak Anglè.",
+        fr: "Traduisez du contenu entre le créole, le français et l’anglais.",
+        en: "Translate content between Haitian Creole, French, and English."
+      }
+    },
+
+    {
+      id: "voice",
+      icon: "🎙️",
+
+      name: {
+        ht: "AI Voice Studio",
+        fr: "Studio vocal IA",
+        en: "AI Voice Studio"
+      },
+
+      description: {
+        ht: "Prepare script pou radyo, prezantasyon, videyo ak narasyon.",
+        fr: "Préparez des scripts pour la radio, les présentations, les vidéos et la narration.",
+        en: "Prepare scripts for radio, presentations, videos, and narration."
+      }
+    },
+
+    {
+      id: "image",
+      icon: "🎨",
+
+      name: {
+        ht: "AI Image Studio",
+        fr: "Studio d’images IA",
+        en: "AI Image Studio"
+      },
+
+      description: {
+        ht: "Prepare deskripsyon ak prompt pou kreye vizyèl pwofesyonèl.",
+        fr: "Préparez des descriptions et des prompts pour créer des visuels professionnels.",
+        en: "Prepare descriptions and prompts for professional visuals."
+      }
+    },
+
+    {
+      id: "analytics",
+      icon: "📊",
+
+      name: {
+        ht: "AI Analytics",
+        fr: "Analyse IA",
+        en: "AI Analytics"
+      },
+
+      description: {
+        ht: "Analize aktivite, rapò ak done platfòm nan.",
+        fr: "Analysez l’activité, les rapports et les données de la plateforme.",
+        en: "Analyze platform activity, reports, and data."
+      }
+    },
+
+    {
+      id: "tutor",
+      icon: "🧑‍🏫",
+
+      name: {
+        ht: "AI Tutor",
+        fr: "Tuteur IA",
+        en: "AI Tutor"
+      },
+
+      description: {
+        ht: "Ede elèv yo konprann leson, fè egzèsis ak prepare egzamen.",
+        fr: "Aidez les étudiants à comprendre les leçons, pratiquer et préparer les examens.",
+        en: "Help students understand lessons, practice, and prepare for exams."
+      }
+    }
+  ]
+};
+
+/* =========================================================
+   PROJECT CONTEXTS
+   ========================================================= */
+
+const AI_PROJECT_CONTEXTS = {
+
+  bss1815: {
+    ht: "Ou ap travay pou Briyant Solèy Signo 1815. Konsantre sou òganizasyon, kominote, manm, evènman, istwa, anons ak dokiman ofisyèl.",
+
+    fr: "Vous travaillez pour Briyant Solèy Signo 1815. Concentrez-vous sur l’organisation, la communauté, les membres, les événements, l’histoire, les annonces et les documents officiels.",
+
+    en: "You are working for Briyant Solèy Signo 1815. Focus on organization, community, members, events, history, announcements, and official documents."
+  },
+
+  "pro-max-fm": {
+    ht: "Ou ap travay pou PRO-MAX FM 106.5 FM. Konsantre sou radyo, nouvèl, mizik, podcast, entèvyou, emisyon ak pwodiksyon medya.",
+
+    fr: "Vous travaillez pour PRO-MAX FM 106.5 FM. Concentrez-vous sur la radio, les actualités, la musique, les podcasts, les interviews, les émissions et la production médiatique.",
+
+    en: "You are working for PRO-MAX FM 106.5 FM. Focus on radio, news, music, podcasts, interviews, programs, and media production."
+  },
+
+  maximax: {
+    ht: "Ou ap travay pou MAXIMAX MULTI SERVICES. Konsantre sou sèvis pwofesyonèl, kliyan, imigrasyon, notarya, taks, asirans, byen imobilye, tradiksyon ak operasyon biznis. Bay enfòmasyon jeneral san prezante tèt ou kòm avoka.",
+
+    fr: "Vous travaillez pour MAXIMAX MULTI SERVICES. Concentrez-vous sur les services professionnels, l’immigration, le notariat, les impôts, les assurances, l’immobilier, la traduction et les opérations commerciales. Fournissez des informations générales sans vous présenter comme avocat.",
+
+    en: "You are working for MAXIMAX MULTI SERVICES. Focus on professional services, immigration, notary services, taxes, insurance, real estate, translation, and business operations. Provide general information without presenting yourself as an attorney."
+  },
+
+  academy: {
+    ht: "Ou ap travay pou PRO-MAX ACADÉMIE ak tout lekòl li yo, tankou Real Estate School, Insurance School ak École de Journalisme. Konsantre sou edikasyon, fòmasyon, kou, leson, egzamen, sètifika ak sipò pou elèv.",
+
+    fr: "Vous travaillez pour PRO-MAX ACADÉMIE et toutes ses écoles, notamment Real Estate School, Insurance School et École de Journalisme. Concentrez-vous sur l’éducation, la formation, les cours, les examens et l’accompagnement des étudiants.",
+
+    en: "You are working for PRO-MAX ACADÉMIE and all its schools, including Real Estate School, Insurance School, and École de Journalisme. Focus on education, training, courses, lessons, exams, certificates, and student support."
+  },
+
+  "beat-lab": {
+    ht: "Ou ap travay pou PRO-MAX BEAT LAB. Ede ak konpozisyon, mizik, ritm, pawòl mizik, aranjman ak preparasyon pwodiksyon odyo.",
+
+    fr: "Vous travaillez pour PRO-MAX BEAT LAB. Aidez à la composition, aux rythmes, aux paroles, aux arrangements et à la préparation de productions audio.",
+
+    en: "You are working for PRO-MAX BEAT LAB. Assist with composition, rhythm, lyrics, arrangements, and audio production planning."
+  },
+
+  "leogane-info": {
+    ht: "Ou ap travay pou LÉOGÂNE INFO. Konsantre sou jounalis, repòtaj, entèvyou, verifikasyon enfòmasyon ak nouvèl kominotè. Pa envante nouvèl oswa sous.",
+
+    fr: "Vous travaillez pour LÉOGÂNE INFO. Concentrez-vous sur le journalisme, les reportages, les interviews, la vérification des informations et les actualités locales. N’inventez pas de nouvelles ni de sources.",
+
+    en: "You are working for LÉOGÂNE INFO. Focus on journalism, reporting, interviews, fact checking, and community news. Do not invent news or sources."
+  }
+};
+
+/* =========================================================
+   APPLICATION STATE
+   ========================================================= */
+
+let activeAITool = "assistant";
+let aiRequestInProgress = false;
+let aiCenterInitialized = false;
+
+if (document.readyState === "loading") {
+  document.addEventListener(
+    "DOMContentLoaded",
+    initializeAICenter
+  );
+} else {
+  initializeAICenter();
+}
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+function initializeAICenter() {
+
+  if (aiCenterInitialized) {
+    return;
+  }
+
+  aiCenterInitialized = true;
+
+  const savedTool = localStorage.getItem(
+    PRO_MAX_AI_CENTER.storageKeys.activeTool
+  );
+
+  activeAITool = getAITool(savedTool)
+    ? savedTool
+    : "assistant";
+
+  renderAIToolCards();
+  initializeAIProjectSelector();
+  initializeAIForm();
+  initializeAIActionButtons();
+  initializeAIHistoryControls();
+  initializeAILanguageUpdates();
+  updateAIProjectDisplay();
+  displayAIHistory();
+  setAIStatus("idle");
+
+  console.info(
+    "BSS1815 PRO-MAX DMP CENTRAL AI CENTER",
+    PRO_MAX_AI_CENTER.version
+  );
+}
+
+/* =========================================================
+   AI TOOL CARDS
+   ========================================================= */
+
+function renderAIToolCards() {
+
+  const container = document.querySelector(
+    "#ai-tools, [data-ai-tools]"
+  );
+
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = "";
+
+  PRO_MAX_AI_CENTER.tools.forEach((tool) => {
+
+    const card = document.createElement("button");
+
+    card.type = "button";
+    card.className = "ai-tool-card";
+    card.dataset.aiTool = tool.id;
+
+    const isActive = tool.id === activeAITool;
+
+    card.classList.toggle("active", isActive);
+
+    card.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
+
+    card.innerHTML = `
+      <span class="ai-tool-icon" aria-hidden="true">
+        ${tool.icon}
+      </span>
+
+      <span class="ai-tool-information">
+
+        <strong>
+          ${escapeAIHTML(
+            getAILocalizedValue(tool.name)
+          )}
+        </strong>
+
+        <small>
+          ${escapeAIHTML(
+            getAILocalizedValue(tool.description)
+          )}
+        </small>
+
+      </span>
+    `;
+
+    card.addEventListener("click", () => {
+      selectAITool(tool.id);
+    });
+
+    container.appendChild(card);
+
+  });
+}
+
+/* =========================================================
+   TOOL SELECTION
+   ========================================================= */
+
+function selectAITool(toolId) {
+
+  const tool = getAITool(toolId);
+
+  if (!tool) {
+
+    showAIMessage(
+      getAIText(
+        "Zouti AI sa a pa disponib.",
+        "Cet outil IA n’est pas disponible.",
+        "This AI tool is unavailable."
+      ),
+      "error"
+    );
+
+    return;
+  }
+
+  activeAITool = tool.id;
+
+  localStorage.setItem(
+    PRO_MAX_AI_CENTER.storageKeys.activeTool,
+    activeAITool
+  );
+
+  document
+    .querySelectorAll("[data-ai-tool]")
+    .forEach((card) => {
+
+      const isActive =
+        card.dataset.aiTool === activeAITool;
+
+      card.classList.toggle(
+        "active",
+        isActive
+      );
+
+      card.setAttribute(
+        "aria-pressed",
+        String(isActive)
+      );
+
+    });
+
+  updateActiveAIToolDisplay();
+  updateAIPromptPlaceholder();
+}
+
+/* =========================================================
+   PROJECT SELECTOR
+   ========================================================= */
+
+function initializeAIProjectSelector() {
+
+  const selector = document.querySelector(
+    "#ai-project-selector, [data-ai-project-selector]"
+  );
+
+  if (!selector) {
+    return;
+  }
+
+  selector.innerHTML = "";
+
+  Object.values(
+    PRO_MAX_AI_CENTER.projects
+  ).forEach((project) => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = project.id;
+
+    option.textContent =
+      `${project.icon} ${project.name}`;
+
+    selector.appendChild(option);
+
+  });
+
+  selector.value = getActiveAIProject();
+
+  selector.addEventListener(
+    "change",
+    () => {
+      setActiveAIProject(selector.value);
+    }
+  );
+}
+
+function getActiveAIProject() {
+
+  const savedProject = localStorage.getItem(
+    PRO_MAX_AI_CENTER.storageKeys.activeProject
+  );
+
+  if (
+    savedProject &&
+    Object.hasOwn(
+      PRO_MAX_AI_CENTER.projects,
+      savedProject
+    )
+  ) {
+    return savedProject;
+  }
+
+  return "bss1815";
+}
+
+function setActiveAIProject(projectId) {
+
+  if (
+    !Object.hasOwn(
+      PRO_MAX_AI_CENTER.projects,
+      projectId
+    )
+  ) {
+    return;
+  }
+
+  localStorage.setItem(
+    PRO_MAX_AI_CENTER.storageKeys.activeProject,
+    projectId
+  );
+
+  updateAIProjectDisplay();
+  updateAIPromptPlaceholder();
+
+  document.dispatchEvent(
+    new CustomEvent(
+      "proMaxAIProjectChanged",
+      {
+        detail: {
+          project: projectId
+        }
+      }
+    )
+  );
+}
+
+function updateAIProjectDisplay() {
+
+  const projectId = getActiveAIProject();
+
+  const project =
+    PRO_MAX_AI_CENTER.projects[projectId];
+
+  document
+    .querySelectorAll("[data-ai-active-project]")
+    .forEach((element) => {
+
+      element.textContent = project
+        ? `${project.icon} ${project.name}`
+        : "";
+
+    });
+
+  const selector = document.querySelector(
+    "#ai-project-selector, [data-ai-project-selector]"
+  );
+
+  if (selector) {
+    selector.value = projectId;
+  }
+
+  updateActiveAIToolDisplay();
+  updateAIPromptPlaceholder();
+}
+
+function updateActiveAIToolDisplay() {
+
+  const tool = getAITool(activeAITool);
+
+  document
+    .querySelectorAll("[data-ai-active-tool]")
+    .forEach((element) => {
+
+      element.textContent = tool
+        ? `${tool.icon} ${getAILocalizedValue(tool.name)}`
+        : "";
+
+    });
+}
+
+/* =========================================================
+   CENTRAL AI FORM
+   ========================================================= */
+
+function initializeAIForm() {
+
+  const form = document.querySelector(
+    "#ai-form, [data-ai-form]"
+  );
+
+  if (!form) {
+    return;
+  }
+
+  const promptInput = form.querySelector(
+    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
+  );
+
+  const submitButton = form.querySelector(
+    "button[type='submit'], [data-ai-submit]"
+  );
+
+  form.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+      if (aiRequestInProgress) {
+        return;
+      }
+
+      const prompt =
+        promptInput?.value.trim() || "";
+
+      if (!prompt) {
+
+        showAIMessage(
+          getAIText(
+            "Tanpri ekri sa ou bezwen AI a fè.",
+            "Veuillez écrire ce que vous souhaitez que l’IA fasse.",
+            "Please write what you want the AI to do."
+          ),
+          "error"
+        );
+
+        promptInput?.focus();
+
+        return;
+      }
+
+      setAIButtonLoading(
+        submitButton,
+        true
+      );
+
+      setAIStatus("processing");
+
+      try {
+
+        const request =
+          createAIRequest(prompt);
+
+        const response =
+          await sendAIRequest(request);
+
+        displayAIResponse(response);
+
+        saveAIHistoryItem(
+          request,
+          response
+        );
+
+        setAIStatus("success");
+
+        showAIMessage(
+          getAIText(
+            "AI a fini prepare repons lan.",
+            "L’IA a terminé la réponse.",
+            "The AI response is ready."
+          ),
+          "success"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Central AI request error:",
+          error.message
+        );
+
+        setAIStatus("error");
+
+        showAIMessage(
+          getAIErrorMessage(error),
+          "error"
+        );
+
+      } finally {
+
+        setAIButtonLoading(
+          submitButton,
+          false
+        );
+
+      }
+    }
+  );
+
+  updateAIPromptPlaceholder();
+}
+
+/* =========================================================
+   CREATE AI REQUEST
+   ========================================================= */
+
+function createAIRequest(prompt) {
+
+  const projectId = getActiveAIProject();
+
+  const language = getAILanguage();
+
+  return {
+
+    id: createAIRequestId(),
+
+    tool: activeAITool,
+
+    project: projectId,
+
+    language,
+
+    context:
+      AI_PROJECT_CONTEXTS[projectId]?.[language] ||
+      AI_PROJECT_CONTEXTS[projectId]?.ht ||
+      "",
+
+    prompt: String(prompt || "").trim(),
+
+    user: null,
+
+    createdAt: new Date().toISOString()
+
+  };
+}
+
+/* =========================================================
+   CENTRAL OPENAI API CONNECTION
+   EXISTING NETLIFY BACKEND
+   ========================================================= */
+
+async function sendAIRequest(request) {
+
+  aiRequestInProgress = true;
+
+  const controller = new AbortController();
+
+  const timeout = setTimeout(
+    () => controller.abort(),
+    45000
+  );
+
+  try {
+
+    if (
+      !request ||
+      typeof request.prompt !== "string" ||
+      !request.prompt.trim()
+    ) {
+      throw new Error("ai/message-required");
+    }
+
+    if (request.prompt.length > 12000) {
+      throw new Error("ai/message-too-long");
+    }
+
+    const projectId = Object.hasOwn(
+      PRO_MAX_AI_CENTER.projects,
+      request.project
+    )
+      ? request.project
+      : "bss1815";
+
+    const project =
+      PRO_MAX_AI_CENTER.projects[projectId];
+
+    const language = normalizeAILanguage(
+      request.language
+    );
+
+    const tool = getAITool(request.tool)
+      ? request.tool
+      : "assistant";
+
+    const context =
+      AI_PROJECT_CONTEXTS[projectId]?.[language] ||
+      AI_PROJECT_CONTEXTS[projectId]?.ht ||
+      "";
+
+    const message = [
+
+      "BSS1815 PRO-MAX DMP CENTRAL AI CENTER",
+
+      `Active project: ${project.name}`,
+
+      `Project context: ${context}`,
+
+      `Active AI tool: ${tool}`,
+
+      "Do not claim access to unavailable systems or data.",
+
+      "Do not claim that audio, video or images were generated when only text was prepared.",
+
+      "User request:",
+
+      request.prompt.trim()
+
+    ].join("\n\n");
+
+    const response = await fetch(
+
+      PRO_MAX_AI_CENTER.endpoint,
+
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+
+          message,
+
+          mode: tool,
+
+          language
+
+        }),
+
+        signal: controller.signal
+
+      }
+    );
+
+    if (!response.ok) {
+
+      throw new Error(
+        `ai/http-${response.status}`
+      );
+
+    }
+
+    const data = await response.json();
+
+    const content =
+      data.answer ||
+      data.content ||
+      data.reply ||
+      data.response ||
+      data.message ||
+      data.text ||
+      "";
+
+    if (
+      typeof content !== "string" ||
+      !content.trim()
+    ) {
+
+      throw new Error(
+        "ai/empty-response"
+      );
+
+    }
+
+    if (data.success === false) {
+
+      throw new Error(
+        "ai/backend-error"
+      );
+
+    }
+
+    return {
+
+      id: data.id || request.id,
+
+      content: content.trim(),
+
+      provider: "OpenAI",
+
+      project: projectId,
+
+      tool,
+
+      language,
+
+      createdAt:
+        data.createdAt ||
+        new Date().toISOString()
+
+    };
+
+  } finally {
+
+    clearTimeout(timeout);
+
+    aiRequestInProgress = false;
+
+  }
+}
+
+/* =========================================================
+   DISPLAY AI RESPONSE
+   ========================================================= */
+
+function displayAIResponse(response) {
+
+  const output = document.querySelector(
+    "#ai-response, [data-ai-response]"
+  );
+
+  if (!output) {
+    return;
+  }
+
+  output.hidden = false;
+
+  if (
+    output.tagName === "TEXTAREA" ||
+    output.tagName === "INPUT"
+  ) {
+
+    output.value = response.content;
+
+  } else {
+
+    output.textContent = response.content;
+
+  }
+
+  document
+    .querySelectorAll("[data-ai-provider]")
+    .forEach((element) => {
+
+      element.textContent =
+        response.provider || "PRO-MAX AI";
+
+    });
+
+  document
+    .querySelectorAll("[data-ai-response-date]")
+    .forEach((element) => {
+
+      element.textContent =
+        formatAIDate(response.createdAt);
+
+    });
+
+  output.scrollIntoView({
+
+    behavior: "smooth",
+
+    block: "nearest"
+
+  });
+}
+
+/* =========================================================
+   AI ACTION BUTTONS
+   ========================================================= */
+
+function initializeAIActionButtons() {
+
+  document
+    .querySelectorAll("[data-ai-copy]")
+    .forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        copyAIResponse
+      );
+
+    });
+
+  document
+    .querySelectorAll("[data-ai-clear]")
+    .forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        clearAIWorkspace
+      );
+
+    });
+
+  document
+    .querySelectorAll("[data-ai-download]")
+    .forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        downloadAIResponse
+      );
+
+    });
+
+  document
+    .querySelectorAll("[data-ai-retry]")
+    .forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        retryLastAIRequest
+      );
+
+    });
+}
+
+/* =========================================================
+   COPY AI RESPONSE
+   ========================================================= */
+
+async function copyAIResponse() {
+
+  const content = getAIResponseContent();
+
+  if (!content) {
+
+    showAIMessage(
+      getAIText(
+        "Pa gen repons pou kopye.",
+        "Aucune réponse à copier.",
+        "There is no response to copy."
+      ),
+      "error"
+    );
+
+    return;
+  }
+
+  try {
+
+    await navigator.clipboard.writeText(
+      content
+    );
+
+    showAIMessage(
+      getAIText(
+        "Repons lan kopye.",
+        "La réponse a été copiée.",
+        "The response has been copied."
+      ),
+      "success"
+    );
+
+  } catch (error) {
+
+    showAIMessage(
+      getAIText(
+        "Kopi a pa reyisi.",
+        "La copie a échoué.",
+        "Copying failed."
+      ),
+      "error"
+    );
+
+  }
+}
+
+/* =========================================================
+   CLEAR AI WORKSPACE
+   ========================================================= */
+
+function clearAIWorkspace() {
+
+  if (aiRequestInProgress) {
+    return;
+  }
+
+  const promptInput = document.querySelector(
+    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
+  );
+
+  const output = document.querySelector(
+    "#ai-response, [data-ai-response]"
+  );
+
+  if (promptInput) {
+
+    promptInput.value = "";
+
+    promptInput.focus();
+
+  }
+
+  if (output) {
+
+    if (
+      output.tagName === "TEXTAREA" ||
+      output.tagName === "INPUT"
+    ) {
+
+      output.value = "";
+
+    } else {
+
+      output.textContent = "";
+
+    }
+
+    output.hidden = true;
+
+  }
+
+  document
+    .querySelectorAll("[data-ai-provider]")
+    .forEach((element) => {
+      element.textContent = "";
+    });
+
+  document
+    .querySelectorAll("[data-ai-response-date]")
+    .forEach((element) => {
+      element.textContent = "";
+    });
+
+  setAIStatus("idle");
+}
+
+/* =========================================================
+   EXPORT AI RESPONSE
+   ========================================================= */
+
+function downloadAIResponse() {
+
+  const content = getAIResponseContent();
+
+  if (!content) {
+
+    showAIMessage(
+      getAIText(
+        "Pa gen repons pou ekspòte.",
+        "Aucune réponse à exporter.",
+        "There is no response to export."
+      ),
+      "error"
+    );
+
+    return;
+  }
+
+  const project = getActiveAIProject();
+
+  const filename =
+    `BSS1815-AI-${project}-${Date.now()}.txt`;
+
+  const blob = new Blob(
+
+    [content],
+
+    {
+      type: "text/plain;charset=utf-8"
+    }
+
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+
+  link.download = filename;
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  link.remove();
+
+  setTimeout(
+    () => URL.revokeObjectURL(url),
+    1000
+  );
+}
+
+/* =========================================================
+   RETRY LAST REQUEST
+   ========================================================= */
+
+async function retryLastAIRequest() {
+
+  if (aiRequestInProgress) {
+    return;
+  }
+
+  const history = getAIHistory();
+
+  const lastItem = history[0];
+
+  if (!lastItem?.request?.prompt) {
+
+    showAIMessage(
+      getAIText(
+        "Pa gen okenn demann pou rekòmanse.",
+        "Il n’y a aucune demande à relancer.",
+        "There is no request to retry."
+      ),
+      "error"
+    );
+
+    return;
+  }
+
+  setActiveAIProject(
+    lastItem.request.project
+  );
+
+  selectAITool(
+    lastItem.request.tool
+  );
+
+  const promptInput = document.querySelector(
+    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
+  );
+
+  if (promptInput) {
+
+    promptInput.value =
+      lastItem.request.prompt;
+
+    promptInput.focus();
+
+  }
+}
+
+/* =========================================================
+   AI HISTORY
+   ========================================================= */
+
+function saveAIHistoryItem(
+  request,
+  response
+) {
+
+  const history = getAIHistory();
+
+  const safeRequest = {
+
+    id: request.id,
+
+    project: request.project,
+
+    tool: request.tool,
+
+    language: request.language,
+
+    prompt: request.prompt,
+
+    createdAt: request.createdAt
+
+  };
+
+  history.unshift({
+
+    id: request.id,
+
+    request: safeRequest,
+
+    response
+
+  });
+
+  const limitedHistory =
+    history.slice(0, 50);
+
+  try {
+
+    localStorage.setItem(
+
+      PRO_MAX_AI_CENTER.storageKeys.history,
+
+      JSON.stringify(limitedHistory)
+
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "AI history storage unavailable."
+    );
+
+  }
+
+  displayAIHistory();
+}
+
+function getAIHistory() {
+
+  const savedHistory = localStorage.getItem(
+    PRO_MAX_AI_CENTER.storageKeys.history
+  );
+
+  if (!savedHistory) {
+    return [];
+  }
+
+  try {
+
+    const parsedHistory =
+      JSON.parse(savedHistory);
+
+    return Array.isArray(parsedHistory)
+
+      ? parsedHistory.filter(
+          (item) =>
+            item &&
+            item.request &&
+            item.response
+        )
+
+      : [];
+
+  } catch {
+
+    return [];
+
+  }
+}
+
+function displayAIHistory() {
+
+  const container = document.querySelector(
+    "#ai-history, [data-ai-history]"
+  );
+
+  if (!container) {
+    return;
+  }
+
+  const history = getAIHistory();
+
+  container.innerHTML = "";
+
+  if (history.length === 0) {
+
+    container.innerHTML = `
+      <p class="ai-history-empty">
+
+        ${getAIText(
+          "Pa gen okenn aktivite AI ankò.",
+          "Il n’y a encore aucune activité IA.",
+          "There is no AI activity yet."
+        )}
+
+      </p>
+    `;
+
+    return;
+  }
+
+  history.forEach((item) => {
+
+    const historyItem =
+      document.createElement("article");
+
+    historyItem.className =
+      "ai-history-item";
+
+    const project =
+      PRO_MAX_AI_CENTER.projects[
+        item.request.project
+      ];
+
+    const tool =
+      getAITool(item.request.tool);
+
+    historyItem.innerHTML = `
+
+      <button
+        type="button"
+        class="ai-history-open"
+        data-ai-history-id="${escapeAIHTML(item.id)}"
+      >
+
+        <strong>
+
+          ${escapeAIHTML(
+            tool
+              ? getAILocalizedValue(tool.name)
+              : item.request.tool
+          )}
+
+        </strong>
+
+        <span>
+
+          ${escapeAIHTML(
+            project?.name || ""
+          )}
+
+        </span>
+
+        <small>
+
+          ${escapeAIHTML(
+            truncateAIText(
+              item.request.prompt,
+              90
+            )
+          )}
+
+        </small>
+
+        <time>
+
+          ${escapeAIHTML(
+            formatAIDate(
+              item.request.createdAt
+            )
+          )}
+
+        </time>
+
+      </button>
+
+    `;
+
+    historyItem
+      .querySelector("[data-ai-history-id]")
+      .addEventListener(
+        "click",
+        () => {
+          openAIHistoryItem(item.id);
+        }
+      );
+
+    container.appendChild(historyItem);
+
+  });
+}
+
+function openAIHistoryItem(historyId) {
+
+  const item = getAIHistory().find(
+
+    (historyItem) =>
+      historyItem.id === historyId
+
+  );
+
+  if (!item) {
+    return;
+  }
+
+  activeAITool = getAITool(
+    item.request.tool
+  )
+    ? item.request.tool
+    : "assistant";
+
+  localStorage.setItem(
+
+    PRO_MAX_AI_CENTER.storageKeys.activeTool,
+
+    activeAITool
+
+  );
+
+  setActiveAIProject(
+    item.request.project
+  );
+
+  const promptInput = document.querySelector(
+    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
+  );
+
+  if (promptInput) {
+
+    promptInput.value =
+      item.request.prompt;
+
+  }
+
+  displayAIResponse(
+    item.response
+  );
+
+  renderAIToolCards();
+}
+
+/* =========================================================
+   HISTORY CONTROLS
+   ========================================================= */
+
+function initializeAIHistoryControls() {
+
+  document
+    .querySelectorAll("[data-ai-clear-history]")
+    .forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        clearAIHistory
+      );
+
+    });
+}
+
+async function clearAIHistory() {
+
+  const message = getAIText(
+
+    "Èske ou vle efase tout istwa AI a?",
+
+    "Voulez-vous supprimer tout l’historique IA ?",
+
+    "Do you want to delete all AI history?"
+
+  );
+
+  const confirmed =
+
+    typeof window.confirmPlatformAction === "function"
+
+      ? await window.confirmPlatformAction(message)
+
+      : window.confirm(message);
+
+  if (!confirmed) {
+    return;
+  }
+
+  localStorage.removeItem(
+    PRO_MAX_AI_CENTER.storageKeys.history
+  );
+
+  displayAIHistory();
+
+  showAIMessage(
+    getAIText(
+
+      "Istwa AI a efase.",
+
+      "L’historique IA a été supprimé.",
+
+      "AI history was deleted."
+
+    ),
+    "success"
+  );
+}
+
+/* =========================================================
+   LANGUAGE MANAGEMENT
+   ========================================================= */
+
+function initializeAILanguageUpdates() {
+
+  document.addEventListener(
+
+    "proMaxLanguageChanged",
+
+    () => {
+
+      renderAIToolCards();
+
+      updateAIProjectDisplay();
+
+      displayAIHistory();
+
+      updateAIPromptPlaceholder();
+
+    }
+  );
+}
+
+function normalizeAILanguage(language) {
+
+  const value = String(
+    language || "ht"
+  ).trim().toLowerCase();
+
+  const languages = {
+
+    ht: "ht",
+
+    kre: "ht",
+
+    kreyol: "ht",
+
+    "ht-ht": "ht",
+
+    fr: "fr",
+
+    fra: "fr",
+
+    fran: "fr",
+
+    "fr-fr": "fr",
+
+    en: "en",
+
+    eng: "en",
+
+    "en-us": "en",
+
+    "en-gb": "en"
+
+  };
+
+  return Object.hasOwn(languages, value)
+
+    ? languages[value]
+
+    : "ht";
+}
+
+function getAILanguage() {
+
+  if (
+    typeof window.getCurrentLanguage === "function"
+  ) {
+
+    return normalizeAILanguage(
+      window.getCurrentLanguage()
+    );
+
+  }
+
+  return normalizeAILanguage(
+
+    localStorage.getItem("proMaxLanguage") ||
+
+    document.documentElement.lang ||
+
+    "ht"
+
+  );
+}
+
+function getAIText(
+  creoleText,
+  frenchText,
+  englishText
+) {
+
+  const language = getAILanguage();
+
+  if (language === "fr") {
+    return frenchText;
+  }
+
+  if (language === "en") {
+    return englishText;
+  }
+
+  return creoleText;
+}
+
+function getAILocalizedValue(value) {
+
+  if (typeof value === "string") {
+    return value;
+  }
+
+  const language = getAILanguage();
+
+  return (
+
+    value?.[language] ||
+
+    value?.ht ||
+
+    value?.fr ||
+
+    value?.en ||
+
+    ""
+
+  );
+}
+
+function updateAIPromptPlaceholder() {
+
+  const promptInput = document.querySelector(
+    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
+  );
+
+  if (!promptInput) {
+    return;
+  }
+
+  const tool = getAITool(activeAITool);
+
+  const name = getAILocalizedValue(
+    tool?.name || ""
+  );
+
+  promptInput.placeholder = getAIText(
+
+    `Ekri sa ou bezwen ${name} fè...`,
+
+    `Écrivez ce que vous souhaitez que ${name} fasse...`,
+
+    `Write what you want ${name} to do...`
+
+  );
+}
+
+/* =========================================================
+   AI STATUS
+   ========================================================= */
+
+function setAIStatus(status) {
+
+  const statusTexts = {
+
+    idle: getAIText(
+      "Pare",
+      "Prêt",
+      "Ready"
+    ),
+
+    processing: getAIText(
+      "AI a ap travay...",
+      "L’IA travaille...",
+      "AI is working..."
+    ),
+
+    success: getAIText(
+      "Fini",
+      "Terminé",
+      "Completed"
+    ),
+
+    error: getAIText(
+      "Erè",
+      "Erreur",
+      "Error"
+    )
+
+  };
+
+  document
+    .querySelectorAll("[data-ai-status]")
+    .forEach((element) => {
+
+      element.dataset.status = status;
+
+      element.textContent =
+        statusTexts[status] || status;
+
+    });
+}
+
+/* =========================================================
+   LOADING BUTTON
+   ========================================================= */
+
+function setAIButtonLoading(
+  button,
+  loading
+) {
+
+  aiRequestInProgress = loading;
+
+  if (!button) {
+    return;
+  }
+
+  if (loading) {
+
+    button.dataset.originalText =
+      button.textContent;
+
+    button.disabled = true;
+
+    button.classList.add("is-loading");
+
+    button.textContent = getAIText(
+
+      "AI a ap travay...",
+
+      "L’IA travaille...",
+
+      "AI is working..."
+
+    );
+
+    return;
+  }
+
+  button.disabled = false;
+
+  button.classList.remove("is-loading");
+
+  if (button.dataset.originalText) {
+
+    button.textContent =
+      button.dataset.originalText;
+
+    delete button.dataset.originalText;
+
+  }
+}
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function getAITool(toolId) {
+
+  return PRO_MAX_AI_CENTER.tools.find(
+
+    (tool) => tool.id === toolId
+
+  );
+}
+
+function getAIResponseContent() {
+
+  const output = document.querySelector(
+    "#ai-response, [data-ai-response]"
+  );
+
+  if (!output) {
+    return "";
+  }
+
+  if (
+    output.tagName === "TEXTAREA" ||
+    output.tagName === "INPUT"
+  ) {
+
+    return output.value.trim();
+
+  }
+
+  return output.textContent.trim();
+}
+
+function createAIRequestId() {
+
+  if (window.crypto?.randomUUID) {
+
+    return window.crypto.randomUUID();
+
+  }
+
+  return `ai-${Date.now()}-${Math.random()
+    .toString(16)
+    .slice(2)}`;
+}
+
+function formatAIDate(dateValue) {
+
+  const date = new Date(dateValue);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  const localeMap = {
+
+    ht: "fr-HT",
+
+    fr: "fr-FR",
+
+    en: "en-US"
+
+  };
+
+  return new Intl.DateTimeFormat(
+
+    localeMap[getAILanguage()] || "fr-HT",
+
+    {
+
+      year: "numeric",
+
+      month: "short",
+
+      day: "numeric",
+
+      hour: "numeric",
+
+      minute: "2-digit"
+
+    }
+
+  ).format(date);
+}
+
+function truncateAIText(
+  text,
+  maximumLength
+) {
+
+  const normalizedText =
+    String(text || "");
+
+  if (
+    normalizedText.length <= maximumLength
+  ) {
+
+    return normalizedText;
+
+  }
+
+  return `${normalizedText.slice(
+    0,
+    maximumLength
+  )}...`;
+}
+
+function escapeAIHTML(value) {
+
+  return String(value ?? "")
+
+    .replace(/&/g, "&amp;")
+
+    .replace(/</g, "&lt;")
+
+    .replace(/>/g, "&gt;")
+
+    .replace(/"/g, "&quot;")
+
+    .replace(/'/g, "&#39;");
+}
+
+function showAIMessage(
+  message,
+  type = "info"
+) {
+
+  if (
+    typeof window.showApplicationMessage === "function"
+  ) {
+
+    window.showApplicationMessage(
+      message,
+      type
+    );
+
+    return;
+  }
+
+  window.alert(message);
+}
+
+/* =========================================================
+   API ERROR MANAGEMENT
+   ========================================================= */
+
+function getAIErrorMessage(error) {
+
+  const code = String(
+
+    error?.message ||
+
+    error?.code ||
+
+    "ai/unknown-error"
+
+  );
+
+  if (
+    code.includes("http-401") ||
+    code.includes("http-403")
+  ) {
+
+    return getAIText(
+
+      "Koneksyon AI a pa otorize.",
+
+      "La connexion IA n’est pas autorisée.",
+
+      "The AI connection is unauthorized."
+
+    );
+  }
+
+  if (code.includes("http-404")) {
+
+    return getAIText(
+
+      "Endpoint AI a pa disponib sou sèvè a.",
+
+      "Le point d’accès IA est introuvable.",
+
+      "The AI endpoint was not found."
+
+    );
+  }
+
+  if (code.includes("http-429")) {
+
+    return getAIText(
+
+      "Limit demann oswa kredi API a rive. Tanpri verifye sèvis AI a.",
+
+      "La limite de requêtes ou de crédits API est atteinte.",
+
+      "The API request or credit limit has been reached."
+
+    );
+  }
+
+  if (
+    error?.name === "AbortError" ||
+    code.includes("http-504")
+  ) {
+
+    return getAIText(
+
+      "Sèvè AI a pran twòp tan pou reponn.",
+
+      "Le serveur IA met trop de temps à répondre.",
+
+      "The AI server took too long to respond."
+
+    );
+  }
+
+  if (code.includes("message-too-long")) {
+
+    return getAIText(
+
+      "Mesaj la twò long.",
+
+      "Le message est trop long.",
+
+      "The message is too long."
+
+    );
+  }
+
+  if (code.includes("empty-response")) {
+
+    return getAIText(
+
+      "Sèvè AI a pa retounen okenn repons.",
+
+      "Le serveur IA n’a retourné aucune réponse.",
+
+      "The AI server returned no response."
+
+    );
+  }
+
+  if (
+    code.includes("Failed to fetch") ||
+    code.includes("NetworkError")
+  ) {
+
+    return getAIText(
+
+      "AI Center la pa kapab konekte ak sèvè a.",
+
+      "Le Centre IA ne peut pas se connecter au serveur.",
+
+      "The AI Center could not connect to the server."
+
+    );
+  }
+
+  return getAIText(
+
+    "Gen yon erè ki rive pandan AI a t ap travay.",
+
+    "Une erreur s’est produite pendant le traitement IA.",
+
+    "An error occurred while the AI was processing the request."
+
+  );
+}
+
+/* =========================================================
+   PUBLIC CENTRAL AI INTERFACE
+   ========================================================= */
+
+window.PRO_MAX_AI_CENTER =
+  PRO_MAX_AI_CENTER;
+
+window.selectAITool =
+  selectAITool;
+
+window.setActiveAIProject =
+  setActiveAIProject;
+
+window.getActiveAIProject =
+  getActiveAIProject;
+
+window.sendAIRequest =
+  sendAIRequest;
+
+window.copyAIResponse =
+  copyAIResponse;
+
+window.clearAIWorkspace =
+  clearAIWorkspace;
+
+window.downloadAIResponse =
+  downloadAIResponse;
+
+window.clearAIHistory =
+  clearAIHistory;
+
+/* =========================================================
+   END OF CENTRAL AI CENTER CONTROLLER
+   BSS1815 PRO-MAX DMP
+   BATI POU JODI A, PARE POU DEMEN
+   DEVAN DEVAN NÈT
+   ========================================================= */
