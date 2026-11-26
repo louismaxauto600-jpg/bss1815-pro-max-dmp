@@ -12,61 +12,58 @@
 :root{
   --orange:#ff7900;
   --apricot:#ffb36b;
-  --black:#000000;
-  --panel:#160b03;
-  --border:#673000;
+  --black:#000;
+  --border:#783900;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
   font-family:Arial,sans-serif;
+  background:radial-gradient(ellipse at top,#351500,#090400 45%,#000);
   color:var(--apricot);
-  background:radial-gradient(
-    ellipse at top,
-    #351500,
-    #090400 45%,
-    #000000 85%
-  );
   min-height:100vh;
 }
 
-header{
-  padding:25px 16px;
+header,footer{
   text-align:center;
-  border-bottom:2px solid var(--orange);
+  padding:28px 15px;
   background:linear-gradient(135deg,#291000,#000);
 }
 
-h1,h2,h3{
-  color:var(--orange);
+header{border-bottom:2px solid var(--orange)}
+footer{border-top:2px solid var(--orange)}
+
+h1,h2,h3{color:var(--orange)}
+
+main{
+  width:min(1200px,94%);
+  margin:auto;
 }
 
-h1{
-  font-size:clamp(22px,4vw,38px);
-  margin:12px 0;
+.panel{
+  margin:24px 0;
+  padding:24px;
+  background:linear-gradient(145deg,#201000,#030100);
+  border:1px solid var(--border);
+  border-radius:18px;
 }
 
-button,select,textarea,a{
-  font-family:inherit;
-}
+.center{text-align:center}
 
-button,.btn,select{
+button,select,.btn{
+  font: bold 14px Arial,sans-serif;
+  padding:12px 16px;
   border:1px solid var(--orange);
-  background:linear-gradient(135deg,#351500,#000);
-  color:var(--apricot);
   border-radius:10px;
-  padding:12px 18px;
-  font-weight:bold;
+  background:#160900;
+  color:var(--apricot);
   cursor:pointer;
   text-decoration:none;
 }
 
-button:hover,.btn:hover,
-button.active{
+button:hover,button.active,.btn:hover{
   background:var(--orange);
   color:var(--black);
 }
@@ -76,188 +73,84 @@ button:disabled{
   cursor:not-allowed;
 }
 
-button:focus-visible,
-a:focus-visible,
-select:focus-visible,
-textarea:focus-visible{
-  outline:3px solid var(--apricot);
-  outline-offset:3px;
-}
-
-.language{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin:15px 0;
-}
-
-main{
-  width:min(1200px,94%);
-  margin:auto;
-}
-
-.panel{
-  background:linear-gradient(145deg,#201000,#030100);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:24px;
-  margin:24px 0;
-  box-shadow:0 0 24px #ff790012;
-}
-
-.center{
-  text-align:center;
-}
-
-.badge{
-  display:inline-block;
-  border:1px solid var(--orange);
-  padding:8px 15px;
-  border-radius:30px;
-  font-size:12px;
-  letter-spacing:1px;
-}
-
-.avatar{
-  width:min(100%,650px);
-  border:2px solid var(--orange);
-  border-radius:18px;
-  background:#000;
-  box-shadow:0 0 30px #ff790033;
-}
-
 .actions{
   display:flex;
-  flex-wrap:wrap;
   justify-content:center;
+  flex-wrap:wrap;
   gap:10px;
   margin:16px 0;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(
-    auto-fit,minmax(180px,1fr)
-  );
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
   gap:12px;
 }
 
-.project-card,.tool-card{
-  min-height:80px;
-}
+.grid button{min-height:75px}
 
-.project-card strong,
-.tool-card strong{
-  display:block;
-  margin-top:8px;
-}
-
-.icon{
-  font-size:27px;
-}
-
-.field{
-  margin:15px 0;
+video{
+  width:min(100%,650px);
+  background:#000;
+  border:2px solid var(--orange);
+  border-radius:18px;
 }
 
 label{
   display:block;
+  margin:16px 0 8px;
   font-weight:bold;
-  margin-bottom:8px;
 }
 
-select{
-  width:100%;
-}
-
-select option{
-  background:#100600;
-  color:var(--apricot);
-}
+select,textarea{width:100%}
 
 textarea{
-  width:100%;
-  min-height:150px;
+  min-height:160px;
   resize:vertical;
   background:#050200;
   color:var(--apricot);
   border:1px solid var(--orange);
   border-radius:12px;
   padding:16px;
-  font-size:16px;
+  font:16px Arial,sans-serif;
   line-height:1.6;
 }
 
-textarea::placeholder{
-  color:#b87942;
-}
-
-.response{
+#aiResponse{
   min-height:180px;
-  padding:20px;
   background:#050200;
   border:1px solid var(--border);
   border-radius:12px;
+  padding:20px;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
-  line-height:1.8;
+  line-height:1.7;
 }
 
-.status{
-  padding:12px;
+#aiStatus{
+  text-align:center;
+  padding:14px;
   border:1px solid var(--border);
   border-radius:10px;
-  margin:15px 0;
-  text-align:center;
 }
 
-.status.success{
-  border-color:var(--orange);
-}
-
-.status.error{
+#aiStatus.error{
   border:2px dashed var(--orange);
 }
 
 .history-item{
+  padding:12px;
+  margin:10px 0;
   border:1px solid var(--border);
   border-radius:10px;
-  padding:14px;
-  margin:10px 0;
   overflow-wrap:anywhere;
 }
 
-.history-item button{
-  margin-top:10px;
-}
-
-small{
-  line-height:1.6;
-}
-
-[hidden]{
-  display:none!important;
-}
-
-footer{
-  text-align:center;
-  padding:35px 15px;
-  border-top:2px solid var(--orange);
-  background:#000;
-}
+[hidden]{display:none!important}
 
 @media(max-width:600px){
-  .panel{
-    padding:16px;
-  }
-
-  .grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  button,.btn{
-    padding:10px;
-  }
+  .panel{padding:15px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 </style>
 </head>
@@ -265,284 +158,138 @@ footer{
 <body>
 
 <header>
-
-  <div class="badge">
-    BSS1815 PRO-MAX DMP
-  </div>
-
+  <h3>BSS1815 PRO-MAX DMP</h3>
   <h1>CENTRAL AI CENTER</h1>
 
-  <p data-i18n="subtitle">
-    YON SÈL MOTÈ AI — TOUT PWOJÈ YO
+  <p data-text="subtitle">
+    YON SÈL AI CENTER — TOUT PWOJÈ YO
   </p>
 
-  <div class="language">
+  <div class="actions">
     <button type="button" data-lang="fr">FRA</button>
     <button type="button" data-lang="en">ENG</button>
     <button type="button" data-lang="ht">KRE</button>
   </div>
 
-  <div class="actions">
-    <a href="./index.html" class="btn" data-i18n="home">
-      AKÈY
-    </a>
-  </div>
-
+  <a class="btn" href="./index.html" data-text="home">
+    AKÈY
+  </a>
 </header>
 
 <main>
-
-<!-- =========================================
-     PROF AVATAR
-========================================== -->
 
 <section class="panel center">
 
   <h2>PROF AVATAR</h2>
 
-  <p data-i18n="avatarIntro">
-    Figi ofisyèl CENTRAL AI CENTER
-  </p>
-
   <video
     id="aiProfAvatar"
-    class="avatar"
     controls
     playsinline
     preload="metadata"
-  >
-    <source
-      src="./promax-dmp.mp4"
-      type="video/mp4"
-    >
+    src="./promax-dmp.mp4">
   </video>
 
   <div class="actions">
-
-    <button
-      type="button"
-      id="aiAvatarPlay"
-      data-i18n="play"
-    >
-      ▶ JWE VIDEYO
+    <button type="button" id="aiAvatarPlay" data-text="play">
+      ▶ JWE
     </button>
 
-    <button
-      type="button"
-      id="aiAvatarStop"
-      data-i18n="stop"
-    >
+    <button type="button" id="aiAvatarStop" data-text="stop">
       ■ KANPE
     </button>
-
   </div>
 
-  <small data-i18n="avatarNote">
-    Videyo prezantasyon ofisyèl ki deja gen vwa.
-  </small>
+  <p data-text="avatarNote">
+    Videyo ofisyèl avèk vwa entegre.
+  </p>
 
 </section>
 
-<!-- =========================================
-     PROJECT SELECTOR
-========================================== -->
-
 <section class="panel">
 
-  <h2 class="center" data-i18n="projects">
+  <h2 class="center" data-text="projects">
     EKOSISTÈM AI
   </h2>
 
-  <div class="grid" id="projectGrid">
+  <div id="projectGrid" class="grid"></div>
 
-    <button
-      type="button"
-      class="project-card"
-      data-project="bss1815"
-    >
-      <span class="icon">🏛️</span>
-      <strong>BSS1815 COMMUNITY</strong>
-    </button>
+  <div id="schoolField" hidden>
 
-    <button
-      type="button"
-      class="project-card"
-      data-project="pro-max-fm"
-    >
-      <span class="icon">📻</span>
-      <strong>PRO-MAX FM 106.5 FM</strong>
-    </button>
-
-    <button
-      type="button"
-      class="project-card"
-      data-project="maximax"
-    >
-      <span class="icon">🏢</span>
-      <strong>MAXIMAX MULTI SERVICES</strong>
-    </button>
-
-    <button
-      type="button"
-      class="project-card"
-      data-project="academy"
-    >
-      <span class="icon">🎓</span>
-      <strong>PRO-MAX ACADÉMIE</strong>
-    </button>
-
-    <button
-      type="button"
-      class="project-card"
-      data-project="beat-lab"
-    >
-      <span class="icon">🎵</span>
-      <strong>PRO-MAX BEAT LAB</strong>
-    </button>
-
-    <button
-      type="button"
-      class="project-card"
-      data-project="leogane-info"
-    >
-      <span class="icon">📰</span>
-      <strong>LÉOGÂNE INFO</strong>
-    </button>
-
-    <button
-      type="button"
-      class="project-card"
-      data-project="ddn"
-    >
-      <span class="icon">🌐</span>
-      <strong>DEVAN DEVAN NÈT</strong>
-    </button>
-
-  </div>
-
-  <div class="field" id="schoolField" hidden>
-
-    <label for="school" data-i18n="school">
+    <label for="school" data-text="school">
       CHWAZI LEKÒL
     </label>
 
     <select id="school">
-
       <option value="General Academy">
         PRO-MAX ACADÉMIE
       </option>
-
       <option value="Real Estate School">
         REAL ESTATE SCHOOL
       </option>
-
       <option value="Insurance School">
         INSURANCE SCHOOL
       </option>
-
       <option value="Journalism School">
         ÉCOLE DE JOURNALISME
       </option>
-
       <option value="Beat Maker AI School">
         BEAT MAKER AI SCHOOL
       </option>
-
     </select>
 
   </div>
 
   <p class="center">
-    <span data-i18n="activeProject">
-      PWOJÈ AKTIF
-    </span>
-    :
+    <span data-text="activeProject">PWOJÈ AKTIF</span>:
     <strong id="activeProject"></strong>
   </p>
 
 </section>
 
-<!-- =========================================
-     CENTRAL AI TOOLS
-========================================== -->
-
 <section class="panel">
 
-  <h2 class="center" data-i18n="tools">
+  <h2 class="center" data-text="tools">
     ZOUTI CENTRAL AI
   </h2>
 
-  <div class="grid" id="toolGrid"></div>
+  <div id="toolGrid" class="grid"></div>
 
 </section>
-
-<!-- =========================================
-     AI WORKSPACE
-========================================== -->
 
 <section class="panel">
 
   <h2 class="center">AI WORKSPACE</h2>
 
-  <div class="field">
+  <label for="provider" data-text="engine">
+    MOTÈ AI
+  </label>
 
-    <label for="provider" data-i18n="engine">
-      CHWAZI MOTÈ AI
-    </label>
-
-    <select id="provider">
-
-      <option value="openai">
-        OPENAI
-      </option>
-
-      <option value="gemini">
-        GOOGLE GEMINI
-      </option>
-
-      <option value="professor">
-        PROF AVATAR — AI PROFESSOR
-      </option>
-
-    </select>
-
-  </div>
-
-  <p>
-    <span data-i18n="activeTool">
-      ZOUTI AKTIF
-    </span>
-    :
-    <strong id="activeTool"></strong>
-  </p>
+  <select id="provider">
+    <option value="openai">OPENAI</option>
+    <option value="gemini">GOOGLE GEMINI</option>
+    <option value="professor">AI PROFESSOR</option>
+  </select>
 
   <form id="centralAIForm">
 
-    <label for="aiPrompt" data-i18n="question">
+    <label for="aiPrompt" data-text="question">
       KESYON OU
     </label>
 
     <textarea
       id="aiPrompt"
       maxlength="8000"
-      required
-    ></textarea>
+      required>
+    </textarea>
 
     <div class="actions">
 
-      <button
-        type="submit"
-        id="sendAI"
-        data-i18n="send"
-      >
+      <button type="submit" id="sendAI" data-text="send">
         VOYE BAY AI
       </button>
 
-      <button
-        type="button"
-        id="clearAI"
-        data-i18n="clear"
-      >
+      <button type="button" id="clearAI" data-text="clear">
         EFASE
       </button>
 
@@ -550,77 +297,42 @@ footer{
 
   </form>
 
-  <div
-    id="aiStatus"
-    class="status"
-    role="status"
-    aria-live="polite"
-  ></div>
+  <p id="aiStatus" role="status" aria-live="polite"></p>
 
-  <h3 data-i18n="answer">
-    REPONS AI
-  </h3>
+  <h3 data-text="answer">REPONS AI</h3>
 
-  <div
-    id="aiResponse"
-    class="response"
-    aria-live="polite"
-  ></div>
+  <div id="aiResponse" aria-live="polite"></div>
 
   <div class="actions">
 
-    <button
-      type="button"
-      id="copyAI"
-      data-i18n="copy"
-    >
+    <button type="button" id="copyAI" data-text="copy">
       KOPYE
     </button>
 
-    <button
-      type="button"
-      id="retryAI"
-      data-i18n="retry"
-    >
+    <button type="button" id="retryAI" data-text="retry">
       ESEYE ANKÒ
     </button>
 
   </div>
 
-  <p>
-    PROVIDER:
-    <strong id="activeProvider">—</strong>
-  </p>
+  <p>PROVIDER: <strong id="activeProvider">—</strong></p>
 
-  <small data-i18n="privacy">
-    Pa antre modpas, nimewo sekirite sosyal,
-    enfòmasyon bankè oswa lòt done konfidansyèl.
+  <small data-text="privacy">
+    Pa antre modpas oswa enfòmasyon konfidansyèl.
   </small>
 
 </section>
 
-<!-- =========================================
-     SESSION HISTORY
-========================================== -->
-
 <section class="panel">
 
-  <h2 data-i18n="history">
-    ISTWA SESYON AI
-  </h2>
+  <h2 data-text="history">ISTWA SESYON</h2>
 
   <div id="aiHistory"></div>
 
   <div class="actions">
-
-    <button
-      type="button"
-      id="clearHistory"
-      data-i18n="clearHistory"
-    >
+    <button type="button" id="clearHistory" data-text="clearHistory">
       EFASE ISTWA
     </button>
-
   </div>
 
 </section>
@@ -637,421 +349,345 @@ footer{
 
   <strong>DEVAN DEVAN NÈT.</strong>
 
-  <p>
-    © <span id="year"></span>
-    BSS1815 PRO-MAX DMP
-  </p>
+  <p>© <span id="year"></span> BSS1815 PRO-MAX DMP</p>
 
 </footer>
 
 <script>
 "use strict";
 
-(function(){
+(() => {
 
-/* =========================================
-   CENTRAL AI CONFIGURATION
-========================================= */
+const $ = id => document.getElementById(id);
 
-const CONFIG = Object.freeze({
-
-  endpoints:{
-
-    openai:"/.netlify/functions/ai",
-
-    gemini:"/.netlify/functions/professor",
-
-    professor:"/.netlify/functions/professor"
-
-  },
-
-  timeout:45000,
-
-  maxHistory:20
-
+const ENDPOINTS = Object.freeze({
+  openai:"/.netlify/functions/ai",
+  gemini:"/.netlify/functions/professor",
+  professor:"/.netlify/functions/professor"
 });
 
-/* =========================================
-   PROJECT CONTEXT
-========================================= */
-
-const PROJECTS = {
+const PROJECTS = Object.freeze({
 
   bss1815:{
-
     name:"BSS1815 COMMUNITY",
-
-    context:
-      "Community management, heritage, culture, "+
-      "events and organizational assistance."
-
+    context:"Community, heritage, culture and organizational assistance."
   },
 
   "pro-max-fm":{
-
     name:"PRO-MAX FM 106.5 FM",
-
-    context:
-      "Radio broadcasting, programming, podcasts, "+
-      "Haitian music, news and radio scripts."
-
+    context:"Radio programming, broadcasting, podcasts and Haitian music."
   },
 
   maximax:{
-
     name:"MAXIMAX MULTI SERVICES",
-
-    context:
-      "Immigration document assistance, taxes, "+
-      "notary, insurance, real estate, business "+
-      "and administrative services. "+
-      "Do not claim to be an attorney."
-
+    context:"Immigration document assistance, notary, taxes, insurance and business services. Do not claim to be an attorney."
   },
 
   academy:{
-
     name:"PRO-MAX ACADÉMIE",
-
-    context:
-      "Education, tutoring, lessons, quizzes, "+
-      "professional training and student support."
-
+    context:"Professional education, lessons, quizzes and student assistance."
   },
 
   "beat-lab":{
-
     name:"PRO-MAX BEAT LAB",
-
-    context:
-      "Music composition, lyrics, rhythm, "+
-      "production guidance and creative prompts."
-
+    context:"Music composition, lyrics, rhythm and production guidance."
   },
 
   "leogane-info":{
-
     name:"LÉOGÂNE INFO",
-
-    context:
-      "Journalism, community reporting, interviews "+
-      "and fact checking. Do not invent news."
-
+    context:"Journalism, interviews, community news and fact checking. Do not invent news."
   },
 
   ddn:{
-
     name:"DEVAN DEVAN NÈT",
-
-    context:
-      "Digital communication, information, "+
-      "innovation and platform assistance."
-
+    context:"Digital communication, innovation and information."
   }
 
-};
+});
 
-/* =========================================
-   LANGUAGES
-========================================= */
+const TOOLS = Object.freeze({
 
-const I18N = {
+  assistant:{
+    ht:"ASISTAN AI",
+    fr:"ASSISTANT IA",
+    en:"AI ASSISTANT",
+    task:"Provide project-specific assistance."
+  },
+
+  writer:{
+    ht:"EKRIVEN AI",
+    fr:"RÉDACTEUR IA",
+    en:"AI WRITER",
+    task:"Draft professional written content."
+  },
+
+  translator:{
+    ht:"TRADIKSYON AI",
+    fr:"TRADUCTION IA",
+    en:"AI TRANSLATOR",
+    task:"Translate accurately into the requested language."
+  },
+
+  voice:{
+    ht:"SCRIPT VWA",
+    fr:"SCRIPT VOCAL",
+    en:"VOICE SCRIPT",
+    task:"Prepare narration scripts. Do not claim to generate audio files."
+  },
+
+  image:{
+    ht:"PROMPT IMAJ",
+    fr:"PROMPT IMAGE",
+    en:"IMAGE PROMPT",
+    task:"Prepare image prompts. Do not claim to generate image files."
+  },
+
+  analytics:{
+    ht:"ANALIZ AI",
+    fr:"ANALYSE IA",
+    en:"AI ANALYTICS",
+    task:"Analyze supplied information without inventing data."
+  },
+
+  tutor:{
+    ht:"PROFESÈ AI",
+    fr:"PROFESSEUR IA",
+    en:"AI PROFESSOR",
+    task:"Teach clearly with examples and explanations."
+  }
+
+});
+
+const TEXT = {
 
   ht:{
-
-    subtitle:"YON SÈL MOTÈ AI — TOUT PWOJÈ YO",
+    subtitle:"YON SÈL AI CENTER — TOUT PWOJÈ YO",
     home:"AKÈY",
-    avatarIntro:"Figi ofisyèl CENTRAL AI CENTER",
-    avatarNote:"Videyo ofisyèl ki deja gen vwa.",
-    play:"▶ JWE VIDEYO",
+    play:"▶ JWE",
     stop:"■ KANPE",
+    avatarNote:"Videyo ofisyèl avèk vwa entegre.",
     projects:"EKOSISTÈM AI",
     school:"CHWAZI LEKÒL",
     activeProject:"PWOJÈ AKTIF",
     tools:"ZOUTI CENTRAL AI",
-    engine:"CHWAZI MOTÈ AI",
-    activeTool:"ZOUTI AKTIF",
+    engine:"MOTÈ AI",
     question:"KESYON OU",
-    placeholder:"Ekri kesyon ou isit la...",
     send:"VOYE BAY AI",
     clear:"EFASE",
     answer:"REPONS AI",
     copy:"KOPYE",
     retry:"ESEYE ANKÒ",
-    history:"ISTWA SESYON AI",
+    privacy:"Pa antre modpas oswa enfòmasyon konfidansyèl.",
+    history:"ISTWA SESYON",
     clearHistory:"EFASE ISTWA",
-    privacy:"Pa antre modpas oswa done konfidansyèl.",
-    ready:"PARE POU VOYE YON KESYON",
+    placeholder:"Ekri kesyon ou...",
+    ready:"PARE POU RESEVWA KESYON",
     processing:"AI AP TRETE KESYON AN...",
     success:"REPONS AI RESEVWA",
     error:"KONEKSYON AI ECHWE",
-    empty:"Tanpri ekri yon kesyon.",
-    noHistory:"Pa gen istwa pou sesyon sa a.",
+    empty:"Ekri yon kesyon.",
+    noHistory:"Pa gen istwa.",
     copied:"REPONS LAN KOPYE",
-    restore:"RELOUVRI",
-    avatarError:"Videyo PROF AVATAR la pa chaje.",
-    noAnswer:"API a pa retounen yon repons tèks.",
-    timeout:"Tan koneksyon an ekspire."
-
+    avatarError:"Videyo a pa chaje.",
+    timeout:"Tan koneksyon an ekspire.",
+    noAnswer:"API a pa retounen tèks."
   },
 
   fr:{
-
-    subtitle:"UN SEUL MOTEUR IA — TOUS LES PROJETS",
+    subtitle:"UN SEUL CENTRE IA — TOUS LES PROJETS",
     home:"ACCUEIL",
-    avatarIntro:"Le visage officiel du CENTRAL AI CENTER",
-    avatarNote:"Vidéo officielle avec voix intégrée.",
-    play:"▶ LIRE LA VIDÉO",
+    play:"▶ LIRE",
     stop:"■ ARRÊTER",
+    avatarNote:"Vidéo officielle avec voix intégrée.",
     projects:"ÉCOSYSTÈME IA",
     school:"CHOISIR UNE ÉCOLE",
     activeProject:"PROJET ACTIF",
     tools:"OUTILS IA",
-    engine:"CHOISIR LE MOTEUR IA",
-    activeTool:"OUTIL ACTIF",
+    engine:"MOTEUR IA",
     question:"VOTRE QUESTION",
-    placeholder:"Écrivez votre question ici...",
     send:"ENVOYER",
     clear:"EFFACER",
     answer:"RÉPONSE IA",
     copy:"COPIER",
     retry:"RÉESSAYER",
+    privacy:"Ne saisissez aucune donnée confidentielle.",
     history:"HISTORIQUE DE SESSION",
     clearHistory:"EFFACER L’HISTORIQUE",
-    privacy:"Ne saisissez aucun mot de passe ni donnée confidentielle.",
-    ready:"PRÊT À ENVOYER UNE QUESTION",
+    placeholder:"Écrivez votre question...",
+    ready:"PRÊT À RECEVOIR UNE QUESTION",
     processing:"TRAITEMENT EN COURS...",
     success:"RÉPONSE IA REÇUE",
     error:"ÉCHEC DE CONNEXION IA",
-    empty:"Veuillez écrire une question.",
-    noHistory:"Aucun historique pour cette session.",
+    empty:"Écrivez une question.",
+    noHistory:"Aucun historique.",
     copied:"RÉPONSE COPIÉE",
-    restore:"ROUVRIR",
-    avatarError:"La vidéo PROF AVATAR ne se charge pas.",
-    noAnswer:"L’API n’a retourné aucun texte.",
-    timeout:"Le délai de connexion a expiré."
-
+    avatarError:"La vidéo ne se charge pas.",
+    timeout:"Le délai de connexion a expiré.",
+    noAnswer:"L’API n’a retourné aucun texte."
   },
 
   en:{
-
-    subtitle:"ONE AI ENGINE — ALL PROJECTS",
+    subtitle:"ONE AI CENTER — ALL PROJECTS",
     home:"HOME",
-    avatarIntro:"The official face of CENTRAL AI CENTER",
-    avatarNote:"Official video with prerecorded voice.",
-    play:"▶ PLAY VIDEO",
+    play:"▶ PLAY",
     stop:"■ STOP",
+    avatarNote:"Official video with prerecorded voice.",
     projects:"AI ECOSYSTEM",
     school:"SELECT SCHOOL",
     activeProject:"ACTIVE PROJECT",
     tools:"CENTRAL AI TOOLS",
-    engine:"SELECT AI ENGINE",
-    activeTool:"ACTIVE TOOL",
+    engine:"AI ENGINE",
     question:"YOUR QUESTION",
-    placeholder:"Enter your question here...",
     send:"SEND TO AI",
     clear:"CLEAR",
     answer:"AI RESPONSE",
     copy:"COPY",
     retry:"TRY AGAIN",
+    privacy:"Do not enter confidential information.",
     history:"SESSION HISTORY",
     clearHistory:"CLEAR HISTORY",
-    privacy:"Do not enter passwords or confidential data.",
-    ready:"READY TO SEND A QUESTION",
+    placeholder:"Enter your question...",
+    ready:"READY TO RECEIVE A QUESTION",
     processing:"AI IS PROCESSING...",
     success:"AI RESPONSE RECEIVED",
     error:"AI CONNECTION FAILED",
-    empty:"Please enter a question.",
-    noHistory:"No history for this session.",
+    empty:"Enter a question.",
+    noHistory:"No session history.",
     copied:"RESPONSE COPIED",
-    restore:"REOPEN",
-    avatarError:"The PROF AVATAR video could not load.",
-    noAnswer:"The API returned no text response.",
-    timeout:"The connection timed out."
-
+    avatarError:"The video could not load.",
+    timeout:"The connection timed out.",
+    noAnswer:"The API returned no text."
   }
 
 };
-
-/* =========================================
-   AI TOOLS
-========================================= */
-
-const TOOLS = {
-
-  assistant:{
-
-    icon:"🤖",
-
-    name:{
-      ht:"ASISTAN AI",
-      fr:"ASSISTANT IA",
-      en:"AI ASSISTANT"
-    },
-
-    instruction:"Provide helpful project-specific assistance."
-
-  },
-
-  writer:{
-
-    icon:"✍️",
-
-    name:{
-      ht:"EKRIVEN AI",
-      fr:"RÉDACTEUR IA",
-      en:"AI WRITER"
-    },
-
-    instruction:"Draft professional written content."
-
-  },
-
-  translator:{
-
-    icon:"🌐",
-
-    name:{
-      ht:"TRADIKSYON AI",
-      fr:"TRADUCTION IA",
-      en:"AI TRANSLATOR"
-    },
-
-    instruction:"Translate accurately into the requested language."
-
-  },
-
-  voice:{
-
-    icon:"🎙️",
-
-    name:{
-      ht:"SCRIPT VWA",
-      fr:"SCRIPT VOCAL",
-      en:"VOICE SCRIPT"
-    },
-
-    instruction:
-      "Prepare narration and voice scripts. "+
-      "Do not claim to generate audio files."
-
-  },
-
-  image:{
-
-    icon:"🎨",
-
-    name:{
-      ht:"PROMPT IMAJ",
-      fr:"PROMPT IMAGE",
-      en:"IMAGE PROMPT"
-    },
-
-    instruction:
-      "Prepare image generation prompts. "+
-      "Do not claim to generate image files."
-
-  },
-
-  analytics:{
-
-    icon:"📊",
-
-    name:{
-      ht:"ANALIZ AI",
-      fr:"ANALYSE IA",
-      en:"AI ANALYTICS"
-    },
-
-    instruction:
-      "Analyze provided information without inventing data."
-
-  },
-
-  tutor:{
-
-    icon:"🎓",
-
-    name:{
-      ht:"PROFESÈ AI",
-      fr:"PROFESSEUR IA",
-      en:"AI PROFESSOR"
-    },
-
-    instruction:
-      "Teach clearly with explanations and examples."
-
-  }
-
-};
-
-/* =========================================
-   APPLICATION STATE
-========================================= */
 
 const state = {
-
   language:"ht",
-
   project:"bss1815",
-
   tool:"assistant",
-
-  provider:"openai",
-
   busy:false,
-
   history:[],
-
   lastRequest:null,
-
-  statusKey:"ready",
-
-  statusDetail:"",
-
-  statusType:""
-
+  status:"ready",
+  detail:""
 };
 
-const $ = id => document.getElementById(id);
+const has = (object,key) =>
+  Object.prototype.hasOwnProperty.call(object,key);
 
-function t(key){
+const t = key => TEXT[state.language][key] || key;
 
-  return I18N[state.language][key] || key;
+function status(key,detail=""){
 
-}
-
-function setStatus(key,type="",detail=""){
-
-  state.statusKey=key;
-
-  state.statusType=type;
-
-  state.statusDetail=detail;
-
-  $("aiStatus").className="status "+type;
+  state.status=key;
+  state.detail=detail;
 
   $("aiStatus").textContent=
     t(key)+(detail ? " — "+detail : "");
 
+  $("aiStatus").classList.toggle(
+    "error",
+    ["error","empty","avatarError"].includes(key)
+  );
+
 }
 
-/* =========================================
-   LANGUAGE CONTROLLER
-========================================= */
+function renderProjects(){
+
+  const grid=$("projectGrid");
+
+  grid.replaceChildren();
+
+  Object.entries(PROJECTS).forEach(([id,project])=>{
+
+    const button=document.createElement("button");
+
+    button.type="button";
+    button.textContent=project.name;
+
+    button.classList.toggle(
+      "active",
+      state.project===id
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(state.project===id)
+    );
+
+    button.addEventListener("click",()=>{
+
+      state.project=id;
+
+      renderProjects();
+
+    });
+
+    grid.appendChild(button);
+
+  });
+
+  $("activeProject").textContent=
+    PROJECTS[state.project].name;
+
+  $("schoolField").hidden=
+    state.project!=="academy";
+
+}
+
+function renderTools(){
+
+  const grid=$("toolGrid");
+
+  grid.replaceChildren();
+
+  Object.entries(TOOLS).forEach(([id,tool])=>{
+
+    const button=document.createElement("button");
+
+    button.type="button";
+    button.textContent=tool[state.language];
+
+    button.classList.toggle(
+      "active",
+      state.tool===id
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(state.tool===id)
+    );
+
+    button.addEventListener("click",()=>{
+
+      state.tool=id;
+
+      if(id==="tutor"){
+        $("provider").value="professor";
+      }
+
+      renderTools();
+
+    });
+
+    grid.appendChild(button);
+
+  });
+
+}
 
 function setLanguage(language){
 
-  if(!I18N[language]) return;
+  if(!has(TEXT,language)) return;
 
   state.language=language;
 
   document.documentElement.lang=language;
 
-  document.querySelectorAll("[data-i18n]")
+  document.querySelectorAll("[data-text]")
     .forEach(element=>{
 
-      element.textContent=t(element.dataset.i18n);
+      element.textContent=t(element.dataset.text);
 
     });
 
@@ -1069,126 +705,16 @@ function setLanguage(language){
   $("aiPrompt").placeholder=t("placeholder");
 
   renderTools();
-
   renderHistory();
-
-  setStatus(
-    state.statusKey,
-    state.statusType,
-    state.statusDetail
-  );
+  status(state.status,state.detail);
 
 }
 
-/* =========================================
-   PROJECT CONTROLLER
-========================================= */
-
-function selectProject(project){
-
-  if(!PROJECTS[project]) return;
-
-  state.project=project;
-
-  $("activeProject").textContent=
-    PROJECTS[project].name;
-
-  $("schoolField").hidden=
-    project!=="academy";
-
-  document.querySelectorAll("[data-project]")
-    .forEach(button=>{
-
-      const active=
-        button.dataset.project===project;
-
-      button.classList.toggle("active",active);
-
-      button.setAttribute(
-        "aria-pressed",
-        String(active)
-      );
-
-    });
-
-}
-
-/* =========================================
-   TOOL CONTROLLER
-========================================= */
-
-function renderTools(){
-
-  const grid=$("toolGrid");
-
-  grid.replaceChildren();
-
-  Object.entries(TOOLS).forEach(([id,tool])=>{
-
-    const button=document.createElement("button");
-
-    button.type="button";
-
-    button.className="tool-card";
-
-    button.dataset.tool=id;
-
-    const icon=document.createElement("span");
-
-    icon.className="icon";
-
-    icon.textContent=tool.icon;
-
-    const title=document.createElement("strong");
-
-    title.textContent=tool.name[state.language];
-
-    button.append(icon,title);
-
-    button.classList.toggle(
-      "active",
-      state.tool===id
-    );
-
-    button.setAttribute(
-      "aria-pressed",
-      String(state.tool===id)
-    );
-
-    button.addEventListener("click",()=>{
-
-      state.tool=id;
-
-      if(id==="tutor"){
-
-        state.provider="professor";
-
-        $("provider").value="professor";
-
-      }
-
-      renderTools();
-
-    });
-
-    grid.appendChild(button);
-
-  });
-
-  $("activeTool").textContent=
-    TOOLS[state.tool].name[state.language];
-
-}
-
-/* =========================================
-   CENTRAL AI REQUEST
-========================================= */
-
-function createRequest(prompt){
+function createRequest(){
 
   return {
 
-    prompt:prompt.trim(),
+    prompt:$("aiPrompt").value.trim(),
 
     project:state.project,
 
@@ -1196,7 +722,7 @@ function createRequest(prompt){
 
     language:state.language,
 
-    provider:state.provider,
+    provider:$("provider").value,
 
     school:state.project==="academy"
       ? $("school").value
@@ -1206,21 +732,30 @@ function createRequest(prompt){
 
 }
 
+function validateRequest(request){
+
+  if(typeof request.prompt!=="string" ||
+     !request.prompt.trim() ||
+     request.prompt.length>8000){
+
+    throw new Error(t("empty"));
+
+  }
+
+  if(!has(PROJECTS,request.project) ||
+     !has(TOOLS,request.tool) ||
+     !has(TEXT,request.language) ||
+     !has(ENDPOINTS,request.provider)){
+
+    throw new Error("Invalid AI request.");
+
+  }
+
+}
+
 function buildMessage(request){
 
   const project=PROJECTS[request.project];
-
-  const tool=TOOLS[request.tool];
-
-  const languages={
-
-    ht:"Haitian Creole",
-
-    fr:"French",
-
-    en:"English"
-
-  };
 
   return [
 
@@ -1232,11 +767,9 @@ function buildMessage(request){
 
     "School: "+(request.school || "Not applicable"),
 
-    "Tool: "+request.tool,
+    "Task: "+TOOLS[request.tool].task,
 
-    "Task: "+tool.instruction,
-
-    "Preferred language: "+languages[request.language],
+    "Language: "+request.language,
 
     "Do not invent facts or completed external actions.",
 
@@ -1248,75 +781,69 @@ function buildMessage(request){
 
 }
 
-/* =========================================
-   OPENAI + GEMINI CONNECTION
-========================================= */
+async function askAI(request){
 
-async function requestAI(request){
-
-  const endpoint=CONFIG.endpoints[request.provider];
-
-  if(!endpoint){
-
-    throw new Error("Unknown AI provider.");
-
-  }
+  validateRequest(request);
 
   const controller=new AbortController();
 
   const timer=setTimeout(
     ()=>controller.abort(),
-    CONFIG.timeout
+    45000
   );
 
   try{
 
-    const response=await fetch(endpoint,{
+    const response=await fetch(
+      ENDPOINTS[request.provider],
+      {
 
-      method:"POST",
+        method:"POST",
 
-      headers:{
+        headers:{
+          "Content-Type":"application/json"
+        },
 
-        "Content-Type":"application/json"
+        signal:controller.signal,
 
-      },
+        body:JSON.stringify({
 
-      signal:controller.signal,
+          message:buildMessage(request),
 
-      body:JSON.stringify({
+          language:request.language,
 
-        message:buildMessage(request),
+          mode:request.tool
 
-        language:request.language,
+        })
 
-        mode:request.tool
-
-      })
-
-    });
-
-    const raw=await response.text();
+      }
+    );
 
     let data;
 
     try{
 
-      data=JSON.parse(raw);
+      data=await response.json();
 
     }catch{
 
       throw new Error(
-        "Invalid API response — HTTP "+response.status
+        "Invalid API response: HTTP "+response.status
       );
+
+    }
+
+    if(!data || typeof data!=="object"){
+
+      throw new Error(t("noAnswer"));
 
     }
 
     if(!response.ok || data.success===false){
 
-      const detail=
-        typeof data.error==="string"
-          ? data.error
-          : data.error?.message;
+      const detail=typeof data.error==="string"
+        ? data.error
+        : data.error?.message;
 
       throw new Error(
         detail || "HTTP "+response.status
@@ -1325,23 +852,14 @@ async function requestAI(request){
     }
 
     const answer=[
-
       data.answer,
-
       data.reply,
-
       data.response,
-
       data.content,
-
       data.text,
-
       data.message
-
     ].find(value=>
-
       typeof value==="string" && value.trim()
-
     );
 
     if(!answer){
@@ -1352,7 +870,7 @@ async function requestAI(request){
 
     return {
 
-      answer:answer,
+      answer,
 
       provider:data.provider ||
         (
@@ -1385,41 +903,49 @@ async function requestAI(request){
 
 }
 
-/* =========================================
-   AI WORKSPACE EXECUTION
-========================================= */
+function setBusy(busy){
 
-async function executeRequest(request){
+  state.busy=busy;
+
+  [
+    "sendAI",
+    "retryAI",
+    "clearAI",
+    "clearHistory",
+    "provider",
+    "school"
+  ].forEach(id=>{
+
+    $(id).disabled=busy;
+
+  });
+
+}
+
+async function execute(request){
 
   if(state.busy) return;
 
   if(!request.prompt){
 
-    setStatus("empty","error");
+    status("empty");
 
     return;
 
   }
 
-  state.busy=true;
-
   state.lastRequest={...request};
 
-  $("sendAI").disabled=true;
+  setBusy(true);
 
-  $("retryAI").disabled=true;
-
-  $("clearAI").disabled=true;
+  status("processing");
 
   $("aiResponse").textContent="";
-
   $("activeProvider").textContent="—";
-
-  setStatus("processing");
 
   try{
 
-    const result=await requestAI(request);
+    const result=await askAI(request);
 
     $("aiResponse").textContent=result.answer;
 
@@ -1431,46 +957,27 @@ async function executeRequest(request){
 
       request:{...request},
 
-      result:result
+      result
 
     });
 
-    state.history=state.history.slice(
-      0,
-      CONFIG.maxHistory
-    );
+    state.history=state.history.slice(0,20);
 
     renderHistory();
 
-    setStatus("success","success");
+    status("success");
 
   }catch(error){
 
-    $("aiResponse").textContent="";
-
-    setStatus(
-      "error",
-      "error",
-      error.message
-    );
+    status("error",error.message);
 
   }finally{
 
-    state.busy=false;
-
-    $("sendAI").disabled=false;
-
-    $("retryAI").disabled=false;
-
-    $("clearAI").disabled=false;
+    setBusy(false);
 
   }
 
 }
-
-/* =========================================
-   SESSION HISTORY
-========================================= */
 
 function renderHistory(){
 
@@ -1497,9 +1004,9 @@ function renderHistory(){
     title.textContent=
       PROJECTS[item.request.project].name;
 
-    const question=document.createElement("p");
+    const prompt=document.createElement("p");
 
-    question.textContent=
+    prompt.textContent=
       item.request.prompt.slice(0,200);
 
     const date=document.createElement("small");
@@ -1511,21 +1018,17 @@ function renderHistory(){
 
     button.type="button";
 
-    button.textContent=t("restore");
+    button.textContent="↗";
 
     button.addEventListener("click",()=>{
 
       if(state.busy) return;
 
-      setLanguage(item.request.language);
-
-      selectProject(item.request.project);
+      state.project=item.request.project;
 
       state.tool=item.request.tool;
 
-      state.provider=item.request.provider;
-
-      $("provider").value=state.provider;
+      $("provider").value=item.request.provider;
 
       if(item.request.school){
 
@@ -1533,33 +1036,24 @@ function renderHistory(){
 
       }
 
-      renderTools();
+      setLanguage(item.request.language);
+
+      renderProjects();
 
       $("aiPrompt").value=item.request.prompt;
 
-      $("aiResponse").textContent=
-        item.result.answer;
+      $("aiResponse").textContent=item.result.answer;
 
       $("activeProvider").textContent=
         item.result.provider;
 
       state.lastRequest={...item.request};
 
-      setStatus("success","success");
-
-      $("centralAIForm").scrollIntoView({
-
-        behavior:"smooth"
-
-      });
+      status("success");
 
     });
 
-    card.append(title,question,date);
-
-    card.appendChild(document.createElement("br"));
-
-    card.appendChild(button);
+    card.append(title,prompt,date,button);
 
     container.appendChild(card);
 
@@ -1567,9 +1061,7 @@ function renderHistory(){
 
 }
 
-/* =========================================
-   PROF AVATAR — EXISTING VIDEO
-========================================= */
+/* PROF AVATAR */
 
 const avatar=$("aiProfAvatar");
 
@@ -1581,7 +1073,7 @@ $("aiAvatarPlay").addEventListener("click",async()=>{
 
   }catch{
 
-    setStatus("avatarError","error");
+    status("avatarError");
 
   }
 
@@ -1591,19 +1083,21 @@ $("aiAvatarStop").addEventListener("click",()=>{
 
   avatar.pause();
 
-  avatar.currentTime=0;
+  if(avatar.readyState>0){
+
+    avatar.currentTime=0;
+
+  }
 
 });
 
 avatar.addEventListener("error",()=>{
 
-  setStatus("avatarError","error");
+  status("avatarError");
 
 });
 
-/* =========================================
-   EVENT CONNECTIONS
-========================================= */
+/* BUTTON CONNECTIONS */
 
 document.querySelectorAll("[data-lang]")
   .forEach(button=>{
@@ -1616,65 +1110,35 @@ document.querySelectorAll("[data-lang]")
 
   });
 
-document.querySelectorAll("[data-project]")
-  .forEach(button=>{
+$("centralAIForm").addEventListener("submit",event=>{
 
-    button.addEventListener("click",()=>{
+  event.preventDefault();
 
-      selectProject(button.dataset.project);
-
-    });
-
-  });
-
-$("provider").addEventListener("change",event=>{
-
-  state.provider=event.target.value;
+  execute(createRequest());
 
 });
-
-$("centralAIForm").addEventListener(
-  "submit",
-  event=>{
-
-    event.preventDefault();
-
-    executeRequest(
-      createRequest($("aiPrompt").value)
-    );
-
-  }
-);
 
 $("clearAI").addEventListener("click",()=>{
 
   if(state.busy) return;
 
   $("aiPrompt").value="";
-
   $("aiResponse").textContent="";
-
   $("activeProvider").textContent="—";
 
   state.lastRequest=null;
 
-  setStatus("ready");
+  status("ready");
 
 });
 
 $("retryAI").addEventListener("click",()=>{
 
-  if(state.lastRequest){
-
-    executeRequest({...state.lastRequest});
-
-  }else{
-
-    executeRequest(
-      createRequest($("aiPrompt").value)
-    );
-
-  }
+  execute(
+    state.lastRequest
+      ? {...state.lastRequest}
+      : createRequest()
+  );
 
 });
 
@@ -1688,7 +1152,7 @@ $("copyAI").addEventListener("click",async()=>{
 
     await navigator.clipboard.writeText(answer);
 
-    setStatus("copied","success");
+    status("copied");
 
   }catch{
 
@@ -1698,9 +1162,13 @@ $("copyAI").addEventListener("click",async()=>{
 
     const selection=window.getSelection();
 
-    selection.removeAllRanges();
+    if(selection){
 
-    selection.addRange(range);
+      selection.removeAllRanges();
+
+      selection.addRange(range);
+
+    }
 
   }
 
@@ -1708,21 +1176,21 @@ $("copyAI").addEventListener("click",async()=>{
 
 $("clearHistory").addEventListener("click",()=>{
 
+  if(state.busy) return;
+
   state.history=[];
 
   renderHistory();
 
 });
 
-/* =========================================
-   SHARED CENTRAL AI INTERFACE
-========================================= */
+/* CENTRAL AI INTERFACE */
 
 window.BSS1815_CENTRAL_AI=Object.freeze({
 
-  ask:async function(options={}){
+  ask(options={}){
 
-    const request={
+    return askAI({
 
       prompt:String(options.prompt || "").trim(),
 
@@ -1736,56 +1204,53 @@ window.BSS1815_CENTRAL_AI=Object.freeze({
 
       school:String(options.school || "")
 
-    };
-
-    if(!request.prompt){
-
-      throw new Error("Prompt required.");
-
-    }
-
-    if(!PROJECTS[request.project]){
-
-      throw new Error("Unknown project.");
-
-    }
-
-    if(!TOOLS[request.tool]){
-
-      throw new Error("Unknown AI tool.");
-
-    }
-
-    if(!I18N[request.language]){
-
-      throw new Error("Unsupported language.");
-
-    }
-
-    return requestAI(request);
+    });
 
   },
 
-  selectProject:selectProject,
+  setLanguage,
 
-  setLanguage:setLanguage
+  selectProject(project){
+
+    if(!has(PROJECTS,project)) return;
+
+    state.project=project;
+
+    renderProjects();
+
+  }
 
 });
 
-/* =========================================
-   INITIALIZATION
-========================================= */
+/* INITIALIZATION */
 
 $("year").textContent=new Date().getFullYear();
 
-selectProject("bss1815");
+$("aiPrompt").value="";
 
-setLanguage("ht");
+const params=new URLSearchParams(window.location.search);
 
-setStatus("ready");
+const project=params.get("project");
+
+const language=params.get("lang");
+
+if(project && has(PROJECTS,project)){
+
+  state.project=project;
+
+}
+
+renderProjects();
+
+setLanguage(
+  language && has(TEXT,language)
+    ? language
+    : "ht"
+);
+
+status("ready");
 
 })();
-
 </script>
 
 </body>
