@@ -1,1534 +1,2644 @@
-/**
- * BSS1815 PRO-MAX DMP
- * CENTRAL AI CENTER CONTROLLER
- * Version: 1.1.0
- * DEVAN DEVAN NÈT
- */
+/* =========================================================
+   BSS1815 PRO-MAX DMP
+   CENTRAL AI CONTROLLER
+   FILE: central-ai-controller.js
+   VERSION: 3.0.0
+
+   OPENAI LIVE
+   GEMINI LIVE
+   AI PROFESSOR
+   PROF AVATAR
+   CENTRAL PROJECT CONNECTION
+
+   BATI POU JODI A, PARE POU DEMEN.
+   DEVAN DEVAN NÈT.
+========================================================= */
 
 "use strict";
 
-const PRO_MAX_AI_CENTER = {
-  version: "1.1.0",
-  endpoint: "/.netlify/functions/ai",
+(() => {
 
-  storageKeys: {
-    activeProject: "proMaxActiveProject",
-    activeTool: "proMaxActiveAITool",
-    history: "proMaxAIHistory",
-    settings: "proMaxAISettings"
-  },
+  /* =====================================================
+     CENTRAL CONFIGURATION
+  ===================================================== */
 
-  projects: {
+  const CONFIG = Object.freeze({
+
+    version: "3.0.0",
+
+    domain: "https://bss1815promaxdmp.com",
+
+    endpoints: Object.freeze({
+
+      openai: "/.netlify/functions/openai-live",
+
+      gemini: "/.netlify/functions/gemini-live",
+
+      professor: "/.netlify/functions/professor"
+
+    }),
+
+    avatar: "/promax-dmp.mp4",
+
+    timeout: 45000,
+
+    maxPrompt: 8000,
+
+    maxHistory: 50,
+
+    defaultLanguage: "ht",
+
+    defaultProvider: "openai",
+
+    defaultProject: "bss1815"
+
+  });
+
+
+  /* =====================================================
+     CENTRAL ECOSYSTEM
+  ===================================================== */
+
+  const PROJECTS = Object.freeze({
+
     bss1815: {
-      id: "bss1815",
-      name: "Briyant Solèy Signo 1815",
-      icon: "🏛️"
+
+      name: "BSS1815 COMMUNITY",
+
+      context: `
+        Community development.
+        Haitian cultural heritage.
+        Organizational communication.
+        BSS1815 history and activities.
+      `
+
     },
+
     "pro-max-fm": {
-      id: "pro-max-fm",
+
       name: "PRO-MAX FM 106.5 FM",
-      icon: "📻"
+
+      context: `
+        Radio broadcasting.
+        Haitian music.
+        Radio programming.
+        Podcasts and interviews.
+        News and entertainment.
+        Radio presentation scripts.
+      `
+
     },
+
     maximax: {
-      id: "maximax",
+
       name: "MAXIMAX MULTI SERVICES",
-      icon: "🏢"
+
+      context: `
+        Immigration document assistance.
+        Notary services.
+        Tax preparation information.
+        Insurance information.
+        Business services.
+        Apostille.
+        Translation.
+        Real estate information.
+
+        Do not claim to be a licensed attorney.
+        Do not request confidential identification numbers.
+      `
+
     },
+
     academy: {
-      id: "academy",
+
       name: "PRO-MAX ACADÉMIE",
-      icon: "🎓"
+
+      context: `
+        Professional education.
+        Student assistance.
+        Educational courses.
+        Lessons and exercises.
+        Examination preparation.
+        AI Professor assistance.
+      `
+
     },
+
     "beat-lab": {
-      id: "beat-lab",
+
       name: "PRO-MAX BEAT LAB",
-      icon: "🎵"
+
+      context: `
+        Music production.
+        Beat creation guidance.
+        Haitian musical culture.
+        Songwriting.
+        Lyrics.
+        Musical instruments.
+        Music education.
+      `
+
     },
+
     "leogane-info": {
-      id: "leogane-info",
+
       name: "LÉOGÂNE INFO",
-      icon: "📰"
-    }
-  },
 
-  tools: [
-    {
-      id: "assistant",
+      context: `
+        Journalism.
+        Community information.
+        Interviews.
+        Reporting.
+        Fact checking.
+        Haiti and diaspora communication.
+
+        Never invent news or verified sources.
+      `
+
+    },
+
+    ddn: {
+
+      name: "DEVAN DEVAN NÈT",
+
+      context: `
+        Digital communication.
+        Artificial intelligence.
+        Innovation.
+        Technology.
+        Information management.
+      `
+
+    }
+
+  });
+
+
+  /* =====================================================
+     PROJECT ALIASES
+  ===================================================== */
+
+  const PROJECT_ALIASES = Object.freeze({
+
+    community: "bss1815",
+
+    bss: "bss1815",
+
+    fm: "pro-max-fm",
+
+    radio: "pro-max-fm",
+
+    promaxfm: "pro-max-fm",
+
+    maximax: "maximax",
+
+    multiservices: "maximax",
+
+    academie: "academy",
+
+    "academie-parent": "academy",
+
+    academy: "academy",
+
+    beatmaker: "beat-lab",
+
+    beatlab: "beat-lab",
+
+    journalisme: "leogane-info",
+
+    leogane: "leogane-info",
+
+    ddn: "ddn"
+
+  });
+
+
+  /* =====================================================
+     PRO-MAX ACADÉMIE SCHOOLS
+  ===================================================== */
+
+  const SCHOOLS = Object.freeze({
+
+    general: "PRO-MAX ACADÉMIE",
+
+    "real-estate": "REAL ESTATE SCHOOL",
+
+    insurance: "INSURANCE SCHOOL",
+
+    journalism: "ÉCOLE DE JOURNALISME",
+
+    "beat-maker": "BEAT MAKER AI SCHOOL"
+
+  });
+
+
+  /* =====================================================
+     CENTRAL AI TOOLS
+  ===================================================== */
+
+  const TOOLS = Object.freeze({
+
+    assistant: {
+
       icon: "🤖",
-      name: {
-        ht: "Asistan AI",
-        fr: "Assistant IA",
-        en: "AI Assistant"
-      },
-      description: {
-        ht: "Poze kesyon epi jwenn asistans.",
-        fr: "Posez des questions et obtenez une assistance.",
-        en: "Ask questions and receive assistance."
-      }
+
+      ht: "ASISTAN AI",
+
+      fr: "ASSISTANT IA",
+
+      en: "AI ASSISTANT",
+
+      instruction:
+        "Provide accurate project-specific assistance."
+
     },
-    {
-      id: "writer",
+
+    writer: {
+
       icon: "✍️",
-      name: {
-        ht: "AI Writer",
-        fr: "Rédacteur IA",
-        en: "AI Writer"
-      },
-      description: {
-        ht: "Kreye lèt, anons, script ak dokiman.",
-        fr: "Créez des lettres, annonces et documents.",
-        en: "Create letters, announcements and documents."
-      }
+
+      ht: "EKRIVEN AI",
+
+      fr: "RÉDACTEUR IA",
+
+      en: "AI WRITER",
+
+      instruction:
+        "Prepare professional written content."
+
     },
-    {
-      id: "translator",
+
+    translator: {
+
       icon: "🌐",
-      name: {
-        ht: "Tradiktè AI",
-        fr: "Traducteur IA",
-        en: "AI Translator"
-      },
-      description: {
-        ht: "Tradui kontni an Kreyòl, Fransè ak Anglè.",
-        fr: "Traduisez vos contenus.",
-        en: "Translate your content."
-      }
+
+      ht: "TRADIKSYON AI",
+
+      fr: "TRADUCTION IA",
+
+      en: "AI TRANSLATOR",
+
+      instruction:
+        "Translate accurately into the requested language."
+
     },
-    {
-      id: "voice",
+
+    voice: {
+
       icon: "🎙️",
-      name: {
-        ht: "AI Voice Studio",
-        fr: "Studio vocal IA",
-        en: "AI Voice Studio"
-      },
-      description: {
-        ht: "Prepare script ak narasyon.",
-        fr: "Préparez des scripts et narrations.",
-        en: "Prepare scripts and narration."
-      }
+
+      ht: "SCRIPT VWA",
+
+      fr: "SCRIPT VOCAL",
+
+      en: "VOICE SCRIPT",
+
+      instruction:
+        "Prepare narration scripts without claiming to generate audio."
+
     },
-    {
-      id: "image",
+
+    image: {
+
       icon: "🎨",
-      name: {
-        ht: "AI Image Studio",
-        fr: "Studio d’images IA",
-        en: "AI Image Studio"
-      },
-      description: {
-        ht: "Prepare prompt pou vizyèl pwofesyonèl.",
-        fr: "Préparez des prompts visuels.",
-        en: "Prepare professional visual prompts."
-      }
+
+      ht: "PROMPT IMAJ",
+
+      fr: "PROMPT IMAGE",
+
+      en: "IMAGE PROMPT",
+
+      instruction:
+        "Prepare professional image generation prompts."
+
     },
-    {
-      id: "analytics",
+
+    analytics: {
+
       icon: "📊",
-      name: {
-        ht: "AI Analytics",
-        fr: "Analyse IA",
-        en: "AI Analytics"
-      },
-      description: {
-        ht: "Analize done ak rapò.",
-        fr: "Analysez les données et rapports.",
-        en: "Analyze data and reports."
-      }
+
+      ht: "ANALIZ AI",
+
+      fr: "ANALYSE IA",
+
+      en: "AI ANALYTICS",
+
+      instruction:
+        "Analyze supplied information without inventing data."
+
     },
-    {
-      id: "tutor",
-      icon: "🧑‍🏫",
-      name: {
-        ht: "AI Tutor",
-        fr: "Tuteur IA",
-        en: "AI Tutor"
-      },
-      description: {
-        ht: "Ede elèv yo aprann.",
-        fr: "Accompagnez les étudiants.",
-        en: "Help students learn."
-      }
+
+    tutor: {
+
+      icon: "🎓",
+
+      ht: "PROFESÈ AI",
+
+      fr: "PROFESSEUR IA",
+
+      en: "AI PROFESSOR",
+
+      instruction:
+        "Teach professionally with examples and exercises."
+
     }
-  ]
-};
 
-/* =====================================================
-   PROJECT CONTEXTS
-   ===================================================== */
+  });
 
-const AI_PROJECT_CONTEXTS = {
-  bss1815: {
-    ht: "Ou ap travay pou Briyant Solèy Signo 1815. Konsantre sou kominote, istwa, manm, evènman ak dokiman ofisyèl.",
-    fr: "Vous travaillez pour Briyant Solèy Signo 1815. Communauté, histoire, membres, événements et documents officiels.",
-    en: "You work for Briyant Solèy Signo 1815. Focus on community, history, members, events and official documents."
-  },
 
-  "pro-max-fm": {
-    ht: "Ou ap travay pou PRO-MAX FM 106.5 FM. Radyo, mizik, nouvèl, podcast, emisyon ak pwodiksyon medya.",
-    fr: "Vous travaillez pour PRO-MAX FM 106.5 FM. Radio, musique, actualités, podcasts et production médiatique.",
-    en: "You work for PRO-MAX FM 106.5 FM. Radio, music, news, podcasts and media production."
-  },
+  /* =====================================================
+     LANGUAGE SYSTEM
+  ===================================================== */
 
-  maximax: {
-    ht: "Ou ap travay pou MAXIMAX MULTI SERVICES. Imigrasyon, notarya, taks, asirans, byen imobilye, tradiksyon ak sèvis kliyan. Bay enfòmasyon jeneral san prezante tèt ou kòm avoka.",
-    fr: "Vous travaillez pour MAXIMAX MULTI SERVICES. Immigration, notariat, fiscalité, assurances, immobilier, traduction et service client. Ne vous présentez pas comme avocat.",
-    en: "You work for MAXIMAX MULTI SERVICES. Immigration, notary, taxes, insurance, real estate, translation and customer service. Provide general information without claiming to be an attorney."
-  },
+  const LANGUAGES = Object.freeze({
 
-  academy: {
-    ht: "Ou ap travay pou PRO-MAX ACADÉMIE ak tout lekòl li yo, tankou Real Estate School, Insurance School ak École de Journalisme. Ede ak kou, leson, egzèsis ak egzamen.",
-    fr: "Vous travaillez pour PRO-MAX ACADÉMIE et toutes ses écoles. Immobilier, assurances, journalisme, cours, exercices et examens.",
-    en: "You work for PRO-MAX ACADÉMIE and all its schools. Real estate, insurance, journalism, courses, lessons and exams."
-  },
+    ht: {
 
-  "beat-lab": {
-    ht: "Ou ap travay pou PRO-MAX BEAT LAB. Konpozisyon, ritm, pawòl mizik, aranjman ak preparasyon pwodiksyon odyo.",
-    fr: "Vous travaillez pour PRO-MAX BEAT LAB. Composition, rythmes, paroles, arrangements et production audio.",
-    en: "You work for PRO-MAX BEAT LAB. Composition, rhythm, lyrics, arrangements and audio production planning."
-  },
+      ready: "CENTRAL AI PARE",
 
-  "leogane-info": {
-    ht: "Ou ap travay pou LÉOGÂNE INFO. Jounalis, repòtaj, entèvyou, verifikasyon enfòmasyon ak nouvèl kominotè. Pa envante nouvèl oswa sous.",
-    fr: "Vous travaillez pour LÉOGÂNE INFO. Journalisme, reportages, interviews et vérification des informations. N’inventez pas de sources.",
-    en: "You work for LÉOGÂNE INFO. Journalism, reporting, interviews, fact checking and community news. Do not invent news or sources."
-  }
-};
+      processing: "AI AP TRETE DEMANN NAN...",
 
-/* =====================================================
-   APPLICATION STATE
-   ===================================================== */
+      success: "REPONS AI RESEVWA",
 
-let activeAITool = "assistant";
-let aiRequestInProgress = false;
-let aiCenterInitialized = false;
+      error: "KONEKSYON AI ECHWE",
 
-function aiQuery(selector) {
-  return document.querySelector(selector);
-}
+      empty: "Tanpri antre yon kesyon.",
 
-function aiQueryAll(selector) {
-  return document.querySelectorAll(selector);
-}
+      tooLong: "Mesaj la twò long.",
 
-function aiStorageGet(key) {
-  try {
-    return localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
+      timeout: "Tan koneksyon an ekspire.",
 
-function aiStorageSet(key, value) {
-  try {
-    localStorage.setItem(key, value);
-    return true;
-  } catch {
-    return false;
-  }
-}
+      noAnswer: "API a pa retounen repons.",
 
-function aiStorageRemove(key) {
-  try {
-    localStorage.removeItem(key);
-  } catch {
-    console.warn("AI storage unavailable.");
-  }
-}
+      copied: "REPONS LAN KOPYE",
 
-/* =====================================================
-   INITIALIZATION
-   ===================================================== */
+      copyError: "Kopi otomatik pa disponib.",
 
-function initializeAICenter() {
-  if (aiCenterInitialized) return;
+      placeholder: "Ekri kesyon ou isit la...",
 
-  aiCenterInitialized = true;
+      noHistory: "Pa gen istwa AI.",
 
-  const savedTool = aiStorageGet(
-    PRO_MAX_AI_CENTER.storageKeys.activeTool
-  );
+      avatarError: "PROF AVATAR pa disponib.",
 
-  activeAITool = getAITool(savedTool)
-    ? savedTool
-    : "assistant";
+      busy: "AI deja ap trete yon demann.",
 
-  renderAIToolCards();
-  initializeAIProjectSelector();
-  initializeAIForm();
-  initializeAIActionButtons();
-  initializeAIHistoryControls();
-  initializeAILanguageUpdates();
-  updateAIProjectDisplay();
-  displayAIHistory();
-  setAIStatus("idle");
+      invalidProject: "Pwojè sa a pa disponib.",
 
-  console.info(
-    "BSS1815 PRO-MAX DMP AI CENTER",
-    PRO_MAX_AI_CENTER.version
-  );
-}
+      invalidProvider: "Motè AI sa a pa disponib."
 
-/* =====================================================
-   LANGUAGE MANAGEMENT
-   ===================================================== */
+    },
 
-function normalizeAILanguage(language) {
-  const value = String(language || "ht")
-    .trim()
-    .toLowerCase();
+    fr: {
 
-  const aliases = {
-    ht: "ht",
-    kre: "ht",
-    kreyol: "ht",
-    "ht-ht": "ht",
-    fr: "fr",
-    fra: "fr",
-    fran: "fr",
-    "fr-fr": "fr",
-    en: "en",
-    eng: "en",
-    "en-us": "en",
-    "en-gb": "en"
+      ready: "CENTRAL AI PRÊT",
+
+      processing: "TRAITEMENT EN COURS...",
+
+      success: "RÉPONSE IA REÇUE",
+
+      error: "ÉCHEC DE CONNEXION IA",
+
+      empty: "Veuillez saisir une question.",
+
+      tooLong: "Le message est trop long.",
+
+      timeout: "Le délai de connexion a expiré.",
+
+      noAnswer: "L’API n’a retourné aucune réponse.",
+
+      copied: "RÉPONSE COPIÉE",
+
+      copyError: "Copie automatique indisponible.",
+
+      placeholder: "Écrivez votre question ici...",
+
+      noHistory: "Aucun historique IA.",
+
+      avatarError: "PROF AVATAR indisponible.",
+
+      busy: "Une demande est déjà en cours.",
+
+      invalidProject: "Projet indisponible.",
+
+      invalidProvider: "Moteur IA indisponible."
+
+    },
+
+    en: {
+
+      ready: "CENTRAL AI READY",
+
+      processing: "AI IS PROCESSING...",
+
+      success: "AI RESPONSE RECEIVED",
+
+      error: "AI CONNECTION FAILED",
+
+      empty: "Please enter a question.",
+
+      tooLong: "The message is too long.",
+
+      timeout: "The connection timed out.",
+
+      noAnswer: "The API returned no answer.",
+
+      copied: "RESPONSE COPIED",
+
+      copyError: "Automatic copying is unavailable.",
+
+      placeholder: "Enter your question here...",
+
+      noHistory: "No AI history.",
+
+      avatarError: "PROF AVATAR is unavailable.",
+
+      busy: "An AI request is already processing.",
+
+      invalidProject: "Project unavailable.",
+
+      invalidProvider: "AI engine unavailable."
+
+    }
+
+  });
+
+
+  /* =====================================================
+     CENTRAL STATE
+  ===================================================== */
+
+  const state = {
+
+    project: CONFIG.defaultProject,
+
+    provider: CONFIG.defaultProvider,
+
+    language: CONFIG.defaultLanguage,
+
+    school: "",
+
+    tool: "assistant",
+
+    busy: false,
+
+    initialized: false,
+
+    history: [],
+
+    lastRequest: null,
+
+    lastResponse: null,
+
+    status: "ready",
+
+    statusDetail: ""
+
   };
 
-  return Object.prototype.hasOwnProperty.call(
-    aliases,
-    value
-  ) ? aliases[value] : "ht";
-}
 
-function getAILanguage() {
-  if (
-    typeof window.getCurrentLanguage === "function"
-  ) {
-    return normalizeAILanguage(
-      window.getCurrentLanguage()
-    );
-  }
+  /* =====================================================
+     DOM UTILITIES
+  ===================================================== */
 
-  return normalizeAILanguage(
-    aiStorageGet("proMaxLanguage") ||
-    document.documentElement.lang ||
-    "ht"
-  );
-}
+  const $ = selector =>
+    document.querySelector(selector);
 
-function getAIText(ht, fr, en) {
-  const language = getAILanguage();
+  const $$ = selector =>
+    Array.from(document.querySelectorAll(selector));
 
-  if (language === "fr") return fr;
-  if (language === "en") return en;
+  const has = (object, key) =>
+    Object.prototype.hasOwnProperty.call(object, key);
 
-  return ht;
-}
+  const boundElements = new WeakMap();
 
-function getAILocalizedValue(value) {
-  if (typeof value === "string") return value;
+  function bind(element, event, callback) {
 
-  return (
-    value?.[getAILanguage()] ||
-    value?.ht ||
-    value?.fr ||
-    value?.en ||
-    ""
-  );
-}
+    if (!element) return;
 
-function initializeAILanguageUpdates() {
-  document.addEventListener(
-    "proMaxLanguageChanged",
-    () => {
-      renderAIToolCards();
-      updateAIProjectDisplay();
-      displayAIHistory();
-      updateAIPromptPlaceholder();
+    let events = boundElements.get(element);
+
+    if (!events) {
+
+      events = new Set();
+
+      boundElements.set(element, events);
+
     }
-  );
-}
 
-/* =====================================================
-   AI TOOL MANAGEMENT
-   ===================================================== */
+    if (events.has(event)) return;
 
-function getAITool(toolId) {
-  return PRO_MAX_AI_CENTER.tools.find(
-    tool => tool.id === toolId
-  );
-}
+    events.add(event);
 
-function renderAIToolCards() {
-  const container = aiQuery(
-    "#ai-tools, [data-ai-tools]"
-  );
+    element.addEventListener(event, callback);
 
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  PRO_MAX_AI_CENTER.tools.forEach(tool => {
-    const card = document.createElement("button");
-
-    card.type = "button";
-    card.className = "ai-tool-card";
-    card.dataset.aiTool = tool.id;
-
-    const active = tool.id === activeAITool;
-
-    card.classList.toggle("active", active);
-    card.setAttribute(
-      "aria-pressed",
-      String(active)
-    );
-
-    card.innerHTML = `
-      <span class="ai-tool-icon" aria-hidden="true">
-        ${tool.icon}
-      </span>
-
-      <span class="ai-tool-information">
-        <strong>
-          ${escapeAIHTML(
-            getAILocalizedValue(tool.name)
-          )}
-        </strong>
-
-        <small>
-          ${escapeAIHTML(
-            getAILocalizedValue(tool.description)
-          )}
-        </small>
-      </span>
-    `;
-
-    card.addEventListener("click", () => {
-      selectAITool(tool.id);
-    });
-
-    container.appendChild(card);
-  });
-}
-
-function selectAITool(toolId) {
-  const tool = getAITool(toolId);
-
-  if (!tool) return false;
-
-  activeAITool = tool.id;
-
-  aiStorageSet(
-    PRO_MAX_AI_CENTER.storageKeys.activeTool,
-    activeAITool
-  );
-
-  aiQueryAll("[data-ai-tool]").forEach(card => {
-    const active =
-      card.dataset.aiTool === activeAITool;
-
-    card.classList.toggle("active", active);
-
-    card.setAttribute(
-      "aria-pressed",
-      String(active)
-    );
-  });
-
-  updateActiveAIToolDisplay();
-  updateAIPromptPlaceholder();
-
-  return true;
-}
-
-function updateActiveAIToolDisplay() {
-  const tool = getAITool(activeAITool);
-
-  aiQueryAll("[data-ai-active-tool]")
-    .forEach(element => {
-      element.textContent = tool
-        ? `${tool.icon} ${getAILocalizedValue(tool.name)}`
-        : "";
-    });
-}
-
-/* =====================================================
-   PROJECT MANAGEMENT
-   ===================================================== */
-
-function isValidAIProject(projectId) {
-  return Object.prototype.hasOwnProperty.call(
-    PRO_MAX_AI_CENTER.projects,
-    projectId
-  );
-}
-
-function getActiveAIProject() {
-  const saved = aiStorageGet(
-    PRO_MAX_AI_CENTER.storageKeys.activeProject
-  );
-
-  return isValidAIProject(saved)
-    ? saved
-    : "bss1815";
-}
-
-function setActiveAIProject(projectId) {
-  if (!isValidAIProject(projectId)) {
-    return false;
   }
 
-  aiStorageSet(
-    PRO_MAX_AI_CENTER.storageKeys.activeProject,
-    projectId
-  );
 
-  updateAIProjectDisplay();
+  /* =====================================================
+     LANGUAGE MANAGEMENT
+  ===================================================== */
 
-  document.dispatchEvent(
-    new CustomEvent("proMaxAIProjectChanged", {
-      detail: {
-        project: projectId
-      }
-    })
-  );
+  function normalizeLanguage(language) {
 
-  return true;
-}
+    const value = String(language || "ht")
+      .trim()
+      .toLowerCase();
 
-function initializeAIProjectSelector() {
-  const selector = aiQuery(
-    "#ai-project-selector, [data-ai-project-selector]"
-  );
+    const aliases = {
 
-  if (!selector) return;
+      kre: "ht",
 
-  selector.innerHTML = "";
+      kreyol: "ht",
 
-  Object.values(PRO_MAX_AI_CENTER.projects)
-    .forEach(project => {
-      const option =
-        document.createElement("option");
+      fra: "fr",
 
-      option.value = project.id;
-      option.textContent =
-        `${project.icon} ${project.name}`;
+      eng: "en"
 
-      selector.appendChild(option);
+    };
+
+    const normalized = aliases[value] || value;
+
+    return has(LANGUAGES, normalized)
+      ? normalized
+      : "ht";
+
+  }
+
+  function translate(key) {
+
+    return LANGUAGES[state.language][key] || key;
+
+  }
+
+  function setLanguage(language) {
+
+    state.language = normalizeLanguage(language);
+
+    updateLanguageInterface();
+
+    renderTools();
+
+    renderHistory();
+
+    setStatus(state.status, state.statusDetail);
+
+    return state.language;
+
+  }
+
+  function updateLanguageInterface() {
+
+    $$("[data-ai-lang]").forEach(button => {
+
+      const active =
+        normalizeLanguage(button.dataset.aiLang) ===
+        state.language;
+
+      button.classList.toggle("active", active);
+
+      button.setAttribute(
+        "aria-pressed",
+        String(active)
+      );
+
     });
 
-  selector.value = getActiveAIProject();
+    $$("[data-ai-i18n]").forEach(element => {
 
-  selector.addEventListener("change", () => {
-    setActiveAIProject(selector.value);
-  });
-}
-
-function updateAIProjectDisplay() {
-  const projectId = getActiveAIProject();
-
-  const project =
-    PRO_MAX_AI_CENTER.projects[projectId];
-
-  aiQueryAll("[data-ai-active-project]")
-    .forEach(element => {
       element.textContent =
-        `${project.icon} ${project.name}`;
+        translate(element.dataset.aiI18n);
+
     });
 
-  const selector = aiQuery(
-    "#ai-project-selector, [data-ai-project-selector]"
-  );
+    const input = getPromptInput();
 
-  if (selector) {
-    selector.value = projectId;
+    if (input) {
+
+      input.placeholder = translate("placeholder");
+
+    }
+
   }
 
-  updateActiveAIToolDisplay();
-  updateAIPromptPlaceholder();
-}
 
-/* =====================================================
-   CENTRAL AI FORM
-   ===================================================== */
+  /* =====================================================
+     PROJECT MANAGEMENT
+  ===================================================== */
 
-function initializeAIForm() {
-  const form = aiQuery(
-    "#ai-form, [data-ai-form]"
-  );
+  function normalizeProject(project) {
 
-  if (!form) return;
+    const value = String(project || "")
+      .trim()
+      .toLowerCase();
 
-  const promptInput = form.querySelector(
-    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
-  );
+    if (has(PROJECTS, value)) {
 
-  const submitButton = form.querySelector(
-    "button[type='submit'], [data-ai-submit]"
-  );
+      return value;
 
-  form.addEventListener("submit", async event => {
-    event.preventDefault();
-
-    if (aiRequestInProgress) return;
-
-    const prompt =
-      promptInput?.value.trim() || "";
-
-    if (!prompt) {
-      showAIMessage(
-        getAIText(
-          "Tanpri ekri sa ou bezwen AI a fè.",
-          "Veuillez écrire votre demande.",
-          "Please enter your request."
-        ),
-        "error"
-      );
-
-      promptInput?.focus();
-      return;
     }
 
-    setAIButtonLoading(submitButton, true);
-    setAIStatus("processing");
+    if (has(PROJECT_ALIASES, value)) {
 
-    try {
-      const request = createAIRequest(prompt);
+      return PROJECT_ALIASES[value];
 
-      const response =
-        await sendAIRequest(request);
-
-      displayAIResponse(response);
-      saveAIHistoryItem(request, response);
-      setAIStatus("success");
-
-    } catch (error) {
-      console.error(
-        "Central AI request:",
-        error.message
-      );
-
-      setAIStatus("error");
-
-      showAIMessage(
-        getAIErrorMessage(error),
-        "error"
-      );
-
-    } finally {
-      setAIButtonLoading(
-        submitButton,
-        false
-      );
     }
-  });
 
-  updateAIPromptPlaceholder();
-}
+    return null;
 
-function updateAIPromptPlaceholder() {
-  const input = aiQuery(
-    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
-  );
+  }
 
-  if (!input) return;
+  function setProject(project) {
 
-  const tool = getAITool(activeAITool);
+    const normalized = normalizeProject(project);
 
-  const name = getAILocalizedValue(
-    tool?.name || ""
-  );
+    if (!normalized) {
 
-  input.placeholder = getAIText(
-    `Ekri sa ou bezwen ${name} fè...`,
-    `Écrivez votre demande pour ${name}...`,
-    `Write your request for ${name}...`
-  );
-}
+      throw new Error(
+        translate("invalidProject")
+      );
 
-/* =====================================================
-   CREATE AI REQUEST
-   ===================================================== */
+    }
 
-function createAIRequest(prompt) {
-  const project = getActiveAIProject();
-  const language = getAILanguage();
+    state.project = normalized;
 
-  return {
-    id: createAIRequestId(),
-    tool: activeAITool,
-    project,
-    language,
-    context:
-      AI_PROJECT_CONTEXTS[project]?.[language] ||
-      AI_PROJECT_CONTEXTS[project]?.ht ||
-      "",
-    prompt: String(prompt || "").trim(),
-    user: null,
-    createdAt: new Date().toISOString()
-  };
-}
+    if (normalized !== "academy") {
 
-/* =====================================================
-   CENTRAL OPENAI API CONNECTION
-   NETLIFY FUNCTIONS
-   ===================================================== */
+      state.school = "";
 
-async function sendAIRequest(request) {
-  aiRequestInProgress = true;
+    }
 
-  const controller = new AbortController();
+    updateProjectInterface();
 
-  const timeout = setTimeout(
-    () => controller.abort(),
-    45000
-  );
+    return normalized;
 
-  try {
+  }
+
+  function getProject() {
+
+    return state.project;
+
+  }
+
+  function updateProjectInterface() {
+
+    $$("[data-ai-active-project]").forEach(element => {
+
+      element.textContent =
+        PROJECTS[state.project].name;
+
+    });
+
+    $$("[data-ai-project]").forEach(button => {
+
+      const active =
+        normalizeProject(button.dataset.aiProject) ===
+        state.project;
+
+      button.classList.toggle("active", active);
+
+      button.setAttribute(
+        "aria-pressed",
+        String(active)
+      );
+
+    });
+
+    $$("[data-ai-school-field]").forEach(element => {
+
+      element.hidden =
+        state.project !== "academy";
+
+    });
+
+    const selector = $("[data-ai-project-selector]");
+
+    if (selector?.tagName === "SELECT") {
+
+      selector.value = state.project;
+
+    }
+
+  }
+
+
+  /* =====================================================
+     SCHOOL MANAGEMENT
+  ===================================================== */
+
+  function setSchool(school) {
+
+    const value = String(school || "")
+      .trim()
+      .slice(0, 150);
+
+    state.school = has(SCHOOLS, value)
+      ? SCHOOLS[value]
+      : value;
+
+    return state.school;
+
+  }
+
+
+  /* =====================================================
+     AI PROVIDER MANAGEMENT
+  ===================================================== */
+
+  function setProvider(provider) {
+
+    const value = String(provider || "")
+      .trim()
+      .toLowerCase();
+
+    if (!has(CONFIG.endpoints, value)) {
+
+      throw new Error(
+        translate("invalidProvider")
+      );
+
+    }
+
+    state.provider = value;
+
+    $$("[data-ai-provider-select]").forEach(element => {
+
+      if (element.tagName === "SELECT") {
+
+        element.value = value;
+
+      }
+
+    });
+
+    $$("[data-ai-engine]").forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.aiEngine === value
+      );
+
+    });
+
+    return value;
+
+  }
+
+  function getProvider() {
+
+    return state.provider;
+
+  }
+
+
+  /* =====================================================
+     AI TOOL MANAGEMENT
+  ===================================================== */
+
+  function selectTool(tool) {
+
+    if (!has(TOOLS, tool)) {
+
+      return state.tool;
+
+    }
+
+    state.tool = tool;
+
+    if (tool === "tutor") {
+
+      setProvider("professor");
+
+    }
+
+    renderTools();
+
+    return tool;
+
+  }
+
+  function renderTools() {
+
+    const container = $(
+      "#ai-tools, [data-ai-tools]"
+    );
+
+    if (container) {
+
+      container.replaceChildren();
+
+      Object.entries(TOOLS).forEach(([id, tool]) => {
+
+        const button =
+          document.createElement("button");
+
+        button.type = "button";
+
+        button.className = "ai-tool-card";
+
+        button.dataset.aiTool = id;
+
+        button.textContent =
+          `${tool.icon} ${tool[state.language]}`;
+
+        button.classList.toggle(
+          "active",
+          state.tool === id
+        );
+
+        button.setAttribute(
+          "aria-pressed",
+          String(state.tool === id)
+        );
+
+        button.addEventListener("click", () => {
+
+          selectTool(id);
+
+        });
+
+        container.appendChild(button);
+
+      });
+
+    }
+
+    $$("[data-ai-active-tool]").forEach(element => {
+
+      element.textContent =
+        TOOLS[state.tool][state.language];
+
+    });
+
+    $$("[data-ai-tool]").forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.aiTool === state.tool
+      );
+
+    });
+
+  }
+
+
+  /* =====================================================
+     REQUEST GENERATION
+  ===================================================== */
+
+  function createRequest(input) {
+
+    const options = typeof input === "string"
+      ? { prompt: input }
+      : input || {};
+
     const prompt = String(
-      request?.prompt || ""
+      options.prompt ??
+      options.message ??
+      options.question ??
+      ""
     ).trim();
 
     if (!prompt) {
-      throw new Error("ai/message-required");
+
+      throw new Error(translate("empty"));
+
     }
 
-    if (prompt.length > 12000) {
-      throw new Error("ai/message-too-long");
+    if (prompt.length > CONFIG.maxPrompt) {
+
+      throw new Error(translate("tooLong"));
+
     }
 
-    const projectId =
-      isValidAIProject(request.project)
-        ? request.project
-        : "bss1815";
-
-    const project =
-      PRO_MAX_AI_CENTER.projects[projectId];
-
-    const language =
-      normalizeAILanguage(request.language);
-
-    const tool = getAITool(request.tool)
-      ? request.tool
-      : "assistant";
-
-    const context =
-      AI_PROJECT_CONTEXTS[projectId]?.[language] ||
-      AI_PROJECT_CONTEXTS[projectId]?.ht ||
-      "";
-
-    const message = [
-      "BSS1815 PRO-MAX DMP CENTRAL AI CENTER",
-      `Project: ${project.name}`,
-      `Context: ${context}`,
-      `AI tool: ${tool}`,
-      "Do not invent facts or claim access to unavailable systems.",
-      "Voice and image tools prepare text scripts and prompts only.",
-      "User request:",
-      prompt
-    ].join("\n\n");
-
-    const response = await fetch(
-      PRO_MAX_AI_CENTER.endpoint,
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-          message,
-          mode: tool,
-          language
-        }),
-
-        signal: controller.signal
-      }
+    const project = normalizeProject(
+      options.project || state.project
     );
 
-    if (!response.ok) {
+    if (!project) {
+
       throw new Error(
-        `ai/http-${response.status}`
+        translate("invalidProject")
       );
+
     }
 
-    const data = await response.json();
+    const tool = has(
+      TOOLS,
+      options.tool || options.mode || state.tool
+    )
+      ? options.tool || options.mode || state.tool
+      : "assistant";
 
-    if (data.success === false || data.error) {
-      throw new Error("ai/backend-error");
-    }
+    const provider =
+      options.provider ||
+      (
+        tool === "tutor"
+          ? "professor"
+          : state.provider
+      );
 
-    const content =
-      data.answer ||
-      data.reply ||
-      data.content ||
-      data.response ||
-      data.message ||
-      data.text ||
-      "";
+    if (!has(CONFIG.endpoints, provider)) {
 
-    if (
-      typeof content !== "string" ||
-      !content.trim()
-    ) {
-      throw new Error("ai/empty-response");
+      throw new Error(
+        translate("invalidProvider")
+      );
+
     }
 
     return {
-      id: data.id ||
-        request.id ||
-        createAIRequestId(),
 
-      content: content.trim(),
+      id: typeof crypto !== "undefined" &&
+          typeof crypto.randomUUID === "function"
 
-      provider: "OpenAI",
+        ? crypto.randomUUID()
 
-      project: projectId,
+        : `ai-${Date.now()}-${Math.random()
+            .toString(36)
+            .slice(2)}`,
+
+      prompt,
+
+      project,
 
       tool,
 
-      language,
+      provider,
 
-      createdAt:
-        data.createdAt ||
-        new Date().toISOString()
+      language: normalizeLanguage(
+        options.language || state.language
+      ),
+
+      school: project === "academy"
+
+        ? String(
+            options.school || state.school || ""
+          ).slice(0, 150)
+
+        : "",
+
+      createdAt: new Date().toISOString()
+
     };
 
-  } finally {
-    clearTimeout(timeout);
-    aiRequestInProgress = false;
-  }
-}
-
-/* =====================================================
-   DISPLAY RESPONSE
-   ===================================================== */
-
-function displayAIResponse(response) {
-  const output = aiQuery(
-    "#ai-response, [data-ai-response]"
-  );
-
-  if (!output) return;
-
-  output.hidden = false;
-
-  if (
-    output.tagName === "TEXTAREA" ||
-    output.tagName === "INPUT"
-  ) {
-    output.value = response.content;
-  } else {
-    output.textContent = response.content;
   }
 
-  aiQueryAll("[data-ai-provider]")
-    .forEach(element => {
-      element.textContent =
-        response.provider || "PRO-MAX AI";
-    });
 
-  aiQueryAll("[data-ai-response-date]")
-    .forEach(element => {
-      element.textContent =
-        formatAIDate(response.createdAt);
-    });
+  /* =====================================================
+     CENTRAL PROJECT CONTEXT
+  ===================================================== */
 
-  output.scrollIntoView({
-    behavior: "smooth",
-    block: "nearest"
-  });
-}
+  function buildMessage(request) {
 
-function getAIResponseContent() {
-  const output = aiQuery(
-    "#ai-response, [data-ai-response]"
-  );
+    const project = PROJECTS[request.project];
 
-  if (!output) return "";
+    const tool = TOOLS[request.tool];
 
-  if (
-    output.tagName === "TEXTAREA" ||
-    output.tagName === "INPUT"
-  ) {
-    return output.value.trim();
+    return [
+
+      "BSS1815 PRO-MAX DMP",
+
+      `PROJECT: ${project.name}`,
+
+      `PROJECT CONTEXT: ${project.context.trim()}`,
+
+      `SCHOOL: ${request.school || "Not applicable"}`,
+
+      `AI MODE: ${request.tool}`,
+
+      `TASK: ${tool.instruction}`,
+
+      `RESPONSE LANGUAGE: ${request.language}`,
+
+      "Do not invent information or completed external actions.",
+
+      "USER REQUEST:",
+
+      request.prompt
+
+    ].join("\n\n");
+
   }
 
-  return output.textContent.trim();
-}
 
-/* =====================================================
-   ACTION BUTTONS
-   ===================================================== */
+  /* =====================================================
+     CENTRAL ENDPOINT RESOLUTION
+  ===================================================== */
 
-function initializeAIActionButtons() {
-  aiQueryAll("[data-ai-copy]")
-    .forEach(button => {
-      button.addEventListener(
-        "click",
-        copyAIResponse
+  function resolveEndpoint(provider) {
+
+    const endpoint = CONFIG.endpoints[provider];
+
+    if (!endpoint) {
+
+      throw new Error(
+        translate("invalidProvider")
       );
-    });
 
-  aiQueryAll("[data-ai-clear]")
-    .forEach(button => {
-      button.addEventListener(
-        "click",
-        clearAIWorkspace
-      );
-    });
-
-  aiQueryAll("[data-ai-download]")
-    .forEach(button => {
-      button.addEventListener(
-        "click",
-        downloadAIResponse
-      );
-    });
-
-  aiQueryAll("[data-ai-retry]")
-    .forEach(button => {
-      button.addEventListener(
-        "click",
-        retryLastAIRequest
-      );
-    });
-}
-
-async function copyAIResponse() {
-  const content = getAIResponseContent();
-
-  if (!content) return;
-
-  try {
-    await navigator.clipboard.writeText(content);
-
-    showAIMessage(
-      getAIText(
-        "Repons lan kopye.",
-        "Réponse copiée.",
-        "Response copied."
-      ),
-      "success"
-    );
-
-  } catch {
-    showAIMessage(
-      getAIText(
-        "Kopi a pa reyisi.",
-        "La copie a échoué.",
-        "Copy failed."
-      ),
-      "error"
-    );
-  }
-}
-
-function clearAIWorkspace() {
-  if (aiRequestInProgress) return;
-
-  const input = aiQuery(
-    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
-  );
-
-  const output = aiQuery(
-    "#ai-response, [data-ai-response]"
-  );
-
-  if (input) {
-    input.value = "";
-    input.focus();
-  }
-
-  if (output) {
-    if (
-      output.tagName === "TEXTAREA" ||
-      output.tagName === "INPUT"
-    ) {
-      output.value = "";
-    } else {
-      output.textContent = "";
     }
 
-    output.hidden = true;
-  }
+    const centralOrigin = new URL(CONFIG.domain).origin;
 
-  aiQueryAll(
-    "[data-ai-provider], [data-ai-response-date]"
-  ).forEach(element => {
-    element.textContent = "";
-  });
+    const currentOrigin = window.location.origin;
 
-  setAIStatus("idle");
-}
+    if (currentOrigin === centralOrigin) {
 
-function downloadAIResponse() {
-  const content = getAIResponseContent();
+      return endpoint;
 
-  if (!content) return;
-
-  const blob = new Blob(
-    [content],
-    {
-      type: "text/plain;charset=utf-8"
     }
-  );
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+    return new URL(
+      endpoint,
+      centralOrigin
+    ).href;
 
-  link.href = url;
+  }
 
-  link.download =
-    `BSS1815-AI-${getActiveAIProject()}-${Date.now()}.txt`;
 
-  document.body.appendChild(link);
+  /* =====================================================
+     OPENAI LIVE + GEMINI LIVE + PROFESSOR
+  ===================================================== */
 
-  link.click();
-  link.remove();
+  async function sendAIRequest(input) {
 
-  setTimeout(
-    () => URL.revokeObjectURL(url),
-    1000
-  );
-}
+    const request = createRequest(input);
 
-function retryLastAIRequest() {
-  if (aiRequestInProgress) return;
+    const controller = new AbortController();
 
-  const lastItem = getAIHistory()[0];
+    const timer = setTimeout(
 
-  if (!lastItem?.request?.prompt) {
-    showAIMessage(
-      getAIText(
-        "Pa gen demann pou rekòmanse.",
-        "Aucune demande à relancer.",
-        "No request to retry."
-      ),
-      "error"
+      () => controller.abort(),
+
+      CONFIG.timeout
+
     );
 
-    return;
+    try {
+
+      const response = await fetch(
+
+        resolveEndpoint(request.provider),
+
+        {
+
+          method: "POST",
+
+          headers: {
+
+            "Content-Type": "application/json"
+
+          },
+
+          credentials: "omit",
+
+          cache: "no-store",
+
+          signal: controller.signal,
+
+          body: JSON.stringify({
+
+            id: request.id,
+
+            message: buildMessage(request),
+
+            project: request.project,
+
+            language: request.language,
+
+            mode: request.tool,
+
+            school: request.school
+
+          })
+
+        }
+
+      );
+
+      let data;
+
+      try {
+
+        data = await response.json();
+
+      } catch {
+
+        throw new Error(
+
+          `Invalid backend response — HTTP ${response.status}`
+
+        );
+
+      }
+
+      if (!data || typeof data !== "object") {
+
+        throw new Error(
+          translate("noAnswer")
+        );
+
+      }
+
+      if (!response.ok || data.success === false) {
+
+        const errorMessage =
+          typeof data.error === "string"
+
+            ? data.error
+
+            : data.error?.message;
+
+        throw new Error(
+
+          errorMessage ||
+
+          `Backend HTTP ${response.status}`
+
+        );
+
+      }
+
+      const answer = [
+
+        data.answer,
+
+        data.reply,
+
+        data.response,
+
+        data.content,
+
+        data.text,
+
+        data.message
+
+      ].find(value =>
+
+        typeof value === "string" &&
+
+        value.trim() &&
+
+        value.trim() !== "AI pa retounen okenn tèks."
+
+      );
+
+      if (!answer) {
+
+        throw new Error(
+          translate("noAnswer")
+        );
+
+      }
+
+      return {
+
+        id: data.id || request.id,
+
+        success: true,
+
+        answer,
+
+        content: answer,
+
+        reply: answer,
+
+        provider: data.provider ||
+
+          (
+
+            request.provider === "openai"
+
+              ? "OpenAI"
+
+              : "Google Gemini"
+
+          ),
+
+        model: data.model || "",
+
+        project: request.project,
+
+        language: request.language,
+
+        tool: request.tool,
+
+        createdAt:
+
+          data.createdAt ||
+
+          new Date().toISOString()
+
+      };
+
+    } catch (error) {
+
+      if (error.name === "AbortError") {
+
+        throw new Error(
+          translate("timeout")
+        );
+
+      }
+
+      throw error;
+
+    } finally {
+
+      clearTimeout(timer);
+
+    }
+
   }
 
-  setActiveAIProject(
-    lastItem.request.project
-  );
 
-  selectAITool(
-    lastItem.request.tool
-  );
+  /* =====================================================
+     INDIVIDUAL AI ENGINES
+  ===================================================== */
 
-  const input = aiQuery(
-    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
-  );
+  function normalizeInput(input) {
 
-  if (input) {
-    input.value = lastItem.request.prompt;
-    input.focus();
+    return typeof input === "string"
+
+      ? { prompt: input }
+
+      : input || {};
+
   }
-}
 
-/* =====================================================
-   AI HISTORY
-   ===================================================== */
+  function askOpenAI(input) {
 
-function getAIHistory() {
-  const saved = aiStorageGet(
-    PRO_MAX_AI_CENTER.storageKeys.history
-  );
+    return sendAIRequest({
 
-  if (!saved) return [];
+      ...normalizeInput(input),
 
-  try {
-    const parsed = JSON.parse(saved);
+      provider: "openai"
 
-    return Array.isArray(parsed)
-      ? parsed.filter(
-          item =>
-            item &&
-            item.request &&
-            item.response
-        )
-      : [];
+    });
 
-  } catch {
-    return [];
   }
-}
 
-function saveAIHistoryItem(request, response) {
-  const history = getAIHistory();
+  function askGemini(input) {
 
-  history.unshift({
-    id: request.id,
+    return sendAIRequest({
 
-    request: {
-      id: request.id,
-      project: request.project,
-      tool: request.tool,
-      language: request.language,
-      prompt: request.prompt,
-      createdAt: request.createdAt
-    },
+      ...normalizeInput(input),
 
-    response
-  });
+      provider: "gemini"
 
-  aiStorageSet(
-    PRO_MAX_AI_CENTER.storageKeys.history,
-    JSON.stringify(history.slice(0, 50))
-  );
+    });
 
-  displayAIHistory();
-}
+  }
 
-function displayAIHistory() {
-  const container = aiQuery(
-    "#ai-history, [data-ai-history]"
-  );
+  function askProfessor(input) {
 
-  if (!container) return;
+    return sendAIRequest({
 
-  const history = getAIHistory();
+      ...normalizeInput(input),
 
-  container.innerHTML = "";
+      provider: "professor",
 
-  if (!history.length) {
-    const empty = document.createElement("p");
+      tool: "tutor"
 
-    empty.className = "ai-history-empty";
+    });
 
-    empty.textContent = getAIText(
-      "Pa gen okenn aktivite AI ankò.",
-      "Aucune activité IA.",
-      "No AI activity yet."
+  }
+
+
+  /* =====================================================
+     AI WORKSPACE
+  ===================================================== */
+
+  function getPromptInput() {
+
+    return $(
+
+      "#ai-prompt, " +
+
+      "[data-ai-prompt], " +
+
+      "#ai-form textarea, " +
+
+      "[data-ai-form] textarea"
+
     );
 
-    container.appendChild(empty);
-
-    return;
   }
 
-  history.forEach(item => {
-    const article =
-      document.createElement("article");
+  function getResponseOutput() {
 
-    article.className = "ai-history-item";
+    return $(
 
-    const project =
-      PRO_MAX_AI_CENTER.projects[
-        item.request.project
-      ];
+      "#ai-response, " +
 
-    const tool =
-      getAITool(item.request.tool);
+      "[data-ai-response]"
 
-    article.innerHTML = `
-      <button
-        type="button"
-        class="ai-history-open"
-        data-ai-history-id="${escapeAIHTML(item.id)}"
-      >
-        <strong>
-          ${escapeAIHTML(
-            getAILocalizedValue(
-              tool?.name || item.request.tool
-            )
-          )}
-        </strong>
+    );
 
-        <span>
-          ${escapeAIHTML(project?.name || "")}
-        </span>
+  }
 
-        <small>
-          ${escapeAIHTML(
-            truncateAIText(
-              item.request.prompt,
-              90
-            )
-          )}
-        </small>
+  function displayResponse(response) {
 
-        <time>
-          ${escapeAIHTML(
-            formatAIDate(
-              item.request.createdAt
-            )
-          )}
-        </time>
-      </button>
-    `;
+    state.lastResponse = response;
 
-    article.querySelector("button")
-      .addEventListener("click", () => {
-        openAIHistoryItem(item.id);
+    const output = getResponseOutput();
+
+    if (output) {
+
+      output.hidden = false;
+
+      if (
+
+        output.tagName === "TEXTAREA" ||
+
+        output.tagName === "INPUT"
+
+      ) {
+
+        output.value = response.answer;
+
+      } else {
+
+        output.textContent = response.answer;
+
+      }
+
+    }
+
+    $$("[data-ai-provider]").forEach(element => {
+
+      element.textContent =
+
+        response.provider +
+
+        (
+
+          response.model
+
+            ? ` / ${response.model}`
+
+            : ""
+
+        );
+
+    });
+
+    $$("[data-ai-response-date]").forEach(element => {
+
+      element.textContent = new Date(
+
+        response.createdAt
+
+      ).toLocaleString();
+
+    });
+
+  }
+
+
+  /* =====================================================
+     STATUS MANAGEMENT
+  ===================================================== */
+
+  function setStatus(key, detail = "") {
+
+    state.status = key;
+
+    state.statusDetail = detail;
+
+    $$("[data-ai-status], #ai-status")
+      .forEach(element => {
+
+        element.textContent =
+
+          translate(key) +
+
+          (detail ? ` — ${detail}` : "");
+
+        element.dataset.status = key;
+
+        element.setAttribute(
+          "aria-live",
+          "polite"
+        );
+
       });
 
-    container.appendChild(article);
-  });
-}
-
-function openAIHistoryItem(historyId) {
-  const item = getAIHistory().find(
-    entry => entry.id === historyId
-  );
-
-  if (!item) return;
-
-  setActiveAIProject(
-    item.request.project
-  );
-
-  selectAITool(
-    item.request.tool
-  );
-
-  const input = aiQuery(
-    "#ai-prompt, [name='prompt'], [data-ai-prompt]"
-  );
-
-  if (input) {
-    input.value = item.request.prompt;
   }
 
-  displayAIResponse(item.response);
-}
+  function setBusy(value) {
 
-function initializeAIHistoryControls() {
-  aiQueryAll("[data-ai-clear-history]")
-    .forEach(button => {
-      button.addEventListener(
-        "click",
-        clearAIHistory
+    state.busy = Boolean(value);
+
+    $$(
+
+      "[data-ai-submit], " +
+
+      "[data-ai-retry], " +
+
+      "[data-ai-clear], " +
+
+      "[data-ai-clear-history], " +
+
+      "#ai-form button[type='submit']"
+
+    ).forEach(button => {
+
+      button.disabled = state.busy;
+
+    });
+
+  }
+
+
+  /* =====================================================
+     EXECUTE WORKSPACE REQUEST
+  ===================================================== */
+
+  async function executeRequest(input) {
+
+    if (state.busy) {
+
+      throw new Error(
+        translate("busy")
       );
-    });
-}
 
-async function clearAIHistory() {
-  const message = getAIText(
-    "Èske ou vle efase tout istwa AI a?",
-    "Supprimer tout l’historique IA ?",
-    "Delete all AI history?"
-  );
-
-  const confirmed =
-    typeof window.confirmPlatformAction === "function"
-
-      ? await window.confirmPlatformAction(message)
-
-      : window.confirm(message);
-
-  if (!confirmed) return;
-
-  aiStorageRemove(
-    PRO_MAX_AI_CENTER.storageKeys.history
-  );
-
-  displayAIHistory();
-
-  showAIMessage(
-    getAIText(
-      "Istwa AI a efase.",
-      "Historique supprimé.",
-      "AI history deleted."
-    ),
-    "success"
-  );
-}
-
-/* =====================================================
-   AI STATUS
-   ===================================================== */
-
-function setAIStatus(status) {
-  const messages = {
-    idle: getAIText(
-      "Pare",
-      "Prêt",
-      "Ready"
-    ),
-
-    processing: getAIText(
-      "AI a ap travay...",
-      "L’IA travaille...",
-      "AI is working..."
-    ),
-
-    success: getAIText(
-      "Fini",
-      "Terminé",
-      "Completed"
-    ),
-
-    error: getAIText(
-      "Erè",
-      "Erreur",
-      "Error"
-    )
-  };
-
-  aiQueryAll("[data-ai-status]")
-    .forEach(element => {
-      element.dataset.status = status;
-
-      element.textContent =
-        messages[status] || status;
-    });
-}
-
-function setAIButtonLoading(button, loading) {
-  aiRequestInProgress = loading;
-
-  if (!button) return;
-
-  if (loading) {
-    button.dataset.originalText =
-      button.textContent;
-
-    button.disabled = true;
-    button.classList.add("is-loading");
-
-    button.textContent = getAIText(
-      "AI a ap travay...",
-      "L’IA travaille...",
-      "AI is working..."
-    );
-
-    return;
-  }
-
-  button.disabled = false;
-
-  button.classList.remove("is-loading");
-
-  if (button.dataset.originalText !== undefined) {
-    button.textContent =
-      button.dataset.originalText;
-
-    delete button.dataset.originalText;
-  }
-}
-
-/* =====================================================
-   HELPERS
-   ===================================================== */
-
-function createAIRequestId() {
-  if (window.crypto?.randomUUID) {
-    return window.crypto.randomUUID();
-  }
-
-  return `ai-${Date.now()}-${Math.random()
-    .toString(16)
-    .slice(2)}`;
-}
-
-function formatAIDate(value) {
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "";
-  }
-
-  const locales = {
-    ht: "fr-HT",
-    fr: "fr-FR",
-    en: "en-US"
-  };
-
-  return new Intl.DateTimeFormat(
-    locales[getAILanguage()] || "fr-HT",
-    {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit"
     }
-  ).format(date);
-}
 
-function truncateAIText(value, maxLength) {
-  const text = String(value || "");
+    let request;
 
-  return text.length > maxLength
+    try {
 
-    ? `${text.slice(0, maxLength)}...`
+      request = createRequest(input);
 
-    : text;
-}
+    } catch (error) {
 
-function escapeAIHTML(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+      setStatus("error", error.message);
 
-function showAIMessage(message, type = "info") {
-  if (
-    typeof window.showApplicationMessage === "function"
-  ) {
-    window.showApplicationMessage(
-      message,
-      type
-    );
+      throw error;
 
-    return;
+    }
+
+    state.lastRequest = { ...request };
+
+    setBusy(true);
+
+    setStatus("processing");
+
+    try {
+
+      const response = await sendAIRequest(request);
+
+      displayResponse(response);
+
+      saveHistory(request, response);
+
+      setStatus("success");
+
+      return response;
+
+    } catch (error) {
+
+      setStatus("error", error.message);
+
+      throw error;
+
+    } finally {
+
+      setBusy(false);
+
+    }
+
   }
 
-  window.alert(message);
-}
 
-/* =====================================================
-   ERROR MANAGEMENT
-   ===================================================== */
+  /* =====================================================
+     SESSION HISTORY
+  ===================================================== */
 
-function getAIErrorMessage(error) {
-  const code = String(
-    error?.message ||
-    error?.code ||
-    ""
-  );
+  function saveHistory(request, response) {
 
-  if (
-    code.includes("http-401") ||
-    code.includes("http-403")
-  ) {
-    return getAIText(
-      "Koneksyon AI a pa otorize.",
-      "Connexion IA non autorisée.",
-      "AI connection unauthorized."
+    state.history.unshift({
+
+      request: { ...request },
+
+      response: { ...response }
+
+    });
+
+    state.history = state.history.slice(
+
+      0,
+
+      CONFIG.maxHistory
+
     );
+
+    renderHistory();
+
   }
 
-  if (code.includes("http-404")) {
-    return getAIText(
-      "Endpoint AI a pa disponib.",
-      "Endpoint IA introuvable.",
-      "AI endpoint not found."
+  function renderHistory() {
+
+    const container = $(
+
+      "#ai-history, [data-ai-history]"
+
     );
+
+    if (!container) return;
+
+    container.replaceChildren();
+
+    if (!state.history.length) {
+
+      container.textContent =
+        translate("noHistory");
+
+      return;
+
+    }
+
+    state.history.forEach(item => {
+
+      const card =
+        document.createElement("article");
+
+      card.className = "ai-history-item";
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        PROJECTS[item.request.project].name;
+
+      const prompt =
+        document.createElement("p");
+
+      prompt.textContent =
+        item.request.prompt.slice(0, 200);
+
+      const date =
+        document.createElement("small");
+
+      date.textContent = new Date(
+
+        item.response.createdAt
+
+      ).toLocaleString();
+
+      const button =
+        document.createElement("button");
+
+      button.type = "button";
+
+      button.textContent = "↗";
+
+      button.addEventListener("click", () => {
+
+        if (state.busy) return;
+
+        setProject(item.request.project);
+
+        setLanguage(item.request.language);
+
+        selectTool(item.request.tool);
+
+        setProvider(item.request.provider);
+
+        setSchool(item.request.school);
+
+        const input = getPromptInput();
+
+        if (input) {
+
+          input.value = item.request.prompt;
+
+        }
+
+        state.lastRequest = {
+
+          ...item.request
+
+        };
+
+        displayResponse(item.response);
+
+        setStatus("success");
+
+      });
+
+      card.append(
+
+        title,
+
+        prompt,
+
+        date,
+
+        button
+
+      );
+
+      container.appendChild(card);
+
+    });
+
   }
 
-  if (code.includes("http-429")) {
-    return getAIText(
-      "Limit demann API a rive.",
-      "Limite de requêtes API atteinte.",
-      "API request limit reached."
-    );
+  function clearHistory() {
+
+    if (state.busy) return;
+
+    state.history = [];
+
+    renderHistory();
+
   }
 
-  if (
-    error?.name === "AbortError" ||
-    code.includes("http-504")
-  ) {
-    return getAIText(
-      "Sèvè AI a pran twòp tan.",
-      "Le serveur IA met trop de temps.",
-      "AI server request timed out."
-    );
+
+  /* =====================================================
+     COPY RESPONSE
+  ===================================================== */
+
+  async function copyResponse() {
+
+    const answer = state.lastResponse?.answer;
+
+    if (!answer) return false;
+
+    try {
+
+      await navigator.clipboard.writeText(answer);
+
+      setStatus("copied");
+
+      return true;
+
+    } catch {
+
+      setStatus("error", translate("copyError"));
+
+      return false;
+
+    }
+
   }
 
-  if (code.includes("message-required")) {
-    return getAIText(
-      "Ekri yon mesaj.",
-      "Écrivez un message.",
-      "Enter a message."
-    );
+
+  /* =====================================================
+     CLEAR WORKSPACE
+  ===================================================== */
+
+  function clearWorkspace() {
+
+    if (state.busy) return;
+
+    const input = getPromptInput();
+
+    const output = getResponseOutput();
+
+    if (input) {
+
+      input.value = "";
+
+    }
+
+    if (output) {
+
+      if (
+
+        output.tagName === "TEXTAREA" ||
+
+        output.tagName === "INPUT"
+
+      ) {
+
+        output.value = "";
+
+      } else {
+
+        output.textContent = "";
+
+      }
+
+    }
+
+    state.lastRequest = null;
+
+    state.lastResponse = null;
+
+    $$("[data-ai-provider]").forEach(element => {
+
+      element.textContent = "—";
+
+    });
+
+    setStatus("ready");
+
   }
 
-  if (code.includes("message-too-long")) {
-    return getAIText(
-      "Mesaj la twò long.",
-      "Le message est trop long.",
-      "The message is too long."
-    );
+
+  /* =====================================================
+     RETRY REQUEST
+  ===================================================== */
+
+  function retryRequest() {
+
+    if (!state.lastRequest) {
+
+      return Promise.resolve(null);
+
+    }
+
+    return executeRequest({
+
+      ...state.lastRequest
+
+    });
+
   }
 
-  if (code.includes("empty-response")) {
-    return getAIText(
-      "AI a pa retounen okenn repons.",
-      "Aucune réponse IA.",
-      "No AI response received."
+
+  /* =====================================================
+     EXPORT AI RESPONSE
+  ===================================================== */
+
+  function downloadResponse() {
+
+    const response = state.lastResponse;
+
+    if (!response?.answer) return;
+
+    const content = [
+
+      "BSS1815 PRO-MAX DMP",
+
+      PROJECTS[response.project].name,
+
+      `Provider: ${response.provider}`,
+
+      `Date: ${response.createdAt}`,
+
+      "",
+
+      response.answer
+
+    ].join("\n");
+
+    const blob = new Blob(
+
+      [content],
+
+      {
+
+        type: "text/plain;charset=utf-8"
+
+      }
+
     );
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    link.download =
+
+      `bss1815-ai-${Date.now()}.txt`;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+    setTimeout(
+
+      () => URL.revokeObjectURL(url),
+
+      1000
+
+    );
+
   }
 
-  if (
-    code.includes("Failed to fetch") ||
-    code.includes("NetworkError")
-  ) {
-    return getAIText(
-      "AI Center la pa konekte ak sèvè a.",
-      "Connexion au serveur impossible.",
-      "Unable to connect to AI server."
+
+  /* =====================================================
+     PROF AVATAR
+     EXISTING VIDEO + ELEVENLABS VOICE
+  ===================================================== */
+
+  function getAvatar() {
+
+    return $(
+
+      "video[data-prof-avatar], " +
+
+      "video#prof-avatar, " +
+
+      "video#prof-avatar-video, " +
+
+      "video#aiProfAvatar, " +
+
+      "#prof-avatar video"
+
     );
+
   }
 
-  return getAIText(
-    "Gen yon erè nan sèvis AI a.",
-    "Une erreur du service IA est survenue.",
-    "An AI service error occurred."
-  );
-}
+  async function playAvatar() {
 
-/* =====================================================
-   PUBLIC CENTRAL AI INTERFACE
-   ===================================================== */
+    const video = getAvatar();
 
-window.PRO_MAX_AI_CENTER =
-  PRO_MAX_AI_CENTER;
+    if (!video) {
 
-window.initializeAICenter =
-  initializeAICenter;
+      setStatus("avatarError");
 
-window.selectAITool =
-  selectAITool;
+      return false;
 
-window.setActiveAIProject =
-  setActiveAIProject;
+    }
 
-window.getActiveAIProject =
-  getActiveAIProject;
+    if (
 
-window.createAIRequest =
-  createAIRequest;
+      !video.getAttribute("src") &&
 
-window.sendAIRequest =
-  sendAIRequest;
+      !video.querySelector("source")
 
-window.copyAIResponse =
-  copyAIResponse;
+    ) {
 
-window.clearAIWorkspace =
-  clearAIWorkspace;
+      video.src = new URL(
 
-window.downloadAIResponse =
-  downloadAIResponse;
+        CONFIG.avatar,
 
-window.clearAIHistory =
-  clearAIHistory;
+        CONFIG.domain
 
-/* =====================================================
-   START CENTRAL AI CENTER
-   ===================================================== */
+      ).href;
 
-if (document.readyState === "loading") {
-  document.addEventListener(
-    "DOMContentLoaded",
-    initializeAICenter,
-    { once: true }
-  );
-} else {
-  initializeAICenter();
-}
+    }
 
-/* =====================================================
-   END OF FILE
+    try {
+
+      await video.play();
+
+      return true;
+
+    } catch {
+
+      setStatus("avatarError");
+
+      return false;
+
+    }
+
+  }
+
+  function stopAvatar() {
+
+    const video = getAvatar();
+
+    if (!video) return;
+
+    video.pause();
+
+    if (video.readyState > 0) {
+
+      video.currentTime = 0;
+
+    }
+
+  }
+
+
+  /* =====================================================
+     CONNECT PROFESSOR FORM
+  ===================================================== */
+
+  function connectProfessor() {
+
+    const form = $(
+
+      "#prof-form, " +
+
+      "#professor-form, " +
+
+      "[data-prof-form]"
+
+    );
+
+    bind(form, "submit", async event => {
+
+      event.preventDefault();
+
+      if (state.busy) return;
+
+      const input = form.querySelector(
+
+        "[data-prof-prompt], " +
+
+        "[name='question'], " +
+
+        "[name='message'], " +
+
+        "textarea"
+
+      );
+
+      const output = $(
+
+        "#prof-response, " +
+
+        "#professor-response, " +
+
+        "[data-prof-response]"
+
+      );
+
+      if (!input) return;
+
+      setBusy(true);
+
+      setStatus("processing");
+
+      try {
+
+        const response = await askProfessor({
+
+          prompt: input.value,
+
+          project: state.project,
+
+          language: state.language,
+
+          school: state.school
+
+        });
+
+        if (output) {
+
+          if (
+
+            output.tagName === "TEXTAREA" ||
+
+            output.tagName === "INPUT"
+
+          ) {
+
+            output.value = response.answer;
+
+          } else {
+
+            output.textContent = response.answer;
+
+          }
+
+        }
+
+        setStatus("success");
+
+      } catch (error) {
+
+        if (output) {
+
+          output.textContent = error.message;
+
+        }
+
+        setStatus("error", error.message);
+
+      } finally {
+
+        setBusy(false);
+
+      }
+
+    });
+
+    $$("[data-prof-play]").forEach(button => {
+
+      bind(button, "click", playAvatar);
+
+    });
+
+    $$("[data-prof-stop]").forEach(button => {
+
+      bind(button, "click", stopAvatar);
+
+    });
+
+  }
+
+
+  /* =====================================================
+     CONNECT CENTRAL AI FORM
+  ===================================================== */
+
+  function connectAIForm() {
+
+    const form = $(
+
+      "#ai-form, [data-ai-form]"
+
+    );
+
+    bind(form, "submit", async event => {
+
+      event.preventDefault();
+
+      const input = getPromptInput();
+
+      if (!input || state.busy) return;
+
+      try {
+
+        await executeRequest({
+
+          prompt: input.value
+
+        });
+
+      } catch {
+
+        // Error already displayed by executeRequest.
+
+      }
+
+    });
+
+  }
+
+
+  /* =====================================================
+     CONNECT PROJECT BUTTONS
+  ===================================================== */
+
+  function connectProjects() {
+
+    $$("[data-ai-project]").forEach(button => {
+
+      bind(button, "click", () => {
+
+        try {
+
+          setProject(button.dataset.aiProject);
+
+        } catch (error) {
+
+          setStatus("error", error.message);
+
+        }
+
+      });
+
+    });
+
+    $$("[data-ai-project-selector]").forEach(element => {
+
+      if (element.tagName !== "SELECT") return;
+
+      bind(element, "change", () => {
+
+        try {
+
+          setProject(element.value);
+
+        } catch (error) {
+
+          setStatus("error", error.message);
+
+        }
+
+      });
+
+    });
+
+    $$("[data-ai-school]").forEach(element => {
+
+      bind(element, "change", () => {
+
+        setSchool(element.value);
+
+      });
+
+    });
+
+  }
+
+
+  /* =====================================================
+     CONNECT PROVIDERS
+  ===================================================== */
+
+  function connectProviders() {
+
+    $$("[data-ai-provider-select]").forEach(element => {
+
+      bind(element, "change", () => {
+
+        try {
+
+          setProvider(element.value);
+
+        } catch (error) {
+
+          setStatus("error", error.message);
+
+        }
+
+      });
+
+    });
+
+    $$("[data-ai-engine]").forEach(button => {
+
+      bind(button, "click", () => {
+
+        try {
+
+          setProvider(button.dataset.aiEngine);
+
+        } catch (error) {
+
+          setStatus("error", error.message);
+
+        }
+
+      });
+
+    });
+
+  }
+
+
+  /* =====================================================
+     CONNECT ALL WORKSPACE BUTTONS
+  ===================================================== */
+
+  function connectButtons() {
+
+    $$("[data-ai-lang]").forEach(button => {
+
+      bind(button, "click", () => {
+
+        setLanguage(button.dataset.aiLang);
+
+      });
+
+    });
+
+    $$("[data-ai-copy]").forEach(button => {
+
+      bind(button, "click", copyResponse);
+
+    });
+
+    $$("[data-ai-clear]").forEach(button => {
+
+      bind(button, "click", clearWorkspace);
+
+    });
+
+    $$("[data-ai-download]").forEach(button => {
+
+      bind(button, "click", downloadResponse);
+
+    });
+
+    $$("[data-ai-clear-history]").forEach(button => {
+
+      bind(button, "click", clearHistory);
+
+    });
+
+    $$("[data-ai-retry]").forEach(button => {
+
+      bind(button, "click", async () => {
+
+        try {
+
+          await retryRequest();
+
+        } catch {
+
+          // Error already displayed.
+
+        }
+
+      });
+
+    });
+
+    $$("[data-ai-tool]").forEach(button => {
+
+      bind(button, "click", () => {
+
+        selectTool(button.dataset.aiTool);
+
+      });
+
+    });
+
+  }
+
+
+  /* =====================================================
+     CENTRAL AI CENTER NAVIGATION
+  ===================================================== */
+
+  function getCentralURL(project, language) {
+
+    const normalized = normalizeProject(
+
+      project || state.project
+
+    );
+
+    if (!normalized) {
+
+      throw new Error(
+        translate("invalidProject")
+      );
+
+    }
+
+    const url = new URL(
+
+      "/ai-center.html",
+
+      CONFIG.domain
+
+    );
+
+    url.searchParams.set(
+
+      "project",
+
+      normalized
+
+    );
+
+    url.searchParams.set(
+
+      "lang",
+
+      normalizeLanguage(
+        language || state.language
+      )
+
+    );
+
+    return url.href;
+
+  }
+
+  function openCentralAI(project, language) {
+
+    window.location.assign(
+
+      getCentralURL(project, language)
+
+    );
+
+  }
+
+  function connectCentralLinks() {
+
+    $$("[data-open-central-ai]").forEach(element => {
+
+      const project =
+        element.dataset.openCentralAi ||
+        state.project;
+
+      try {
+
+        const url = getCentralURL(project);
+
+        if (element.tagName === "A") {
+
+          element.href = url;
+
+        } else {
+
+          bind(element, "click", () => {
+
+            openCentralAI(project);
+
+          });
+
+        }
+
+      } catch (error) {
+
+        console.error(error.message);
+
+      }
+
+    });
+
+  }
+
+
+  /* =====================================================
+     INITIALIZATION
+  ===================================================== */
+
+  function initialize() {
+
+    if (state.initialized) return;
+
+    state.initialized = true;
+
+    const params = new URLSearchParams(
+
+      window.location.search
+
+    );
+
+    const project = normalizeProject(
+
+      params.get("project") ||
+
+      document.body?.dataset.aiProject ||
+
+      CONFIG.defaultProject
+
+    );
+
+    if (project) {
+
+      state.project = project;
+
+    }
+
+    state.language = normalizeLanguage(
+
+      params.get("lang") ||
+
+      document.documentElement.lang ||
+
+      CONFIG.defaultLanguage
+
+    );
+
+    const provider = params.get("provider");
+
+    if (
+
+      provider &&
+
+      has(CONFIG.endpoints, provider)
+
+    ) {
+
+      state.provider = provider;
+
+    }
+
+    const school = params.get("school");
+
+    if (school && state.project === "academy") {
+
+      setSchool(school);
+
+    }
+
+    updateProjectInterface();
+
+    updateLanguageInterface();
+
+    setProvider(state.provider);
+
+    renderTools();
+
+    renderHistory();
+
+    connectProjects();
+
+    connectProviders();
+
+    connectButtons();
+
+    connectAIForm();
+
+    connectProfessor();
+
+    connectCentralLinks();
+
+    setStatus("ready");
+
+    window.addEventListener(
+
+      "proMaxLanguageChanged",
+
+      event => {
+
+        const language =
+
+          event.detail?.language ||
+
+          event.detail?.lang ||
+
+          event.detail;
+
+        if (typeof language === "string") {
+
+          setLanguage(language);
+
+        }
+
+      }
+
+    );
+
+    window.dispatchEvent(
+
+      new CustomEvent(
+
+        "bss1815-central-ai-ready",
+
+        {
+
+          detail: {
+
+            version: CONFIG.version,
+
+            project: state.project,
+
+            provider: state.provider,
+
+            language: state.language
+
+          }
+
+        }
+
+      )
+
+    );
+
+    console.info(
+
+      "BSS1815 CENTRAL AI CONTROLLER INITIALIZED",
+
+      CONFIG.version
+
+    );
+
+  }
+
+
+  /* =====================================================
+     GLOBAL CENTRAL AI GATEWAY
+  ===================================================== */
+
+  const GATEWAY = Object.freeze({
+
+    version: CONFIG.version,
+
+    ask: sendAIRequest,
+
+    execute: executeRequest,
+
+    openai: askOpenAI,
+
+    gemini: askGemini,
+
+    professor: askProfessor,
+
+    setProject,
+
+    getProject,
+
+    setProvider,
+
+    getProvider,
+
+    setLanguage,
+
+    setSchool,
+
+    selectTool,
+
+    playAvatar,
+
+    stopAvatar,
+
+    copyResponse,
+
+    clearWorkspace,
+
+    clearHistory,
+
+    downloadResponse,
+
+    retry: retryRequest,
+
+    getCentralURL,
+
+    openCentralAI,
+
+    getProjects: () => Object.keys(PROJECTS),
+
+    getSchools: () => ({ ...SCHOOLS }),
+
+    getHistory: () => state.history.map(item => ({
+
+      request: { ...item.request },
+
+      response: { ...item.response }
+
+    })),
+
+    isBusy: () => state.busy,
+
+    getStatus: () => ({
+
+      initialized: state.initialized,
+
+      project: state.project,
+
+      provider: state.provider,
+
+      language: state.language,
+
+      school: state.school,
+
+      tool: state.tool,
+
+      busy: state.busy
+
+    })
+
+  });
+
+
+  /* =====================================================
+     GLOBAL COMPATIBILITY
+  ===================================================== */
+
+  window.PRO_MAX_AI_GATEWAY = GATEWAY;
+
+  window.PRO_MAX_AI_CENTER = GATEWAY;
+
+  if (!window.BSS1815_CENTRAL_AI) {
+
+    window.BSS1815_CENTRAL_AI = GATEWAY;
+
+  }
+
+  window.initializeAICenter = initialize;
+
+  window.selectAITool = selectTool;
+
+  window.setActiveAIProject = setProject;
+
+  window.getActiveAIProject = getProject;
+
+  window.createAIRequest = createRequest;
+
+  window.sendAIRequest = sendAIRequest;
+
+  window.copyAIResponse = copyResponse;
+
+  window.clearAIWorkspace = clearWorkspace;
+
+  window.downloadAIResponse = downloadResponse;
+
+  window.clearAIHistory = clearHistory;
+
+  window.playProfAvatar = playAvatar;
+
+  window.stopProfAvatar = stopAvatar;
+
+
+  /* =====================================================
+     START CENTRAL CONTROLLER
+  ===================================================== */
+
+  if (document.readyState === "loading") {
+
+    document.addEventListener(
+
+      "DOMContentLoaded",
+
+      initialize,
+
+      { once: true }
+
+    );
+
+  } else {
+
+    initialize();
+
+  }
+
+})();
+
+/* =========================================================
+   END OF CENTRAL AI CONTROLLER
+
    BSS1815 PRO-MAX DMP
-   BATI POU JODI A, PARE POU DEMEN
-   DEVAN DEVAN NÈT
-   ===================================================== */
+   ONE PLATFORM — ONE CENTRAL AI SYSTEM
+
+   DEVAN DEVAN NÈT.
+========================================================= */
