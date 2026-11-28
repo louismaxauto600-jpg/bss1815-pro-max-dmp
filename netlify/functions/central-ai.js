@@ -1,19 +1,23 @@
-
 /* =========================================================
    BSS1815 PRO-MAX DMP
    CENTRAL AI BACKEND
    FILE: netlify/functions/central-ai.js
-   VERSION: 1.0.1
+   VERSION: 1.1.0
    ========================================================= */
 
 "use strict";
 
+const { timingSafeEqual } = require("node:crypto");
+
 const CONFIG = Object.freeze({
   platform: "BSS1815 PRO-MAX DMP",
-  version: "1.0.1",
+  version: "1.1.0",
   domain: "https://bss1815promaxdmp.com",
   timeout: 45000,
   maxMessageLength: 12000,
+  speechTimeout: 20000,
+  maxSpeechLength: 1500,
+  maxSpeechBytes: 2000000,
 
   providers: Object.freeze({
     openai: "/.netlify/functions/openai-live",
@@ -160,7 +164,7 @@ function normalizeProvider(value, mode) {
    REQUEST VALIDATION
    ========================================================= */
 
-function parseRequest(event) {
+function readBody(event) {
   const raw = event.isBase64Encoded
     ? Buffer.from(event.body || "", "base64")
         .toString("utf8")
@@ -180,6 +184,10 @@ function parseRequest(event) {
     throw new Error("INVALID_REQUEST");
   }
 
+  return data;
+}
+
+function parseRequest(data) {
   const message =
     data.message ??
     data.prompt ??
@@ -367,30 +375,230 @@ async function connectProvider(request) {
 }
 
 /* =========================================================
+   PROF AVATAR — EXISTING VOICE / OPTIONAL SERVER ACTION
+
+   PCM 16-bit mono 24 kHz, for a compatible live avatar.
+   No voice generation on ordinary chat requests.
+   ========================================================= */
+
+function isVoiceAuthorized(event) {
+
+  const secret =
+    process.env.PROF_AVATAR_SERVER_TOKEN || "";
+
+  const auth =
+    event.headers?.authorization ||
+    event.headers?.Authorization ||
+    "";
+
+  if (!secret || !auth.startsWith("Bearer ")) {
+    return false;
+  }
+
+  const expected = Buffer.from(secret);
+  const received = Buffer.from(auth.slice(7));
+
+  return expected.length === received.length &&
+    timingSafeEqual(expected, received);
+}
+
+/* =========================================================
+   MAXIMAX VOICE — EXISTING ELEVENLABS VOICE
+   ========================================================= */
+
+async function speak(event, data, headers) {
+
+  if (process.env.PROF_AVATAR_VOICE_ENABLED !== "true") {
+
+    return failure(
+      503,
+      "VOICE_DISABLED",
+      "Voice is not enabled.",
+      headers
+    );
+
+  }
+
+  if (!isVoiceAuthorized(event)) {
+
+    return failure(
+      401,
+      "VOICE_UNAUTHORIZED",
+      "Server authorization required.",
+      headers
+    );
+
+  }
+
+  const key = process.env.ELEVENLABS_API_KEY;
+
+  const voiceId = process.env.ELEVENLABS_VOICE_ID;
+
+  const model = process.env.ELEVENLABS_MODEL_ID;
+
+  if (!key || !voiceId || !model) {
+
+    return failure(
+      503,
+      "VOICE_NOT_CONFIGURED",
+      "Existing voice configuration required.",
+      headers
+    );
+
+  }
+
+  if (
+    typeof data.text !== "string" ||
+    !data.text.trim() ||
+    data.text.trim().length > CONFIG.maxSpeechLength
+  ) {
+
+    return failure(
+      400,
+      "INVALID_SPEECH_TEXT",
+      "Provide 1 to 1500 characters.",
+      headers
+    );
+
+  }
+
+  const url =
+    "https://api.elevenlabs.io/v1/text-to-speech/" +
+    encodeURIComponent(voiceId) +
+    "?output_format=pcm_24000";
+
+  const controller = new AbortController();
+
+  const timer = setTimeout(
+    () => controller.abort(),
+    CONFIG.speechTimeout
+  );
+
+  try {
+
+    const response = await fetch(url, {
+
+      method: "POST",
+
+      headers: {
+        "xi-api-key": key,
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        text: data.text.trim(),
+        model_id: model
+      }),
+
+      signal: controller.signal,
+      redirect: "error"
+
+    });
+
+    if (!response.ok) {
+
+      return failure(
+        response.status === 429 ? 429 : 502,
+        "VOICE_PROVIDER_ERROR",
+        "Voice provider could not complete the request.",
+        headers
+      );
+
+    }
+
+    const audio = Buffer.from(
+      await response.arrayBuffer()
+    );
+
+    if (
+      !audio.length ||
+      audio.length % 2 ||
+      audio.length > CONFIG.maxSpeechBytes
+    ) {
+
+      return failure(
+        502,
+        "INVALID_VOICE_AUDIO",
+        "Invalid or oversized audio.",
+        headers
+      );
+
+    }
+
+    return json(200, {
+
+      success: true,
+
+      platform: CONFIG.platform,
+
+      version: CONFIG.version,
+
+      action: "speak",
+
+      audio: {
+
+        encoding: "base64",
+
+        format: "pcm_s16le",
+
+        sampleRate: 24000,
+
+        channels: 1,
+
+        data: audio.toString("base64")
+
+      }
+
+    }, headers);
+
+  } catch (error) {
+
+    return failure(
+      error.name === "AbortError" ? 504 : 502,
+      "VOICE_UNAVAILABLE",
+      "Voice request failed.",
+      headers
+    );
+
+  } finally {
+
+    clearTimeout(timer);
+
+  }
+
+}
+
+/* =========================================================
    NETLIFY CENTRAL API HANDLER
    ========================================================= */
 
 exports.handler = async function(event) {
+
   const { headers, allowed } = getHeaders(event);
 
   if (!allowed) {
+
     return failure(
       403,
       "ORIGIN_NOT_ALLOWED",
       "Origin not authorized.",
       headers
     );
+
   }
 
   if (event.httpMethod === "OPTIONS") {
+
     return {
       statusCode: 204,
       headers,
       body: ""
     };
+
   }
 
   if (event.httpMethod !== "POST") {
+
     return failure(
       405,
       "METHOD_NOT_ALLOWED",
@@ -400,46 +608,91 @@ exports.handler = async function(event) {
         "Allow": "POST, OPTIONS"
       }
     );
+
   }
 
   let request;
 
   try {
-    request = parseRequest(event);
+
+    const data = readBody(event);
+
+    if (data.action === "speak") {
+
+      return await speak(event, data, headers);
+
+    }
+
+    if (
+      data.action != null &&
+      data.action !== "ask"
+    ) {
+
+      throw new Error("INVALID_ACTION");
+
+    }
+
+    request = parseRequest(data);
+
   } catch (error) {
+
     return failure(
+
       error.message === "REQUEST_TOO_LARGE"
         ? 413
         : 400,
+
       "INVALID_REQUEST",
+
       "Invalid or incomplete AI request.",
+
       headers
+
     );
+
   }
 
   const startedAt = Date.now();
 
   try {
+
     const result = await connectProvider(request);
 
     return json(200, {
+
       success: true,
 
       platform: CONFIG.platform,
+
       version: CONFIG.version,
 
       provider: result.provider,
+
       model: result.model,
 
       project: request.project,
+
       language: request.language,
+
       mode: request.mode,
 
       answer: result.answer,
+
       reply: result.answer,
+
       response: result.answer,
+
       content: result.answer,
+
       text: result.answer,
+
+      speech: {
+
+        text: result.answer,
+
+        language: request.language
+
+      },
 
       processingTime: Date.now() - startedAt,
 
@@ -448,28 +701,37 @@ exports.handler = async function(event) {
     }, headers);
 
   } catch (error) {
+
     if (error.name === "AbortError") {
+
       return failure(
         504,
         "AI_TIMEOUT",
         "The central AI request timed out.",
         headers
       );
+
     }
 
     if (error.status === 429) {
+
       return failure(
         429,
         "AI_RATE_LIMIT",
         "Too many AI requests.",
         headers
       );
+
     }
 
     console.error("CENTRAL AI ERROR", {
+
       provider: request.provider,
+
       code: error.message,
+
       status: error.status || null
+
     });
 
     return failure(
@@ -478,10 +740,12 @@ exports.handler = async function(event) {
       "The AI backend is temporarily unavailable.",
       headers
     );
+
   }
+
 };
 
 /* =========================================================
    END — BSS1815 PRO-MAX DMP CENTRAL AI BACKEND
-   VERSION: 1.0.1
+   VERSION: 1.1.0
    ========================================================= */
