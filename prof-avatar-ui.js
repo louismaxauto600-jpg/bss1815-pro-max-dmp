@@ -3,7 +3,7 @@
    BSS1815 PRO-MAX DMP
    PROF AVATAR USER INTERFACE
    FILE: prof-avatar-ui.js
-   VERSION: 1.0.0
+   VERSION: 1.1.0
    ========================================================= */
 
 "use strict";
@@ -37,19 +37,31 @@
     ht: [
 
       "AKTIVE PROF AVATAR LIVE",
+
       "KANPE LIVE",
+
       "REPETE REPONS LAN",
-      "Koneksyon LIVE poko aktive.",
-      "Aksè LIVE poko otorize.",
+
+      "LIVE poko aktive.",
+
+      "Aksè LIVE poko disponib.",
+
       "Koneksyon an ap fèt...",
+
       "PROF AVATAR LIVE konekte.",
+
       "AI ap trete kesyon an...",
-      "Repons tèks resevwa. Vwa a pa disponib.",
-      "Repons AI resevwa.",
+
+      "Repons tèks resevwa. Vwa pa disponib.",
+
+      "Repons vokal fini.",
+
       "Sesyon LIVE fèmen.",
-      "Kanpe sesyon an anvan ou chanje pwojè, lekòl oswa lang.",
+
+      "Kanpe LIVE anvan ou chanje pwojè, lekòl oswa lang.",
+
       "Ekri yon kesyon.",
-      "Pa gen repons pou repete.",
+
       "Erè PROF AVATAR."
 
     ],
@@ -57,19 +69,31 @@
     fr: [
 
       "ACTIVER PROF AVATAR LIVE",
+
       "ARRÊTER LE DIRECT",
+
       "RÉPÉTER LA RÉPONSE",
-      "Connexion LIVE inactive.",
-      "Accès LIVE non autorisé.",
+
+      "LIVE inactif.",
+
+      "Accès LIVE indisponible.",
+
       "Connexion en cours...",
+
       "PROF AVATAR LIVE connecté.",
+
       "Traitement de la question...",
+
       "Réponse texte reçue. Voix indisponible.",
-      "Réponse IA reçue.",
+
+      "Réponse vocale terminée.",
+
       "Session LIVE fermée.",
-      "Arrêtez la session avant de changer de projet, d’école ou de langue.",
+
+      "Arrêtez le direct avant de changer de contexte.",
+
       "Écrivez une question.",
-      "Aucune réponse à répéter.",
+
       "Erreur PROF AVATAR."
 
     ],
@@ -77,19 +101,31 @@
     en: [
 
       "ACTIVATE PROF AVATAR LIVE",
+
       "STOP LIVE",
+
       "REPEAT ANSWER",
-      "LIVE connection inactive.",
-      "LIVE access not authorized.",
+
+      "LIVE inactive.",
+
+      "LIVE access unavailable.",
+
       "Connecting...",
+
       "PROF AVATAR LIVE connected.",
+
       "Processing question...",
+
       "Text answer received. Voice unavailable.",
-      "AI answer received.",
+
+      "Voice response finished.",
+
       "LIVE session closed.",
-      "Stop the session before changing project, school or language.",
+
+      "Stop LIVE before changing project, school or language.",
+
       "Enter a question.",
-      "No answer to repeat.",
+
       "PROF AVATAR error."
 
     ]
@@ -110,6 +146,8 @@
 
   let lastPrompt = "";
 
+  let original;
+
   let video;
 
   let audio;
@@ -122,13 +160,18 @@
 
   let repeatButton;
 
-  let previous = null;
+  let oldHidden = false;
+
+  let previous = new Map();
 
   const lang = () =>
 
     Object.hasOwn(
+
       messages,
+
       document.documentElement.lang
+
     )
 
       ? document.documentElement.lang
@@ -138,18 +181,20 @@
   const t = i => messages[lang()][i];
 
   const integration = () =>
+
     window.BSS1815_AVATAR_INTEGRATION;
 
-  /* PROJECT AND SCHOOL CONTEXT */
+  /* PROJECT CONTEXT */
 
   function context() {
 
     const project =
+
       projects[$("activeProject")?.textContent.trim()];
 
     if (!project) {
 
-      throw new Error("Unknown AI project.");
+      throw Error("Unknown AI project.");
 
     }
 
@@ -171,13 +216,11 @@
 
   /* STATUS DISPLAY */
 
-  function status(i, error) {
+  function status(i, e) {
 
     notice.textContent =
 
-      t(i) +
-
-      (error ? " — " + error.message : "");
+      t(i) + (e ? " — " + e.message : "");
 
   }
 
@@ -191,28 +234,51 @@
 
     repeatButton.textContent = t(2);
 
-    startButton.disabled = busy || active;
+    startButton.disabled =
 
-    stopButton.disabled = busy || !active;
+      busy || active || !transport;
+
+    stopButton.disabled =
+
+      busy || !active;
 
     repeatButton.disabled =
+
       busy || !active || !lastPrompt;
 
-    for (const id of [
+    const lock = active || busy;
 
-      "aiAvatarPlay",
+    for (const el of document.querySelectorAll(
 
-      "aiAvatarStop",
+      '#projectGrid button, #toolGrid button, [data-lang], #school, #provider, #aiAvatarPlay, #aiAvatarStop, #clearAI, #clearHistory, #aiHistory button, #sendAI, #retryAI, #aiPrompt'
 
-      "provider"
+    )) {
 
-    ]) {
+      const questionControl = [
 
-      const el = $(id);
+        "sendAI",
 
-      if (el) {
+        "retryAI",
 
-        el.disabled = active || busy;
+        "aiPrompt"
+
+      ].includes(el.id);
+
+      if (lock && (!questionControl || busy)) {
+
+        if (!previous.has(el)) {
+
+          previous.set(el, el.disabled);
+
+        }
+
+        el.disabled = true;
+
+      } else if (previous.has(el)) {
+
+        el.disabled = previous.get(el);
+
+        previous.delete(el);
 
       }
 
@@ -220,43 +286,27 @@
 
   }
 
-  /* RESTORE EXISTING VIDEO */
+  /* RESTORE ORIGINAL AVATAR */
 
   function restore() {
 
-    if (!previous) return;
-
     video.pause();
-
-    video.srcObject = null;
-
-    if (previous.src === null) {
-
-      video.removeAttribute("src");
-
-    } else {
-
-      video.setAttribute("src", previous.src);
-
-    }
-
-    video.muted = previous.muted;
-
-    video.autoplay = previous.autoplay;
-
-    video.load();
 
     audio.pause();
 
+    video.srcObject = null;
+
     audio.srcObject = null;
+
+    video.hidden = true;
 
     audio.hidden = true;
 
-    previous = null;
+    original.hidden = oldHidden;
 
   }
 
-  /* ACTIVATE PROF AVATAR LIVE */
+  /* ACTIVATE LIVE PROF AVATAR */
 
   async function start() {
 
@@ -270,31 +320,25 @@
 
     }
 
+    if ($("sendAI")?.disabled) return;
+
     busy = true;
 
     refresh();
 
     status(5);
 
+    oldHidden = original.hidden;
+
     try {
 
       session = context();
 
-      previous = {
+      original.pause();
 
-        src: video.getAttribute("src"),
+      original.hidden = true;
 
-        muted: video.muted,
-
-        autoplay: video.autoplay
-
-      };
-
-      video.pause();
-
-      video.removeAttribute("src");
-
-      video.load();
+      video.hidden = false;
 
       audio.hidden = false;
 
@@ -316,13 +360,13 @@
 
       status(6);
 
-    } catch (error) {
+    } catch (e) {
 
       restore();
 
       session = null;
 
-      status(14, error);
+      status(13, e);
 
     } finally {
 
@@ -354,13 +398,15 @@
 
       lastPrompt = "";
 
+      window.BSS1815_AVATAR_TRANSPORT?.clear();
+
       restore();
 
       status(10);
 
-    } catch (error) {
+    } catch (e) {
 
-      status(14, error);
+      status(13, e);
 
     } finally {
 
@@ -386,29 +432,29 @@
 
     }
 
-    let now;
-
     try {
 
-      now = context();
+      const now = context();
 
-    } catch (error) {
+      if (
 
-      status(14, error);
+        Object.keys(now).some(
 
-      return;
+          k => now[k] !== session[k]
 
-    }
+        )
 
-    if (
+      ) {
 
-      Object.keys(now).some(
-        key => now[key] !== session[key]
-      )
+        status(11);
 
-    ) {
+        return;
 
-      status(11);
+      }
+
+    } catch (e) {
+
+      status(13, e);
 
       return;
 
@@ -420,10 +466,23 @@
 
     status(7);
 
+    lastPrompt = "";
+
     try {
 
-      const result =
-        await integration().ask(prompt.trim());
+      const result = await integration().ask({
+
+        prompt: prompt.trim(),
+
+        provider: $("provider")?.value,
+
+        tool: session.project === "academy"
+
+          ? "tutor"
+
+          : "assistant"
+
+      });
 
       if (
 
@@ -433,16 +492,16 @@
 
       ) {
 
-        throw new Error("Empty AI response.");
+        throw Error("Empty AI response.");
 
       }
 
-      $("aiResponse").textContent =
-        result.answer;
+      $("aiResponse").textContent = result.answer;
 
       if ($("activeProvider")) {
 
         $("activeProvider").textContent =
+
           result.provider || "—";
 
       }
@@ -459,9 +518,9 @@
 
       );
 
-    } catch (error) {
+    } catch (e) {
 
-      status(14, error);
+      status(13, e);
 
     } finally {
 
@@ -473,7 +532,7 @@
 
   }
 
-  /* REPEAT AVATAR RESPONSE */
+  /* REPEAT RESPONSE */
 
   async function repeat() {
 
@@ -491,9 +550,9 @@
 
       status(9);
 
-    } catch (error) {
+    } catch (e) {
 
-      status(8, error);
+      status(8, e);
 
     } finally {
 
@@ -505,7 +564,7 @@
 
   }
 
-  /* CREATE BUTTON */
+  /* BUTTON CREATION */
 
   function button(id, handler) {
 
@@ -521,13 +580,13 @@
 
   }
 
-  /* CONNECT EXISTING AI CENTER */
+  /* CENTRAL AI CENTER CONNECTION */
 
   function mount() {
 
     if (mounted) return;
 
-    video = $("aiProfAvatar");
+    original = $("aiProfAvatar");
 
     const form = $("centralAIForm");
 
@@ -535,7 +594,7 @@
 
     if (
 
-      !video ||
+      !original ||
 
       !form ||
 
@@ -543,11 +602,7 @@
 
       !$("aiResponse")
 
-    ) {
-
-      return;
-
-    }
+    ) return;
 
     const panel = document.createElement("div");
 
@@ -591,17 +646,31 @@
 
     );
 
+    /* LIVE VIDEO */
+
+    video = document.createElement("video");
+
+    video.id = "profAvatarLiveVideo";
+
+    video.hidden = true;
+
+    video.muted = true;
+
+    video.playsInline = true;
+
+    video.autoplay = true;
+
     /* LIVE AUDIO */
 
     audio = document.createElement("audio");
 
     audio.id = "profAvatarLiveAudio";
 
+    audio.hidden = true;
+
     audio.controls = true;
 
     audio.autoplay = true;
-
-    audio.hidden = true;
 
     /* LIVE STATUS */
 
@@ -613,19 +682,35 @@
 
     notice.setAttribute("aria-live", "polite");
 
-    panel.append(actions, audio, notice);
+    panel.append(
 
-    video.insertAdjacentElement("afterend", panel);
+      video,
 
-    /* EXISTING QUESTION FORM */
+      actions,
 
-    form.addEventListener("submit", event => {
+      audio,
+
+      notice
+
+    );
+
+    original.insertAdjacentElement(
+
+      "afterend",
+
+      panel
+
+    );
+
+    /* EXISTING AI QUESTION FORM */
+
+    form.addEventListener("submit", e => {
 
       if (!active && !busy) return;
 
-      event.preventDefault();
+      e.preventDefault();
 
-      event.stopImmediatePropagation();
+      e.stopImmediatePropagation();
 
       if (active && !busy) {
 
@@ -637,13 +722,13 @@
 
     /* RETRY QUESTION */
 
-    $("retryAI")?.addEventListener("click", event => {
+    $("retryAI")?.addEventListener("click", e => {
 
       if (!active && !busy) return;
 
-      event.preventDefault();
+      e.preventDefault();
 
-      event.stopImmediatePropagation();
+      e.stopImmediatePropagation();
 
       if (active && !busy) {
 
@@ -652,6 +737,34 @@
       }
 
     }, true);
+
+    /* IMMEDIATE TEXT RESPONSE */
+
+    window.addEventListener(
+
+      "prof-avatar:answer",
+
+      e => {
+
+        if (
+
+          active &&
+
+          busy &&
+
+          typeof e.detail?.answer === "string"
+
+        ) {
+
+          $("aiResponse").textContent =
+
+            e.detail.answer;
+
+        }
+
+      }
+
+    );
 
     /* LANGUAGE CONNECTION */
 
@@ -677,7 +790,7 @@
 
   }
 
-  /* GLOBAL INTERFACE */
+  /* GLOBAL USER INTERFACE */
 
   window.BSS1815_AVATAR_UI = Object.freeze({
 
@@ -693,11 +806,13 @@
 
       ) {
 
-        throw new Error("Invalid authorized transport.");
+        throw Error("Invalid authorized transport.");
 
       }
 
       transport = request;
+
+      if (mounted) refresh();
 
     },
 
@@ -742,7 +857,6 @@
 })();
 
 /* =========================================================
-   END — PROF AVATAR UI
-   BSS1815 PRO-MAX DMP
+   END — BSS1815 PRO-MAX DMP
    DEVAN DEVAN NÈT
    ========================================================= */
