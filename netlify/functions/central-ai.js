@@ -1,18 +1,19 @@
+
 /* =========================================================
    BSS1815 PRO-MAX DMP
    CENTRAL AI BACKEND
    FILE: netlify/functions/central-ai.js
-   VERSION: 1.0.0
+   VERSION: 1.0.1
    ========================================================= */
 
 "use strict";
 
 const CONFIG = Object.freeze({
   platform: "BSS1815 PRO-MAX DMP",
-  version: "1.0.0",
+  version: "1.0.1",
   domain: "https://bss1815promaxdmp.com",
   timeout: 45000,
-  maxMessageLength: 8000,
+  maxMessageLength: 12000,
 
   providers: Object.freeze({
     openai: "/.netlify/functions/openai-live",
@@ -482,4 +483,5 @@ exports.handler = async function(event) {
 
 /* =========================================================
    END — BSS1815 PRO-MAX DMP CENTRAL AI BACKEND
+   VERSION: 1.0.1
    ========================================================= */
