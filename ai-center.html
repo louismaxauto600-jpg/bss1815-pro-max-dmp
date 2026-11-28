@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ht" translate="no">
 <head>
@@ -53,7 +54,7 @@ main{
 .center{text-align:center}
 
 button,select,.btn{
-  font: bold 14px Arial,sans-serif;
+  font:bold 14px Arial,sans-serif;
   padding:12px 16px;
   border:1px solid var(--orange);
   border-radius:10px;
@@ -178,6 +179,10 @@ textarea{
 
 <main>
 
+<!-- =====================================================
+     PROF AVATAR
+     ===================================================== -->
+
 <section class="panel center">
 
   <h2>PROF AVATAR</h2>
@@ -206,6 +211,10 @@ textarea{
 
 </section>
 
+<!-- =====================================================
+     CENTRAL AI ECOSYSTEM
+     ===================================================== -->
+
 <section class="panel">
 
   <h2 class="center" data-text="projects">
@@ -221,21 +230,27 @@ textarea{
     </label>
 
     <select id="school">
+
       <option value="General Academy">
         PRO-MAX ACADÉMIE
       </option>
+
       <option value="Real Estate School">
         REAL ESTATE SCHOOL
       </option>
+
       <option value="Insurance School">
         INSURANCE SCHOOL
       </option>
+
       <option value="Journalism School">
         ÉCOLE DE JOURNALISME
       </option>
+
       <option value="Beat Maker AI School">
         BEAT MAKER AI SCHOOL
       </option>
+
     </select>
 
   </div>
@@ -247,6 +262,10 @@ textarea{
 
 </section>
 
+<!-- =====================================================
+     CENTRAL AI TOOLS
+     ===================================================== -->
+
 <section class="panel">
 
   <h2 class="center" data-text="tools">
@@ -256,6 +275,10 @@ textarea{
   <div id="toolGrid" class="grid"></div>
 
 </section>
+
+<!-- =====================================================
+     AI WORKSPACE
+     ===================================================== -->
 
 <section class="panel">
 
@@ -315,13 +338,20 @@ textarea{
 
   </div>
 
-  <p>PROVIDER: <strong id="activeProvider">—</strong></p>
+  <p>
+    PROVIDER:
+    <strong id="activeProvider">—</strong>
+  </p>
 
   <small data-text="privacy">
     Pa antre modpas oswa enfòmasyon konfidansyèl.
   </small>
 
 </section>
+
+<!-- =====================================================
+     SESSION HISTORY
+     ===================================================== -->
 
 <section class="panel">
 
@@ -330,9 +360,14 @@ textarea{
   <div id="aiHistory"></div>
 
   <div class="actions">
-    <button type="button" id="clearHistory" data-text="clearHistory">
+
+    <button
+      type="button"
+      id="clearHistory"
+      data-text="clearHistory">
       EFASE ISTWA
     </button>
+
   </div>
 
 </section>
@@ -360,11 +395,23 @@ textarea{
 
 const $ = id => document.getElementById(id);
 
+/* =========================================================
+   CENTRAL AI BACKEND
+   ========================================================= */
+
 const ENDPOINTS = Object.freeze({
-  openai:"/.netlify/functions/ai",
-  gemini:"/.netlify/functions/professor",
-  professor:"/.netlify/functions/professor"
+
+  openai:"/.netlify/functions/central-ai",
+
+  gemini:"/.netlify/functions/central-ai",
+
+  professor:"/.netlify/functions/central-ai"
+
 });
+
+/* =========================================================
+   CENTRAL ECOSYSTEM
+   ========================================================= */
 
 const PROJECTS = Object.freeze({
 
@@ -404,6 +451,10 @@ const PROJECTS = Object.freeze({
   }
 
 });
+
+/* =========================================================
+   CENTRAL AI TOOLS
+   ========================================================= */
 
 const TOOLS = Object.freeze({
 
@@ -458,9 +509,14 @@ const TOOLS = Object.freeze({
 
 });
 
+/* =========================================================
+   LANGUAGE SYSTEM — KRE / FRA / ENG
+   ========================================================= */
+
 const TEXT = {
 
   ht:{
+
     subtitle:"YON SÈL AI CENTER — TOUT PWOJÈ YO",
     home:"AKÈY",
     play:"▶ JWE",
@@ -491,9 +547,11 @@ const TEXT = {
     avatarError:"Videyo a pa chaje.",
     timeout:"Tan koneksyon an ekspire.",
     noAnswer:"API a pa retounen tèks."
+
   },
 
   fr:{
+
     subtitle:"UN SEUL CENTRE IA — TOUS LES PROJETS",
     home:"ACCUEIL",
     play:"▶ LIRE",
@@ -524,9 +582,11 @@ const TEXT = {
     avatarError:"La vidéo ne se charge pas.",
     timeout:"Le délai de connexion a expiré.",
     noAnswer:"L’API n’a retourné aucun texte."
+
   },
 
   en:{
+
     subtitle:"ONE AI CENTER — ALL PROJECTS",
     home:"HOME",
     play:"▶ PLAY",
@@ -557,19 +617,33 @@ const TEXT = {
     avatarError:"The video could not load.",
     timeout:"The connection timed out.",
     noAnswer:"The API returned no text."
+
   }
 
 };
 
+/* =========================================================
+   CENTRAL AI STATE
+   ========================================================= */
+
 const state = {
+
   language:"ht",
+
   project:"bss1815",
+
   tool:"assistant",
+
   busy:false,
+
   history:[],
+
   lastRequest:null,
+
   status:"ready",
+
   detail:""
+
 };
 
 const has = (object,key) =>
@@ -577,20 +651,33 @@ const has = (object,key) =>
 
 const t = key => TEXT[state.language][key] || key;
 
+/* =========================================================
+   STATUS SYSTEM
+   ========================================================= */
+
 function status(key,detail=""){
 
   state.status=key;
+
   state.detail=detail;
 
   $("aiStatus").textContent=
+
     t(key)+(detail ? " — "+detail : "");
 
   $("aiStatus").classList.toggle(
+
     "error",
+
     ["error","empty","avatarError"].includes(key)
+
   );
 
 }
+
+/* =========================================================
+   PROJECT SELECTOR
+   ========================================================= */
 
 function renderProjects(){
 
@@ -603,16 +690,23 @@ function renderProjects(){
     const button=document.createElement("button");
 
     button.type="button";
+
     button.textContent=project.name;
 
     button.classList.toggle(
+
       "active",
+
       state.project===id
+
     );
 
     button.setAttribute(
+
       "aria-pressed",
+
       String(state.project===id)
+
     );
 
     button.addEventListener("click",()=>{
@@ -628,12 +722,18 @@ function renderProjects(){
   });
 
   $("activeProject").textContent=
+
     PROJECTS[state.project].name;
 
   $("schoolField").hidden=
+
     state.project!=="academy";
 
 }
+
+/* =========================================================
+   AI TOOL SELECTOR
+   ========================================================= */
 
 function renderTools(){
 
@@ -646,16 +746,23 @@ function renderTools(){
     const button=document.createElement("button");
 
     button.type="button";
+
     button.textContent=tool[state.language];
 
     button.classList.toggle(
+
       "active",
+
       state.tool===id
+
     );
 
     button.setAttribute(
+
       "aria-pressed",
+
       String(state.tool===id)
+
     );
 
     button.addEventListener("click",()=>{
@@ -663,7 +770,9 @@ function renderTools(){
       state.tool=id;
 
       if(id==="tutor"){
+
         $("provider").value="professor";
+
       }
 
       renderTools();
@@ -675,6 +784,10 @@ function renderTools(){
   });
 
 }
+
+/* =========================================================
+   LANGUAGE CONTROL
+   ========================================================= */
 
 function setLanguage(language){
 
@@ -698,17 +811,29 @@ function setLanguage(language){
 
       button.classList.toggle("active",active);
 
-      button.setAttribute("aria-pressed",String(active));
+      button.setAttribute(
+
+        "aria-pressed",
+
+        String(active)
+
+      );
 
     });
 
   $("aiPrompt").placeholder=t("placeholder");
 
   renderTools();
+
   renderHistory();
+
   status(state.status,state.detail);
 
 }
+
+/* =========================================================
+   CREATE AI REQUEST
+   ========================================================= */
 
 function createRequest(){
 
@@ -725,12 +850,18 @@ function createRequest(){
     provider:$("provider").value,
 
     school:state.project==="academy"
+
       ? $("school").value
+
       : ""
 
   };
 
 }
+
+/* =========================================================
+   REQUEST VALIDATION
+   ========================================================= */
 
 function validateRequest(request){
 
@@ -752,6 +883,10 @@ function validateRequest(request){
   }
 
 }
+
+/* =========================================================
+   PROJECT CONTEXT
+   ========================================================= */
 
 function buildMessage(request){
 
@@ -781,6 +916,10 @@ function buildMessage(request){
 
 }
 
+/* =========================================================
+   CENTRAL AI CONNECTION
+   ========================================================= */
+
 async function askAI(request){
 
   validateRequest(request);
@@ -788,20 +927,27 @@ async function askAI(request){
   const controller=new AbortController();
 
   const timer=setTimeout(
+
     ()=>controller.abort(),
-    45000
+
+    50000
+
   );
 
   try{
 
     const response=await fetch(
+
       ENDPOINTS[request.provider],
+
       {
 
         method:"POST",
 
         headers:{
+
           "Content-Type":"application/json"
+
         },
 
         signal:controller.signal,
@@ -812,11 +958,18 @@ async function askAI(request){
 
           language:request.language,
 
-          mode:request.tool
+          mode:request.tool,
+
+          provider:request.provider,
+
+          project:request.project,
+
+          school:request.school
 
         })
 
       }
+
     );
 
     let data;
@@ -828,7 +981,9 @@ async function askAI(request){
     }catch{
 
       throw new Error(
+
         "Invalid API response: HTTP "+response.status
+
       );
 
     }
@@ -839,27 +994,40 @@ async function askAI(request){
 
     }
 
-    if(!response.ok || data.success===false){
+    if(!response.ok || data.success!==true){
 
       const detail=typeof data.error==="string"
+
         ? data.error
+
         : data.error?.message;
 
       throw new Error(
+
         detail || "HTTP "+response.status
+
       );
 
     }
 
     const answer=[
+
       data.answer,
+
       data.reply,
+
       data.response,
+
       data.content,
+
       data.text,
+
       data.message
+
     ].find(value=>
+
       typeof value==="string" && value.trim()
+
     );
 
     if(!answer){
@@ -873,10 +1041,19 @@ async function askAI(request){
       answer,
 
       provider:data.provider ||
+
         (
-          request.provider==="openai"
-            ? "OpenAI"
-            : "Google Gemini"
+
+          {
+
+            openai:"OpenAI",
+
+            gemini:"Google Gemini",
+
+            professor:"AI Professor"
+
+          }[request.provider]
+
         ),
 
       model:data.model || "",
@@ -903,17 +1080,28 @@ async function askAI(request){
 
 }
 
+/* =========================================================
+   WORKSPACE CONTROL
+   ========================================================= */
+
 function setBusy(busy){
 
   state.busy=busy;
 
   [
+
     "sendAI",
+
     "retryAI",
+
     "clearAI",
+
     "clearHistory",
+
     "provider",
+
     "school"
+
   ].forEach(id=>{
 
     $(id).disabled=busy;
@@ -921,6 +1109,10 @@ function setBusy(busy){
   });
 
 }
+
+/* =========================================================
+   EXECUTE CENTRAL AI REQUEST
+   ========================================================= */
 
 async function execute(request){
 
@@ -941,6 +1133,7 @@ async function execute(request){
   status("processing");
 
   $("aiResponse").textContent="";
+
   $("activeProvider").textContent="—";
 
   try{
@@ -950,7 +1143,9 @@ async function execute(request){
     $("aiResponse").textContent=result.answer;
 
     $("activeProvider").textContent=
+
       result.provider+
+
       (result.model ? " / "+result.model : "");
 
     state.history.unshift({
@@ -979,6 +1174,10 @@ async function execute(request){
 
 }
 
+/* =========================================================
+   SESSION HISTORY
+   ========================================================= */
+
 function renderHistory(){
 
   const container=$("aiHistory");
@@ -1002,16 +1201,19 @@ function renderHistory(){
     const title=document.createElement("strong");
 
     title.textContent=
+
       PROJECTS[item.request.project].name;
 
     const prompt=document.createElement("p");
 
     prompt.textContent=
+
       item.request.prompt.slice(0,200);
 
     const date=document.createElement("small");
 
     date.textContent=
+
       new Date(item.result.date).toLocaleString();
 
     const button=document.createElement("button");
@@ -1045,6 +1247,7 @@ function renderHistory(){
       $("aiResponse").textContent=item.result.answer;
 
       $("activeProvider").textContent=
+
         item.result.provider;
 
       state.lastRequest={...item.request};
@@ -1061,7 +1264,9 @@ function renderHistory(){
 
 }
 
-/* PROF AVATAR */
+/* =========================================================
+   EXISTING PROF AVATAR VIDEO
+   ========================================================= */
 
 const avatar=$("aiProfAvatar");
 
@@ -1097,7 +1302,9 @@ avatar.addEventListener("error",()=>{
 
 });
 
-/* BUTTON CONNECTIONS */
+/* =========================================================
+   BUTTON CONNECTIONS
+   ========================================================= */
 
 document.querySelectorAll("[data-lang]")
   .forEach(button=>{
@@ -1123,7 +1330,9 @@ $("clearAI").addEventListener("click",()=>{
   if(state.busy) return;
 
   $("aiPrompt").value="";
+
   $("aiResponse").textContent="";
+
   $("activeProvider").textContent="—";
 
   state.lastRequest=null;
@@ -1135,9 +1344,13 @@ $("clearAI").addEventListener("click",()=>{
 $("retryAI").addEventListener("click",()=>{
 
   execute(
+
     state.lastRequest
+
       ? {...state.lastRequest}
+
       : createRequest()
+
   );
 
 });
@@ -1184,7 +1397,9 @@ $("clearHistory").addEventListener("click",()=>{
 
 });
 
-/* CENTRAL AI INTERFACE */
+/* =========================================================
+   CENTRAL AI INTERFACE
+   ========================================================= */
 
 window.BSS1815_CENTRAL_AI=Object.freeze({
 
@@ -1222,7 +1437,9 @@ window.BSS1815_CENTRAL_AI=Object.freeze({
 
 });
 
-/* INITIALIZATION */
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
 
 $("year").textContent=new Date().getFullYear();
 
@@ -1243,15 +1460,51 @@ if(project && has(PROJECTS,project)){
 renderProjects();
 
 setLanguage(
+
   language && has(TEXT,language)
+
     ? language
+
     : "ht"
+
 );
 
 status("ready");
 
 })();
+
 </script>
+
+<!-- =====================================================
+     BSS1815 PROF AVATAR LIVE CONNECTION
+     ===================================================== -->
+
+<script
+  src="./prof-avatar-controller.js"
+  defer>
+</script>
+
+<script
+  src="./prof-avatar-live-adapter.js"
+  defer>
+</script>
+
+<script
+  src="./prof-avatar-integration.js"
+  defer>
+</script>
+
+<script
+  src="./prof-avatar-ui.js"
+  defer>
+</script>
+
+<script
+  src="./prof-avatar-transport.js"
+  defer>
+</script>
+
+<!-- END BSS1815 PROF AVATAR LIVE CONNECTION -->
 
 </body>
 </html>
