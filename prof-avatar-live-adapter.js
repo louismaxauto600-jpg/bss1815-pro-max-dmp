@@ -3,65 +3,45 @@
    BSS1815 PRO-MAX DMP
    PROF AVATAR LIVE ADAPTER
    FILE: prof-avatar-live-adapter.js
-   VERSION: 1.0.0
+   VERSION: 1.1.0
    ========================================================= */
 
 "use strict";
 
 (() => {
 
-  const API =
-    "https://api.liveavatar.com/v1/sessions";
+  const API = "https://api.liveavatar.com/v1/sessions";
 
   function create({
 
     request,
-
     Room,
-
     RoomEvent,
-
     video,
-
     audio,
-
     project = "bss1815",
-
     school = ""
 
   } = {}) {
 
     if (
-
       typeof request !== "function" ||
-
       typeof Room !== "function" ||
-
       !RoomEvent ||
-
       !video ||
-
       !audio
-
     ) {
 
-      throw new Error(
-        "Missing authorized transport, LiveKit or media elements."
-      );
+      throw Error("Missing live avatar configuration.");
 
     }
 
     let token = null;
-
     let room = null;
-
     let socket = null;
-
     let ready = false;
-
-    let pending = null;
-
     let busy = false;
+    let pending = null;
 
     const tracks = new Set();
 
@@ -69,48 +49,54 @@
 
     async function provider(action) {
 
-      const controller =
-        new AbortController();
+      const c = new AbortController();
 
       const timer = setTimeout(
-        () => controller.abort(),
+        () => c.abort(),
         15000
       );
 
       try {
 
-        const r = await fetch(
-          API + "/" + action,
-          {
+        const r = await fetch(API + "/" + action, {
 
-            method: "POST",
+          method: "POST",
 
-            headers: {
+          headers: {
 
-              Authorization: "Bearer " + token
+            Authorization: "Bearer " + token,
 
-            },
+            "Content-Type": "application/json",
 
-            signal: controller.signal,
+            Accept: "application/json"
 
-            cache: "no-store",
+          },
 
-            redirect: "error"
+          body: "{}",
 
-          }
-        );
+          signal: c.signal,
+
+          cache: "no-store",
+
+          redirect: "error",
+
+          keepalive: action === "stop"
+
+        });
 
         if (!r.ok) {
 
-          throw new Error(
+          throw Error(
             "Avatar " + action + ": HTTP " + r.status
           );
 
         }
 
-        return action === "start"
-          ? (await r.json()).data
-          : null;
+        if (action === "start") {
+
+          return (await r.json()).data;
+
+        }
 
       } finally {
 
@@ -152,27 +138,17 @@
 
         !ready ||
 
-        !socket ||
-
-        socket.readyState !== WebSocket.OPEN
+        socket?.readyState !== WebSocket.OPEN
 
       ) {
 
-        throw new Error(
-          "Avatar connection is not ready."
-        );
+        throw Error("Avatar connection is not ready.");
 
       }
 
       socket.send(
 
-        JSON.stringify({
-
-          type,
-
-          ...fields
-
-        })
+        JSON.stringify({ type, ...fields })
 
       );
 
@@ -180,57 +156,67 @@
 
     /* REAL-TIME CONNECTION */
 
-    async function connectSocket(url) {
+    function connectSocket(url) {
 
       if (new URL(url).protocol !== "wss:") {
 
-        throw new Error("Invalid socket URL.");
+        throw Error("Invalid socket URL.");
 
       }
 
-      await new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
 
         const ws = socket = new WebSocket(url);
 
         const timer = setTimeout(
 
-          () => reject(
-
-            new Error("Avatar connection timed out.")
-
-          ),
+          () => fail("Avatar connection timed out."),
 
           15000
 
         );
 
-        const fail = () => {
-
-          ready = false;
+        function fail(message) {
 
           clearTimeout(timer);
 
-          finish(
-            new Error("Avatar connection closed.")
-          );
+          if (socket === ws) {
 
-          reject(
-            new Error("Avatar connection closed.")
-          );
+            ready = false;
 
-        };
+            finish(Error(message));
 
-        ws.addEventListener("error", fail);
+          }
 
-        ws.addEventListener("close", fail);
+          reject(Error(message));
+
+        }
+
+        ws.addEventListener(
+
+          "error",
+
+          () => fail("Avatar socket error.")
+
+        );
+
+        ws.addEventListener(
+
+          "close",
+
+          () => fail("Avatar connection closed.")
+
+        );
 
         ws.addEventListener("message", e => {
 
-          let event;
+          if (socket !== ws) return;
+
+          let d;
 
           try {
 
-            event = JSON.parse(e.data);
+            d = JSON.parse(e.data);
 
           } catch {
 
@@ -238,9 +224,9 @@
 
           }
 
-          if (event.type === "session.state_updated") {
+          if (d.type === "session.state_updated") {
 
-            if (event.state === "connected") {
+            if (d.state === "connected") {
 
               ready = true;
 
@@ -248,13 +234,9 @@
 
               resolve();
 
-            } else if (
+            } else if (d.state === "disconnected") {
 
-              event.state === "disconnected"
-
-            ) {
-
-              fail();
+              fail("Avatar session ended.");
 
             }
 
@@ -262,33 +244,63 @@
 
           if (!pending) return;
 
-          if (event.type === "error") {
+          if (d.type === "error") {
 
-            finish(
-              new Error("Avatar rejected audio.")
-            );
-
-          }
-
-          if (!pending) return;
-
-          if (event.source_event_id !== pending.id) {
+            finish(Error("Avatar rejected audio."));
 
             return;
 
           }
 
-          if (event.type === "agent.speak_ended") {
+          if (
+
+            d.source_event_id &&
+
+            d.source_event_id !== pending.id
+
+          ) return;
+
+          if (d.type === "agent.speak_started") {
+
+            pending.started = true;
+
+          }
+
+          if (
+
+            d.type === "agent.state_updated" &&
+
+            d.state === "speaking"
+
+          ) {
+
+            pending.started = true;
+
+          }
+
+          if (
+
+            d.type === "agent.speak_ended" ||
+
+            (
+
+              d.type === "agent.state_updated" &&
+
+              pending.started &&
+
+              ["idle", "listening"].includes(d.state)
+
+            )
+
+          ) {
 
             finish();
 
           }
 
-          if (event.type === "agent.speak_interrupted") {
+          if (d.type === "agent.speak_interrupted") {
 
-            finish(
-              new Error("Speech interrupted.")
-            );
+            finish(Error("Speech interrupted."));
 
           }
 
@@ -298,57 +310,59 @@
 
     }
 
-    /* STOP SESSION */
+    /* STOP LIVE SESSION */
 
     async function stop() {
 
       ready = false;
 
-      finish(new Error("Session stopped."));
+      finish(Error("Session stopped."));
 
-      if (socket) {
+      const ws = socket;
 
-        socket.close();
+      socket = null;
 
-        socket = null;
+      try {
 
-      }
-
-      for (const track of tracks) {
-
-        try {
-
-          track.detach();
-
-        } catch {}
-
-      }
-
-      tracks.clear();
-
-      if (room) {
-
-        try {
-
-          await room.disconnect();
-
-        } catch {}
-
-        room = null;
-
-      }
-
-      if (token) {
-
-        try {
+        if (token) {
 
           await provider("stop");
-
-        } finally {
 
           token = null;
 
         }
+
+      } finally {
+
+        if (ws) ws.close();
+
+        for (const track of tracks) {
+
+          try {
+
+            track.detach();
+
+          } catch {}
+
+        }
+
+        tracks.clear();
+
+        if (room) {
+
+          try {
+
+            await room.disconnect();
+
+          } catch {}
+
+          room = null;
+
+        }
+
+        video.srcObject = null;
+
+        audio.srcObject = null;
 
       }
 
@@ -360,9 +374,7 @@
 
       if (busy || token) {
 
-        throw new Error(
-          "Session already active."
-        );
+        throw Error("Session already active.");
 
       }
 
@@ -370,7 +382,7 @@
 
       try {
 
-        const result = await request({
+        const r = await request({
 
           action: "avatar-session",
 
@@ -382,99 +394,77 @@
 
         if (
 
-          result?.success !== true ||
+          r?.success !== true ||
 
-          !result.session?.session_token
+          !r.session?.session_token
 
         ) {
 
-          throw new Error(
+          throw Error(
 
-            result?.message ||
-
-            "Avatar session unavailable."
+            r?.message || "Avatar session unavailable."
 
           );
 
         }
 
-        token = result.session.session_token;
+        token = r.session.session_token;
 
-        const session = await provider("start");
+        const s = await provider("start");
 
         if (
 
-          !session?.livekit_url ||
+          !s?.livekit_url ||
 
-          !session.livekit_client_token ||
+          !s.livekit_client_token ||
 
-          !session.ws_url
+          !s.ws_url
 
         ) {
 
-          throw new Error(
-            "Incomplete avatar session."
-          );
+          throw Error("Incomplete avatar session.");
 
         }
 
         room = new Room();
 
-        room.on(
+        room.on(RoomEvent.TrackSubscribed, track => {
 
-          RoomEvent.TrackSubscribed,
+          if (
 
-          track => {
+            !["video", "audio"].includes(track.kind)
 
-            if (
+          ) return;
 
-              track.kind !== "video" &&
+          tracks.add(track);
 
-              track.kind !== "audio"
+          track.attach(
 
-            ) return;
+            track.kind === "video" ? video : audio
 
-            tracks.add(track);
+          );
 
-            track.attach(
+        });
 
-              track.kind === "video"
+        room.on(RoomEvent.TrackUnsubscribed, track => {
 
-                ? video
+          track.detach();
 
-                : audio
+          tracks.delete(track);
 
-            );
-
-          }
-
-        );
-
-        room.on(
-
-          RoomEvent.TrackUnsubscribed,
-
-          track => {
-
-            track.detach();
-
-            tracks.delete(track);
-
-          }
-
-        );
+        });
 
         await room.connect(
 
-          session.livekit_url,
+          s.livekit_url,
 
-          session.livekit_client_token
+          s.livekit_client_token
 
         );
 
-        await connectSocket(session.ws_url);
+        await connectSocket(s.ws_url);
 
-      } catch (error) {
+      } catch (e) {
 
         try {
 
@@ -482,7 +472,7 @@
 
         } catch {}
 
-        throw error;
+        throw e;
 
       } finally {
 
@@ -498,9 +488,7 @@
 
       if (!ready || busy || pending) {
 
-        throw new Error(
-          "Avatar is not ready or is busy."
-        );
+        throw Error("Avatar is not ready or is busy.");
 
       }
 
@@ -514,9 +502,7 @@
 
       ) {
 
-        throw new Error(
-          "Provide 1–1500 characters."
-        );
+        throw Error("Provide 1–1500 characters.");
 
       }
 
@@ -524,41 +510,43 @@
 
       try {
 
-        const result = await request({
+        const r = await request({
 
           action: "speak",
 
-          text: text.trim()
+          text: text.trim(),
+
+          project,
+
+          school
 
         });
 
-        const pcm = result?.audio;
+        const a = r?.audio;
 
         if (
 
-          result?.success !== true ||
+          r?.success !== true ||
 
-          pcm?.encoding !== "base64" ||
+          a?.encoding !== "base64" ||
 
-          pcm.format !== "pcm_s16le" ||
+          a.format !== "pcm_s16le" ||
 
-          pcm.sampleRate !== 24000 ||
+          a.sampleRate !== 24000 ||
 
-          pcm.channels !== 1
+          a.channels !== 1
 
         ) {
 
-          throw new Error(
+          throw Error(
 
-            result?.message ||
-
-            "Invalid speech audio."
+            r?.message || "Invalid speech audio."
 
           );
 
         }
 
-        const bytes = atob(pcm.data);
+        const bytes = atob(a.data);
 
         if (
 
@@ -570,7 +558,7 @@
 
         ) {
 
-          throw new Error("Invalid PCM length.");
+          throw Error("Invalid PCM length.");
 
         }
 
@@ -586,25 +574,23 @@
 
             reject,
 
+            started: false,
+
             timer: setTimeout(() => {
 
               try {
 
-                send("agent.interrupt");
+                send("agent.interrupt", {
+
+                  event_id: crypto.randomUUID()
+
+                });
 
               } catch {}
 
-              finish(
+              finish(Error("Avatar speech timed out."));
 
-                new Error("Avatar speech timed out.")
-
-              );
-
-            },
-
-            Math.ceil(
-              bytes.length / 48000 * 1000
-            ) + 20000)
+            }, Math.ceil(bytes.length / 48) + 20000)
 
           };
 
@@ -640,9 +626,9 @@
 
             });
 
-          } catch (error) {
+          } catch (e) {
 
-            finish(error);
+            finish(e);
 
           }
 
@@ -656,8 +642,6 @@
 
     }
 
-    /* CONTROLLER INTERFACE */
-
     return Object.freeze({
 
       start,
@@ -670,19 +654,13 @@
 
   }
 
-  /* GLOBAL LIVE AVATAR ADAPTER */
-
   window.BSS1815_LIVE_AVATAR_ADAPTER =
-    Object.freeze({
 
-      create
-
-    });
+    Object.freeze({ create });
 
 })();
 
 /* =========================================================
-   END — PROF AVATAR LIVE ADAPTER
-   BSS1815 PRO-MAX DMP
+   END — BSS1815 PRO-MAX DMP
    DEVAN DEVAN NÈT
    ========================================================= */
