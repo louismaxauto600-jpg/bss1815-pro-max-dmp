@@ -1,8 +1,8 @@
 /* =========================================================
    BSS1815 PRO-MAX DMP
    CENTRAL AI BACKEND
-   FILE: netlify/functions/central-ai.js
-   VERSION: 1.2.0
+   VERSION: 1.3.0
+   SECURE PROF AVATAR ACCESS
    ========================================================= */
 
 "use strict";
@@ -12,63 +12,485 @@ const { timingSafeEqual } = require("node:crypto");
 const { createSession } =
   require("../lib/prof-avatar-session.js");
 
-const CONFIG = Object.freeze({
+const { verifyAccess } =
+  require("../lib/prof-avatar-access.js");
 
-  platform: "BSS1815 PRO-MAX DMP",
+const PLATFORM = "BSS1815 PRO-MAX DMP";
 
-  version: "1.2.0",
+const VERSION = "1.3.0";
 
-  domain: "https://bss1815promaxdmp.com",
+const DOMAIN = "https://bss1815promaxdmp.com";
 
-  timeout: 45000,
-
-  maxMessageLength: 12000,
-
-  speechTimeout: 20000,
-
-  maxSpeechLength: 1500,
-
-  maxSpeechBytes: 2000000,
-
-  providers: Object.freeze({
-
-    openai: "/.netlify/functions/openai-live",
-
-    gemini: "/.netlify/functions/gemini-live",
-
-    professor: "/.netlify/functions/professor"
-
-  }),
-
-  languages: ["ht", "fr", "en", "es"],
-
-  modes: [
-    "general",
-    "assistant",
-    "writer",
-    "translator",
-    "voice",
-    "image",
-    "analytics",
-    "tutor"
-  ]
-
+const PROVIDERS = Object.freeze({
+  openai: "openai-live",
+  gemini: "gemini-live",
+  professor: "professor"
 });
 
+const LANG = {
+  ht: "Haitian Creole",
+  fr: "French",
+  en: "English",
+  es: "Spanish"
+};
+
+const MODES = [
+  "general",
+  "assistant",
+  "writer",
+  "translator",
+  "voice",
+  "image",
+  "analytics",
+  "tutor"
+];
+
+/* JSON RESPONSE */
+
+function json(statusCode, data, headers) {
+  return {
+    statusCode,
+    headers,
+    body: JSON.stringify(data)
+  };
+}
+
+function fail(status, code, message, h) {
+  return json(status, {
+    success: false,
+    platform: PLATFORM,
+    error: code,
+    message
+  }, h);
+}
+
+/* PROJECT AND SCHOOL CONTEXT */
+
+function projectContext(data) {
+
+  const project = String(data.project || "bss1815")
+    .trim()
+    .toLowerCase();
+
+  if (!/^[a-z0-9-]{1,80}$/.test(project)) {
+    throw Error("INVALID_PROJECT");
+  }
+
+  return {
+    project,
+    school: String(data.school || "")
+      .trim()
+      .slice(0, 120)
+  };
+
+}
+
+/* SECURE SERVER AUTHORIZATION */
+
+function serverAuthorized(event) {
+
+  const secret =
+    process.env.PROF_AVATAR_SERVER_TOKEN || "";
+
+  const auth =
+    event.headers?.authorization ||
+    event.headers?.Authorization ||
+    "";
+
+  if (
+    !secret ||
+    typeof auth !== "string" ||
+    !auth.startsWith("Bearer ")
+  ) return false;
+
+  const a = Buffer.from(secret);
+  const b = Buffer.from(auth.slice(7));
+
+  return a.length === b.length &&
+    timingSafeEqual(a, b);
+
+}
+
+/* TEMPORARY PROF AVATAR ACCESS */
+
+function authorize(event, data) {
+
+  if (serverAuthorized(event)) return true;
+
+  if (
+    process.env.PROF_AVATAR_PILOT_ENABLED !== "true" ||
+    process.env.PROF_AVATAR_PAID_ENABLED === "true"
+  ) return false;
+
+  return Boolean(verifyAccess(event, data));
+
+}
+
+/* NETWORK TIMEOUT */
+
+async function timed(url, options, ms, read) {
+
+  const c = new AbortController();
+
+  const timer = setTimeout(
+    () => c.abort(),
+    ms
+  );
+
+  try {
+
+    const r = await fetch(url, {
+      ...options,
+      signal: c.signal,
+      redirect: "error"
+    });
+
+    return await read(r);
+
+  } finally {
+
+    clearTimeout(timer);
+
+  }
+
+}
+
+/* MAXIMAX VOICE — ELEVENLABS */
+
+async function speak(data, h) {
+
+  if (
+    process.env.PROF_AVATAR_VOICE_ENABLED !== "true"
+  ) {
+
+    return fail(
+      503,
+      "VOICE_DISABLED",
+      "Voice is not enabled.",
+      h
+    );
+
+  }
+
+  const {
+    ELEVENLABS_API_KEY: key,
+    ELEVENLABS_VOICE_ID: voice,
+    ELEVENLABS_MODEL_ID: model
+  } = process.env;
+
+  if (!key || !voice || !model) {
+
+    return fail(
+      503,
+      "VOICE_NOT_CONFIGURED",
+      "Existing voice configuration required.",
+      h
+    );
+
+  }
+
+  if (
+    typeof data.text !== "string" ||
+    !data.text.trim() ||
+    data.text.trim().length > 1500
+  ) {
+
+    return fail(
+      400,
+      "INVALID_SPEECH_TEXT",
+      "Provide 1 to 1500 characters.",
+      h
+    );
+
+  }
+
+  return timed(
+
+    "https://api.elevenlabs.io/v1/text-to-speech/" +
+    encodeURIComponent(voice) +
+    "?output_format=pcm_24000",
+
+    {
+      method: "POST",
+
+      headers: {
+        "xi-api-key": key,
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        text: data.text.trim(),
+        model_id: model
+      })
+    },
+
+    20000,
+
+    async r => {
+
+      if (!r.ok) {
+
+        return fail(
+          r.status === 429 ? 429 : 502,
+          "VOICE_PROVIDER_ERROR",
+          "Voice provider failed.",
+          h
+        );
+
+      }
+
+      const audio = Buffer.from(
+        await r.arrayBuffer()
+      );
+
+      if (
+        !audio.length ||
+        audio.length % 2 ||
+        audio.length > 2000000
+      ) {
+
+        return fail(
+          502,
+          "INVALID_VOICE_AUDIO",
+          "Invalid or oversized audio.",
+          h
+        );
+
+      }
+
+      return json(200, {
+
+        success: true,
+        platform: PLATFORM,
+        version: VERSION,
+        action: "speak",
+
+        audio: {
+          encoding: "base64",
+          format: "pcm_s16le",
+          sampleRate: 24000,
+          channels: 1,
+          data: audio.toString("base64")
+        }
+
+      }, h);
+
+    }
+
+  );
+
+}
+
+/* CENTRAL AI QUESTION */
+
+async function ask(data, h) {
+
+  const message =
+    data.message ??
+    data.prompt ??
+    data.question ??
+    "";
+
+  if (
+    typeof message !== "string" ||
+    !message.trim() ||
+    message.trim().length > 12000
+  ) {
+
+    return fail(
+      400,
+      "INVALID_REQUEST",
+      "Invalid AI request.",
+      h
+    );
+
+  }
+
+  const rawMode = String(
+    data.mode || data.tool || "assistant"
+  ).trim().toLowerCase();
+
+  const mode = MODES.includes(rawMode)
+    ? rawMode
+    : "assistant";
+
+  const provider = String(
+    data.provider ||
+    data.engine ||
+    (mode === "tutor" ? "professor" : "openai")
+  ).trim().toLowerCase();
+
+  if (!Object.hasOwn(PROVIDERS, provider)) {
+
+    return fail(
+      400,
+      "INVALID_REQUEST",
+      "Invalid provider.",
+      h
+    );
+
+  }
+
+  const rawLang = String(
+    data.language || data.lang || "ht"
+  ).trim().toLowerCase().split("-")[0];
+
+  const aliases = {
+    kre: "ht",
+    creole: "ht",
+    fra: "fr",
+    eng: "en",
+    esp: "es"
+  };
+
+  const candidate =
+    aliases[rawLang] || rawLang;
+
+  const language = Object.hasOwn(LANG, candidate)
+    ? candidate
+    : "ht";
+
+  const { project, school } =
+    projectContext(data);
+
+  const prompt = [
+
+    `Platform: ${PLATFORM}`,
+    `Project identifier: ${project}`,
+    `Language: ${LANG[language]}`,
+    `Mode: ${mode}`,
+
+    school ? `School: ${school}` : "",
+
+    "Respond in the requested language.",
+    "Do not invent information or completed actions.",
+    "Protect confidential information.",
+    "USER REQUEST:",
+
+    message.trim()
+
+  ].filter(Boolean).join("\n");
+
+  const start = Date.now();
+
+  return timed(
+
+    new URL(
+      "/.netlify/functions/" + PROVIDERS[provider],
+      DOMAIN
+    ).toString(),
+
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+
+      body: JSON.stringify({
+        message: prompt,
+        language,
+        lang: language,
+        mode,
+        project,
+        school
+      })
+    },
+
+    45000,
+
+    async r => {
+
+      const d = await r.json();
+
+      if (!r.ok || d?.success === false) {
+
+        return fail(
+          r.status === 429 ? 429 : 502,
+          "AI_BACKEND_UNAVAILABLE",
+          "AI backend unavailable.",
+          h
+        );
+
+      }
+
+      const answer = [
+
+        d?.answer,
+        d?.reply,
+        d?.response,
+        d?.content,
+        d?.text,
+        d?.message
+
+      ].find(
+        v => typeof v === "string" && v.trim()
+      )?.trim();
+
+      if (!answer) {
+
+        return fail(
+          502,
+          "EMPTY_BACKEND_RESPONSE",
+          "AI returned no answer.",
+          h
+        );
+
+      }
+
+      return json(200, {
+
+        success: true,
+        platform: PLATFORM,
+        version: VERSION,
+        provider,
+
+        model: typeof d.model === "string"
+          ? d.model
+          : null,
+
+        project,
+        language,
+        mode,
+
+        answer,
+        reply: answer,
+        response: answer,
+        content: answer,
+        text: answer,
+
+        speech: {
+          text: answer,
+          language
+        },
+
+        processingTime: Date.now() - start,
+
+        createdAt: new Date().toISOString()
+
+      }, h);
+
+    }
+
+  );
+
+}
+
 /* =========================================================
-   RESPONSE HEADERS
+   CENTRAL API — SINGLE HANDLER
    ========================================================= */
 
-function getHeaders(event) {
+exports.handler = async function(event) {
 
   const origin =
     event.headers?.origin ||
     event.headers?.Origin ||
     "";
 
-  const allowedOrigins = new Set([
+  const allowed = new Set([
 
-    CONFIG.domain,
+    DOMAIN,
 
     "https://www.bss1815promaxdmp.com",
 
@@ -79,851 +501,40 @@ function getHeaders(event) {
 
   ]);
 
-  const headers = {
+  const h = {
 
-    "Content-Type": "application/json; charset=utf-8",
+    "Content-Type":
+      "application/json; charset=utf-8",
 
-    "Cache-Control": "no-store",
+    "Cache-Control":
+      "no-store",
 
-    "X-Content-Type-Options": "nosniff",
+    "X-Content-Type-Options":
+      "nosniff",
 
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Methods":
+      "POST, OPTIONS",
 
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers":
+      "Content-Type, Authorization",
 
-    "Vary": "Origin"
-
-  };
-
-  if (origin && allowedOrigins.has(origin)) {
-
-    headers["Access-Control-Allow-Origin"] = origin;
-
-  }
-
-  return {
-
-    headers,
-
-    allowed: !origin || allowedOrigins.has(origin)
+    Vary: "Origin"
 
   };
 
-}
+  if (origin && allowed.has(origin)) {
 
-/* =========================================================
-   JSON RESPONSE
-   ========================================================= */
-
-function json(statusCode, data, headers) {
-
-  return {
-
-    statusCode,
-
-    headers,
-
-    body: JSON.stringify(data)
-
-  };
-
-}
-
-function failure(status, code, message, headers) {
-
-  return json(status, {
-
-    success: false,
-
-    platform: CONFIG.platform,
-
-    error: code,
-
-    message
-
-  }, headers);
-
-}
-
-/* =========================================================
-   LANGUAGE NORMALIZATION
-   ========================================================= */
-
-function normalizeLanguage(value) {
-
-  const language = String(value || "ht")
-    .trim()
-    .toLowerCase()
-    .split("-")[0];
-
-  const aliases = {
-
-    kre: "ht",
-
-    creole: "ht",
-
-    fra: "fr",
-
-    eng: "en",
-
-    esp: "es"
-
-  };
-
-  const normalized = aliases[language] || language;
-
-  return CONFIG.languages.includes(normalized)
-    ? normalized
-    : "ht";
-
-}
-
-function normalizeMode(value) {
-
-  const mode = String(value || "assistant")
-    .trim()
-    .toLowerCase();
-
-  return CONFIG.modes.includes(mode)
-    ? mode
-    : "assistant";
-
-}
-
-function normalizeProvider(value, mode) {
-
-  if (!value) {
-
-    return mode === "tutor"
-      ? "professor"
-      : "openai";
+    h["Access-Control-Allow-Origin"] = origin;
 
   }
 
-  const provider = String(value)
-    .trim()
-    .toLowerCase();
+  if (origin && !allowed.has(origin)) {
 
-  return Object.hasOwn(CONFIG.providers, provider)
-    ? provider
-    : null;
-
-}
-
-/* =========================================================
-   REQUEST VALIDATION
-   ========================================================= */
-
-function readBody(event) {
-
-  const raw = event.isBase64Encoded
-
-    ? Buffer.from(event.body || "", "base64")
-        .toString("utf8")
-
-    : event.body || "";
-
-  if (Buffer.byteLength(raw, "utf8") > 65536) {
-
-    throw new Error("REQUEST_TOO_LARGE");
-
-  }
-
-  const data = JSON.parse(raw || "{}");
-
-  if (
-
-    !data ||
-
-    typeof data !== "object" ||
-
-    Array.isArray(data)
-
-  ) {
-
-    throw new Error("INVALID_REQUEST");
-
-  }
-
-  return data;
-
-}
-
-function projectContext(data) {
-
-  const project = String(data.project || "bss1815")
-    .trim()
-    .toLowerCase();
-
-  if (!/^[a-z0-9-]{1,80}$/.test(project)) {
-
-    throw new Error("INVALID_PROJECT");
-
-  }
-
-  return {
-
-    project,
-
-    school: String(data.school || "")
-      .trim()
-      .slice(0, 120)
-
-  };
-
-}
-
-function parseRequest(data) {
-
-  const message =
-
-    data.message ??
-
-    data.prompt ??
-
-    data.question ??
-
-    "";
-
-  if (
-
-    typeof message !== "string" ||
-
-    !message.trim() ||
-
-    message.trim().length > CONFIG.maxMessageLength
-
-  ) {
-
-    throw new Error("INVALID_MESSAGE");
-
-  }
-
-  const mode =
-    normalizeMode(data.mode || data.tool);
-
-  const provider =
-    normalizeProvider(data.provider || data.engine, mode);
-
-  if (!provider) {
-
-    throw new Error("INVALID_PROVIDER");
-
-  }
-
-  return {
-
-    message: message.trim(),
-
-    language: normalizeLanguage(
-      data.language || data.lang
-    ),
-
-    mode,
-
-    provider,
-
-    ...projectContext(data)
-
-  };
-
-}
-
-/* =========================================================
-   CENTRAL AI CONTEXT
-   ========================================================= */
-
-function buildMessage(request) {
-
-  const languages = {
-
-    ht: "Haitian Creole",
-
-    fr: "French",
-
-    en: "English",
-
-    es: "Spanish"
-
-  };
-
-  return [
-
-    `Platform: ${CONFIG.platform}`,
-
-    `Project identifier: ${request.project}`,
-
-    `Language: ${languages[request.language]}`,
-
-    `Mode: ${request.mode}`,
-
-    request.school
-      ? `School: ${request.school}`
-      : "",
-
-    "Respond in the requested language.",
-
-    "Do not invent information or completed actions.",
-
-    "Protect confidential information.",
-
-    "USER REQUEST:",
-
-    request.message
-
-  ].filter(Boolean).join("\n");
-
-}
-
-/* =========================================================
-   EXTRACT AI ANSWER
-   ========================================================= */
-
-function extractAnswer(data) {
-
-  if (!data || typeof data !== "object") {
-
-    return "";
-
-  }
-
-  const answer = [
-
-    data.answer,
-
-    data.reply,
-
-    data.response,
-
-    data.content,
-
-    data.text,
-
-    data.message
-
-  ].find(v => typeof v === "string" && v.trim());
-
-  return answer ? answer.trim() : "";
-
-}
-
-/* =========================================================
-   OPENAI / GEMINI / AI PROFESSOR
-   ========================================================= */
-
-async function connectProvider(request) {
-
-  const url = new URL(
-
-    CONFIG.providers[request.provider],
-
-    CONFIG.domain
-
-  ).toString();
-
-  const controller = new AbortController();
-
-  const timer = setTimeout(
-
-    () => controller.abort(),
-
-    CONFIG.timeout
-
-  );
-
-  try {
-
-    const response = await fetch(url, {
-
-      method: "POST",
-
-      headers: {
-
-        "Content-Type": "application/json",
-
-        Accept: "application/json"
-
-      },
-
-      body: JSON.stringify({
-
-        message: buildMessage(request),
-
-        language: request.language,
-
-        lang: request.language,
-
-        mode: request.mode,
-
-        project: request.project,
-
-        school: request.school
-
-      }),
-
-      signal: controller.signal,
-
-      redirect: "error"
-
-    });
-
-    let data;
-
-    try {
-
-      data = await response.json();
-
-    } catch {
-
-      throw new Error("INVALID_BACKEND_RESPONSE");
-
-    }
-
-    if (!response.ok || data?.success === false) {
-
-      throw Object.assign(
-
-        new Error("BACKEND_ERROR"),
-
-        { status: response.status }
-
-      );
-
-    }
-
-    const answer = extractAnswer(data);
-
-    if (!answer) {
-
-      throw new Error("EMPTY_BACKEND_RESPONSE");
-
-    }
-
-    return {
-
-      answer,
-
-      provider: request.provider,
-
-      model: typeof data.model === "string"
-        ? data.model
-        : null
-
-    };
-
-  } finally {
-
-    clearTimeout(timer);
-
-  }
-
-}
-
-/* =========================================================
-   PROF AVATAR — SERVER AUTHORIZATION
-
-   NEVER EXPOSE SERVER TOKEN IN HTML OR FRONTEND JS.
-   ========================================================= */
-
-function isAvatarAuthorized(event) {
-
-  const secret =
-    process.env.PROF_AVATAR_SERVER_TOKEN || "";
-
-  const auth =
-
-    event.headers?.authorization ||
-
-    event.headers?.Authorization ||
-
-    "";
-
-  if (
-
-    !secret ||
-
-    typeof auth !== "string" ||
-
-    !auth.startsWith("Bearer ")
-
-  ) {
-
-    return false;
-
-  }
-
-  const expected = Buffer.from(secret);
-
-  const received = Buffer.from(auth.slice(7));
-
-  return expected.length === received.length &&
-
-    timingSafeEqual(expected, received);
-
-}
-
-/* =========================================================
-   PROF AVATAR — EXISTING LIVE SESSION
-   ========================================================= */
-
-async function avatarSession(event, data, headers) {
-
-  if (!isAvatarAuthorized(event)) {
-
-    return failure(
-
-      401,
-
-      "AVATAR_UNAUTHORIZED",
-
-      "Server authorization required.",
-
-      headers
-
-    );
-
-  }
-
-  let context;
-
-  try {
-
-    context = projectContext(data);
-
-  } catch {
-
-    return failure(
-
-      400,
-
-      "INVALID_PROJECT",
-
-      "Invalid project.",
-
-      headers
-
-    );
-
-  }
-
-  try {
-
-    const session = await createSession(context);
-
-    return json(200, {
-
-      success: true,
-
-      platform: CONFIG.platform,
-
-      version: CONFIG.version,
-
-      action: "avatar-session",
-
-      ...context,
-
-      session
-
-    }, headers);
-
-  } catch (error) {
-
-    const status =
-
-      [429, 502, 503, 504].includes(error.status)
-
-        ? error.status
-
-        : 502;
-
-    const codes = [
-
-      "AVATAR_DISABLED",
-
-      "INVALID_AVATAR_CONFIGURATION",
-
-      "AVATAR_NOT_CONFIGURED",
-
-      "AVATAR_PROVIDER_ERROR",
-
-      "INVALID_AVATAR_SESSION",
-
-      "AVATAR_TIMEOUT",
-
-      "AVATAR_UNAVAILABLE"
-
-    ];
-
-    return failure(
-
-      status,
-
-      codes.includes(error.message)
-        ? error.message
-        : "AVATAR_UNAVAILABLE",
-
-      "Avatar session could not be created.",
-
-      headers
-
-    );
-
-  }
-
-}
-
-/* =========================================================
-   MAXIMAX VOICE — EXISTING ELEVENLABS VOICE
-   PCM 24 KHZ
-   ========================================================= */
-
-async function speak(event, data, headers) {
-
-  if (
-
-    process.env.PROF_AVATAR_VOICE_ENABLED !== "true"
-
-  ) {
-
-    return failure(
-
-      503,
-
-      "VOICE_DISABLED",
-
-      "Voice is not enabled.",
-
-      headers
-
-    );
-
-  }
-
-  if (!isAvatarAuthorized(event)) {
-
-    return failure(
-
-      401,
-
-      "VOICE_UNAUTHORIZED",
-
-      "Server authorization required.",
-
-      headers
-
-    );
-
-  }
-
-  const key =
-    process.env.ELEVENLABS_API_KEY;
-
-  const voiceId =
-    process.env.ELEVENLABS_VOICE_ID;
-
-  const model =
-    process.env.ELEVENLABS_MODEL_ID;
-
-  if (!key || !voiceId || !model) {
-
-    return failure(
-
-      503,
-
-      "VOICE_NOT_CONFIGURED",
-
-      "Existing voice configuration required.",
-
-      headers
-
-    );
-
-  }
-
-  if (
-
-    typeof data.text !== "string" ||
-
-    !data.text.trim() ||
-
-    data.text.trim().length > CONFIG.maxSpeechLength
-
-  ) {
-
-    return failure(
-
-      400,
-
-      "INVALID_SPEECH_TEXT",
-
-      "Provide 1 to 1500 characters.",
-
-      headers
-
-    );
-
-  }
-
-  const url =
-
-    "https://api.elevenlabs.io/v1/text-to-speech/" +
-
-    encodeURIComponent(voiceId) +
-
-    "?output_format=pcm_24000";
-
-  const controller = new AbortController();
-
-  const timer = setTimeout(
-
-    () => controller.abort(),
-
-    CONFIG.speechTimeout
-
-  );
-
-  try {
-
-    const response = await fetch(url, {
-
-      method: "POST",
-
-      headers: {
-
-        "xi-api-key": key,
-
-        "Content-Type": "application/json"
-
-      },
-
-      body: JSON.stringify({
-
-        text: data.text.trim(),
-
-        model_id: model
-
-      }),
-
-      signal: controller.signal,
-
-      redirect: "error"
-
-    });
-
-    if (!response.ok) {
-
-      return failure(
-
-        response.status === 429 ? 429 : 502,
-
-        "VOICE_PROVIDER_ERROR",
-
-        "Voice provider could not complete the request.",
-
-        headers
-
-      );
-
-    }
-
-    const audio = Buffer.from(
-
-      await response.arrayBuffer()
-
-    );
-
-    if (
-
-      !audio.length ||
-
-      audio.length % 2 ||
-
-      audio.length > CONFIG.maxSpeechBytes
-
-    ) {
-
-      return failure(
-
-        502,
-
-        "INVALID_VOICE_AUDIO",
-
-        "Invalid or oversized audio.",
-
-        headers
-
-      );
-
-    }
-
-    return json(200, {
-
-      success: true,
-
-      platform: CONFIG.platform,
-
-      version: CONFIG.version,
-
-      action: "speak",
-
-      audio: {
-
-        encoding: "base64",
-
-        format: "pcm_s16le",
-
-        sampleRate: 24000,
-
-        channels: 1,
-
-        data: audio.toString("base64")
-
-      }
-
-    }, headers);
-
-  } catch (error) {
-
-    return failure(
-
-      error.name === "AbortError" ? 504 : 502,
-
-      "VOICE_UNAVAILABLE",
-
-      "Voice request failed.",
-
-      headers
-
-    );
-
-  } finally {
-
-    clearTimeout(timer);
-
-  }
-
-}
-
-/* =========================================================
-   CENTRAL AI — SINGLE API HANDLER
-   ========================================================= */
-
-exports.handler = async function(event) {
-
-  const { headers, allowed } = getHeaders(event);
-
-  if (!allowed) {
-
-    return failure(
-
+    return fail(
       403,
-
       "ORIGIN_NOT_ALLOWED",
-
       "Origin not authorized.",
-
-      headers
-
+      h
     );
 
   }
@@ -931,212 +542,169 @@ exports.handler = async function(event) {
   if (event.httpMethod === "OPTIONS") {
 
     return {
-
       statusCode: 204,
-
-      headers,
-
+      headers: h,
       body: ""
-
     };
 
   }
 
   if (event.httpMethod !== "POST") {
 
-    return failure(
-
+    return fail(
       405,
-
       "METHOD_NOT_ALLOWED",
-
       "Use POST.",
-
       {
-
-        ...headers,
-
+        ...h,
         Allow: "POST, OPTIONS"
+      }
+    );
+
+  }
+
+  let data;
+
+  try {
+
+    const raw = event.isBase64Encoded
+
+      ? Buffer.from(event.body || "", "base64")
+          .toString("utf8")
+
+      : event.body || "";
+
+    if (Buffer.byteLength(raw) > 65536) {
+
+      return fail(
+        413,
+        "INVALID_REQUEST",
+        "Request too large.",
+        h
+      );
+
+    }
+
+    data = JSON.parse(raw || "{}");
+
+    if (
+      !data ||
+      typeof data !== "object" ||
+      Array.isArray(data)
+    ) throw Error();
+
+  } catch {
+
+    return fail(
+      400,
+      "INVALID_REQUEST",
+      "Invalid request.",
+      h
+    );
+
+  }
+
+  try {
+
+    /* SECURE LIVE AVATAR ACTIONS */
+
+    if (
+      data.action === "avatar-session" ||
+      data.action === "speak"
+    ) {
+
+      if (!authorize(event, data)) {
+
+        return fail(
+          401,
+          "AVATAR_UNAUTHORIZED",
+          "Authorized access required.",
+          h
+        );
 
       }
 
-    );
+      /* EXISTING ELEVENLABS VOICE */
 
-  }
+      if (data.action === "speak") {
 
-  let request;
+        return await speak(data, h);
 
-  try {
+      }
 
-    const data = readBody(event);
+      /* EXISTING LIVE AVATAR */
 
-    /* EXISTING LIVE AVATAR SESSION */
+      const context = projectContext(data);
 
-    if (data.action === "avatar-session") {
+      const session = await createSession(context);
 
-      return await avatarSession(
+      return json(200, {
 
-        event,
+        success: true,
+        platform: PLATFORM,
+        version: VERSION,
+        action: "avatar-session",
 
-        data,
+        ...context,
 
-        headers
+        session
 
-      );
-
-    }
-
-    /* EXISTING MAXIMAX VOICE */
-
-    if (data.action === "speak") {
-
-      return await speak(
-
-        event,
-
-        data,
-
-        headers
-
-      );
+      }, h);
 
     }
 
-    /* CENTRAL AI QUESTION */
+    /* CENTRAL AI ROUTING */
 
     if (
-
       data.action != null &&
-
       data.action !== "ask"
-
     ) {
 
-      throw new Error("INVALID_ACTION");
-
-    }
-
-    request = parseRequest(data);
-
-  } catch (error) {
-
-    return failure(
-
-      error.message === "REQUEST_TOO_LARGE"
-        ? 413
-        : 400,
-
-      "INVALID_REQUEST",
-
-      "Invalid or incomplete AI request.",
-
-      headers
-
-    );
-
-  }
-
-  const startedAt = Date.now();
-
-  try {
-
-    const result = await connectProvider(request);
-
-    return json(200, {
-
-      success: true,
-
-      platform: CONFIG.platform,
-
-      version: CONFIG.version,
-
-      provider: result.provider,
-
-      model: result.model,
-
-      project: request.project,
-
-      language: request.language,
-
-      mode: request.mode,
-
-      answer: result.answer,
-
-      reply: result.answer,
-
-      response: result.answer,
-
-      content: result.answer,
-
-      text: result.answer,
-
-      speech: {
-
-        text: result.answer,
-
-        language: request.language
-
-      },
-
-      processingTime: Date.now() - startedAt,
-
-      createdAt: new Date().toISOString()
-
-    }, headers);
-
-  } catch (error) {
-
-    if (error.name === "AbortError") {
-
-      return failure(
-
-        504,
-
-        "AI_TIMEOUT",
-
-        "The central AI request timed out.",
-
-        headers
-
+      return fail(
+        400,
+        "INVALID_REQUEST",
+        "Invalid action.",
+        h
       );
 
     }
 
-    if (error.status === 429) {
+    return await ask(data, h);
 
-      return failure(
+  } catch (e) {
 
-        429,
+    if (e.message === "INVALID_PROJECT") {
 
-        "AI_RATE_LIMIT",
-
-        "Too many AI requests.",
-
-        headers
-
+      return fail(
+        400,
+        "INVALID_PROJECT",
+        "Invalid project.",
+        h
       );
 
     }
 
-    console.error("CENTRAL AI ERROR", {
+    const status = e.name === "AbortError"
 
-      provider: request.provider,
+      ? 504
 
-      code: error.message,
+      : [429, 502, 503, 504].includes(e.status)
 
-      status: error.status || null
+        ? e.status
 
-    });
+        : 502;
 
-    return failure(
+    return fail(
 
-      502,
+      status,
 
-      "AI_BACKEND_UNAVAILABLE",
+      status === 504
+        ? "AI_TIMEOUT"
+        : "SERVICE_UNAVAILABLE",
 
-      "The AI backend is temporarily unavailable.",
+      "Request could not be completed.",
 
-      headers
+      h
 
     );
 
@@ -1145,7 +713,7 @@ exports.handler = async function(event) {
 };
 
 /* =========================================================
-   END — CENTRAL AI BACKEND V1.2.0
+   END — CENTRAL AI BACKEND V1.3.0
    BSS1815 PRO-MAX DMP
    DEVAN DEVAN NÈT
    ========================================================= */
